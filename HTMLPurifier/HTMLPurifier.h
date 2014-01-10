@@ -30,6 +30,8 @@
 
 #define VERSION @"0.1"
 #define TRIGGER_ERROR NSLog;
+
+
 @interface HTMLPurifier : NSObject
 
 /**
