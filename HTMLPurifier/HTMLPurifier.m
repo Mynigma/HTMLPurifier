@@ -130,10 +130,22 @@
  */
 - (NSString*) purifyWith:(NSString*)html
 {
+    //Create Config
     config = [HTMLPurifier_Config create:nil];
     
-    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer new];
+    //New Lexer with Config
+    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer alloc];
+    lexer = [HTMLPurifier_Lexer initWithConfig:config];
     
+    //New Context
+    context = [HTMLPurifier_Context new];
+    
+    //setup HTML generator
+    generator = [HTMLPurifier_Generator alloc];
+    generator = [HTMLPurifier_Generator initWithConfig:config Context:context];
+    [context registerWithName:@"Generator" Ref:generator];
+    
+    //Set up global context variables
 }
 
 
