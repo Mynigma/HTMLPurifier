@@ -9,5 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface HTMLPurifier_Context : NSObject
+{
+    NSMutableDictionary* _storage;
+}
+
+- (void)registerName:(NSString*)name  ref:(NSObject*)ref;
+- (NSObject*)getName:(NSString*)name;
+- (NSObject*)getName:(NSString*)name ignoreError:(BOOL)ignoreError;
+- (BOOL)existsName:(NSString*)name;
+- (void)loadArrayContextArray:(NSDictionary*)contextArray;
 
 @end
