@@ -13,8 +13,8 @@
 
 - (NSString*)parseCDATAWithString:(NSString*)string
 {
-    string = [BasicPHP trimString:string];
-    string = [BasicPHP strReplaceSearch:@[@"\n", @"\t", @"\r"] replace:@" " subject:string];
+    string = trim(string);
+    string = str_replace(@[@"\n", @"\t", @"\r"], @" ", string);
     return string;
 }
 
@@ -68,22 +68,22 @@
                 // new characters, to make sure we're not breaking
                 // the encoding.
                 unichar character = [HTMLPurifier_Encoder unichrWith(hexdec($code));
-                if (HTMLPurifier_Encoder::cleanUTF8($char) === '') {
+                if ([HTMLPurifier_Encoder cleanUTF8Wit($char) === '') {
                     continue;
                 }
-                $ret .= $char;
-                if ($i < $c && trim($string[$i]) !== '') {
-                    $i--;
+                [ret appendFormat:@"%c", character];
+                if (i < c && ![trim([string substringWithRange:NSMakeRange(i, 1)]) isEqualTo:@""]) {
+                    i--;
                 }
                 continue;
             }
-            if ($string[$i] === "\n") {
+            if ([[string substringWithRange:NSMakeRange(i, 1)] isEqual:@"\n"]) {
                 continue;
             }
         }
-        $ret .= $string[$i];
+        [ret appendString:[string substringWithRange:NSMakeRange(i, 1)]];
     }
-    return $ret;
+    return ret;
 }
 
 
