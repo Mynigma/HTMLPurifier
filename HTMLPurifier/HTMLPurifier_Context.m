@@ -10,7 +10,7 @@
 
 @implementation HTMLPurifier_Context
 
-- (void)registerName:(NSString*)name  ref:(NSObject*)ref
+- (void)registerWithName:(NSString*)name  ref:(NSObject*)ref
 {
     if([_storage objectForKey:name])
     {
@@ -20,12 +20,12 @@
     [_storage setObject:ref forKey:name];
 }
 
-- (NSObject*)getName:(NSString*)name
+- (NSObject*)get:(NSString*)name
 {
-    return [self getName:name ignoreError:NO];
+    return [self getWithName:name ignoreError:NO];
 }
 
-- (NSObject*)getName:(NSString*)name ignoreError:(BOOL)ignoreError
+- (NSObject*)getWithName:(NSString*)name ignoreError:(BOOL)ignoreError
 {
     if([_storage objectForKey:name])
     {
@@ -36,16 +36,16 @@
     return [_storage objectForKey:name];
 }
 
-- (BOOL)existsName:(NSString *)name
+- (BOOL)existsWithName:(NSString *)name
 {
     return [_storage objectForKey:name]!=nil;
 }
 
-- (void)loadArrayContextArray:(NSDictionary *)contextArray
+- (void)loadArrayWithContextArray:(NSDictionary *)contextArray
 {
     for(NSString* key in contextArray.allKeys)
     {
-        [self registerName:key ref:[contextArray objectForKey:key]];
+        [self registerWithName:key ref:[contextArray objectForKey:key]];
     }
 }
 
