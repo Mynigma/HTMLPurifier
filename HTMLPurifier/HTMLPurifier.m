@@ -49,6 +49,7 @@
 #import "HTMLPurifier_Generator.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Filter.h"
+#import "HTMLPurifier_Lexer.h"
 
 
 @implementation HTMLPurifier
@@ -91,7 +92,7 @@
  *                The parameter can also be any type that
  *                HTMLPurifier_Config create() supports.
  */
-- (id)initWithHTMLPurifier_Config:(HTMLPurifier_Config*) newConfig
+- (id)initWithConfig:(HTMLPurifier_Config*) newConfig
 {
     self = [super init];
     if (self) {
@@ -101,6 +102,10 @@
     return self;
 }
 
+- (id) init
+{
+    return [self initWithConfig:nil];
+}
 
 /**
  * Deprecated
@@ -123,10 +128,11 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purify:(NSString*)html
+- (NSString*) purifyWith:(NSString*)html
 {
- 
+    config = [HTMLPurifier_Config create:nil];
     
+    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer new];
     
 }
 
@@ -139,7 +145,7 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purify:(NSString*)html withConfig:(HTMLPurifier_Config*)newConfig
+- (NSString*) purifyWith:(NSString*)html Config:(HTMLPurifier_Config*)newConfig
 {
     config = newConfig;
 
