@@ -50,7 +50,10 @@
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Filter.h"
 #import "HTMLPurifier_Lexer.h"
-
+#import "HTMLPurifier_LanguageFactory.h"
+#import "HTMLPurifier_Language.h"
+#import "HTMLPurifier_ErrorCollector.h"
+#import "HTMLPurifier_IDAccumulator.h"
 
 @implementation HTMLPurifier
 
@@ -128,11 +131,44 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purifyWith:(NSString*)html
+- (NSString*) purifyWith:(NSString*)newHtml
 {
+    
+    NSString* html = newHtml;
+    
+    //Create Config
     config = [HTMLPurifier_Config create:nil];
     
-    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer new];
+    //New Lexer with Config
+    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer alloc];
+    lexer = [HTMLPurifier_Lexer initWithConfig:config];
+    
+    //New Context
+    context = [HTMLPurifier_Context new];
+    
+    //setup HTML generator
+    generator = [HTMLPurifier_Generator alloc];
+    generator = [HTMLPurifier_Generator initWithConfig:config Context:context];
+    [context registerWithName:@"Generator" ref:generator];
+    
+    //setup global context variables
+    if ([config getWithKey:@"Core.CollectErrors"])
+    {
+        
+        HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
+        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: context];
+        [context registerWithName:@"Locale" ref:language];
+        
+        HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
+        error_collector = [HTMLPurifier_ErrorCollector initWithContext:context];
+        [context registerWithName:@"ErrorCollector" ref:error_collector];
+    }
+    
+    // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
+    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:context];
+    [context registerWithName:@"IDAccumulator" ref:id_accumulator];
+    
+    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:context];
     
 }
 
