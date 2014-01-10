@@ -21,6 +21,8 @@
 		803FD4261880497E0010D799 /* HTMLPurifier_Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD4241880497E0010D799 /* HTMLPurifier_Context.m */; };
 		803FD42918804E270010D799 /* HTMLPurifier_Filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD42718804E270010D799 /* HTMLPurifier_Filter.h */; };
 		803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD42818804E270010D799 /* HTMLPurifier_Filter.m */; };
+		803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD42B188055D60010D799 /* HTMLPurifier_Lexer.h */; };
+		803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD42C188055D60010D799 /* HTMLPurifier_Lexer.m */; };
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
@@ -56,6 +58,8 @@
 		803FD4241880497E0010D799 /* HTMLPurifier_Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Context.m; sourceTree = "<group>"; };
 		803FD42718804E270010D799 /* HTMLPurifier_Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Filter.h; sourceTree = "<group>"; };
 		803FD42818804E270010D799 /* HTMLPurifier_Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Filter.m; sourceTree = "<group>"; };
+		803FD42B188055D60010D799 /* HTMLPurifier_Lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Lexer.h; sourceTree = "<group>"; };
+		803FD42C188055D60010D799 /* HTMLPurifier_Lexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Lexer.m; sourceTree = "<group>"; };
 		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -193,6 +197,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */,
 				803FD42918804E270010D799 /* HTMLPurifier_Filter.h in Headers */,
 				803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */,
 				1ED0392C1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h in Headers */,
@@ -298,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */,
 				803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */,
 				1ED0392D1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m in Sources */,
 				803FD4261880497E0010D799 /* HTMLPurifier_Context.m in Sources */,

@@ -49,6 +49,7 @@
 #import "HTMLPurifier_Generator.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Filter.h"
+#import "HTMLPurifier_Lexer.h"
 
 
 @implementation HTMLPurifier
@@ -91,7 +92,7 @@
  *                The parameter can also be any type that
  *                HTMLPurifier_Config create() supports.
  */
-- (id)initWithHTMLPurifier_Config:(HTMLPurifier_Config*) newConfig
+- (id)initWithConfig:(HTMLPurifier_Config*) newConfig
 {
     self = [super init];
     if (self) {
@@ -101,14 +102,53 @@
     return self;
 }
 
+- (id) init
+{
+    return [self initWithConfig:nil];
+}
+
 /**
+ * Deprecated
+ *
  * Adds a filter to process the output. First come first serve
  *
  * @param HTMLPurifier_Filter $filter HTMLPurifier_Filter object
- */
+ *
 - (void)addFilter:(HTMLPurifier_Filter*)filter
 {
+}
+*/
+
+/**
+ * Filters an HTML snippet/document to be XSS-free and standards-compliant.
+ *
+ * @param string $html String of HTML to purify
+ * default config object specified during this
+ * object's construction.  
+ *
+ * @return string Purified HTML
+ */
+- (NSString*) purifyWith:(NSString*)html
+{
+    config = [HTMLPurifier_Config create:nil];
     
+    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer new];
+    
+}
+
+
+/**
+ * Filters an HTML snippet/document to be XSS-free and standards-compliant.
+ *
+ * @param string $html String of HTML to purify
+ * @param HTMLPurifier_Config $config Config object for this operation. 
+ *
+ * @return string Purified HTML
+ */
+- (NSString*) purifyWith:(NSString*)html Config:(HTMLPurifier_Config*)newConfig
+{
+    config = newConfig;
+
 }
 
 @end
