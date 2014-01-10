@@ -43,7 +43,7 @@
  * Array of extra filter objects to run on HTML,
  * for backwards compatibility.
  */
-@property NSMutableArray* filter;
+@property NSMutableArray* filters;
 
 /**
  * @type HTMLPurifier_Strategy_Core
@@ -60,5 +60,12 @@
  * Is an array of contexts if the last called method was purifyArray().
  */
 @property HTMLPurifier_Context* context;
+
+- (id)initWithConfig:(HTMLPurifier_Config*) newConfig;
+
+- (NSString*) purifyWith:(NSString*)newHtml;
+
+- (NSString*) purifyWith:(NSString*)html Config:(HTMLPurifier_Config*)newConfig;
+
 
 @end
