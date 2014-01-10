@@ -10,4 +10,6 @@
 
 @implementation HTMLPurifier
 
+//TEST
+
 @end
