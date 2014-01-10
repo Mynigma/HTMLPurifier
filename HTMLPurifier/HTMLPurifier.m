@@ -50,6 +50,7 @@
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Filter.h"
 #import "HTMLPurifier_Lexer.h"
+#import "HTMLPurifier_LanguageFactory.h"
 
 
 @implementation HTMLPurifier
@@ -143,9 +144,13 @@
     //setup HTML generator
     generator = [HTMLPurifier_Generator alloc];
     generator = [HTMLPurifier_Generator initWithConfig:config Context:context];
-    [context registerWithName:@"Generator" Ref:generator];
+    [context registerWithName:@"Generator" ref:generator];
     
     //Set up global context variables
+    if ([config getWithKey:@"Core.CollectErrors"]) {
+    HTMLPurifier_LanguageFactory* language_factory = []
+        
+    }
 }
 
 
