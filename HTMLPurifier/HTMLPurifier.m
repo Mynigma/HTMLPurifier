@@ -170,6 +170,11 @@
     
     html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:context];
     
+    // setup filters
+    
+    filter_flags = [config getBatchWithNamespace:@"Filter"];
+    
+    
 }
 
 
