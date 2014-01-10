@@ -46,8 +46,9 @@
 #import "HTMLPurifier.h"
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Strategy_Core.h"
-#import "HTMLPurifier_Generator.m"
-#import "HTMLPurifier_Context.m"
+#import "HTMLPurifier_Generator.h"
+#import "HTMLPurifier_Context.h"
+#import "HTMLPurifier_Filter.h"
 
 
 @implementation HTMLPurifier
@@ -79,6 +80,17 @@
  */
 @synthesize context;
 
+
+/**
+ * Initializes the purifier.
+ *
+ * @param HTMLPurifier_Config $config Optional HTMLPurifier_Config object
+ *                for all instances of the purifier, if omitted, a default
+ *                configuration is supplied (which can be overridden on a
+ *                per-use basis).
+ *                The parameter can also be any type that
+ *                HTMLPurifier_Config create() supports.
+ */
 - (id)initWithHTMLPurifier_Config:(HTMLPurifier_Config*) newConfig
 {
     self = [super init];
@@ -89,6 +101,14 @@
     return self;
 }
 
-- 
+/**
+ * Adds a filter to process the output. First come first serve
+ *
+ * @param HTMLPurifier_Filter $filter HTMLPurifier_Filter object
+ */
+- (void)addFilter:(HTMLPurifier_Filter*)filter
+{
+    
+}
 
 @end
