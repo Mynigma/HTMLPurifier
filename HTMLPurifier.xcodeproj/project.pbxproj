@@ -45,6 +45,12 @@
 		803FD43A18805DF70010D799 /* HTMLPurifier_ErrorCollector.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD43818805DF70010D799 /* HTMLPurifier_ErrorCollector.m */; };
 		803FD43D18805F030010D799 /* HTMLPurifier_IDAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD43B18805F030010D799 /* HTMLPurifier_IDAccumulator.h */; };
 		803FD43E18805F030010D799 /* HTMLPurifier_IDAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD43C18805F030010D799 /* HTMLPurifier_IDAccumulator.m */; };
+		803FD44518809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD44318809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.h */; };
+		803FD44618809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD44418809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.m */; };
+		803FD44B1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD4491880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.h */; };
+		803FD44C1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD44A1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.m */; };
+		803FD44F1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD44D1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.h */; };
+		803FD4501880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD44E1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.m */; };
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
@@ -104,6 +110,12 @@
 		803FD43818805DF70010D799 /* HTMLPurifier_ErrorCollector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ErrorCollector.m; sourceTree = "<group>"; };
 		803FD43B18805F030010D799 /* HTMLPurifier_IDAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_IDAccumulator.h; sourceTree = "<group>"; };
 		803FD43C18805F030010D799 /* HTMLPurifier_IDAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_IDAccumulator.m; sourceTree = "<group>"; };
+		803FD44318809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_HTML_Bool.h; sourceTree = "<group>"; };
+		803FD44418809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_Bool.m; sourceTree = "<group>"; };
+		803FD4491880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_HTML_Nmtokens.h; sourceTree = "<group>"; };
+		803FD44A1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_Nmtokens.m; sourceTree = "<group>"; };
+		803FD44D1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_HTML_Class.h; sourceTree = "<group>"; };
+		803FD44E1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_Class.m; sourceTree = "<group>"; };
 		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -143,6 +155,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		803FD44718809A200010D799 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				803FD44318809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.h */,
+				803FD44418809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.m */,
+				803FD4491880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.h */,
+				803FD44A1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.m */,
+				803FD44D1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.h */,
+				803FD44E1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.m */,
+			);
+			name = HTML;
+			sourceTree = "<group>";
+		};
+		803FD44818809A290010D799 /* Attr_Def */ = {
+			isa = PBXGroup;
+			children = (
+				803FD44718809A200010D799 /* HTML */,
+			);
+			name = Attr_Def;
+			sourceTree = "<group>";
+		};
 		80EDF9B118803B3200EB1E89 = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +246,7 @@
 				803FD43C18805F030010D799 /* HTMLPurifier_IDAccumulator.m */,
 				1ED03936188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.h */,
 				1ED03937188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.m */,
+				803FD44818809A290010D799 /* Attr_Def */,
 				80EDF9C518803B3200EB1E89 /* Supporting Files */,
 				1ED0393218805A150075F6A4 /* BasicPHP.h */,
 				1ED0393318805A150075F6A4 /* BasicPHP.m */,
@@ -267,10 +301,12 @@
 			files = (
 				803FD43918805DF70010D799 /* HTMLPurifier_ErrorCollector.h in Headers */,
 				803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */,
+				803FD44F1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.h in Headers */,
 				1ED0393418805A150075F6A4 /* BasicPHP.h in Headers */,
 				803FD42918804E270010D799 /* HTMLPurifier_Filter.h in Headers */,
 				1ED0394818808D660075F6A4 /* HTMLPurifier_AttrDef_Length.h in Headers */,
 				803FD43118805B760010D799 /* HTMLPurifier_LanguageFactory.h in Headers */,
+				803FD44B1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.h in Headers */,
 				803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */,
 				803FD43D18805F030010D799 /* HTMLPurifier_IDAccumulator.h in Headers */,
 				1ED0394C18808EC90075F6A4 /* HTMLPurifier_Length.h in Headers */,
@@ -279,6 +315,7 @@
 				1ED03930188057C60075F6A4 /* HTMLPurifier_AttrDef.h in Headers */,
 				803FD41D188048780010D799 /* HTMLPurifier_Strategy_Core.h in Headers */,
 				803FD43518805D190010D799 /* HTMLPurifier_Language.h in Headers */,
+				803FD44518809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.h in Headers */,
 				803FD421188048E30010D799 /* HTMLPurifier_Generator.h in Headers */,
 				803FD4251880497E0010D799 /* HTMLPurifier_Context.h in Headers */,
 				1ED0393C18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.h in Headers */,
@@ -382,8 +419,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803FD44618809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.m in Sources */,
 				803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */,
 				803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */,
+				803FD4501880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.m in Sources */,
+				803FD44C1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.m in Sources */,
 				803FD43618805D190010D799 /* HTMLPurifier_Language.m in Sources */,
 				803FD43E18805F030010D799 /* HTMLPurifier_IDAccumulator.m in Sources */,
 				1ED03945188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.m in Sources */,
