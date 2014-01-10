@@ -202,8 +202,30 @@
     
     [newFilters addObjectsFromArray:filters];
     
-    for (i=0,)
+    int filter_size = [newFilters count];
     
+    for (int i=0; i<filter_size; i++)
+    {
+        html = [newFilters[i] preFilterWithHtml:html Config:config Context:context];
+    }
+    
+    
+    
+    //TODO maybe change names
+    //purifed HTML
+    html = [generator generateFromTokens:
+            [strategy execute:
+             [lexer tokenizeHTML:html Config:config Context:context]
+             Config:config Context:context]];
+    
+    for (int i = filter_size - 1; i>=0; i--)
+    {
+        html = [filters[i] postFilterWithHtml:html Config:config Context:context];
+    }
+    
+    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:context];
+    
+    return html;
     
 }
 
@@ -218,7 +240,101 @@
  */
 - (NSString*) purifyWith:(NSString*)html Config:(HTMLPurifier_Config*)newConfig
 {
+    
+    
+    NSString* html = newHtml;
+    
+    //Set Config
     config = newConfig;
+    
+    //New Lexer with Config
+    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer alloc];
+    lexer = [HTMLPurifier_Lexer initWithConfig:config];
+    
+    //New Context
+    context = [HTMLPurifier_Context new];
+    
+    //setup HTML generator
+    generator = [HTMLPurifier_Generator alloc];
+    generator = [HTMLPurifier_Generator initWithConfig:config Context:context];
+    [context registerWithName:@"Generator" ref:generator];
+    
+    //setup global context variables
+    if ([config getWithKey:@"Core.CollectErrors"])
+    {
+        
+        HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
+        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: context];
+        [context registerWithName:@"Locale" ref:language];
+        
+        HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
+        error_collector = [HTMLPurifier_ErrorCollector initWithContext:context];
+        [context registerWithName:@"ErrorCollector" ref:error_collector];
+    }
+    
+    // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
+    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:context];
+    [context registerWithName:@"IDAccumulator" ref:id_accumulator];
+    
+    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:context];
+    
+    // setup filters
+    
+    NSMutableDictionary* filter_flags = [config getBatchWithNamespace:@"Filter"];
+    NSMutableArray* custom_filters = [filter_flags objectForKey:@"Custom"];
+    [filter_flags removeObjectForKey:@"Custom"];
+    
+    NSMutableArray* newFilters = [NSMutableArray new];
+    
+    for (NSString* key in filter_flags.allKeys)
+    {
+        if ([filter_flags objectForKey:key])
+        {
+            //This cannot happen
+            continue;
+        }
+        
+        if (strpos(key,@".") != NO){
+            continue
+        }
+        
+        NSString* class = [@"HTMLPurifier_Filter_" stringByAppendingString:key];
+        
+        [newFilters addObject:[NSClassFromString(class) new]];
+    }
+    
+    for (NSObject* object in custom_filters)
+    {
+        [newFilters addObject:object];
+    }
+    
+    [newFilters addObjectsFromArray:filters];
+    
+    int filter_size = [newFilters count];
+    
+    for (int i=0; i<filter_size; i++)
+    {
+        html = [newFilters[i] preFilterWithHtml:html Config:config Context:context];
+    }
+    
+    
+    
+    //TODO maybe change names
+    //purifed HTML
+    html = [generator generateFromTokens:
+            [strategy execute:
+             [lexer tokenizeHTML:html Config:config Context:context]
+                       Config:config Context:context]];
+    
+    for (int i = filter_size - 1; i>=0; i--)
+    {
+        html = [filters[i] postFilterWithHtml:html Config:config Context:context];
+    }
+    
+    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:context];
+    
+    return html;
+    
 
 }
 
