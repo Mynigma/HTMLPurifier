@@ -17,6 +17,14 @@
 		1ED03939188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED03937188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.m */; };
 		1ED0393C18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0393A18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.h */; };
 		1ED0393D18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0393B18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m */; };
+		1ED039401880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0393E1880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.h */; };
+		1ED039411880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0393F1880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.m */; };
+		1ED03944188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED03942188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.h */; };
+		1ED03945188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED03943188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.m */; };
+		1ED0394818808D660075F6A4 /* HTMLPurifier_AttrDef_Length.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0394618808D660075F6A4 /* HTMLPurifier_AttrDef_Length.h */; };
+		1ED0394918808D660075F6A4 /* HTMLPurifier_AttrDef_Length.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0394718808D660075F6A4 /* HTMLPurifier_AttrDef_Length.m */; };
+		1ED0394C18808EC90075F6A4 /* HTMLPurifier_Length.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0394A18808EC90075F6A4 /* HTMLPurifier_Length.h */; };
+		1ED0394D18808EC90075F6A4 /* HTMLPurifier_Length.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0394B18808EC90075F6A4 /* HTMLPurifier_Length.m */; };
 		803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD417188042260010D799 /* HTMLPurifier_Config.h */; };
 		803FD41A188042260010D799 /* HTMLPurifier_Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD418188042260010D799 /* HTMLPurifier_Config.m */; };
 		803FD41D188048780010D799 /* HTMLPurifier_Strategy_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD41B188048780010D799 /* HTMLPurifier_Strategy_Core.h */; };
@@ -68,6 +76,14 @@
 		1ED03937188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_Enum.m; sourceTree = "<group>"; };
 		1ED0393A18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Multiple.h; sourceTree = "<group>"; };
 		1ED0393B18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_Multiple.m; sourceTree = "<group>"; };
+		1ED0393E1880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Composite.h; sourceTree = "<group>"; };
+		1ED0393F1880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_Composite.m; sourceTree = "<group>"; };
+		1ED03942188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_BackgroundPosition.h; sourceTree = "<group>"; };
+		1ED03943188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_BackgroundPosition.m; sourceTree = "<group>"; };
+		1ED0394618808D660075F6A4 /* HTMLPurifier_AttrDef_Length.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_Length.h; sourceTree = "<group>"; };
+		1ED0394718808D660075F6A4 /* HTMLPurifier_AttrDef_Length.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_Length.m; sourceTree = "<group>"; };
+		1ED0394A18808EC90075F6A4 /* HTMLPurifier_Length.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Length.h; sourceTree = "<group>"; };
+		1ED0394B18808EC90075F6A4 /* HTMLPurifier_Length.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Length.m; sourceTree = "<group>"; };
 		803FD417188042260010D799 /* HTMLPurifier_Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Config.h; sourceTree = "<group>"; };
 		803FD418188042260010D799 /* HTMLPurifier_Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Config.m; sourceTree = "<group>"; };
 		803FD41B188048780010D799 /* HTMLPurifier_Strategy_Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Strategy_Core.h; sourceTree = "<group>"; };
@@ -202,6 +218,14 @@
 				1ED0393318805A150075F6A4 /* BasicPHP.m */,
 				1ED0393A18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.h */,
 				1ED0393B18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m */,
+				1ED0393E1880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.h */,
+				1ED0393F1880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.m */,
+				1ED03942188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.h */,
+				1ED03943188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.m */,
+				1ED0394618808D660075F6A4 /* HTMLPurifier_AttrDef_Length.h */,
+				1ED0394718808D660075F6A4 /* HTMLPurifier_AttrDef_Length.m */,
+				1ED0394A18808EC90075F6A4 /* HTMLPurifier_Length.h */,
+				1ED0394B18808EC90075F6A4 /* HTMLPurifier_Length.m */,
 			);
 			path = HTMLPurifier;
 			sourceTree = "<group>";
@@ -245,16 +269,20 @@
 				803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */,
 				1ED0393418805A150075F6A4 /* BasicPHP.h in Headers */,
 				803FD42918804E270010D799 /* HTMLPurifier_Filter.h in Headers */,
+				1ED0394818808D660075F6A4 /* HTMLPurifier_AttrDef_Length.h in Headers */,
 				803FD43118805B760010D799 /* HTMLPurifier_LanguageFactory.h in Headers */,
 				803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */,
 				803FD43D18805F030010D799 /* HTMLPurifier_IDAccumulator.h in Headers */,
+				1ED0394C18808EC90075F6A4 /* HTMLPurifier_Length.h in Headers */,
 				1ED0392C1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h in Headers */,
+				1ED039401880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.h in Headers */,
 				1ED03930188057C60075F6A4 /* HTMLPurifier_AttrDef.h in Headers */,
 				803FD41D188048780010D799 /* HTMLPurifier_Strategy_Core.h in Headers */,
 				803FD43518805D190010D799 /* HTMLPurifier_Language.h in Headers */,
 				803FD421188048E30010D799 /* HTMLPurifier_Generator.h in Headers */,
 				803FD4251880497E0010D799 /* HTMLPurifier_Context.h in Headers */,
 				1ED0393C18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.h in Headers */,
+				1ED03944188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.h in Headers */,
 				1ED03938188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -358,6 +386,7 @@
 				803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */,
 				803FD43618805D190010D799 /* HTMLPurifier_Language.m in Sources */,
 				803FD43E18805F030010D799 /* HTMLPurifier_IDAccumulator.m in Sources */,
+				1ED03945188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.m in Sources */,
 				1ED0392D1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m in Sources */,
 				803FD43218805B760010D799 /* HTMLPurifier_LanguageFactory.m in Sources */,
 				803FD4261880497E0010D799 /* HTMLPurifier_Context.m in Sources */,
@@ -365,10 +394,13 @@
 				803FD43A18805DF70010D799 /* HTMLPurifier_ErrorCollector.m in Sources */,
 				803FD41A188042260010D799 /* HTMLPurifier_Config.m in Sources */,
 				1ED03939188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.m in Sources */,
+				1ED0394D18808EC90075F6A4 /* HTMLPurifier_Length.m in Sources */,
 				1ED03931188057C60075F6A4 /* HTMLPurifier_AttrDef.m in Sources */,
 				1ED0393518805A150075F6A4 /* BasicPHP.m in Sources */,
 				1ED0393D18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m in Sources */,
 				80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */,
+				1ED0394918808D660075F6A4 /* HTMLPurifier_AttrDef_Length.m in Sources */,
+				1ED039411880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.m in Sources */,
 				803FD41E188048780010D799 /* HTMLPurifier_Strategy_Core.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
