@@ -52,7 +52,7 @@
 #import "HTMLPurifier_Lexer.h"
 #import "HTMLPurifier_LanguageFactory.h"
 #import "HTMLPurifier_Language.h"
-
+#import "HTMLPurifier_ErrorCollector.h"
 
 @implementation HTMLPurifier
 
@@ -153,7 +153,9 @@
         
         HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
         HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: context];
+        [context registerWithName:@"Locale" ref:language];
         
+        H
         
     }
 }
