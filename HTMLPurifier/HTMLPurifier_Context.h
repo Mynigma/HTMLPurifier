@@ -13,10 +13,10 @@
     NSMutableDictionary* _storage;
 }
 
-- (void)registerName:(NSString*)name  ref:(NSObject*)ref;
-- (NSObject*)getName:(NSString*)name;
-- (NSObject*)getName:(NSString*)name ignoreError:(BOOL)ignoreError;
-- (BOOL)existsName:(NSString*)name;
-- (void)loadArrayContextArray:(NSDictionary*)contextArray;
+- (void)registerWithName:(NSString*)name ref:(NSObject*)ref;
+- (NSObject*)getWithName:(NSString*)name;
+- (NSObject*)getWithName:(NSString*)name ignoreError:(BOOL)ignoreError;
+- (BOOL)existsWithName:(NSString*)name;
+- (void)loadArrayWithContextArray:(NSDictionary*)contextArray;
 
 @end
