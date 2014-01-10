@@ -23,6 +23,8 @@
 		803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD42818804E270010D799 /* HTMLPurifier_Filter.m */; };
 		803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD42B188055D60010D799 /* HTMLPurifier_Lexer.h */; };
 		803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD42C188055D60010D799 /* HTMLPurifier_Lexer.m */; };
+		803FD43118805B760010D799 /* HTMLPurifier_LanguageFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD42F18805B760010D799 /* HTMLPurifier_LanguageFactory.h */; };
+		803FD43218805B760010D799 /* HTMLPurifier_LanguageFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD43018805B760010D799 /* HTMLPurifier_LanguageFactory.m */; };
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
@@ -60,6 +62,8 @@
 		803FD42818804E270010D799 /* HTMLPurifier_Filter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Filter.m; sourceTree = "<group>"; };
 		803FD42B188055D60010D799 /* HTMLPurifier_Lexer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Lexer.h; sourceTree = "<group>"; };
 		803FD42C188055D60010D799 /* HTMLPurifier_Lexer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Lexer.m; sourceTree = "<group>"; };
+		803FD42F18805B760010D799 /* HTMLPurifier_LanguageFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_LanguageFactory.h; sourceTree = "<group>"; };
+		803FD43018805B760010D799 /* HTMLPurifier_LanguageFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_LanguageFactory.m; sourceTree = "<group>"; };
 		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -157,6 +161,8 @@
 				1ED0392B1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m */,
 				1ED0392E188057C60075F6A4 /* HTMLPurifier_AttrDef.h */,
 				1ED0392F188057C60075F6A4 /* HTMLPurifier_AttrDef.m */,
+				803FD42F18805B760010D799 /* HTMLPurifier_LanguageFactory.h */,
+				803FD43018805B760010D799 /* HTMLPurifier_LanguageFactory.m */,
 				80EDF9C518803B3200EB1E89 /* Supporting Files */,
 			);
 			path = HTMLPurifier;
@@ -199,6 +205,7 @@
 			files = (
 				803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */,
 				803FD42918804E270010D799 /* HTMLPurifier_Filter.h in Headers */,
+				803FD43118805B760010D799 /* HTMLPurifier_LanguageFactory.h in Headers */,
 				803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */,
 				1ED0392C1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h in Headers */,
 				1ED03930188057C60075F6A4 /* HTMLPurifier_AttrDef.h in Headers */,
@@ -306,6 +313,7 @@
 				803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */,
 				803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */,
 				1ED0392D1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m in Sources */,
+				803FD43218805B760010D799 /* HTMLPurifier_LanguageFactory.m in Sources */,
 				803FD4261880497E0010D799 /* HTMLPurifier_Context.m in Sources */,
 				803FD422188048E30010D799 /* HTMLPurifier_Generator.m in Sources */,
 				803FD41A188042260010D799 /* HTMLPurifier_Config.m in Sources */,
