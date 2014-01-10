@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD417188042260010D799 /* HTMLPurifier_Config.h */; };
+		803FD41A188042260010D799 /* HTMLPurifier_Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD418188042260010D799 /* HTMLPurifier_Config.m */; };
+		803FD41D188048780010D799 /* HTMLPurifier_Strategy_Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD41B188048780010D799 /* HTMLPurifier_Strategy_Core.h */; };
+		803FD41E188048780010D799 /* HTMLPurifier_Strategy_Core.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD41C188048780010D799 /* HTMLPurifier_Strategy_Core.m */; };
+		803FD421188048E30010D799 /* HTMLPurifier_Generator.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD41F188048E30010D799 /* HTMLPurifier_Generator.h */; };
+		803FD422188048E30010D799 /* HTMLPurifier_Generator.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD420188048E30010D799 /* HTMLPurifier_Generator.m */; };
+		803FD4251880497E0010D799 /* HTMLPurifier_Context.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD4231880497E0010D799 /* HTMLPurifier_Context.h */; };
+		803FD4261880497E0010D799 /* HTMLPurifier_Context.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD4241880497E0010D799 /* HTMLPurifier_Context.m */; };
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
@@ -28,6 +36,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		803FD417188042260010D799 /* HTMLPurifier_Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Config.h; sourceTree = "<group>"; };
+		803FD418188042260010D799 /* HTMLPurifier_Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Config.m; sourceTree = "<group>"; };
+		803FD41B188048780010D799 /* HTMLPurifier_Strategy_Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Strategy_Core.h; sourceTree = "<group>"; };
+		803FD41C188048780010D799 /* HTMLPurifier_Strategy_Core.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Strategy_Core.m; sourceTree = "<group>"; };
+		803FD41F188048E30010D799 /* HTMLPurifier_Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Generator.h; sourceTree = "<group>"; };
+		803FD420188048E30010D799 /* HTMLPurifier_Generator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Generator.m; sourceTree = "<group>"; };
+		803FD4231880497E0010D799 /* HTMLPurifier_Context.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Context.h; sourceTree = "<group>"; };
+		803FD4241880497E0010D799 /* HTMLPurifier_Context.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Context.m; sourceTree = "<group>"; };
 		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -111,6 +127,14 @@
 			children = (
 				80EDF9CB18803B3200EB1E89 /* HTMLPurifier.h */,
 				80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */,
+				803FD417188042260010D799 /* HTMLPurifier_Config.h */,
+				803FD418188042260010D799 /* HTMLPurifier_Config.m */,
+				803FD41B188048780010D799 /* HTMLPurifier_Strategy_Core.h */,
+				803FD41C188048780010D799 /* HTMLPurifier_Strategy_Core.m */,
+				803FD41F188048E30010D799 /* HTMLPurifier_Generator.h */,
+				803FD420188048E30010D799 /* HTMLPurifier_Generator.m */,
+				803FD4231880497E0010D799 /* HTMLPurifier_Context.h */,
+				803FD4241880497E0010D799 /* HTMLPurifier_Context.m */,
 				80EDF9C518803B3200EB1E89 /* Supporting Files */,
 			);
 			path = HTMLPurifier;
@@ -151,6 +175,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */,
+				803FD41D188048780010D799 /* HTMLPurifier_Strategy_Core.h in Headers */,
+				803FD421188048E30010D799 /* HTMLPurifier_Generator.h in Headers */,
+				803FD4251880497E0010D799 /* HTMLPurifier_Context.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,7 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				803FD4261880497E0010D799 /* HTMLPurifier_Context.m in Sources */,
+				803FD422188048E30010D799 /* HTMLPurifier_Generator.m in Sources */,
+				803FD41A188042260010D799 /* HTMLPurifier_Config.m in Sources */,
 				80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */,
+				803FD41E188048780010D799 /* HTMLPurifier_Strategy_Core.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +480,7 @@
 				80EDF9E518803B3200EB1E89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80EDF9E618803B3200EB1E89 /* Build configuration list for PBXNativeTarget "HTMLPurifierTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +489,7 @@
 				80EDF9E818803B3200EB1E89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
