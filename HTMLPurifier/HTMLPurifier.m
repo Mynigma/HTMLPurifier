@@ -66,7 +66,7 @@
  * Array of extra filter objects to run on HTML,
  * for backwards compatibility.
  */
-@synthesize filter;
+@synthesize filters;
 
 /**
  * @type HTMLPurifier_Strategy_Core
@@ -172,7 +172,37 @@
     
     // setup filters
     
-    filter_flags = [config getBatchWithNamespace:@"Filter"];
+    NSMutableDictionary* filter_flags = [config getBatchWithNamespace:@"Filter"];
+    NSMutableArray* custom_filters = [filter_flags objectForKey:@"Custom"];
+    [filter_flags removeObjectForKey:@"Custom"];
+    
+    NSMutableArray* newFilters = [NSMutableArray new];
+    
+    for (NSString* key in filter_flags.allKeys)
+    {
+        if ([filter_flags objectForKey:key])
+        {
+            //This cannot happen
+            continue;
+        }
+        
+        if (strpos(key,@".") != NO){
+            continue
+        }
+        
+        NSString* class = [@"HTMLPurifier_Filter_" stringByAppendingString:key];
+        
+        [newFilters addObject:[NSClassFromString(class) new]];
+    }
+    
+    for (NSObject* object in custom_filters)
+    {
+        [newFilters addObject:object];
+    }
+    
+    [newFilters addObjectsFromArray:filters];
+    
+    for (i=0,)
     
     
 }
