@@ -1,0 +1,463 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
+		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
+		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
+		80EDF9D418803B3200EB1E89 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9D318803B3200EB1E89 /* XCTest.framework */; };
+		80EDF9D518803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
+		80EDF9D818803B3200EB1E89 /* HTMLPurifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */; };
+		80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */; };
+		80EDF9E018803B3200EB1E89 /* HTMLPurifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80EDF9D618803B3200EB1E89 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80EDF9B218803B3200EB1E89 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80EDF9BA18803B3200EB1E89;
+			remoteInfo = HTMLPurifier;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		80EDF9C218803B3200EB1E89 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		80EDF9C318803B3200EB1E89 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		80EDF9C618803B3200EB1E89 /* HTMLPurifier-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTMLPurifier-Info.plist"; sourceTree = "<group>"; };
+		80EDF9C818803B3200EB1E89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		80EDF9CA18803B3200EB1E89 /* HTMLPurifier-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTMLPurifier-Prefix.pch"; sourceTree = "<group>"; };
+		80EDF9CB18803B3200EB1E89 /* HTMLPurifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier.h; sourceTree = "<group>"; };
+		80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier.m; sourceTree = "<group>"; };
+		80EDF9D218803B3200EB1E89 /* HTMLPurifierTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTMLPurifierTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80EDF9D318803B3200EB1E89 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		80EDF9DB18803B3200EB1E89 /* HTMLPurifierTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTMLPurifierTests-Info.plist"; sourceTree = "<group>"; };
+		80EDF9DD18803B3200EB1E89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifierTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80EDF9B718803B3200EB1E89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EDF9CF18803B3200EB1E89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EDF9D518803B3200EB1E89 /* Cocoa.framework in Frameworks */,
+				80EDF9D818803B3200EB1E89 /* HTMLPurifier.framework in Frameworks */,
+				80EDF9D418803B3200EB1E89 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80EDF9B118803B3200EB1E89 = {
+			isa = PBXGroup;
+			children = (
+				80EDF9C418803B3200EB1E89 /* HTMLPurifier */,
+				80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */,
+				80EDF9BD18803B3200EB1E89 /* Frameworks */,
+				80EDF9BC18803B3200EB1E89 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80EDF9BC18803B3200EB1E89 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */,
+				80EDF9D218803B3200EB1E89 /* HTMLPurifierTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80EDF9BD18803B3200EB1E89 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80EDF9BE18803B3200EB1E89 /* Cocoa.framework */,
+				80EDF9D318803B3200EB1E89 /* XCTest.framework */,
+				80EDF9C018803B3200EB1E89 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80EDF9C018803B3200EB1E89 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				80EDF9C118803B3200EB1E89 /* Foundation.framework */,
+				80EDF9C218803B3200EB1E89 /* CoreData.framework */,
+				80EDF9C318803B3200EB1E89 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		80EDF9C418803B3200EB1E89 /* HTMLPurifier */ = {
+			isa = PBXGroup;
+			children = (
+				80EDF9CB18803B3200EB1E89 /* HTMLPurifier.h */,
+				80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */,
+				80EDF9C518803B3200EB1E89 /* Supporting Files */,
+			);
+			path = HTMLPurifier;
+			sourceTree = "<group>";
+		};
+		80EDF9C518803B3200EB1E89 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				80EDF9C618803B3200EB1E89 /* HTMLPurifier-Info.plist */,
+				80EDF9C718803B3200EB1E89 /* InfoPlist.strings */,
+				80EDF9CA18803B3200EB1E89 /* HTMLPurifier-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */ = {
+			isa = PBXGroup;
+			children = (
+				80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */,
+				80EDF9DA18803B3200EB1E89 /* Supporting Files */,
+			);
+			path = HTMLPurifierTests;
+			sourceTree = "<group>";
+		};
+		80EDF9DA18803B3200EB1E89 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				80EDF9DB18803B3200EB1E89 /* HTMLPurifierTests-Info.plist */,
+				80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		80EDF9B818803B3200EB1E89 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		80EDF9BA18803B3200EB1E89 /* HTMLPurifier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80EDF9E318803B3200EB1E89 /* Build configuration list for PBXNativeTarget "HTMLPurifier" */;
+			buildPhases = (
+				80EDF9B618803B3200EB1E89 /* Sources */,
+				80EDF9B718803B3200EB1E89 /* Frameworks */,
+				80EDF9B818803B3200EB1E89 /* Headers */,
+				80EDF9B918803B3200EB1E89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HTMLPurifier;
+			productName = HTMLPurifier;
+			productReference = 80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		80EDF9D118803B3200EB1E89 /* HTMLPurifierTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80EDF9E618803B3200EB1E89 /* Build configuration list for PBXNativeTarget "HTMLPurifierTests" */;
+			buildPhases = (
+				80EDF9CE18803B3200EB1E89 /* Sources */,
+				80EDF9CF18803B3200EB1E89 /* Frameworks */,
+				80EDF9D018803B3200EB1E89 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80EDF9D718803B3200EB1E89 /* PBXTargetDependency */,
+			);
+			name = HTMLPurifierTests;
+			productName = HTMLPurifierTests;
+			productReference = 80EDF9D218803B3200EB1E89 /* HTMLPurifierTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80EDF9B218803B3200EB1E89 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = Mynigma;
+				TargetAttributes = {
+					80EDF9D118803B3200EB1E89 = {
+						TestTargetID = 80EDF9BA18803B3200EB1E89;
+					};
+				};
+			};
+			buildConfigurationList = 80EDF9B518803B3200EB1E89 /* Build configuration list for PBXProject "HTMLPurifier" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 80EDF9B118803B3200EB1E89;
+			productRefGroup = 80EDF9BC18803B3200EB1E89 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80EDF9BA18803B3200EB1E89 /* HTMLPurifier */,
+				80EDF9D118803B3200EB1E89 /* HTMLPurifierTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80EDF9B918803B3200EB1E89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EDF9D018803B3200EB1E89 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80EDF9B618803B3200EB1E89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80EDF9CE18803B3200EB1E89 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80EDF9E018803B3200EB1E89 /* HTMLPurifierTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80EDF9D718803B3200EB1E89 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80EDF9BA18803B3200EB1E89 /* HTMLPurifier */;
+			targetProxy = 80EDF9D618803B3200EB1E89 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		80EDF9C718803B3200EB1E89 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80EDF9C818803B3200EB1E89 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80EDF9DD18803B3200EB1E89 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		80EDF9E118803B3200EB1E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		80EDF9E218803B3200EB1E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		80EDF9E418803B3200EB1E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";
+				INFOPLIST_FILE = "HTMLPurifier/HTMLPurifier-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		80EDF9E518803B3200EB1E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";
+				INFOPLIST_FILE = "HTMLPurifier/HTMLPurifier-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		80EDF9E718803B3200EB1E89 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "HTMLPurifierTests/HTMLPurifierTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		80EDF9E818803B3200EB1E89 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";
+				INFOPLIST_FILE = "HTMLPurifierTests/HTMLPurifierTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80EDF9B518803B3200EB1E89 /* Build configuration list for PBXProject "HTMLPurifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80EDF9E118803B3200EB1E89 /* Debug */,
+				80EDF9E218803B3200EB1E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80EDF9E318803B3200EB1E89 /* Build configuration list for PBXNativeTarget "HTMLPurifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80EDF9E418803B3200EB1E89 /* Debug */,
+				80EDF9E518803B3200EB1E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80EDF9E618803B3200EB1E89 /* Build configuration list for PBXNativeTarget "HTMLPurifierTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80EDF9E718803B3200EB1E89 /* Debug */,
+				80EDF9E818803B3200EB1E89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 80EDF9B218803B3200EB1E89 /* Project object */;
+}
