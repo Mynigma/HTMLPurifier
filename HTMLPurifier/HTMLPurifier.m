@@ -101,14 +101,48 @@
     return self;
 }
 
+
 /**
+ * Deprecated
+ *
  * Adds a filter to process the output. First come first serve
  *
  * @param HTMLPurifier_Filter $filter HTMLPurifier_Filter object
- */
+ *
 - (void)addFilter:(HTMLPurifier_Filter*)filter
 {
+}
+*/
+
+/**
+ * Filters an HTML snippet/document to be XSS-free and standards-compliant.
+ *
+ * @param string $html String of HTML to purify
+ * default config object specified during this
+ * object's construction.  
+ *
+ * @return string Purified HTML
+ */
+- (NSString*) purify:(NSString*)html
+{
+ 
     
+    
+}
+
+
+/**
+ * Filters an HTML snippet/document to be XSS-free and standards-compliant.
+ *
+ * @param string $html String of HTML to purify
+ * @param HTMLPurifier_Config $config Config object for this operation. 
+ *
+ * @return string Purified HTML
+ */
+- (NSString*) purify:(NSString*)html withConfig:(HTMLPurifier_Config*)newConfig
+{
+    config = newConfig;
+
 }
 
 @end
