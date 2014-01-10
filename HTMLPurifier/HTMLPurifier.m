@@ -53,6 +53,7 @@
 #import "HTMLPurifier_LanguageFactory.h"
 #import "HTMLPurifier_Language.h"
 #import "HTMLPurifier_ErrorCollector.h"
+#import "HTMLPurifier_IDAccumulator.h"
 
 @implementation HTMLPurifier
 
@@ -130,8 +131,11 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purifyWith:(NSString*)html
+- (NSString*) purifyWith:(NSString*)newHtml
 {
+    
+    NSString* html = newHtml;
+    
     //Create Config
     config = [HTMLPurifier_Config create:nil];
     
@@ -147,7 +151,7 @@
     generator = [HTMLPurifier_Generator initWithConfig:config Context:context];
     [context registerWithName:@"Generator" ref:generator];
     
-    //Set up global context variables
+    //setup global context variables
     if ([config getWithKey:@"Core.CollectErrors"])
     {
         
@@ -155,9 +159,17 @@
         HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: context];
         [context registerWithName:@"Locale" ref:language];
         
-        H
-        
+        HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
+        error_collector = [HTMLPurifier_ErrorCollector initWithContext:context];
+        [context registerWithName:@"ErrorCollector" ref:error_collector];
     }
+    
+    // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
+    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:context];
+    [context registerWithName:@"IDAccumulator" ref:id_accumulator];
+    
+    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:context];
+    
 }
 
 
