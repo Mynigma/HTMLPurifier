@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrDef_HTML_Color.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_HTML_Color
 
@@ -16,39 +17,54 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($string, $config, $context)
+
+-(NSString*)validateWithString:string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    static $colors = null;
-    if ($colors === null) {
-        $colors = $config->get('Core.ColorKeywords');
+    NSMutableArray* colors = [NSMutableArray new];
+    if ([colors count] == 0)
+    {
+        colors = [config get:@"Core.ColorKeywords"];
     }
     
-    $string = trim($string);
+    string = trim(string);
     
-    if (empty($string)) {
-        return false;
-    }
-    $lower = strtolower($string);
-    if (isset($colors[$lower])) {
-        return $colors[$lower];
-    }
-    if ($string[0] === '#') {
-        $hex = substr($string, 1);
-    } else {
-        $hex = $string;
+    if ([string isEmpty])
+    {
+        return nil;
     }
     
-    $length = strlen($hex);
-    if ($length !== 3 && $length !== 6) {
-        return false;
+    NSString* lower =  [string lowercaseString];
+    if ([colors containsObject:lower])
+    {
+        return lower;
     }
-    if (!ctype_xdigit($hex)) {
-        return false;
+    
+    NSString* hex = [NSString new];
+    
+    if ([string[0] isEqual:@"#"])
+    {
+      hex = substr(string, 1);
     }
-    if ($length === 3) {
-        $hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+    else
+    {
+      hex = string;
     }
-    return "#$hex";
+    
+    NSInteger length = [hex length];
+    
+    if (length != 3 && length != 6)
+    {
+        return nil;
+    }
+    if (!ctype_xdigit(hex))
+    {
+        return nil;
+    }
+    if (length == 3)
+    {
+        hex = [NSString stringWithFormat:@"%hu%hu%hu%hu%hu%hu",[hex characterAtIndex:0],[hex characterAtIndex:0],[hex characterAtIndex:1],[hex characterAtIndex:1],[hex characterAtIndex:2],[hex characterAtIndex:2]];
+    }
+    return [@"#" stringByAppendingString:hex];
 }
 
 @end

@@ -21,6 +21,7 @@
 {
     string = trim(string);
     
+    // Maybe [string isEmpty] ?
     // early abort: '' and '0' (strings that convert to false) are invalid
     if ([string isEqual:@""] || [string isEqual:@"0"])
     {
