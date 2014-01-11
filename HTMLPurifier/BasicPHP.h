@@ -20,6 +20,7 @@ NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subje
     return subjectString;
 }
 
+//preg_match_all
 
 BOOL ctype_xdigit (NSString* text)
 {
@@ -101,6 +102,8 @@ NSString* substr(NSString* string, NSInteger start)
 {
     return [string substringFromIndex:start];
 }
+
+//implode
 
 NSArray* explode(NSString* limitString, NSString* string)
 {

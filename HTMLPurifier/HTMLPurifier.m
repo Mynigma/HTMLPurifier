@@ -101,6 +101,7 @@
     if (self) {
         config = [HTMLPurifier_Config create:newConfig];
         strategy = [HTMLPurifier_Strategy_Core new];
+        context = [NSMutableArray new];
     }
     return self;
 }
@@ -144,31 +145,30 @@
     lexer = [HTMLPurifier_Lexer initWithConfig:config];
     
     //New Context
-    context = [HTMLPurifier_Context new];
-    
+    HTMLPurifier_Context* localContext = [HTMLPurifier_Context new];
     //setup HTML generator
     generator = [HTMLPurifier_Generator alloc];
-    generator = [HTMLPurifier_Generator initWithConfig:config Context:context];
-    [context registerWithName:@"Generator" ref:generator];
+    generator = [HTMLPurifier_Generator initWithConfig:config Context:localContext];
+    [localContext registerWithName:@"Generator" ref:generator];
     
     //setup global context variables
     if ([config getWithKey:@"Core.CollectErrors"])
     {
         
         HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
-        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: context];
+        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: localContext];
         [context registerWithName:@"Locale" ref:language];
         
         HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
-        error_collector = [HTMLPurifier_ErrorCollector initWithContext:context];
+        error_collector = [HTMLPurifier_ErrorCollector initWithContext:localContext];
         [context registerWithName:@"ErrorCollector" ref:error_collector];
     }
     
     // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
-    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:context];
-    [context registerWithName:@"IDAccumulator" ref:id_accumulator];
+    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:localContext];
+    [localContext registerWithName:@"IDAccumulator" ref:id_accumulator];
     
-    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:context];
+    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:localContext];
     
     // setup filters
     
@@ -206,7 +206,7 @@
     
     for (int i=0; i<filter_size; i++)
     {
-        html = [newFilters[i] preFilterWithHtml:html Config:config Context:context];
+        html = [newFilters[i] preFilterWithHtml:html Config:config Context:localContext];
     }
     
     
@@ -215,15 +215,15 @@
     //purifed HTML
     html = [generator generateFromTokens:
             [strategy execute:
-             [lexer tokenizeHTML:html Config:config Context:context]
-             Config:config Context:context]];
+             [lexer tokenizeHTML:html Config:config Context:localContext]
+             Config:config Context:localContext]];
     
     for (int i = filter_size - 1; i>=0; i--)
     {
-        html = [filters[i] postFilterWithHtml:html Config:config Context:context];
+        html = [filters[i] postFilterWithHtml:html Config:config Context:localContext];
     }
     
-    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:context];
+    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:localContext];
     
     return html;
     
@@ -252,31 +252,30 @@
     lexer = [HTMLPurifier_Lexer initWithConfig:config];
     
     //New Context
-    context = [HTMLPurifier_Context new];
+    HTMLPurifier_Context* localContext = [HTMLPurifier_Context new];
     
     //setup HTML generator
     generator = [HTMLPurifier_Generator alloc];
-    generator = [HTMLPurifier_Generator initWithConfig:config Context:context];
-    [context registerWithName:@"Generator" ref:generator];
+    generator = [HTMLPurifier_Generator initWithConfig:config Context:localContext];
+    [localContext registerWithName:@"Generator" ref:generator];
     
     //setup global context variables
     if ([config getWithKey:@"Core.CollectErrors"])
     {
-        
         HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
-        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: context];
-        [context registerWithName:@"Locale" ref:language];
+        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: localContext];
+        [localContext registerWithName:@"Locale" ref:language];
         
         HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
-        error_collector = [HTMLPurifier_ErrorCollector initWithContext:context];
-        [context registerWithName:@"ErrorCollector" ref:error_collector];
+        error_collector = [HTMLPurifier_ErrorCollector initWithContext:localContext];
+        [localContext registerWithName:@"ErrorCollector" ref:error_collector];
     }
     
     // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
-    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:context];
+    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:localContext];
     [context registerWithName:@"IDAccumulator" ref:id_accumulator];
     
-    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:context];
+    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:localContext];
     
     // setup filters
     
@@ -314,7 +313,7 @@
     
     for (int i=0; i<filter_size; i++)
     {
-        html = [newFilters[i] preFilterWithHtml:html Config:config Context:context];
+        html = [newFilters[i] preFilterWithHtml:html Config:config Context:localContext];
     }
     
     
@@ -323,19 +322,68 @@
     //purifed HTML
     html = [generator generateFromTokens:
             [strategy execute:
-             [lexer tokenizeHTML:html Config:config Context:context]
-                       Config:config Context:context]];
+             [lexer tokenizeHTML:html Config:config Context:localContext]
+                       Config:config Context:localContext]];
     
     for (int i = filter_size - 1; i>=0; i--)
     {
-        html = [filters[i] postFilterWithHtml:html Config:config Context:context];
+        html = [filters[i] postFilterWithHtml:html Config:config Context:localContext];
     }
     
-    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:context];
+    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:localContext];
     
+    [context addObject:localContext];
     return html;
     
+}
+
+/**
+ * Filters an array of HTML snippets
+ *
+ * @param string[] $array_of_html Array of html snippets
+ *
+ * @return string[] Array of purified HTML
+ */
+- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html
+{
+    NSMutableArray* context_array = [NSMutableArray new];
+    
+    NSMutableArray* new_html_array = [NSMutableArray new];
+    
+    for(NSString* html in array_of_html)
+    {
+        [new_html_array addObject: [self purifyWith:html]];
+        [context_array addObject:context];
+    }
+    context = context_array;
+    return new_html_array;
+}
+
+/**
+ * Filters an array of HTML snippets
+ *
+ * @param string[] $array_of_html Array of html snippets
+ * @param HTMLPurifier_Config $config Optional config object for this operation.
+ *   See HTMLPurifier::purify() for more details.
+ *
+ * @return string[] Array of purified HTML
+ */
+- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html Config:(HTMLPurifier_Config*)newConfig
+{
+    NSMutableArray* context_array = [NSMutableArray new];
+    
+    NSMutableArray* new_html_array = [NSMutableArray new];
+    
+    for(NSString* html in array_of_html)
+    {
+        [new_html_array addObject: [self purifyWith:html Config:newConfig]];
+        [context_array addObject:context];
+    }
+    context = context_array;
+    return new_html_array;
 
 }
+
+
 
 @end
