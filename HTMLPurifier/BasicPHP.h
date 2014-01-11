@@ -39,6 +39,19 @@ BOOL ctype_xdigit (NSString* text)
     return YES;
 }
 
+BOOL ctype_digit (NSString* text)
+{
+    for(NSInteger i=0; i<text.length; i++)
+    {
+        unichar character = [text characterAtIndex:i];
+        if(character<'0')
+            return NO;
+        if(character>'9')
+            return NO;
+    }
+    return YES;
+}
+
 NSString* trim(NSString* string)
 {
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@" \t\n\r\0%c", 11]]];

@@ -36,6 +36,8 @@
     NSDictionary* allowedUnits;
 }
 
++ (NSDictionary*)allowedUnits;
+
 - (id)initWithN:(NSString*)newN u:(NSString*)newU;
 
 - (id)initWithN:(NSString*)newN;
@@ -47,7 +49,7 @@
  * @return HTMLPurifier_Length
  * @warning Does not perform validation.
  */
-- (HTMLPurifier_Length*)makeWithS:(NSObject*)s;
++ (HTMLPurifier_Length*)makeWithS:(NSObject*)s;
 
 /**
  * Validates the number and unit.

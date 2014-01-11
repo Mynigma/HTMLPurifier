@@ -54,7 +54,7 @@
     return [self iconvWithIn:inputEncoding out:outputEncoding text:text maxChunkSize:8000];
 }
 
-- (NSString*)iconvWithIn:(NSString*)inputEncoding out:(NSString*)outputEncoding text:(NSString*)text maxChunkSize:(NSInteger)maxChunkSize
++ (NSString*)iconvWithIn:(NSString*)inputEncoding out:(NSString*)outputEncoding text:(NSString*)text maxChunkSize:(NSInteger)maxChunkSize
     {
         NSString* code = [self testIconvTruncateBug];
         if ([code isEqualTo:[self ICONV_OK]])

@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-        allowedUnits = @{@"em":@YES, @"ex":@YES, @"px":@YES, @"in":@YES, @"cm":@YES, @"mm":@YES, @"pt":@YES, @"pc":@YES};
+        allowedUnits = [HTMLPurifier_Length allowedUnits];
         n = newN;
         unit = newU;
     }
@@ -33,12 +33,17 @@
     return [self initWithN:nil u:nil];
 }
 
++ (NSDictionary*)allowedUnits
+{
+    return @{@"em":@YES, @"ex":@YES, @"px":@YES, @"in":@YES, @"cm":@YES, @"mm":@YES, @"pt":@YES, @"pc":@YES};
+}
+
 /**
  * @param string $s Unit string, like '2em' or '3.4in'
  * @return HTMLPurifier_Length
  * @warning Does not perform validation.
  */
-- (HTMLPurifier_Length*)makeWithS:(NSObject*)s
++ (HTMLPurifier_Length*)makeWithS:(NSObject*)s
 {
     if ([s isKindOfClass:[HTMLPurifier_Length class]])
         return  (HTMLPurifier_Length*)s;
@@ -56,6 +61,8 @@
         }
         return [[HTMLPurifier_Length alloc] initWithN:newN u:newUnit];
     }
+
+    return nil;
 }
 
 /**
@@ -65,16 +72,18 @@
 - (BOOL)validate
 {
     // Special case:
-    if ([n isEqual:@"+0"] || [n isEqual:@"-0"]) {
+    if ([n isEqual:@"+0"] || [n isEqual:@"-0"])
+    {
         n = @"0";
     }
-    if ([n isEqual:@"0"] && unit==nil) {
+    if ([n isEqual:@"0"] && unit==nil)
+    {
         return YES;
     }
-    if (!ctype_lower(unit)) {
-        $this->unit = strtolower($this->unit);
-    }
-    if (![[HTMLPurifier_Length allowedUnits] objectForKey:unit]) {
+    unit = [unit lowercaseString];
+
+    if (![[HTMLPurifier_Length allowedUnits] objectForKey:unit])
+    {
         return NO;
     }
     // Hack:

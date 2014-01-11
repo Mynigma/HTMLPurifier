@@ -8,13 +8,14 @@
 
 #import "HTMLPurifier_AttrDef.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_Encoder.h"
 
 @implementation HTMLPurifier_AttrDef
 
 - (NSString*)parseCDATAWithString:(NSString*)string
 {
     string = trim(string);
-    string = str_replace(@[@"\n", @"\t", @"\r"], @" ", string);
+    string = (NSString*)str_replace(@[@"\n", @"\t", @"\r"], @" ", string);
     return string;
 }
 
@@ -29,6 +30,13 @@
     }
     return self;
 }
+
+- (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+{
+    NSLog(@"Calling validateWithString on HTMLPurifier_AttrDef!!");
+    return nil;
+}
+
 
 
 /**

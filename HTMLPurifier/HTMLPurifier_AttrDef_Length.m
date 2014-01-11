@@ -21,9 +21,8 @@
     self = [super init];
     if (self) {
 
-        min = newMin ? [HTMLPurifier_Length makeWithMin:newMin] : nil;
-        max = newMax ? [HTMLPurifier_Length makeWithMax:newMax] : nil;
-    }
+        min = newMin ? [HTMLPurifier_Length makeWithS:newMin] : nil;
+        max = newMax ? [HTMLPurifier_Length makeWithS:newMax] : nil;
     }
     return self;
 }
@@ -55,32 +54,32 @@
             return nil;
         }
 
-        HTMLPurifier_Length* length = [HTMLPurifier_Length makeWithString:string];
+        HTMLPurifier_Length* length = [HTMLPurifier_Length makeWithS:string];
         if (![length isValid])
         {
             return nil;
         }
 
         if (min) {
-            c = [length compareTo:($this->min)];
-            if ($c === false) {
-                return false;
+            NSNumber* c = [length compareTo:min];
+            if (!c) {
+                return nil;
             }
-            if ($c < 0) {
-                return false;
-            }
-        }
-        if ($this->max) {
-            $c = $length->compareTo($this->max);
-            if ($c === false) {
-                return false;
-            }
-            if ($c > 0) {
-                return false;
+            if (c.floatValue < 0) {
+                return nil;
             }
         }
-        return $length->toString();
+        if (max) {
+            NSNumber* c = [length compareTo:max];
+            if (!c) {
+                return nil;
+            }
+            if (c.floatValue > 0) {
+                return nil;
+            }
+        }
+        return [length toString];
     }
-}
+
 
 @end

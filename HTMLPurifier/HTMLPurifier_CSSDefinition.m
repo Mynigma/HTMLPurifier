@@ -11,6 +11,10 @@
 #import "HTMLPurifier_AttrDef_Enum.h"
 #import "HTMLPurifier_AttrDef_CSS_Multiple.h"
 #import "HTMLPurifier_AttrDef_CSS_Composite.h"
+#import "HTMLPurifier_AttrDef_CSS_BackgroundPosition.h"
+#import "HTMLPurifier_AttrDef_CSS_Border.h"
+#import "HTMLPurifier_AttrDef_CSS_Percentage.h"
+#import "HTMLPurifier_AttrDef_CSS_URI.h"
 
 
 @implementation HTMLPurifier_CSSDefinition
@@ -52,7 +56,7 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"inside", @"outside"] caseSensitive:NO] forKey:@"list-style-position"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"disc", @"circle", @"square", @"decimal", @"lower-roman", @"upper-roman", @"lower-alpha", @"upper-alpha", @"none" caseSensitive:NO]] forKey:@"list-style-type"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"disc", @"circle", @"square", @"decimal", @"lower-roman", @"upper-roman", @"lower-alpha", @"upper-alpha", @"none"] caseSensitive:NO] forKey:@"list-style-type"];
 
     [self.info setObject:uri_or_none forKey:@"list-style-image"];
 
@@ -130,7 +134,7 @@
 
     $max = $config->get('CSS.MaxImgLength');
 
-     HTMLPurifier_AttrDef* attrDef = (max==nil)?trusted_wh:[[HTMLPurifier_AttrDef_Switch alloc] init:@"img", [[HTMLPurifier_AttrDef_CSS_Composite alloc] initW:@[[[HTMLPurifier_AttrDef_CSS_Length alloc]]]
+     HTMLPurifier_AttrDef* attrDef = (max==nil)?trusted_wh:[[HTMLPurifier_AttrDef_Switch alloc] init:@"img", [[HTMLPurifier_AttrDef_CSS_Composite alloc] initW:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initW:@"0" max], [[HTML]]]]
 
      [self.info setObject:]
 
