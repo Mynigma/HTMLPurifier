@@ -1,0 +1,117 @@
+//
+//  HTMLPurifier_AttrDef_CSS_Color.m
+//  HTMLPurifier
+//
+//  Created by Roman Priebe on 11.01.14.
+//  Copyright (c) 2014 Mynigma. All rights reserved.
+//
+
+#import "HTMLPurifier_AttrDef_CSS_Color.h"
+#import "BasicPHP.h"
+
+/**
+ * Validates Color as defined by CSS.
+ */
+@implementation HTMLPurifier_AttrDef_CSS_Color
+
+    /**
+     * @param string $color
+     * @param HTMLPurifier_Config $config
+     * @param HTMLPurifier_Context $context
+     * @return bool|string
+     */
+- (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
+    {
+        NSDictionary* colors = [config getWithWhatever:@"Core.ColorKeywords"];
+
+        NSString* color = trim(string);
+        if ([color isEqualTo:@""]) {
+            return nil;
+        }
+
+        NSString* lower = [color lowercaseString];
+        if ([colors objectForKey:lower])
+        {
+            return [colors objectForKey:lower];
+        }
+
+        if (strpos(color, @"rgb(") != NSNotFound) {
+            // rgb literal handling
+            NSInteger length = color.length;
+            if (strpos(color, @")") != length - 1) {
+                return nil;
+            }
+            NSString* triad = [color substringWithRange:NSMakeRange(4, length - 4 -1)];
+            NSArray* parts = explode(@",", triad);
+            if (parts.count != 3) {
+                return nil;
+            }
+            NSString* type = nil; // to ensure that they're all the same type
+            NSMutableArray* new_parts = [NSMutableArray new];
+            for(NSString* part in parts)
+            {
+                NSString* newPart = trim(part);
+                if ([newPart isEqualTo:@""]) {
+                    return nil;
+                }
+                NSInteger length = newPart.length;
+                if ([newPart characterAtIndex:length - 1] == '%')
+                {
+                    // handle percents
+                    if (!type) {
+                        type = @"percentage";
+                    } else if (![type isEqualTo:@"percentage"]) {
+                        return nil;
+                    }
+                    NSString* num = [newPart substringWithRange:NSMakeRange(0, length-1)];
+                    float floatNum = num.floatValue;
+                    if (floatNum < 0) {
+                        floatNum = 0;
+                    }
+                    if (floatNum > 100) {
+                        floatNum = 100;
+                    }
+                    [new_parts addObject:[NSString stringWithFormat:@"%f%%", floatNum]];
+                } else {
+                    // handle integers
+                    if (!type) {
+                        type = @"integer";
+                    } else if (![type isEqualTo:@"integer"]) {
+                        return nil;
+                    }
+                    NSString* num = [newPart substringWithRange:NSMakeRange(0, length-1)];
+                    float floatNum = num.floatValue;
+                    if (floatNum < 0) {
+                        floatNum = 0;
+                    }
+                    if (floatNum > 255) {
+                        floatNum = 255;
+                    }
+                    [new_parts addObject:[NSString stringWithFormat:@"%f", floatNum]];
+                }
+            }
+            NSString* new_triad = implode(@",", new_parts);
+            color = [NSString stringWithFormat:@"rgb(%@)", new_triad];
+        } else {
+            NSString* hex;
+            // hexadecimal handling
+            if ([color characterAtIndex:0] == '#')
+            {
+                hex = substr(color, 1);
+            } else {
+                hex = color;
+                color = [NSString stringWithFormat:@"#%@",[color copy]];
+            }
+            NSInteger length = hex.length;
+            if (length != 3 && length != 6) {
+                return nil;
+            }
+            if (!ctype_xdigit(hex)) {
+                return nil;
+            }
+        }
+        return color;
+    }
+
+
+@end

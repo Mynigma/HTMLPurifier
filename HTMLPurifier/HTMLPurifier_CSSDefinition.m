@@ -15,6 +15,8 @@
 #import "HTMLPurifier_AttrDef_CSS_Border.h"
 #import "HTMLPurifier_AttrDef_CSS_Percentage.h"
 #import "HTMLPurifier_AttrDef_CSS_URI.h"
+#import "HTMLPurifier_AttrDef_CSS_ListStyle.h"
+#import "HTMLPurifier_AttrDef_CSS_Color.h"
 
 
 @implementation HTMLPurifier_CSSDefinition
@@ -52,7 +54,7 @@
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal", @"small-caps"] caseSensitive:NO] forKey:@"font-variant"];
 
 
-    HTMLPurifier_AttrDef_CSS_Composite* uri_or_none = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithArray:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"none"]], [[HTMLPurifier_AttrDef_CSS_URI alloc] init]]];
+    HTMLPurifier_AttrDef_CSS_Composite* uri_or_none = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"none"]], [[HTMLPurifier_AttrDef_CSS_URI alloc] init]]];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"inside", @"outside"] caseSensitive:NO] forKey:@"list-style-position"];
 
@@ -60,7 +62,7 @@
 
     [self.info setObject:uri_or_none forKey:@"list-style-image"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_ListStyle alloc] initWithSingle:config] forKey:@"list-style"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_ListStyle alloc] initWithConfig:config] forKey:@"list-style"];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"capitalize", @"uppercase", @"lowercase", @"none"] caseSensitive:NO] forKey:@"text-transform"];
 
@@ -74,7 +76,7 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_BackgroundPosition alloc] init] forKey:@"background-position"];
 
-    HTMLPurifier_AttrDef_CSS_Composite* border_color = [[HTMLPurifier_AttrDef_Composite alloc] initWithSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"transparent"]], [[HTMLPurifier_AttrDef_CSS_Color alloc] init]]];
+    HTMLPurifier_AttrDef_CSS_Composite* border_color = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"transparent"]], [[HTMLPurifier_AttrDef_CSS_Color alloc] init]]];
 
     [self.info setObject:border_color forKey:@"border-top-color"];
     [self.info setObject:border_color forKey:@"border-bottom-color"];
@@ -83,11 +85,11 @@
     [self.info setObject:border_color forKey:@"background-color"];
 
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Background alloc] initWithSingle:config] forKey:@"background"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Background alloc] initWith:config] forKey:@"background"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:@[border-color forKey:@"border-color"]]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:@[border_color forKey:@"border-color"]]];
 
-    HTMLPurifier_AttrDef_CSS_Composite* border_width = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"thin", @"medium", @"thick"]], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithString:@"0"]]];
+    HTMLPurifier_AttrDef_CSS_Composite* border_width = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"thin", @"medium", @"thick"]], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"]]];
 
     [self.info setObject:border_width forKey:@"border-top-width"];
     [self.info setObject:border_width forKey:@"border-bottom-width"];
@@ -96,7 +98,7 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:border_width] forKey:@"border-width"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[[[HTMLPurifierAttrDef_Enum alloc] initWithSingle:@[@"normal"]]]]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifierAttrDef_Enum alloc] initWithSingle:@[@"normal"]]]]];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Length] alloc] init]] forKey:@"letter-spacing"];
 
@@ -134,7 +136,9 @@
 
     $max = $config->get('CSS.MaxImgLength');
 
-     HTMLPurifier_AttrDef* attrDef = (max==nil)?trusted_wh:[[HTMLPurifier_AttrDef_Switch alloc] init:@"img", [[HTMLPurifier_AttrDef_CSS_Composite alloc] initW:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initW:@"0" max], [[HTML]]]]
+     HTMLPurifier_AttrDef_CSS_Composite* composite = [[HTMLPurifier_AttrDef_CSS_Composite alloc] init]
+
+     HTMLPurifier_AttrDef* attrDef = (max==nil)?trusted_wh:[[HTMLPurifier_AttrDef_Switch alloc] initWithTag:@"img" withTag:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initW:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWi:@"0" max] withoutTag:[[HTML]]]]
 
      [self.info setObject:]
 
