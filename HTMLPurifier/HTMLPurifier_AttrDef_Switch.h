@@ -43,15 +43,6 @@
      * @param HTMLPurifier_Context $context
      * @return bool|string
      */
-    public function validate($string, $config, $context)
-    {
-        $token = $context->get('CurrentToken', true);
-        if (!$token || $token->name !== $this->tag) {
-            return $this->withoutTag->validate($string, $config, $context);
-        } else {
-            return $this->withTag->validate($string, $config, $context);
-        }
-    }
-}
+- (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
 @end

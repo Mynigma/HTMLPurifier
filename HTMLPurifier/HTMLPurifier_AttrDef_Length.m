@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrDef_Length.h"
+#import "HTMLPurifier_Length.h"
 
 @implementation HTMLPurifier_AttrDef_Length
 
@@ -15,18 +16,21 @@
      * @param HTMLPurifier_Length|string $max Maximum length, or null for no bound. String is also acceptable.
      */
 
-- (id)initWithMin:(HTMLPurifier_Length*)min
+- (id)initWithMin:(HTMLPurifier_Length*)newMin max:(HTMLPurifier_Length*)newMax
 {
     self = [super init];
     if (self) {
-        <#initializations#>
-    public function __construct($min = null, $max = null)
-    {
-        $this->min = $min !== null ? HTMLPurifier_Length::make($min) : null;
-        $this->max = $max !== null ? HTMLPurifier_Length::make($max) : null;
+
+        min = newMin ? [HTMLPurifier_Length makeWithMin:newMin] : nil;
+        max = newMax ? [HTMLPurifier_Length makeWithMax:newMax] : nil;
     }
     }
     return self;
+}
+
+- (id)init
+{
+    return [self initWithMin:nil max:nil];
 }
 
 
@@ -36,28 +40,29 @@
      * @param HTMLPurifier_Context $context
      * @return bool|string
      */
-    public function validate($string, $config, $context)
+- (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
     {
-        $string = $this->parseCDATA($string);
+        string = [self parseCDATAWithString:string];
 
         // Optimizations
-        if ($string === '') {
-            return false;
+        if ([string isEqualTo:@""]) {
+            return nil;
         }
-        if ($string === '0') {
-            return '0';
+        if ([string isEqualTo:@"0"]) {
+            return @"0";
         }
-        if (strlen($string) === 1) {
-            return false;
-        }
-
-        $length = HTMLPurifier_Length::make($string);
-        if (!$length->isValid()) {
-            return false;
+        if (string.length == 1) {
+            return nil;
         }
 
-        if ($this->min) {
-            $c = $length->compareTo($this->min);
+        HTMLPurifier_Length* length = [HTMLPurifier_Length makeWithString:string];
+        if (![length isValid])
+        {
+            return nil;
+        }
+
+        if (min) {
+            c = [length compareTo:($this->min)];
             if ($c === false) {
                 return false;
             }
