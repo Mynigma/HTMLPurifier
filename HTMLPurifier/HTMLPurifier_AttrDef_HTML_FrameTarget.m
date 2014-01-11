@@ -13,15 +13,17 @@
 /**
  * @type array
  */
-@synthesize  valid_values;
+@synthesize valid_values;
 
 /**
  * @type bool
  */
-protected $case_sensitive = false;
+@synthesize case_sensitive;
 
-public function __construct()
+-(id) init
 {
+    self = [super init];
+    return self;
 }
 
 /**
@@ -30,14 +32,13 @@ public function __construct()
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($string, $config, $context)
+-(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    if ($this->valid_values === false) {
-        $this->valid_values = $config->get('Attr.AllowedFrameTargets');
+    if (!valid_values)
+    {
+        valid_values = [config get:@"Attr.AllowedFrameTargets"];
     }
-    return parent::validate($string, $config, $context);
+    return [super validateWithString:string config:config context:context];
 }
-
-
 
 @end

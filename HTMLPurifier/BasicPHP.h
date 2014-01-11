@@ -22,6 +22,17 @@ NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subje
 
 //preg_match_all
 
+//preg_match
+//BOOL or Array?
+NSArray* preg_match (NSString* pattern, NSString* subject)
+{
+    NSError* error = nil;
+    
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+
+    return [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+}
+
 BOOL ctype_xdigit (NSString* text)
 {
     for(NSInteger i=0; i<text.length; i++)
@@ -55,6 +66,27 @@ BOOL ctype_digit (NSString* text)
 NSString* trim(NSString* string)
 {
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@" \t\n\r\0%c", 11]]];
+}
+
+
+//trim with Format like 'A..Za..z0..9:-._' some kind of regex
+// TODO
+NSString* trimWithFormat(NSString* string, NSString* format)
+{
+    return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
+}
+
+
+//ctype_alpha
+BOOL ctype_alpha (NSString* text)
+{
+    for(NSInteger i=0;i <text.length; i++)
+    {
+        unichar character = [text characterAtIndex:i];
+        if(!(isalpha(character)))
+            return NO;
+    }
+    return YES;
 }
 
 BOOL ctype_space(NSString* string)

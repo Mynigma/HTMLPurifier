@@ -13,6 +13,12 @@
 */
 @implementation HTMLPurifier_AttrDef_HTML_Class
 
+
+-(id) init
+{
+    return [super init];
+}
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config
