@@ -56,7 +56,7 @@
         {
             if (i >= 3)
             {
-                return [NSNull null];
+                return nil;
             } // optimization bit
             if ([bit isEqualTo:@""]) {
                 continue;
