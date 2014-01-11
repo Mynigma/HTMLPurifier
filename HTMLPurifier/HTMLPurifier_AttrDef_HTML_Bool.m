@@ -19,8 +19,13 @@
     return self;
 }
 
--(id)initWithName:(BOOL)newName
+-(id)initWithName:(NSString*)newName
 {
+    if (!newName)
+    {
+        name = nil;
+        return self;
+    }
     name = newName;
     return self;
 }
@@ -31,11 +36,11 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(BOOL) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSString*) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
     if([string isEqual:@""])
     {
-        return NO;
+        return nil;
     }
     return name;
 }
@@ -46,13 +51,8 @@
  */
 -(HTMLPurifier_AttrDef_HTML_Bool*) makeWithString:(NSString*)string
 {
-    // *TODO Call makes no sense, why such a difficult Bool / String handling??
-    if ([string isEqual:@""]){
-        return [HTMLPurifier_AttrDef_HTML_Bool new];
-    }
-    
     HTMLPurifier_AttrDef_HTML_Bool* end = [HTMLPurifier_AttrDef_HTML_Bool alloc];
-    return [end initWithName:YES];
+    return [end initWithName:string];
 }
 
 

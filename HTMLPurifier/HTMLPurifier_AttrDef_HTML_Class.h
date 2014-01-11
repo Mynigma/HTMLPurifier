@@ -13,4 +13,20 @@
  */
 @interface HTMLPurifier_AttrDef_HTML_Class : HTMLPurifier_AttrDef_HTML_Nmtokens
 
+/**
+ * @param string $string
+ * @param HTMLPurifier_Config $config
+ * @param HTMLPurifier_Context $context
+ * @return bool|string
+ */
+-(NSString*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
+
+/**
+ * @param array $tokens
+ * @param HTMLPurifier_Config $config
+ * @param HTMLPurifier_Context $context
+ * @return array
+ */
+-(NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
+
 @end
