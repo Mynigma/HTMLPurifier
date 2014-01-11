@@ -63,6 +63,8 @@ BOOL ctype_digit (NSString* text)
     return YES;
 }
 
+//TODO is_numeric (string)
+
 NSString* trim(NSString* string)
 {
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@" \t\n\r\0%c", 11]]];
