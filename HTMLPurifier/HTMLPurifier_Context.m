@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_Context.h"
+#import "HTMLPurifier.h"
 
 @implementation HTMLPurifier_Context
 
@@ -20,7 +21,7 @@
     [_storage setObject:ref forKey:name];
 }
 
-- (NSObject*)get:(NSString*)name
+- (NSObject*)getWithName:(NSString*)name
 {
     return [self getWithName:name ignoreError:NO];
 }
