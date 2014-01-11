@@ -116,7 +116,84 @@ NSString* substr(NSString* string, NSInteger start)
     return [string substringFromIndex:start];
 }
 
-//implode
+NSString* ltrim_whitespaces(NSString* string)
+{
+    NSUInteger location;
+    NSUInteger length = [string length];
+    unichar charBuffer[length];
+    [string getCharacters:charBuffer];
+
+    NSCharacterSet* characterSet = [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@" \t\n\r\0%c", 11]];
+
+    for (location = 0; location < length; location++) {
+        if (![characterSet characterIsMember:charBuffer[location]]) {
+            break;
+        }
+    }
+
+    return [string substringWithRange:NSMakeRange(location, length - location)];
+}
+
+NSString* rtrim_whitespaces(NSString* string)
+{
+    NSUInteger location = 0;
+    NSUInteger length;
+    unichar charBuffer[string.length];
+    [string getCharacters:charBuffer];
+
+    NSCharacterSet* characterSet = [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@" \t\n\r\0%c", 11]];
+    
+    for (length = string.length; length > 0; length--)
+    {
+        if (![characterSet characterIsMember:charBuffer[length - 1]]) {
+            break;
+        }
+    }
+
+    return [string substringWithRange:NSMakeRange(location, length - location)];
+}
+
+
+NSString* ltrim(NSString* string, NSString* characterSetString)
+{
+    NSCharacterSet* characterSet = [NSCharacterSet characterSetWithCharactersInString:characterSetString];
+    NSUInteger location;
+    NSUInteger length = [string length];
+    unichar charBuffer[length];
+    [string getCharacters:charBuffer];
+
+    for (location = 0; location < length; location++) {
+        if (![characterSet characterIsMember:charBuffer[location]]) {
+            break;
+        }
+    }
+
+    return [string substringWithRange:NSMakeRange(location, length - location)];
+}
+
+NSString* rtrim(NSString* string, NSString* characterSetString)
+{
+    NSCharacterSet* characterSet = [NSCharacterSet characterSetWithCharactersInString:characterSetString];
+    NSUInteger location = 0;
+    NSUInteger length;
+    unichar charBuffer[string.length];
+    [string getCharacters:charBuffer];
+
+    for (length = string.length; length > 0; length--)
+    {
+        if (![characterSet characterIsMember:charBuffer[length - 1]]) {
+            break;
+        }
+    }
+
+    return [string substringWithRange:NSMakeRange(location, length - location)];
+}
+
+
+NSString* implode(NSString* glue, NSArray* pieces)
+{
+    return [pieces componentsJoinedByString:glue];
+}
 
 NSArray* explode(NSString* limitString, NSString* string)
 {

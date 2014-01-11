@@ -38,11 +38,12 @@
  */
 - (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    NSObject* token = [context getWithName:@"CurrentToken" ignoreError:YES];         if (!token || ![[token name] isEqual:self.tag]) {
+    NSObject* token = [context getWithName:@"CurrentToken" ignoreError:YES];
+    if (!token || ![[token name] isEqual:self.tag]) {
         return [withoutTag validateWithString:string config:config context:context];
     } else {
-        return [withTag validateWithString:string config:config context:config];
+        return [withTag validateWithString:string config:config context:context];
     }
-}\
+}
 
 @end

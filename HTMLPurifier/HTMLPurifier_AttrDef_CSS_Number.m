@@ -6,10 +6,12 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifier_AttrDef_Number.h"
+#import "HTMLPurifier_AttrDef_CSS_Number.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_Config.h"
+#import "HTMLPurifier_Context.h"
 
-@implementation HTMLPurifier_AttrDef_Number
+@implementation HTMLPurifier_AttrDef_CSS_Number
 
 - (id)init
 {
@@ -56,34 +58,48 @@
         }
 
         if (ctype_digit(string)) {
-            string = ltrim(string, '0');
-            return string ? [sign appendString:string] : @"0";
+            string = ltrim(string, @"0");
+            return string ? [sign stringByAppendingString:string] : @"0";
         }
 
         // Period is the only non-numeric character allowed
-        if (strpos($number, '.') === false) {
-            return false;
+        if (strpos(string, @".") == NSNotFound) {
+            return nil;
         }
 
-        list($left, $right) = explode('.', $number, 2);
+        NSArray* components = explode(@".", string);
 
-        if ($left === '' && $right === '') {
-            return false;
-        }
-        if ($left !== '' && !ctype_digit($left)) {
-            return false;
+        NSString* left = @"";
+        NSString* right = @"";
+
+        if(components.count>0)
+        {
+            left = components[0];
+            if(components.count>1)
+            {
+                NSArray* subArray = [components subarrayWithRange:NSMakeRange(1, components.count-1)];
+                right = implode(@".", subArray);
+            }
         }
 
-        $left = ltrim($left, '0');
-        $right = rtrim($right, '0');
-
-        if ($right === '') {
-            return $left ? $sign . $left : '0';
-        } elseif (!ctype_digit($right)) {
-            return false;
+        if ([left isEqualTo:@""] && [right isEqualTo:@""]) {
+            return nil;
         }
-        return $sign . $left . '.' . $right;
+        if (![left isEqualTo:@""] && !ctype_digit(left)) {
+            return nil;
+        }
+
+        left = ltrim(left, @"0");
+        right = rtrim(right, @"0");
+
+        if ([right isEqualTo:@""])
+        {
+            return left ? [sign stringByAppendingString:string] : @"0";
+        } else if (!ctype_digit(right)) {
+            return nil;
+        }
+        return [NSString stringWithFormat:@"%@%@.%@", sign, left, right];
     }
-}
+
 
 @end
