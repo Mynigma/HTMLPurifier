@@ -15,11 +15,11 @@
  */
 @interface HTMLPurifier_AttrDef_HTML_Bool :HTMLPurifier_AttrDef
 
-@property BOOL name;
+@property NSString* name;
 
 @property BOOL minimized;
 
--(id)initWithName:(BOOL)newName;
+-(id)initWithName:(NSString*)newName;
 
 /**
  * @param string $string
@@ -28,7 +28,7 @@
  * @return bool|string
  */
 
--(BOOL) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
+-(NSString*) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
 
 /**
  * @param string $string Name of attribute

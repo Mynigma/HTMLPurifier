@@ -17,20 +17,21 @@
 * @param HTMLPurifier_Context $context
 * @return bool|string
 */
-- (BOOL) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+- (NSString*) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
     string = trim(string);
     
     // early abort: '' and '0' (strings that convert to false) are invalid
-    if (!string){
-        return NO;
+    if ([string isEqual:@""] || [string isEqual:@"0"])
+    {
+        return nil;
     }
     
     NSMutableArray* tokens = [self splitWithString:string Config:config Context:context];
     tokens = [self filterWithTokens:tokens Config:config Context:context];
     if ([tokens count] == 0)
     {
-        return NO;
+        return nil;
     }
     return implode(@" ", tokens);
 }

@@ -21,7 +21,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-- (BOOL) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
+- (NSString*) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
 
 
 /**
