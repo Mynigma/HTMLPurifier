@@ -28,6 +28,13 @@
     return self;
 }
 
+- (id)initWithMin:(HTMLPurifier_Length*)newMin
+{
+    return [self initWithMin:min max:nil];
+}
+
+
+
 - (id)init
 {
     return [self initWithMin:nil max:nil];

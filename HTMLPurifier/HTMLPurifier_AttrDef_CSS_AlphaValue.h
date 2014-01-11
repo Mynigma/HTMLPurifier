@@ -10,6 +10,7 @@
 
 @interface HTMLPurifier_AttrDef_CSS_AlphaValue : HTMLPurifier_AttrDef_CSS_Number
 
+- (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
 
 @end

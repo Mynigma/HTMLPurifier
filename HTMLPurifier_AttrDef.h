@@ -26,6 +26,9 @@
  */
 @property BOOL required;
 
+- (NSString*)mungeRgbWithString:(NSString*)string;
+
+
 /**
  * Validates and cleans passed string according to a definition.
  *

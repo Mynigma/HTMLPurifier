@@ -11,6 +11,15 @@
 
 @implementation HTMLPurifier_AttrDef_CSS_URI
 
+- (id)init
+{
+    self = [super initWith];
+    if (self) {
+        <#initializations#>
+    }
+    return self;
+}
+
 /**
  * @param string $uri_string
  * @param HTMLPurifier_Config $config

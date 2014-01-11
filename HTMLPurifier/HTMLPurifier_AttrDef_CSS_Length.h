@@ -25,7 +25,7 @@
 }
 
 - (id)initWithMin:(HTMLPurifier_Length*)newMin max:(HTMLPurifier_Length*)newMax;
-
+- (id)initWithMin:(HTMLPurifier_Length*)newMin;
 - (id)init;
 
 - (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
