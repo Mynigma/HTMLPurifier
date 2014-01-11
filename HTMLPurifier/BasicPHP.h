@@ -48,18 +48,53 @@ BOOL ctype_space(NSString* string)
     return trim(string).length==0;
 }
 
-NSObject* str_replace(NSObject* search, NSString* replace, NSString* subject)
+NSObject* str_replace(NSObject* search, NSObject* replace, NSString* subject)
 {
     if([search isKindOfClass:[NSString class]])
-        return [subject stringByReplacingOccurrencesOfString:(NSString*)search withString:replace];
+        return [subject stringByReplacingOccurrencesOfString:(NSString*)search withString:(NSString*)replace];
+
     if([search isKindOfClass:[NSArray class]])
     {
-        NSMutableArray* returnValue = [NSMutableArray new];
+        NSMutableString* returnValue = [subject mutableCopy];
+
         for(NSString* string in (NSArray*)search)
-            [returnValue addObject:str_replace(string, replace, subject)];
+        {
+        NSString* replaceString = @"";
+
+            if([replace isKindOfClass:[NSString class]])
+                replaceString = (NSString*)replace;
+
+        if([replace isKindOfClass:[NSArray class]])
+        {
+            NSInteger index = [(NSArray*)search indexOfObject:string];
+            if(index<[(NSArray*)replace count])
+                replaceString = [(NSArray*)replace objectAtIndex:index];
+            else
+                replaceString = @"";
+        }
+        [returnValue replaceOccurrencesOfString:string withString:replaceString options:0 range:NSMakeRange(0,returnValue.length)];
+        }
         return returnValue;
     }
     return nil;
+}
+
+NSInteger php_strspn(NSString* string, NSString* characterList)
+{
+    NSInteger index;
+    for(index = 0; index<string.length; index++)
+    {
+        if([characterList rangeOfString:[string substringWithRange:NSMakeRange(index, 1)]].location==NSNotFound)
+            {
+                break;
+            }
+    }
+    return index;
+}
+
+NSInteger strpos(NSString* haystack, NSString* needle)
+{
+    return [haystack rangeOfString:needle].location;
 }
 
 NSString* substr(NSString* string, NSInteger start)

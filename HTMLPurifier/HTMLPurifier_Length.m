@@ -7,6 +7,8 @@
 //
 
 #import "HTMLPurifier_Length.h"
+#import "BasicPHP.h"
+
 
 @implementation HTMLPurifier_Length
 
@@ -45,13 +47,14 @@
         if([s isKindOfClass:[NSString class]])
 {
 
-        NSInteger n_length = strspn([(NSString*)s cStringUsingEncoding:NSUTF8StringEncoding], '1234567890.+-');
-        $n = substr($s, 0, $n_length);
-        $unit = substr($s, $n_length);
-        if ($unit === '') {
-            $unit = false;
+        NSInteger n_length = php_strspn((NSString*)s, @"1234567890.+-");
+        NSString* newN = [(NSString*)s substringWithRange:NSMakeRange(0, n_length)];
+
+        NSString* newUnit = [(NSString*)s substringWithRange:NSMakeRange(0, n_length)];
+        if ([newUnit isEqualTo:@""]) {
+            newUnit = nil;
         }
-        return new HTMLPurifier_Length($n, $unit);
+        return [[HTMLPurifier_Length alloc] initWithN:newN u:newUnit];
 }
     }
 
@@ -59,28 +62,28 @@
      * Validates the number and unit.
      * @return bool
      */
-    protected function validate()
+- (BOOL)validate
     {
         // Special case:
-        if ($this->n === '+0' || $this->n === '-0') {
-            $this->n = '0';
+        if ([n isEqual:@"+0"] || [n isEqual:@"-0"]) {
+            n = @"0";
         }
-        if ($this->n === '0' && $this->unit === false) {
-            return true;
+        if ([n isEqual:@"0"] && unit==nil) {
+            return YES;
         }
-        if (!ctype_lower($this->unit)) {
+        if (!ctype_lower(unit)) {
             $this->unit = strtolower($this->unit);
         }
-        if (!isset(HTMLPurifier_Length::$allowedUnits[$this->unit])) {
-            return false;
+        if (![[HTMLPurifier_Length allowedUnits] objectForKey:unit]) {
+            return NO;
         }
         // Hack:
-        $def = new HTMLPurifier_AttrDef_CSS_Number();
-        $result = $def->validate($this->n, false, false);
+        HTMLPurifier_AttrDer_CSS_Number* def = [[HTMLPurifier_AttrDef_CSS_Number alloc] init];
+        NSString* result = [def validateW:n, false, false];
         if ($result === false) {
             return false;
         }
-        $this->n = $result;
+        n = result;
         return true;
     }
 
@@ -88,30 +91,30 @@
      * Returns string representation of number.
      * @return string
      */
-    public function toString()
+    - (NSString*)toString
     {
-        if (!$this->isValid()) {
+        if (![self isValid]) {
             return false;
         }
-        return $this->n . $this->unit;
+        return [NSString stringWithFormat:@"%@%@", n, unit];
     }
 
     /**
      * Retrieves string numeric magnitude.
      * @return string
      */
-    public function getN()
+    -(NSString*)getN
     {
-        return $this->n;
+        return n;
     }
 
     /**
      * Retrieves string unit.
      * @return string
      */
-    public function getUnit()
+    -(NSString*)getUnit
     {
-        return $this->unit;
+        return unit;
     }
 
     /**
@@ -133,20 +136,21 @@
      * @warning If both values are too large or small, this calculation will
      *          not work properly
      */
-    public function compareTo($l)
+    - (NSNumber*)compareTo:(HTMLPurifier_Length*)l
     {
-        if ($l === false) {
-            return false;
+        if (!l) {
+            return nil;
         }
-        if ($l->unit !== $this->unit) {
-            $converter = new HTMLPurifier_UnitConverter();
-            $l = $converter->convert($l, $this->unit);
-            if ($l === false) {
-                return false;
+        if(l.unit !== self.unit)
+        {
+            HTMLPurifier_UnitConverter* converter = [HTMLPurifier_UnitConverter new];
+            l = [converter convert:$l, $this->unit);
+            if(!l)
+            {
+                return nil;
             }
         }
-        return $this->n - $l->n;
+        return self.n - l.n;
     }
-}
 
 @end
