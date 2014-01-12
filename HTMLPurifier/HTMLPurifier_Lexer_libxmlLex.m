@@ -11,7 +11,6 @@
 #import "BasicPHP.h"
 #import <libxml/HTMLparser.h>
 #import <libxml/xmlmemory.h>
-#import "DomDocument
 
 @implementation HTMLPurifier_Lexer_libxmlLex
 
