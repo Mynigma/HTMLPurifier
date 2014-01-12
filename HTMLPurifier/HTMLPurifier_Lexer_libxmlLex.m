@@ -44,7 +44,7 @@
             NSString* old = @"";
             do {
                 old = html;
-                html = preg_replace(@"/<($char)/i", @"&lt;\\1", html);
+                html = preg_replace([NSString stringWithFormat:@"/<(%@)/i", chars], @"&lt;\\1", html);
             } while (![html isEqualToString:old]);
             html = preg_replace_callback(comment, [self callbackUndoCommentSubst], html); // fix comments
         }
