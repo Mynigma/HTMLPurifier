@@ -7,8 +7,15 @@
 //
 
 #import "HTMLPurifier_Token.h"
+#import "HTMLPurifier.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_Node.h"
+#import "HTMLPurifier_Token_Empty.h"
+#import "HTMLPurifier_Token_End.h"
+#import "HTMLPurifier_Token_Start.h"
+#import "HTMLPurifier_Token_Comment.h"
+#import "HTMLPurifier_Token_Text.h"
+
 
 @implementation HTMLPurifier_Token
 
@@ -21,7 +28,6 @@
     return self;
 }
 
-
     /**
      * @param string $n
      * @return null|string
@@ -31,6 +37,7 @@
         if ([n isEqualToString:@"type"])
         {
             TRIGGER_ERROR(@"Deprecated type property called; use instanceof");
+        }
             if([self isKindOfClass:[HTMLPurifier_Token_Start class]])
                 return @"start";
             if([self isKindOfClass:[HTMLPurifier_Token_Empty class]])
@@ -41,9 +48,7 @@
                 return @"text";
             if([self isKindOfClass:[HTMLPurifier_Token_Comment class]])
                 return @"comment";
-
-            return null;
-        }
+        return nil;
     }
 
     /**
@@ -76,7 +81,7 @@
      */
 - (HTMLPurifier_Node*)toNode
 {
-    
+    return nil;
 }
 
 

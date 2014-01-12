@@ -32,6 +32,15 @@
     return self;
 }
 
+- (id)initWithData:(NSString*)d
+{
+    self = [super init];
+    if (self) {
+        self.data = d;
+    }
+    return self;
+}
+
 - (void)toNode
 {
     return [[HTMLPurifier_Node_Comment alloc] initWithData:self.data, self.line, self.col];

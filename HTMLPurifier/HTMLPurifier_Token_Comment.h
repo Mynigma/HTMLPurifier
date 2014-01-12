@@ -34,6 +34,8 @@
      */
 - (id)initWithData:(NSString*)d line:(NSInteger)l col:(NSInteger)c;
 
+- (id)initWithData:(NSString*)d;
+
 - (void)toNode;
 
 @end

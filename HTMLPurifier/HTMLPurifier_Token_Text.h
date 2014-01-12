@@ -22,7 +22,7 @@
     /**
      * @type string
      */
-@property NSString* name = '#PCDATA';
+@property NSString* name;
     /**< PCDATA tag name compatible with DTD. */
 
     /**
