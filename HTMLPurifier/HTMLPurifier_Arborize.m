@@ -12,11 +12,12 @@
 #import "BasicPHP.h"
 #import "HTMLPurifier_Definition.h"
 #import "HTMLPurifier_Context.h"
+#import "HTMLPurifier_Token.h"
 
 @implementation HTMLPurifier_Arborize
 
 
-- (NSArray*)arborizeTokens:(NSArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
++ (NSArray*)arborizeTokens:(NSArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     HTMLPurifier_Definition* definition = [config getHTMLDefinition];
     HTMLPurifier_Token_Start* parent = [[HTMLPurifier_Token_Start alloc] initWith:definition->info_parent];
@@ -27,9 +28,9 @@
         [token setCarryover:nil];
         if([token isKindOfClass:[HTMLPurifier_Token_End class]])
         {
-            [token setStart:nil];
+            [(HTMLPurifier_Token_End*)token setStart:nil];
             HTMLPurifier_Token* r = array_pop(stack);
-            assert([r->name isEqual:[token name]]);
+            assert([[r name] isEqual:[token name]]);
             assert([[token attr] count]==0);
             [r setEndCol:[token col]];
             [r setEndLine:[token line]];
@@ -46,38 +47,43 @@
     return stack[0];
 }
 
-public static function flatten($node, $config, $context) {
-    $level = 0;
-    $nodes = array($level => new HTMLPurifier_Queue(array($node)));
-    $closingTokens = array();
-    $tokens = array();
++ (NSArray*)flattenNode:(HTMLPurifier_Node*)node config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+{
+    NSNumber* level = @0;
+    NSMutableDictionary* nodes = [NSMutableDictionary dictionaryWithObject:[[HTMLPurifier_Queue alloc] initWith:@[node]] forKey:level];
+    NSMutableArray* closingTokens = [NSMutableArray new];
+    NSMutableArray* tokens = [NSMutableArray new];
     do {
-        while (!$nodes[$level]->isEmpty()) {
-            $node = $nodes[$level]->shift(); // FIFO
-            list($start, $end) = $node->toTokenPair();
-            if ($level > 0) {
-                $tokens[] = $start;
+        while ([nodes objectForKey:level]) {
+            HTMLPurifier_Node* node = [[nodes objectForKey:level] shift]; // FIFO
+            NSArray* pair = [node toTokenPair];
+            HTMLPurifier_Token* start, end;
+            if(pair.count>0)
+                start = pair[0];
+            if(pair.count>1)
+                end = pair[1];
+            if (level.intValue > 0) {
+                [tokens addObject:start];
             }
-            if ($end !== NULL) {
-                $closingTokens[$level][] = $end;
+            if (end) {
+                [[closingTokens objectForKey:level] addObject:end];
             }
-            if ($node instanceof HTMLPurifier_Node_Element) {
-                $level++;
-                $nodes[$level] = new HTMLPurifier_Queue();
-                foreach ($node->children as $childNode) {
-                    $nodes[$level]->push($childNode);
-                }
-            }
+            if ([node isKindOfClass:[HTMLPurifier_Node_Element class]]) {
+                level = @(level.integerValue+1);
+                [nodes setObject:[HTMLPurifier_Queue new] forKey:level];
+                for(HTMLPurifier_Node* childNode)
+                    [[nodes objectForKey:level] push:childNode];
+           }
         }
-        $level--;
-        if ($level && isset($closingTokens[$level])) {
-            while ($token = array_pop($closingTokens[$level])) {
-                $tokens[] = $token;
+        level = @(level.integerValue-1);
+        if (level && closingTokens[level]) {
+            while (token = array_pop(closingTokens[level]))
+            {
+                [tokens addObject:token];
             }
         }
     } while ($level > 0);
-    return $tokens;
-}
+    return tokens;
 }
 
 @end
