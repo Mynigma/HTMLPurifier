@@ -10,4 +10,11 @@
 
 @interface HTMLPurifier_AttrDef_URI_Email : HTMLPurifier_AttrDef
 
+/**
+ * Unpacks a mailbox into its display-name and address
+ * @param string $string
+ * @return mixed
+ */
+-(NSMutableDictionary*) unpackWithString:(NSString*)string;
+
 @end

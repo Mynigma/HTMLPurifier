@@ -15,9 +15,10 @@
  * @param string $string
  * @return mixed
  */
-public function unpack($string)
+-(NSMutableDictionary*) unpackWithString:(NSString*)string
 {
     // needs to be implemented
+    return nil;
 }
 
 
