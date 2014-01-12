@@ -150,6 +150,36 @@ NSString* substr(NSString* string, NSInteger start)
     return [string substringFromIndex:start];
 }
 
+NSInteger substr_count(NSString* haystack , NSString* needle)
+{
+    NSUInteger count = 0, length = [haystack length];
+    NSRange range = NSMakeRange(0, length);
+    while(range.location != NSNotFound)
+    {
+        range = [haystack rangeOfString: needle options:0 range:range];
+        if(range.location != NSNotFound)
+        {
+            range = NSMakeRange(range.location + range.length, length - (range.location + range.length));
+            count++; 
+        }
+    }
+    return count;
+}
+
+
+//does not work properly if there is overlap between substituted strings and strings to be replaced
+NSString* strtr_php(NSString* fromString, NSDictionary* replacementDict)
+{
+    NSMutableString* substitutedString = [fromString mutableCopy];
+
+    for(NSString* key in replacementDict)
+    {
+        [substitutedString replaceOccurrencesOfString:key withString:[replacementDict objectForKey:key] options:0 range:NSMakeRange(0, substitutedString.length)];
+    }
+
+    return substitutedString;
+}
+
 NSString* ltrim_whitespaces(NSString* string)
 {
     NSUInteger location;
@@ -234,6 +264,17 @@ NSArray* explode(NSString* limitString, NSString* string)
     return [string componentsSeparatedByString:limitString];
 }
 
+- (NSObject*)array_pop(NSMutableArray* array)
+{
+    if(array.count<1)
+        return;
+
+    NSObject* object = [array objectAtIndex:array.count-1];
+    [array removeObjectAtIndex:array.count-1];
+    
+    return object;
+}
+
 @interface BasicPHP : NSObject
 
 + (NSString*)trimWithString:(NSString*)string;
@@ -241,6 +282,8 @@ NSArray* explode(NSString* limitString, NSString* string)
 + (NSString*)strReplaceWithSearch:(NSString*)search replace:(NSString*)replace subject:(NSString*)subject;
 
 + (NSString*)pregReplaceWithPattern:(NSString*)pattern replacement:(NSString*)replacement subject:(NSString*)subject;
+
++ (NSString*)pregReplace:(NSString*)pattern callback:(NSString*(^)(NSArray*))callBack haystack:(NSString*)haystack;
 
 
 @end
