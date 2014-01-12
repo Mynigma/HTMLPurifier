@@ -7,9 +7,15 @@
 //
 
 #import "HTMLPurifier_Token_End.h"
+#import "HTMLPurifier_Node.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_Token_End
 
-//done
+- (HTMLPurifier_Node*)toNode
+{
+    TRIGGER_ERROR(@"toNode not supported on end tokens");
+    return nil;
+}
 
 @end

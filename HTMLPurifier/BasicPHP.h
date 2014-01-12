@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define TRIGGER_ERROR NSLog
+
 NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subject)
 {
     NSError* error = nil;

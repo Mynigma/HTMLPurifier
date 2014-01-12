@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifier_Token.h"
+#import "HTMLPurifier_Token_Tag.h"
 
 /**
  * Concrete end token class.
@@ -15,7 +15,7 @@
  * is for optimization reasons, as under normal circumstances, the Lexers
  * do not pass attributes.
  */
-@interface HTMLPurifier_Token_End : HTMLPurifier_Token
+@interface HTMLPurifier_Token_End : HTMLPurifier_Token_Tag
 
 
     /**
@@ -24,6 +24,8 @@
      * @type HTMLPurifier_Token
      */
 @property HTMLPurifier_Token* start;
+
+- (HTMLPurifier_Node*)toNode;
 
 
 @end

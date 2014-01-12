@@ -7,7 +7,7 @@
 //
 
 #import "HTMLPurifier_Token_Empty.h"
-#import "HTMLPurifier_Node.h"
+#import "HTMLPurifier_Node_ELement.h"
 
 /**
  * Concrete empty token class.
@@ -17,7 +17,7 @@
 
 - (HTMLPurifier_Node*)toNode
 {
-    HTMLPurifier_Node* n = [super toNode];
+    HTMLPurifier_Node_Element* n = (HTMLPurifier_Node_Element*)[super toNode];
         n.empty = YES;
         return n;
 }

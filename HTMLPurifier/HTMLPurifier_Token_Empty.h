@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifier_Token.h"
+#import "HTMLPurifier_Token_Tag.h"
 
 @class  HTMLPurifier_Node;
 
-@interface HTMLPurifier_Token_Empty : HTMLPurifier_Token
+@interface HTMLPurifier_Token_Empty : HTMLPurifier_Token_Tag
 
 - (HTMLPurifier_Node*)toNode;
 

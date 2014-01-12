@@ -48,8 +48,8 @@
      * @param array $armor
      */
 
-- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSInteger)l col:(NSInteger)c armor:(NSMutableDictionary*)arm;
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
 
-- (void)toNode;
+- (HTMLPurifier_Node_Element*)toNode;
 
 @end

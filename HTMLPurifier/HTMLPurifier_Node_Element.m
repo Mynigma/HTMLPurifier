@@ -8,11 +8,13 @@
 
 #import "HTMLPurifier_Node_Element.h"
 #import "HTMLPurifier_Token_Empty.h"
+#import "HTMLPurifier_Token_Start.h"
+#import "HTMLPurifier_Token_End.h"
 
 @implementation HTMLPurifier_Node_Element
 
 
-- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSInteger)l col:(NSInteger)c armor:(NSMutableDictionary*)arm
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm
 {
     self = [super init];
     if (self) {
@@ -23,6 +25,9 @@
         self.armor = arm;
         _empty = NO;
         _children = [NSMutableArray new];
+        _endArmor = [NSMutableDictionary new];
+        _endCol = nil;
+        _endLine = nil;
     }
     return self;
 }
@@ -37,9 +42,7 @@
         else
         {
             NSObject* start = [[HTMLPurifier_Token_Start alloc] initWithName:self.name attr:self.attr line:self.line col:self.col armor:self.armor];
-
-            , $this->attr, $this->line, $this->col, $this->armor);
-            NSObject* $end = [[HTMLPurifier_Token_End initWithName:self.name attr:@[] self.endLine col:self.endCol armor:self.endArmor];
+            NSObject* end = [[HTMLPurifier_Token_End alloc] initWithName:self.name attr:@[] line:_endLine col:_endCol armor:self.endArmor];
             return @[start, end];
         }
     }

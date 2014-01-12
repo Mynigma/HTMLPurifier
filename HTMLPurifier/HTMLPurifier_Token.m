@@ -23,7 +23,7 @@
 {
     self = [super init];
     if (self) {
-        _armor = [NSMutableArray new];
+        _armor = [NSMutableDictionary new];
     }
     return self;
 }
@@ -56,7 +56,7 @@
      * @param int $l
      * @param int $c
      */
-- (void)position:(NSInteger)l c:(NSInteger)c
+- (void)position:(NSNumber*)l c:(NSNumber*)c
     {
         self.line = l;
         self.col = c;
@@ -67,7 +67,7 @@
      * @param int $l
      * @param int $c
      */
-- (void)rawPosition:(NSInteger)l c:(NSInteger)c
+- (void)rawPosition:(NSNumber*)l c:(NSNUmber*)c
     {
         if (c == -1) {
             l++;

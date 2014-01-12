@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifier_Token.h"
+#import "HTMLPurifier_Token_Tag.h"
 
-@interface HTMLPurifier_Token_Start : HTMLPurifier_Token
+@interface HTMLPurifier_Token_Start : HTMLPurifier_Token_Tag
 
 //done
 

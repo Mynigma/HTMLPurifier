@@ -42,34 +42,15 @@
      */
 @property BOOL empty;
 
-@property endCol;
+@property NSNumber* endCol;
 
-@property endLine;
+@property NSNumber* endLine;
 
 @property NSMutableDictionary* endArmor;
 
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
 
-    public $endCol = null, $endLine = null, $endArmor = array();
+- (NSArray*)toTokenPair;
 
-    public function __construct($name, $attr = array(), $line = null, $col = null, $armor = array()) {
-        $this->name = $name;
-        $this->attr = $attr;
-        $this->line = $line;
-        $this->col = $col;
-        $this->armor = $armor;
-    }
-
-    public function toTokenPair() {
-        // XXX inefficiency here, normalization is not necessary
-        if ($this->empty) {
-            return array(new HTMLPurifier_Token_Empty($this->name, $this->attr, $this->line, $this->col, $this->armor), null);
-        } else {
-            $start = new HTMLPurifier_Token_Start($this->name, $this->attr, $this->line, $this->col, $this->armor);
-            $end = new HTMLPurifier_Token_End($this->name, array(), $this->endLine, $this->endCol, $this->endArmor);
-            //$end->start = $start;
-            return array($start, $end);
-        }
-    }
-}
 
 @end

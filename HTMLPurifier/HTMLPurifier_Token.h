@@ -18,13 +18,13 @@
      * Line number node was on in source document. Null if unknown.
      * @type int
      */
-@property NSInteger line;
+@property NSNumber* line;
 
     /**
      * Column of line node was on in source document. Null if unknown.
      * @type int
      */
-@property NSInteger col;
+@property NSNumber* col;
 
     /**
      * Lookup array of processing that this token is exempt from.
@@ -32,7 +32,7 @@
      * "MakeWellFormed_TagClosedError"
      * @type array
      */
-@property NSMutableArray* armor;
+@property NSMutableDictionary* armor;
 
     /**
      * Used during MakeWellFormed.
@@ -63,14 +63,14 @@
  * @param int $l
  * @param int $c
  */
-- (void)position:(NSInteger)l c:(NSInteger)c;
+- (void)position:(NSNumber*)l c:(NSNumber*)c;
 
 /**
  * Convenience function for DirectLex settings line/col position.
  * @param int $l
  * @param int $c
  */
-- (void)rawPosition:(NSInteger)l c:(NSInteger)c;
+- (void)rawPosition:(NSNumber*)l c:(NSNumber*)c;
 /**
  * Converts a token into its corresponding node.
  */

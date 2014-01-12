@@ -8,7 +8,8 @@
 
 #import "HTMLPurifier_Length.h"
 #import "BasicPHP.h"
-
+#import "HTMLPurifier_AttrDef_CSS_Number.h"
+#import "HTMLPurifier_UnitConverter.h"
 
 @implementation HTMLPurifier_Length
 
@@ -87,13 +88,13 @@
         return NO;
     }
     // Hack:
-    HTMLPurifier_AttrDer_CSS_Number* def = [[HTMLPurifier_AttrDef_CSS_Number alloc] init];
-    NSString* result = [def validateW:n, false, false];
-    if ($result === false) {
-        return false;
+    HTMLPurifier_AttrDef_CSS_Number* def = [[HTMLPurifier_AttrDef_CSS_Number alloc] init];
+    NSString* result = [def validateWithString:n config:nil context:nil];
+    if (!result) {
+        return NO;
     }
     n = result;
-    return true;
+    return YES;
 }
 
 /**
@@ -132,10 +133,10 @@
  */
 - (BOOL)isValid
 {
-    if (!self.isValid) {
-        isValid = [self validate];
+    if (!isValid.boolValue) {
+        isValid = @([self validate]);
     }
-    return self.isValid;
+    return isValid.boolValue;
 }
 
 /**
@@ -150,16 +151,16 @@
     if (!l) {
         return nil;
     }
-    if(l.unit !== self.unit)
+    if(![[l getUnit] isEqual:self->unit])
     {
         HTMLPurifier_UnitConverter* converter = [HTMLPurifier_UnitConverter new];
-        l = [converter convert:$l, $this->unit);
+        l = [converter convert:l unit:unit];
              if(!l)
              {
                  return nil;
              }
              }
-             return self.n - l.n;
+             return @(n.floatValue - [l getN].floatValue);
              }
 
              @end

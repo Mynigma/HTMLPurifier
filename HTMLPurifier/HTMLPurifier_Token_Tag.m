@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_Token_Tag.h"
+#import "HTMLPurifier_Node_Element.h"
 
 @implementation HTMLPurifier_Token_Tag
 
@@ -21,7 +22,7 @@
      * @param int $col
      * @param array $armor
      */
-- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSInteger)l col:(NSInteger)c armor:(NSMutableDictionary*)arm
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm
 {
     self = [super init];
     if (self) {
@@ -47,7 +48,7 @@
     return self;
 }
 
-- (void)toNode
+- (HTMLPurifier_Node_Element*)toNode
     {
         return [[HTMLPurifier_Node_Element alloc] initWithName:self.name attr:self.attr line:self.line col:self.col armor:self.armor];
     }

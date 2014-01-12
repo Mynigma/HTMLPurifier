@@ -13,6 +13,7 @@
 #import "HTMLPurifier_Definition.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Token.h"
+#import "HTMLPurifier_Config.h"
 
 @implementation HTMLPurifier_Arborize
 

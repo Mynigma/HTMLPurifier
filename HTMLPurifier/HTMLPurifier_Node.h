@@ -22,13 +22,13 @@
      * Line number of the start token in the source document
      * @type int
      */
-@property NSInteger line;
+@property NSNumber* line;
 
     /**
      * Column number of the start token in the source document. Null if unknown.
      * @type int
      */
-@property NSInteger col;
+@property NSNumber* col;
 
     /**
      * Lookup array of processing that this token is exempt from.
