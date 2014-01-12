@@ -17,18 +17,20 @@
  * IPv4 sub-validator.
  * @type HTMLPurifier_AttrDef_URI_IPv4
  */
-protected $ipv4;
+@synthesize ipv4;
 
 /**
  * IPv6 sub-validator.
  * @type HTMLPurifier_AttrDef_URI_IPv6
  */
-protected $ipv6;
+@synthesize ipv6;
 
-public function __construct()
+-(id) init
 {
-    $this->ipv4 = new HTMLPurifier_AttrDef_URI_IPv4();
-    $this->ipv6 = new HTMLPurifier_AttrDef_URI_IPv6();
+    self = [super init];
+    ipv4 = [HTMLPurifier_AttrDef_URI_IPv4 new];
+    ipv6 = [HTMLPurifier_AttrDef_URI_IPv6 new];
+    return self;
 }
 
 /**
@@ -37,19 +39,20 @@ public function __construct()
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($string, $config, $context)
+-(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    $length = strlen($string);
+    NSUInteger length = [string length];
     // empty hostname is OK; it's usually semantically equivalent:
     // the default host as defined by a URI scheme is used:
     //
     //      If the URI scheme defines a default for host, then that
     //      default applies when the host subcomponent is undefined
     //      or when the registered name is empty (zero length).
-    if ($string === '') {
-        return '';
+    if ([string isEqual:@""])
+    {
+        return @"";
     }
-    if ($length > 1 && $string[0] === '[' && $string[$length - 1] === ']') {
+    if (length > 1 && $string[0] === '[' && $string[$length - 1] === ']') {
         //IPv6
         $ip = substr($string, 1, $length - 2);
         $valid = $this->ipv6->validate($ip, $config, $context);
