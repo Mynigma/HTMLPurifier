@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HTMLPurifier_Strategy_Composite.h"
 
-@interface HTMLPurifier_Strategy_Core : NSObject
+@interface HTMLPurifier_Strategy_Core : HTMLPurifier_Strategy_Composite
+
 
 @end

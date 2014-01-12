@@ -18,7 +18,7 @@
 @implementation HTMLPurifier_Arborize
 
 
-+ (NSArray*)arborizeTokens:(NSArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
++ (HTMLPurifier_Node*)arborizeTokens:(NSArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     HTMLPurifier_Definition* definition = [config getHTMLDefinition];
     HTMLPurifier_Token_Start* parent = [[HTMLPurifier_Token_Start alloc] initWith:definition->info_parent];
