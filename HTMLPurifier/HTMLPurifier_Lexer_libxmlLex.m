@@ -9,9 +9,9 @@
 #import "HTMLPurifier_Lexer_libxmlLex.h"
 #import "HTMLPurifier_TokenFactory.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_TokenFactory.h"
 #import <libxml/HTMLparser.h>
 #import <libxml/xmlmemory.h>
-#import "DomDocument
 
 @implementation HTMLPurifier_Lexer_libxmlLex
 

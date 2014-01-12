@@ -1,0 +1,78 @@
+//
+//  HTMLPurifier_Token.h
+//  HTMLPurifier
+//
+//  Created by Roman Priebe on 12.01.14.
+//  Copyright (c) 2014 Mynigma. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+/**
+ * Abstract base token class that all others inherit from.
+ */
+@interface HTMLPurifier_Token : NSObject
+
+    /**
+     * Line number node was on in source document. Null if unknown.
+     * @type int
+     */
+@property NSInteger line;
+
+    /**
+     * Column of line node was on in source document. Null if unknown.
+     * @type int
+     */
+@property NSInteger col;
+
+    /**
+     * Lookup array of processing that this token is exempt from.
+     * Currently, valid values are "ValidateAttributes" and
+     * "MakeWellFormed_TagClosedError"
+     * @type array
+     */
+@property NSMutableArray* armor;
+
+    /**
+     * Used during MakeWellFormed.
+     * @type
+     */
+@property NSObject* skip;
+
+    /**
+     * @type
+     */
+@property NSObject* rewind;
+
+    /**
+     * @type
+     */
+@property NSObject* carryover;
+
+- (id)init;
+
+/**
+ * @param string $n
+ * @return null|string
+ */
+- (NSString*)__get:(NSString*)n;
+
+/**
+ * Sets the position of the token in the source document.
+ * @param int $l
+ * @param int $c
+ */
+- (void)position:(NSInteger)l c:(NSInteger)c;
+
+/**
+ * Convenience function for DirectLex settings line/col position.
+ * @param int $l
+ * @param int $c
+ */
+- (void)rawPosition:(NSInteger)l c:(NSInteger)c;
+/**
+ * Converts a token into its corresponding node.
+ */
+- (HTMLPurifier_Node*)toNode;
+
+@end
