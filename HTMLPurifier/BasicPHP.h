@@ -78,6 +78,7 @@ NSString* trimWithFormat(NSString* string, NSString* format)
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
 }
 
+//parse cdata
 
 //ctype_alpha
 BOOL ctype_alpha (NSString* text)

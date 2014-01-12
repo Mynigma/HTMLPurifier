@@ -7,6 +7,8 @@
 //
 
 #import "HTMLPurifier_AttrDef_HTML_LinkTypes.h"
+#import "HTMLPurifier.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_HTML_LinkTypes
 
@@ -14,26 +16,24 @@
  * Name config attribute to pull.
  * @type string
  */
-protected $name;
+@synthesize name;
 
 /**
  * @param string $name
  */
-public function __construct($name)
+-(id) initWithName:(NSString*)newName
 {
-    $configLookup = array(
-                          'rel' => 'AllowedRel',
-                          'rev' => 'AllowedRev'
-                          );
-    if (!isset($configLookup[$name])) {
-        trigger_error(
-                      'Unrecognized attribute name for link ' .
-                      'relationship.',
-                      E_USER_ERROR
-                      );
-        return;
+    self = [super init];
+    NSDictionary* configLookup = @{@"rel":@"AllowedRel", @"rev":@"AllowedRev"};
+    
+    if (!([newName isEqual:@"rel"] || [newName isEqual:@"rev"]))
+    {
+        TRIGGER_ERROR(@"Unrecognized attribute name for link relationship.",
+                      E_USER_ERROR);
+        return nil;
     }
-    $this->name = $configLookup[$name];
+    name = [configLookup objectForKey:newName];
+    return self;
 }
 
 /**
@@ -42,31 +42,36 @@ public function __construct($name)
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($string, $config, $context)
+-(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    $allowed = $config->get('Attr.' . $this->name);
-    if (empty($allowed)) {
-        return false;
+    NSDictionary* allowed = [config get:[NSString stringWithFormat:@"Attr.%@",name]];
+    if (!allowed || [allowed isEqual:@""])
+    {
+        return nil;
     }
     
-    $string = $this->parseCDATA($string);
-    $parts = explode(' ', $string);
+    string = [self parseCDATAWithString:string];
+    NSArray* parts = explode(@" ",string);
     
     // lookup to prevent duplicates
-    $ret_lookup = array();
-    foreach ($parts as $part) {
-        $part = strtolower(trim($part));
-        if (!isset($allowed[$part])) {
+    NSMutableArray* ret_lookup = [NSMutableArray new];
+    for (NSString* part in parts)
+    {
+        NSString* thisPart = [part mutableCopy];
+        thisPart = [trim(thisPart) lowercaseString];
+        if (![allowed objectForKey:thisPart])
+        {
             continue;
         }
-        $ret_lookup[$part] = true;
+        [ret_lookup addObject:thisPart];
     }
     
-    if (empty($ret_lookup)) {
-        return false;
+    if ([ret_lookup count] == 0)
+    {
+        return nil;
     }
-    $string = implode(' ', array_keys($ret_lookup));
-    return $string;
+    string = implode(@" ",ret_lookup);
+    return string;
 }
 
 @end
