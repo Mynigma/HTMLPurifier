@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1EA65642188317C400956E44 /* HTMLPurifier_Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EA65640188317C400956E44 /* HTMLPurifier_Queue.h */; };
 		1EA65643188317C400956E44 /* HTMLPurifier_Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA65641188317C400956E44 /* HTMLPurifier_Queue.m */; };
+		1EA65646188335F700956E44 /* HTMLPurifier_Arborize.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EA65644188335F700956E44 /* HTMLPurifier_Arborize.h */; };
+		1EA65647188335F700956E44 /* HTMLPurifier_Arborize.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA65645188335F700956E44 /* HTMLPurifier_Arborize.m */; };
 		1EBB81D71882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */; };
 		1EBB81D81882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */; };
 		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
@@ -137,6 +139,8 @@
 /* Begin PBXFileReference section */
 		1EA65640188317C400956E44 /* HTMLPurifier_Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Queue.h; sourceTree = "<group>"; };
 		1EA65641188317C400956E44 /* HTMLPurifier_Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Queue.m; sourceTree = "<group>"; };
+		1EA65644188335F700956E44 /* HTMLPurifier_Arborize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Arborize.h; sourceTree = "<group>"; };
+		1EA65645188335F700956E44 /* HTMLPurifier_Arborize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Arborize.m; sourceTree = "<group>"; };
 		1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Lexer_libxmlLex.h; sourceTree = "<group>"; };
 		1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Lexer_libxmlLex.m; sourceTree = "<group>"; };
 		1EBB81D91882C94D008B7FA4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -474,6 +478,8 @@
 				1EBB81DF1882D9A4008B7FA4 /* Token */,
 				1EA65640188317C400956E44 /* HTMLPurifier_Queue.h */,
 				1EA65641188317C400956E44 /* HTMLPurifier_Queue.m */,
+				1EA65644188335F700956E44 /* HTMLPurifier_Arborize.h */,
+				1EA65645188335F700956E44 /* HTMLPurifier_Arborize.m */,
 			);
 			path = HTMLPurifier;
 			sourceTree = "<group>";
@@ -514,6 +520,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				803FD43918805DF70010D799 /* HTMLPurifier_ErrorCollector.h in Headers */,
+				1EA65646188335F700956E44 /* HTMLPurifier_Arborize.h in Headers */,
 				1EBB81E21882D9FF008B7FA4 /* HTMLPurifier_Token_Comment.h in Headers */,
 				1EBB81FB1882E2F1008B7FA4 /* HTMLPurifier_Node_Text.h in Headers */,
 				803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */,
@@ -671,6 +678,7 @@
 				803FD460188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.m in Sources */,
 				1ED0397B188150EC0075F6A4 /* HTMLPurifier_AttrDef_CSS_Color.m in Sources */,
 				1EBB81EF1882DE53008B7FA4 /* HTMLPurifier_Node.m in Sources */,
+				1EA65647188335F700956E44 /* HTMLPurifier_Arborize.m in Sources */,
 				1ED039661880DCE30075F6A4 /* HTMLPurifier_AttrDef_CSS_Border.m in Sources */,
 				803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */,
 				803FD4501880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.m in Sources */,
