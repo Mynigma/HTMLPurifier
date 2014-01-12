@@ -11,13 +11,18 @@
 
 @implementation HTMLPurifier_AttrDef_HTML_Color
 
+
+-(id) init
+{
+    return [super init];
+}
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-
 -(NSString*)validateWithString:string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
     NSMutableArray* colors = [NSMutableArray new];

@@ -11,6 +11,11 @@
 
 @implementation HTMLPurifier_AttrDef_HTML_Nmtokens
 
+-(id) init
+{
+    return [super init];
+}
+
 /**
 * @param string $string
 * @param HTMLPurifier_Config $config

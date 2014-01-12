@@ -81,6 +81,10 @@
 		803FD454188153EE0010D799 /* HTMLPurifier_AttrDef_HTML_Color.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD452188153EE0010D799 /* HTMLPurifier_AttrDef_HTML_Color.m */; };
 		803FD45718815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD45518815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.h */; };
 		803FD45818815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD45618815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.m */; };
+		803FD45B1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD4591881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.h */; };
+		803FD45C1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD45A1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.m */; };
+		803FD45F188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD45D188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.h */; };
+		803FD460188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD45E188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.m */; };
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
@@ -176,6 +180,10 @@
 		803FD452188153EE0010D799 /* HTMLPurifier_AttrDef_HTML_Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_Color.m; sourceTree = "<group>"; };
 		803FD45518815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_HTML_FrameTarget.h; sourceTree = "<group>"; };
 		803FD45618815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_FrameTarget.m; sourceTree = "<group>"; };
+		803FD4591881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_HTML_ID.h; sourceTree = "<group>"; };
+		803FD45A1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_ID.m; sourceTree = "<group>"; };
+		803FD45D188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_HTML_Pixels.h; sourceTree = "<group>"; };
+		803FD45E188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_Pixels.m; sourceTree = "<group>"; };
 		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -259,6 +267,10 @@
 				803FD452188153EE0010D799 /* HTMLPurifier_AttrDef_HTML_Color.m */,
 				803FD45518815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.h */,
 				803FD45618815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.m */,
+				803FD4591881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.h */,
+				803FD45A1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.m */,
+				803FD45D188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.h */,
+				803FD45E188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.m */,
 			);
 			name = HTML;
 			sourceTree = "<group>";
@@ -406,6 +418,7 @@
 				1EBB81D71882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h in Headers */,
 				1ED039611880D7BE0075F6A4 /* HTMLPurifier_Encoder.h in Headers */,
 				803FD453188153EE0010D799 /* HTMLPurifier_AttrDef_HTML_Color.h in Headers */,
+				803FD45F188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.h in Headers */,
 				803FD42918804E270010D799 /* HTMLPurifier_Filter.h in Headers */,
 				1ED0394818808D660075F6A4 /* HTMLPurifier_AttrDef_Length.h in Headers */,
 				803FD43118805B760010D799 /* HTMLPurifier_LanguageFactory.h in Headers */,
@@ -426,6 +439,7 @@
 				803FD43518805D190010D799 /* HTMLPurifier_Language.h in Headers */,
 				803FD44518809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.h in Headers */,
 				803FD421188048E30010D799 /* HTMLPurifier_Generator.h in Headers */,
+				803FD45B1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.h in Headers */,
 				803FD4251880497E0010D799 /* HTMLPurifier_Context.h in Headers */,
 				1ED0395C1880D46B0075F6A4 /* HTMLPurifier_AttrDef_TextDecoration.h in Headers */,
 				1ED0393C18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.h in Headers */,
@@ -536,6 +550,7 @@
 				803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */,
 				1ED039551880CB150075F6A4 /* HTMLPurifier_AttrDef_Switch.m in Sources */,
 				1ED039621880D7BE0075F6A4 /* HTMLPurifier_Encoder.m in Sources */,
+				803FD460188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.m in Sources */,
 				1ED0397B188150EC0075F6A4 /* HTMLPurifier_AttrDef_CSS_Color.m in Sources */,
 				1ED039661880DCE30075F6A4 /* HTMLPurifier_AttrDef_CSS_Border.m in Sources */,
 				803FD42A18804E270010D799 /* HTMLPurifier_Filter.m in Sources */,
@@ -562,6 +577,7 @@
 				1ED0395D1880D46B0075F6A4 /* HTMLPurifier_AttrDef_TextDecoration.m in Sources */,
 				1ED03931188057C60075F6A4 /* HTMLPurifier_AttrDef.m in Sources */,
 				1ED0393518805A150075F6A4 /* BasicPHP.m in Sources */,
+				803FD45C1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.m in Sources */,
 				1ED0393D18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m in Sources */,
 				1ED0397718814A850075F6A4 /* HTMLPurifier_AttrDef_CSS_ListStyle.m in Sources */,
 				80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */,
