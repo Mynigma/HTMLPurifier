@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_Token_Comment.h"
+#import "HTMLPurifier_Node_Comment.h"
 
 @implementation HTMLPurifier_Token_Comment
 
@@ -28,6 +29,7 @@
         self.data = d;
         self.line = l;
         self.col = c;
+        _is_whitespace = YES;
     }
     return self;
 }
@@ -37,13 +39,14 @@
     self = [super init];
     if (self) {
         self.data = d;
+        _is_whitespace = YES;
     }
     return self;
 }
 
-- (void)toNode
+- (HTMLPurifier_Node_Comment*)toNode
 {
-    return [[HTMLPurifier_Node_Comment alloc] initWithData:self.data, self.line, self.col];
+    return [[HTMLPurifier_Node_Comment alloc] initWithData:self.data line:self.line col:self.col];
 }
 
 

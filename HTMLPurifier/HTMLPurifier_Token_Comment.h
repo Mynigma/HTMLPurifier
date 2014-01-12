@@ -8,6 +8,8 @@
 
 #import "HTMLPurifier_Token.h"
 
+@class HTMLPurifier_Node_Comment;
+
 /**
  * Concrete comment token class. Generally will be ignored.
  */
@@ -23,7 +25,7 @@
     /**
      * @type bool
      */
-@property BOOL is_whitespace = true;
+@property BOOL is_whitespace;
 
     /**
      * Transparent constructor.
@@ -36,6 +38,6 @@
 
 - (id)initWithData:(NSString*)d;
 
-- (void)toNode;
+- (HTMLPurifier_Node_Comment*)toNode;
 
 @end
