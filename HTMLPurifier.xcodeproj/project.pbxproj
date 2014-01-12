@@ -114,6 +114,16 @@
 		803FD4681882D0160010D799 /* HTMLPurifier_AttrDef_HTML_LinkTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD4661882D0160010D799 /* HTMLPurifier_AttrDef_HTML_LinkTypes.m */; };
 		803FD46B1882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD4691882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.h */; };
 		803FD46C1882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD46A1882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.m */; };
+		803FD471188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD46F188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.h */; };
+		803FD472188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD470188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.m */; };
+		803FD475188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD473188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.h */; };
+		803FD476188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD474188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.m */; };
+		803FD4791883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD4771883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.h */; };
+		803FD47A1883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD4781883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.m */; };
+		803FD47D1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD47B1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.h */; };
+		803FD47E1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD47C1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.m */; };
+		803FD482188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD480188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.h */; };
+		803FD483188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 803FD481188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.m */; };
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
@@ -242,6 +252,16 @@
 		803FD4661882D0160010D799 /* HTMLPurifier_AttrDef_HTML_LinkTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_LinkTypes.m; sourceTree = "<group>"; };
 		803FD4691882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_HTML_MultiLength.h; sourceTree = "<group>"; };
 		803FD46A1882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_MultiLength.m; sourceTree = "<group>"; };
+		803FD46F188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_URI_Email.h; sourceTree = SOURCE_ROOT; };
+		803FD470188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_URI_Email.m; sourceTree = SOURCE_ROOT; };
+		803FD473188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_URI_Host.h; sourceTree = "<group>"; };
+		803FD474188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_URI_Host.m; sourceTree = "<group>"; };
+		803FD4771883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_URI_IPv4.h; sourceTree = "<group>"; };
+		803FD4781883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_URI_IPv4.m; sourceTree = "<group>"; };
+		803FD47B1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_URI_IPv6.h; sourceTree = "<group>"; };
+		803FD47C1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_URI_IPv6.m; sourceTree = "<group>"; };
+		803FD480188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_URI_Email_SimpleCheck.h; sourceTree = "<group>"; };
+		803FD481188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_URI_Email_SimpleCheck.m; sourceTree = "<group>"; };
 		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -381,6 +401,7 @@
 		803FD44818809A290010D799 /* AttrDef */ = {
 			isa = PBXGroup;
 			children = (
+				803FD46E1883236A0010D799 /* URI */,
 				1ED0392E188057C60075F6A4 /* HTMLPurifier_AttrDef.h */,
 				1ED0392F188057C60075F6A4 /* HTMLPurifier_AttrDef.m */,
 				1ED03936188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.h */,
@@ -391,6 +412,31 @@
 				803FD44718809A200010D799 /* HTML */,
 			);
 			name = AttrDef;
+			sourceTree = "<group>";
+		};
+		803FD46E1883236A0010D799 /* URI */ = {
+			isa = PBXGroup;
+			children = (
+				803FD47F188324B90010D799 /* Email */,
+				803FD46F188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.h */,
+				803FD470188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.m */,
+				803FD473188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.h */,
+				803FD474188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.m */,
+				803FD4771883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.h */,
+				803FD4781883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.m */,
+				803FD47B1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.h */,
+				803FD47C1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.m */,
+			);
+			name = URI;
+			sourceTree = "<group>";
+		};
+		803FD47F188324B90010D799 /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				803FD480188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.h */,
+				803FD481188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.m */,
+			);
+			name = Email;
 			sourceTree = "<group>";
 		};
 		80EDF9B118803B3200EB1E89 = {
@@ -547,13 +593,18 @@
 				803FD45718815BF50010D799 /* HTMLPurifier_AttrDef_HTML_FrameTarget.h in Headers */,
 				803FD41D188048780010D799 /* HTMLPurifier_Strategy_Core.h in Headers */,
 				803FD43518805D190010D799 /* HTMLPurifier_Language.h in Headers */,
+				803FD4791883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.h in Headers */,
+				803FD471188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.h in Headers */,
 				803FD44518809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.h in Headers */,
 				1EBB81F71882E043008B7FA4 /* HTMLPurifier_Node_Element.h in Headers */,
 				1EBB820B1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.h in Headers */,
 				1EBB81E61882DB20008B7FA4 /* HTMLPurifier_Token_Tag.h in Headers */,
 				803FD421188048E30010D799 /* HTMLPurifier_Generator.h in Headers */,
+				803FD475188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.h in Headers */,
 				803FD45B1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.h in Headers */,
+				1EBB81FF1882E50D008B7FA4 /* HTMLPurifier_Token_End.h in Headers */,
 				803FD46B1882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.h in Headers */,
+				803FD482188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.h in Headers */,
 				803FD4251880497E0010D799 /* HTMLPurifier_Context.h in Headers */,
 				1EBB81DD1882D7CD008B7FA4 /* HTMLPurifier_Token.h in Headers */,
 				1ED0395C1880D46B0075F6A4 /* HTMLPurifier_AttrDef_CSS_TextDecoration.h in Headers */,
@@ -563,6 +614,7 @@
 				1ED0397A188150EC0075F6A4 /* HTMLPurifier_AttrDef_CSS_Color.h in Headers */,
 				1EBB81EE1882DE53008B7FA4 /* HTMLPurifier_Node.h in Headers */,
 				1ED03938188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.h in Headers */,
+				803FD47D1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.h in Headers */,
 				1EBB82031882E552008B7FA4 /* HTMLPurifier_Token_Start.h in Headers */,
 				1ED039581880CE810075F6A4 /* HTMLPurifier_AttrDef_CSS_URI.h in Headers */,
 			);
@@ -678,6 +730,7 @@
 				803FD4681882D0160010D799 /* HTMLPurifier_AttrDef_HTML_LinkTypes.m in Sources */,
 				803FD43618805D190010D799 /* HTMLPurifier_Language.m in Sources */,
 				803FD43E18805F030010D799 /* HTMLPurifier_IDAccumulator.m in Sources */,
+				803FD47A1883242A0010D799 /* HTMLPurifier_AttrDef_URI_IPv4.m in Sources */,
 				1EBB820C1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.m in Sources */,
 				1ED03945188089B90075F6A4 /* HTMLPurifier_AttrDef_CSS_BackgroundPosition.m in Sources */,
 				1ED0392D1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m in Sources */,
@@ -689,6 +742,7 @@
 				1ED0396E1880E58C0075F6A4 /* HTMLPurifier_AttrDef_CSS_Number.m in Sources */,
 				803FD43218805B760010D799 /* HTMLPurifier_LanguageFactory.m in Sources */,
 				1ED03973188145230075F6A4 /* HTMLPurifier_AttrDef_CSS_AlphaValue.m in Sources */,
+				1EBB81F41882DF33008B7FA4 /* HTMLPurifier_Node_Comment.m in Sources */,
 				803FD46C1882EB180010D799 /* HTMLPurifier_AttrDef_HTML_MultiLength.m in Sources */,
 				803FD4261880497E0010D799 /* HTMLPurifier_Context.m in Sources */,
 				1ED039511880C8510075F6A4 /* HTMLPurifier_AttrDef_CSS_Percentage.m in Sources */,
@@ -697,20 +751,24 @@
 				803FD422188048E30010D799 /* HTMLPurifier_Generator.m in Sources */,
 				1EBB82081882E585008B7FA4 /* HTMLPurifier_Token_Text.m in Sources */,
 				1EBB81DE1882D7CD008B7FA4 /* HTMLPurifier_Token.m in Sources */,
+				803FD483188324DB0010D799 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheck.m in Sources */,
 				803FD43A18805DF70010D799 /* HTMLPurifier_ErrorCollector.m in Sources */,
 				803FD41A188042260010D799 /* HTMLPurifier_Config.m in Sources */,
 				1ED03939188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.m in Sources */,
+				803FD47E1883248B0010D799 /* HTMLPurifier_AttrDef_URI_IPv6.m in Sources */,
 				1EBB81D81882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m in Sources */,
 				1ED0394D18808EC90075F6A4 /* HTMLPurifier_Length.m in Sources */,
 				1ED0395D1880D46B0075F6A4 /* HTMLPurifier_AttrDef_CSS_TextDecoration.m in Sources */,
 				1ED03931188057C60075F6A4 /* HTMLPurifier_AttrDef.m in Sources */,
 				1ED0393518805A150075F6A4 /* BasicPHP.m in Sources */,
 				803FD4641882B18D0010D799 /* HTMLPurifier_AttrDef_HTML_Length.m in Sources */,
+				803FD472188323860010D799 /* HTMLPurifier_AttrDef_URI_Email.m in Sources */,
 				803FD45C1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.m in Sources */,
 				1ED0393D18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m in Sources */,
 				1EBB81E71882DB20008B7FA4 /* HTMLPurifier_Token_Tag.m in Sources */,
 				1ED0397718814A850075F6A4 /* HTMLPurifier_AttrDef_CSS_ListStyle.m in Sources */,
 				80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */,
+				803FD476188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.m in Sources */,
 				1ED0397F1881563F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Background.m in Sources */,
 				1ED039411880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.m in Sources */,
 				803FD41E188048780010D799 /* HTMLPurifier_Strategy_Core.m in Sources */,
