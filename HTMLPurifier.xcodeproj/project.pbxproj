@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EBB81D71882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */; };
+		1EBB81D81882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */; };
+		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
 		1ED0392C1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0392A1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h */; };
 		1ED0392D1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0392B1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m */; };
 		1ED03930188057C60075F6A4 /* HTMLPurifier_AttrDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0392E188057C60075F6A4 /* HTMLPurifier_AttrDef.h */; };
@@ -106,6 +109,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Lexer_libxmlLex.h; sourceTree = "<group>"; };
+		1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Lexer_libxmlLex.m; sourceTree = "<group>"; };
+		1EBB81D91882C94D008B7FA4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		1ED0392A1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_CSSDefinition.h; sourceTree = "<group>"; };
 		1ED0392B1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_CSSDefinition.m; sourceTree = "<group>"; };
 		1ED0392E188057C60075F6A4 /* HTMLPurifier_AttrDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef.h; sourceTree = SOURCE_ROOT; };
@@ -206,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */,
 				80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +325,7 @@
 		80EDF9BD18803B3200EB1E89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1EBB81D91882C94D008B7FA4 /* libxml2.dylib */,
 				80EDF9BE18803B3200EB1E89 /* Cocoa.framework */,
 				80EDF9D318803B3200EB1E89 /* XCTest.framework */,
 				80EDF9C018803B3200EB1E89 /* Other Frameworks */,
@@ -370,6 +378,8 @@
 				1ED0394B18808EC90075F6A4 /* HTMLPurifier_Length.m */,
 				1ED0395F1880D7BE0075F6A4 /* HTMLPurifier_Encoder.h */,
 				1ED039601880D7BE0075F6A4 /* HTMLPurifier_Encoder.m */,
+				1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */,
+				1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */,
 			);
 			path = HTMLPurifier;
 			sourceTree = "<group>";
@@ -415,6 +425,7 @@
 				1ED03972188145230075F6A4 /* HTMLPurifier_AttrDef_CSS_AlphaValue.h in Headers */,
 				1ED039691880E2290075F6A4 /* HTMLPurifier_AttrDef_CSS_Length.h in Headers */,
 				1ED0393418805A150075F6A4 /* BasicPHP.h in Headers */,
+				1EBB81D71882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h in Headers */,
 				1ED039611880D7BE0075F6A4 /* HTMLPurifier_Encoder.h in Headers */,
 				803FD453188153EE0010D799 /* HTMLPurifier_AttrDef_HTML_Color.h in Headers */,
 				803FD45F188191C80010D799 /* HTMLPurifier_AttrDef_HTML_Pixels.h in Headers */,
@@ -573,6 +584,7 @@
 				803FD43A18805DF70010D799 /* HTMLPurifier_ErrorCollector.m in Sources */,
 				803FD41A188042260010D799 /* HTMLPurifier_Config.m in Sources */,
 				1ED03939188068570075F6A4 /* HTMLPurifier_AttrDef_Enum.m in Sources */,
+				1EBB81D81882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m in Sources */,
 				1ED0394D18808EC90075F6A4 /* HTMLPurifier_Length.m in Sources */,
 				1ED0395D1880D46B0075F6A4 /* HTMLPurifier_AttrDef_CSS_TextDecoration.m in Sources */,
 				1ED03931188057C60075F6A4 /* HTMLPurifier_AttrDef.m in Sources */,
@@ -658,6 +670,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"/usr/include/libxml2/**",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -690,6 +707,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"/usr/include/libxml2/**",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};

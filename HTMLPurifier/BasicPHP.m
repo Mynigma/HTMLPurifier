@@ -33,6 +33,22 @@
     return subjectString;
 }
 
++ (NSString*)pregReplace:(NSString*)pattern callback:(NSString*(^)(NSArray*))callBack haystack:(NSString*)haystack
+{
+    NSError* error = nil;
+
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+
+    NSArray* results = [regex matchesInString:haystack options:0 range:NSMakeRange(0, haystack.length)];
+
+    NSString* replacement = callBack(results);
+
+    NSMutableString* newHaystack = [haystack mutableCopy];
+
+    [regex replaceMatchesInString:newHaystack options:0 range:NSMakeRange(0, haystack.length) withTemplate:replacement];
+
+    return newHaystack;
+}
 
 
 @end
