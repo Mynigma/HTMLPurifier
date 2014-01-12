@@ -1,5 +1,5 @@
 //
-//  HTMLPurifier_AttrDef_TextDecoration.h
+//  HTMLPurifier_AttrDef_CSS_TextDecoration.h
 //  HTMLPurifier
 //
 //  Created by Roman Priebe on 11.01.14.
@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_AttrDef.h"
 
-@interface HTMLPurifier_AttrDef_TextDecoration : HTMLPurifier_AttrDef
+@interface HTMLPurifier_AttrDef_CSS_TextDecoration : HTMLPurifier_AttrDef
 
     /**
      * @param string $string

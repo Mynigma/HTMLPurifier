@@ -1,15 +1,15 @@
 //
-//  HTMLPurifier_AttrDef_TextDecoration.m
+//  HTMLPurifier_AttrDef_CSS_TextDecoration.m
 //  HTMLPurifier
 //
 //  Created by Roman Priebe on 11.01.14.
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifier_AttrDef_TextDecoration.h"
+#import "HTMLPurifier_AttrDef_CSS_TextDecoration.h"
 #import "BasicPHP.h"
 
-@implementation HTMLPurifier_AttrDef_TextDecoration
+@implementation HTMLPurifier_AttrDef_CSS_TextDecoration
 
 /**
  * @param string $string
