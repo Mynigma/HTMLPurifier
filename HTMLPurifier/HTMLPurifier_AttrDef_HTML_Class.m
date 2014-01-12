@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrDef_HTML_Class.h"
+#import "BasicPHP.h"
 
 /**
 * Implements special behavior for class attribute (normally NMTOKENS)
@@ -33,7 +34,7 @@
     {
         return [super splitWithString:string Config:config Context:context];
     } else {
-        return preg_split('/\s+/', string);
+        return preg_split(@"/\\s+/", string);
     }
 }
 

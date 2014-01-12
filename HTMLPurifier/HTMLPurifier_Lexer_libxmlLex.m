@@ -10,8 +10,15 @@
 #import "HTMLPurifier_TokenFactory.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_TokenFactory.h"
-#import <libxml/HTMLparser.h>
+#import <libxml/htmlparser.h>
+#import <libxml/tree.h>
 #import <libxml/xmlmemory.h>
+#import <libxml/xmlreader.h>
+#import <libxml/xmlexports.h>
+#import <libxml/parser.h>
+#import "HTMLPurifier_Config.h"
+#import "HTMLPurifier_Context.h"
+#import "HTMLPurifier_Queue.h"
 
 @implementation HTMLPurifier_Lexer_libxmlLex
 
@@ -30,7 +37,7 @@
      * @param HTMLPurifier_Context $context
      * @return HTMLPurifier_Token[]
      */
-- (NSArray*)tokenizeHTMLWithString:(NSString *)string config:(NSString *)config context:(NSString *)context
+- (NSArray*)tokenizeHTMLWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
         NSString* html = [self normalizeWithHtml:string config:config context:context];
 
@@ -40,17 +47,20 @@
         {
             NSString* chars = @"[^a-z!\\/]";
             NSString* comment = @"/<!--(.*?)(-->|\\z)/is";
-            html = [BasicPHP pregReplace:comment callback:[self callbackArmorCommentEntities] haystack:html];
+            html = [BasicPHP pregReplace:comment callback:^(NSArray* array)
+                    {
+                        return [self callbackArmorCommentEntities:array];
+                    } haystack:html];
             NSString* old = @"";
             do {
                 old = html;
                 html = preg_replace([NSString stringWithFormat:@"/<(%@)/i", chars], @"&lt;\\1", html);
             } while (![html isEqualToString:old]);
-            html = preg_replace_callback(comment, [self callbackUndoCommentSubst], html); // fix comments
+            html = [BasicPHP pregReplace:comment callback:^(NSArray* array){ return [self callbackUndoCommentSubst:array]; } haystack:html]; // fix comments
         }
 
         // preprocess html, essential for UTF-8
-        html = [self wrapHTMLWithHtml:html config:config context:context];
+        html = [self wrapHTML:html config:config context:context];
 
 
         NSMutableArray* tokens = [NSMutableArray new];
@@ -62,13 +72,10 @@
         int optionsHtml = HTML_PARSE_RECOVER;
         optionsHtml = optionsHtml | HTML_PARSE_NOERROR; //Uncomment this to see HTML errors
         optionsHtml = optionsHtml | HTML_PARSE_NOWARNING;
-        doc = htmlReadDoc ((xmlChar*)[string UTF8String], NULL, enc, optionsHtml);
+        htmlDocPtr doc = htmlReadDoc ((xmlChar*)[string UTF8String], NULL, enc, optionsHtml);
 
-        [self tokenizeDOM:                           $doc->getElementsByTagName('html')->item(0)-> // <html>
-                           getElementsByTagName('body')->item(0)-> //   <body>
-                           getElementsByTagName('div')->item(0), //     <div>
-                           $tokens
-                           );
+        [self tokenizeDOMNode:(__bridge xmlNode *)(&(doc->children[0].children[0])) tokens:tokens];
+
         return tokens;
     }
 
@@ -79,20 +86,20 @@
      * @param HTMLPurifier_Token[] $tokens   Array-list of already tokenized tokens.
      * @return HTMLPurifier_Token of node appended to previously passed tokens.
      */
-- (HTMLPurifier_Token*)tokenizeDOMNode:(xmlNode*)node tokens:(NSArray*)tokens
+- (HTMLPurifier_Token*)tokenizeDOMNode:(xmlNode*)n tokens:(NSMutableArray*)tokens
     {
         NSNumber* level = @0;
-        NSMutableDictionary* nodes = @{level: HTMLPurifier_Queue(array($node))};
-        NSMutableArray* closingNodes = [NSMutableArray new];
+        NSMutableDictionary* nodes = @{level: [[HTMLPurifier_Queue alloc] initWithInput:@[n]]};
+        NSMutableDictionary* closingNodes = [NSMutableDictionary new];
         do {
             while ([nodes objectForKey:level]) {
-                node = [[nodes objectForKey:level] shift]; // FIFO
+                xmlNode* node = (xmlNode*)[(HTMLPurifier_Queue*)[nodes objectForKey:level] shift]; // FIFO
                 BOOL collect = level.integerValue > 0 ? true : false;
                 BOOL needEndingTag = [self createStartNode:node tokens:tokens collect:collect];
                 if (needEndingTag) {
                     [[closingNodes objectForKey:level] addObject:node];
                 }
-                if ([node childNodes] && [node childNodes].length) {
+                if ([node childNodes] && [[node childNodes] length]) {
                     level = @(level.integerValue+1);
                     [nodes setObject:[HTMLPurifier_Queue new] forKey:level];
                     for(xmlNode* childNode in [node childNodes])
@@ -125,12 +132,12 @@
         // but we're not getting the character reference nodes because
         // those should have been preprocessed
         if (node.type === XML_TEXT_NODE) {
-            [tokens addObject:[self.factory createText:node->data]]);
+            [tokens addObject:[factory createText:node->data]]);
             return NO;
-        } else if ([nodetype] == XML_CDATA_SECTION_NODE) {
+        } else if (node.type == XML_CDATA_SECTION_NODE) {
             // undo libxml's special treatment of <script> and <style> tags
-            HTMLPurifierToken* last = [tokens objectAtIndex:tokens.length-1];
-            data = $node->data;
+            HTMLPurifier_Token* last = [tokens objectAtIndex:tokens.count-1];
+            data = node->data;
             // (note $node->tagname is already normalized)
             if ([last isKindOfClass:[HTMLPurifier_Token_Start]] && ([last.name isEqual:@"script"] || [last.name isEqual:@"style"]))
             {

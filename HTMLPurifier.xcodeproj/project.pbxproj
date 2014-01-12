@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EA65642188317C400956E44 /* HTMLPurifier_Queue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EA65640188317C400956E44 /* HTMLPurifier_Queue.h */; };
+		1EA65643188317C400956E44 /* HTMLPurifier_Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA65641188317C400956E44 /* HTMLPurifier_Queue.m */; };
 		1EBB81D71882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */; };
 		1EBB81D81882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */; };
 		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
@@ -133,6 +135,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EA65640188317C400956E44 /* HTMLPurifier_Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Queue.h; sourceTree = "<group>"; };
+		1EA65641188317C400956E44 /* HTMLPurifier_Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Queue.m; sourceTree = "<group>"; };
 		1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Lexer_libxmlLex.h; sourceTree = "<group>"; };
 		1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Lexer_libxmlLex.m; sourceTree = "<group>"; };
 		1EBB81D91882C94D008B7FA4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -444,8 +448,6 @@
 				803FD42818804E270010D799 /* HTMLPurifier_Filter.m */,
 				1ED0392A1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h */,
 				1ED0392B1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m */,
-				803FD42B188055D60010D799 /* HTMLPurifier_Lexer.h */,
-				803FD42C188055D60010D799 /* HTMLPurifier_Lexer.m */,
 				803FD42F18805B760010D799 /* HTMLPurifier_LanguageFactory.h */,
 				803FD43018805B760010D799 /* HTMLPurifier_LanguageFactory.m */,
 				803FD43318805D190010D799 /* HTMLPurifier_Language.h */,
@@ -462,12 +464,16 @@
 				1ED0394B18808EC90075F6A4 /* HTMLPurifier_Length.m */,
 				1ED0395F1880D7BE0075F6A4 /* HTMLPurifier_Encoder.h */,
 				1ED039601880D7BE0075F6A4 /* HTMLPurifier_Encoder.m */,
+				803FD42B188055D60010D799 /* HTMLPurifier_Lexer.h */,
+				803FD42C188055D60010D799 /* HTMLPurifier_Lexer.m */,
 				1EBB81D51882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h */,
 				1EBB81D61882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.m */,
 				1EBB82091882E65E008B7FA4 /* HTMLPurifier_TokenFactory.h */,
 				1EBB820A1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.m */,
 				1EBB81F01882DE5E008B7FA4 /* Node */,
 				1EBB81DF1882D9A4008B7FA4 /* Token */,
+				1EA65640188317C400956E44 /* HTMLPurifier_Queue.h */,
+				1EA65641188317C400956E44 /* HTMLPurifier_Queue.m */,
 			);
 			path = HTMLPurifier;
 			sourceTree = "<group>";
@@ -513,6 +519,7 @@
 				803FD42D188055D60010D799 /* HTMLPurifier_Lexer.h in Headers */,
 				803FD44F1880B0220010D799 /* HTMLPurifier_AttrDef_HTML_Class.h in Headers */,
 				1ED03972188145230075F6A4 /* HTMLPurifier_AttrDef_CSS_AlphaValue.h in Headers */,
+				1EA65642188317C400956E44 /* HTMLPurifier_Queue.h in Headers */,
 				1ED039691880E2290075F6A4 /* HTMLPurifier_AttrDef_CSS_Length.h in Headers */,
 				1ED0393418805A150075F6A4 /* BasicPHP.h in Headers */,
 				1EBB81D71882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h in Headers */,
@@ -701,6 +708,7 @@
 				1ED0393518805A150075F6A4 /* BasicPHP.m in Sources */,
 				803FD4641882B18D0010D799 /* HTMLPurifier_AttrDef_HTML_Length.m in Sources */,
 				803FD45C1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.m in Sources */,
+				1EA65643188317C400956E44 /* HTMLPurifier_Queue.m in Sources */,
 				1ED0393D18806E590075F6A4 /* HTMLPurifier_AttrDef_CSS_Multiple.m in Sources */,
 				1EBB81E71882DB20008B7FA4 /* HTMLPurifier_Token_Tag.m in Sources */,
 				1ED0397718814A850075F6A4 /* HTMLPurifier_AttrDef_CSS_ListStyle.m in Sources */,
@@ -754,7 +762,7 @@
 		80EDF9E118803B3200EB1E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -767,6 +775,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = /usr/lib/libxml2.dylib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -786,9 +795,11 @@
 					"$(inherited)",
 					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -796,7 +807,7 @@
 		80EDF9E218803B3200EB1E89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -811,6 +822,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = /usr/lib/libxml2.dylib;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -823,8 +835,10 @@
 					"$(inherited)",
 					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
 					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = macosx;
 			};
 			name = Release;

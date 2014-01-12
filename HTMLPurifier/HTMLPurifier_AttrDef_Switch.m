@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrDef_Switch.h"
+#import "HTMLPurifier_Token.h"
 
 /**
  * Decorator that, depending on a token, switches between two definitions.

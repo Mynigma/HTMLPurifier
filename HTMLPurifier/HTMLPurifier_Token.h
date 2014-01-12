@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HTMLPurifier_Node.h"
 
 /**
  * Abstract base token class that all others inherit from.

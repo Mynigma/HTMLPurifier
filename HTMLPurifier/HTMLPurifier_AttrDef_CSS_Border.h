@@ -18,7 +18,7 @@
      * Local copy of properties this property is shorthand for.
      * @type HTMLPurifier_AttrDef[]
      */
-    NSMutableArray* info;
+    NSMutableDictionary* info;
 }
 
 

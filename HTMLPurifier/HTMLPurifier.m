@@ -54,6 +54,8 @@
 #import "HTMLPurifier_Language.h"
 #import "HTMLPurifier_ErrorCollector.h"
 #import "HTMLPurifier_IDAccumulator.h"
+#import "HTMLPurifier_Encoder.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier
 
@@ -142,15 +144,16 @@
     
     //New Lexer with Config
     HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer alloc];
-    lexer = [HTMLPurifier_Lexer initWithConfig:config];
+    lexer = [HTMLPurifier_Lexer createWithConfig:config];
     
     //New Context
     HTMLPurifier_Context* localContext = [HTMLPurifier_Context new];
     //setup HTML generator
     generator = [HTMLPurifier_Generator alloc];
-    generator = [HTMLPurifier_Generator initWithConfig:config Context:localContext];
+    generator = [HTMLPurifier_Generator initWithConfig:config context:localContext];
     [localContext registerWithName:@"Generator" ref:generator];
-    
+
+    /*
     //setup global context variables
     if ([config getWithKey:@"Core.CollectErrors"])
     {
@@ -162,7 +165,7 @@
         HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
         error_collector = [HTMLPurifier_ErrorCollector initWithContext:localContext];
         [context registerWithName:@"ErrorCollector" ref:error_collector];
-    }
+    }*/
     
     // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
     HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:localContext];
@@ -186,7 +189,7 @@
             continue;
         }
         
-        if (strpos(key,@".") != NO){
+        if (strpos(key, @".") != NO){
             continue
         }
         
@@ -208,8 +211,6 @@
     {
         html = [newFilters[i] preFilterWithHtml:html Config:config Context:localContext];
     }
-    
-    
     
     //TODO maybe change names
     //purifed HTML

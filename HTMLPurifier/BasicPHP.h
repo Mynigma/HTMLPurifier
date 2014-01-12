@@ -264,16 +264,32 @@ NSArray* explode(NSString* limitString, NSString* string)
     return [string componentsSeparatedByString:limitString];
 }
 
-- (NSObject*)array_pop(NSMutableArray* array)
+NSMutableArray* array_reverse(NSMutableArray* oldArray)
+{
+    NSMutableArray *array = [NSMutableArray arrayWithCapacity:[oldArray count]];
+    NSEnumerator *enumerator = [oldArray reverseObjectEnumerator];
+    for (id element in enumerator) {
+        [array addObject:element];
+    }
+    return array;
+}
+
+NSObject* array_pop(NSMutableArray* array)
 {
     if(array.count<1)
-        return;
+        return nil;
 
     NSObject* object = [array objectAtIndex:array.count-1];
     [array removeObjectAtIndex:array.count-1];
     
     return object;
 }
+
+void array_push(NSMutableArray* array, NSObject* x)
+{
+    [array addObject:x];
+}
+
 
 @interface BasicPHP : NSObject
 
