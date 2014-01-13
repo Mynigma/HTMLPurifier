@@ -12,6 +12,7 @@
  */
 
 #import "HTMLPurifier_AttrDef_Lang.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_Lang
 
@@ -21,73 +22,84 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($string, $config, $context)
+-(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    $string = trim($string);
-    if (!$string) {
-        return false;
+    string = trim(string);
+    if (!string)
+    {
+        return nil;
     }
     
-    $subtags = explode('-', $string);
-    $num_subtags = count($subtags);
+    NSMutableArray* subtags = [explode(@"-",string) mutableCopy];
+    NSUInteger num_subtags = [subtags count];
     
-    if ($num_subtags == 0) { // sanity check
-        return false;
+    if (num_subtags == 0)
+    { // sanity check
+        return nil;
     }
     
     // process primary subtag : $subtags[0]
-    $length = strlen($subtags[0]);
-    switch ($length) {
+    NSString* primary_subtag = [subtags objectAtIndex:0];
+    NSUInteger length = [primary_subtag length];
+    switch (length) {
         case 0:
-            return false;
+            return nil;
         case 1:
-            if (!($subtags[0] == 'x' || $subtags[0] == 'i')) {
-                return false;
+            if (!([primary_subtag isEqual:@"x"] || [primary_subtag isEqual:@"i"]))
+            {
+                return nil;
             }
             break;
         case 2:
         case 3:
-            if (!ctype_alpha($subtags[0])) {
-                return false;
-            } elseif (!ctype_lower($subtags[0])) {
-                $subtags[0] = strtolower($subtags[0]);
+            if (!ctype_alpha(primary_subtag))
+            {
+                return nil;
+            }
+            else
+            {
+                [subtags insertObject:[primary_subtag lowercaseString] atIndex:0];
             }
             break;
         default:
-            return false;
+            return nil;
     }
     
-    $new_string = $subtags[0];
-    if ($num_subtags == 1) {
-        return $new_string;
+    NSString* new_string = [subtags objectAtIndex:0];
+    if (num_subtags == 1)
+    {
+        return new_string;
     }
     
     // process second subtag : $subtags[1]
-    $length = strlen($subtags[1]);
-    if ($length == 0 || ($length == 1 && $subtags[1] != 'x') || $length > 8 || !ctype_alnum($subtags[1])) {
-        return $new_string;
-    }
-    if (!ctype_lower($subtags[1])) {
-        $subtags[1] = strtolower($subtags[1]);
-    }
     
-    $new_string .= '-' . $subtags[1];
-    if ($num_subtags == 2) {
-        return $new_string;
+    NSString* second_subtag = [subtags objectAtIndex:1];
+    length = [second_subtag length];
+    if (length == 0 || (length == 1 && ![second_subtag isEqual:@"x"]) || length > 8 || !ctype_alnum(second_subtag))
+    {
+        return new_string;
+    }
+
+    [subtags insertObject:[second_subtag lowercaseString] atIndex:0];
+    
+    new_string = [NSString stringWithFormat:@"%@-%@",new_string,[subtags objectAtIndex:1]];
+    if (num_subtags == 2)
+    {
+        return new_string;
     }
     
     // process all other subtags, index 2 and up
-    for ($i = 2; $i < $num_subtags; $i++) {
-        $length = strlen($subtags[$i]);
-        if ($length == 0 || $length > 8 || !ctype_alnum($subtags[$i])) {
-            return $new_string;
+    for (NSInteger i = 2; i < num_subtags; i++)
+    {
+        length = [[subtags objectAtIndex:i] length];
+        if (length == 0 || length > 8 || !ctype_alnum([subtags objectAtIndex:i]))
+        {
+            return new_string;
         }
-        if (!ctype_lower($subtags[$i])) {
-            $subtags[$i] = strtolower($subtags[$i]);
-        }
-        $new_string .= '-' . $subtags[$i];
+        [subtags insertObject:[[subtags objectAtIndex:i] lowercaseString] atIndex:i];
+        new_string = [NSString stringWithFormat:@"%@-%@",new_string,[subtags objectAtIndex:i]];
     }
-    return $new_string;
+    return new_string;
 }
 
 @end
