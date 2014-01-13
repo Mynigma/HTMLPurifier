@@ -17,6 +17,9 @@
     HTMLPurifier_AttrDef_CSS_Number* numberDef;
 }
 
+- (id)initWithNonNegative:(BOOL)nonNegative;
+
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config

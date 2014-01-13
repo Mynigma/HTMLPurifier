@@ -8,6 +8,7 @@
 
 #import "HTMLPurifier_Token_Text.h"
 #import "HTMLPurifier_Node_Text.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_Token_Text
 
@@ -18,12 +19,12 @@
  * @param int $line
  * @param int $col
  */
-- (id)initWithData:(NSString*)d isWhitespace:(BOOL)isW line:(NSNumber*)l col:(NSNumber*)c
+- (id)initWithData:(NSString*)d line:(NSNumber*)l col:(NSNumber*)c
 {
     self = [super init];
     if (self) {
         _data = d;
-        _isWhitespace = isW;
+        _isWhitespace = ctype_space(d);
         self.line = l;
         self.col = c;
         self.name = @"#PCDATA";
@@ -31,11 +32,15 @@
     return self;
 }
 
+- (id)initWithData:(NSString*)d
+{
+    return [self initWithData:d line:nil col:nil];
+}
 
 
 - (NSArray*)toNode
 {
-    return @[[[HTMLPurifier_Node_Text alloc] initWithData:self.data isWhitespace:self.isWhitespace line:self.line col:self.col], [NSNull null]];
+    return @[[[HTMLPurifier_Node_Text alloc] initWithData:self.data line:self.line col:self.col], [NSNull null]];
 }
 
 @end
