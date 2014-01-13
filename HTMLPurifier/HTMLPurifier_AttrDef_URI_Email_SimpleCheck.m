@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrDef_URI_Email_SimpleCheck.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_URI_Email_SimpleCheck
 
@@ -16,16 +17,17 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($string, $config, $context)
+-(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
     // no support for named mailboxes i.e. "Bob <bob@example.com>"
     // that needs more percent encoding to be done
-    if ($string == '') {
-        return false;
+    if ([string isEqual:@""])
+    {
+        return nil;
     }
-    $string = trim($string);
-    $result = preg_match('/^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i', $string);
-    return $result ? $string : false;
+    string = trim(string);
+    result = preg_match(@"/^[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$",string);
+    return result ? string : nil;
 }
 
 @end

@@ -189,7 +189,7 @@
             continue;
         }
         
-        if (strpos(key, @".") != NO){
+        if (strpos(key, @".") != NSNotFound){
             continue
         }
         
@@ -294,7 +294,7 @@
             continue;
         }
         
-        if (strpos(key,@".") != NO){
+        if (strpos(key,@".") != NSNotFound){
             continue
         }
         

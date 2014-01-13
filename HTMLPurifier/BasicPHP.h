@@ -293,6 +293,10 @@ void array_push(NSMutableArray* array, NSObject* x)
     [array addObject:x];
 }
 
+//TODO array_map
+
+//TODO array_splice(first_array, 8 - [second_array count], 8, second_array);
+
 
 @interface BasicPHP : NSObject
 
