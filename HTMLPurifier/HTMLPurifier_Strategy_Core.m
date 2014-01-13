@@ -9,6 +9,8 @@
 #import "HTMLPurifier_Strategy_Core.h"
 #import "HTMLPurifier_Strategy_FixNesting.h"
 #import "HTMLPurifier_Strategy_ValidateAttributes.h"
+#import "HTMLPurifier_Strategy_RemoveForeignElements.h"
+#import "HTMLPurifier_Strategy_MakeWellFormed.h"
 
 @implementation HTMLPurifier_Strategy_Core
 
