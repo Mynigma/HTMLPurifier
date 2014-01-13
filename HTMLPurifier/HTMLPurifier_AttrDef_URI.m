@@ -12,36 +12,48 @@
  * @note Scheme-specific mechanics deferred to HTMLPurifier_URIScheme
  */
 #import "HTMLPurifier_AttrDef_URI.h"
+#import "HTMLPurifier_URI.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_URI
 
 /**
  * @type HTMLPurifier_URIParser
  */
-protected $parser;
+@synthesize parser;
 
 /**
  * @type bool
  */
-protected $embedsResource;
+@synthesize embedsResource;
 
 /**
  * @param bool $embeds_resource Does the URI here result in an extra HTTP request?
  */
-public function __construct($embeds_resource = false)
+-(id)initWithNumber:(NSNumber*)new_embeds_resource
 {
-    $this->parser = new HTMLPurifier_URIParser();
-    $this->embedsResource = (bool)$embeds_resource;
+    self = [super init];
+    parser = [HTMLPurifier_URIParser new];
+    if (new_embeds_resource)
+    {
+        embedsResource = new_embeds_resource;
+    }
+    else
+    {
+        embedsResource = NO;
+    }
+    return self;
 }
 
 /**
  * @param string $string
  * @return HTMLPurifier_AttrDef_URI
  */
-public function make($string)
+-(HTMLPurifier_AttrDef_URI*) make:(NSString*)string
 {
-    $embeds = ($string === 'embedded');
-    return new HTMLPurifier_AttrDef_URI($embeds);
+    NSNumber* embeds = ([NSNumber numberWithBool:[string isEqual:@"embedded"]]);
+    HTMLPurifier_AttrDef_URI* copy = [HTMLPurifier_AttrDef_URI alloc];
+    return [copy initWithNumber:embeds];
 }
 
 /**
@@ -50,24 +62,26 @@ public function make($string)
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($uri, $config, $context)
+-(NSString*) validateWithUri:(NSString *)uri config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    if ($config->get('URI.Disable')) {
-        return false;
+    if ([config get:@"URI.Disable"])
+    {
+        return nil;
     }
     
-    $uri = $this->parseCDATA($uri);
+    uri = [super parseCDATAWithString:uri];
     
     // parse the URI
-    $uri = $this->parser->parse($uri);
-    if ($uri === false) {
-        return false;
+    HTMLPurifier_URI* newUri = [parser parseWithString:uri];
+    if (!newUri)
+    {
+        return nil;
     }
     
     // add embedded flag to context for validators
-    $context->register('EmbeddedURI', $this->embedsResource);
+    [context registerWithName:@"EmbeddedURI" ref:embedsResource];
     
-    $ok = false;
+    BOOL ok = NO;
     do {
         
         // generic validation
