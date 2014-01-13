@@ -18,5 +18,10 @@
 - (NSObject*)getWithName:(NSString*)name ignoreError:(BOOL)ignoreError;
 - (BOOL)existsWithName:(NSString*)name;
 - (void)loadArrayWithContextArray:(NSDictionary*)contextArray;
+/**
+ * Destroys a variable in the context.
+ * @param string $name String name
+ */
+-(void) destroy:(NSString*)name;
 
 @end

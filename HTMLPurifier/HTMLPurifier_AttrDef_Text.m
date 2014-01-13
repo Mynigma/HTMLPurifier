@@ -20,9 +20,9 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($string, $config, $context)
+-(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    return $this->parseCDATA($string);
+    return [super parseCDATAWithString:string];
 }
 
 @end

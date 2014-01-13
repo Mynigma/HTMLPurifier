@@ -32,5 +32,20 @@
  */
 -(id)initWithNumber:(NSNumber*)new_embeds_resource;
 
+/**
+ * @param string $string
+ * @return HTMLPurifier_AttrDef_URI
+ */
+-(HTMLPurifier_AttrDef_URI*) make:(NSString*)string;
+
+
+/**
+ * @param string $uri
+ * @param HTMLPurifier_Config $config
+ * @param HTMLPurifier_Context $context
+ * @return bool|string
+ */
+-(NSString*) validateWithUri:(NSString *)uri config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
+
 
 @end

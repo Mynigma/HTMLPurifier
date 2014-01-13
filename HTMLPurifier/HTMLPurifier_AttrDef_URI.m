@@ -13,6 +13,7 @@
  */
 #import "HTMLPurifier_AttrDef_URI.h"
 #import "HTMLPurifier_URI.h"
+#import "HTMLPurifier_URIDefinition.h"
 #import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_URI
@@ -85,48 +86,55 @@
     do {
         
         // generic validation
-        $result = $uri->validate($config, $context);
-        if (!$result) {
+        NSString* result = [newUri validateWithConfig:config Context:context];
+        if (!result)
+        {
             break;
         }
         
         // chained filtering
-        $uri_def = $config->getDefinition('URI');
-        $result = $uri_def->filter($uri, $config, $context);
-        if (!$result) {
+        HTMLPurifier_URIDefinition* uri_def = [config getDefinition:@"URI"];
+        BOOL result_bool = [uri_def filterWithUri:newUri Config:config Context:context];
+        if (!result_bool)
+        {
             break;
         }
         
         // scheme-specific validation
-        $scheme_obj = $uri->getSchemeObj($config, $context);
-        if (!$scheme_obj) {
+        HTMLPurifier_URIScheme* scheme_obj = [newUri getSchemeObjWithConfig:config Context:context];
+        if (!scheme_obj)
+        {
             break;
         }
-        if ($this->embedsResource && !$scheme_obj->browsable) {
+        if (embedsResource && ![scheme_obj browsable])
+        {
             break;
         }
-        $result = $scheme_obj->validate($uri, $config, $context);
-        if (!$result) {
+        result = [scheme_obj validateWithString:newUri Config:config Context:context];
+        if (!result)
+        {
             break;
         }
         
         // Post chained filtering
-        $result = $uri_def->postFilter($uri, $config, $context);
-        if (!$result) {
+        result_bool = [uri_def postFilterWithUri:uri Config:config Context:context];
+        if (!result)
+        {
             break;
         }
         
         // survived gauntlet
-        $ok = true;
+        ok = YES;
         
-    } while (false);
+    } while (NO);
     
-    $context->destroy('EmbeddedURI');
-    if (!$ok) {
-        return false;
+    [context destroy:@"EmbeddedURI"];
+    if (!ok)
+    {
+        return nil;
     }
     // back to string
-    return $uri->toString();
+    return [newUri toString];
 }
 
 @end
