@@ -10,4 +10,12 @@
 
 @interface HTMLPurifier_AttrDef_URI_IPv6 : HTMLPurifier_AttrDef_URI_IPv4
 
+/**
+ * @param string $aIP
+ * @param HTMLPurifier_Config $config
+ * @param HTMLPurifier_Context $context
+ * @return bool|string
+ */
+-(NSString*) validateWithAip:(NSString *)aIP Config:(HTMLPurifier_Config *)config Context:(HTMLPurifier_Context *)context;
+
 @end

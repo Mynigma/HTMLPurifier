@@ -50,4 +50,19 @@
     }
 }
 
+/**
+ * Destroys a variable in the context.
+ * @param string $name String name
+ */
+-(void) destroy:(NSString*)name
+{
+    if (![_storage objectForKey:name])
+    {
+        TRIGGER_ERROR(@"ERROR: Attempted to destroy non-existent variable %@",name);
+        return;
+    }
+    [_storage removeObjectForKey:name];
+    return;
+}
+
 @end

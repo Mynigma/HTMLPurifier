@@ -11,6 +11,7 @@
  */
 #import "HTMLPurifier_AttrDef_URI_Host.h"
 #import "HTMLPurifier_Config.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_URI_Host
 
@@ -92,22 +93,23 @@
     unichar underscore = [config get:@"Core.AllowHostnameUnderscore"]?'_':'';
     
     // The productions describing this are:
-    $a   = '[a-z]';     // alpha
-    $an  = '[a-z0-9]';  // alphanum
-    $and = "[a-z0-9-$underscore]"; // alphanum | "-"
+    NSString* a   = @"[a-z]";     // alpha
+    NSString* an  = @"[a-z0-9]";  // alphanum
+    NSString* and = [NSString stringWithFormat:@"[a-z0-9-%c]",underscore]; // alphanum | "-"
     // domainlabel = alphanum | alphanum *( alphanum | "-" ) alphanum
-    $domainlabel = "$an($and*$an)?";
+    NSString* domainlabel = [NSString stringWithFormat:@"%@(%@*%@)?",an,and,an];
     // toplabel    = alpha | alpha *( alphanum | "-" ) alphanum
-    $toplabel = "$a($and*$an)?";
+    NSString* toplabel = [NSString stringWithFormat:@"%@(%@*%@)?",a,and,an];
     // hostname    = *( domainlabel "." ) toplabel [ "." ]
-    if (preg_match("/^($domainlabel\.)*$toplabel\.?$/i", $string)) {
-        return $string;
+    if (preg_match([NSString stringWithFormat:@"^(%@\\.)*%@\\.?$",domainlabel,toplabel],string))
+    {
+        return string;
     }
     
     // If we have Net_IDNA2 support, we can support IRIs by
     // punycoding them. (This is the most portable thing to do,
     // since otherwise we have to assume browsers support
-    
+    /*
     if ($config->get('Core.EnableIDNA')) {
         $idna = new Net_IDNA2(array('encoding' => 'utf8', 'overlong' => false, 'strict' => true));
         // we need to encode each period separately
@@ -136,7 +138,8 @@
             // XXX error reporting
         }
     }
-    return false;
+     */
+    return nil;
 }
 
 @end
