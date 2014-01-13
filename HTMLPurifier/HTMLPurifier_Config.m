@@ -11,6 +11,11 @@
 #import "HTMLPurifier_PropertyList.h"
 #import "HTMLPurifier_VarParser.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_Definition.h"
+#import "HTMLPurifier_URIDefinition.h"
+#import "HTMLPurifier_CSSDefinition.h"
+#import "HTMLPurifier_HTMLDefinition.h"
+#import "HTMLPurifier_VarParser_Flexible.h"
 
 /**
  * Configuration object that triggers customizable behavior.
@@ -27,555 +32,562 @@
  * @todo Reconsider some of the public member variables
  */
 
+static HTMLPurifier_ConfigSchema* theDefinition;
+static HTMLPurifier_VarParser* theParser;
 
 @implementation HTMLPurifier_Config
+
+- (HTMLPurifier_ConfigSchema*)definition
+{
+    if(!theDefinition)
+        theDefinition = [HTMLPurifier_ConfigSchema instance];
+    return theDefinition;
+}
+
+- (HTMLPurifier_VarParser*)parser
+{
+    if(!theParser)
+        theParser = [HTMLPurifier_VarParser_Flexible new];
+    return theParser;
+}
+
+- (id)init
+{
+    return [self initWithDefinition:nil parent:nil];
+}
 
 
 - (id)initWithDefinition:(HTMLPurifier_ConfigSchema*)definition parent:(HTMLPurifier_PropertyList*)newParent
 {
     self = [super init];
     if (self) {
-        _parent = newParent ? newParent : [definition defaultPlist];
-        _def = definition;
-        _parser = [HTMLPurifier_VarParser_Flexible];
+        _auto_finalize = YES;
+        _chatty = YES;
+        //_parent = newParent ? newParent : [definition defaultPlist];
+        //theDefinition = definition;
+        //parser = [HTMLPurifier_VarParser_Flexible new];
     }
     return self;
 }
-    /**
-     * Convenience constructor that creates a config object based on a mixed var
-     * @param mixed $config Variable that defines the state of the config
-     *                      object. Can be: a HTMLPurifier_Config() object,
-     *                      an array of directives based on loadArray(),
-     *                      or a string filename of an ini file.
-     * @param HTMLPurifier_ConfigSchema $schema Schema object
-     * @return HTMLPurifier_Config Configured object
-     */
+/**
+ * Convenience constructor that creates a config object based on a mixed var
+ * @param mixed $config Variable that defines the state of the config
+ *                      object. Can be: a HTMLPurifier_Config() object,
+ *                      an array of directives based on loadArray(),
+ *                      or a string filename of an ini file.
+ * @param HTMLPurifier_ConfigSchema $schema Schema object
+ * @return HTMLPurifier_Config Configured object
+ */
 + (HTMLPurifier_Config*)createWithConfig:(HTMLPurifier_Config*)config schema:(HTMLPurifier_ConfigSchema*)schema
-    {
-        if ([config isKindOfClass:[HTMLPurifier_Config class]]) {
-            // pass-through
-            return config;
-        }
-            return [HTMLPurifier_Config createDefault];
-    }
-
-     /**
-     * Convenience constructor that creates a default configuration object.
-     * @return HTMLPurifier_Config default object.
-     */
-+ (HTMLPurifier_Config*)createDefault
-    {
-        _def = [HTMLPurifier_ConfigSchema instance];
-        HTMLPurifier_Config* config = [[HTMLPurifier_Config alloc] initWithDefinition:_def parent:nil];
+{
+    if ([config isKindOfClass:[HTMLPurifier_Config class]]) {
+        // pass-through
         return config;
     }
+    return [HTMLPurifier_Config createDefault];
+}
 
-    /**
-     * Retrieves a value from the configuration.
-     *
-     * @param string $key String key
-     * @param mixed $a
-     *
-     * @return mixed
-     */
+/**
+ * Convenience constructor that creates a default configuration object.
+ * @return HTMLPurifier_Config default object.
+ */
++ (HTMLPurifier_Config*)createDefault
+{
+    HTMLPurifier_ConfigSchema* def = [HTMLPurifier_ConfigSchema instance];
+    HTMLPurifier_Config* config = [[HTMLPurifier_Config alloc] initWithDefinition:def parent:nil];
+    return config;
+}
+
+/**
+ * Retrieves a value from the configuration.
+ *
+ * @param string $key String key
+ * @param mixed $a
+ *
+ * @return mixed
+ */
 - (NSObject*)get:(NSString*)key
+{
+    [self autoFinalize];
+
+    if (![def.info objectForKey:key]) {
+        // can't add % due to SimpleTest bug
+        TRIGGER_ERROR(@"Cannot retrieve value of undefined directive");
+        return;
+    }
+    if ([[[def.info objectForKey:key] isAlias] boolValue])
     {
-        [self autoFinalize];
 
-        if (![_def.info objectForKey:key])) {
-            // can't add % due to SimpleTest bug
-            TRIGGER_ERROR(@"Cannot retrieve value of undefined directive");
-            return;
-        }
-        if ([[_def.info objectForKey:key] isAlias])
-        {
-
-            TRIGGER_ERROR(@"Cannot get value from aliased directive, use real name");
-            return;
-        }
-
-        if(_lock)
-        {
-            NSArray* ns = explode(@".", key);
-            if (![ns[0] isEqualToString:_lock])
-            {
-                TRIGGER_ERROR(@"Cannot get value of namespace %@ when lock for ", _lock);
-                return;
-            }
-        }
-        return [plistDict get:key];
+        TRIGGER_ERROR(@"Cannot get value from aliased directive, use real name");
+        return;
     }
 
-    /**
-     * Retrieves an array of directives to values from a given namespace
-     *
-     * @param string $namespace String namespace
-     *
-     * @return array
-     */
+    if(_lock)
+    {
+        NSArray* ns = explode(@".", key);
+        if (![ns[0] isEqualToString:_lock])
+        {
+            TRIGGER_ERROR(@"Cannot get value of namespace %@ when lock for ", _lock);
+            return;
+        }
+    }
+    return [plistDict get:key];
+}
+
+/**
+ * Retrieves an array of directives to values from a given namespace
+ *
+ * @param string $namespace String namespace
+ *
+ * @return array
+ */
 - (NSDictionary*)getBatch:(NSString*)namespace
-    {
-        [self autoFinalize];
+{
+    [self autoFinalize];
 
-        NSDictionary* full = [self getAll];
-        if (![full objectFprKey:namespace]) {
-            TRIGGER_ERROR(@"Cannot retrieve undefined namespace ");
-            return;
-        }
-        return [full objectForKey:namespace];
+    NSDictionary* full = [self getAll];
+    if (![full objectFprKey:namespace]) {
+        TRIGGER_ERROR(@"Cannot retrieve undefined namespace ");
+        return;
     }
+    return [full objectForKey:namespace];
+}
 
-    /**
-     * Returns a SHA-1 signature of a segment of the configuration object
-     * that uniquely identifies that particular configuration
-     *
-     * @param string $namespace Namespace to get serial for
-     *
-     * @return string
-     * @note Revision is handled specially and is removed from the batch
-     *       before processing!
-     */
+/**
+ * Returns a SHA-1 signature of a segment of the configuration object
+ * that uniquely identifies that particular configuration
+ *
+ * @param string $namespace Namespace to get serial for
+ *
+ * @return string
+ * @note Revision is handled specially and is removed from the batch
+ *       before processing!
+ */
 - (NSString*)getBatchSerial:(NSString*)namespace
-    {
-        if (empty($this->serials[$namespace])) {
-            $batch = $this->getBatch($namespace);
-            unset($batch['DefinitionRev']);
-            $this->serials[$namespace] = sha1(serialize($batch));
-        }
-        return $this->serials[$namespace];
+{
+    return @"";
+    /*
+    if (!self.serials[namespace])) {
+        NSMutableDictionary* batch = [[self getBatch:namespace] mutableCopy];
+        [batch removeObjectForKey:@"DefinitionRev"];
+        self.serials[namespace] = sha1(serialize(batch));
     }
+    return self.serials[namespace];*/
+}
 
-    /**
-     * Returns a SHA-1 signature for the entire configuration object
-     * that uniquely identifies that particular configuration
-     *
-     * @return string
-     */
-    public function getSerial()
-    {
-        if (empty($this->serial)) {
-            $this->serial = sha1(serialize($this->getAll()));
-        }
-        return $this->serial;
+/**
+ * Returns a SHA-1 signature for the entire configuration object
+ * that uniquely identifies that particular configuration
+ *
+ * @return string
+ */
+- (NSString*)getSerial
+{
+    if (self.serial.length==0)) {
+        self.serial = sha1(serialize([self getAll]));
     }
+    return self.serial;
+}
 
-    /**
-     * Retrieves all directives, organized by namespace
-     *
-     * @warning This is a pretty inefficient function, avoid if you can
-     */
-    public function getAll()
-    {
-        if (!$this->finalized) {
-            $this->autoFinalize();
-        }
-        $ret = array();
-        foreach ($this->plist->squash() as $name => $value) {
-            list($ns, $key) = explode('.', $name, 2);
-            $ret[$ns][$key] = $value;
-        }
-        return $ret;
+/**
+ * Retrieves all directives, organized by namespace
+ *
+ * @warning This is a pretty inefficient function, avoid if you can
+ */
+- (NSDictionary*)getAll
+{
+    if (!self.finalized) {
+        [self autoFinalize];
     }
-
-    /**
-     * Sets a value to configuration.
-     *
-     * @param string $key key
-     * @param mixed $value value
-     * @param mixed $a
-     */
-    public function set($key, $value, $a = null)
+    NSMutableDictionary* ret = [NSMutableDictionary new];
+    for(NSString* name in [self.plist squash])
     {
-        if (strpos($key, '.') === false) {
-            $namespace = $key;
-            $directive = $value;
-            $value = $a;
-            $key = "$key.$directive";
-            $this->triggerError("Using deprecated API: use \$config->set('$key', ...) instead", E_USER_NOTICE);
-        } else {
-            list($namespace) = explode('.', $key);
-        }
-        if ($this->isFinalized('Cannot set directive after finalization')) {
+        NSObject* value = [self.plist valueForKey:name];
+        NSArray* exploded = explode(@".", name);
+        NSString* ns = @"";
+        NSString* key = @"";
+        if(exploded.count>0)
+            ns = exploded[0];
+        if(exploded.count>1)
+            key = exploded[1];
+        [[ret objectForKey:ns] setObject:value forKey:key];
+    }
+    return ret;
+}
+
+/**
+ * Sets a value to configuration.
+ *
+ * @param string $key key
+ * @param mixed $value value
+ * @param mixed $a
+ */
+- (void)setString:(NSString*)key object:(NSObject*)value
+{
+    NSArray* namespace = explode(@".", key);
+
+    if ([self isFinalized:@"Cannot set directive after finalization"])
+    {
+        return;
+    }
+    if (!self.def.info[key])
+    {
+        NSLog(@"Cannot set undefined directive '%@ to value", key);
+        return;
+    }
+    HTMLPurifier_Definition* def = self.def.info[$key];
+
+    if ([def isAlias]) {
+        if (self.aliasMode) {
+            NSLog(@"Double-aliases not allowed, please fix");
             return;
         }
-        if (!isset($this->def->info[$key])) {
-            $this->triggerError(
-                                'Cannot set undefined directive ' . htmlspecialchars($key) . ' to value',
-                                E_USER_WARNING
-                                );
+        [self setAliasMode:YES];
+        [self setString:def.key object:value];
+        [self setAliasMode:NO];
+        NSLog(@"%@ is an alias, preferred directive name is {%@}", key, def.key);
+        return;
+    }
+
+    // Raw type might be negative when using the fully optimized form
+    // of stdclass, which indicates allow_null == true
+    rtype = [def isKindOfClass:[NSNumber class]] ? def : def.type;
+    if (rtype < 0) {
+        type = -$rtype;
+        allow_null = true;
+    } else {
+        type = rtype;
+        allow_null = def.allow_null);
+    }
+
+    @try {
+        value = [self.parser parse:value type, $allow_null];
+    } @catch (NSException* e) {
+        NSLog(@"Value for %@ is of invalid type, should be %@", key, [HTMLPurifier_VarParser getTypeName:type]);
+        return;
+    }
+    if ([value isKindOfClass:[NSString class]] && def) {
+        // resolve value alias if defined
+        if (def.aliases[value])) {
+            value = def.aliases[value];
+        }
+        // check to see if the value is allowed
+        if (def.allowed) && !def.allowed[value])) {
+            NSLog(@"Value not supported, valid values are: %@", [self _listify:def.allowed]),
             return;
         }
-        $def = $this->def->info[$key];
+    }
+    [self.plist setKey:key value:value];
 
-        if (isset($def->isAlias)) {
-            if ($this->aliasMode) {
-                $this->triggerError(
-                                    'Double-aliases not allowed, please fix '.
-                                    'ConfigSchema bug with' . $key,
-                                    E_USER_ERROR
-                                    );
-                return;
-            }
-            $this->aliasMode = true;
-            $this->set($def->key, $value);
-            $this->aliasMode = false;
-            $this->triggerError("$key is an alias, preferred directive name is {$def->key}", E_USER_NOTICE);
-            return;
-        }
-
-        // Raw type might be negative when using the fully optimized form
-        // of stdclass, which indicates allow_null == true
-        $rtype = is_int($def) ? $def : $def->type;
-        if ($rtype < 0) {
-            $type = -$rtype;
-            $allow_null = true;
-        } else {
-            $type = $rtype;
-            $allow_null = isset($def->allow_null);
-        }
-
-        try {
-            $value = $this->parser->parse($value, $type, $allow_null);
-        } catch (HTMLPurifier_VarParserException $e) {
-            $this->triggerError(
-                                'Value for ' . $key . ' is of invalid type, should be ' .
-                                HTMLPurifier_VarParser::getTypeName($type),
-                                E_USER_WARNING
-                                );
-            return;
-        }
-        if (is_string($value) && is_object($def)) {
-            // resolve value alias if defined
-            if (isset($def->aliases[$value])) {
-                $value = $def->aliases[$value];
-            }
-            // check to see if the value is allowed
-            if (isset($def->allowed) && !isset($def->allowed[$value])) {
-                $this->triggerError(
-                                    'Value not supported, valid values are: ' .
-                                    $this->_listify($def->allowed),
-                                    E_USER_WARNING
-                                    );
-                return;
-            }
-        }
-        $this->plist->set($key, $value);
-
-        // reset definitions if the directives they depend on changed
-        // this is a very costly process, so it's discouraged
-        // with finalization
-        if ($namespace == 'HTML' || $namespace == 'CSS' || $namespace == 'URI') {
-            $this->definitions[$namespace] = null;
-        }
-
-        $this->serials[$namespace] = false;
+    // reset definitions if the directives they depend on changed
+    // this is a very costly process, so it's discouraged
+    // with finalization
+    if ([namespace isEqual:@"HTML"] || [namespace isEqual:@"CSS"] || [namespace isEqual:@"URI"])
+    {
+        [self.definitions setObject:[NSNull null] forKey:namespace];
     }
 
-    /**
-     * Convenience function for error reporting
-     *
-     * @param array $lookup
-     *
-     * @return string
-     */
-    private function _listify($lookup)
-    {
-        $list = array();
-        foreach ($lookup as $name => $b) {
-            $list[] = $name;
-        }
-        return implode(', ', $list);
-    }
+    [self.serials setObject:@NO forKey:namespace];
+}
 
-    /**
-     * Retrieves object reference to the HTML definition.
-     *
-     * @param bool $raw Return a copy that has not been setup yet. Must be
-     *             called before it's been setup, otherwise won't work.
-     * @param bool $optimized If true, this method may return null, to
-     *             indicate that a cached version of the modified
-     *             definition object is available and no further edits
-     *             are necessary.  Consider using
-     *             maybeGetRawHTMLDefinition, which is more explicitly
-     *             named, instead.
-     *
-     * @return HTMLPurifier_HTMLDefinition
-     */
-    public function getHTMLDefinition($raw = false, $optimized = false)
+/**
+ * Convenience function for error reporting
+ *
+ * @param array $lookup
+ *
+ * @return string
+ */
+- (NSString*)_listify:(NSDictionary*)lookup
+{
+    NSMutableArray* list = [NSMutableArray new];
+    for(NSString* name in lookup.allKeys)
     {
-        return $this->getDefinition('HTML', $raw, $optimized);
+        [list addObject:name];
     }
+    return implode(@", ", list);
+}
 
-    /**
-     * Retrieves object reference to the CSS definition
-     *
-     * @param bool $raw Return a copy that has not been setup yet. Must be
-     *             called before it's been setup, otherwise won't work.
-     * @param bool $optimized If true, this method may return null, to
-     *             indicate that a cached version of the modified
-     *             definition object is available and no further edits
-     *             are necessary.  Consider using
-     *             maybeGetRawCSSDefinition, which is more explicitly
-     *             named, instead.
-     *
-     * @return HTMLPurifier_CSSDefinition
-     */
-    public function getCSSDefinition($raw = false, $optimized = false)
-    {
-        return $this->getDefinition('CSS', $raw, $optimized);
+/**
+ * Retrieves object reference to the HTML definition.
+ *
+ * @param bool $raw Return a copy that has not been setup yet. Must be
+ *             called before it's been setup, otherwise won't work.
+ * @param bool $optimized If true, this method may return null, to
+ *             indicate that a cached version of the modified
+ *             definition object is available and no further edits
+ *             are necessary.  Consider using
+ *             maybeGetRawHTMLDefinition, which is more explicitly
+ *             named, instead.
+ *
+ * @return HTMLPurifier_HTMLDefinition
+ */
+- (HTMLPurifier_HTMLDefinition*)getHTMLDefinition
+{
+    return [self getDefinition:@"HTML"];
+}
+
+/**
+ * Retrieves object reference to the CSS definition
+ *
+ * @param bool $raw Return a copy that has not been setup yet. Must be
+ *             called before it's been setup, otherwise won't work.
+ * @param bool $optimized If true, this method may return null, to
+ *             indicate that a cached version of the modified
+ *             definition object is available and no further edits
+ *             are necessary.  Consider using
+ *             maybeGetRawCSSDefinition, which is more explicitly
+ *             named, instead.
+ *
+ * @return HTMLPurifier_CSSDefinition
+ */
+- (HTMLPurifier_CSSDefinition*)getCSSDefinition
+{
+    return [self getDefinition:@"CSS"];
+}
+
+/**
+ * Retrieves object reference to the URI definition
+ *
+ * @param bool $raw Return a copy that has not been setup yet. Must be
+ *             called before it's been setup, otherwise won't work.
+ * @param bool $optimized If true, this method may return null, to
+ *             indicate that a cached version of the modified
+ *             definition object is available and no further edits
+ *             are necessary.  Consider using
+ *             maybeGetRawURIDefinition, which is more explicitly
+ *             named, instead.
+ *
+ * @return HTMLPurifier_URIDefinition
+ */
+- (HTMLPurifier_URIDefinition*)getURIDefinition
+{
+    return [self getDefinition:@"URI"];
+}
+
+- (HTMLPurifier_Definition*)getDefinition:(NSString*)type
+{
+    return [self getDefinition:type raw:NO optimized:NO];
+}
+
+/**
+ * Retrieves a definition
+ *
+ * @param string $type Type of definition: HTML, CSS, etc
+ * @param bool $raw Whether or not definition should be returned raw
+ * @param bool $optimized Only has an effect when $raw is true.  Whether
+ *        or not to return null if the result is already present in
+ *        the cache.  This is off by default for backwards
+ *        compatibility reasons, but you need to do things this
+ *        way in order to ensure that caching is done properly.
+ *        Check out enduser-customize.html for more details.
+ *        We probably won't ever change this default, as much as the
+ *        maybe semantics is the "right thing to do."
+ *
+ * @throws HTMLPurifier_Exception
+ * @return HTMLPurifier_Definition
+ */
+- (HTMLPurifier_Definition*)getDefinition:(NSString*)type raw:(BOOL)raw optimized:(BOOL)optimized
+{
+    if (![self finalized]) {
+        [self autoFinalize];
     }
-
-    /**
-     * Retrieves object reference to the URI definition
-     *
-     * @param bool $raw Return a copy that has not been setup yet. Must be
-     *             called before it's been setup, otherwise won't work.
-     * @param bool $optimized If true, this method may return null, to
-     *             indicate that a cached version of the modified
-     *             definition object is available and no further edits
-     *             are necessary.  Consider using
-     *             maybeGetRawURIDefinition, which is more explicitly
-     *             named, instead.
-     *
-     * @return HTMLPurifier_URIDefinition
-     */
-    public function getURIDefinition($raw = false, $optimized = false)
-    {
-        return $this->getDefinition('URI', $raw, $optimized);
-    }
-
-    /**
-     * Retrieves a definition
-     *
-     * @param string $type Type of definition: HTML, CSS, etc
-     * @param bool $raw Whether or not definition should be returned raw
-     * @param bool $optimized Only has an effect when $raw is true.  Whether
-     *        or not to return null if the result is already present in
-     *        the cache.  This is off by default for backwards
-     *        compatibility reasons, but you need to do things this
-     *        way in order to ensure that caching is done properly.
-     *        Check out enduser-customize.html for more details.
-     *        We probably won't ever change this default, as much as the
-     *        maybe semantics is the "right thing to do."
-     *
-     * @throws HTMLPurifier_Exception
-     * @return HTMLPurifier_Definition
-     */
-    public function getDefinition($type, $raw = false, $optimized = false)
-    {
-        if ($optimized && !$raw) {
-            throw new HTMLPurifier_Exception("Cannot set optimized = true when raw = false");
-        }
-        if (!$this->finalized) {
-            $this->autoFinalize();
-        }
-        // temporarily suspend locks, so we can handle recursive definition calls
-        $lock = $this->lock;
-        $this->lock = null;
-        $factory = HTMLPurifier_DefinitionCacheFactory::instance();
-        $cache = $factory->create($type, $this);
-        $this->lock = $lock;
-        if (!$raw) {
-            // full definition
-            // ---------------
-            // check if definition is in memory
-            if (!empty($this->definitions[$type])) {
-                $def = $this->definitions[$type];
-                // check if the definition is setup
-                if ($def->setup) {
-                    return $def;
-                } else {
-                    $def->setup($this);
-                    if ($def->optimized) {
-                        $cache->add($def, $this);
-                    }
-                    return $def;
-                }
-            }
-            // check if definition is in cache
-            $def = $cache->get($this);
-            if ($def) {
-                // definition in cache, save to memory and return it
-                $this->definitions[$type] = $def;
-                return $def;
-            }
-            // initialize it
-            $def = $this->initDefinition($type);
-            // set it up
-            $this->lock = $type;
-            $def->setup($this);
-            $this->lock = null;
-            // save in cache
-            $cache->add($def, $this);
-            // return it
-            return $def;
-        } else {
-            // raw definition
-            // --------------
-            // check preconditions
-            $def = null;
-            if ($optimized) {
-                if (is_null($this->get($type . '.DefinitionID'))) {
-                    // fatally error out if definition ID not set
-                    throw new HTMLPurifier_Exception(
-                                                     "Cannot retrieve raw version without specifying %$type.DefinitionID"
-                                                     );
-                }
-            }
-            if (!empty($this->definitions[$type])) {
-                $def = $this->definitions[$type];
-                if ($def->setup && !$optimized) {
-                    $extra = $this->chatty ?
-                    " (try moving this code block earlier in your initialization)" :
-                    "";
-                    throw new HTMLPurifier_Exception(
-                                                     "Cannot retrieve raw definition after it has already been setup" .
-                                                     $extra
-                                                     );
-                }
-                if ($def->optimized === null) {
-                    $extra = $this->chatty ? " (try flushing your cache)" : "";
-                    throw new HTMLPurifier_Exception(
-                                                     "Optimization status of definition is unknown" . $extra
-                                                     );
-                }
-                if ($def->optimized !== $optimized) {
-                    $msg = $optimized ? "optimized" : "unoptimized";
-                    $extra = $this->chatty ?
-                    " (this backtrace is for the first inconsistent call, which was for a $msg raw definition)"
-                    : "";
-                    throw new HTMLPurifier_Exception(
-                                                     "Inconsistent use of optimized and unoptimized raw definition retrievals" . $extra
-                                                     );
-                }
-            }
-            // check if definition was in memory
-            if ($def) {
-                if ($def->setup) {
-                    // invariant: $optimized === true (checked above)
-                    return null;
-                } else {
-                    return $def;
-                }
-            }
-            // if optimized, check if definition was in cache
-            // (because we do the memory check first, this formulation
-            // is prone to cache slamming, but I think
-            // guaranteeing that either /all/ of the raw
-            // setup code or /none/ of it is run is more important.)
-            if ($optimized) {
-                // This code path only gets run once; once we put
-                // something in $definitions (which is guaranteed by the
-                // trailing code), we always short-circuit above.
-                $def = $cache->get($this);
-                if ($def) {
-                    // save the full definition for later, but don't
-                    // return it yet
-                    $this->definitions[$type] = $def;
-                    return null;
-                }
-            }
-            // check invariants for creation
-            if (!$optimized) {
-                if (!is_null($this->get($type . '.DefinitionID'))) {
-                    if ($this->chatty) {
-                        $this->triggerError(
-                                            'Due to a documentation error in previous version of HTML Purifier, your ' .
-                                            'definitions are not being cached.  If this is OK, you can remove the ' .
-                                            '%$type.DefinitionRev and %$type.DefinitionID declaration.  Otherwise, ' .
-                                            'modify your code to use maybeGetRawDefinition, and test if the returned ' .
-                                            'value is null before making any edits (if it is null, that means that a ' .
-                                            'cached version is available, and no raw operations are necessary).  See ' .
-                                            '<a href="http://htmlpurifier.org/docs/enduser-customize.html#optimized">' .
-                                            'Customize</a> for more details',
-                                            E_USER_WARNING
-                                            );
-                    } else {
-                        $this->triggerError(
-                                            "Useless DefinitionID declaration",
-                                            E_USER_WARNING
-                                            );
-                    }
-                }
-            }
-            // initialize it
-            $def = $this->initDefinition($type);
-            $def->optimized = $optimized;
-            return $def;
-        }
-        throw new HTMLPurifier_Exception("The impossible happened!");
-    }
-
-    /**
-     * Initialise definition
-     *
-     * @param string $type What type of definition to create
-     *
-     * @return HTMLPurifier_CSSDefinition|HTMLPurifier_HTMLDefinition|HTMLPurifier_URIDefinition
-     * @throws HTMLPurifier_Exception
-     */
-    private function initDefinition($type)
-    {
-        // quick checks failed, let's create the object
-        if ($type == 'HTML') {
-            $def = new HTMLPurifier_HTMLDefinition();
-        } elseif ($type == 'CSS') {
-            $def = new HTMLPurifier_CSSDefinition();
-        } elseif ($type == 'URI') {
-            $def = new HTMLPurifier_URIDefinition();
-        } else {
-            throw new HTMLPurifier_Exception(
-                                             "Definition of $type type not supported"
-                                             );
-        }
-        $this->definitions[$type] = $def;
-        return $def;
-    }
-
-    public function maybeGetRawDefinition($name)
-    {
-        return $this->getDefinition($name, true, true);
-    }
-
-    public function maybeGetRawHTMLDefinition()
-    {
-        return $this->getDefinition('HTML', true, true);
-    }
-
-    public function maybeGetRawCSSDefinition()
-    {
-        return $this->getDefinition('CSS', true, true);
-    }
-
-    public function maybeGetRawURIDefinition()
-    {
-        return [self getDefinition:@"URI", true, true);
-    }
-
-    /**
-     * Loads configuration values from an array with the following structure:
-     * Namespace.Directive => Value
-     *
-     * @param array $config_array Configuration associative array
-     */
-    public function loadArray($config_array)
-    {
-        if ($this->isFinalized('Cannot load directives after finalization')) {
-            return;
-        }
-        foreach ($config_array as $key => $value) {
-            $key = str_replace('_', '.', $key);
-            if (strpos($key, '.') !== false) {
-                $this->set($key, $value);
+    // temporarily suspend locks, so we can handle recursive definition calls
+    NSString* lock = self.lock;
+    self.lock = nil;
+    factory = [HTMLPurifier_DefinitionCacheFactory instance];
+    cache = [factory create:type :self];
+    [self setLock:lock];
+    if (!raw) {
+        // full definition
+        // ---------------
+        // check if definition is in memory
+        if ([self.definitions[type] count]!=0)) {
+            def = self.definitions[type];
+            // check if the definition is setup
+            if ([def setup]) {
+                return def;
             } else {
-                $namespace = $key;
-                $namespace_values = $value;
-                foreach ($namespace_values as $directive => $value2) {
-                    $this->set($namespace .'.'. $directive, $value2);
+                [def setup:self];
+                if ([def optimized]) {
+                    [cache add:def :self];
                 }
+                return def;
             }
         }
+        // check if definition is in cache
+        def = [cache get:self];
+        if (def) {
+            // definition in cache, save to memory and return it
+            [self.definitions setObject:def forKey:type];
+            return def;
+        }
+        // initialize it
+        def = [self initDefinition:type];
+        // set it up
+        [self setLock:type];
+        [def setSetup:self];
+        [self setLock:nil];
+        // save in cache
+        [cache add:def self];
+        // return it
+        return def;
     }
+    else
+    {
+        // raw definition
+        // --------------
+        // check preconditions
+        def = nil;
+        if (optimized)
+        {
+            if (![self get:[NSString stringWithFormat:@"%@.DefinitionID", type ]])
+            {
+                // fatally error out if definition ID not set
+                @throw [NSException exceptionWithName:@"Config" reason:@"Cannot retrieve raw version without specifying $type.DefinitionID" userInfo:nil];
+            }
+        }
+        if ([self.definitions[type] count]!=0))
+        {
+            def = self.definitions[type];
+            if ([def setup] && !optimized)
+            {
+                NSString* extra = self.chatty ?
+                @" (try moving this code block earlier in your initialization)" :
+                @"";
+                @throw [NSException exceptionWithName:@"Config" reason:[@"Cannot retrieve raw definition after it has already been setup" stringByAppendingString:extra] userInfo:nil];
+            }
+            if ([def optimized] == nil)
+            {
+                NSString* extra = self.chatty ? @" (try flushing your cache)" : @"";
+                @throw [NSException exceptionWithName:@"Config" reason:[@"Optimization status of definition is unknown" stringByAppendingString:extra] userInfo:nil];
+            }
+            if ([def optimized] != optimized)
+            {
+                NSString* msg = optimized ? @"optimized" : @"unoptimized";
+                extra = self.chatty ?
+                @" (this backtrace is for the first inconsistent call, which was for a $msg raw definition)"
+                : @"";
+                @throw [NSException exceptionWithName:@"Config" reason:[@"Inconsistent use of optimized and unoptimized raw definition retrievals" stringByAppendingString:extra] userInfo:nil];
+            }
+        }
+        // check if definition was in memory
+        if (def) {
+            if ([def setup]) {
+                // invariant: $optimized === true (checked above)
+                return nil;
+            } else {
+                return def;
+            }
+        }
+        // if optimized, check if definition was in cache
+        // (because we do the memory check first, this formulation
+        // is prone to cache slamming, but I think
+        // guaranteeing that either /all/ of the raw
+        // setup code or /none/ of it is run is more important.)
+        if (optimized) {
+            // This code path only gets run once; once we put
+            // something in $definitions (which is guaranteed by the
+            // trailing code), we always short-circuit above.
+            def = [cache get:self];
+            if (def) {
+                // save the full definition for later, but don't
+                // return it yet
+                self.definitions[type] = def;
+                return null;
+            }
+        }
+        // check invariants for creation
+        if (!optimized)
+        {
+            if ([self get:[type stringByAppendingString:@".DefinitionID"]])
+            {
+                if (self.chatty)
+                {
+                    NSLog(@"Due to a documentation error in previous version of HTML Purifier, your definitions are not being cached.  If this is OK, you can remove the $type.DefinitionRev and $type.DefinitionID declaration.  Otherwise, modify your code to use maybeGetRawDefinition, and test if the returned value is null before making any edits (if it is null, that means that a cached version is available, and no raw operations are necessary).  See <a href=\"http://htmlpurifier.org/docs/enduser-customize.html#optimized\">Customize</a> for more details");
+                }
+                else
+                {
+                    NSLog(@"Useless DefinitionID declaration");
+                }
+            }
+
+        }
+        // initialize it
+        def = [self initDefinition:type];
+        def.optimized = optimized;
+        return def;
+    }
+    @throw [NSException exceptionWithName:@"Config" reason:@"The impossible happened!" userInfo:nil];
+}
+
+/**
+ * Initialise definition
+ *
+ * @param string $type What type of definition to create
+ *
+ * @return HTMLPurifier_CSSDefinition|HTMLPurifier_HTMLDefinition|HTMLPurifier_URIDefinition
+ * @throws HTMLPurifier_Exception
+ */
+- (HTMLPurifier_Definition*)initDefinition:(NSString*)type
+{
+    // quick checks failed, let's create the object
+    if ([type isEqualToString:@"HTML"]) {
+        def = [HTMLPurifier_HTMLDefinition new];
+    } else if ([type isEqualToString:@"CSS"]) {
+        def = new HTMLPurifier_CSSDefinition();
+    } else if ([type isEqualToString:@"URI"]) {
+        def = [HTMLPurifier_URIDefinition new];
+    } else {
+        @throw [NSException exceptionWithName:@"Config" reason:[@"Definition of $type type not supported" stringByAppendingString:extra] userInfo:nil];
+    }
+    self.definitions[type] = def;
+    return def;
+}
+
+- (HTMLPurifier_Definition*)maybeGetRawDefinition:(NSString*)name
+{
+    return [self getDefinition:name raw:YES optimized:YES];
+}
+
+- (HTMLPurifier_Definition*)maybeGetRawHTMLDefinition
+{
+    return [self getDefinition:@"HTML" raw:YES optimized:YES];
+}
+
+- (HTMLPurifier_Definition*)maybeGetRawCSSDefinition
+{
+    return [self getDefinition:@"CSS" raw:YES optimized:YES];
+}
+
+- (HTMLPurifier_Definition*)maybeGetRawURIDefinition
+{
+    return [self getDefinition:@"URI" raw:YES optimized:YES];
+}
+
+//    /**
+//     * Loads configuration values from an array with the following structure:
+//     * Namespace.Directive => Value
+//     *
+//     * @param array $config_array Configuration associative array
+//     */
+//    public function loadArray($config_array)
+//    {
+//        if ($this->isFinalized('Cannot load directives after finalization')) {
+//            return;
+//        }
+//        foreach ($config_array as $key => $value) {
+//            $key = str_replace('_', '.', $key);
+//            if (strpos($key, '.') !== false) {
+//                $this->set($key, $value);
+//            } else {
+//                $namespace = $key;
+//                $namespace_values = $value;
+//                foreach ($namespace_values as $directive => $value2) {
+//                    $this->set($namespace .'.'. $directive, $value2);
+//                }
+//            }
+//        }
+//    }
 //
 //    /**
 //     * Returns a list of array(namespace, directive) for all directives
@@ -707,55 +719,55 @@
 
 
 
-    /**
-     * Checks whether or not the configuration object is finalized.
-     *
-     * @param string|bool $error String error message, or false for no error
-     *
-     * @return bool
-     */
+/**
+ * Checks whether or not the configuration object is finalized.
+ *
+ * @param string|bool $error String error message, or false for no error
+ *
+ * @return bool
+ */
 - (BOOL)isFinalized:(NSError*)error
 {
-        if (_finalized && error) {
-            TRIGGER_ERROR(@"%@", error);
-        }
-        return _finalized;
+    if (_finalized && error) {
+        TRIGGER_ERROR(@"%@", error);
     }
-
-    /**
-     * Finalizes configuration only if auto finalize is on and not
-     * already finalized
-     */
-- (void) autoFinalize()
-    {
-            [self finalize];
-    }
-
-    /**
-     * Finalizes a configuration object, prohibiting further change
-     */
-- (void)finalize
-    {
-        _finalized = YES;
-        _parser = nil;
-    }
-    
-
-    /**
-     * Returns a serialized form of the configuration object that can
-     * be reconstituted.
-     *
-     * @return string
-     */
-    public function serialize()
-    {
-        $this->getDefinition('HTML');
-        $this->getDefinition('CSS');
-        $this->getDefinition('URI');
-        return serialize($this);
-    }
-    
+    return _finalized;
 }
+
+/**
+ * Finalizes configuration only if auto finalize is on and not
+ * already finalized
+ */
+- (void)autoFinalize
+{
+    [self finalize];
+}
+
+/**
+ * Finalizes a configuration object, prohibiting further change
+ */
+- (void)finalize
+{
+    _finalized = YES;
+    _parser = nil;
+}
+
+
+/**
+ * Returns a serialized form of the configuration object that can
+ * be reconstituted.
+ *
+ * @return string
+ */
+- (NSString*)serialize
+{
+    [self getDefinition:@"HTML"];
+    [self getDefinition:@"CSS"];
+    [self getDefinition:@"URI"];
+    return serialize(self);
+}
+
+
 
 
 @end

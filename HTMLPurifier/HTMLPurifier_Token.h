@@ -58,6 +58,8 @@
  */
 - (NSString*)__get:(NSString*)n;
 
+- (NSString*)name;
+
 /**
  * Sets the position of the token in the source document.
  * @param int $l
