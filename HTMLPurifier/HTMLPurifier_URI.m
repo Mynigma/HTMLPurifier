@@ -19,7 +19,7 @@
 
 @implementation HTMLPurifier_URI
 
-**
+/**
 * @type string
 */
 public $scheme;

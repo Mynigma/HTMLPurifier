@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
+#import "HTMLPurifier_ConfigSchema.h"
 #import "HTMLPurifier.h"
 #import "BasicPHP.h"
 
@@ -55,74 +56,73 @@ static HTMLPurifier* purifier;
 }
 
 
-                           /**
-                            * Asserts a purification. Good for integration testing.
-                            */
+/**
+ * Asserts a purification. Good for integration testing.
+ */
 - (void)assertPurification:()input except:()expect
 {
     if (!expect)
         expect = input;
-    result = [purifier purify:input config:config];
+    NSObject* result = [purifier purify:input config:config];
     [self assertIdentical:expect result:result];
 }
 
 
-                           /**
-                            * Accepts config and context and prepares them into a valid state
-                            * @param &$config Reference to config variable
-                            * @param &$context Reference to context variable
-                            */
+/**
+ * Accepts config and context and prepares them into a valid state
+ * @param &$config Reference to config variable
+ * @param &$context Reference to context variable
+ */
 - (void)prepareCommon:(HTMLPurifier_Config**)config context:context
 {
-    config* = [HTMLPurifier_Config create:config];
+    *config = [HTMLPurifier_Config createWithConfig:*config schema:nil];
     if (!context)
         context = [HTMLPurifier_Context new];
 }
 
-                           /**
-                            * Generates default configuration and context objects
-                            * @return Defaults in form of array($config, $context)
-                            */
- - (void)createCommon
-                       {
-                           config = [HTMLPurifier_Config createDefault];
-                           context = [HTMLPurifier_Context new];
-                           }
+/**
+ * Generates default configuration and context objects
+ * @return Defaults in form of array($config, $context)
+ */
+- (void)createCommon
+{
+    config = [HTMLPurifier_Config createDefault];
+    context = [HTMLPurifier_Context new];
+}
 
-                           /**
-                            * Normalizes a string to Unix (\n) endings
-                            */
+/**
+ * Normalizes a string to Unix (\n) endings
+ */
 - (void)normalize:(NSMutableString*)string
 {
-                               str_replace(@[@"\r\n", @"\r"], @"\n", string);
-                           }
+    str_replace(@[@"\r\n", @"\r"], @"\n", string);
+}
 
-                           /**
-                            * If $expect is false, ignore $result and check if status failed.
-                            * Otherwise, check if $status if true and $result === $expect.
-                            * @param $status Boolean status
-                            * @param $result Mixed result from processing
-                            * @param $expect Mixed expectation for result
-                            */
-- (void)assertEitherFailOrIdentical:(BOOL)status result:(NSObject*)result expect:(NSObject*)expect)
+- (void)assertIdentical:(NSObject*)expect result:(NSObject*)result
 {
-    if(
-    XCTAssertEqual(status, [expect boolValue], @"Expected status %b to be equal to %@", status, expect);
-                        }
-                           
-                           public function getTests() {
-                               // __onlytest makes only one test get triggered
-                               foreach (get_class_methods(get_class($this)) as $method) {
-                                   if (strtolower(substr($method, 0, 10)) == '__onlytest') {
-                                       $this->reporter->paintSkip('All test methods besides ' . $method);
-                                       return array($method);
-                                   }
-                               }
-                               return parent::getTests();
-                           }
-                           
-                           }
-                           
-                           // vim: et sw=4 sts=4
+    XCTAssertEqual(expect, result, @"Expected result %@ and got %@", expect, result);
+}
+
+
+/**
+ * If $expect is false, ignore $result and check if status failed.
+ * Otherwise, check if $status if true and $result === $expect.
+ * @param $status Boolean status
+ * @param $result Mixed result from processing
+ * @param $expect Mixed expectation for result
+ */
+- (void)assertEitherFailOrIdentical:(BOOL)status result:(NSObject*)result expect:(NSObject*)expect
+{
+    if (![expect isKindOfClass:[NSNumber class]] || [(NSNumber*)expect boolValue] == NO)
+    {
+        XCTAssertFalse(status, @"Expected false result, got true");
+    }
+    else
+    {
+        XCTAssertTrue(status, @"Expected true result, got false");
+        XCTAssertEqual(result, expect, @"Expected status %@ to be equal to %@", status?@"YES":@"NO", expect);
+    }
+}
+// vim: et sw=4 sts=4
 
 @end

@@ -21,7 +21,7 @@ static HTMLPurifier_ConfigSchema* theSingleton;
     self = [super init];
     if (self) {
         _defaults = [NSMutableDictionary new];
-        _info = [NSMutableArray new];
+        _info = [NSMutableDictionary new];
     }
     return self;
 }
@@ -61,7 +61,6 @@ static HTMLPurifier_ConfigSchema* theSingleton;
     }
     return r;
 }
-
 
 
 @end

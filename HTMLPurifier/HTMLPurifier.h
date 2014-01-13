@@ -62,9 +62,9 @@
 
 - (id)initWithConfig:(HTMLPurifier_Config*) newConfig;
 
-- (NSString*) purifyWith:(NSString*)newHtml;
+- (NSString*) purify:(NSString*)newHtml;
 
-- (NSString*) purifyWith:(NSString*)html Config:(HTMLPurifier_Config*)newConfig;
+- (NSString*) purify:(NSString*)newHtml config:(HTMLPurifier_Config*)newConfig;
 
 - (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html;
 

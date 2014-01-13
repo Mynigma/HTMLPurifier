@@ -22,7 +22,7 @@
      * @return array|bool|float|int|mixed|null|string
      * @throws HTMLPurifier_VarParserException
      */
-- (NSObject*)parseImplementation:var type:(NSNumber*)type allowNull:(BOOL)allow_null;
+- (NSObject*)parseImplementation:var type:(NSNumber*)type allowNull:(BOOL)allow_null
     {
         if (allow_null && !var) {
             return nil;

@@ -34,6 +34,8 @@
 
 @property BOOL chatty;
 
+- (HTMLPurifier_Config*)createWithConfig:(HTMLPurifier_Config*)config;
+
 - (HTMLPurifier_ConfigSchema*)definition;
 
 
@@ -196,7 +198,8 @@
  * @return HTMLPurifier_CSSDefinition|HTMLPurifier_HTMLDefinition|HTMLPurifier_URIDefinition
  * @throws HTMLPurifier_Exception
  */
-- (HTMLPurifier_Definition*)initDefinition:(NSString*)type;
+
+- (HTMLPurifier_Definition*)InitialiseDefinition:(NSString*)type;
 
 - (HTMLPurifier_Definition*)maybeGetRawDefinition:(NSString*)name;
 

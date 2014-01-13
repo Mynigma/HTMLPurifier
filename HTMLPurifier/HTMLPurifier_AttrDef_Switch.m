@@ -40,7 +40,7 @@
 - (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
     HTMLPurifier_Token* token = (HTMLPurifier_Token*)[context getWithName:@"CurrentToken" ignoreError:YES];
-    if (!token || ![[token name] isEqual:self.tag]) {
+    if (!token || ![[token name] isEqual:tag]) {
         return [withoutTag validateWithString:string config:config context:context];
     } else {
         return [withTag validateWithString:string config:config context:context];

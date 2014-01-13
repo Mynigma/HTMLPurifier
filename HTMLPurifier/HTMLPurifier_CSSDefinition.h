@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HTMLPurifier_Definition.h"
 
 @class HTMLPurifier_Config;
 

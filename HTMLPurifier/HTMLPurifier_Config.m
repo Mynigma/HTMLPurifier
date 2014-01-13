@@ -40,7 +40,7 @@ static HTMLPurifier_VarParser* theParser;
 - (HTMLPurifier_ConfigSchema*)definition
 {
     if(!theDefinition)
-        theDefinition = [HTMLPurifier_ConfigSchema instance];
+        theDefinition = [HTMLPurifier_ConfigSchema singleton];
     return theDefinition;
 }
 
@@ -78,6 +78,13 @@ static HTMLPurifier_VarParser* theParser;
  * @param HTMLPurifier_ConfigSchema $schema Schema object
  * @return HTMLPurifier_Config Configured object
  */
+
++ (HTMLPurifier_Config*)createWithConfig:(HTMLPurifier_Config*)config
+{
+    return [self createWithConfig:config schema:nil];
+}
+
+
 + (HTMLPurifier_Config*)createWithConfig:(HTMLPurifier_Config*)config schema:(HTMLPurifier_ConfigSchema*)schema
 {
     if ([config isKindOfClass:[HTMLPurifier_Config class]]) {
@@ -93,7 +100,7 @@ static HTMLPurifier_VarParser* theParser;
  */
 + (HTMLPurifier_Config*)createDefault
 {
-    HTMLPurifier_ConfigSchema* def = [HTMLPurifier_ConfigSchema instance];
+    HTMLPurifier_ConfigSchema* def = [HTMLPurifier_ConfigSchema singleton];
     HTMLPurifier_Config* config = [[HTMLPurifier_Config alloc] initWithDefinition:def parent:nil];
     return config;
 }
@@ -110,16 +117,16 @@ static HTMLPurifier_VarParser* theParser;
 {
     [self autoFinalize];
 
-    if (![def.info objectForKey:key]) {
+    if (![_def.info objectForKey:key]) {
         // can't add % due to SimpleTest bug
         TRIGGER_ERROR(@"Cannot retrieve value of undefined directive");
-        return;
+        return nil;
     }
-    if ([[[def.info objectForKey:key] isAlias] boolValue])
+    if ([[[_def.info objectForKey:key] isAlias] boolValue])
     {
 
         TRIGGER_ERROR(@"Cannot get value from aliased directive, use real name");
-        return;
+        return nil;
     }
 
     if(_lock)
@@ -128,7 +135,7 @@ static HTMLPurifier_VarParser* theParser;
         if (![ns[0] isEqualToString:_lock])
         {
             TRIGGER_ERROR(@"Cannot get value of namespace %@ when lock for ", _lock);
-            return;
+            return nil;
         }
     }
     return [plistDict get:key];
@@ -528,7 +535,7 @@ static HTMLPurifier_VarParser* theParser;
  * @return HTMLPurifier_CSSDefinition|HTMLPurifier_HTMLDefinition|HTMLPurifier_URIDefinition
  * @throws HTMLPurifier_Exception
  */
-- (HTMLPurifier_Definition*)initDefinition:(NSString*)type
+- (HTMLPurifier_Definition*)InitialiseDefinition:(NSString*)type
 {
     // quick checks failed, let's create the object
     if ([type isEqualToString:@"HTML"]) {

@@ -28,8 +28,7 @@
     
     if (!([newName isEqual:@"rel"] || [newName isEqual:@"rev"]))
     {
-        TRIGGER_ERROR(@"Unrecognized attribute name for link relationship.",
-                      E_USER_ERROR);
+        TRIGGER_ERROR(@"Unrecognized attribute name for link relationship.");
         return nil;
     }
     name = [configLookup objectForKey:newName];
@@ -44,7 +43,7 @@
  */
 -(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    NSDictionary* allowed = [config get:[NSString stringWithFormat:@"Attr.%@",name]];
+    NSDictionary* allowed = (NSDictionary*)[config get:[NSString stringWithFormat:@"Attr.%@",name]];
     if (!allowed || [allowed isEqual:@""])
     {
         return nil;

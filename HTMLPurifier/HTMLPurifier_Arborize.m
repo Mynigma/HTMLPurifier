@@ -20,7 +20,7 @@
 
 + (HTMLPurifier_Node*)arborizeTokens:(NSArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    HTMLPurifier_Definition* definition = [config getHTMLDefinition];
+    HTMLPurifier_HTMLDefinition* definition = [config getHTMLDefinition];
     HTMLPurifier_Token_Start* parent = [[HTMLPurifier_Token_Start alloc] initWith:definition->info_parent];
     NSMutableArray* stack = [[NSMutableArray alloc] initWithObject:[parent toNode]];
     for(HTMLPurifier_Token* token in tokens)

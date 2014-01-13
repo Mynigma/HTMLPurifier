@@ -16,7 +16,10 @@
 
 @property NSDictionary* defaultPList;
 
-@property NSMutableArray* info;
+@property NSMutableDictionary* info;
+
+
++ (HTMLPurifier_ConfigSchema*)singleton;
 
 
 @end

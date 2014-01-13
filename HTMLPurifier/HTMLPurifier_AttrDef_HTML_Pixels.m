@@ -57,7 +57,7 @@
     {
         string = [string substringToIndex:(length - 2)];
     }
-    if (!is_numeric(string))
+    if ([string isKindOfClass:[NSNumber class]])
     {
         return nil;
     }
