@@ -65,6 +65,8 @@ BOOL ctype_digit (NSString* text)
     return YES;
 }
 
+//TODO ctype_alnum(string)
+
 //TODO is_numeric (string)
 
 NSString* trim(NSString* string)
