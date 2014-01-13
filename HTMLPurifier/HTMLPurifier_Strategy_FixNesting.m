@@ -13,6 +13,7 @@
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Token.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_Context.h"
 
 
 @implementation HTMLPurifier_Strategy_FixNesting
@@ -30,16 +31,16 @@
     HTMLPurifier_Node* topNode = [HTMLPurifier_Arborize arborizeTokens:tokens config:config context:context];
 
     // get a copy of the HTML definition
-    HTMLPurifier_Definition* definition = [config getHTMLDefinition];
+    HTMLPurifier_HTMLDefinition* definition = [config getHTMLDefinition];
 
-    BOOL excludesEnabled = ![config get:@"Core.DisableExcludes"].boolValue;
+    BOOL excludesEnabled = ![(NSNumber*)[config get:@"Core.DisableExcludes"] boolValue];
 
     // setup the context variable 'IsInline', for chameleon processing
     // is 'false' when we are not inline, 'true' when it must always
     // be inline, and an integer when it is inline for a certain
     // branch of the document tree
     BOOL isInline = [[definition info_parent_def] descendants_are_inline];
-    [context registerString:@"IsInline" isInline];
+    [context registerWithName::@"IsInline" ref:@(isInline)];
 
     //####################################################################//
     // Loop initialization
@@ -62,8 +63,8 @@
     if(pair.count>1)
         token = pair[1];
 
-    [context registerString:@"CurrentNode", $node];
-    [context registerString:@"CurrentToken", $token];
+    [context registerString:@"CurrentNode", node];
+    [context registerString:@"CurrentToken", token];
 
     //####################################################################//
     // Loop
@@ -93,7 +94,7 @@
 
     while (stack.count>0)
     {
-        NSArray* stackObject = array_pop(stack);
+        NSArray* stackObject = (NSArray*)array_pop(stack);
         if(stackObject.count>0)
             node = stackObject[0];
         if(stackObject.count>1)
@@ -105,7 +106,7 @@
 
         // recursive call
         BOOL go = NO;
-        HTMLPurifier_Definition* def = stack.count==0 ? [definitioninfo_parent_def] : definition.info[node->name];
+        HTMLPurifier_Definition* def = stack.count==0 ? [definition info_parent_def] : definition.info[node->name];
         while (node->children[ix]))
         {
             child = node->children[ix++];

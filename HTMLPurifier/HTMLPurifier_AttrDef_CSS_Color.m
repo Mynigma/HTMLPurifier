@@ -8,6 +8,7 @@
 
 #import "HTMLPurifier_AttrDef_CSS_Color.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_Config.h"
 
 /**
  * Validates Color as defined by CSS.
@@ -22,7 +23,7 @@
      */
 - (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
     {
-        NSDictionary* colors = [config getWithWhatever:@"Core.ColorKeywords"];
+        NSDictionary* colors = (NSDictionary*)[config get:@"Core.ColorKeywords"];
 
         NSString* color = trim(string);
         if ([color isEqualTo:@""]) {

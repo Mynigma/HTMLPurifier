@@ -29,7 +29,7 @@
 -(NSString*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
     // really, this twiddle should be lazy loaded
-    NSString* name = [[[config getDefinition:@"HTML"] docttype] name];
+    NSString* name = [[(HTMLPurifier_HTMLDefinition*)[config getDefinition:@"HTML"] doctype] name];
     if ([name isEqual:@"XHTML 1.1"] || [name isEqual:@"XHTML 2.0"])
     {
         return [super splitWithString:string Config:config Context:context];
@@ -46,8 +46,8 @@
  */
 -(NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
-    NSMutableArray* allowed = [config get:@"Attr.AllowedClasses"];
-    NSMutableArray* forbidden = [config get:@"Attr.ForbiddenClasses"];
+    NSMutableArray* allowed = (NSMutableArray*)[[config get:@"Attr.AllowedClasses"] mutableCopy];
+    NSMutableArray* forbidden = (NSMutableArray*)[[config get:@"Attr.ForbiddenClasses"] mutableCopy];
     NSMutableArray* ret = [NSMutableArray new];
     for (NSString* token in tokens)
     {

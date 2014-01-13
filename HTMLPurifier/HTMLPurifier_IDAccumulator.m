@@ -30,7 +30,7 @@
 + (HTMLPurifier_IDAccumulator*)buildWithConfig:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
         HTMLPurifier_IDAccumulator* id_accumulator = [[HTMLPurifier_IDAccumulator alloc] init];
-        [id_accumulator loadWithIDs:[config get:@"Attr.IDBlacklist"]];
+        [id_accumulator loadWithIDs:(NSArray*)[config get:@"Attr.IDBlacklist"]];
         return id_accumulator;
     }
 

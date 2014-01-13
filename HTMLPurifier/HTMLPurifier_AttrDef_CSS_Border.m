@@ -19,9 +19,9 @@
     if (self) {
         info = [NSMutableDictionary new];
         HTMLPurifier_CSSDefinition* def = [config getCSSDefinition];
-        [info setObject:[def.info objectForKey:@"border-width"] forKey;@"border-width"];
-        [info setObject:[def.info objectForKey:@"border-style"] forKey;@"border-style"];
-        [info setObject:[def.info objectForKey:@"border-top-color"] forKey;@"border-top-color"];
+        info[@"border-width"] = def.info[@"border-width"];
+        info[@"border-style"] = def.info[@"border-style"];
+        info[@"border-top-color"] = def.info[@"border-top-color"];
     }
     return self;
 }
@@ -57,6 +57,6 @@
         }
         return rtrim_whitespaces(ret);
     }
-}
+
 
 @end

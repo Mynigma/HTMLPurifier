@@ -51,6 +51,21 @@
         return nil;
     }
 
+- (NSString*)name
+{
+    if([self isKindOfClass:[HTMLPurifier_Token_Start class]])
+        return @"start";
+    if([self isKindOfClass:[HTMLPurifier_Token_Empty class]])
+        return @"empty";
+    if([self isKindOfClass:[HTMLPurifier_Token_End class]])
+        return @"end";
+    if([self isKindOfClass:[HTMLPurifier_Token_Text class]])
+        return @"text";
+    if([self isKindOfClass:[HTMLPurifier_Token_Comment class]])
+        return @"comment";
+    return nil;
+}
+
     /**
      * Sets the position of the token in the source document.
      * @param int $l
@@ -67,10 +82,10 @@
      * @param int $l
      * @param int $c
      */
-- (void)rawPosition:(NSNumber*)l c:(NSNUmber*)c
+- (void)rawPosition:(NSNumber*)l c:(NSNumber*)c
     {
-        if (c == -1) {
-            l++;
+        if (c.integerValue == -1) {
+            l = @(l.integerValue+1);
         }
         self.line = l;
         self.col = c;

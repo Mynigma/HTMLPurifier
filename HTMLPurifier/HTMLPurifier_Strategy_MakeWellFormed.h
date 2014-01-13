@@ -72,7 +72,6 @@
  * @return HTMLPurifier_Token[]
  * @throws HTMLPurifier_Exception
  */
-- (NSMutableArray*)execute:(NSMutableArray*)tokens config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
 /**
  * Processes arbitrary token values for complicated substitution patterns.

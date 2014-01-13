@@ -101,7 +101,7 @@
 {
     self = [super init];
     if (self) {
-        config = [HTMLPurifier_Config create:newConfig];
+        config = [HTMLPurifier_Config createWithConfig:newConfig];
         strategy = [HTMLPurifier_Strategy_Core new];
         context = [NSMutableArray new];
     }
@@ -134,100 +134,9 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purifyWith:(NSString*)newHtml
+- (NSString*) purify:(NSString*)newHtml
 {
-    
-    NSString* html = newHtml;
-    
-    //Create Config
-    config = [HTMLPurifier_Config create:nil];
-    
-    //New Lexer with Config
-    HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer alloc];
-    lexer = [HTMLPurifier_Lexer createWithConfig:config];
-    
-    //New Context
-    HTMLPurifier_Context* localContext = [HTMLPurifier_Context new];
-    //setup HTML generator
-    generator = [HTMLPurifier_Generator alloc];
-    generator = [HTMLPurifier_Generator initWithConfig:config context:localContext];
-    [localContext registerWithName:@"Generator" ref:generator];
-
-    /*
-    //setup global context variables
-    if ([config getWithKey:@"Core.CollectErrors"])
-    {
-        
-        HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
-        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: localContext];
-        [context registerWithName:@"Locale" ref:language];
-        
-        HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
-        error_collector = [HTMLPurifier_ErrorCollector initWithContext:localContext];
-        [context registerWithName:@"ErrorCollector" ref:error_collector];
-    }*/
-    
-    // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
-    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:localContext];
-    [localContext registerWithName:@"IDAccumulator" ref:id_accumulator];
-    
-    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:localContext];
-    
-    // setup filters
-    
-    NSMutableDictionary* filter_flags = [config getBatchWithNamespace:@"Filter"];
-    NSMutableArray* custom_filters = [filter_flags objectForKey:@"Custom"];
-    [filter_flags removeObjectForKey:@"Custom"];
-    
-    NSMutableArray* newFilters = [NSMutableArray new];
-    
-    for (NSString* key in filter_flags.allKeys)
-    {
-        if ([filter_flags objectForKey:key])
-        {
-            //This cannot happen
-            continue;
-        }
-        
-        if (strpos(key, @".") != NSNotFound){
-            continue
-        }
-        
-        NSString* class = [@"HTMLPurifier_Filter_" stringByAppendingString:key];
-        
-        [newFilters addObject:[NSClassFromString(class) new]];
-    }
-    
-    for (NSObject* object in custom_filters)
-    {
-        [newFilters addObject:object];
-    }
-    
-    [newFilters addObjectsFromArray:filters];
-    
-    int filter_size = [newFilters count];
-    
-    for (int i=0; i<filter_size; i++)
-    {
-        html = [newFilters[i] preFilterWithHtml:html Config:config Context:localContext];
-    }
-    
-    //TODO maybe change names
-    //purifed HTML
-    html = [generator generateFromTokens:
-            [strategy execute:
-             [lexer tokenizeHTML:html Config:config Context:localContext]
-             Config:config Context:localContext]];
-    
-    for (int i = filter_size - 1; i>=0; i--)
-    {
-        html = [filters[i] postFilterWithHtml:html Config:config Context:localContext];
-    }
-    
-    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:localContext];
-    
-    return html;
-    
+    return [self purify:newHtml config:nil];
 }
 
 
@@ -239,14 +148,13 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purifyWith:(NSString*)html Config:(HTMLPurifier_Config*)newConfig
+- (NSString*) purify:(NSString*)newHtml config:(HTMLPurifier_Config*)newConfig
 {
-    
     
     NSString* html = newHtml;
     
     //Set Config
-    config = newConfig;
+    config = newConfig?newConfig:[HTMLPurifier_Config createDefault];
     
     //New Lexer with Config
     HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer alloc];
