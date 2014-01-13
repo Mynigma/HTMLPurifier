@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_Definition.h"
 
-@class HTMLPurifier_Doctype, HTMLPurifier_ElementDef;
+@class HTMLPurifier_Doctype, HTMLPurifier_ElementDef, HTMLPurifier_Module, HTMLPurifier_ModuleManager;
 
 
 /**
