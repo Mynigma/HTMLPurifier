@@ -10,6 +10,7 @@
  * Validates a host according to the IPv4, IPv6 and DNS (future) specifications.
  */
 #import "HTMLPurifier_AttrDef_URI_Host.h"
+#import "HTMLPurifier_Config.h"
 
 @implementation HTMLPurifier_AttrDef_URI_Host
 
@@ -52,20 +53,24 @@
     {
         return @"";
     }
-    if (length > 1 && $string[0] === '[' && $string[$length - 1] === ']') {
+    if (length > 1 && ([string characterAtIndex:0] == '[') &&
+        ([string characterAtIndex:length - 1]== ']'))
+    {
         //IPv6
-        $ip = substr($string, 1, $length - 2);
-        $valid = $this->ipv6->validate($ip, $config, $context);
-        if ($valid === false) {
-            return false;
+        NSString* ip = [string substringWithRange:NSMakeRange(1, length-2)];
+        NSString* valid = [ipv6 validateWithIp:ip Config:config Context:context];
+        if (!valid)
+        {
+            return nil;
         }
-        return '[' . $valid . ']';
+        return [NSString stringWithFormat:@"[%@]",valid];
     }
     
     // need to do checks on unusual encodings too
-    $ipv4 = $this->ipv4->validate($string, $config, $context);
-    if ($ipv4 !== false) {
-        return $ipv4;
+    NSString* checke_ipv4 = [ipv4 validateWithString:string Config:config Context:context];
+    if (checke_ipv4)
+    {
+        return checke_ipv4;
     }
     
     // A regular domain name.
@@ -84,7 +89,7 @@
     // for browser behavior, for example, a large number of browsers
     // cannot handle foo_.example.com, but foo_bar.example.com is
     // fairly well supported.
-    $underscore = $config->get('Core.AllowHostnameUnderscore') ? '_' : '';
+    unichar underscore = [config get:@"Core.AllowHostnameUnderscore"]?'_':'';
     
     // The productions describing this are:
     $a   = '[a-z]';     // alpha
