@@ -13,9 +13,9 @@
 
 - (id)init
 {
-    self = [super initWith];
+    self = [super init];
     if (self) {
-        <#initializations#>
+
     }
     return self;
 }

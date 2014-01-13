@@ -8,6 +8,8 @@
 
 #import "HTMLPurifier_Token.h"
 
+@class HTMLPurifier_Node_Element;
+
 /**
  * Abstract class of a tag token (start, end or empty), and its behavior.
  */
@@ -49,6 +51,8 @@
      */
 
 - (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
+
+- (id)initWithName:(NSString*)n;
 
 - (HTMLPurifier_Node_Element*)toNode;
 

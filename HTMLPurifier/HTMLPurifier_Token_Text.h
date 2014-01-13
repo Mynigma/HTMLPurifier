@@ -38,7 +38,10 @@
 
     /**< Bool indicating if node is whitespace. */
 
-- (id)initWithData:(NSString*)d isWhitespace:(BOOL)isW line:(NSNumber*)l col:(NSNumber*)c;
+- (id)initWithData:(NSString*)d line:(NSNumber*)l col:(NSNumber*)c;
+
+- (id)initWithData:(NSString*)d;
+
 
 
 - (NSArray*)toTokenPair;

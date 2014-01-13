@@ -7,6 +7,8 @@
 //
 
 #import "HTMLPurifier_Strategy_Core.h"
+#import "HTMLPurifier_Strategy_FixNesting.h"
+#import "HTMLPurifier_Strategy_ValidateAttributes.h"
 
 @implementation HTMLPurifier_Strategy_Core
 
@@ -15,7 +17,7 @@
     self = [super init];
     if (self) {
         [strategies addObject:[HTMLPurifier_Strategy_RemoveForeignElements new]];
-        [strategies addObject:[HTMLPurifier_Strategy_MakeWellFormed new] ;]]
+        [strategies addObject:[HTMLPurifier_Strategy_MakeWellFormed new]];
         [strategies addObject:[HTMLPurifier_Strategy_FixNesting new]];
         [strategies addObject:[HTMLPurifier_Strategy_ValidateAttributes new]];
     }

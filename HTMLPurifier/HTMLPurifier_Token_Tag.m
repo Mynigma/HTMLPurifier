@@ -48,6 +48,12 @@
     return self;
 }
 
+- (id)initWithName:(NSString*)n
+{
+    return [self initWithName:n attr:[NSMutableDictionary new] line:nil col:nil armor:[NSMutableDictionary new]];
+}
+
+
 - (HTMLPurifier_Node_Element*)toNode
     {
         return [[HTMLPurifier_Node_Element alloc] initWithName:self.name attr:self.attr line:self.line col:self.col armor:self.armor];
