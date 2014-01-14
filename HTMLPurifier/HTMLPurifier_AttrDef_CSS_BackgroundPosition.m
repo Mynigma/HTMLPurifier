@@ -67,13 +67,15 @@
         }
 
         // test for length
-        NSString* r = [length validateWithString:bit config:config context:context];        if (r) {
+        NSString* r = [length validateWithString:bit config:config context:context];
+        if (r) {
             [measures addObject:r];
             i++;
         }
 
         // test for percentage
-        r = [self->percentage validateWithString:bit config:config context:context];        if (r) {
+        r = [self->percentage validateWithString:bit config:config context:context];
+        if (r) {
             [measures addObject:r];
             i++;
         }
