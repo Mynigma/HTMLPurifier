@@ -155,6 +155,8 @@ NSString* substr(NSString* string, NSInteger start)
     return [string substringFromIndex:start];
 }
 
+
+
 NSInteger substr_count(NSString* haystack , NSString* needle)
 {
     NSUInteger count = 0, length = [haystack length];
@@ -267,6 +269,27 @@ NSString* implode(NSString* glue, NSArray* pieces)
 NSArray* explode(NSString* limitString, NSString* string)
 {
     return [string componentsSeparatedByString:limitString];
+}
+
+NSArray* explodeWithLimit(NSString* delimiter, NSString* string, NSInteger limit)
+{
+    NSArray* exploded = [string componentsSeparatedByString:delimiter];
+    
+    if (limit >= [exploded count]){
+        return exploded;
+    }
+    NSMutableArray* result;
+    for (int i = 0; i < limit-1 ; i++)
+    {
+        [result addObject:[exploded objectAtIndex:i]];
+    }
+    NSString* lastString = @"";
+    for (NSInteger j = limit-1; j < [exploded count]; j++)
+    {
+        lastString = [lastString stringByAppendingString:[exploded objectAtIndex:j]];
+    }
+    [result addObject:lastString];
+    return result;
 }
 
 NSMutableArray* array_reverse(NSMutableArray* oldArray)

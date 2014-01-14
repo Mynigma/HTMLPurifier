@@ -19,6 +19,7 @@
  */
 
 #import "HTMLPurifier_AttrDef_CSS.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_CSS
 
@@ -28,11 +29,11 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($css, $config, $context)
+-(NSString*) validateWithString:(NSString *)css config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    $css = $this->parseCDATA($css);
+    css = [super parseCDATAWithString:css];
     
-    $definition = $config->getCSSDefinition();
+    definition = [config getCSSDefinition];
     
     // we're going to break the spec and explode by semicolons.
     // This is because semicolon rarely appears in escaped form
@@ -40,24 +41,29 @@ public function validate($css, $config, $context)
     // IT MIGHT APPEAR IN URIs, see HTMLPurifier_AttrDef_CSSURI
     // for details
     
-    $declarations = explode(';', $css);
-    $propvalues = array();
+    NSArray* declarations = explode(@";",css);
+    NSMutableArray* propvalues = [NSMutableArray new];
     
     /**
      * Name of the current CSS property being validated.
      */
-    $property = false;
-    $context->register('CurrentCSSProperty', $property);
+    NSNumber* property = @(NO);
+    [context registerWithName:@"CurrentCSSProperty" ref:property];
     
-    foreach ($declarations as $declaration) {
-        if (!$declaration) {
+    for (NSString* declaration in declarations)
+    {
+        if (!declaration)
+        {
             continue;
         }
-        if (!strpos($declaration, ':')) {
+        if (!strpos(declaration, @":"))
+        {
             continue;
         }
-        list($property, $value) = explode(':', $declaration, 2);
-        $property = trim($property);
+        //list(property, $value) = explode(':', $declaration, 2);
+        NSArray* temp = explodeWithLimit(@":",declaration,2);
+    
+        property_array = trim(property_array);
         $value = trim($value);
         $ok = false;
         do {
