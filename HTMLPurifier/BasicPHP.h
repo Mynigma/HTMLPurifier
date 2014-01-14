@@ -162,6 +162,12 @@ finish:
     return result;
 }
 
+BOOL ctype_lower (NSString* text)
+{
+return ([text isEqual:[text lowercaseString]]);
+}
+
+
 //TODO ctype_alnum(string)
 
 //TODO is_numeric (string)
@@ -369,6 +375,26 @@ NSArray* explode(NSString* limitString, NSString* string)
     return [string componentsSeparatedByString:limitString];
 }
 
+NSArray* explodeWithLimit(NSString* delimiter, NSString* string, NSInteger limit)
+{
+    NSArray* exploded = [string componentsSeparatedByString:delimiter];
+    
+    if (limit >= [exploded count]){
+        return exploded;
+    }
+    NSMutableArray* result;
+    for (int i = 0; i < limit-1 ; i++)
+    {
+        [result addObject:[exploded objectAtIndex:i]];
+    }
+    NSString* lastString = @"";
+    for (NSInteger j = limit-1; j < [exploded count]; j++)
+    {
+        lastString = [lastString stringByAppendingString:[exploded objectAtIndex:j]];
+    }
+    [result addObject:lastString];
+    return result;
+}
 //array_shift
 
 NSMutableArray* array_reverse(NSMutableArray* oldArray)
