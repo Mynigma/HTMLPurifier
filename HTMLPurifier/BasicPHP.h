@@ -60,7 +60,7 @@ NSArray* preg_match (NSString* pattern, NSString* subject)
 }
 
 
-//Rerturns all match + subpatterns
+//Returns all match + subpatterns
 // Structure is array of arrays
 NSArray* preg_match_all(NSString* pattern, NSString* subject)
 {
@@ -79,7 +79,7 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
         return nil;
     }
     
-    // # of matches no use? Depends on preg_match_all -> What happens with non helpful submatches?
+    // # of matches
     NSUInteger num_matches = [result count];
     
     //sanity check
@@ -88,10 +88,13 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
         return nil;
     }
     
-    // Array of Array, holy holder of all matches
     NSMutableArray* findings = [NSMutableArray new];
     
-    NSUInteger num_submatches;
+    //count the number of found submatches
+    //No differenz between match.numberOfRanges and regex.numberOfCaptureGroups + 1 (the whole match)
+    NSUInteger num_submatches = [regex numberOfCaptureGroups] + 1;
+    
+    BOOL initArrays = YES;
     
     //go through all matches
     for (NSTextCheckingResult* match in result)
@@ -100,25 +103,24 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
         if([match range].location == NSNotFound)
             continue;
         
-        //count the number of found submatches
-        //is there a differenz between match.numberOfRanges and regex.numberOfCaptureGroups?? If not, this is easy.
-        num_submatches = [match numberOfRanges];
-        
         //go through all submatches
         for (NSInteger j = 0; j < num_submatches; j++)
         {
-            // if at this position therre is not yet an Array
-            if ([findings count] <= j)
+            // Init Arrays for the first match
+            if (initArrays)
                 [findings addObject:[NSMutableArray new]];
             
             // if the subpattern did not actually match anything.
             if ([match rangeAtIndex:j].location == NSNotFound)
-                continue; //With this we may have some empty arrays, but at least the Order remains.
+                continue; //With this we may have some empty arrays, but at least the Order remains. Don't know how PHP deals with this.
             
             //finally add the matched string
             [findings[j] addObject:[subject substringWithRange:[match rangeAtIndex:j]]];
-
+            
         }
+        
+        //all initiated
+        initArrays = NO;
         
     }
     
@@ -126,7 +128,7 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
 
 }
 
-//TODO preg_split 
+//TODO preg_split
 
 BOOL ctype_xdigit (NSString* text)
 {
