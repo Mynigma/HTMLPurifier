@@ -28,7 +28,7 @@
     NSMutableArray* colors = [NSMutableArray new];
     if ([colors count] == 0)
     {
-        colors = [config get:@"Core.ColorKeywords"];
+        colors = (NSMutableArray*)[[config get:@"Core.ColorKeywords"] mutableCopy];
     }
     
     string = trim(string);

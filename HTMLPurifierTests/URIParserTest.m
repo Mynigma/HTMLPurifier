@@ -37,17 +37,17 @@
 
 }
 
-- (void) assertParsing:(NSString*)uri scheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSString*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+- (void) assertParsing:(NSString*)uri scheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSNumber*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-        [self prepareCommon:config context:context];
+        [self prepareCommon:&config context:context];
         HTMLPurifier_URIParser* parser = [HTMLPurifier_URIParser new];
-        NSString* result = [parser parse:uri config:config context:context];
-    NSString* expect = [[HTMLPurifier_URI alloc] initWithScheme:scheme userinfo:userinfo host:host port:port path:path query:query fragment:fragment];
+        NSObject* result = [parser parse:uri];
+        NSObject* expect = [[HTMLPurifier_URI alloc] initWithScheme:scheme userinfo:userinfo host:host port:port path:path query:query fragment:fragment];
 
     [self assertEqual:result to:expect];
 }
 
-- (void) assertParsing:(NSString*)uri scheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSString*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment
+- (void) assertParsing:(NSString*)uri scheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSNumber*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment
 {
     [self assertParsing:uri scheme:scheme userinfo:userinfo host:host port:port path:path query:query fragment:fragment config:nil context:nil];
 }
@@ -55,7 +55,7 @@
 
 - (void)testPercentNormalization
 {
-    [self assertParsing:@"%G", nil, nil, nil, nil, @"%25G", nil, nil];
+    [self assertParsing:@"%G" scheme:nil userinfo:nil host:nil port:nil path:@"%%25G" query:nil fragment:nil];
 }
 
 - (void)testRegular
@@ -70,7 +70,7 @@
 
 - (void)testPercentEncoding
 {
-    [self assertParsing:@"http://en.wikipedia.org/wiki/Clich%C3%A9" scheme:@"http" userinfo:nil host:@"en.wikipedia.org" port:nil path:@"/wiki/Clich%C3%A9" query:nil fragment:nil];
+    [self assertParsing:@"http://en.wikipedia.org/wiki/Clich%%C3%%A9" scheme:@"http" userinfo:nil host:@"en.wikipedia.org" port:nil path:@"/wiki/Clich%%C3%%A9" query:nil fragment:nil];
     }
 
 
@@ -106,7 +106,7 @@
 
 - (void)testInternationalizedDomainName
 {
-    [self assertParsing:@"http://t\xC5\xABdali\xC5\x86.lv" scheme:@"http" userinfo:nil host:@"t\xC5\xABdali\xC5\x86.lv" port:nil path:@"" query:nil fragment:nil];
+    [self assertParsing:@"http://t\\xC5\\xABdali\\xC5\\x86.lv" scheme:@"http" userinfo:nil host:@"t\\xC5\\xABdali\\xC5\\x86.lv" port:nil path:@"" query:nil fragment:nil];
     }
 
 - (void)testInvalidPort
@@ -127,7 +127,7 @@
     
 - (void)testPathEmpty
 {
-        [self assertParsing:@"http://t\xC5\xABdali\xC5\x86.lv" scheme:@"http" userinfo:nil host:@"t\xC5\xABdali\xC5\x86.lv" port:nil path:@"" query:nil fragment:nil];
+        [self assertParsing:@"http://t\\xC5\\xABdali\\xC5\\x86.lv" scheme:@"http" userinfo:nil host:@"t\\xC5\\xABdali\\xC5\\x86.lv" port:nil path:@"" query:nil fragment:nil];
      }
     
     - (void) testRelativeURI {

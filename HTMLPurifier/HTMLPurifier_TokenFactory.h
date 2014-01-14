@@ -71,7 +71,7 @@
  * @param array $attr Associative array of attributes
  * @return HTMLPurifier_Token_Empty Generated HTMLPurifier_Token_Empty
  */
-- (HTMLPurifier_Token_Empty*)createEmptyWithName:(NSString*)name attr:(NSString*)attr;
+- (HTMLPurifier_Token_Empty*)createEmptyWithName:(NSString*)name attr:(NSDictionary*)attr;
 
 /**
  * Creates a HTMLPurifier_Token_Text.

@@ -128,7 +128,9 @@
  */
 - (NSString*)escapeCommentedCDATAWithString:(NSString*)string
 {
-    return [BasicPHP pregReplace:@"#<!--//--><!\\[CDATA\[//><!--(.+?)//--><!\\]\\]>#s" callback:[HTMLPurifier_Lexer CDataCallback] haystack:string];
+    return [BasicPHP pregReplace:@"#<!--//--><!\\[CDATA\[//><!--(.+?)//--><!\\]\\]>#s" callback:^(NSArray* array){
+        return [HTMLPurifier_Lexer CDATACallback:array];
+    } haystack:string];
 }
 
 /**

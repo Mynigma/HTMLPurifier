@@ -13,7 +13,7 @@
 
 @interface HTMLPurifier_CSSDefinition : HTMLPurifier_Definition
 
-@property NSString* type;
+@property NSString* typeString;
 @property NSMutableDictionary* info;
 
 - (void)doSetupWithConfig:(HTMLPurifier_Config*)config;

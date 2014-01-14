@@ -17,20 +17,20 @@
  * @param HTMLPurifier_Length|string $max Maximum length, or null for no bound. String is also acceptable.
  */
 
-- (id)initWithMin:(HTMLPurifier_Length*)newMin max:(HTMLPurifier_Length*)newMax
+- (id)initWithMin:(NSString*)newMin max:(NSString*)newMax
 {
     self = [super init];
     if (self) {
 
-        min = newMin ? [HTMLPurifier_Length makeWithS:newMin] : nil;
-        max = newMax ? [HTMLPurifier_Length makeWithS:newMax] : nil;
+        min = (HTMLPurifier_Length*)([newMin isKindOfClass:[HTMLPurifier_Length class]] ? newMin : (newMin ? [[HTMLPurifier_Length alloc] initWithN:(NSString*)newMin] : nil));
+        max = (HTMLPurifier_Length*)([newMax isKindOfClass:[HTMLPurifier_Length class]] ? newMax : (newMax ? [[HTMLPurifier_Length alloc] initWithN:(NSString*)newMax] : nil));
     }
     return self;
 }
 
-- (id)initWithMin:(HTMLPurifier_Length*)newMin
+- (id)initWithMin:(NSObject*)newMin
 {
-    return [self initWithMin:min max:nil];
+    return [self initWithMin:newMin max:nil];
 }
 
 

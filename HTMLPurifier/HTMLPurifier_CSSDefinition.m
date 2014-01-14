@@ -11,16 +11,21 @@
 #import "HTMLPurifier_AttrDef_Enum.h"
 #import "HTMLPurifier_AttrDef_CSS_Multiple.h"
 #import "HTMLPurifier_AttrDef_CSS_Composite.h"
+#import "HTMLPurifier_AttrDef_CSS_Background.h"
 #import "HTMLPurifier_AttrDef_CSS_BackgroundPosition.h"
 #import "HTMLPurifier_AttrDef_CSS_Border.h"
 #import "HTMLPurifier_AttrDef_CSS_Percentage.h"
 #import "HTMLPurifier_AttrDef_CSS_URI.h"
 #import "HTMLPurifier_AttrDef_CSS_ListStyle.h"
 #import "HTMLPurifier_AttrDef_CSS_Color.h"
+#import "HTMLPurifier_AttrDef_CSS_Number.h"
 #import "HTMLPurifier_AttrDef_CSS_Length.h"
-#import "HTMLPurifier_AttrDef_CSS_Switch.h"
+#import "HTMLPurifier_AttrDef_Switch.h"
 #import "HTMLPurifier_AttrDef_CSS_TextDecoration.h"
 #import "HTMLPurifier_AttrDef_CSS_URI.h"
+#import "HTMLPurifier_AttrDef_CSS_FontFamily.h"
+#import "HTMLPurifier_AttrDef_CSS_Font.h"
+#import "BasicPHP.h"
 
 
 @implementation HTMLPurifier_CSSDefinition
@@ -29,7 +34,7 @@
 {
     self = [super init];
     if (self) {
-        _type = @"CSS";
+        _typeString = @"CSS";
     }
     return self;
 }
@@ -89,11 +94,11 @@
     [self.info setObject:border_color forKey:@"background-color"];
 
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Background alloc] initWith:config] forKey:@"background"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Background alloc] initWithConfig:config] forKey:@"background"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:@[border_color forKey:@"border-color"]]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:border_color] forKey:@"border-color"];
 
-    HTMLPurifier_AttrDef_CSS_Composite* border_width = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"thin", @"medium", @"thick"]], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"]]];
+    HTMLPurifier_AttrDef_CSS_Composite* border_width = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"thin", @"medium", @"thick"]], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"]]];
 
     [self.info setObject:border_width forKey:@"border-top-width"];
     [self.info setObject:border_width forKey:@"border-bottom-width"];
@@ -102,17 +107,15 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:border_width] forKey:@"border-width"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifierAttrDef_Enum alloc] initWithSingle:@[@"normal"]]]]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Length alloc] init]]] forKey:@"letter-spacing"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Length] alloc] init]] forKey:@"letter-spacing"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[@"normal"]] forKey:@"word-spacing"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[@"normal"]] forKey:@"word-spacing"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"xx-small", @"x-small", @"small", @"medium", @"large", @"x-large", @"xx-large", @"larger", @"smaller"]], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] init]]] forKey:@"font-size"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@"xx-small", @"x-small", @"small", @"medium", @"large", @"x-large", @"xx-large", @"larger", @"smaller"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] init] ] forKey:@"font-size"];
+     self.info[@"line-height"] = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
 
-     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWIthSingle:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"], [[HTMLPurifier_AttrDef_Number alloc] initWith:YES], [[HTMLPurifier_AttrDef_Length alloc] initWith:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init:]]]] forKey:@"line-height"];
-
-     HTMLPurifier_AttrDef_CSS_Composite* margin = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWith:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWith:@[@"auto"]]]];
+     HTMLPurifier_AttrDef_CSS_Composite* margin = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
 
      [self.info setObject:margin forKey:@"margin-top"];
      [self.info setObject:margin forKey:@"margin-bottom"];
@@ -121,7 +124,7 @@
 
      [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:margin] forKey:@"margin"];
 
-     HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWith:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWith:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWith:YES]]];
+     HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
 
      [self.info setObject:padding forKey:@"padding-top"];
      [self.info setObject:padding forKey:@"padding-bottom"];
@@ -130,11 +133,11 @@
 
      [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:padding] forKey:@"padding"];
 
-     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWith:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init]]] forKey:@"text-indent"];
+     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init]]] forKey:@"text-indent"];
 
      HTMLPurifier_AttrDef_CSS_Composite* trusted_wh = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
 
-    NSNumber* max = [config get:@"CSS.MaxImgLength"];
+    NSNumber* max = (NSNumber*)[config get:@"CSS.MaxImgLength"];
 
      HTMLPurifier_AttrDef_CSS_Composite* composite = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
 
@@ -143,11 +146,11 @@
     [self.info setObject:attrDef forKey:@"width"];
     [self.info setObject:attrDef forKey:@"height"];
 
-     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_TextDecoration alloc] init] forKey:@"text-decoration"]];
+     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_TextDecoration alloc] init] forKey:@"text-decoration"];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_FontFamily alloc] init] forKey:@"font-family"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal", @"bold", @"bolder", @"lighter", @"100", @"200", @"300", @"400", @"500", @"600", @"700", @"800", @"900"] caseSensitive:NO]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal", @"bold", @"bolder", @"lighter", @"100", @"200", @"300", @"400", @"500", @"600", @"700", @"800", @"900"] caseSensitive:NO] forKey:@"font-weight"];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Font alloc] initWithConfig:config] forKey:@"font"];
 
@@ -159,15 +162,15 @@
     [self.info setObject:border forKey:@"border-left"];
     [self.info setObject:border forKey:@"border-right"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"collapse", @"separate"] forKey:@"border-collapse"]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"collapse", @"separate"]] forKey:@"border-collapse"];
 
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"top", @"bottom"] forKey:@"caption-side"]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"top", @"bottom"]] forKey:@"caption-side"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto", @"fixed"] forKey:@"table-layout"]];
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto", @"fixed"]] forKey:@"table-layout"];
 
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithValidValues:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"baseline", @"sub", @"super", @"top", @"text-top", @"middle", @"bottom", @"text-bottom"]], [HTMLPurifier_AttrDef_CSS_Length new], [HTMLPurifier_AttrDef_CSS_Percentage new]]] forKey:@"vertical-align"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"baseline", @"sub", @"super", @"top", @"text-top", @"middle", @"bottom", @"text-bottom"]], [HTMLPurifier_AttrDef_CSS_Length new], [HTMLPurifier_AttrDef_CSS_Percentage new]]] forKey:@"vertical-align"];
 
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:2] forKey:@"border-spacing"];
@@ -307,7 +310,7 @@
 - (void)setupConfigStuff:(HTMLPurifier_Config*)config
 {
     // setup allowed elements
-    NSString* support = @"(for information on implementing this, see the " . "support forums) ";
+    NSString* support = @"(for information on implementing this, see the support forums) ";
     NSMutableDictionary* allowed_properties = [[config get:@"CSS.AllowedProperties"] mutableCopy];
     if (allowed_properties)
     {
