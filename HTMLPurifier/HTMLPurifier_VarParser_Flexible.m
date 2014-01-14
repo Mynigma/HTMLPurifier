@@ -20,8 +20,10 @@
  * @return array|bool|float|int|mixed|null|string
  * @throws HTMLPurifier_VarParserException
  */
-- (NSObject*)parseImplementation:var type:(NSNumber*)type allowNull:(BOOL)allow_null;
+- (NSObject*)parseImplementation:var type:(NSNumber*)type allowNull:(BOOL)allow_null
 {
+    return nil;
+    /*
     if (allow_null && !var) {
         return nil;
     }
@@ -131,7 +133,7 @@
             $this->errorInconsistent(__CLASS__, $type);
     }
     $this->errorGeneric($var, $type);
-}
+}*/
 }
 
 

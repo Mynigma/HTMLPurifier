@@ -35,7 +35,7 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
 + (HTMLPurifier_ConfigSchema*)makeFromSerial
 {
-    NSData* contents = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Config" ofType:@"plist"]];
+    NSData* contents = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
     if(!contents)
     {
         NSLog(@"Error opening config plist file!");
@@ -52,7 +52,7 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
     HTMLPurifier_ConfigSchema* r = [HTMLPurifier_ConfigSchema singleton];
 
-    [r setDefaultPList:configDict[@"DefaultPropertyList"]];
+    [r setDefaultPList:configDict[@"defaultPlist"]];
     [r setInfo:[configDict[@"info"] mutableCopy]];
     [r setDefaults:[configDict[@"defaults"] mutableCopy]];
     

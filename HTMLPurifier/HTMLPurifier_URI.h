@@ -10,4 +10,41 @@
 
 @interface HTMLPurifier_URI : NSObject
 
+/**
+ * @type string
+ */
+@property NSString* scheme;
+
+/**
+ * @type string
+ */
+@property NSString* userinfo;
+
+/**
+ * @type string
+ */
+@property NSString* host;
+
+/**
+ * @type int
+ */
+@property NSNumber* port;
+
+/**
+ * @type string
+ */
+@property NSString* path;
+
+/**
+ * @type string
+ */
+@property NSString* query;
+
+/**
+ * @type string
+ */
+@property NSString* fragment;
+
+
+
 @end
