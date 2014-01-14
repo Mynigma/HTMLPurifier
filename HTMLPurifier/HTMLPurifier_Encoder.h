@@ -115,7 +115,15 @@
 //     *       would need that, and I'm probably not going to implement them.
 //     *       Once again, PHP 6 should solve all our problems.
 //     */
-//    public static function cleanUTF8($str, $force_php = false)
++ (NSString*)cleanUTF8:(NSString*)str
+{
+    return [[HTMLPurifier_Encode] cleanUTF8:str forcePHP:NO];
+}
+
++ (NSString*)cleanUTF8:(NSString*)str forcePHP:force_php
+{
+    return nil;
+}
 //    {
 //        // UTF-8 validity is checked since PHP 4.3.5
 //        // This is an optimization: if the string is already valid UTF-8, no

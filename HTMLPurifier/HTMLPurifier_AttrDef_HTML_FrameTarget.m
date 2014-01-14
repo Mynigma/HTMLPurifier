@@ -36,7 +36,7 @@
 {
     if (!valid_values)
     {
-        valid_values = [config get:@"Attr.AllowedFrameTargets"];
+        valid_values = (NSMutableArray*)[[config get:@"Attr.AllowedFrameTargets"] mutableCopy];
     }
     return [super validateWithString:string config:config context:context];
 }
