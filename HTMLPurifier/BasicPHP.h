@@ -24,6 +24,8 @@ NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subje
 
 //preg_match_all
 
+//TODO preg_split 
+
 //preg_match
 //BOOL or Array?
 NSArray* preg_match (NSString* pattern, NSString* subject)
@@ -65,6 +67,11 @@ BOOL ctype_digit (NSString* text)
     return YES;
 }
 
+BOOL ctype_lower (NSString* text)
+{
+    return ([text isEqual:[text lowercaseString]]);
+}
+
 //TODO ctype_alnum(string)
 
 //TODO is_numeric (string)
@@ -82,9 +89,10 @@ NSString* trimWithFormat(NSString* string, NSString* format)
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
 }
 
+
 //parse cdata
 
-//ctype_alpha
+
 BOOL ctype_alpha (NSString* text)
 {
     for(NSInteger i=0;i <text.length; i++)
