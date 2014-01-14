@@ -23,21 +23,64 @@ NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subje
 }
 
 
-// instead of return BOOL and using an return Array as ARG. return Array , if not found return empty array
+// Returns the first match + subpattern matches in that match
+// instead of return BOOL and using an return Array as ARG. return Array , if not found return nil || empty array ?? TODO
 NSArray* preg_match (NSString* pattern, NSString* subject)
 {
     NSError* error = nil;
     
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
-    NSArray* range_array = [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+    NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0,subject.length)];
     
-    if (!range_array)
+    if (!result)
     {
         return nil;
     }
     
-    NSUInteger num_matches = [range_array count];
+    if ([result range].location == NSNotFound)
+    {
+        return nil;
+    }
+    
+    NSMutableArray* findings = [NSMutableArray new];
+    
+    [findings addObject:[subject substringWithRange:[result range]]];
+    
+    for (NSInteger i = 1; i < [result numberOfRanges]; i++)
+    {
+        NSRange range = [result rangeAtIndex:i];
+        if (range.location == NSNotFound)
+            continue;
+        [findings addObject:[subject substringWithRange:range]];
+    }
+    
+    return findings;
+    
+}
+
+
+//Rerturns all match + subpatterns
+// Structure is array of arrays
+NSArray* preg_match_all(NSString* pattern, NSString* subject)
+{
+    
+    NSError* error = nil;
+    
+    // make regex
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    //match all in Strings
+    NSArray* result = [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+
+    // found nothing?
+    if (!result)
+    {
+        return nil;
+    }
+    
+    // # of matches no use? Depends on preg_match_all -> What happens with non helpful submatches?
+    NSUInteger num_matches = [result count];
     
     //sanity check
     if(num_matches == 0)
@@ -45,33 +88,42 @@ NSArray* preg_match (NSString* pattern, NSString* subject)
         return nil;
     }
     
-    NSMutableArray* result = [NSMutableArray new];
+    // Array of Array, holy holder of all matches
+    NSMutableArray* findings = [NSMutableArray new];
+    
     NSUInteger num_submatches;
     
-    for (NSInteger i = 0; i < num_matches; i++){
+    //go through all matches
+    for (NSTextCheckingResult* match in result)
+    {
+        //this cannot happen, "that's what she said"
+        if([match range].location == NSNotFound)
+            continue;
         
-        num_submatches = [range_array[i] numberOfRanges];
+        //count the number of found submatches
+        //is there a differenz between match.numberOfRanges and regex.numberOfCaptureGroups?? If not, this is easy.
+        num_submatches = [match numberOfRanges];
         
+        //go through all submatches
         for (NSInteger j = 0; j < num_submatches; j++)
         {
-            NSRange range = [range_array[i] rangeAtIndex:j];
+            // if at this position therre is not yet an Array
+            if ([findings count] <= j)
+                [findings addObject:[NSMutableArray new]];
             
-            if
+            // if the subpattern did not actually match anything.
+            if ([match rangeAtIndex:j].location == NSNotFound)
+                continue; //With this we may have some empty arrays, but at least the Order remains.
             
-        
+            //finally add the matched string
+            [findings[j] addObject:[subject substringWithRange:[match rangeAtIndex:j]]];
+
         }
         
     }
     
-    
-    
-}
+    return findings;
 
-
-// apparently preg_match_all with the default FLAG does the same as preg_match
-NSArray* preg_match_all(NSString* pattern, NSString* subject)
-{
-    return preg_match(pattern,subject);
 }
 
 //TODO preg_split 
@@ -207,9 +259,29 @@ return ([text isEqual:[text lowercaseString]]);
 }
 
 
-//TODO ctype_alnum(string)
+BOOL ctype_alnum(NSString* string)
+{
+    for(NSInteger i=0;i <string.length; i++)
+    {
+        unichar character = [string characterAtIndex:i];
+        if(!(isalnum(character)))
+            return NO;
+    }
+    return YES;
+}
 
-//TODO is_numeric (string)
+
+BOOL is_numeric(NSString* string)
+{
+    for(NSInteger i=0;i <string.length; i++)
+    {
+        unichar character = [string characterAtIndex:i];
+        if(!(isnumber(character)))
+            return NO;
+    }
+    return YES;
+}
+
 
 NSString* trim(NSString* string)
 {
@@ -434,7 +506,7 @@ NSArray* explodeWithLimit(NSString* delimiter, NSString* string, NSInteger limit
     [result addObject:lastString];
     return result;
 }
-//array_shift
+
 
 NSMutableArray* array_reverse(NSMutableArray* oldArray)
 {
@@ -461,6 +533,10 @@ void array_push(NSMutableArray* array, NSObject* x)
 {
     [array addObject:x];
 }
+
+
+//TODO
+//array_shift
 
 //TODO array_map
 
