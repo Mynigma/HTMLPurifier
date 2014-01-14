@@ -47,7 +47,11 @@
     {
         expect = string;
     }
-    [self assertEqual:[PercentEncoder performSelector:func withObject:string] to:expect];
+    SEL selector = NSSelectorFromString(@"someMethod");
+    IMP imp = [PercentEncoder methodForSelector:func];
+    NSObject* (*function)(id, SEL, NSString*) = (void *)imp;
+    NSObject* result = function(PercentEncoder, selector, string);
+    [self assertEqual:result to:expect];
 }
 
 - (void)testNormalize

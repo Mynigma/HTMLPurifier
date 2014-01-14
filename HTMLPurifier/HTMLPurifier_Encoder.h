@@ -11,7 +11,7 @@
 @interface HTMLPurifier_Encoder : NSObject
 
 
-+ (NSString*)muteErrorHandler;
++ (void)muteErrorHandler;
 
 //    /**
 //     * iconv wrapper which mutes errors, but doesn't work around bugs.

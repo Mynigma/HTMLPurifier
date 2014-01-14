@@ -50,9 +50,9 @@
      * @param array $armor
      */
 
-- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
+- (id)initWithName:(NSString*)n attr:(NSDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
 
-- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att;
+- (id)initWithName:(NSString*)n attr:(NSDictionary*)att;
 
 - (id)initWithName:(NSString*)n;
 
