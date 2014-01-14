@@ -74,6 +74,16 @@
     return [self iconvWithIn:inputEncoding out:outputEncoding text:text maxChunkSize:8000];
 }
 
++ (NSString*)cleanUTF8:(NSString*)str
+{
+    return [HTMLPurifier_Encoder cleanUTF8:str forcePHP:NO];
+}
+
++ (NSString*)cleanUTF8:(NSString*)str forcePHP:force_php
+{
+    return nil;
+}
+
 + (NSString*)iconvWithIn:(NSString*)inputEncoding out:(NSString*)outputEncoding text:(NSString*)text maxChunkSize:(NSInteger)max_chunk_size
     {
         return nil;
