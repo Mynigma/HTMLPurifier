@@ -60,7 +60,7 @@ NSArray* preg_match (NSString* pattern, NSString* subject)
 }
 
 
-//Returns all match + subpatterns
+//Returns all matches & subpattern matches
 // Structure is array of arrays
 NSArray* preg_match_all(NSString* pattern, NSString* subject)
 {
@@ -298,8 +298,6 @@ NSString* trimWithFormat(NSString* string, NSString* format)
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
 }
 
-
-//parse cdata
 
 
 BOOL ctype_alpha (NSString* text)
