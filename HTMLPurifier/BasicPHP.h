@@ -24,6 +24,8 @@ NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subje
 
 //preg_match_all
 
+//TODO preg_split 
+
 //preg_match
 //BOOL or Array?
 NSArray* preg_match (NSString* pattern, NSString* subject)
@@ -177,9 +179,10 @@ NSString* trimWithFormat(NSString* string, NSString* format)
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
 }
 
+
 //parse cdata
 
-//ctype_alpha
+
 BOOL ctype_alpha (NSString* text)
 {
     for(NSInteger i=0;i <text.length; i++)
@@ -249,6 +252,8 @@ NSString* substr(NSString* string, NSInteger start)
 {
     return [string substringFromIndex:start];
 }
+
+
 
 NSInteger substr_count(NSString* haystack , NSString* needle)
 {

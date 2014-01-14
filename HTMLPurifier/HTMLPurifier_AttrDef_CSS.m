@@ -19,6 +19,8 @@
  */
 
 #import "HTMLPurifier_AttrDef_CSS.h"
+#import "HTMLPurifier_CSSDefinition.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_CSS
 
@@ -28,11 +30,11 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($css, $config, $context)
+-(NSString*) validateWithString:(NSString *)css config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    $css = $this->parseCDATA($css);
+    css = [super parseCDATAWithString:css];
     
-    $definition = $config->getCSSDefinition();
+    HTMLPurifier_CSSDefinition* definition = [config getCSSDefinition];
     
     // we're going to break the spec and explode by semicolons.
     // This is because semicolon rarely appears in escaped form
@@ -40,72 +42,81 @@ public function validate($css, $config, $context)
     // IT MIGHT APPEAR IN URIs, see HTMLPurifier_AttrDef_CSSURI
     // for details
     
-    $declarations = explode(';', $css);
-    $propvalues = array();
+    NSArray* declarations = explode(@";",css);
+    NSMutableDictionary* propvalues = [NSMutableDictionary new];
     
     /**
      * Name of the current CSS property being validated.
      */
-    $property = false;
-    $context->register('CurrentCSSProperty', $property);
+    NSNumber* property = @(NO);
+    [context registerWithName:@"CurrentCSSProperty" ref:property];
     
-    foreach ($declarations as $declaration) {
-        if (!$declaration) {
+    for (NSString* declaration in declarations)
+    {
+        if (!declaration)
+        {
             continue;
         }
-        if (!strpos($declaration, ':')) {
+        if (!strpos(declaration, @":"))
+        {
             continue;
         }
-        list($property, $value) = explode(':', $declaration, 2);
-        $property = trim($property);
-        $value = trim($value);
-        $ok = false;
+        //list(property, $value) = explode(':', $declaration, 2);
+        NSArray* temp = explodeWithLimit(@":",declaration,2);
+        NSString* property_string = [temp objectAtIndex:0];
+        NSString*  value = [temp objectAtIndex:1];
+        
+        property_string = trim(property_string);
+        value = trim(value);
+        NSNumber* ok = @(NO);
         do {
-            if (isset($definition->info[$property])) {
-                $ok = true;
+            if ([definition info][property_string])
+            {
+                ok = @(YES);
                 break;
             }
-            if (ctype_lower($property)) {
-                break;
-            }
-            $property = strtolower($property);
-            if (isset($definition->info[$property])) {
-                $ok = true;
+            property_string = [property_string lowercaseString];
+            if ([definition info][property_string])
+            {
+                ok = @(YES);
                 break;
             }
         } while (0);
-        if (!$ok) {
+        if (![ok boolValue]) {
             continue;
         }
         // inefficient call, since the validator will do this again
-        if (strtolower(trim($value)) !== 'inherit') {
+        NSString* result;
+        // inefficient call, since the validator will do this again
+        if (![[value lowercaseString] isEqual:@"inherit"])
+        {
             // inherit works for everything (but only on the base property)
-            $result = $definition->info[$property]->validate(
-                                                             $value,
-                                                             $config,
-                                                             $context
-                                                             );
-        } else {
-            $result = 'inherit';
+            result = [[definition info][property_string] validateWithString:value config:config context:context];
         }
-        if ($result === false) {
+        else
+        {
+            result = @"inherit";
+        }
+        if (!result)
+        {
             continue;
         }
-        $propvalues[$property] = $result;
+        propvalues[property] = result;
     }
     
-    $context->destroy('CurrentCSSProperty');
+    [context destroy:@"CurrentCSSProperty"];
     
     // procedure does not write the new CSS simultaneously, so it's
     // slightly inefficient, but it's the only way of getting rid of
     // duplicates. Perhaps config to optimize it, but not now.
     
-    $new_declarations = '';
-    foreach ($propvalues as $prop => $value) {
-        $new_declarations .= "$prop:$value;";
+    NSString* new_declarations = @"";
+    for (NSString* key in propvalues.allKeys)
+    {
+        new_declarations = [new_declarations stringByAppendingString:[NSString stringWithFormat:@"%@:%@;",key,propvalues[key]]];
     }
     
-    return $new_declarations ? $new_declarations : false;
+    return [new_declarations isEqual:@""] ? new_declarations : nil;
     
 }
 
