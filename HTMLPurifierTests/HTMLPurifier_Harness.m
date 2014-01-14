@@ -98,7 +98,7 @@ static HTMLPurifier* purifier;
     str_replace(@[@"\r\n", @"\r"], @"\n", string);
 }
 
-- (void)assertIdentical:(NSObject*)expect result:(NSObject*)result
+- (void)assertEqual:(NSObject*)expect to:(NSObject*)result
 {
     XCTAssertEqual(expect, result, @"Expected result %@ and got %@", expect, result);
 }

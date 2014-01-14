@@ -8,6 +8,8 @@
 
 #import "HTMLPurifier_AttrDef_CSS_BackgroundPosition.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_AttrDef_CSS_Percentage.h"
+#import "HTMLPurifier_AttrDef_CSS_Length.h"
 
 @implementation HTMLPurifier_AttrDef_CSS_BackgroundPosition
 
@@ -15,8 +17,8 @@
 {
     self = [super init];
     if (self) {
-    _length = [[HTMLPurifier_AttrDef_CSS_Length alloc] init];
-    _percentage = [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init];
+    length = [[HTMLPurifier_AttrDef_CSS_Length alloc] init];
+    percentage = [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init];
     }
     return self;
 }
@@ -65,50 +67,49 @@
         }
 
         // test for length
-        NSString* r = [self.length validate($bit, $config, $context);
-        if ($r !== false) {
-            $measures[] = $r;
-            $i++;
+        NSString* r = [length validateWithString:bit config:config context:context];        if (r) {
+            [measures addObject:r];
+            i++;
         }
 
         // test for percentage
-        $r = $this->percentage->validate($bit, $config, $context);
-        if ($r !== false) {
-            $measures[] = $r;
-            $i++;
+        r = [self->percentage validateWithString:bit config:config context:context];        if (r) {
+            [measures addObject:r];
+            i++;
         }
     }
 
-    if (!$i) {
-        return false;
+    if (i==0) {
+        return nil;
     } // no valid values were caught
 
-    $ret = array();
+    NSMutableArray* ret = [NSMutableArray new];
 
     // first keyword
-    if ($keywords['h']) {
-        $ret[] = $keywords['h'];
-    } elseif ($keywords['ch']) {
-        $ret[] = $keywords['ch'];
-        $keywords['cv'] = false; // prevent re-use: center = center center
-    } elseif (count($measures)) {
-        $ret[] = array_shift($measures);
+    if (keywords[@"h"]) {
+        [ret addObject:keywords[@"h"]];
+    } else if (keywords[@"ch"]) {
+        [ret addObject:keywords[@"ch"]];
+        keywords[@"cv"] = NO; // prevent re-use: center = center center
+    } else if (measures.count>0) {
+        [ret addObject:array_shift(measures)];
     }
 
-    if ($keywords['v']) {
-        $ret[] = $keywords['v'];
-    } elseif ($keywords['cv']) {
-        $ret[] = $keywords['cv'];
-    } elseif (count($measures)) {
-        $ret[] = array_shift($measures);
+    if (keywords[@"v"]) {
+        [ret addObject:keywords[@"v"]];
+    } else if (keywords[@"cv"]) {
+        [ret addObject:keywords[@"cv"]];
+    } else if (measures.count>0) {
+        [ret addObject:array_shift(measures)];
     }
 
-    if (empty($ret)) {
-        return false;
+    if (ret.count==0)
+    {
+        return nil;
     }
-    return implode(' ', $ret);
+    return implode(@" ", ret);
 }
-}
+
 
 
 @end

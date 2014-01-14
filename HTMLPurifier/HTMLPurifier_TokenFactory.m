@@ -19,10 +19,10 @@
 - (id)init{
     self = [super init];
     if (self) {
-        _p_start = [[HTMLPurifier_Token_Start alloc] initWith:@"" @[]];
-        _p_end = [[HTMLPurifier_Token_End alloc] initW:@""];
-        _p_empty = [[HTMLPurifier_Token_Empty alloc] initW:@"" @[]];
-        _p_text = [[HTMLPurifier_Token_Text alloc] initW:@""];
+        _p_start = [[HTMLPurifier_Token_Start alloc] initWithName:@""];
+        _p_end = [[HTMLPurifier_Token_End alloc] initWithName:@""];
+        _p_empty = [[HTMLPurifier_Token_Empty alloc] initWithName:@""];
+        _p_text = [[HTMLPurifier_Token_Text alloc] initWithData:@""];
         _p_comment = [[HTMLPurifier_Token_Comment alloc] initWithData:@""];
     }
     return self;
@@ -37,8 +37,7 @@
 - (HTMLPurifier_Token_Start*)createStartWithName:(NSString*)name attr:(NSMutableDictionary*)att
     {
         HTMLPurifier_Token_Start* p = [self.p_start copy];
-        [p initWithName:name att:attr];
-        return p;
+        return [p initWithName:name attr:att];
     }
 
     /**
@@ -49,8 +48,7 @@
 - (HTMLPurifier_Token_End*)createEndWithName:(NSString*)name
     {
         HTMLPurifier_Token_End* p = [self.p_end copy];
-        [p initWithName:name];
-        return p;
+        return [p initWithName:name];
     }
 
     /**
@@ -62,8 +60,7 @@
 - (HTMLPurifier_Token_Empty*)createEmptyWithName:(NSString*)name attr:(NSString*)attr
     {
         HTMLPurifier_Token_Empty* p = [self.p_empty copy];
-        [p initWithName:name attr:attr];
-        return p;
+        return [p initWithName:name attr:attr];
     }
 
     /**
@@ -74,8 +71,7 @@
 - (HTMLPurifier_Token_Text*)createTextWithData:(NSString*)data
     {
         HTMLPurifier_Token_Text* p = [self.p_text copy];
-        [p initWithData:data];
-        return p;
+        return [p initWithData:data];
     }
 
     /**
@@ -86,8 +82,7 @@
 - (HTMLPurifier_Token_Comment*)createCommentWithData:(NSString*)data
     {
         HTMLPurifier_Token_Comment* p = [self.p_comment copy];
-        [p initWithData:data];
-        return p;
+        return [p initWithData:data];
     }
 
 

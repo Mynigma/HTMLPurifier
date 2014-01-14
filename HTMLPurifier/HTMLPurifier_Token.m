@@ -32,7 +32,7 @@
      * @param string $n
      * @return null|string
      */
-- (NSString*)__get:(NSString*)n
+- (NSString*)valueForUndefinedKey:(NSString*)n
     {
         if ([n isEqualToString:@"type"])
         {
@@ -50,7 +50,7 @@
                 return @"comment";
         return nil;
     }
-
+/*
 - (NSString*)name
 {
     if([self isKindOfClass:[HTMLPurifier_Token_Start class]])
@@ -65,6 +65,11 @@
         return @"comment";
     return nil;
 }
+
+- (NSString*)attr
+{
+    return [self name];
+}*/
 
     /**
      * Sets the position of the token in the source document.

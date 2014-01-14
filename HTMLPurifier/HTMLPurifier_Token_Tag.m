@@ -48,6 +48,11 @@
     return self;
 }
 
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att
+{
+    return [self initWithName:n attr:att line:nil col:nil armor:[NSMutableDictionary new]];
+}
+
 - (id)initWithName:(NSString*)n
 {
     return [self initWithName:n attr:[NSMutableDictionary new] line:nil col:nil armor:[NSMutableDictionary new]];

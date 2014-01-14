@@ -11,8 +11,11 @@
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Zipper.h"
-#import "HTMLPurifier_Definition.h"
-
+#import "HTMLPurifier_HTMLDefinition.h"
+#import "BasicPHP.h"
+#import "HTMLPurifier_ElementDef.h"
+#import "HTMLPurifier_Token_Start.h"
+#import "HTMLPurifier_Token_End.h"
 
 @implementation HTMLPurifier_Injector
 
@@ -87,7 +90,7 @@
             }
             if (!def.info[newElement])
             {
-                return newElement;
+                return (NSString*)newElement;
             }
             if (![attributes isKindOfClass:[NSArray class]])
             {
@@ -95,7 +98,7 @@
             }
             for(NSString* name in attributes)
             {
-                if (![def.info[newElement] attr][name])
+                if (!((NSObject*)def.info[newElement])->attr][name])
                 {
                     return [NSString stringWithFormat:@"%@.%@", newElement, name];
                 }
@@ -111,14 +114,15 @@
      */
 - (BOOL)allowsElement:(NSString*)name
     {
+        HTMLPurifier_ElementDef* parent = nil;
         if (currentNesting.count!=0) {
-            HTMLPurifier_Token* parent_token = array_pop(currentNesting);
+            HTMLPurifier_Token* parent_token = (HTMLPurifier_Token*)array_pop(currentNesting);
             [currentNesting addObject:parent_token];
-            parent = htmlDefinition->info[parent_token->name];
+            parent = htmlDefinition.info[parent_token.name];
         } else {
-            parent = htmlDefinition->info_parent_def;
+            parent = htmlDefinition.info_parent_def;
         }
-        if (!parent->child->elements[name]) || parent->excludes[name])) {
+        if (!parent.child.elements[name]) || parent.excludes[name])) {
             return NO;
         }
         // check for exclusion
@@ -144,15 +148,15 @@
      */
 - (BOOL)forward:(NSInteger*)i current:(HTMLPurifier_Token**)current
     {
-        if (i == null) {
-            i* = [inputZipper->back count] - 1;
+        if (!i) {
+            *i = [inputZipper.back count] - 1;
         } else {
-            i*--;
+            (*i)--;
         }
-        if (i* < 0) {
+        if (*i < 0) {
             return NO;
         }
-        current* = inputZipper->back[i*];
+        *current = inputZipper.back[*i];
         return YES;
     }
 
@@ -166,7 +170,7 @@
      * @param int $nesting
      * @return bool
      */
-- (BOOL)forwardUntilEndToken:(NSInteger*)i current:(NSInteger*)current nesting:(NSInteger*)nesting
+- (BOOL)forwardUntilEndToken:(NSInteger*)i current:(HTMLPurifier_Token**)current nesting:(NSInteger*)nesting
     {
         BOOL result = [self forward:i current:current];
         if (!result) {
@@ -175,14 +179,15 @@
         if (nesting<0) {
             nesting = 0;
         }
-        if ([current* is
-            $current instanceof HTMLPurifier_Token_Start) {
-            $nesting++;
-        } elseif ($current instanceof HTMLPurifier_Token_End) {
-            if ($nesting <= 0) {
+        if ([*current isKindOfClass:[HTMLPurifier_Token_Start class]])
+        {
+            (*nesting)++;
+        } else if ([*current isKindOfClass:[HTMLPurifier_Token_End class]])
+        {
+            if (*nesting <= 0) {
                 return false;
             }
-            $nesting--;
+            (*nesting)--;
         }
         return true;
     }
@@ -199,15 +204,15 @@
      */
 - (BOOL)backward:(NSInteger*)i current:(HTMLPurifier_Token**)current
     {
-        if (i == null) {
-            i* = [inputZipper->front count] - 1;
+        if (!i) {
+            *i = [inputZipper.front count] - 1;
         } else {
-            i*--;
+            (*i)--;
         }
-        if (i* < 0) {
+        if (*i < 0) {
             return NO;
         }
-        current* = inputZipper->front[i*];
+        *current = inputZipper.front[*i];
         return YES;
     }
 
@@ -230,7 +235,7 @@
      */
 - (void)handleEnd:(HTMLPurifier_Token**)token
     {
-        [self notifyEnd:token*];
+        [self notifyEnd:*token];
     }
 
     /**

@@ -7,8 +7,9 @@
 //
 
 #import "HTMLPurifier_HTMLDefinition.h"
-#import "HTMLPurifier_Module.h"
-#import "HTMLPurifier_ModuleManager.h"
+#import "HTMLPurifier_HTMLModule.h"
+#import "HTMLPurifier_HTMLModuleManager.h"
+#import "HTMLPurifier_ElementDef.h"
 
 
 @implementation HTMLPurifier_HTMLDefinition
@@ -28,7 +29,7 @@
         _info_content_sets = [NSMutableDictionary new];
         _info_injector = [NSMutableArray new];
         _anonModule = nil;
-        _type = @"HTML";
+        _typeString = @"HTML";
         _manager = [HTMLPurifier_HTMLModuleManager new];
     }
     return self;
@@ -49,12 +50,12 @@
 {
     HTMLPurifier_ElementDef* element;
     HTMLPurifier_HTMLModule* module = [self getAnonymousModule];
-    if (!module->info[element_name])) {
+    if (!module.info[element_name]) {
         element = [module addBlankElement:element_name];
     } else {
-        element = module->info[element_name];
+        element = module.info[element_name];
     }
-    element->attr[attr_name] = def;
+    element.attr[attr_name] = def;
 }
 
 /**
@@ -67,7 +68,7 @@
     HTMLPurifier_HTMLModule* module = [self getAnonymousModule];
     // assume that if the user is calling this, the element
     // is safe. This may not be a good idea
-    HTMLPurifier_ElementDef* element = [module addElement:element_name type:type contents:contents attrCollections:attr_collections attributes:attributes];
+    HTMLPurifier_ElementDef* element = [module addElement:element_name type:type contents:contents attrIncludes:attr_collections attr:attributes];
     return element;
 }
 
@@ -92,11 +93,11 @@
  * module.
  * @return HTMLPurifier_HTMLModule
  */
-- (HTMLPurifier_Module*)getAnonymousModule
+- (HTMLPurifier_HTMLModule*)getAnonymousModule
 {
     if (!self->_anonModule) {
         self->_anonModule = [HTMLPurifier_HTMLModule new];
-        self->_anonModule->name = @"Anonymous";
+        self->_anonModule.name = @"Anonymous";
     }
     return self->_anonModule;
 }
@@ -109,29 +110,16 @@
 {
     [self processModules:config];
     [self setupConfigStuff:config];
-    manager = nil;
+    _manager = nil;
 
     // cleanup some of the element definitions
-    for(NSString* k in info) {
-        info[k]->content_model = nil;
-        unset($this->info[$k]->content_model_type);
+    for(NSString* k in _info) {
+        HTMLPurifier_ElementDef* elementDef = _info[k];
+        [elementDef setContent_model:nil];
+        [elementDef setContent_model_type:nil];
     }
 }
 
-
-- (HTMLPurifier_Module*)getAnonymousModule
-{
-    return nil;
-}
-
-
-/**
- * @param HTMLPurifier_Config $config
- */
-- (void)doSetup:(HTMLPurifier_Config*)config
-{
-
-}
 /**
  * Extract out the information from the manager
  * @param HTMLPurifier_Config $config

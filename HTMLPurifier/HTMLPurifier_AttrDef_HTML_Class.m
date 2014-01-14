@@ -9,6 +9,7 @@
 #import "HTMLPurifier_AttrDef_HTML_Class.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_HTMLDefinition.h"
+#import "HTMLPurifier_Doctype.h"
 
 /**
 * Implements special behavior for class attribute (normally NMTOKENS)
@@ -30,7 +31,7 @@
 -(NSString*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
     // really, this twiddle should be lazy loaded
-    NSString* name = [[(HTMLPurifier_HTMLDefinition*)[config getDefinition:@"HTML"] doctype] name];
+    NSString* name = [(HTMLPurifier_Doctype*)[(HTMLPurifier_HTMLDefinition*)[config getDefinition:@"HTML"] doctype] name];
     if ([name isEqual:@"XHTML 1.1"] || [name isEqual:@"XHTML 2.0"])
     {
         return [super splitWithString:string Config:config Context:context];

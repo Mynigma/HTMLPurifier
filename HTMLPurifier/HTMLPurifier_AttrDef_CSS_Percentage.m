@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifier_AttrDef_Percentage.h"
+#import "HTMLPurifier_AttrDef_CSS_Percentage.h"
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
+#import "HTMLPurifier_AttrDef_CSS_Number.h"
 
 
 @implementation HTMLPurifier_AttrDef_CSS_Percentage
@@ -19,7 +20,7 @@
 {
     self = [super init];
     if (self) {
-        numberDef = [[HTMLPurifier_AttrDef_CSS_Number alloc] initWith:nonNegative];
+        numberDef = [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:nonNegative];
     }
     return self;
 }
@@ -51,7 +52,7 @@
     }
 
     NSString* number = [string substringWithRange:NSMakeRange(0, length-1)];
-    number = [self.numberDef validateWith:($number, $config, $context)];
+    number = [self->numberDef validateWithString:number config:config context:context];
 
     if (number == nil) {
         return NO;

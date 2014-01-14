@@ -25,7 +25,7 @@
      */
 @property BOOL isWhitespace;
 
-- (id)initWithData:(NSString*)d line:(NSInteger)l col:(NSInteger)c;
+- (id)initWithData:(NSString*)d line:(NSNumber*)l col:(NSNumber*)c;
 
 
 @end

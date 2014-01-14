@@ -10,6 +10,8 @@
 
 @interface HTMLPurifier_URI : NSObject
 
+- (id)initWithScheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSNumber*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment;
+
 /**
  * @type string
  */

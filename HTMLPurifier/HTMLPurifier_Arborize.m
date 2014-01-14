@@ -20,9 +20,11 @@
 
 + (HTMLPurifier_Node*)arborizeTokens:(NSArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
+    return nil;
+    /*
     HTMLPurifier_HTMLDefinition* definition = [config getHTMLDefinition];
-    HTMLPurifier_Token_Start* parent = [[HTMLPurifier_Token_Start alloc] initWith:definition->info_parent];
-    NSMutableArray* stack = [[NSMutableArray alloc] initWithObject:[parent toNode]];
+    HTMLPurifier_Token_Start* parent = [[HTMLPurifier_Token_Start alloc] initWithName:definition->info_parent];
+    NSMutableArray* stack = [NSMutableArray arrayWithObject:[parent toNode]];
     for(HTMLPurifier_Token* token in tokens)
     {
         [token setSkip:nil];
@@ -30,7 +32,7 @@
         if([token isKindOfClass:[HTMLPurifier_Token_End class]])
         {
             [(HTMLPurifier_Token_End*)token setStart:nil];
-            HTMLPurifier_Token* r = array_pop(stack);
+            HTMLPurifier_Token* r = (HTMLPurifier_Token*)array_pop(stack);
             assert([[r name] isEqual:[token name]]);
             assert([[token attr] count]==0);
             [r setEndCol:[token col]];
@@ -45,11 +47,13 @@
         }
     }
     assert(count(stack) == 1);
-    return stack[0];
+    return stack[0];*/
 }
 
 + (NSArray*)flattenNode:(HTMLPurifier_Node*)node config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
+    return nil;
+    /*
     NSNumber* level = @0;
     NSMutableDictionary* nodes = [NSMutableDictionary dictionaryWithObject:[[HTMLPurifier_Queue alloc] initWith:@[node]] forKey:level];
     NSMutableArray* closingTokens = [NSMutableArray new];
@@ -85,6 +89,7 @@
         }
     } while ($level > 0);
     return tokens;
+     */
 }
 
 @end

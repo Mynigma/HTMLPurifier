@@ -12,6 +12,7 @@
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Encoder.h"
+#import "HTMLPurifier_EntityParser.h"
 
 @implementation HTMLPurifier_Lexer
 
@@ -80,7 +81,7 @@
         return string;
     } // abort if no entities
     NSInteger numEscAmp = substr_count(string, @"&amp;");
-    string = strtr_php(string, self._special_entity2str);
+    string = strtr_php(string, self->_special_entity2str);
 
     // code duplication for sake of optimization, see above
     NSInteger numAmp2 = substr_count(string, @"&") - substr_count(string, @"& ") -
@@ -91,7 +92,7 @@
     }
 
     // hmm... now we have some uncommon entities. Use the callback.
-    string = [[self _entity_parser] substituteSpecialEntitiesWith:string];
+    string = [self->_entity_parser substituteSpecialEntities:string];
     return string;
 }
 
@@ -105,6 +106,7 @@
 - (NSArray*)tokenizeHTMLWithString:(NSString*)string config:(NSString*)config context:(NSString*)context
 {
    TRIGGER_ERROR(@"Call to abstract class");
+    return nil;
 }
 
 /**
@@ -114,7 +116,9 @@
  */
 - (NSString*)escapeCDATAWithString:(NSString*)string
 {
-    return [BasicPHP pregReplace:@"/<!\\[CDATA\\[(.+?)\\]\\]>/s" callback:[HTMLPurifier_Lexer CDataCallback] haystack:string];
+    return [BasicPHP pregReplace:@"/<!\\[CDATA\\[(.+?)\\]\\]>/s" callback:^(NSArray* array){
+        return [HTMLPurifier_Lexer CDATACallback:array];
+    } haystack:string];
 }
 
 /**
@@ -147,10 +151,10 @@
  *                  and 1 the inside of the CDATA section.
  * @return string Escaped internals of the CDATA section.
  */
-- (NSString*) CDATACallback:(NSArray*)matches
++ (NSString*) CDATACallback:(NSArray*)matches
 {
     // not exactly sure why the character set is needed, but whatever
-    return htmlspecialchars($matches[1], ENT_COMPAT, 'UTF-8');
+    return htmlspecialchars(matches[1], ENT_COMPAT, 'UTF-8');
 }
 
 /**
@@ -178,9 +182,9 @@
 
 
     // escape CDATA
-    NSString* html = [self escapeCDATAWithHtml:html];
+    html = [self escapeCDATAWithString:html];
 
-    html = [self removeIEConditionalWithHtml:html];
+    html = [self removeIEConditionalWithString:html];
 
     /*
     // extract body from document if applicable
@@ -197,12 +201,12 @@
     }*/
 
     // expand entities that aren't the big five
-    html = [self._entity_parser substituteNonSpecialEntitiesWithHtml:html];
+    html = [self->_entity_parser substituteNonSpecialEntities:html];
 
     // clean into wellformed UTF-8 string for an SGML context: this has
     // to be done after entity expansion because the entities sometimes
     // represent non-SGML characters (horror, horror!)
-    html = [HTMLPurifier_Encoder cleanUTF8WithHtml:html];
+    html = [HTMLPurifier_Encoder cleanUTF8:html];
 
     // if processing instructions are to removed, remove them now
     //if ($config->get('Core.RemoveProcessingInstructions')) {

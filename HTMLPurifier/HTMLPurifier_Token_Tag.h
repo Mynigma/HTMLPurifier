@@ -52,6 +52,8 @@
 
 - (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
 
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att;
+
 - (id)initWithName:(NSString*)n;
 
 - (HTMLPurifier_Node_Element*)toNode;

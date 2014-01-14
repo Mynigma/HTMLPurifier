@@ -34,7 +34,7 @@
      * @param int $line
      * @param int $col
      */
-- (id)initWithData:(NSString*)d line:(NSInteger)l col:(NSInteger)c;
+- (id)initWithData:(NSString*)d line:(NSNumber*)l col:(NSNumber*)c;
 
 - (id)initWithData:(NSString*)d;
 

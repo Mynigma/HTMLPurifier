@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class HTMLPurifier_Config, HTMLPurifier_Zipper, HTMLPurifier_Definition, HTMLPurifier_Token, HTMLPurifier_Context;
+@class HTMLPurifier_Config, HTMLPurifier_Zipper, HTMLPurifier_HTMLDefinition, HTMLPurifier_Token, HTMLPurifier_Context;
 
 /**
  * Injects tokens into the document while parsing for well-formedness.
@@ -25,7 +25,7 @@
  */
 @interface HTMLPurifier_Injector : NSObject
 {
-    HTMLPurifier_Definition* htmlDefinition;
+    HTMLPurifier_HTMLDefinition* htmlDefinition;
     NSMutableArray* currentNesting;
     HTMLPurifier_Token* currentToken;
     HTMLPurifier_Zipper* inputZipper;
@@ -113,7 +113,7 @@
  * @param int $nesting
  * @return bool
  */
-- (BOOL)forwardUntilEndToken:(NSInteger*)i current:(NSInteger*)current nesting:(NSInteger*)nesting;
+- (BOOL)forwardUntilEndToken:(NSInteger*)i current:(HTMLPurifier_Token**)current nesting:(NSInteger*)nesting;
 
 /**
  * Iterator function, starts with the previous token and continues until

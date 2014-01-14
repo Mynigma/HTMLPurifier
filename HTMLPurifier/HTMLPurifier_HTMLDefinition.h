@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_Definition.h"
 
-@class HTMLPurifier_Doctype, HTMLPurifier_ElementDef, HTMLPurifier_Module, HTMLPurifier_ModuleManager;
+@class HTMLPurifier_Doctype, HTMLPurifier_ElementDef, HTMLPurifier_HTMLModule, HTMLPurifier_HTMLModuleManager;
 
 
 /**
@@ -36,7 +36,7 @@
  */
 @interface HTMLPurifier_HTMLDefinition : HTMLPurifier_Definition
 {
-    HTMLPurifier_Module* _anonModule;
+    HTMLPurifier_HTMLModule* _anonModule;
 }
 
 
@@ -45,7 +45,7 @@
 /**
  * @type string
  */
-@property NSString* type;
+@property NSString* typeString;
 
 /**
  * @type HTMLPurifier_HTMLModuleManager
@@ -160,7 +160,7 @@
      * module.
      * @return HTMLPurifier_HTMLModule
      */
-- (HTMLPurifier_Module*)getAnonymousModule;
+- (HTMLPurifier_HTMLModule*)getAnonymousModule;
 
 
     /**

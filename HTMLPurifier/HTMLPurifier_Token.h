@@ -56,9 +56,11 @@
  * @param string $n
  * @return null|string
  */
-- (NSString*)__get:(NSString*)n;
+- (NSString*)valueForUndefinedKey:(NSString*)n;
 
 - (NSString*)name;
+
+- (NSString*)attr;
 
 /**
  * Sets the position of the token in the source document.

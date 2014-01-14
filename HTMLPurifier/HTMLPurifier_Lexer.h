@@ -103,7 +103,7 @@
  *                  and 1 the inside of the CDATA section.
  * @return string Escaped internals of the CDATA section.
  */
-- (NSString*) CDATACallback:(NSArray*)matches;
++ (NSString*) CDATACallback:(NSArray*)matches;
 
 /**
  * Takes a piece of HTML and normalizes it by converting entities, fixing
