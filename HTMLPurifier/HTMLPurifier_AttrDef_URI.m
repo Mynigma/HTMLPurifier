@@ -52,7 +52,7 @@
  */
 -(HTMLPurifier_AttrDef_URI*) make:(NSString*)string
 {
-    NSNumber* embeds = ([NSNumber numberWithBool:[string isEqual:@"embedded"]]);
+    NSNumber* embeds = @([string isEqual:@"embedded"]);
     HTMLPurifier_AttrDef_URI* copy = [HTMLPurifier_AttrDef_URI alloc];
     return [copy initWithNumber:embeds];
 }

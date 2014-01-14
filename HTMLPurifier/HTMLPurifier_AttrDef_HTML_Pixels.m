@@ -61,7 +61,7 @@
     {
         return nil;
     }
-    NSNumber* num = [NSNumber numberWithInt:[string intValue]];
+    NSNumber* num = @([string intValue]);
     
     if (num < 0)
     {
@@ -89,7 +89,7 @@
     {
         max = nil;
     } else {
-        max = [NSNumber numberWithInt:[string intValue]];
+        max = @([string intValue]);
     }
     
     HTMLPurifier_AttrDef_HTML_Pixels* class = [HTMLPurifier_AttrDef_HTML_Pixels alloc];

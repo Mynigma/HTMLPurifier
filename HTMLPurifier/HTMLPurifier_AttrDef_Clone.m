@@ -19,14 +19,16 @@
  * What we're cloning.
  * @type HTMLPurifier_AttrDef
  */
-protected $clone;
+@synthesize clone;
 
 /**
  * @param HTMLPurifier_AttrDef $clone
  */
-public function __construct($clone)
+-(id) initWithClone:(HTMLPurifier_AttrDef*)nclone
 {
-    $this->clone = $clone;
+    self = [super init];
+    clone = nclone;
+    return self;
 }
 
 /**
@@ -35,18 +37,18 @@ public function __construct($clone)
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($v, $config, $context)
+-(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    return $this->clone->validate($v, $config, $context);
+    return [clone validateWithString:string config:config context:context];
 }
 
 /**
  * @param string $string
  * @return HTMLPurifier_AttrDef
  */
-public function make($string)
+-(HTMLPurifier_AttrDef*) makeWithString:(NSString*)string
 {
-    return clone $this->clone;
+    return [clone copy];
 }
 
 @end

@@ -16,6 +16,7 @@
  */
 
 #import "HTMLPurifier_AttrDef_Integer.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_AttrDef_Integer
 
@@ -23,30 +24,42 @@
  * Whether or not negative values are allowed.
  * @type bool
  */
-protected $negative = true;
+@synthesize negative;
 
 /**
  * Whether or not zero is allowed.
  * @type bool
  */
-protected $zero = true;
+@synthesize zero;
 
 /**
  * Whether or not positive values are allowed.
  * @type bool
  */
-protected $positive = true;
+@synthesize positive;
 
 /**
  * @param $negative Bool indicating whether or not negative values are allowed
  * @param $zero Bool indicating whether or not zero is allowed
  * @param $positive Bool indicating whether or not positive values are allowed
  */
-public function __construct($negative = true, $zero = true, $positive = true)
+-(id) initWithNegativ:(NSNumber*)nnegative Zero:(NSNumber*)nzero Positive:(NSNumber*)npositive
 {
-    $this->negative = $negative;
-    $this->zero = $zero;
-    $this->positive = $positive;
+    self = [super init];
+    if (nnegative)
+        negative = nnegative;
+    else
+        negative = @YES;
+    if (nzero)
+        zero = nzero;
+    else
+        zero = @YES;
+    if (npositive)
+        positive = npositive;
+    else
+        positive = @YES;
+    
+    return self;
 }
 
 /**
@@ -55,45 +68,58 @@ public function __construct($negative = true, $zero = true, $positive = true)
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-public function validate($integer, $config, $context)
+-(NSString*) validateWithString:(NSString*)integer config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    $integer = $this->parseCDATA($integer);
-    if ($integer === '') {
-        return false;
+    integer = [super parseCDATAWithString:integer];
+    if ([integer isEqual:@""])
+    {
+        return nil;
     }
     
     // we could possibly simply typecast it to integer, but there are
     // certain fringe cases that must not return an integer.
     
     // clip leading sign
-    if ($this->negative && $integer[0] === '-') {
-        $digits = substr($integer, 1);
-        if ($digits === '0') {
-            $integer = '0';
+    NSString* digits = nil;
+    if (negative && ([integer characterAtIndex:0] == '-'))
+    {
+        digits = substr(integer, 1);
+        if ([digits isEqual:@"0"])
+        {
+            integer = @"0";
         } // rm minus sign for zero
-    } elseif ($this->positive && $integer[0] === '+') {
-        $digits = $integer = substr($integer, 1); // rm unnecessary plus
-    } else {
-        $digits = $integer;
+    }
+    else if (positive && ([integer characterAtIndex:0] == '+'))
+    {
+        integer = substr(integer, 1); // rm unnecessary plus
+        digits = integer;
+    }
+    else
+    {
+        digits = integer;
     }
     
     // test if it's numeric
-    if (!ctype_digit($digits)) {
-        return false;
+    if (!ctype_digit(digits))
+    {
+        return nil;
     }
     
     // perform scope tests
-    if (!$this->zero && $integer == 0) {
-        return false;
+    if (!zero && ([integer integerValue] == 0))
+    {
+        return nil;
     }
-    if (!$this->positive && $integer > 0) {
-        return false;
+    if (!positive && ([integer integerValue] > 0))
+    {
+        return nil;
     }
-    if (!$this->negative && $integer < 0) {
-        return false;
+    if (!negative && ([integer integerValue] < 0))
+    {
+        return nil;
     }
     
-    return $integer;
+    return integer;
 }
 
 @end
