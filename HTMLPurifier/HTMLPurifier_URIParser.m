@@ -34,7 +34,7 @@
     NSMutableArray* matches = [NSMutableArray new];
     NSMutableArray* result = preg_match(r_URI, uri, matches);
 
-    if (!result) return false; // *really* invalid URI
+    if (!result) return nil; // *really* invalid URI
 
     // seperate out parts
     NSString* scheme     = [matches[1] length]>0 ? matches[2] : nil;

@@ -22,7 +22,7 @@
         return;
     }
 
-    if (strpos([token data], @"://") == NSNotFound) {
+    if (strpos([*token valueForKey:@"data"], @"://") == NSNotFound) {
         // our really quick heuristic failed, abort
         // this may not work so well if we want to match things like
         // "google.com", but then again, most people don't
@@ -31,7 +31,7 @@
 
     // there is/are URL(s). Let's split the string:
     // Note: this regex is extremely permissive
-    NSArray* bits = preg_split(@"#((?:https?|ftp)://[^\\s\\'\",<>()]+)#Su", [token data], -1, PREG_SPLIT_DELIM_CAPTURE);
+    NSArray* bits = preg_split(@"#((?:https?|ftp)://[^\\s\\'\",<>()]+)#Su", [*token valueForKey:@"data"], -1, PREG_SPLIT_DELIM_CAPTURE);
 
 
     NSMutableArray* tokenArray = [NSMutableArray new];
