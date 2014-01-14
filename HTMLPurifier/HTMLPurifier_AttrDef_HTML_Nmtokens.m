@@ -49,7 +49,7 @@
  * @param HTMLPurifier_Context $context
  * @return array
  */
--(NSMutableArray*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSArray*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
     // OPTIMIZABLE!
     // do the preg_match, capture all subpatterns for reformulation
@@ -65,8 +65,8 @@
     pattern = [pattern stringByAppendingString:@"((?:--|-?[A-Za-z_])[A-Za-z_\\-0-9]*)"];
     // look ahead for space or string end
     pattern = [pattern stringByAppendingString:@"(?:(?=\\s)|\\z)"];
-    NSMutableArray* matches = [NSMutableArray new];
-    preg_match_all(pattern, string, matches);
+    NSArray* matches = [NSArray new];
+    matches = preg_match_all(pattern, string);
     return matches;
 }
 

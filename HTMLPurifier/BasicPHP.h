@@ -22,20 +22,59 @@ NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subje
     return subjectString;
 }
 
-//preg_match_all
 
-//TODO preg_split 
-
-//preg_match
-//BOOL or Array?
+// instead of return BOOL and using an return Array as ARG. return Array , if not found return empty array
 NSArray* preg_match (NSString* pattern, NSString* subject)
 {
     NSError* error = nil;
     
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
-
-    return [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+    
+    NSArray* range_array = [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+    
+    if (!range_array)
+    {
+        return nil;
+    }
+    
+    NSUInteger num_matches = [range_array count];
+    
+    //sanity check
+    if(num_matches == 0)
+    {
+        return nil;
+    }
+    
+    NSMutableArray* result = [NSMutableArray new];
+    NSUInteger num_submatches;
+    
+    for (NSInteger i = 0; i < num_matches; i++){
+        
+        num_submatches = [range_array[i] numberOfRanges];
+        
+        for (NSInteger j = 0; j < num_submatches; j++)
+        {
+            NSRange range = [range_array[i] rangeAtIndex:j];
+            
+            if
+            
+        
+        }
+        
+    }
+    
+    
+    
 }
+
+
+// apparently preg_match_all with the default FLAG does the same as preg_match
+NSArray* preg_match_all(NSString* pattern, NSString* subject)
+{
+    return preg_match(pattern,subject);
+}
+
+//TODO preg_split 
 
 BOOL ctype_xdigit (NSString* text)
 {
