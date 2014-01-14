@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_AttrDef_HTML_Class.h"
 #import "BasicPHP.h"
-#import "HTMLPurifier_Definition.h"
+#import "HTMLPurifier_HTMLDefinition.h"
 
 /**
 * Implements special behavior for class attribute (normally NMTOKENS)
