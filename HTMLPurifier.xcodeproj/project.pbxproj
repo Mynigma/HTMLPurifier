@@ -231,6 +231,7 @@
 		1E1F221718849B2900EAC2C1 /* HTMLPurifier_HTMLDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLDefinition.m; sourceTree = "<group>"; };
 		1E1F221C1884B33300EAC2C1 /* HTMLPurifier_Doctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Doctype.h; sourceTree = "<group>"; };
 		1E1F221D1884B33300EAC2C1 /* HTMLPurifier_Doctype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Doctype.m; sourceTree = "<group>"; };
+		1E35ECD61886F6D400E8FF31 /* HTMLPurifier_Harness.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Harness.h; sourceTree = "<group>"; };
 		1E5FAAA218853F780073CA79 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		1E5FAAA5188542C60073CA79 /* HTMLPurifier_HTMLModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_HTMLModule.h; sourceTree = "<group>"; };
 		1E5FAAA6188542C60073CA79 /* HTMLPurifier_HTMLModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule.m; sourceTree = "<group>"; };
@@ -797,6 +798,7 @@
 		80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */ = {
 			isa = PBXGroup;
 			children = (
+				1E35ECD61886F6D400E8FF31 /* HTMLPurifier_Harness.h */,
 				1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */,
 				80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */,
 				1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncodingTests.m */,
