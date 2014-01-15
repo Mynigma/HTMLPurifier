@@ -17,6 +17,7 @@
 #import "HTMLPurifier_HTMLDefinition.h"
 #import "HTMLPurifier_ElementDef.h"
 #import "HTMLPurifier_Node_Element.h"
+#import "HTMLPurifier_ChildDef.h"
 
 
 @implementation HTMLPurifier_Strategy_FixNesting

@@ -38,7 +38,7 @@
  * @param Array to zipper-ify.
  * @return Tuple of zipper and element of first position.
  */
-- (NSArray*)fromArray:(NSArray*)array;
++ (NSArray*)fromArray:(NSArray*)array;
 
 /**
  * Convert zipper back into a normal array, optionally filling in

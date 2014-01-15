@@ -10,13 +10,15 @@
 #import "HTMLPurifier_Token.h"
 #import "HTMLPurifier_Token_Empty.h"
 #import "HTMLPurifier_Token_Start.h"
-#import "HTMLPurifier_AttrValidator.h"
+//#import "HTMLPurifier_AttrValidator.h"
 
 @implementation HTMLPurifier_Strategy_ValidateAttributes
 
 
 - (NSMutableArray*)execute:(NSMutableArray*)tokens config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 {
+    return nil;
+    /*
     // setup validator
     HTMLPurifier_AttrValidator* validator = [HTMLPurifier_AttrValidator new];
 
@@ -42,6 +44,7 @@
     }
     [context destroy:@"CurrentToken"];
     return tokens;
+     */
 }
 
 

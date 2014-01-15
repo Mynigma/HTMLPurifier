@@ -19,8 +19,8 @@
 {
     self = [super init];
     if (self) {
-        name = @"Linkify";
-        needed = 
+        super.name = @"Linkify";
+        super.needed = [@{@"a" :@[@"href"]} mutableCopy];
     }
     return self;
 }

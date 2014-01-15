@@ -18,13 +18,11 @@
     /**
      * @type string
      */
-@property NSString* name = 'Linkify';
-
+//inherited
     /**
      * @type array
      */
-@property NSDictionary* $needed = array('a' => array('href'));
-
+//inherited
     /**
      * @param HTMLPurifier_Token $token
      */

@@ -40,7 +40,7 @@
 - (NSString*)validateWithString:(NSString *)someString config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
     {
         // regular pre-processing
-        NSString* string = [self parseCDATAWithString:string];
+        NSString* string = [self parseCDATAWithString:someString];
         if ([string isEqualTo:@""]) {
             return nil;
         }
