@@ -23,7 +23,7 @@ NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* sub
 }
 
 
-
+//TODO
 NSArray* preg_split_2(NSString* expression, NSString* subject)
 {
     NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
@@ -38,6 +38,7 @@ NSArray* preg_split_2(NSString* expression, NSString* subject)
     return results;
 }
 
+
 BOOL preg_match_2(NSString* pattern, NSString* subject)
 {
     NSError* error = nil;
@@ -46,13 +47,13 @@ BOOL preg_match_2(NSString* pattern, NSString* subject)
     
     NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0,subject.length)];
 
-    return result.range.location!=NSNotFound;
+    return (result != nil);
 }
 
 
 //Returns all matches & subpattern matches
 // Structure is array of arrays
-NSArray* preg_match_all(NSString* pattern, NSString* subject)
+BOOL preg_match_all_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
 {
     
     NSError* error = nil;
@@ -62,11 +63,14 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
     
     //match all in Strings
     NSArray* result = [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
-
+    
+    //empty matches:
+    [matches removeAllObjects];
+    
     // found nothing?
-    if (!result)
+    if ([result count] == 0)
     {
-        return nil;
+        return NO;
     }
     
     // # of matches
@@ -75,13 +79,11 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
     //sanity check
     if(num_matches == 0)
     {
-        return nil;
+        return NO;
     }
     
-    NSMutableArray* findings = [NSMutableArray new];
-    
     //count the number of found submatches
-    //No differenz between match.numberOfRanges and regex.numberOfCaptureGroups + 1 (the whole match)
+    //No difference between match.numberOfRanges and regex.numberOfCaptureGroups + 1 (the whole match)
     NSUInteger num_submatches = [regex numberOfCaptureGroups] + 1;
     
     BOOL initArrays = YES;
@@ -98,14 +100,14 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
         {
             // Init Arrays for the first match
             if (initArrays)
-                [findings addObject:[NSMutableArray new]];
+                [matches addObject:[NSMutableArray new]];
             
             // if the subpattern did not actually match anything.
             if ([match rangeAtIndex:j].location == NSNotFound)
-                continue; //With this we may have some empty arrays, but at least the Order remains. Don't know how PHP deals with this.
+                continue;
             
             //finally add the matched string
-            [findings[j] addObject:[subject substringWithRange:[match rangeAtIndex:j]]];
+            [matches[j] addObject:[subject substringWithRange:[match rangeAtIndex:j]]];
             
         }
         
@@ -114,7 +116,7 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
         
     }
     
-    return findings;
+    return YES;
 }
 
 BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
@@ -123,35 +125,21 @@ BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
 
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
 
-    [matches removeAllObjects];
-
     NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0, subject.length)];
-
+    
+    [matches removeAllObjects];
+    
+    // matched nothing?
+    if (result == nil)
+        return NO;
+    
     for(NSUInteger i = 0; i<result.numberOfRanges; i++)
     {
         [matches addObject:[subject substringWithRange:[result rangeAtIndex:i]]];
     }
-
-    return result.range.location!=NSNotFound;
-}
-
-
-BOOL preg_match_all_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
-{
-    NSError* error = nil;
-
-    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
-
-    [matches removeAllObjects];
-
-    NSArray* matchingResults = [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
-
-    for(NSTextCheckingResult* match in matchingResults)
-    {
-        [matches addObject:[subject substringWithRange:match.range]];
-    }
-
-    return matches.count>0;
+    
+    //Matched at least one thing
+    return YES;
 }
 
 
@@ -684,12 +672,49 @@ void array_push(NSMutableArray* array, NSObject* x)
 }
 
 
-//TODO
-//array_shift
 
-//TODO array_map
+//TODO array_map_i
+//Call back should be a function callback
+NSArray* array_map_2(NSString* callback,NSArray* arrayWithInput)
+{
+    return nil;
+}
 
-//TODO array_splice(first_array, 8 - [second_array count], 8, second_array);
+//Call back should be a function callback
+NSArray* array_map_3(NSString* callback,NSArray* arrayWithInput, NSArray* arrayWithArgs)
+{
+    return nil;
+}
+
+
+//array_merge can be used with morge input arrays ad needed.
+NSArray* array_merge_2(NSArray* array1, NSArray* array2)
+{
+    
+    NSMutableArray* array = [array1 mutableCopy];
+    [array addObjectsFromArray:array2];
+    
+    return array;
+
+}
+
+//PHP array_merge also works as "dictionary_merge"
+NSDictionary* dict_merge_2(NSDictionary* dict1, NSDictionary* dict2)
+{
+    NSMutableDictionary* dict = [dict1 mutableCopy];
+    
+    [dict addEntriesFromDictionary:dict2];
+    
+    return dict;
+}
+
+
+
+//TODO array_splice
+NSArray* array_splice_4 (NSArray* input, NSInteger* offset, NSInteger* length, NSObject* replacement)
+{
+    return nil;
+}
 
 
 @interface BasicPHP : NSObject
