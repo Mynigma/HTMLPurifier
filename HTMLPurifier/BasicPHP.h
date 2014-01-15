@@ -125,6 +125,11 @@ NSString* strtr_php(NSString* fromString, NSDictionary* replacementDict);
 
 NSInteger strspn_2(NSString* subject, NSString* mask);
 
+// Find length of initial segment not matching mask
+NSInteger strcspn_2(NSString* string1, NSString* string2);
+NSInteger strcspn_3(NSString* string1, NSString* string2, NSInteger start);
+
+
 NSString* ltrim_whitespaces(NSString* string);
 NSString* rtrim_whitespaces(NSString* string);
 NSString* ltrim_2(NSString* string, NSString* characterSetString);
