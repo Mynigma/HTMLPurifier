@@ -12,47 +12,9 @@
 
 #ifndef BASIC_PHP
 
-NSArray* preg_split_2(NSString* expression, NSString* subject)
-{
-    NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
-
-    NSArray *matches = [exp matchesInString:subject options:0 range:NSMakeRange(0, [subject length])];
-    
-    NSMutableArray *results = [NSMutableArray new];
-
-    if ([matches count] == 0)
-    {
-        [results addObject:subject];
-        return results;
-    }
-    
-    //start @beginning
-    NSInteger loc = 0;
-    
-    for (NSTextCheckingResult *match in matches) {
-        
-        //range of the match
-        NSRange match_range = [match range];
-        
-        //lenght from loc to this match
-        NSInteger len = match_range.location - loc;
-        
-        // make range
-        NSRange range = NSMakeRange(loc, len);
-        //add string, even if empty
-        [results addObject:[subject substringWithRange:range]];
-        // set the new loc
-        loc = match_range.location + match_range.length;
-    }
-    
-    // get the last straw
-    if (loc < [subject length])
-        {
-            [results addObject:[subject substringWithRange:NSMakeRange(loc, [subject length]-loc)]];
-        }
-
-    return results;
-}
+NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* subject);
+//TODO
+NSArray* preg_split_2(NSString* expression, NSString* subject);
 
 // Limit: max limit elements in returned array
 NSArray* preg_split_3(NSString* expression, NSString* subject, NSInteger limit);
@@ -162,6 +124,11 @@ NSInteger substr_count(NSString* haystack , NSString* needle);
 NSString* strtr_php(NSString* fromString, NSDictionary* replacementDict);
 
 NSInteger strspn_2(NSString* subject, NSString* mask);
+
+// Find length of initial segment not matching mask
+NSInteger strcspn_2(NSString* string1, NSString* string2);
+NSInteger strcspn_3(NSString* string1, NSString* string2, NSInteger start);
+
 
 NSString* ltrim_whitespaces(NSString* string);
 NSString* rtrim_whitespaces(NSString* string);
