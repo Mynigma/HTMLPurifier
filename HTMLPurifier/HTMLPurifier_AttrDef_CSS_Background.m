@@ -114,6 +114,7 @@
         }
         return implode(@" ", ret);
     }
+    return nil;
 }
 
 @end

@@ -90,12 +90,13 @@
     // for browser behavior, for example, a large number of browsers
     // cannot handle foo_.example.com, but foo_bar.example.com is
     // fairly well supported.
-    unichar underscore = [(NSNumber*)[config get:@"Core.AllowHostnameUnderscore"] boolValue]?'_':'';
+    //unichar underscore = [(NSNumber*)[config get:@"Core.AllowHostnameUnderscore"] boolValue]?'_':'';
     
     // The productions describing this are:
     NSString* a   = @"[a-z]";     // alpha
     NSString* an  = @"[a-z0-9]";  // alphanum
-    NSString* and = [NSString stringWithFormat:@"[a-z0-9-%c]",underscore]; // alphanum | "-"
+    NSString* and = [(NSNumber*)[config get:@"Core.AllowHostnameUnderscore"] boolValue]?@"[a-z0-9-_]":@"[a-z0-9-]";
+    //[NSString stringWithFormat:@"[a-z0-9-_]",underscore]; // alphanum | "-"
     // domainlabel = alphanum | alphanum *( alphanum | "-" ) alphanum
     NSString* domainlabel = [NSString stringWithFormat:@"%@(%@*%@)?",an,and,an];
     // toplabel    = alpha | alpha *( alphanum | "-" ) alphanum
