@@ -12,7 +12,7 @@
 @implementation HTMLPurifier_PropertyList
 
 
-- (id)initWithParent:(HTMLPurifier_PropertyList*)parentPlist;
+- (id)initWithParent:(HTMLPurifier_PropertyList*)parentPlist
 {
     self = [super init];
     if (self) {

@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@class HTMLPurifier_ConfigSchema, HTMLPurifier_VarParser_Flexible, HTMLPurifier_PropertyList, HTMLPurifier_Definition, HTMLPurifier_CSSDefinition, HTMLPurifier_URIDefinition, HTMLPurifier_HTMLDefinition;
+@class HTMLPurifier_ConfigSchema, HTMLPurifier_VarParser_Flexible, HTMLPurifier_PropertyList, HTMLPurifier_Definition, HTMLPurifier_CSSDefinition, HTMLPurifier_URIDefinition, HTMLPurifier_HTMLDefinition, HTMLPurifier_PropertyList;
 
 @interface HTMLPurifier_Config : NSObject
 {
-    NSMutableDictionary* plist;
+    HTMLPurifier_PropertyList* plist;
     HTMLPurifier_VarParser_Flexible* parser;
     HTMLPurifier_PropertyList* parent;
 
@@ -34,7 +34,7 @@
 
 @property BOOL chatty;
 
-- (HTMLPurifier_Config*)createWithConfig:(HTMLPurifier_Config*)config;
++ (HTMLPurifier_Config*)createWithConfig:(HTMLPurifier_Config*)config;
 
 - (HTMLPurifier_ConfigSchema*)definition;
 

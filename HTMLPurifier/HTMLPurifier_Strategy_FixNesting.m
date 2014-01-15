@@ -124,7 +124,7 @@
                                    // child_def, but double check this...
                                    @(isInline || [def descendants_are_inline]),
                                    ([[def excludes] count]==0) ? excludes
-                                   : array_merge(excludes, [def excludes]),
+                                   : array_merge_2(excludes, [def excludes]),
                                    @0]];
                 break;
             }

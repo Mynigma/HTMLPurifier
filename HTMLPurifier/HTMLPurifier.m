@@ -158,14 +158,13 @@
     
     //New Lexer with Config
     HTMLPurifier_Lexer* lexer = [HTMLPurifier_Lexer alloc];
-    lexer = [HTMLPurifier_Lexer initWithConfig:config];
+    lexer = [HTMLPurifier_Lexer createWithConfig:config];
     
     //New Context
     HTMLPurifier_Context* localContext = [HTMLPurifier_Context new];
     
     //setup HTML generator
-    generator = [HTMLPurifier_Generator alloc];
-    generator = [HTMLPurifier_Generator initWithConfig:config Context:localContext];
+    generator = [[HTMLPurifier_Generator alloc] initWithConfig:config context:context];
     [localContext registerWithName:@"Generator" ref:generator];
     
     //setup global context variables

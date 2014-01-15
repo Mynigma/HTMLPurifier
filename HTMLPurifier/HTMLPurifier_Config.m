@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_ConfigSchema.h"
-//#import "HTMLPurifier_PropertyList.h"
+#import "HTMLPurifier_PropertyList.h"
 #import "HTMLPurifier_VarParser.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_Definition.h"
