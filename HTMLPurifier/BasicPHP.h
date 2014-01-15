@@ -46,31 +46,8 @@ BOOL preg_match_2(NSString* pattern, NSString* subject)
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     
     NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0,subject.length)];
-    
-    if (!result)
-    {
-        return nil;
-    }
-    
-    if ([result range].location == NSNotFound)
-    {
-        return nil;
-    }
-    
-    NSMutableArray* findings = [NSMutableArray new];
-    
-    [findings addObject:[subject substringWithRange:[result range]]];
-    
-    for (NSInteger i = 1; i < [result numberOfRanges]; i++)
-    {
-        NSRange range = [result rangeAtIndex:i];
-        if (range.location == NSNotFound)
-            continue;
-        [findings addObject:[subject substringWithRange:range]];
-    }
-    
-    return findings;
-    
+
+    return result.range.location!=NSNotFound;
 }
 
 
@@ -139,8 +116,6 @@ NSArray* preg_match_all(NSString* pattern, NSString* subject)
     }
     
     return findings;
-
-    return [regex firstMatchInString:subject options:0 range:NSMakeRange(0, subject.length)].range.location!=NSNotFound;
 }
 
 BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
@@ -189,8 +164,6 @@ NSInteger preg_match_all_2(NSString* pattern, NSString* subject)
 
     return [regex numberOfMatchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
 }
-
-//TODO preg_split
 
 BOOL ctype_xdigit (NSString* text)
 {
@@ -419,30 +392,12 @@ NSString* htmlspecialchars_ENT_COMPAT(NSString* string)
     return newString;
 }
 
-BOOL is_numeric(NSString* string)
-{
-    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-    NSNumber* result = [f numberFromString:string];
-    return result!=nil;
-}
-
 BOOL ctype_alpha (NSString* text)
 {
     for(NSInteger i=0;i <text.length; i++)
     {
         unichar character = [text characterAtIndex:i];
         if(!(isalpha(character)))
-            return NO;
-    }
-    return YES;
-}
-
-BOOL ctype_alnum (NSString* text)
-{
-    for(NSInteger i=0;i <text.length; i++)
-    {
-        unichar character = [text characterAtIndex:i];
-        if(!(isalnum(character)))
             return NO;
     }
     return YES;
@@ -685,6 +640,12 @@ NSMutableArray* array_slice_2(NSArray* array, NSInteger offset)
 NSMutableArray* array_slice_3(NSArray* array, NSInteger offset, NSInteger length)
 {
     return [[array subarrayWithRange:NSMakeRange(offset, length)] mutableCopy];
+}
+
+NSInteger array_unshift_2(NSMutableArray* array, NSObject* object)
+{
+    [array insertObject:object atIndex:0];
+    return array.count;
 }
 
 

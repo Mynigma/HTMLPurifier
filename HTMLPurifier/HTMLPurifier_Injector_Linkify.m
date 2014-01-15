@@ -15,6 +15,17 @@
 
 @implementation HTMLPurifier_Injector_Linkify
 
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        name = @"Linkify";
+        needed = 
+    }
+    return self;
+}
+
+
 
 - (void)handleText:(HTMLPurifier_Token**)token
 {

@@ -16,6 +16,7 @@
 #import "HTMLPurifier_Token_Start.h"
 #import "HTMLPurifier_Token_End.h"
 #import "HTMLPurifier_Token_Text.h"
+#import "HTMLPurifier_Zipper.h"
 
 
 @implementation HTMLPurifier_Strategy_MakeWellFormed
@@ -132,10 +133,10 @@
                     [token setRewind:i];
                     if ([token isKindOfClass:[HTMLPurifier_Token_Start class]])
                     {
-                        array_pop(self.stack);
+                        array_pop(_stack);
                     } else if ([token isKindOfClass:[HTMLPurifier_Token_End class]])
                     {
-                        [self.stack addObject:[token start]];
+                        [_stack addObject:[token start]];
                     }
                 }
             }
@@ -145,12 +146,12 @@
         // handle case of document end
         if (!token) {
             // kill processing if stack is empty
-            if (!self.stack)) {
+            if (!_stack)) {
                 break;
             }
 
             // peek
-            top_nesting = array_pop(self.stack);
+            top_nesting = array_pop(_stack);
             [[self stack] addObject:top_nesting];
 
             /*
@@ -226,7 +227,7 @@
             // start tag
 
             // ...unless they also have to close their parent
-            if (self.stack.count>0) {
+            if (_stack.count>0) {
 
                 // Performance note: you might think that it's rather
                 // inefficient, recalculating the autoclose information
@@ -241,8 +242,8 @@
                 // "easy" to reason about (for certain perverse definitions
                 // of "easy")
 
-                parent = array_pop(self.stack);
-                [this.stack addObject:parent];
+                parent = array_pop(_stack);
+                [_stack addObject:parent];
 
                 parent_def = nil;
                 parent_elements = nil;
@@ -278,7 +279,7 @@
                     // (this rechecks $parent, which his harmless)
                     BOOL autoclose_ok = global_parent_allowed_elements[token.name]!= nil;
                     if (!autoclose_ok) {
-                        for(NSObject* ancestor in self.stack)
+                        for(NSObject* ancestor in _stack)
                         {
                             elements = [[definition.info[ancestor.name] child]getAllowedElements:config];
                             if (elements[token.name]) {
@@ -350,7 +351,7 @@
             if (!reprocess) {
                 // ah, nothing interesting happened; do normal processing
                 if ([token isKindOfClass:[HTMLPurifier_Token_Start class]]) {
-                    [self.stack addObject:token];
+                    [_stack addObject:token];
                 } else if ([token isKindOfClass:[HTMLPurifier_Token_End class]]) {
                     throw [NSException exceptionWithName:@"End tag handling exception" reason:@"Improper handling of end tag in start code; possible error in MakeWellFormed" userInfo:nil];
                 }
@@ -364,7 +365,7 @@
         }
 
         // make sure that we have something open
-        if (self.stack.count==0) {
+        if (_stack.count==0) {
             if (escape_invalid_tags) {
                 token = [[HTMLPurifier_Token_Text alloc] initWithData:[generator generateFromToken:token]];
             } else {
@@ -378,11 +379,12 @@
         // Eventually, everything passes through here; if there are problems
         // we modify the input stream accordingly and then punt, so that
         // the tokens get processed again.
-        current_parent = array_pop(self.stack);
-        if ([[current_parent name] isEqual:[token name]]) {
+        current_parent = array_pop(_stack);
+        if ([[current_parent name] isEqual:[token name]])
+        {
             [token setStart:current_parent];
             for(NSInteger i=0; i<_injectors.count; i++)
-
+            {
                 if ([token skip][i])) {
                     continue;
                 }
@@ -403,17 +405,17 @@
         // okay, so we're trying to close the wrong tag
 
         // undo the pop previous pop
-        [self.stack addObject:current_parent];
+        [_stack addObject:current_parent];
 
         // scroll back the entire nest, trying to find our tag.
         // (feature could be to specify how far you'd like to go)
-        NSInteger size = self.stack.count;
+        NSInteger size = _stack.count;
         // -2 because -1 is the last element, but we already checked that
         NSMutableArray* skipped_tags = nil;
         for (NSInteger j = size - 2; j >= 0; j--) {
-            if ([[self.stack[j] name] isEqual:[token name]])
+            if ([[_stack[j] name] isEqual:[token name]])
             {
-                skipped_tags = array_slice(self.stack, j);
+                skipped_tags = array_slice(_stack, j);
                 break;
             }
         }
@@ -452,7 +454,8 @@
             new_token = [[HTMLPurifier_Token_End alloc] initWith:[skipped_tags[j] name]];
             [new_token setStart:skipped_tags[j]];
             array_unshift(replace, new_token);
-            if (definition.info[new_token.name]) && definition.info[new_token.name]->formatting) {
+            if (definition.info[new_token.name]) && definition.info[new_token.name]->formatting)
+            {
                 // [TagClosedAuto]
                 element = [skipped_tags[j] copy];
                 [element setCarryover:YES];
