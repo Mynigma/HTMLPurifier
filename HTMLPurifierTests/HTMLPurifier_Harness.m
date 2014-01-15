@@ -7,15 +7,13 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "HTMLPurifier_Harness.h"
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_ConfigSchema.h"
 #import "HTMLPurifier.h"
 #import "BasicPHP.h"
 
-@interface HTMLPurifier_Harness : XCTestCase
-
-@end
 
 static HTMLPurifier_Config* config;
 static HTMLPurifier_Context* context;
@@ -100,12 +98,12 @@ static HTMLPurifier* purifier;
 
 - (void)assertEqual:(NSObject*)expect to:(NSObject*)result
 {
-    XCTAssertEqual(expect, result, @"Expected result %@ and got %@", expect, result);
+    XCTAssertEqualObjects(expect, result, @"");
 }
 
 - (void)assertIdentical:(NSObject*)expect to:(NSObject*)result
 {
-    XCTAssertEqual(expect, result, @"Expected result %@ and got %@", expect, result);
+    XCTAssertEqualObjects(expect, result, @"");
 }
 
 

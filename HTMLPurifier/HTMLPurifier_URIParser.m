@@ -29,7 +29,23 @@
     // Regexp is as per Appendix B.
     // Note that ["<>] are an addition to the RFC's recommended
     // characters, because they represent external delimeters.
-    NSString* r_URI = @"!(([a-zA-Z0-9\\.\\+\\-]+):)?(//([^/?#\"<>]*))?([^?#\"<>]*)(\\?([^#\"<>]*))?(#([^\"<>]*))?!";
+    NSMutableString* r_URI = [@"" mutableCopy];
+    [r_URI appendString:@"(([a-zA-Z0-9\\.\\+\\-]+):)?"];
+    [r_URI appendString:@"(//([^/?#\"<>]*))?"];
+    [r_URI appendString:@"([^?#\"<>]*)"];
+    [r_URI appendString:@"(\\?([^#\"<>]*))?"];
+    [r_URI appendString:@"(#([^\"<>]*))?"];
+    [r_URI appendString:@""];
+
+    /*(([a-zA-Z0-9\\.\\+\\-]+):)?(//([^/?#\"<>]*))?([^?#\"<>]*)(\\?([^#\"<>]*))?(#([^\"<>]*))?!";
+
+    '!'.
+    '(([a-zA-Z0-9\.\+\-]+):)?'. // 2. Scheme
+    '(//([^/?#"<>]*))?'. // 4. Authority
+    '([^?#"<>]*)'.       // 5. Path
+    '(\?([^#"<>]*))?'.   // 7. Query
+    '(#([^"<>]*))?'.     // 8. Fragment
+    '!'*/
 
     NSMutableArray* matches = [NSMutableArray new];
     BOOL result = preg_match_3(r_URI, uri, matches);
@@ -37,11 +53,11 @@
     if (!result) return nil; // *really* invalid URI
 
     // seperate out parts
-    NSString* scheme     = [matches[1] length]>0 ? matches[2] : nil;
-    NSString* authority  = [matches[3] length]>0 ? matches[4] : nil;
-    NSString* path       = matches[5]; // always present, can be empty
-    NSString* query      = [matches[6] length]>0 ? matches[7] : nil;
-    NSString* fragment   = [matches[8] length]>0 ? matches[9] : nil;
+    NSString* scheme     = matches.count<3?nil:([matches[1] length]>0 ? matches[2] : nil);
+    NSString* authority  = matches.count<5?nil:([matches[3] length]>0 ? matches[4] : nil);
+    NSString* path       = matches.count<6?nil:matches[5]; // always present, can be empty
+    NSString* query      = matches.count<8?nil:([matches[6] length]>0 ? matches[7] : nil);
+    NSString* fragment   = matches.count<10?nil:([matches[8] length]>0 ? matches[9] : nil);
 
     NSString* userinfo   = nil;
     NSString* host       = nil;
@@ -52,9 +68,9 @@
         NSString* r_authority = @"/^((.+?)@)?(\\[[^\\]]+\\]|[^:]*)(:(\\d*))?/";
         NSMutableArray* matches = [NSMutableArray new];
         preg_match_3(r_authority, authority, matches);
-        userinfo   = [matches[1] length]>0 ? matches[2] : nil;
-        host       = [matches[3] length]>0 ? matches[3] : @"";
-        NSString* portString       = [matches[4] length]>0 ? matches[5] : nil;
+        userinfo   = matches.count<3?nil:([matches[1] length]>0 ? matches[2] : nil);
+        host       = matches.count<4?nil:([matches[3] length]>0 ? matches[3] : @"");
+        NSString* portString  = matches.count<6?nil:([matches[4] length]>0 ? matches[5] : nil);
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
         [f setNumberStyle:NSNumberFormatterDecimalStyle];
         port = [f numberFromString:portString];

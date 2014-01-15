@@ -50,15 +50,20 @@
     {
         for(id<NSCopying> key in def.attr)
         {
-            NSArray* v = def.attr[key];
-            /*if(!key)
+            if([(NSObject*)key isEqual:@0])
             {
-               for(NSObject* v2 in v)
-                {
-                    [self->attr[0] addObject:v2];
-                }
-                continue;
-            }*/
+                NSArray* v = def.attr[key];
+                if(v)
+                    for(NSObject* v2 in v)
+                    {
+                        if(self.attr[@0])
+                            self.attr[@0] = [self.attr[@0] arrayByAddingObject:v2];
+                        else
+                            self.attr[@0] = v2;
+                    }
+                    continue;
+            }
+            NSObject* v = def.attr[key];
             if([v isEqual:@NO])
             {
                 if(self.attr[key])
@@ -69,15 +74,14 @@
         }
 
         [self _mergeIntoAssocArray:self.excludes from:def.excludes];
-        [self _mergeIntoAssocArray:self.excludes from:def.excludes];
-        [self.attr_transform_pre addEntriesFromDictionary:def.attr_transform_pre];
-        [self.attr_transform_post addEntriesFromDictionary:def.attr_transform_post];
+        [self _mergeIntoAssocArray:self.attr_transform_pre from:def.attr_transform_pre];
+        [self _mergeIntoAssocArray:self.attr_transform_post from:def.attr_transform_post];
 
         if (def.content_model.length>0) {
             self.content_model = [def.content_model stringByReplacingOccurrencesOfString:@"#SUPER" withString:self.content_model];
             self.child = NO;
         }
-        if (def.content_model_type.length>0) {
+        if ([def.content_model_type length]>0) {
             self.content_model_type = def.content_model_type;
             self.child = false;
         }
@@ -101,14 +105,15 @@
     {
         for(id<NSCopying> key in a2.allKeys)
         {
-            NSObject* value = a1[key];
+            NSObject* value = a2[key];
             if([value isEqual:@NO])
             {
                 if(a1[key])
                     [a1 removeObjectForKey:key];
                 continue;
             }
-            a1[key] = value;
+            if(value)
+                 a1[key] = value;
         }
     }
 
