@@ -677,11 +677,11 @@
 				1E5FAADA1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.m */,
 				1E5FAAD51886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.h */,
 				1E5FAAD61886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.m */,
-				80EDF9BD18803B3200EB1E89 /* Frameworks */,
 				80EDF9C418803B3200EB1E89 /* HTMLPurifier */,
 				1E5FAAD118869CF70073CA79 /* HTMLPurifier_PropertyList.h */,
 				1E5FAAD218869CF70073CA79 /* HTMLPurifier_PropertyList.m */,
 				80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */,
+				80EDF9BD18803B3200EB1E89 /* Frameworks */,
 				80EDF9BC18803B3200EB1E89 /* Products */,
 			);
 			sourceTree = "<group>";

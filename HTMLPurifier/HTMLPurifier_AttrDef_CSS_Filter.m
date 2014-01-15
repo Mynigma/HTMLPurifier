@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrDef_CSS_Filter.h"
+#import "HTMLPurifier_AttrDef_Integer.h"
 #import "BasicPHP.h"
 
 /**
@@ -43,7 +44,7 @@
         return value;
     }
     // if we looped this we could support multiple filters
-    NSInteger function_length = strcspn(value, @"(");
+    NSInteger function_length = strcspn_2(value, @"(");
     NSString* function = trim([value substringToIndex:function_length]);
     if (![function isEqual:@"alpha"] &&
         ![function isEqual:@"Alpha"] &&
@@ -57,7 +58,8 @@
     NSString* parameters = [value substringWithRange:NSMakeRange(cursor,parameters_length)];
     NSArray* params = explode(@",", parameters);
     NSMutableArray* ret_params = [NSMutableArray new];
-    NSMutableArray* lookup = [NSMutableArray new];
+    NSMutableDictionary* lookup = [NSMutableDictionary new];
+    
     for (NSString* param in params)
     {
         // not clean for list(key,value) = explode(@"=",param)
@@ -67,6 +69,7 @@
         
         key = trim(key);
         value = trim(value);
+        
         if (lookup[key])
         {
             continue;
@@ -74,22 +77,26 @@
         if (![key isEqual:@"opacity"]) {
             continue;
         }
-        value = this->intValidator->validate(value, config, context);
-        if (value === false) {
+        value = [intValidator validateWithString:value config:config context:context];
+        if (!value) {
             continue;
         }
-        int = (int)value;
-        if (int > 100) {
-            value = '100';
+        
+        NSInteger num = value.integerValue;
+        
+        if (num > 100) {
+            value = @"100";
         }
-        if (int < 0) {
-            value = '0';
+        if (num < 0) {
+            value = @"0";
         }
-        ret_params[] = "key=value";
-        lookup[key] = true;
+        [ret_params addObject:[NSString stringWithFormat:@"%@=%@",key,value]];
+        lookup[key] = @YES;
     }
-    ret_parameters = implode(',', ret_params);
-    ret_function = "function(ret_parameters)";
+    
+    NSString* ret_parameters = implode(@",",ret_params);
+    NSString* ret_function = [NSString stringWithFormat:@"%@(%@)",function,ret_parameters];
+    
     return ret_function;
 }
 
