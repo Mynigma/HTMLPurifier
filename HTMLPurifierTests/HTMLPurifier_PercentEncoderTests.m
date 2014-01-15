@@ -47,10 +47,9 @@
     {
         expect = string;
     }
-    SEL selector = NSSelectorFromString(@"someMethod");
     IMP imp = [PercentEncoder methodForSelector:func];
     NSObject* (*function)(id, SEL, NSString*) = (void *)imp;
-    NSObject* result = function(PercentEncoder, selector, string);
+    NSObject* result = function(PercentEncoder, func, string);
     [self assertEqual:result to:expect];
 }
 
@@ -59,18 +58,18 @@
         func = @selector(normalize:);
 
         [self assertDecode:@"Aw.../-$^8"]; // no change
-        [self assertDecode:@"%%41%%77%%7E%%2D%%2E%%5F" expect:@"Aw~-._"]; // decode unreserved chars
-        [self assertDecode:@"%%3A%%2F%%3F%%23%%5B%%5D%%40%%21%%24%%26%%27%%28%%29%%2A%%2B%%2C%%3B%%3D"]; // preserve reserved chars
-        [self assertDecode:@"%%2b" expect:@"%%2B"]; // normalize to uppercase
-        [self assertDecode:@"%%2B2B%%3A3A"]; // extra text
-        [self assertDecode:@"%%2b2B%%4141' expect:'%%2B2BA41"]; // extra text, with normalization
-        [self assertDecode:@"%%" expect:@"%%25"]; // normalize stray percent sign
-        [self assertDecode:@"%%5%%25" expect:@"%%255%%25"]; // permaturely terminated encoding
-        [self assertDecode:@"%%GJ" expect:@"%%25GJ"]; // invalid hexadecimal chars
+        [self assertDecode:@"%41%77%7E%2D%2E%5F" expect:@"Aw~-._"]; // decode unreserved chars
+        [self assertDecode:@"%3A%2F%3F%23%5B%5D%40%21%24%26%27%28%29%2A%2B%2C%3B%3D"]; // preserve reserved chars
+        [self assertDecode:@"%2b" expect:@"%2B"]; // normalize to uppercase
+        [self assertDecode:@"%2B2B%3A3A"]; // extra text
+        [self assertDecode:@"%2b2B%4141" expect:@"%2B2BA41"]; // extra text, with normalization
+        [self assertDecode:@"%" expect:@"%25"]; // normalize stray percent sign
+        [self assertDecode:@"%5%25" expect:@"%255%25"]; // permaturely terminated encoding
+        [self assertDecode:@"%GJ" expect:@"%25GJ"]; // invalid hexadecimal chars
 
         // contested behavior, if this changes, we'll also have to have
         // outbound encoding
-        [self assertDecode:@"%%FC"]; // not reserved or unreserved, preserve
+        [self assertDecode:@"%FC"]; // not reserved or unreserved, preserve
 
     }
 
@@ -98,15 +97,15 @@
     }
 
     - (void) test_encode_encode {
-        [self assertEncode:@">" expect:@"%%3E"];
+        [self assertEncode:@">" expect:@"%3E"];
     }
 
     - (void) test_encode_preserve {
-        [self assertEncode:@"<>" expect:@"<%%3E" preserve:@"<"];
+        [self assertEncode:@"<>" expect:@"<%3E" preserve:@"<"];
     }
 
     - (void) test_encode_low {
-        [self assertEncode:@"\1" expect:@"%%01"];
+        [self assertEncode:@"\1" expect:@"%01"];
     }
 
 

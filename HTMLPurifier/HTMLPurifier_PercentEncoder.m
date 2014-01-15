@@ -20,20 +20,25 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-
-
-
-    }
-    return self;
+    return [self initWithPreservedChars:nil];
 }
 
 - (id)initWithPreservedChars:(NSString*)preservedCharacters
 {
     self = [super init];
     if (self) {
-        preservedChars = preservedChars ? [NSCharacterSet characterSetWithCharactersInString:preservedCharacters] : nil;
+        NSMutableCharacterSet* newPreservedCharacters = [NSMutableCharacterSet new];
+
+        [newPreservedCharacters addCharactersInString:@"-_~."];
+        [newPreservedCharacters addCharactersInRange:NSMakeRange('a', 'z'-'a')];
+        [newPreservedCharacters addCharactersInRange:NSMakeRange('A', 'Z'-'A')];
+        [newPreservedCharacters addCharactersInRange:NSMakeRange('0', '9'-'0')];
+        [newPreservedCharacters addCharactersInRange:NSMakeRange(0x80, 0xFF - 0x80)];
+        if(preservedCharacters)
+            [newPreservedCharacters formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:preservedCharacters]];
+
+        preservedChars = newPreservedCharacters;
+
     }
     return self;
 }
@@ -50,10 +55,21 @@
      */
 - (NSString*)encode:(NSString*)string
     {
-        if(preservedChars)
-            return [string stringByAddingPercentEncodingWithAllowedCharacters:preservedChars];
-        else
-            return [string stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSMutableString* ret = [NSMutableString new];
+        NSInteger c = string.length;
+        for (NSInteger i = 0; i < c; i++)
+        {
+            unichar character = [string characterAtIndex:i];
+            if (character != '%' && ![preservedChars characterIsMember:character])
+            {
+                [ret appendFormat: @"%%%02X", character];
+            }
+            else
+            {
+                [ret appendFormat: @"%c", character];
+            }
+        }
+        return ret;
      }
 
     /**
@@ -66,10 +82,11 @@
      */
 - (NSString*)normalize:(NSString*)string
     {
+
         if (string.length==0) {
             return @"";
         }
-        NSMutableArray* parts = [explode(@"\%", string) mutableCopy];
+        NSMutableArray* parts = [explode(@"%", string) mutableCopy];
         NSMutableString* ret = [array_shift(parts) mutableCopy];
         for(NSString* part in parts)
         {

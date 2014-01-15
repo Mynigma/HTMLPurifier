@@ -371,7 +371,8 @@ BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
 
     for(NSUInteger i = 0; i<result.numberOfRanges; i++)
     {
-        [matches addObject:[subject substringWithRange:[result rangeAtIndex:i]]];
+        if([result rangeAtIndex:i].location!=NSNotFound)
+            [matches addObject:[subject substringWithRange:[result rangeAtIndex:i]]];
     }
 
     //Matched at least one thing
@@ -393,15 +394,9 @@ BOOL ctype_xdigit (NSString* text)
     for(NSInteger i=0; i<text.length; i++)
     {
         unichar character = [text characterAtIndex:i];
-        if(character<'0')
+        if(!isxdigit(character))
             return NO;
-        if(character>'9' && character<'A')
-            return NO;
-        if(character>'Z' && character<'a')
-            return NO;
-        if(character>'z')
-            return NO;
-    }
+     }
     return YES;
 }
 

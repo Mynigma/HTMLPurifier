@@ -288,4 +288,10 @@
 //    return true;
 //}
 
+
+- (NSString*)description
+{
+    return [NSString stringWithFormat:@"HTMLPurifier_URI: %@://%@:%@%@%@?%@#%@", _scheme, _host, _userinfo, _port, _path, _query, _fragment];
+}
+
 @end

@@ -98,12 +98,12 @@ static HTMLPurifier* purifier;
 
 - (void)assertEqual:(NSObject*)expect to:(NSObject*)result
 {
-    XCTAssertEqual(expect, result, @"Expected result %@ and got %@", expect, result);
+    XCTAssertEqualObjects(expect, result, @"");
 }
 
 - (void)assertIdentical:(NSObject*)expect to:(NSObject*)result
 {
-    XCTAssertEqual(expect, result, @"Expected result %@ and got %@", expect, result);
+    XCTAssertEqualObjects(expect, result, @"");
 }
 
 
