@@ -10,17 +10,25 @@
 
 @implementation HTMLPurifier_Doctype
 
+@synthesize name;
+@synthesize xml;
+@synthesize modules;
+@synthesize tidyModules;
+@synthesize aliases;
+@synthesize dtdPublic;
+@synthesize dtdSystem;
+
 - (id)initWithName:(NSString*)newName xml:(BOOL)newXML modules:(NSMutableDictionary*)newModules tidyModules:(NSMutableDictionary*)newTidyModules aliases:(NSMutableDictionary*)newAliases dtdPublic:(NSString*)newDtd_public dtdSystem:(NSString*)newDtd_system
 {
     self = [super init];
     if (self) {
-        _name = newName;
-        _xml = newXML;
-        _modules = newModules;
-        _tidyModules = newTidyModules;
-        _aliases = newAliases;
-        _dtdPublic = newDtd_public;
-        _dtdSystem = newDtd_system;
+        name = newName;
+        xml = newXML;
+        modules = newModules;
+        tidyModules = newTidyModules;
+        aliases = newAliases;
+        dtdPublic = newDtd_public;
+        dtdSystem = newDtd_system;
     }
     return self;
 }
