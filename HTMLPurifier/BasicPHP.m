@@ -903,6 +903,16 @@ void array_push(NSMutableArray* array, NSObject* x)
 }
 
 
+NSInteger strcspn_2(NSString* string1, NSString* string2)
+{
+    return 0;
+}
+
+
+NSInteger strcspn_3(NSString* string1, NSString* string2, NSInteger start)
+{
+    return 0;
+}
 
 //TODO array_map_i
 //Call back should be a function callback
