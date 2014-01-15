@@ -32,7 +32,7 @@
     HTMLPurifier_Generator* generator = [[HTMLPurifier_Generator alloc] initWithConfig:config context:context];
     BOOL escape_invalid_tags = [(NSNumber*)[config get:@"Core.EscapeInvalidTags"] boolValue];
     // used for autoclose early abortion
-    NSArray* global_parent_allowed_elements = [[[definition info_parent_def] child] getAllowedElements:config];
+    NSDictionary* global_parent_allowed_elements = [[[definition info_parent_def] child] getAllowedElements:config];
     //$e = $context->get('ErrorCollector', true);
     NSInteger i = -1; // injector index
 
@@ -191,13 +191,14 @@
         //flush();
 
         // quick-check: if it's not a tag, no need to process
-        if (![token is_tag])
+        if (![token valueForKey:@"is_tag"])
         {
             if ([token isKindOfClass:[HTMLPurifier_Token_Text class]])
             {
                 for(NSInteger i=0; i<injectors.count; i++)
                 {
-                    if([token skip][i])
+                    HTMLPurifier_Injector* injector = _injectors[i];
+                    if(token.skip[@(i)])
                     {
                         continue;
                     }
@@ -207,8 +208,15 @@
                     }
                     // XXX fuckup
                     HTMLPurifier_Token* r = token;
-                    [injector handleText:r];
-                    token = [self processToken:r i];
+                    [injector handleText:&r];
+
+                    //
+                    //  TO DO: clean up
+                    //  in PHP the index i, not the injector is passed along!?!
+                    //
+
+
+                    token = [self processToken:r injector:@(i)];
                     reprocess = YES;
                     break;
                 }
@@ -217,8 +225,9 @@
             continue;
         }
         NSString* type;
-        if (definition.info[token.name])) {
-            type = [[definition.info[token.name] child] type];
+        if (definition.info[[token valueForKey:@"name"]])
+        {
+            type = [[definition.info[[token valueForKey:@"name"]] child] typeString];
         } else {
             type = nil; // Type is unknown, treat accordingly
         }
@@ -227,16 +236,16 @@
         BOOL ok = NO;
         if ([type isEqual:@"empty"] && [token isKindOfClass:[HTMLPurifier_Token_Start class]]) {
             // claims to be a start tag but is empty
-            token = [[HTMLPurifier_Token_Empty alloc] initWithName:token.name attr:token.attr line:token.line col:token.col armor:token.armor];
+            token = [[HTMLPurifier_Token_Empty alloc] initWithName:[token valueForKey:@"name"] attr:[token valueForKey:@"attr"] line:token.line col:token.col armor:token.armor];
             ok = YES;
         } else if (type && ![type isEqualToString:@"empty"] && [token isKindOfClass: [HTMLPurifier_Token_Empty class]])
         {
             // claims to be empty but really is a start tag
             // NB: this assignment is required
             HTMLPurifier_Token* old_token = token;
-            token = [[HTMLPurifier_Token_End alloc] initWithName:token.name];
+            token = [[HTMLPurifier_Token_End alloc] initWithName:[token valueForKey:@"name"]];
 
-            token = [self insertBefore:[[HTMLPurifier_Token_Start alloc initWithName:token.name attr:token.attr line:token.line col:token.col armor:token.armor]]];
+            token = [self insertBefore:[[HTMLPurifier_Token_Start alloc] initWithName:[old_token valueForKey:@"name"] attr:[old_token valueForKey:@"attr"] line:old_token.line col:old_token.col armor:old_token.armor]];
 
             // punt (since we had to modify the input stream in a non-trivial way)
             reprocess = YES;
@@ -263,34 +272,35 @@
                 // "easy" to reason about (for certain perverse definitions
                 // of "easy")
 
-                parent = array_pop(_stack);
+                HTMLPurifier_Token* parent = (HTMLPurifier_Token*)array_pop(_stack);
                 [_stack addObject:parent];
 
-                parent_def = nil;
-                parent_elements = nil;
-                autoclose = NO;
-                if (definition.info[parent.name])) {
-                    parent_def = definition.info[parent.name];
+                HTMLPurifier_ElementDef* parent_def = nil;
+                NSMutableDictionary* parent_elements = [@{} mutableCopy];
+                BOOL autoclose = NO;
+                if (definition.info[[parent valueForKey:@"name"]]) {
+                    parent_def = definition.info[[parent valueForKey:@"name"]];
                     parent_elements = [[parent_def child] getAllowedElements:config];
-                    autoclose = parent_elements[token.name]==nil;
+                    autoclose = (parent_elements[[token valueForKey:@"name"]]==nil);
                 }
 
-                if (autoclose && [definition.info[token.name] wrap]) {
+                if (autoclose && [definition.info[[token valueForKey:@"name"]] wrap]) {
                     // Check if an element can be wrapped by another
                     // element to make it valid in a context (for
                     // example, <ul><ul> needs a <li> in between)
-                    wrapname = [definition.info[token.name] wrap];
-                    wrapdef = [definition.info[wrapname] wrap];
-                    elements = [[wrapdef child] getAllowedElements:config];
-                    if (elements[token.name]) && parent_elements[wrapname])) {
-                        newtoken = [[HTMLPurifier_Token_Start alloc] initWith:wrapname];
+                    NSString* wrapname = [definition.info[[token valueForKey:@"name"]] wrap];
+                    HTMLPurifier_ElementDef* wrapdef = definition.info[wrapname];
+                    NSMutableDictionary* elements = [[wrapdef child] getAllowedElements:config];
+                    if (elements[[token valueForKey:@"name"]] && parent_elements[wrapname])
+                    {
+                        HTMLPurifier_Token_Start* newtoken = [[HTMLPurifier_Token_Start alloc] initWithName:wrapname];
                         token = [self insertBefore:newtoken];
                         reprocess = YES;
                         continue;
                     }
                 }
 
-                carryover = NO;
+                BOOL carryover = NO;
                 if (autoclose && [parent_def formatting]) {
                     carryover = NO;
                 }
@@ -298,20 +308,20 @@
                 if (autoclose) {
                     // check if this autoclose is doomed to fail
                     // (this rechecks $parent, which his harmless)
-                    BOOL autoclose_ok = global_parent_allowed_elements[token.name]!= nil;
+                    BOOL autoclose_ok = global_parent_allowed_elements[[token valueForKey:@"name"]]!= nil;
                     if (!autoclose_ok) {
                         for(NSObject* ancestor in _stack)
                         {
-                            elements = [[definition.info[ancestor.name] child]getAllowedElements:config];
-                            if (elements[token.name]) {
+                            NSMutableDictionary* elements = [[definition.info[[ancestor valueForKey:@"name"]] child]getAllowedElements:config];
+                            if (elements[[token valueForKey:@"name"]]) {
                                 autoclose_ok = YES;
                                 break;
                             }
-                            if ([definition.info[token.name] wrap]) {
-                                wrapname = [definition.info[token.name] wrap];
-                                wrapdef = definition.info[wrapname];
-                                wrap_elements = [[wrapdef child] getAllowedElements:config];
-                                if (wrap_elements[token.name]) && elements[wrapname])) {
+                            if ([definition.info[[token valueForKey:@"name"]] wrap]) {
+                                NSString* wrapname = [definition.info[[token valueForKey:@"name"]] wrap];
+                                HTMLPurifier_ElementDef* wrapdef = definition.info[wrapname];
+                                NSMutableDictionary* wrap_elements = [[wrapdef child] getAllowedElements:config];
+                                if (wrap_elements[[token valueForKey:@"name"]] && elements[wrapname]) {
                                     autoclose_ok = YES;
                                     break;
                                 }
@@ -320,7 +330,7 @@
                     }
                     if (autoclose_ok) {
                         // errors need to be updated
-                        new_token = [[HTMLPurifier_Token_End alloc] initWithName:parent.name];
+                        HTMLPurifier_Token_End* new_token = [[HTMLPurifier_Token_End alloc] initWithName:[parent valueForKey:@"name"]];
                         [new_token setStart:parent];
 
                         /*
@@ -334,16 +344,16 @@
                          }
                          */
                         if (carryover) {
-                            element = [parent copy];
+                            HTMLPurifier_Token* element = [parent copy];
                             // [TagClosedAuto]
-                            //$element->armor['MakeWellFormed_TagClosedError'] = true;
-                            [element setCarryover:YES];
+                            element.armor[@"MakeWellFormed_TagClosedError"] = @YES;
+                            element.carryover = @YES;
                             token = [self processToken:@[new_token, token, element]];
                         } else {
                             token = [self insertBefore:new_token];
                         }
                     } else {
-                        token = [self remove];
+                        token = (HTMLPurifier_Token*)[self removeObject];
                     }
                     reprocess = YES;
                     continue;
@@ -355,17 +365,18 @@
 
         if(ok)
         {
-            for(NSInteger i=0; i<self.injectors.count; i++)
+            for(NSInteger i=0; i<_injectors.count; i++)
             {
-                if ([token skip][i])) {
+                HTMLPurifier_Injector* injector = _injectors[i];
+                if ([token skip][@(i)]) {
                     continue;
                 }
                 if ([token rewind] && ![[token rewind] isEqual:@(i)]) {
                     continue;
                 }
                 HTMLPurifier_Token* r = token;
-                [injector handleElement:r];
-                token = [self processToken:r i];
+                [injector handleElement:&r];
+                token = [self processToken:r injector:@(i)];
                 reprocess = YES;
                 break;
             }
@@ -374,7 +385,7 @@
                 if ([token isKindOfClass:[HTMLPurifier_Token_Start class]]) {
                     [_stack addObject:token];
                 } else if ([token isKindOfClass:[HTMLPurifier_Token_End class]]) {
-                    throw [NSException exceptionWithName:@"End tag handling exception" reason:@"Improper handling of end tag in start code; possible error in MakeWellFormed" userInfo:nil];
+                    @throw [NSException exceptionWithName:@"End tag handling exception" reason:@"Improper handling of end tag in start code; possible error in MakeWellFormed" userInfo:nil];
                 }
             }
             continue;
@@ -382,7 +393,7 @@
 
         // sanity check: we should be dealing with a closing tag
         if (![token isKindOfClass:[HTMLPurifier_Token_End class]]) {
-            throw [NSException exceptionWithName:@"Unaccounted for tag exception" reason:@"Unaccounted for tag token in input stream, bug in HTML Purifier" userInfo:nil];
+            @throw [NSException exceptionWithName:@"Unaccounted for tag exception" reason:@"Unaccounted for tag token in input stream, bug in HTML Purifier" userInfo:nil];
         }
 
         // make sure that we have something open
@@ -391,7 +402,7 @@
             {
                 token = [[HTMLPurifier_Token_Text alloc] initWithData:[generator generateFromToken:token]];
             } else {
-                token = [self remove];
+                token = (HTMLPurifier_Token*)[self removeObject];
             }
             reprocess = YES;
             continue;
@@ -401,13 +412,14 @@
         // Eventually, everything passes through here; if there are problems
         // we modify the input stream accordingly and then punt, so that
         // the tokens get processed again.
-        current_parent = array_pop(_stack);
-        if ([[current_parent name] isEqual:[token name]])
+        HTMLPurifier_Token* current_parent = (HTMLPurifier_Token*)array_pop(_stack);
+        if ([[current_parent valueForKey:@"name"] isEqual:[token valueForKey:@"name"]])
         {
-            [token setStart:current_parent];
+            [(HTMLPurifier_Token_End*)token setStart:current_parent];
             for(NSInteger i=0; i<_injectors.count; i++)
             {
-                if ([token skip][i]))
+                HTMLPurifier_Injector* injector = _injectors[i];
+                if ([token skip][@(i)])
                 {
                     continue;
                 }
@@ -416,8 +428,8 @@
                     continue;
                 }
                 HTMLPurifier_Token* r = token;
-                [injector handleEnd:r];
-                token = [self processToken:r, $i];
+                [injector handleEnd:&r];
+                token = [self processToken:r injector:@(i)];
                 [_stack addObject:current_parent];
                 reprocess = YES;
                 break;
@@ -436,22 +448,20 @@
         // -2 because -1 is the last element, but we already checked that
         NSMutableArray* skipped_tags = nil;
         for (NSInteger j = size - 2; j >= 0; j--) {
-            if ([[_stack[j] name] isEqual:[token name]])
+            if ([[_stack[j] valueForKey:@"name"] isEqual:[token valueForKey:@"name"]])
             {
-                skipped_tags = array_slice(_stack, j);
+                skipped_tags = array_slice_2(_stack, j);
                 break;
             }
         }
 
         // we didn't find the tag, so remove
-        if (skipped_tags == NO) {
+        if (skipped_tags.count==0) {
             if (escape_invalid_tags) {
-                token = [[HTMLPurifier_Token_Text alloc] initWith:[generator generateFromToken:token]];
+                token = [[HTMLPurifier_Token_Text alloc] initWithData:[generator generateFromToken:token]];
             } else {
-                if ($e) {
-                    $e->send(E_WARNING, 'Strategy_MakeWellFormed: Stray end tag removed');
-                }
-                token = [self remove];
+                TRIGGER_ERROR(@"Strategy_MakeWellFormed: Stray end tag removed");
+                token = (HTMLPurifier_Token*)[self removeObject];
             }
             reprocess = YES;
             continue;
@@ -471,18 +481,19 @@
          }*/
 
         // insert tags, in FORWARD $j order: c,b,a with </a></b></c>
-        NSMutableArray* replace = @[token];
+        NSMutableArray* replace = [@[token] mutableCopy];
+        NSInteger c = skipped_tags.count;
         for (NSInteger j = 1; j < c; j++)
         {
             // ...as well as from the insertions
-            new_token = [[HTMLPurifier_Token_End alloc] initWith:[skipped_tags[j] name]];
+            HTMLPurifier_Token_End* new_token = [[HTMLPurifier_Token_End alloc] initWithName:[skipped_tags[j] name]];
             [new_token setStart:skipped_tags[j]];
-            array_unshift(replace, new_token);
-            if(definition.info[new_token.name] && [definition.info[new_token.name] formatting])
+            array_unshift_2(replace, new_token);
+            if(definition.info[[new_token valueForKey:@"name"]] && [definition.info[[new_token valueForKey:@"name"]] formatting])
             {
                 // [TagClosedAuto]
-                element = [skipped_tags[j] copy];
-                [element setCarryover:YES];
+                HTMLPurifier_Token* element = [skipped_tags[j] copy];
+                element.carryover = @YES;
                 [element.armor setObject:@YES forKey:@"MakeWellFormed_TagClosedError"];
                 [replace addObject:element];
             }
@@ -496,10 +507,10 @@
     [context destroy:@"CurrentNesting"];
     [context destroy:@"InputZipper"];
 
-    [self setInjectors: nil];
-    [self setStack:nil];
-    [self setTokens:nil];
-    return [zipper toArray:token];
+    _injectors = nil;
+    _stack = nil;
+    _tokens = nil;
+    return [[_zipper toArray:token] mutableCopy];
 }
 
 /**
@@ -523,10 +534,17 @@
  *        this is not an injector related operation.
  * @throws HTMLPurifier_Exception
  */
-- (void)processToken:(NSObject*)token injector:(HTMLPurifier_Injector*)injector
+- (HTMLPurifier_Token*)processToken:(NSObject*)passedToken
 {
+    return [self processToken:@(-1)];
+}
+
+- (HTMLPurifier_Token*)processToken:(NSObject*)passedToken injector:(NSNumber*)injector
+{
+    NSObject* token = passedToken;
+
     // normalize forms of token
-    if(![token isKindOfClass:[NSNumber class]])
+    if([token isKindOfClass:[NSNumber class]])
     {
         if([token isEqual:@NO])
         {
@@ -538,40 +556,54 @@
         }
     }
 
-    if (![token isKindOfClass:[NSObject class]]) {
+    if([token isKindOfClass:[HTMLPurifier_Token class]])
+    {
         token = @[@1, token];
     }
-    if (![token[0] isKindOfClass:[NSNumber class]])
+
+    if (![token isKindOfClass:[NSArray class]])
     {
-        array_unshift(token, 1);
+        @throw [NSException exceptionWithName:@"MakeWellFormed exception" reason:@"Deleting zero tokens is not valid" userInfo:nil];
     }
-    if ([token[0] isEqual:@0])
+
+    NSMutableArray* tokenArray = [(NSArray*)token mutableCopy];
+
+    if (![tokenArray[0] isKindOfClass:[NSNumber class]])
     {
-        throw [NSException exceptionWithName:@"MakeWellFormed exception" reason:@"Deleting zero tokens is not valid" userInfo:nil];
+        array_unshift_2(tokenArray, @1);
+    }
+
+    if ([tokenArray isEqual:@0])
+    {
+        @throw [NSException exceptionWithName:@"MakeWellFormed exception" reason:@"Deleting zero tokens is not valid" userInfo:nil];
     }
     
     // $token is now an array with the following form:
     // array(number nodes to delete, new node 1, new node 2, ...)
     
-    delete = array_shift(token);
-    NSArray* pair = [self.zipper splice:self.token delete:delete token:token];
+    NSNumber* numberOfDeletionsNeeded = (NSNumber*)array_shift(tokenArray);
+    NSArray* pair = (NSArray*)[_zipper splice:_token delete:numberOfDeletionsNeeded.integerValue replacement:tokenArray];
     NSArray* old = nil;
-    NSArray* r = nil;
+    HTMLPurifier_Token* r = nil;
     if(pair.count>0)
         old = pair[0];
     if(pair.count>1)
         r = pair[1];
-    
-    if (injector > -1) {
+
+
+    //TO DO: check this section!!!
+
+    if (injector.integerValue > -1)
+    {
         // determine appropriate skips
         NSArray* oldskip = old[0] ? [old[0] skip] : @[];
-        for(NSObject* object in token)
+        for(HTMLPurifier_Token* object in tokenArray)
         {
-            [object setSkip:oldskip];
+            [object setSkip:[oldskip mutableCopy]];
             [object.skip setObject:@YES forKey:injector];
         }
     }
-    
+
     return r;
     
 }
@@ -581,11 +613,11 @@
  * this token.  You must reprocess after this.
  * @param HTMLPurifier_Token $token
  */
-- (void)insertBefore:(HTMLPurifier_Token*)token
+- (HTMLPurifier_Token*)insertBefore:(HTMLPurifier_Token*)token
 {
     // NB not $this->zipper->insertBefore(), due to positioning
     // differences
-    splice = [self.zipper splice:self.token , 0, array($token)];
+    NSArray* splice = (NSArray*)[_zipper splice:_token delete:0 replacement:@[token]];
     
     return splice[1];
 }
@@ -594,9 +626,9 @@
  * Removes current token. Cursor now points to new token occupying previously
  * occupied space.  You must reprocess after this.
  */
-- (void)remove
+- (NSObject*)removeObject
 {
-    return [[self zipper] delete];
+    return [_zipper delete];
 }
 
 

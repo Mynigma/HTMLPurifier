@@ -42,6 +42,8 @@
 		1E5FAAD81886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAAD61886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.m */; };
 		1E5FAADB1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5FAAD91886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.h */; };
 		1E5FAADC1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAADA1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.m */; };
+		1E5FAADF1886DD2B0073CA79 /* HTMLPurifier_Doctype.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5FAADD1886DD2B0073CA79 /* HTMLPurifier_Doctype.h */; };
+		1E5FAAE01886DD2B0073CA79 /* HTMLPurifier_Doctype.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAADE1886DD2B0073CA79 /* HTMLPurifier_Doctype.m */; };
 		1E68BDF4188340680038DAB1 /* HTMLPurifier_Definition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E68BDF2188340680038DAB1 /* HTMLPurifier_Definition.h */; };
 		1E68BDF5188340680038DAB1 /* HTMLPurifier_Definition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E68BDF3188340680038DAB1 /* HTMLPurifier_Definition.m */; };
 		1E68BDF91883504C0038DAB1 /* HTMLPurifier_Strategy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E68BDF71883504C0038DAB1 /* HTMLPurifier_Strategy.h */; };
@@ -261,6 +263,8 @@
 		1E5FAAD61886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_DefinitionCacheFactory.m; sourceTree = "<group>"; };
 		1E5FAAD91886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_DefinitionCache.h; sourceTree = "<group>"; };
 		1E5FAADA1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_DefinitionCache.m; sourceTree = "<group>"; };
+		1E5FAADD1886DD2B0073CA79 /* HTMLPurifier_Doctype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Doctype.h; sourceTree = "<group>"; };
+		1E5FAADE1886DD2B0073CA79 /* HTMLPurifier_Doctype.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Doctype.m; sourceTree = "<group>"; };
 		1E68BDF2188340680038DAB1 /* HTMLPurifier_Definition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Definition.h; sourceTree = "<group>"; };
 		1E68BDF3188340680038DAB1 /* HTMLPurifier_Definition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Definition.m; sourceTree = "<group>"; };
 		1E68BDF71883504C0038DAB1 /* HTMLPurifier_Strategy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Strategy.h; sourceTree = "<group>"; };
@@ -655,6 +659,8 @@
 		80EDF9B118803B3200EB1E89 = {
 			isa = PBXGroup;
 			children = (
+				1E5FAADD1886DD2B0073CA79 /* HTMLPurifier_Doctype.h */,
+				1E5FAADE1886DD2B0073CA79 /* HTMLPurifier_Doctype.m */,
 				1E5FAAD91886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.h */,
 				1E5FAADA1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.m */,
 				1E5FAAD51886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.h */,
@@ -850,6 +856,7 @@
 				803FD4631882B18D0010D799 /* HTMLPurifier_AttrDef_HTML_Length.h in Headers */,
 				803FD4671882D0160010D799 /* HTMLPurifier_AttrDef_HTML_LinkTypes.h in Headers */,
 				1EBB81F31882DF33008B7FA4 /* HTMLPurifier_Node_Comment.h in Headers */,
+				1E5FAADF1886DD2B0073CA79 /* HTMLPurifier_Doctype.h in Headers */,
 				1E9A62EA18847CCB00EA7A85 /* HTMLPurifier_ConfigSchema.h in Headers */,
 				803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */,
 				1ED0397618814A850075F6A4 /* HTMLPurifier_AttrDef_CSS_ListStyle.h in Headers */,
@@ -1015,6 +1022,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				803FD44618809A0E0010D799 /* HTMLPurifier_AttrDef_HTML_Bool.m in Sources */,
+				1E5FAAE01886DD2B0073CA79 /* HTMLPurifier_Doctype.m in Sources */,
 				803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */,
 				1ED039551880CB150075F6A4 /* HTMLPurifier_AttrDef_Switch.m in Sources */,
 				1E68BDFA1883504C0038DAB1 /* HTMLPurifier_Strategy.m in Sources */,
@@ -1193,6 +1201,7 @@
 					"/usr/include/libxml2/**",
 					"$SDK_DIR/usr/include/libxml2/**",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lxml2";
@@ -1233,6 +1242,7 @@
 					"/usr/include/libxml2/**",
 					"$SDK_DIR/usr/include/libxml2/**",
 				);
+				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = macosx;

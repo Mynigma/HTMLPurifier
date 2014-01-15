@@ -10,10 +10,14 @@
 #import "HTMLPurifier_TokenFactory.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_TokenFactory.h"
-#import <libxml/tree.h>
+#import <libxml/HTMLparser.h>
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Queue.h"
+#import "HTMLPurifier_Token.h"
+#import "HTMLPurifier_Token_Start.h"
+#import "HTMLPurifier_HTMLDefinition.h"
+#import "HTMLPurifier_Doctype.h"
 
 @implementation HTMLPurifier_Lexer_libxmlLex
 
@@ -69,7 +73,7 @@
         optionsHtml = optionsHtml | HTML_PARSE_NOWARNING;
         htmlDocPtr doc = htmlReadDoc ((xmlChar*)[string UTF8String], NULL, enc, optionsHtml);
 
-        [self tokenizeDOMNode:(__bridge xmlNode *)(&(doc->children[0].children[0])) tokens:tokens];
+        [self tokenizeDOMNode:(xmlNode*)(&(doc->children[0].children[0])) tokens:tokens];
 
         return tokens;
     }
@@ -81,32 +85,50 @@
      * @param HTMLPurifier_Token[] $tokens   Array-list of already tokenized tokens.
      * @return HTMLPurifier_Token of node appended to previously passed tokens.
      */
-- (HTMLPurifier_Token*)tokenizeDOMNode:(xmlNode*)n tokens:(NSMutableArray*)tokens
+
+
+//TO DO: double-check
+//PHP comment indicates return type HTMLPurifier_Token, but no value is returned!?!?!
+
+- (void)tokenizeDOMNode:(xmlNode*)n tokens:(NSMutableArray*)tokens
     {
         NSNumber* level = @0;
-        NSMutableDictionary* nodes = [@{level: [[HTMLPurifier_Queue alloc] initWithInput:@[n]]} mutableCopy];
+        NSValue* xmlNodeObject = [NSValue value:&n withObjCType:@encode(struct _xmlNode)];
+        NSMutableDictionary* nodes = [@{level: [[HTMLPurifier_Queue alloc] initWithInput:@[xmlNodeObject]]} mutableCopy];
         NSMutableDictionary* closingNodes = [NSMutableDictionary new];
         do {
             while ([nodes objectForKey:level]) {
-                xmlNode* node = (xmlNode*)[(HTMLPurifier_Queue*)[nodes objectForKey:level] shift]; // FIFO
+                NSValue* nodeValue = (NSValue*)[(HTMLPurifier_Queue*)[nodes objectForKey:level] shift]; // FIFO
+                xmlNode* node;
+                [nodeValue getValue:&node];
                 BOOL collect = level.integerValue > 0 ? true : false;
                 BOOL needEndingTag = [self createStartNode:node tokens:tokens collect:collect];
                 if (needEndingTag) {
-                    [[closingNodes objectForKey:level] addObject:node];
+                    NSValue* xmlNodeObject = [NSValue value:&n withObjCType:@encode(struct _xmlNode)];
+                    [[closingNodes objectForKey:level] addObject:xmlNodeObject];
                 }
-                if ([node childNodes] && [[node childNodes] length]) {
+                if(node->children)
+                {
                     level = @(level.integerValue+1);
                     [nodes setObject:[HTMLPurifier_Queue new] forKey:level];
-                    for(xmlNode* childNode in [node childNodes])
+                    xmlNode* child = node->children;
+                    while(child)
                     {
-                        [[nodes objectForKey:level] push:childNode];
+                        NSValue* nodeValue = (NSValue*)array_pop([closingNodes objectForKey:level]);
+                        [[nodes objectForKey:level] push:nodeValue];
+                        child = child->next;
                     }
                 }
             }
             level = @(level.integerValue-1);
             if (level && [closingNodes objectForKey:level]) {
-                while (node = array_pop([closingNodes objectForKey:level])) {
+                NSValue* nodeValue = (NSValue*)array_pop([closingNodes objectForKey:level]);
+                xmlNode* node;
+                [nodeValue getValue:&node];
+                while (node) {
                     [self createEndNode:node tokens:tokens];
+                    nodeValue = (NSValue*)array_pop([closingNodes objectForKey:level]);
+                    [nodeValue getValue:&node];
                 }
             }
         } while (level.integerValue > 0);
@@ -126,53 +148,55 @@
         // intercept non element nodes. WE MUST catch all of them,
         // but we're not getting the character reference nodes because
         // those should have been preprocessed
-        if (node.type === XML_TEXT_NODE) {
-            [tokens addObject:[factory createText:node->data]]);
+        if (node->type == XML_TEXT_NODE) {
+            [tokens addObject:[factory createTextWithData:[NSString stringWithCString:(char*)node->content encoding:NSUTF8StringEncoding]]];
             return NO;
-        } else if (node.type == XML_CDATA_SECTION_NODE) {
+        } else if (node->type == XML_CDATA_SECTION_NODE) {
             // undo libxml's special treatment of <script> and <style> tags
             HTMLPurifier_Token* last = [tokens objectAtIndex:tokens.count-1];
-            data = node->data;
+            NSString* data = [NSString stringWithCString:(char*)node->content encoding:NSUTF8StringEncoding];
             // (note $node->tagname is already normalized)
-            if ([last isKindOfClass:[HTMLPurifier_Token_Start]] && ([last.name isEqual:@"script"] || [last.name isEqual:@"style"]))
+            if ([last isKindOfClass:[HTMLPurifier_Token_Start class]] && ([[last valueForKey:@"name"] isEqual:@"script"] || [[last valueForKey:@"name"] isEqual:@"style"]))
             {
-                $new_data = trim($data);
-                if (substr($new_data, 0, 4) === '<!--') {
-                    $data = substr($new_data, 4);
-                    if (substr($data, -3) === '-->') {
-                        $data = substr($data, 0, -3);
+                NSMutableString* new_data = [trim(data) mutableCopy];
+                if ([[new_data substringWithRange:NSMakeRange(0, 4)] isEqualTo:@"<!--"]) {
+                    data = substr(new_data, 4);
+                    if ([substr(data, -3) isEqualToString:@"-->"]) {
+                        data = [data substringWithRange:NSMakeRange(data.length-3, 3)];
                     } else {
                         // Highly suspicious! Not sure what to do...
                     }
                 }
             }
-            [tokens addObject:[[self factory] createText:[self parseDataWithString:data]]];
+            [tokens addObject:[self->factory createTextWithData:[self parseDataWithString:data]]];
             return NO;
-        } else if ([node type] === XML_COMMENT_NODE) {
+        } else if (node->type == XML_COMMENT_NODE) {
             // this is code is only invoked for comments in script/style in versions
             // of libxml pre-2.6.28 (regular comments, of course, are still
             // handled regularly)
-            [tokens addObject:[self.factory createComment:node.data]];
+
+            [tokens addObject:[self->factory createCommentWithData:[NSString stringWithCString:(char*)node->content encoding:NSUTF8StringEncoding]]];
             return NO;
-        } else if (node.type != XML_ELEMENT_NODE) {
+        } else if (node->type != XML_ELEMENT_NODE) {
             // not-well tested: there may be other nodes we have to grab
             return NO;
         }
 
-        NSArray* attr = node->hasAttributes() ? [self transformAttrToAssoc:node->attributes] : @[];
+        NSMutableDictionary* attr = node->properties ? [self transformAttrToAssoc:node->properties] : [@{} mutableCopy];
 
         // We still have to make sure that the element actually IS empty
-        if (!node->childNodes->length) {
+
+        if(!node->children)
+        {
             if (collect) {
-                [tokens addObject:[self.factory createEmpty:$node->tagName attr:attr]];
+                NSString* name = [NSString stringWithCString:(char*)node->name encoding:NSUTF8StringEncoding];
+                [tokens addObject:[self->factory createEmptyWithName:name attr:attr]];
             }
             return NO;
         } else {
             if (collect) {
-                [tokens addObject:[self.factory createStart(
-                                                        $tag_name = $node->tagName, // somehow, it get's dropped
-                                                        $attr
-                                                        );
+                NSString* name = [NSString stringWithCString:(char*)node->name encoding:NSUTF8StringEncoding];
+                [tokens addObject:[self->factory createStartWithName:name attr:attr]];
             }
             return true;
         }
@@ -184,7 +208,7 @@
      */
 - (void)createEndNode:(xmlNode*)node tokens:(NSMutableArray*)tokens
     {
-        [tokens addObject:[self.factory createEnd:node->tagName]];
+        [tokens addObject:[self->factory createEndWithName:[NSString stringWithCString:(char*)node->name encoding:NSUTF8StringEncoding]]];
     }
 
 
@@ -194,19 +218,23 @@
      * @param DOMNamedNodeMap $node_map DOMNamedNodeMap of DOMAttr objects.
      * @return array Associative array of attributes.
      */
-- (NSDictionary*)transformAttrToAssoc:node_map
+- (NSDictionary*)transformAttrToAssoc:(xmlAttr*)properties
     {
-        // NamedNodeMap is documented very well, so we're using undocumented
-        // features, namely, the fact that it implements Iterator and
-        // has a ->length attribute
-        if ($node_map->length === 0) {
-            return array();
+        NSMutableDictionary* propertiesLookup = [NSMutableDictionary new];
+        while(properties)
+        {
+            NSString* name = [NSString stringWithCString:(char*)properties->name encoding:NSUTF8StringEncoding];
+
+            //TO DO:
+            //IS THIS RIGHT?!?!?!?
+            NSString* value = [NSString stringWithCString:(char*)properties->children->content encoding:NSUTF8StringEncoding];
+            if(name && value)
+                propertiesLookup[name] = value;
+            else
+                TRIGGER_ERROR(@"Parse error: trying to assign propertiesLookup[%@] = %@", name, value);
+            properties = properties->next;
         }
-        $array = array();
-        foreach ($node_map as $attr) {
-            $array[$attr->name] = $attr->value;
-        }
-        return $array;
+        return propertiesLookup;
     }
 
     /**
@@ -217,7 +245,7 @@
      */
 - (NSString*)callbackUndoCommentSubst:(NSArray*)matches
     {
-        return [NSString stringWithFormat:@"<!--%@%@", strtr(matches[1], @{@"&amp;" : @"&", @"&lt;" : @"<"}) . matches[2]];
+        return [NSString stringWithFormat:@"<!--%@%@", strtr_php(matches[1], @{@"&amp;" : @"&", @"&lt;" : @"<"}), matches[2]];
     }
 
     /**
@@ -240,15 +268,17 @@
      */
 - (NSString*)wrapHTML:(NSString*)html config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
-        HTMLPurifier_Definition* def = [HTMLPurifier_Definition new];
+        HTMLPurifier_HTMLDefinition* def = (HTMLPurifier_HTMLDefinition*)[HTMLPurifier_Definition new];
 
         NSMutableString* ret = [NSMutableString new];
-        if ([[def doctype] dtdPublic]) || [[def doctype] dtdSystem])) {
+        if ([[def doctype] dtdPublic] || [[def doctype] dtdSystem]) {
             [ret appendString:@"<!DOCTYPE html "];
-            if ([[def doctype] dtdPublic]) {
+            if ([[def doctype] dtdPublic])
+            {
                 [ret appendFormat:@"PUBLIC \"%@\" ", [[def doctype] dtdPublic]];
             }
-            if ([[def doctype] dtdSystem])) {
+            if ([[def doctype] dtdSystem])
+            {
                 [ret appendFormat:@"\"%@\" ", [[def doctype] dtdSystem]];
             }
             [ret appendString:@">"];

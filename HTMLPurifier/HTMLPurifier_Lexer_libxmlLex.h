@@ -7,8 +7,9 @@
 //
 
 #import "HTMLPurifier_Lexer.h"
+#import <libxml/tree.h>
 
-@class HTMLPurifier_TokenFactory, HTMLPurifier_Token, xmlNode;
+@class HTMLPurifier_TokenFactory, HTMLPurifier_Token;
 
 @interface HTMLPurifier_Lexer_libxmlLex : HTMLPurifier_Lexer
 {
@@ -35,7 +36,7 @@
  * @param HTMLPurifier_Token[] $tokens   Array-list of already tokenized tokens.
  * @return HTMLPurifier_Token of node appended to previously passed tokens.
  */
-- (HTMLPurifier_Token*)tokenizeDOMNode:(xmlNode*)node tokens:(NSMutableArray*)tokens;
+- (void)tokenizeDOMNode:(xmlNode*)node tokens:(NSMutableArray*)tokens;
 /**
  * @param DOMNode $node DOMNode to be tokenized.
  * @param HTMLPurifier_Token[] $tokens   Array-list of already tokenized tokens.
@@ -60,7 +61,7 @@
  * @param DOMNamedNodeMap $node_map DOMNamedNodeMap of DOMAttr objects.
  * @return array Associative array of attributes.
  */
-- (NSDictionary*)transformAttrToAssoc:node_map;
+- (NSDictionary*)transformAttrToAssoc:(xmlAttr*)properties;
 
 /**
  * Callback function for undoing escaping of stray angled brackets

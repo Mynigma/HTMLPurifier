@@ -32,7 +32,7 @@
 
     // O(n) pass to convert to a tree, so that we can efficiently
     // refer to substrings
-    HTMLPurifier_Node* topNode = [HTMLPurifier_Arborize arborizeTokens:tokens config:config context:context];
+    HTMLPurifier_Node_Element* topNode = (HTMLPurifier_Node_Element*)[HTMLPurifier_Arborize arborizeTokens:tokens config:config context:context];
 
     // get a copy of the HTML definition
     HTMLPurifier_HTMLDefinition* definition = [config getHTMLDefinition];
@@ -53,7 +53,7 @@
     // it is organized by parent elements, similar to $stack,
     // but it is only populated when an element with exclusions is
     // processed, i.e. there won't be empty exclusions.
-    NSMutableArray* excludeStack = [[definition info_parent_def] excludes];
+    NSMutableDictionary* excludeStack = [[definition info_parent_def] excludes];
 
     // variable that contains the start token while we are processing
     // nodes. This enables error reporting to do its job
