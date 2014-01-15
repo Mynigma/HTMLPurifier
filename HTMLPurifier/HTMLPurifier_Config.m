@@ -353,7 +353,7 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (HTMLPurifier_CSSDefinition*)getCSSDefinition
 {
-    return [self getDefinition:@"CSS"];
+    return (HTMLPurifier_CSSDefinition*)[self getDefinition:@"CSS"];
 }
 
 /**
@@ -372,7 +372,7 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (HTMLPurifier_URIDefinition*)getURIDefinition
 {
-    return [self getDefinition:@"URI"];
+    return (HTMLPurifier_URIDefinition*)[self getDefinition:@"URI"];
 }
 
 - (HTMLPurifier_Definition*)getDefinition:(NSString*)type

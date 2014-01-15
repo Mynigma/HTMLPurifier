@@ -59,7 +59,7 @@
     {
         //IPv6
         NSString* ip = [string substringWithRange:NSMakeRange(1, length-2)];
-        NSString* valid = [ipv6 validateWithIp:ip Config:config Context:context];
+        NSString* valid = [ipv6 validateWithString:ip config:config context:context];
         if (!valid)
         {
             return nil;
@@ -68,7 +68,7 @@
     }
     
     // need to do checks on unusual encodings too
-    NSString* checke_ipv4 = [ipv4 validateWithString:string Config:config Context:context];
+    NSString* checke_ipv4 = [ipv4 validateWithString:string config:config context:context];
     if (checke_ipv4)
     {
         return checke_ipv4;
@@ -90,7 +90,7 @@
     // for browser behavior, for example, a large number of browsers
     // cannot handle foo_.example.com, but foo_bar.example.com is
     // fairly well supported.
-    unichar underscore = [config get:@"Core.AllowHostnameUnderscore"]?'_':'';
+    unichar underscore = [(NSNumber*)[config get:@"Core.AllowHostnameUnderscore"] boolValue]?'_':'';
     
     // The productions describing this are:
     NSString* a   = @"[a-z]";     // alpha
@@ -101,7 +101,7 @@
     // toplabel    = alpha | alpha *( alphanum | "-" ) alphanum
     NSString* toplabel = [NSString stringWithFormat:@"%@(%@*%@)?",a,and,an];
     // hostname    = *( domainlabel "." ) toplabel [ "." ]
-    if (preg_match([NSString stringWithFormat:@"^(%@\\.)*%@\\.?$",domainlabel,toplabel],string))
+    if (preg_match_2([NSString stringWithFormat:@"^(%@\\.)*%@\\.?$",domainlabel,toplabel],string))
     {
         return string;
     }

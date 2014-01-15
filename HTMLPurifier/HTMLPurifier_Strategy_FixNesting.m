@@ -14,6 +14,9 @@
 #import "HTMLPurifier_Token.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_Context.h"
+#import "HTMLPurifier_HTMLDefinition.h"
+#import "HTMLPurifier_ElementDef.h"
+#import "HTMLPurifier_Node_Element.h"
 
 
 @implementation HTMLPurifier_Strategy_FixNesting
@@ -40,7 +43,7 @@
     // be inline, and an integer when it is inline for a certain
     // branch of the document tree
     BOOL isInline = [[definition info_parent_def] descendants_are_inline];
-    [context registerWithName::@"IsInline" ref:@(isInline)];
+    [context registerWithName:@"IsInline" ref:@(isInline)];
 
     //####################################################################//
     // Loop initialization
@@ -53,7 +56,7 @@
 
     // variable that contains the start token while we are processing
     // nodes. This enables error reporting to do its job
-    HTMLPurifier_Node* node = topNode;
+    HTMLPurifier_Node_Element* node = topNode;
     // dummy token
     NSArray* pair = [node toTokenPair];
     HTMLPurifier_Token* token = nil;
@@ -63,8 +66,8 @@
     if(pair.count>1)
         token = pair[1];
 
-    [context registerString:@"CurrentNode", node];
-    [context registerString:@"CurrentToken", token];
+    [context registerWithName:@"CurrentNode" ref:node];
+    [context registerWithName:@"CurrentToken" ref:token];
 
     //####################################################################//
     // Loop
@@ -86,11 +89,12 @@
     // e.g. array_reverse($node->children) - already processed
     // children.
 
-    HTMLPurifier_Definition* parentDef = [definition info_parent_def];
-    NSMutableArray* stack = [@[@[topNode, @([parentDef descendantsAreInline]), [parentDef excludes], @0]] mutableCopy];
+    HTMLPurifier_ElementDef* parentDef = [definition info_parent_def];
+    NSMutableArray* stack = [@[@[topNode, @([parentDef descendants_are_inline]), [parentDef excludes], @0]] mutableCopy];
 
-    NSNumber* ix = @0;
-    NSArray* excludes = [NSArray new];
+    NSInteger ix = 0;
+
+    NSMutableDictionary* excludes = [NSMutableDictionary new];
 
     while (stack.count>0)
     {
@@ -102,23 +106,23 @@
         if(stackObject.count>2)
             excludes = stackObject[2];
         if(stackObject.count>3)
-            ix = stackObject[3];
+            ix = [stackObject[3] integerValue];
 
         // recursive call
         BOOL go = NO;
-        HTMLPurifier_Definition* def = stack.count==0 ? [definition info_parent_def] : definition.info[node->name];
-        while (node->children[ix]))
+        HTMLPurifier_ElementDef* def = stack.count==0 ? [definition info_parent_def] : definition.info[[node valueForKey:@"name"]];
+        while (node.children[ix])
         {
-            child = node->children[ix++];
+            HTMLPurifier_Node_Element* child = node.children[ix++];
             if ([child isKindOfClass:[HTMLPurifier_Node_Element class]])
             {
                 go = YES;
-                [stack addObject:@[node, isInline, excludes, ix]];
+                [stack addObject:@[node, @(isInline), excludes, @(ix)]];
                 [stack addObject:@[child,
                                    // ToDo: I don't think it matters if it's def or
                                    // child_def, but double check this...
                                    @(isInline || [def descendants_are_inline]),
-                                   [[def excludes] count]==0 ? excludes
+                                   ([[def excludes] count]==0) ? excludes
                                    : array_merge(excludes, [def excludes]),
                                    @0]];
                 break;
@@ -135,9 +139,9 @@
 
 
         // base case
-        if (excludesEnabled && excludes[node->name]))
+        if (excludesEnabled && excludes[node.name])
         {
-            node->dead = true;
+            node.dead = true;
             NSLog(@"Strategy_FixNesting: Node excluded: %@", node);
         }
         else
@@ -146,27 +150,27 @@
             // avoid the allocation here and have children
             // strategies handle it
             NSMutableArray* children = [NSMutableArray new];
-            for(HTMLPurifier_Node* child in node->children)
+            for(HTMLPurifier_Node* child in node.children)
             {
                 if (![child dead])
                     [children addObject:child];
             }
 
-            NSNumber* result = [[def child] validateChildren:children config:config context:context];
-            if (result == YES)
+            NSObject* result = [[def child] validateChildren:children config:config context:context];
+            if ([result isEqual:@YES])
             {
                 // nop
                 [node setChildren:children];
-            } else if (result == NO)
+            } else if ([result isEqual:@NO])
             {
                 [node setDead:YES];
                 NSLog(@"Strategy_FixNesting: Node removed");
             }
-            else
+            else if(result)
             {
-                [node setChildren:result];
+                [node setChildren:[(NSArray*)result mutableCopy]];
                 // XXX This will miss mutations of internal nodes. Perhaps defer to the child validators
-                if (result.count==0 && children.count==0)
+                if ([(NSArray*)result count]==0 && children.count==0)
                 {
                     NSLog(@"Strategy_FixNesting: Node contents removed");
                 }
@@ -189,7 +193,7 @@
     //####################################################################//
     // Return
 
-    return [HTMLPurifier_Arborize flattenNode:node config:config context:context];
+    return [[HTMLPurifier_Arborize flattenNode:node config:config context:context] mutableCopy];
 }
 
 @end
