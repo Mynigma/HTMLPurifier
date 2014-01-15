@@ -13,7 +13,8 @@
  */
 
 #import "HTMLPurifier_AttrDef.h"
-#import "HTMLPurifier_URIParser.h"
+
+@class HTMLPurifier_Config, HTMLPurifier_Context, HTMLPurifier_URIParser, HTMLPurifier_AttrDef_URI;
 
 @interface HTMLPurifier_AttrDef_URI : HTMLPurifier_AttrDef
 

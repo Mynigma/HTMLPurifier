@@ -35,7 +35,7 @@
        [self loadRegex];
     }
     
-    if (preg_match([NSString stringWithFormat:@"#^%@$#s",ip4],aIP))
+    if (preg_match_2([NSString stringWithFormat:@"#^%@$#s",ip4],aIP))
     {
         return aIP;
     }

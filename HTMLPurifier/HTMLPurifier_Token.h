@@ -58,9 +58,6 @@
  */
 - (NSString*)valueForUndefinedKey:(NSString*)n;
 
-- (NSString*)name;
-
-- (NSString*)attr;
 
 /**
  * Sets the position of the token in the source document.

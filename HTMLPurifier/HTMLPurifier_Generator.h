@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTMLPurifier_Context, HTMLPurifier_Config;
+
 @interface HTMLPurifier_Generator : NSObject
+
+- (id)initWithConfig:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 @end

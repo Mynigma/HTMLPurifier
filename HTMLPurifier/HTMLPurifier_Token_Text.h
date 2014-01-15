@@ -44,7 +44,7 @@
 
 
 
-- (NSArray*)toTokenPair;
+- (NSArray*)toNode;
 
 
 @end

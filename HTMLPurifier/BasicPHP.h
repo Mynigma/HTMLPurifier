@@ -10,7 +10,7 @@
 
 #define TRIGGER_ERROR NSLog
 
-NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subject)
+NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* subject)
 {
     NSError* error = nil;
 
@@ -22,19 +22,76 @@ NSString* preg_replace(NSString* pattern, NSString* replacement, NSString* subje
     return subjectString;
 }
 
-//preg_match_all
 
-//TODO preg_split 
 
-//preg_match
-//BOOL or Array?
-NSArray* preg_match (NSString* pattern, NSString* subject)
+NSArray* preg_split_2(NSString* expression, NSString* subject)
+{
+    NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
+
+    NSArray *matches = [exp matchesInString:subject options:0 range:NSMakeRange(0, [subject length])];
+    NSMutableArray *results = [[NSMutableArray alloc] init];
+
+    for (NSTextCheckingResult *match in matches) {
+        [results addObject:[subject substringWithRange:[match range]]];
+    }
+
+    return results;
+}
+
+BOOL preg_match_2(NSString* pattern, NSString* subject)
 {
     NSError* error = nil;
     
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
 
-    return [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+    return [regex firstMatchInString:subject options:0 range:NSMakeRange(0, subject.length)].range.location!=NSNotFound;
+}
+
+BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
+{
+    NSError* error = nil;
+
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+
+    [matches removeAllObjects];
+
+    NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0, subject.length)];
+
+    for(NSUInteger i = 0; i<result.numberOfRanges; i++)
+    {
+        [matches addObject:[subject substringWithRange:[result rangeAtIndex:i]]];
+    }
+
+    return result.range.location!=NSNotFound;
+}
+
+
+BOOL preg_match_all_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
+{
+    NSError* error = nil;
+
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+
+    [matches removeAllObjects];
+
+    NSArray* matchingResults = [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+
+    for(NSTextCheckingResult* match in matchingResults)
+    {
+        [matches addObject:[subject substringWithRange:match.range]];
+    }
+
+    return matches.count>0;
+}
+
+
+NSInteger preg_match_all_2(NSString* pattern, NSString* subject)
+{
+    NSError* error = nil;
+
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+
+    return [regex numberOfMatchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
 }
 
 BOOL ctype_xdigit (NSString* text)
@@ -186,8 +243,70 @@ NSString* trimWithFormat(NSString* string, NSString* format)
 }
 
 
-//parse cdata
+NSString* htmlspecialchars(NSString* string)
+{
+    NSMutableString* newString = [NSMutableString new];
+    for(NSInteger i = 0; i<string.length; i++)
+    {
+        switch([string characterAtIndex:i])
+        {
+                case '&':
+                [newString appendString:@"&amp;"];
+                break;
+            case '"':
+                [newString appendString:@"&quot;"];
+                break;
+                case '\'':
+                [newString appendString:@"&#039"];
+                break;
+                case '<':
+                [newString appendString:@"&lt;"];
+                break;
+                case '>':
+                [newString appendString:@"&gt;"];
+                break;
+                default:
+                [newString appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+        }
+    }
+    return newString;
+}
 
+NSString* htmlspecialchars_ENT_COMPAT(NSString* string)
+{
+    NSMutableString* newString = [NSMutableString new];
+    for(NSInteger i = 0; i<string.length; i++)
+    {
+        switch([string characterAtIndex:i])
+        {
+            case '&':
+                [newString appendString:@"&amp;"];
+                break;
+            case '"':
+                [newString appendString:@"&quot;"];
+                break;
+            /*case '\'':
+                [newString appendString:@"&#039"];
+                break;*/
+            case '<':
+                [newString appendString:@"&lt;"];
+                break;
+            case '>':
+                [newString appendString:@"&gt;"];
+                break;
+            default:
+                [newString appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+        }
+    }
+    return newString;
+}
+
+BOOL is_numeric(NSString* string)
+{
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    NSNumber* result = [f numberFromString:string];
+    return result!=nil;
+}
 
 BOOL ctype_alpha (NSString* text)
 {
@@ -199,6 +318,18 @@ BOOL ctype_alpha (NSString* text)
     }
     return YES;
 }
+
+BOOL ctype_alnum (NSString* text)
+{
+    for(NSInteger i=0;i <text.length; i++)
+    {
+        unichar character = [text characterAtIndex:i];
+        if(!(isalnum(character)))
+            return NO;
+    }
+    return YES;
+}
+
 
 BOOL ctype_space(NSString* string)
 {
@@ -291,6 +422,19 @@ NSString* strtr_php(NSString* fromString, NSDictionary* replacementDict)
     return substitutedString;
 }
 
+NSInteger strspn_2(NSString* subject, NSString* mask)
+{
+    NSInteger i = 0;
+    for(; i<subject.length; i++)
+    {
+        if([mask rangeOfString:[subject substringWithRange:NSMakeRange(1, 1)]].location==NSNotFound)
+        {
+            break;
+        }
+    }
+    return i;
+}
+
 NSString* ltrim_whitespaces(NSString* string)
 {
     NSUInteger location;
@@ -329,7 +473,7 @@ NSString* rtrim_whitespaces(NSString* string)
 }
 
 
-NSString* ltrim(NSString* string, NSString* characterSetString)
+NSString* ltrim_2(NSString* string, NSString* characterSetString)
 {
     NSCharacterSet* characterSet = [NSCharacterSet characterSetWithCharactersInString:characterSetString];
     NSUInteger location;
@@ -346,7 +490,26 @@ NSString* ltrim(NSString* string, NSString* characterSetString)
     return [string substringWithRange:NSMakeRange(location, length - location)];
 }
 
-NSString* rtrim(NSString* string, NSString* characterSetString)
+NSString* rtrim(NSString* string)
+{
+    NSCharacterSet* characterSet = [NSCharacterSet characterSetWithCharactersInString:[NSString stringWithFormat:@" \t\n\r\0%c", 11]];
+    NSUInteger location = 0;
+    NSUInteger length;
+    unichar charBuffer[string.length];
+    [string getCharacters:charBuffer];
+
+    for (length = string.length; length > 0; length--)
+    {
+        if (![characterSet characterIsMember:charBuffer[length - 1]]) {
+            break;
+        }
+    }
+
+    return [string substringWithRange:NSMakeRange(location, length - location)];
+}
+
+
+NSString* rtrim_2(NSString* string, NSString* characterSetString)
 {
     NSCharacterSet* characterSet = [NSCharacterSet characterSetWithCharactersInString:characterSetString];
     NSUInteger location = 0;
@@ -395,7 +558,26 @@ NSArray* explodeWithLimit(NSString* delimiter, NSString* string, NSInteger limit
     [result addObject:lastString];
     return result;
 }
-//array_shift
+
+NSMutableArray* array_slice_2(NSArray* array, NSInteger offset)
+{
+    return [[array subarrayWithRange:NSMakeRange(offset, array.count - offset)] mutableCopy];
+}
+
+NSMutableArray* array_slice_3(NSArray* array, NSInteger offset, NSInteger length)
+{
+    return [[array subarrayWithRange:NSMakeRange(offset, length)] mutableCopy];
+}
+
+
+NSObject* array_shift(NSMutableArray* array)
+{
+    if(array.count==0)
+        return nil;
+    NSObject* returnValue = array[0];
+    [array removeObjectAtIndex:0];
+    return returnValue;
+}
 
 NSMutableArray* array_reverse(NSMutableArray* oldArray)
 {

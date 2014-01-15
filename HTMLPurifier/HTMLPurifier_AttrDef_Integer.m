@@ -43,7 +43,7 @@
  * @param $zero Bool indicating whether or not zero is allowed
  * @param $positive Bool indicating whether or not positive values are allowed
  */
--(id) initWithNegativ:(NSNumber*)nnegative Zero:(NSNumber*)nzero Positive:(NSNumber*)npositive
+-(id) initWithNegative:(NSNumber*)nnegative Zero:(NSNumber*)nzero Positive:(NSNumber*)npositive
 {
     self = [super init];
     if (nnegative)

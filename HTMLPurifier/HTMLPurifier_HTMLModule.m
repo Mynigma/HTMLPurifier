@@ -7,6 +7,8 @@
 //
 
 #import "HTMLPurifier_HTMLModule.h"
+#import "HTMLPurifier_ChildDef.h"
+//#import "HTMLPurifier_HTMLElementDef.h"
 
 @implementation HTMLPurifier_HTMLModule
 
@@ -29,7 +31,7 @@
         _info_tag_transform = [NSMutableDictionary new];
         _info_attr_transform_pre = [NSMutableDictionary new];
         _info_attr_transform_post = [NSMutableDictionary new];
-        _info_injector = [NSMutableDictionary new];
+        _info_injector = [NSMutableArray new];
         _defines_child_def = NO;
         _safe = YES;
     }
@@ -45,7 +47,8 @@
  * @param HTMLPurifier_ElementDef $def
  * @return HTMLPurifier_ChildDef subclass
  */
-- (HTMLPurifier_ChildDef*)getChildDef:(HTMLPurifier_HTMLElementDef*)def
+- (HTMLPurifier_ChildDef*)getChildDef:(NSObject*)def
+//- (HTMLPurifier_ChildDef*)getChildDef:(HTMLPurifier_HTMLElementDef*)def
 {
     return false;
 }
@@ -77,7 +80,8 @@
  * @param string $element Name of element to create
  * @return HTMLPurifier_ElementDef Created element
  */
-- (HTMLPurifier_ElementDef*)addBlankElement:(NSString*)elementName
+- (NSObject*)addBlankElement:(NSString*)elementName
+//- (HTMLPurifier_ElementDef*)addBlankElement:(NSString*)elementName
 {
     return nil;
 }

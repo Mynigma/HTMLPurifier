@@ -8,6 +8,7 @@
 
 #import "HTMLPurifier_AttrDef_HTML_ID.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_IDAccumulator.h"
 
 /**
  * Validates the HTML attribute ID.
@@ -68,10 +69,10 @@
         return nil;
     }
 
-    NSString* prefix = [config get:@"Attr.IDPrefix"];
+    NSString* prefix = (NSString*)[config get:@"Attr.IDPrefix"];
     if (![prefix isEqual:@""])
     {
-        prefix = [prefix stringByAppendingString:[config get:@"Attr.IDPrefixLocal"]];
+        prefix = [prefix stringByAppendingString:(NSString*)[config get:@"Attr.IDPrefixLocal"]];
         // prevent re-appending the prefix
         if (strpos(ID, prefix) != 0)
         {
@@ -80,16 +81,16 @@
     }
     else if (![[config get:@"Attr.IDPrefixLocal"] isEqual:@""])
     {
-        TRIGGER_ERROR([NSString stringWithFormat:@"%@ Attr.IDPrefixLocal cannot be used unless %@ Attr.IDPrefix is set", E_USER_WARNING]);
+        TRIGGER_ERROR(@"Attr.IDPrefixLocal cannot be used unless Attr.IDPrefix is set");
     }
     
-    NSMutableArray* id_accumulator;
+    HTMLPurifier_IDAccumulator* id_accumulator;
     if (!selector)
     {
-        id_accumulator = [context get:@"IDAccumulator"];
+        id_accumulator = (HTMLPurifier_IDAccumulator*)[context getWithName:@"IDAccumulator"];
         
         //CONTAINS?
-        if (isset($id_accumulator->ids[$id]))
+        if (id_accumulator.ids[ID])
         {
             return nil;
         }
@@ -113,17 +114,17 @@
         result = ([trim isEqual:@""]);
     }
     
-    NSString* regexp = [config get:@"Attr.IDBlacklistRegexp"];
+    NSString* regexp = (NSString*)[config get:@"Attr.IDBlacklistRegexp"];
     
     //Preg_match returns Array. TODO
-    if (regexp && preg_match(regexp, ID))
+    if (regexp && preg_match_2(regexp, ID))
     {
         return nil;
     }
     
     if (!selector && result)
     {
-        [id_accumulator addObject:ID];
+        [id_accumulator addWithID:ID];
     }
     
     // if no change was made to the ID, return the result

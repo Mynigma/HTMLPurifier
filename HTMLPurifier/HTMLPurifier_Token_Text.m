@@ -40,7 +40,7 @@
 
 - (NSArray*)toNode
 {
-    return @[[[HTMLPurifier_Node_Text alloc] initWithData:self.data line:self.line col:self.col], [NSNull null]];
+    return @[[[HTMLPurifier_Node_Text alloc] initWithData:self.data isWhitespace:NO line:self.line col:self.col], [NSNull null]];
 }
 
 @end

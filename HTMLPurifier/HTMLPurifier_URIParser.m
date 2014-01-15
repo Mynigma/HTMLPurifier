@@ -32,7 +32,7 @@
     NSString* r_URI = @"!(([a-zA-Z0-9\\.\\+\\-]+):)?(//([^/?#\"<>]*))?([^?#\"<>]*)(\\?([^#\"<>]*))?(#([^\"<>]*))?!";
 
     NSMutableArray* matches = [NSMutableArray new];
-    NSMutableArray* result = preg_match(r_URI, uri, matches);
+    BOOL result = preg_match_3(r_URI, uri, matches);
 
     if (!result) return nil; // *really* invalid URI
 
@@ -51,7 +51,7 @@
     if (authority) {
         NSString* r_authority = @"/^((.+?)@)?(\\[[^\\]]+\\]|[^:]*)(:(\\d*))?/";
         NSMutableArray* matches = [NSMutableArray new];
-        preg_match(r_authority, authority, matches);
+        preg_match_3(r_authority, authority, matches);
         userinfo   = [matches[1] length]>0 ? matches[2] : nil;
         host       = [matches[3] length]>0 ? matches[3] : @"";
         NSString* portString       = [matches[4] length]>0 ? matches[5] : nil;

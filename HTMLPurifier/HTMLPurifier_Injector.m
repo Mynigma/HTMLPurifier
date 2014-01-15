@@ -16,6 +16,7 @@
 #import "HTMLPurifier_ElementDef.h"
 #import "HTMLPurifier_Token_Start.h"
 #import "HTMLPurifier_Token_End.h"
+#import "HTMLPurifier_ChildDef.h"
 
 @implementation HTMLPurifier_Injector
 
@@ -98,7 +99,7 @@
             }
             for(NSString* name in attributes)
             {
-                if (!((NSObject*)def.info[newElement])->attr][name])
+                if (![(NSObject*)def.info[newElement] valueForKey:@"attr"][name])
                 {
                     return [NSString stringWithFormat:@"%@.%@", newElement, name];
                 }
@@ -114,26 +115,27 @@
      */
 - (BOOL)allowsElement:(NSString*)name
     {
-        HTMLPurifier_ElementDef* parent = nil;
-        if (currentNesting.count!=0) {
-            HTMLPurifier_Token* parent_token = (HTMLPurifier_Token*)array_pop(currentNesting);
-            [currentNesting addObject:parent_token];
-            parent = htmlDefinition.info[parent_token.name];
-        } else {
-            parent = htmlDefinition.info_parent_def;
-        }
-        if (!parent.child.elements[name]) || parent.excludes[name])) {
-            return NO;
-        }
-        // check for exclusion
-        for (NSInteger i = currentNesting.count - 2; i >= 0; i--) {
-            HTMLPurifier_Node* node = currentNesting[i];
-            def  = htmlDefinition->info[node->name];
-            if (def->excludes[name]) {
-                return NO;
-            }
-        }
-        return YES;
+        return NO;
+//        HTMLPurifier_ElementDef* parent = nil;
+//        if (currentNesting.count!=0) {
+//            HTMLPurifier_Token* parent_token = (HTMLPurifier_Token*)array_pop(currentNesting);
+//            [currentNesting addObject:parent_token];
+//            parent = htmlDefinition.info[[parent_token valueForKey:@"name"]];
+//        } else {
+//            parent = htmlDefinition.info_parent_def;
+//        }
+//        if (!parent.child.elements[name]) || parent.excludes[name])) {
+//            return NO;
+//        }
+//        // check for exclusion
+//        for (NSInteger i = currentNesting.count - 2; i >= 0; i--) {
+//            HTMLPurifier_Node* node = currentNesting[i];
+//            def  = htmlDefinition->info[node->name];
+//            if (def->excludes[name]) {
+//                return NO;
+//            }
+//        }
+//        return YES;
     }
 
     /**

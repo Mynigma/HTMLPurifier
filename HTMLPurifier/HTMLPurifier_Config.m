@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_ConfigSchema.h"
-#import "HTMLPurifier_PropertyList.h"
+//#import "HTMLPurifier_PropertyList.h"
 #import "HTMLPurifier_VarParser.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_Definition.h"
@@ -122,23 +122,23 @@ static HTMLPurifier_VarParser* theParser;
         TRIGGER_ERROR(@"Cannot retrieve value of undefined directive");
         return nil;
     }
-    if ([[[_def.info objectForKey:key] isAlias] boolValue])
+    if ([[[_def.info objectForKey:key] valueForKey:@"isAlias"] boolValue])
     {
 
         TRIGGER_ERROR(@"Cannot get value from aliased directive, use real name");
         return nil;
     }
 
-    if(_lock)
+    if(lock)
     {
         NSArray* ns = explode(@".", key);
-        if (![ns[0] isEqualToString:_lock])
+        if (![ns[0] isEqualToString:lock])
         {
-            TRIGGER_ERROR(@"Cannot get value of namespace %@ when lock for ", _lock);
+            TRIGGER_ERROR(@"Cannot get value of namespace %@ when lock for ", lock);
             return nil;
         }
     }
-    return [plistDict get:key];
+    return [plist get:key];
 }
 
 /**
@@ -153,9 +153,9 @@ static HTMLPurifier_VarParser* theParser;
     [self autoFinalize];
 
     NSDictionary* full = [self getAll];
-    if (![full objectFprKey:namespace]) {
+    if (![full objectForKey:namespace]) {
         TRIGGER_ERROR(@"Cannot retrieve undefined namespace ");
-        return;
+        return nil;
     }
     return [full objectForKey:namespace];
 }
@@ -190,10 +190,13 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (NSString*)getSerial
 {
-    if (self.serial.length==0)) {
-        self.serial = sha1(serialize([self getAll]));
+    return nil;
+    /*
+    if (self->serial.length==0) {
+        self->serial = sha1(serialize([self getAll]));
     }
     return self.serial;
+     */
 }
 
 /**
@@ -203,11 +206,11 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (NSDictionary*)getAll
 {
-    if (!self.finalized) {
+    if (!self->finalized) {
         [self autoFinalize];
     }
     NSMutableDictionary* ret = [NSMutableDictionary new];
-    for(NSString* name in [self.plist squash])
+    for(NSString* name in [plist squash])
     {
         NSObject* value = [self.plist valueForKey:name];
         NSArray* exploded = explode(@".", name);
@@ -231,70 +234,71 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (void)setString:(NSString*)key object:(NSObject*)value
 {
-    NSArray* namespace = explode(@".", key);
-
-    if ([self isFinalized:@"Cannot set directive after finalization"])
-    {
-        return;
-    }
-    if (!self.def.info[key])
-    {
-        NSLog(@"Cannot set undefined directive '%@ to value", key);
-        return;
-    }
-    HTMLPurifier_Definition* def = self.def.info[$key];
-
-    if ([def isAlias]) {
-        if (self.aliasMode) {
-            NSLog(@"Double-aliases not allowed, please fix");
-            return;
-        }
-        [self setAliasMode:YES];
-        [self setString:def.key object:value];
-        [self setAliasMode:NO];
-        NSLog(@"%@ is an alias, preferred directive name is {%@}", key, def.key);
-        return;
-    }
-
-    // Raw type might be negative when using the fully optimized form
-    // of stdclass, which indicates allow_null == true
-    rtype = [def isKindOfClass:[NSNumber class]] ? def : def.type;
-    if (rtype < 0) {
-        type = -$rtype;
-        allow_null = true;
-    } else {
-        type = rtype;
-        allow_null = def.allow_null);
-    }
-
-    @try {
-        value = [self.parser parse:value type, $allow_null];
-    } @catch (NSException* e) {
-        NSLog(@"Value for %@ is of invalid type, should be %@", key, [HTMLPurifier_VarParser getTypeName:type]);
-        return;
-    }
-    if ([value isKindOfClass:[NSString class]] && def) {
-        // resolve value alias if defined
-        if (def.aliases[value])) {
-            value = def.aliases[value];
-        }
-        // check to see if the value is allowed
-        if (def.allowed) && !def.allowed[value])) {
-            NSLog(@"Value not supported, valid values are: %@", [self _listify:def.allowed]),
-            return;
-        }
-    }
-    [self.plist setKey:key value:value];
-
-    // reset definitions if the directives they depend on changed
-    // this is a very costly process, so it's discouraged
-    // with finalization
-    if ([namespace isEqual:@"HTML"] || [namespace isEqual:@"CSS"] || [namespace isEqual:@"URI"])
-    {
-        [self.definitions setObject:[NSNull null] forKey:namespace];
-    }
-
-    [self.serials setObject:@NO forKey:namespace];
+    return;
+//    NSArray* namespace = explode(@".", key);
+//
+//    if ([self isFinalized:@"Cannot set directive after finalization"])
+//    {
+//        return;
+//    }
+//    if (!self.def.info[key])
+//    {
+//        NSLog(@"Cannot set undefined directive '%@ to value", key);
+//        return;
+//    }
+//    HTMLPurifier_Definition* def = self.def.info[$key];
+//
+//    if ([def isAlias]) {
+//        if (self.aliasMode) {
+//            NSLog(@"Double-aliases not allowed, please fix");
+//            return;
+//        }
+//        [self setAliasMode:YES];
+//        [self setString:def.key object:value];
+//        [self setAliasMode:NO];
+//        NSLog(@"%@ is an alias, preferred directive name is {%@}", key, def.key);
+//        return;
+//    }
+//
+//    // Raw type might be negative when using the fully optimized form
+//    // of stdclass, which indicates allow_null == true
+//    rtype = [def isKindOfClass:[NSNumber class]] ? def : def.type;
+//    if (rtype < 0) {
+//        type = -$rtype;
+//        allow_null = true;
+//    } else {
+//        type = rtype;
+//        allow_null = def.allow_null);
+//    }
+//
+//    @try {
+//        value = [self.parser parse:value type, $allow_null];
+//    } @catch (NSException* e) {
+//        NSLog(@"Value for %@ is of invalid type, should be %@", key, [HTMLPurifier_VarParser getTypeName:type]);
+//        return;
+//    }
+//    if ([value isKindOfClass:[NSString class]] && def) {
+//        // resolve value alias if defined
+//        if (def.aliases[value])) {
+//            value = def.aliases[value];
+//        }
+//        // check to see if the value is allowed
+//        if (def.allowed) && !def.allowed[value])) {
+//            NSLog(@"Value not supported, valid values are: %@", [self _listify:def.allowed]),
+//            return;
+//        }
+//    }
+//    [self.plist setKey:key value:value];
+//
+//    // reset definitions if the directives they depend on changed
+//    // this is a very costly process, so it's discouraged
+//    // with finalization
+//    if ([namespace isEqual:@"HTML"] || [namespace isEqual:@"CSS"] || [namespace isEqual:@"URI"])
+//    {
+//        [self.definitions setObject:[NSNull null] forKey:namespace];
+//    }
+//
+//    [self.serials setObject:@NO forKey:namespace];
 }
 
 /**

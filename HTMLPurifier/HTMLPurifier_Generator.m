@@ -7,7 +7,21 @@
 //
 
 #import "HTMLPurifier_Generator.h"
+#import "HTMLPurifier_Context.h"
+#import "HTMLPurifier_Config.h"
 
 @implementation HTMLPurifier_Generator
+
+
+
+- (id)initWithConfig:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
+{
+    self = [super init];
+    if (self) {
+
+    }
+    return self;
+}
+
 
 @end

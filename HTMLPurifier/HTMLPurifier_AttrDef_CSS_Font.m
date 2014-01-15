@@ -171,7 +171,7 @@
                 case 2:
                 {
                     // attempting to catch font-family
-                    NSString* font_family = implode(@" ", array_slice(bits, i, size - i));
+                    NSString* font_family = implode(@" ", array_slice_3(bits, i, size - i));
                     r = [info[@"font-family"] validateWithString:font_family config:config context:context];
                     if (r) {
                         [final appendFormat:@"%@ ", r];

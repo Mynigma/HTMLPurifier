@@ -69,8 +69,8 @@
         if (string.length==0) {
             return @"";
         }
-        NSArray* parts = explode(@"\%", string);
-        NSMutableString* ret = array_shift(parts);
+        NSMutableArray* parts = [explode(@"\%", string) mutableCopy];
+        NSMutableString* ret = [array_shift(parts) mutableCopy];
         for(NSString* part in parts)
         {
            NSInteger length = part.length;

@@ -8,6 +8,7 @@
 
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier.h"
+#import "BasicPHP.h"
 
 @implementation HTMLPurifier_Context
 

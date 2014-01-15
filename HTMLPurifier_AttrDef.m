@@ -47,51 +47,52 @@
  */
 - (NSString*)mungeRgbWithString:(NSString*)string
 {
-    return preg_replace(@"/rgb\\((\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\)/", @"rgb(\\1,\\2,\\3)", string);
+    return preg_replace_3(@"/rgb\\((\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\)/", @"rgb(\\1,\\2,\\3)", string);
 }
 
 - (NSString*)expandCSSEscapeWithString:(NSString*)string
 {
-    // flexibly parse it
-    NSMutableString* ret = [@"" mutableCopy];
-    NSInteger c = string.length;
-    for (NSInteger i = 0; i < c; i++)
-    {
-        if ([string characterAtIndex:i] == '\\') {
-            i++;
-            if (i >= c) {
-                [ret appendString:@"\\"];
-                break;
-            }
-            if (ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
-                NSMutableString* code = [[string substringWithRange:NSMakeRange(i, 1)] mutableCopy];
-                i++;
-                for (NSInteger a = 1; i < c && a < 6; i++, a++) {
-                    if (!ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
-                        break;
-                    }
-                    [code appendString:[string substringWithRange:NSMakeRange(i, 1)]];
-                }
-                // We have to be extremely careful when adding
-                // new characters, to make sure we're not breaking
-                // the encoding.
-                unichar character = [HTMLPurifier_Encoder unichrWith(hexdec($code));
-                if ([HTMLPurifier_Encoder cleanUTF8Wit($char) === '') {
-                    continue;
-                }
-                [ret appendFormat:@"%c", character];
-                if (i < c && ![trim([string substringWithRange:NSMakeRange(i, 1)]) isEqualTo:@""]) {
-                    i--;
-                }
-                continue;
-            }
-            if ([[string substringWithRange:NSMakeRange(i, 1)] isEqual:@"\n"]) {
-                continue;
-            }
-        }
-        [ret appendString:[string substringWithRange:NSMakeRange(i, 1)]];
-    }
-    return ret;
+    return nil;
+//    // flexibly parse it
+//    NSMutableString* ret = [@"" mutableCopy];
+//    NSInteger c = string.length;
+//    for (NSInteger i = 0; i < c; i++)
+//    {
+//        if ([string characterAtIndex:i] == '\\') {
+//            i++;
+//            if (i >= c) {
+//                [ret appendString:@"\\"];
+//                break;
+//            }
+//            if (ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
+//                NSMutableString* code = [[string substringWithRange:NSMakeRange(i, 1)] mutableCopy];
+//                i++;
+//                for (NSInteger a = 1; i < c && a < 6; i++, a++) {
+//                    if (!ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
+//                        break;
+//                    }
+//                    [code appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+//                }
+//                // We have to be extremely careful when adding
+//                // new characters, to make sure we're not breaking
+//                // the encoding.
+//                unichar character = [HTMLPurifier_Encoder unichrWith(hexdec($code));
+//                if ([HTMLPurifier_Encoder cleanUTF8Wit($char) === '') {
+//                    continue;
+//                }
+//                [ret appendFormat:@"%c", character];
+//                if (i < c && ![trim([string substringWithRange:NSMakeRange(i, 1)]) isEqualTo:@""]) {
+//                    i--;
+//                }
+//                continue;
+//            }
+//            if ([[string substringWithRange:NSMakeRange(i, 1)] isEqual:@"\n"]) {
+//                continue;
+//            }
+//        }
+//        [ret appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+//    }
+//    return ret;
 }
 
 

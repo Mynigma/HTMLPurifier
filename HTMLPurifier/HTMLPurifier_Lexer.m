@@ -140,8 +140,8 @@
  */
 - (NSString*)removeIEConditionalWithString:string
 {
-    return preg_replace(@"#<!--\\[if [^>]+\\]>.*?<!\\[endif\\]-->#si", // probably should generalize for all strings
-                        @"", string);
+    return preg_replace_3(@"#<!--\\[if [^>]+\\]>.*?<!\\[endif\\]-->#si", @"", string); // probably should generalize for all strings
+
 }
 
 /**
@@ -156,7 +156,7 @@
 + (NSString*) CDATACallback:(NSArray*)matches
 {
     // not exactly sure why the character set is needed, but whatever
-    return htmlspecialchars(matches[1], ENT_COMPAT, 'UTF-8');
+    return htmlspecialchars_ENT_COMPAT(matches[1]);
 }
 
 /**
@@ -212,7 +212,7 @@
 
     // if processing instructions are to removed, remove them now
     //if ($config->get('Core.RemoveProcessingInstructions')) {
-    html = preg_replace(@"#<\\?.+?\\?>#s", @"", html);
+    html = preg_replace_3(@"#<\\?.+?\\?>#s", @"", html);
     // }
 
     return html;
@@ -225,7 +225,7 @@
 - (NSString*)extractBodyWithHtml:html
 {
     NSMutableArray* matches = [NSMutableArray new];
-    NSString* result = preg_match(@"!<body[^>]*>(.*)</body>!is", html, matches);
+    BOOL result = preg_match_3(@"!<body[^>]*>(.*)</body>!is", html, matches);
     if (result) {
         return matches[1];
     } else {

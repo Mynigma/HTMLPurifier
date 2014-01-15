@@ -28,15 +28,17 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSArray*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
     // really, this twiddle should be lazy loaded
     NSString* name = [(HTMLPurifier_Doctype*)[(HTMLPurifier_HTMLDefinition*)[config getDefinition:@"HTML"] doctype] name];
     if ([name isEqual:@"XHTML 1.1"] || [name isEqual:@"XHTML 2.0"])
     {
         return [super splitWithString:string Config:config Context:context];
-    } else {
-        return preg_split(@"/\\s+/", string);
+    }
+    else
+    {
+        return preg_split_2(@"/\\s+/", string);
     }
 }
 

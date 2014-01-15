@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_Node_Text.h"
+#import "HTMLPurifier_Token_Text.h"
 
 @implementation HTMLPurifier_Node_Text
 
@@ -17,7 +18,7 @@
      * @param int $line
      * @param int $col
      */
-- (id)initWithData:(NSString*)d isWhitespace:(BOOL)isW line:(NSInteger)l col:(NSInteger)c
+- (id)initWithData:(NSString*)d isWhitespace:(BOOL)isW line:(NSNumber*)l col:(NSNumber*)c
 {
     self = [super init];
     if (self) {
@@ -34,7 +35,7 @@
 
 - (NSArray*)toTokenPair
 {
-    return @[[[HTMLPurifier_Token_Text alloc] initWithData:self.data isWhitespace:self.isWhitespace line:self.line col:self.col], [NSNull null]];
+    return @[[[HTMLPurifier_Token_Text alloc] initWithData:self.data line:self.line col:self.col], [NSNull null]];
 }
 
 @end

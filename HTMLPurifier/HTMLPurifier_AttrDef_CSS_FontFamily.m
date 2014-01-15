@@ -178,7 +178,7 @@
             // Edgy: alphanumeric, spaces, dashes, underscores and Unicode.  Use of
             // str(c)spn assumes that the string was already well formed
             // Unicode (which of course it is).
-            if (strspn(font, mask) != font.length) {
+            if (strspn_2(font, mask) != font.length) {
                 continue;
             }
 
@@ -197,7 +197,7 @@
             // font possibly with spaces, requires quoting
             [final appendFormat:@"'font', "];
         }
-        final = [rtrim(final, @", ") mutableCopy];
+        final = [rtrim_2(final, @", ") mutableCopy];
         if ([final isEqual:@""]) {
             return nil;
         }

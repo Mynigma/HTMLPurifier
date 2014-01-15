@@ -10,12 +10,7 @@
 #import "HTMLPurifier_TokenFactory.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_TokenFactory.h"
-#import <libxml/htmlparser.h>
 #import <libxml/tree.h>
-#import <libxml/xmlmemory.h>
-#import <libxml/xmlreader.h>
-#import <libxml/xmlexports.h>
-#import <libxml/parser.h>
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Queue.h"
@@ -54,7 +49,7 @@
             NSString* old = @"";
             do {
                 old = html;
-                html = preg_replace([NSString stringWithFormat:@"/<(%@)/i", chars], @"&lt;\\1", html);
+                html = preg_replace_3([NSString stringWithFormat:@"/<(%@)/i", chars], @"&lt;\\1", html);
             } while (![html isEqualToString:old]);
             html = [BasicPHP pregReplace:comment callback:^(NSArray* array){ return [self callbackUndoCommentSubst:array]; } haystack:html]; // fix comments
         }
@@ -89,7 +84,7 @@
 - (HTMLPurifier_Token*)tokenizeDOMNode:(xmlNode*)n tokens:(NSMutableArray*)tokens
     {
         NSNumber* level = @0;
-        NSMutableDictionary* nodes = @{level: [[HTMLPurifier_Queue alloc] initWithInput:@[n]]};
+        NSMutableDictionary* nodes = [@{level: [[HTMLPurifier_Queue alloc] initWithInput:@[n]]} mutableCopy];
         NSMutableDictionary* closingNodes = [NSMutableDictionary new];
         do {
             while ([nodes objectForKey:level]) {

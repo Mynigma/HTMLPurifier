@@ -66,7 +66,7 @@
     // look ahead for space or string end
     pattern = [pattern stringByAppendingString:@"(?:(?=\\s)|\\z)"];
     NSMutableArray* matches = [NSMutableArray new];
-    preg_match_all(pattern, string, matches);
+    preg_match_all_3(pattern, string, matches);
     return matches;
 }
 

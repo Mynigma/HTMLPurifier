@@ -9,7 +9,7 @@
 #import "HTMLPurifier_Length.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_AttrDef_CSS_Number.h"
-#import "HTMLPurifier_UnitConverter.h"
+//#import "HTMLPurifier_UnitConverter.h"
 
 @implementation HTMLPurifier_Length
 
@@ -148,19 +148,20 @@
  */
 - (NSNumber*)compareTo:(HTMLPurifier_Length*)l
 {
-    if (!l) {
-        return nil;
-    }
-    if(![[l getUnit] isEqual:self->unit])
-    {
-        HTMLPurifier_UnitConverter* converter = [HTMLPurifier_UnitConverter new];
-        l = [converter convert:l unit:unit];
-             if(!l)
-             {
-                 return nil;
-             }
-             }
-             return @(n.floatValue - [l getN].floatValue);
-             }
+    return nil;
+//    if (!l) {
+//        return nil;
+//    }
+//    if(![[l getUnit] isEqual:self->unit])
+//    {
+//        HTMLPurifier_UnitConverter* converter = [HTMLPurifier_UnitConverter new];
+//        l = [converter convert:l unit:unit];
+//        if(!l)
+//        {
+//            return nil;
+//        }
+//    }
+//    return @(n.floatValue - [l getN].floatValue);
+}
 
-             @end
+@end

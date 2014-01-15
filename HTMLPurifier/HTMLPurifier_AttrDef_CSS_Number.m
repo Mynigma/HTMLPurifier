@@ -58,7 +58,7 @@
         }
 
         if (ctype_digit(string)) {
-            string = ltrim(string, @"0");
+            string = ltrim_2(string, @"0");
             return string ? [sign stringByAppendingString:string] : @"0";
         }
 
@@ -89,8 +89,8 @@
             return nil;
         }
 
-        left = ltrim(left, @"0");
-        right = rtrim(right, @"0");
+        left = ltrim_2(left, @"0");
+        right = rtrim_2(right, @"0");
 
         if ([right isEqualTo:@""])
         {
