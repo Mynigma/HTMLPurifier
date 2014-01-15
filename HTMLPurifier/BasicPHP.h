@@ -23,7 +23,6 @@ NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* sub
 }
 
 
-//TODO
 NSArray* preg_split_2(NSString* expression, NSString* subject)
 {
     NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
