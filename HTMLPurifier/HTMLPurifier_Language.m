@@ -10,4 +10,20 @@
 
 @implementation HTMLPurifier_Language
 
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _code = @"en";
+        _fallback = nil;
+        _messages = [NSMutableDictionary new];
+        _errorNames = [NSMutableDictionary new];
+        _error = NO;
+        _loaded = NO;
+    }
+    return self;
+}
+
+
 @end

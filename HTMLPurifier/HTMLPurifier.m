@@ -164,30 +164,26 @@
     HTMLPurifier_Context* localContext = [HTMLPurifier_Context new];
     
     //setup HTML generator
-    generator = [[HTMLPurifier_Generator alloc] initWithConfig:config context:context];
+    generator = [[HTMLPurifier_Generator alloc] initWithConfig:config context:localContext];
     [localContext registerWithName:@"Generator" ref:generator];
     
     //setup global context variables
-    if ([config getWithKey:@"Core.CollectErrors"])
+    if ([config get:@"Core.CollectErrors"])
     {
         HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
-        HTMLPurifier_Language* language = [language_factory createWithConfig: config Context: localContext];
+        HTMLPurifier_Language* language = [language_factory create:config context:localContext];
         [localContext registerWithName:@"Locale" ref:language];
-        
-        HTMLPurifier_ErrorCollector* error_collector = [HTMLPurifier_ErrorCollector alloc];
-        error_collector = [HTMLPurifier_ErrorCollector initWithContext:localContext];
-        [localContext registerWithName:@"ErrorCollector" ref:error_collector];
     }
     
     // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
-    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config Context:localContext];
-    [context registerWithName:@"IDAccumulator" ref:id_accumulator];
+    HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config context:localContext];
+    [localContext registerWithName:@"IDAccumulator" ref:id_accumulator];
     
-    html = [HTMLPurifier_Encoder convertToUTF8WithHtml:html Config:config Context:localContext];
+    html = [HTMLPurifier_Encoder convertToUTF8:html config:config context:localContext];
     
     // setup filters
     
-    NSMutableDictionary* filter_flags = [config getBatchWithNamespace:@"Filter"];
+    NSMutableDictionary* filter_flags = [[config getBatch:@"Filter"] mutableCopy];
     NSMutableArray* custom_filters = [filter_flags objectForKey:@"Custom"];
     [filter_flags removeObjectForKey:@"Custom"];
     
@@ -202,7 +198,7 @@
         }
         
         if (strpos(key,@".") != NSNotFound){
-            continue
+            continue;
         }
         
         NSString* class = [@"HTMLPurifier_Filter_" stringByAppendingString:key];
@@ -217,30 +213,28 @@
     
     [newFilters addObjectsFromArray:filters];
     
-    int filter_size = [newFilters count];
+    NSUInteger filter_size = [newFilters count];
     
     for (int i=0; i<filter_size; i++)
     {
-        html = [newFilters[i] preFilterWithHtml:html Config:config Context:localContext];
+        html = [newFilters[i] preFilter:html config:config context:localContext];
     }
     
     
     
     //TODO maybe change names
     //purifed HTML
-    html = [generator generateFromTokens:
-            [strategy execute:
-             [lexer tokenizeHTML:html Config:config Context:localContext]
-                       Config:config Context:localContext]];
+
+    html = [generator generateFromTokens:[[strategy execute:[lexer tokenizeHTMLWithString:html config:config context:localContext] config:config context:localContext] mutableCopy]];
     
-    for (int i = filter_size - 1; i>=0; i--)
+    for (NSInteger i = filter_size - 1; i>=0; i--)
     {
-        html = [filters[i] postFilterWithHtml:html Config:config Context:localContext];
+        html = [filters[i] postFilter:html config:config context:localContext];
     }
     
-    html = [HTMLPurifier_Encoder convertFromUTF8WithHtml:Html Config:config Context:localContext];
+    html = [HTMLPurifier_Encoder convertFromUTF8:html config:config context:localContext];
     
-    [context addObject:localContext];
+    [(NSMutableArray*)context addObject:localContext];
     return html;
     
 }
@@ -260,7 +254,7 @@
     
     for(NSString* html in array_of_html)
     {
-        [new_html_array addObject: [self purifyWith:html]];
+        [new_html_array addObject: [self purify:html]];
         [context_array addObject:context];
     }
     context = context_array;
@@ -284,7 +278,7 @@
     
     for(NSString* html in array_of_html)
     {
-        [new_html_array addObject: [self purifyWith:html Config:newConfig]];
+        [new_html_array addObject: [self purify:html config:newConfig]];
         [context_array addObject:context];
     }
     context = context_array;

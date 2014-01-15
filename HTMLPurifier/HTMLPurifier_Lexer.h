@@ -71,7 +71,7 @@
  * @param HTMLPurifier_Context $context
  * @return HTMLPurifier_Token[] array representation of HTML.
  */
-- (NSArray*)tokenizeHTMLWithString:(NSString*)string config:(NSString*)config context:(NSString*)context;
+- (NSArray*)tokenizeHTMLWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 /**
  * Translates CDATA sections into regular sections (through escaping).

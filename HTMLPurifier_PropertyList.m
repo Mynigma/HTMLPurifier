@@ -102,7 +102,7 @@
         return cache;
     }
     if (parent) {
-        cache = dict_merge_2([parent squash:force], data);
+        cache = [dict_merge_2([parent squash:force], data) mutableCopy];
         return cache;
     } else {
         cache = data;

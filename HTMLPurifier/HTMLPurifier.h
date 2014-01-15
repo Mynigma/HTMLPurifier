@@ -58,7 +58,7 @@
  * Resultant context of last run purification.
  * Is an array of contexts if the last called method was purifyArray().
  */
-@property NSMutableArray* context;
+@property NSObject* context;
 
 - (id)initWithConfig:(HTMLPurifier_Config*) newConfig;
 

@@ -103,7 +103,7 @@
  * @param HTMLPurifier_Context $context
  * @return HTMLPurifier_Token[] array representation of HTML.
  */
-- (NSArray*)tokenizeHTMLWithString:(NSString*)string config:(NSString*)config context:(NSString*)context
+- (NSArray*)tokenizeHTMLWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
    TRIGGER_ERROR(@"Call to abstract class");
     return nil;

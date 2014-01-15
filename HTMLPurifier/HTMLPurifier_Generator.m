@@ -9,6 +9,7 @@
 #import "HTMLPurifier_Generator.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Config.h"
+#import "HTMLPurifier_Token.h"
 
 @implementation HTMLPurifier_Generator
 
