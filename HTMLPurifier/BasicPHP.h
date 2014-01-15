@@ -29,12 +29,249 @@ NSArray* preg_split_2(NSString* expression, NSString* subject)
     NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
 
     NSArray *matches = [exp matchesInString:subject options:0 range:NSMakeRange(0, [subject length])];
-    NSMutableArray *results = [[NSMutableArray alloc] init];
+    
+    NSMutableArray *results = [NSMutableArray new];
 
-    for (NSTextCheckingResult *match in matches) {
-        [results addObject:[subject substringWithRange:[match range]]];
+    if ([matches count] == 0)
+    {
+        [results addObject:subject];
+        return results;
     }
+    
+    //start @beginning
+    NSInteger loc = 0;
+    
+    for (NSTextCheckingResult *match in matches) {
+        
+        //range of the match
+        NSRange match_range = [match range];
+        
+        //lenght from loc to this match
+        NSInteger len = match_range.location - loc;
+        
+        // make range
+        NSRange range = NSMakeRange(loc, len);
+        //add string, even if empty
+        [results addObject:[subject substringWithRange:range]];
+        // set the new loc
+        loc = match_range.location + match_range.length;
+    }
+    
+    // get the last straw
+    if (loc < [subject length])
+        {
+            [results addObject:[subject substringWithRange:NSMakeRange(loc, [subject length]-loc)]];
+        }
 
+    return results;
+}
+
+// Limit: max limit elements in returned array
+NSArray* preg_split_3(NSString* expression, NSString* subject, NSInteger limit)
+{
+    if (limit <= 0)
+    {
+        return preg_split_2(expression,subject);
+    }
+    
+    NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
+    
+    NSArray *matches = [exp matchesInString:subject options:0 range:NSMakeRange(0, [subject length])];
+    
+    NSMutableArray *results = [NSMutableArray new];
+    
+    if ([matches count] == 0)
+    {
+        [results addObject:subject];
+        return results;
+    }
+    
+    //start @beginning
+    NSInteger loc = 0;
+    
+    for (NSTextCheckingResult *match in matches) {
+        
+        // we only want #limit-elements
+        if ([results count] >= limit - 1)
+            break;
+        //range of the match
+        NSRange match_range = [match range];
+        
+        //lenght from loc to this match
+        NSInteger len = match_range.location - loc;
+        
+        // make range
+        NSRange range = NSMakeRange(loc, len);
+        //add string, even if empty
+        [results addObject:[subject substringWithRange:range]];
+        // set the new loc
+        loc = match_range.location + match_range.length;
+    }
+    
+    // get the last straw
+    if (loc < [subject length])
+    {
+        [results addObject:[subject substringWithRange:NSMakeRange(loc, [subject length]-loc)]];
+    }
+    
+    return results;
+}
+
+/* *** Instead directly with FLAG ***
+NSArray* preg_split_4(NSString* expression, NSString* subject, NSInteger limit, NSInteger* flag)
+{
+    
+    if (flag == 0)
+        return preg_split_3(expression,subject,limit);
+    
+    NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
+    
+    NSArray *matches = [exp matchesInString:subject options:0 range:NSMakeRange(0, [subject length])];
+    
+    NSMutableArray *results = [NSMutableArray new];
+    
+    if ([matches count] == 0)
+    {
+        [results addObject:subject];
+        return results;
+    }
+    
+    //start @beginning
+    NSInteger loc = 0;
+    
+    for (NSTextCheckingResult *match in matches) {
+        
+        // we only want #limit-elements
+        if ([results count] >= limit - 1)
+            break;
+        
+        //range of the match
+        NSRange match_range = [match range];
+        
+        //lenght from loc to this match
+        NSInteger len = match_range.location - loc;
+        
+        // make range
+        NSRange range = NSMakeRange(loc, len);
+        //add string, even if empty
+        [results addObject:[subject substringWithRange:range]];
+        // set the new loc
+        loc = match_range.location + match_range.length;
+    }
+    
+    // get the last straw
+    if (loc < [subject length])
+    {
+        [results addObject:[subject substringWithRange:NSMakeRange(loc, [subject length]-loc)]];
+    }
+    
+    return results;
+}
+*/
+
+NSArray* preg_split_2_PREG_SPLIT_DELIM_CAPTURE(NSString* expression, NSString* subject)
+{
+    NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
+    
+    NSArray *matches = [exp matchesInString:subject options:0 range:NSMakeRange(0, [subject length])];
+    
+    NSMutableArray *results = [NSMutableArray new];
+    
+    if ([matches count] == 0)
+    {
+        [results addObject:subject];
+        return results;
+    }
+    
+    //start @beginning
+    NSInteger loc = 0;
+    
+    for (NSTextCheckingResult *match in matches) {
+        
+        //range of the match
+        NSRange match_range = [match range];
+        
+        //lenght from loc to this match
+        NSInteger len = match_range.location - loc;
+        
+        // make range
+        NSRange range = NSMakeRange(loc, len);
+        //add string, even if empty
+        [results addObject:[subject substringWithRange:range]];
+        
+        // sets the delimiter
+        [results addObject:[subject substringWithRange:match_range]];
+        
+        // set the new loc
+        loc = match_range.location + match_range.length;
+    }
+    
+    // get the last straw
+    if (loc < [subject length])
+    {
+        [results addObject:[subject substringWithRange:NSMakeRange(loc, [subject length]-loc)]];
+    }
+    
+    return results;
+}
+
+
+NSArray* preg_split_3_PREG_SPLIT_DELIM_CAPTURE(NSString* expression, NSString* subject, NSInteger limit)
+{
+    
+    if (limit <= 0)
+        return preg_split_2_PREG_SPLIT_DELIM_CAPTURE(expression,subject);
+    
+    NSRegularExpression *exp = [NSRegularExpression regularExpressionWithPattern:expression options:0 error:nil];
+    
+    NSArray *matches = [exp matchesInString:subject options:0 range:NSMakeRange(0, [subject length])];
+    
+    NSMutableArray *results = [NSMutableArray new];
+    
+    if ([matches count] == 0)
+    {
+        [results addObject:subject];
+        return results;
+    }
+    
+    //start @beginning
+    NSInteger loc = 0;
+    
+    //don't count the added delimiter
+    NSInteger count = 0;
+    
+    for (NSTextCheckingResult *match in matches) {
+        
+        // we only want #limit-elements
+        if (count >= limit - 1)
+            break;
+        
+        //range of the match
+        NSRange match_range = [match range];
+        
+        //lenght from loc to this match
+        NSInteger len = match_range.location - loc;
+        
+        // make range
+        NSRange range = NSMakeRange(loc, len);
+        //add string, even if empty
+        [results addObject:[subject substringWithRange:range]];
+        
+        //adds the delimiter
+        [results addObject:[subject substringWithRange:match_range]];
+        
+        // set the new loc
+        loc = match_range.location + match_range.length;
+        
+        count++;
+    }
+    
+    // get the last straw
+    if (loc < [subject length])
+    {
+        [results addObject:[subject substringWithRange:NSMakeRange(loc, [subject length]-loc)]];
+    }
+    
     return results;
 }
 
