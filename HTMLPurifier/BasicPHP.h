@@ -43,6 +43,101 @@ BOOL preg_match_2(NSString* pattern, NSString* subject)
     NSError* error = nil;
     
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0,subject.length)];
+    
+    if (!result)
+    {
+        return nil;
+    }
+    
+    if ([result range].location == NSNotFound)
+    {
+        return nil;
+    }
+    
+    NSMutableArray* findings = [NSMutableArray new];
+    
+    [findings addObject:[subject substringWithRange:[result range]]];
+    
+    for (NSInteger i = 1; i < [result numberOfRanges]; i++)
+    {
+        NSRange range = [result rangeAtIndex:i];
+        if (range.location == NSNotFound)
+            continue;
+        [findings addObject:[subject substringWithRange:range]];
+    }
+    
+    return findings;
+    
+}
+
+
+//Returns all matches & subpattern matches
+// Structure is array of arrays
+NSArray* preg_match_all(NSString* pattern, NSString* subject)
+{
+    
+    NSError* error = nil;
+    
+    // make regex
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    //match all in Strings
+    NSArray* result = [regex matchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
+
+    // found nothing?
+    if (!result)
+    {
+        return nil;
+    }
+    
+    // # of matches
+    NSUInteger num_matches = [result count];
+    
+    //sanity check
+    if(num_matches == 0)
+    {
+        return nil;
+    }
+    
+    NSMutableArray* findings = [NSMutableArray new];
+    
+    //count the number of found submatches
+    //No differenz between match.numberOfRanges and regex.numberOfCaptureGroups + 1 (the whole match)
+    NSUInteger num_submatches = [regex numberOfCaptureGroups] + 1;
+    
+    BOOL initArrays = YES;
+    
+    //go through all matches
+    for (NSTextCheckingResult* match in result)
+    {
+        //this cannot happen, "that's what she said"
+        if([match range].location == NSNotFound)
+            continue;
+        
+        //go through all submatches
+        for (NSInteger j = 0; j < num_submatches; j++)
+        {
+            // Init Arrays for the first match
+            if (initArrays)
+                [findings addObject:[NSMutableArray new]];
+            
+            // if the subpattern did not actually match anything.
+            if ([match rangeAtIndex:j].location == NSNotFound)
+                continue; //With this we may have some empty arrays, but at least the Order remains. Don't know how PHP deals with this.
+            
+            //finally add the matched string
+            [findings[j] addObject:[subject substringWithRange:[match rangeAtIndex:j]]];
+            
+        }
+        
+        //all initiated
+        initArrays = NO;
+        
+    }
+    
+    return findings;
 
     return [regex firstMatchInString:subject options:0 range:NSMakeRange(0, subject.length)].range.location!=NSNotFound;
 }
@@ -93,6 +188,8 @@ NSInteger preg_match_all_2(NSString* pattern, NSString* subject)
 
     return [regex numberOfMatchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
 }
+
+//TODO preg_split
 
 BOOL ctype_xdigit (NSString* text)
 {
@@ -225,9 +322,29 @@ return ([text isEqual:[text lowercaseString]]);
 }
 
 
-//TODO ctype_alnum(string)
+BOOL ctype_alnum(NSString* string)
+{
+    for(NSInteger i=0;i <string.length; i++)
+    {
+        unichar character = [string characterAtIndex:i];
+        if(!(isalnum(character)))
+            return NO;
+    }
+    return YES;
+}
 
-//TODO is_numeric (string)
+
+BOOL is_numeric(NSString* string)
+{
+    for(NSInteger i=0;i <string.length; i++)
+    {
+        unichar character = [string characterAtIndex:i];
+        if(!(isnumber(character)))
+            return NO;
+    }
+    return YES;
+}
+
 
 NSString* trim(NSString* string)
 {
@@ -604,6 +721,10 @@ void array_push(NSMutableArray* array, NSObject* x)
 {
     [array addObject:x];
 }
+
+
+//TODO
+//array_shift
 
 //TODO array_map
 

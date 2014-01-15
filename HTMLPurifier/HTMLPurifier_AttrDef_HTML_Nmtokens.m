@@ -49,7 +49,7 @@
  * @param HTMLPurifier_Context $context
  * @return array
  */
--(NSMutableArray*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSArray*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
 {
     // OPTIMIZABLE!
     // do the preg_match, capture all subpatterns for reformulation
