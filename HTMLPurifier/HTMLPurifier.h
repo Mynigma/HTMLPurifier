@@ -24,6 +24,7 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+
 #import <Foundation/Foundation.h>
 
 @class HTMLPurifier_Config,HTMLPurifier_Strategy_Core,HTMLPurifier_Generator,HTMLPurifier_Context,HTMLPurifier_Filter,HTMLPurifier_Lexer,HTMLPurifier_LanguageFactory,HTMLPurifier_Language,HTMLPurifier_ErrorCollector,HTMLPurifier_IDAccumulator;
@@ -58,7 +59,7 @@
  * Resultant context of last run purification.
  * Is an array of contexts if the last called method was purifyArray().
  */
-@property NSMutableArray* context;
+@property NSObject* context;
 
 - (id)initWithConfig:(HTMLPurifier_Config*) newConfig;
 

@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "HTMLPurifier_Harness.m"
+#import "HTMLPurifier_Harness.h"
 #import "HTMLPurifier_URIParser.h"
 #import "HTMLPurifier_URI.h"
 #import "HTMLPurifier_Config.h"

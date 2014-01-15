@@ -117,20 +117,20 @@
  *        this is not an injector related operation.
  * @throws HTMLPurifier_Exception
  */
-- (void)processToken:(NSObject*)token injector:(HTMLPurifier_Injector*)injector;
+- (HTMLPurifier_Token*)processToken:(NSObject*)token injector:(NSNumber*)injector;
 
 /**
  * Inserts a token before the current token. Cursor now points to
  * this token.  You must reprocess after this.
  * @param HTMLPurifier_Token $token
  */
-- (void)insertBefore:(HTMLPurifier_Token*)token;
+- (HTMLPurifier_Token*)insertBefore:(HTMLPurifier_Token*)token;
 
 /**
  * Removes current token. Cursor now points to new token occupying previously
  * occupied space.  You must reprocess after this.
  */
-- (void)remove;
+- (NSObject*)removeObject;
 
 
 

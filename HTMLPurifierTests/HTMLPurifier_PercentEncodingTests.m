@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "HTMLPurifier_PercentEncoder.h"
-#import "HTMLPurifier_Harness.m"
+#import "HTMLPurifier_Harness.h"
 
 @interface HTMLPurifier_PercentEncodingTests : HTMLPurifier_Harness
 {

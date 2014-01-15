@@ -27,7 +27,7 @@
      * @param Array to zipper-ify.
      * @return Tuple of zipper and element of first position.
      */
-    - (NSArray*)fromArray:(NSArray*)array
+    + (NSArray*)fromArray:(NSArray*)array
 {
         HTMLPurifier_Zipper* z = [[HTMLPurifier_Zipper alloc] initWithFront:@[] back:array_reverse([array mutableCopy])];
         NSObject* t = [z delete]; // delete the "dummy hole"

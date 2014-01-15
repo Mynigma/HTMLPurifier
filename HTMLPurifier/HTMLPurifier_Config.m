@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_ConfigSchema.h"
-//#import "HTMLPurifier_PropertyList.h"
+#import "HTMLPurifier_PropertyList.h"
 #import "HTMLPurifier_VarParser.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_Definition.h"
@@ -16,6 +16,8 @@
 #import "HTMLPurifier_CSSDefinition.h"
 #import "HTMLPurifier_HTMLDefinition.h"
 #import "HTMLPurifier_VarParser_Flexible.h"
+#import "HTMLPurifier_DefinitionCacheFactory.h"
+#import "HTMLPurifier_DefinitionCache.h"
 
 /**
  * Configuration object that triggers customizable behavior.
@@ -212,7 +214,7 @@ static HTMLPurifier_VarParser* theParser;
     NSMutableDictionary* ret = [NSMutableDictionary new];
     for(NSString* name in [plist squash])
     {
-        NSObject* value = [self.plist valueForKey:name];
+        NSObject* value = [self->plist valueForKey:name];
         NSArray* exploded = explode(@".", name);
         NSString* ns = @"";
         NSString* key = @"";
@@ -334,7 +336,7 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (HTMLPurifier_HTMLDefinition*)getHTMLDefinition
 {
-    return [self getDefinition:@"HTML"];
+    return (HTMLPurifier_HTMLDefinition*)[self getDefinition:@"HTML"];
 }
 
 /**
@@ -399,47 +401,48 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (HTMLPurifier_Definition*)getDefinition:(NSString*)type raw:(BOOL)raw optimized:(BOOL)optimized
 {
-    if (![self finalized]) {
+    if (!finalized) {
         [self autoFinalize];
     }
+
     // temporarily suspend locks, so we can handle recursive definition calls
-    NSString* lock = self.lock;
-    self.lock = nil;
-    factory = [HTMLPurifier_DefinitionCacheFactory instance];
-    cache = [factory create:type :self];
-    [self setLock:lock];
+    NSString* localLock = lock;
+    lock = nil;
+    HTMLPurifier_DefinitionCacheFactory* factory = [HTMLPurifier_DefinitionCacheFactory instance];
+    HTMLPurifier_DefinitionCache* cache = (HTMLPurifier_DefinitionCache*)[factory create:type config:self];
+    lock = localLock;
     if (!raw) {
         // full definition
         // ---------------
         // check if definition is in memory
-        if ([self.definitions[type] count]!=0)) {
-            def = self.definitions[type];
+        if ([definitions[type] count]!=0) {
+            HTMLPurifier_Definition* def = definitions[type];
             // check if the definition is setup
             if ([def setup]) {
                 return def;
             } else {
                 [def setup:self];
                 if ([def optimized]) {
-                    [cache add:def :self];
+                    [cache add:def config:self];
                 }
                 return def;
             }
         }
         // check if definition is in cache
-        def = [cache get:self];
+        HTMLPurifier_Definition* def = [cache get:self];
         if (def) {
             // definition in cache, save to memory and return it
-            [self.definitions setObject:def forKey:type];
+            [definitions setObject:def forKey:type];
             return def;
         }
         // initialize it
-        def = [self initDefinition:type];
+        def = [self InitialiseDefinition:type];
         // set it up
-        [self setLock:type];
-        [def setSetup:self];
-        [self setLock:nil];
+        lock = type;
+        [def setup:self];
+        lock = nil;
         // save in cache
-        [cache add:def self];
+        [cache add:def config:self];
         // return it
         return def;
     }
@@ -448,7 +451,7 @@ static HTMLPurifier_VarParser* theParser;
         // raw definition
         // --------------
         // check preconditions
-        def = nil;
+        HTMLPurifier_Definition* def = nil;
         if (optimized)
         {
             if (![self get:[NSString stringWithFormat:@"%@.DefinitionID", type ]])
@@ -457,9 +460,9 @@ static HTMLPurifier_VarParser* theParser;
                 @throw [NSException exceptionWithName:@"Config" reason:@"Cannot retrieve raw version without specifying $type.DefinitionID" userInfo:nil];
             }
         }
-        if ([self.definitions[type] count]!=0))
+        if ([definitions[type] count]!=0)
         {
-            def = self.definitions[type];
+            def = definitions[type];
             if ([def setup] && !optimized)
             {
                 NSString* extra = self.chatty ?
@@ -467,15 +470,14 @@ static HTMLPurifier_VarParser* theParser;
                 @"";
                 @throw [NSException exceptionWithName:@"Config" reason:[@"Cannot retrieve raw definition after it has already been setup" stringByAppendingString:extra] userInfo:nil];
             }
-            if ([def optimized] == nil)
+            if (![def optimized])
             {
                 NSString* extra = self.chatty ? @" (try flushing your cache)" : @"";
                 @throw [NSException exceptionWithName:@"Config" reason:[@"Optimization status of definition is unknown" stringByAppendingString:extra] userInfo:nil];
             }
             if ([def optimized] != optimized)
             {
-                NSString* msg = optimized ? @"optimized" : @"unoptimized";
-                extra = self.chatty ?
+                NSString* extra = self.chatty ?
                 @" (this backtrace is for the first inconsistent call, which was for a $msg raw definition)"
                 : @"";
                 @throw [NSException exceptionWithName:@"Config" reason:[@"Inconsistent use of optimized and unoptimized raw definition retrievals" stringByAppendingString:extra] userInfo:nil];
@@ -503,8 +505,8 @@ static HTMLPurifier_VarParser* theParser;
             if (def) {
                 // save the full definition for later, but don't
                 // return it yet
-                self.definitions[type] = def;
-                return null;
+                definitions[type] = def;
+                return nil;
             }
         }
         // check invariants for creation
@@ -524,7 +526,7 @@ static HTMLPurifier_VarParser* theParser;
 
         }
         // initialize it
-        def = [self initDefinition:type];
+        def = [self InitialiseDefinition:type];
         def.optimized = optimized;
         return def;
     }
@@ -541,17 +543,18 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (HTMLPurifier_Definition*)InitialiseDefinition:(NSString*)type
 {
+    HTMLPurifier_Definition* def = nil;
     // quick checks failed, let's create the object
     if ([type isEqualToString:@"HTML"]) {
         def = [HTMLPurifier_HTMLDefinition new];
     } else if ([type isEqualToString:@"CSS"]) {
-        def = new HTMLPurifier_CSSDefinition();
+        def = [HTMLPurifier_CSSDefinition new];
     } else if ([type isEqualToString:@"URI"]) {
         def = [HTMLPurifier_URIDefinition new];
     } else {
-        @throw [NSException exceptionWithName:@"Config" reason:[@"Definition of $type type not supported" stringByAppendingString:extra] userInfo:nil];
+        @throw [NSException exceptionWithName:@"Config" reason:[NSString stringWithFormat:@"Definition of %@ type not supported", type] userInfo:nil];
     }
-    self.definitions[type] = def;
+    definitions[type] = def;
     return def;
 }
 
@@ -739,10 +742,10 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (BOOL)isFinalized:(NSError*)error
 {
-    if (_finalized && error) {
+    if (finalized && error) {
         TRIGGER_ERROR(@"%@", error);
     }
-    return _finalized;
+    return finalized;
 }
 
 /**
@@ -759,8 +762,8 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (void)finalize
 {
-    _finalized = YES;
-    _parser = nil;
+    finalized = YES;
+    parser = nil;
 }
 
 
@@ -772,10 +775,13 @@ static HTMLPurifier_VarParser* theParser;
  */
 - (NSString*)serialize
 {
+    return nil;
+    //TO DO: use NSKeyedArchiver for this...
+    /*
     [self getDefinition:@"HTML"];
     [self getDefinition:@"CSS"];
     [self getDefinition:@"URI"];
-    return serialize(self);
+    return serialize(self);*/
 }
 
 

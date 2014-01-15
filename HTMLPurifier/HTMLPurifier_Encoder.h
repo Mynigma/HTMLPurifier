@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTMLPurifier_Context, HTMLPurifier_Config;
+
 @interface HTMLPurifier_Encoder : NSObject
 
 
@@ -361,7 +363,7 @@
 //     * @param HTMLPurifier_Context $context
 //     * @return string
 //     */
-//    public static function convertToUTF8($str, $config, $context)
++ (NSString*)convertToUTF8:(NSString*)str config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 //    {
 //        $encoding = $config->get('Core.Encoding');
 //        if ($encoding === 'utf-8') {
@@ -409,7 +411,7 @@
 //     * @note Currently, this is a lossy conversion, with unexpressable
 //     *       characters being omitted.
 //     */
-//    public static function convertFromUTF8($str, $config, $context)
++ (NSString*)convertFromUTF8:(NSString*)str config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 //    {
 //        $encoding = $config->get('Core.Encoding');
 //        if ($escape = $config->get('Core.EscapeNonASCIICharacters')) {
