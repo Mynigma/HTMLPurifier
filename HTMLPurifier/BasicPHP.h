@@ -126,6 +126,7 @@ NSString* strtr_php(NSString* fromString, NSDictionary* replacementDict);
 NSInteger strspn_2(NSString* subject, NSString* mask);
 
 // Find length of initial segment not matching mask
+// TODO
 NSInteger strcspn_2(NSString* string1, NSString* string2);
 NSInteger strcspn_3(NSString* string1, NSString* string2, NSInteger start);
 
