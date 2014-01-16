@@ -376,6 +376,8 @@ BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
     {
         if([result rangeAtIndex:i].location!=NSNotFound)
             [matches addObject:[subject substringWithRange:[result rangeAtIndex:i]]];
+        else
+            [matches addObject:@""];
     }
 
     //Matched at least one thing

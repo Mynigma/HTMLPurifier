@@ -50,7 +50,7 @@
 
 - (void)testPercentNormalization
 {
-    [self assertParsing:@"%G" scheme:nil userinfo:nil host:nil port:nil path:@"%%25G" query:nil fragment:nil];
+    [self assertParsing:@"%G" scheme:nil userinfo:nil host:nil port:nil path:@"%25G" query:nil fragment:nil];
 }
 
 - (void)testRegular

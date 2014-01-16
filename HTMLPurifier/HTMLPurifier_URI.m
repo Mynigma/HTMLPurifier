@@ -294,4 +294,75 @@
     return [NSString stringWithFormat:@"HTMLPurifier_URI: %@://%@:%@%@%@?%@#%@", _scheme, _host, _userinfo, _port, _path, _query, _fragment];
 }
 
+- (BOOL)isEqual:(HTMLPurifier_URI*)object
+{
+    if([object isKindOfClass:[HTMLPurifier_URI class]])
+    {
+        if(object.scheme)
+        {
+            if(![object.scheme isEqual:self.scheme])
+                return NO;
+        }
+        else if(self.scheme)
+            return NO;
+
+        if(object.userinfo)
+        {
+            if(![object.userinfo isEqual:self.userinfo])
+                return NO;
+        }
+        else if(self.userinfo)
+            return NO;
+
+        if(object.host)
+        {
+            if(![object.host isEqual:self.host])
+                return NO;
+        }
+        else if(self.host)
+            return NO;
+
+        if(object.port)
+        {
+            if(![object.port isEqual:self.port])
+                return NO;
+        }
+        else if(self.port)
+            return NO;
+
+        if(object.path)
+        {
+            if(![object.path isEqual:self.path])
+                return NO;
+        }
+        else if(self.path)
+            return NO;
+
+        if(object.query)
+        {
+            if(![object.query isEqual:self.query])
+                return NO;
+        }
+        else if(self.query)
+            return NO;
+
+        if(object.fragment)
+        {
+            if(![object.fragment isEqual:self.fragment])
+                return NO;
+        }
+        else if(self.fragment)
+            return NO;
+
+        return YES;
+    }
+
+    return NO;
+}
+
+- (NSUInteger)hash
+{
+    return [self.scheme hash] + [self.userinfo hash] + [self.host hash] + [self.port hash] + [self.path hash] + [self.query hash] + [self.fragment hash];
+}
+
 @end
