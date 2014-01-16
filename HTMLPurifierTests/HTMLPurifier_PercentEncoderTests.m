@@ -34,6 +34,8 @@
 
 - (void)testExample
 {
+    HTMLPurifier_Config* config = [super config];
+    [config.]
 }
 
 - (void)assertDecode:(NSString*)string

@@ -1005,6 +1005,11 @@ NSInteger hexdec(NSString* hex_string)
     return result;
 }
 
+NSString* dechex(NSString* hex_string)
+{
+    return [NSString stringWithFormat:@"%lX", (long)hex_string.integerValue];
+}
+
 
 
 
@@ -1041,7 +1046,7 @@ NSInteger hexdec(NSString* hex_string)
 
     NSArray* results = [regex matchesInString:haystack options:0 range:NSMakeRange(0, haystack.length)];
 
-    NSString* replacement = callBack(results);
+    NSString* replacement = results ? callBack(results) : nil;
 
     if(!replacement)
         replacement = @"";

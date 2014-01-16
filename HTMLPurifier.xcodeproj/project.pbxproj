@@ -25,6 +25,7 @@
 		1E35ECEC188813D300E8FF31 /* EntityParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECEB188813D300E8FF31 /* EntityParserTest.m */; };
 		1E35ECEF188818D200E8FF31 /* HTMLPurifier_EntityLookup.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E35ECED188818D200E8FF31 /* HTMLPurifier_EntityLookup.h */; };
 		1E35ECF0188818D200E8FF31 /* HTMLPurifier_EntityLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECEE188818D200E8FF31 /* HTMLPurifier_EntityLookup.m */; };
+		1E35ECF218881FC500E8FF31 /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E35ECF118881FC500E8FF31 /* entities.plist */; };
 		1E5FAAA318853F780073CA79 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA218853F780073CA79 /* config.plist */; };
 		1E5FAAA7188542C60073CA79 /* HTMLPurifier_HTMLModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5FAAA5188542C60073CA79 /* HTMLPurifier_HTMLModule.h */; };
 		1E5FAAA8188542C60073CA79 /* HTMLPurifier_HTMLModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA6188542C60073CA79 /* HTMLPurifier_HTMLModule.m */; };
@@ -266,6 +267,7 @@
 		1E35ECEB188813D300E8FF31 /* EntityParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityParserTest.m; sourceTree = "<group>"; };
 		1E35ECED188818D200E8FF31 /* HTMLPurifier_EntityLookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_EntityLookup.h; sourceTree = "<group>"; };
 		1E35ECEE188818D200E8FF31 /* HTMLPurifier_EntityLookup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_EntityLookup.m; sourceTree = "<group>"; };
+		1E35ECF118881FC500E8FF31 /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entities.plist; sourceTree = "<group>"; };
 		1E5FAAA218853F780073CA79 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		1E5FAAA5188542C60073CA79 /* HTMLPurifier_HTMLModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_HTMLModule.h; sourceTree = "<group>"; };
 		1E5FAAA6188542C60073CA79 /* HTMLPurifier_HTMLModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule.m; sourceTree = "<group>"; };
@@ -864,6 +866,7 @@
 		80EDF9C518803B3200EB1E89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1E35ECF118881FC500E8FF31 /* entities.plist */,
 				1E5FAAA218853F780073CA79 /* config.plist */,
 				80EDF9C618803B3200EB1E89 /* HTMLPurifier-Info.plist */,
 				80EDF9C718803B3200EB1E89 /* InfoPlist.strings */,
@@ -1092,6 +1095,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1E5FAAA318853F780073CA79 /* config.plist in Resources */,
+				1E35ECF218881FC500E8FF31 /* entities.plist in Resources */,
 				80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

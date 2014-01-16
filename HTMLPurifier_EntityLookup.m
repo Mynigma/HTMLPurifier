@@ -8,21 +8,38 @@
 
 #import "HTMLPurifier_EntityLookup.h"
 
+
+static HTMLPurifier_EntityLookup* commonLookup;
+
 @implementation HTMLPurifier_EntityLookup
 
 
-- (void)setup
+- (id)init
 {
-    return [self setup:nil];
+    if(commonLookup)
+        return commonLookup;
+
+    self = [super init];
+    if (self) {
+        NSURL* plistURL = [[NSBundle mainBundle] URLForResource:@"entities" withExtension:@"plist"];
+
+        _table = [NSDictionary dictionaryWithContentsOfURL:plistURL];
+
+        commonLookup = self;
+    }
+    return self;
 }
 
-- (void)setup:(NSString*)file_name;
++ (HTMLPurifier_EntityLookup*)instance
 {
-    NSString* fileName = file_name;
-    if (!fileName)
-        fileName = @"entities.plist";
-
-    _table = unserialize(file_get_contents(fileName));
+    return [self instanceWithPrototype:nil];
 }
+
++ (HTMLPurifier_EntityLookup*)instanceWithPrototype:(HTMLPurifier_EntityLookup*)prototype;
+{
+    //all moved to init
+    return [HTMLPurifier_EntityLookup new];
+}
+
 
 @end

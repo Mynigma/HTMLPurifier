@@ -41,9 +41,9 @@
 - (NSString*)substituteNonSpecialEntities:(NSString*)string;
     {
         // it will try to detect missing semicolons, but don't rely on it
-        return preg_replace_callback_3(_substituteEntitiesRegex, ^(NSArray* matches){
+        return [BasicPHP pregReplace:_substituteEntitiesRegex callback:^(NSArray* matches){
             return [self nonSpecialEntityCallback:matches];
-        }, string);
+        } haystack:string];
     }
 
 
@@ -75,7 +75,7 @@
     {
         BOOL isHex = ([hexVal isEqualToString:@"x"]);
 
-        NSNumber* code = (isHex ? @(hexdec(matches[1])) : matches[2]);
+        NSNumber* code = (isHex ? @(hexdec(hexVal)) : (NSNumber*)decVal);
 
         // abort for special characters
         if (code && _specialDec2Str[code])
@@ -90,8 +90,9 @@
         {
             return entity;
         }
-        if (!_entityLookup) {
-            _entityLookup = [HTMLPurifier_EntityLookup instance];
+        if (!_entityLookup)
+        {
+            _entityLookup = [HTMLPurifier_EntityLookup new];
         }
         if (_entityLookup.table[stringVal])
         {

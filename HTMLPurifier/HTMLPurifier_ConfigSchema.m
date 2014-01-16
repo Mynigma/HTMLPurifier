@@ -130,28 +130,27 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
 - (id)init
 {
+    if(theSingleton)
+        return theSingleton;
+
     self = [super init];
     if (self) {
         _defaults = [NSMutableDictionary new];
-        _info = [NSMutableDictionary new];
+
+        [self actuallyReadPlist];
+
+        theSingleton = self;
     }
     return self;
 }
 
-+ (HTMLPurifier_ConfigSchema*)singleton
-{
-    if(!theSingleton)
-        theSingleton = [HTMLPurifier_ConfigSchema new];
-    return theSingleton;
-}
-
-+ (HTMLPurifier_ConfigSchema*)makeFromSerial
+- (void)actuallyReadPlist
 {
     NSData* contents = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
     if(!contents)
     {
         NSLog(@"Error opening config plist file!");
-        return nil;
+        return;
     }
 
     CFStringEncoding cfenc = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
@@ -162,16 +161,19 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
     NSDictionary* configDict = DictionaryForNode(&doc->children[0], nil);
 
-    HTMLPurifier_ConfigSchema* r = [HTMLPurifier_ConfigSchema singleton];
+    [self setDefaultPList:configDict[@"defaultPlist"]];
+    [self setInfo:[configDict[@"info"] mutableCopy]];
+    [self setDefaults:[configDict[@"defaults"] mutableCopy]];
+}
 
-    [r setDefaultPList:configDict[@"defaultPlist"]];
-    [r setInfo:[configDict[@"info"] mutableCopy]];
-    [r setDefaults:[configDict[@"defaults"] mutableCopy]];
-    
-    if (!r) {
-        NSLog(@"Unserialization of configuration schema failed");
-    }
-    return r;
++ (HTMLPurifier_ConfigSchema*)singleton
+{
+    return [HTMLPurifier_ConfigSchema new];
+}
+
++ (HTMLPurifier_ConfigSchema*)makeFromSerial
+{
+    return [HTMLPurifier_ConfigSchema new];
 }
 
 

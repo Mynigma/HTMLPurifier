@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HTMLPurifier_ConfigSchema : NSObject
-{
-    HTMLPurifier_ConfigSchema* singleton;
-}
+
 @property NSMutableDictionary* defaults;
 
 @property NSDictionary* defaultPList;
