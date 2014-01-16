@@ -36,7 +36,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     if([string isEqual:@""])
     {

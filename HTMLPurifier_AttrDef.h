@@ -36,7 +36,7 @@
  * @param HTMLPurifier_Config $config Mandatory HTMLPurifier_Config object.
  * @param HTMLPurifier_Context $context Mandatory HTMLPurifier_Context object.
  */
-- (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+- (NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 /**
  * Convenience method that parses a string as if it were CDATA.
