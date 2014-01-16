@@ -32,11 +32,6 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-
-}
-
 - (void) assertParsing:(NSString*)uri scheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSNumber*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
         [self prepareCommon:&config context:context];

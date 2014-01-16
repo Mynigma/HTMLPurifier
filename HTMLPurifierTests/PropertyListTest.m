@@ -121,9 +121,11 @@
 - (void)testSquash
 {
     HTMLPurifier_PropertyList* parent = [HTMLPurifier_PropertyList new];
+    [parent reset];
     [parent set:@"key1" value:@"hidden"];
     [parent set:@"key2" value:@2];
     HTMLPurifier_PropertyList* plist = [[HTMLPurifier_PropertyList alloc] initWithParent:parent];
+    [plist reset];
     [plist set:@"key1" value:@1];
     [plist set:@"key3" value:@3];
 

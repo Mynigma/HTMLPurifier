@@ -19,7 +19,7 @@
     NSString* lock;
     BOOL aliasMode;
 
-    NSMutableArray* serials;
+    NSMutableDictionary* serials;
     NSString* serial;
 
     NSMutableDictionary* definitions;
@@ -371,7 +371,7 @@
  *
  * @return bool
  */
-- (BOOL)isFinalized:(NSError*)error;
+- (BOOL)isFinalized:(NSString*)error;
 /**
  * Finalizes configuration only if auto finalize is on and not
  * already finalized

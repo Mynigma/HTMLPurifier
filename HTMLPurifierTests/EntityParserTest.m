@@ -91,6 +91,8 @@
                 }
                 [expect appendString:[expect copy]]; // double it
             }
+            else
+                expect = [string mutableCopy];
             XCTAssertEqualObjects([parser substituteNonSpecialEntities:string], expect);
          }
 

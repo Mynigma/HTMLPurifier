@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         
-        _substituteEntitiesRegex = @"/&([A-Za-z_:][A-Za-z0-9.\\-_:]*));?/";
+        _substituteEntitiesRegex = @"&(?:[#]x([a-fA-F0-9]+)|[#]0*(\\d+)|([A-Za-z_:][A-Za-z0-9.\\-_:]*));?";
         //    //     1. hex             2. dec      3. string (XML style)
 
         _specialDec2Str = @{@34 : @"\"",
@@ -38,13 +38,21 @@
 
 
 
-- (NSString*)substituteNonSpecialEntities:(NSString*)string;
+- (NSString*)substituteNonSpecialEntities:(NSString*)string
     {
         // it will try to detect missing semicolons, but don't rely on it
         return [BasicPHP pregReplace:_substituteEntitiesRegex callback:^(NSArray* matches){
             return [self nonSpecialEntityCallback:matches];
         } haystack:string];
     }
+
+
+- (NSString*)substituteSpecialEntities:(NSString*)string
+{
+    return [BasicPHP pregReplace:_substituteEntitiesRegex callback:^(NSArray* matches){
+        return [self specialEntityCallback:matches];
+    } haystack:string];
+}
 
 
 /**
@@ -238,23 +246,43 @@
 //     *                  or string (respectively).
 //     * @return string Replacement string.
 //     */
-//    protected function specialEntityCallback($matches)
-//    {
-//        $entity = $matches[0];
-//        $is_num = (@$matches[0][1] === '#');
-//        if ($is_num) {
-//            $is_hex = (@$entity[2] === 'x');
-//            $int = $is_hex ? hexdec($matches[1]) : (int) $matches[2];
-//            return isset($this->_special_dec2str[$int]) ?
-//            $this->_special_dec2str[$int] :
-//            $entity;
-//        } else {
-//            return isset($this->_special_ent2dec[$matches[3]]) ?
-//            $this->_special_ent2dec[$matches[3]] :
-//            $entity;
-//        }
-//    }
-//}
+- (NSString*)specialEntityCallback:(NSArray*)matches
+    {
+        if(matches.count<4)
+        {
+            TRIGGER_ERROR(@"Error: nonSpecialEntityCallback called with invalid matches array!!");
+            return @"";
+        }
+        // replaces all but big five
+        NSString* entity = matches[0];
+        NSString* hexVal = matches[1];
+        NSString* decVal = matches[2];
+        NSString* stringVal = matches[3];
+
+        BOOL isNum = NO;
+        if([[entity substringWithRange:NSMakeRange(1, 1)] isEqualToString:@"#"])
+            isNum = YES;
+        if(isNum)
+        {
+            BOOL isHex = ([hexVal isEqualToString:@"x"]);
+
+            NSNumber* code = (isHex ? @(hexdec(hexVal)) : [NSNumber numberWithInteger:decVal.integerValue]);
+
+            // abort for special characters
+            if (code && _specialDec2Str[code])
+            {
+                return _specialDec2Str[code];
+            }
+            return entity;
+        }
+        else
+        {
+            return _specialEnt2Dec[stringVal] ?
+            _specialEnt2Dec[stringVal] :
+            entity;
+        }
+    }
+
 
 
 @end

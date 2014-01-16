@@ -18,6 +18,7 @@
 #import "HTMLPurifier_VarParser_Flexible.h"
 #import "HTMLPurifier_DefinitionCacheFactory.h"
 #import "HTMLPurifier_DefinitionCache.h"
+#import "HTMLPurifier_PropertyList.h"
 
 /**
  * Configuration object that triggers customizable behavior.
@@ -234,71 +235,29 @@ static HTMLPurifier_VarParser_Flexible* theParser;
  */
 - (void)setString:(NSString*)key object:(NSObject*)value
 {
-    return;
-//    NSArray* namespace = explode(@".", key);
-//
-//    if ([self isFinalized:@"Cannot set directive after finalization"])
-//    {
-//        return;
-//    }
-//    if (!self.def.info[key])
-//    {
-//        NSLog(@"Cannot set undefined directive '%@ to value", key);
-//        return;
-//    }
-//    HTMLPurifier_Definition* def = self.def.info[$key];
-//
-//    if ([def isAlias]) {
-//        if (self.aliasMode) {
-//            NSLog(@"Double-aliases not allowed, please fix");
-//            return;
-//        }
-//        [self setAliasMode:YES];
-//        [self setString:def.key object:value];
-//        [self setAliasMode:NO];
-//        NSLog(@"%@ is an alias, preferred directive name is {%@}", key, def.key);
-//        return;
-//    }
-//
-//    // Raw type might be negative when using the fully optimized form
-//    // of stdclass, which indicates allow_null == true
-//    rtype = [def isKindOfClass:[NSNumber class]] ? def : def.type;
-//    if (rtype < 0) {
-//        type = -$rtype;
-//        allow_null = true;
-//    } else {
-//        type = rtype;
-//        allow_null = def.allow_null);
-//    }
-//
-//    @try {
-//        value = [self.parser parse:value type, $allow_null];
-//    } @catch (NSException* e) {
-//        NSLog(@"Value for %@ is of invalid type, should be %@", key, [HTMLPurifier_VarParser getTypeName:type]);
-//        return;
-//    }
-//    if ([value isKindOfClass:[NSString class]] && def) {
-//        // resolve value alias if defined
-//        if (def.aliases[value])) {
-//            value = def.aliases[value];
-//        }
-//        // check to see if the value is allowed
-//        if (def.allowed) && !def.allowed[value])) {
-//            NSLog(@"Value not supported, valid values are: %@", [self _listify:def.allowed]),
-//            return;
-//        }
-//    }
-//    [self.plist setKey:key value:value];
-//
-//    // reset definitions if the directives they depend on changed
-//    // this is a very costly process, so it's discouraged
-//    // with finalization
-//    if ([namespace isEqual:@"HTML"] || [namespace isEqual:@"CSS"] || [namespace isEqual:@"URI"])
-//    {
-//        [self.definitions setObject:[NSNull null] forKey:namespace];
-//    }
-//
-//    [self.serials setObject:@NO forKey:namespace];
+    NSArray* namespace = explode(@".", key);
+
+    if ([self isFinalized:@"Cannot set directive after finalization"])
+    {
+        return;
+    }
+    if (!self.def.info[key])
+    {
+        NSLog(@"Cannot set undefined directive '%@ to value", key);
+        return;
+    }
+
+    [plist set:key value:value];
+
+    // reset definitions if the directives they depend on changed
+    // this is a very costly process, so it's discouraged
+    // with finalization
+    if ([namespace isEqual:@"HTML"] || [namespace isEqual:@"CSS"] || [namespace isEqual:@"URI"])
+    {
+        [definitions removeObjectForKey:namespace];
+    }
+
+    [serials setObject:@NO forKey:namespace];
 }
 
 /**
@@ -738,10 +697,10 @@ static HTMLPurifier_VarParser_Flexible* theParser;
  *
  * @return bool
  */
-- (BOOL)isFinalized:(NSError*)error
+- (BOOL)isFinalized:(NSString*)error
 {
     if (finalized && error) {
-        TRIGGER_ERROR(@"%@", error);
+        TRIGGER_ERROR(@"Error (isFinalized): %@", error);
     }
     return finalized;
 }
