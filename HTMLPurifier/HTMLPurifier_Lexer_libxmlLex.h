@@ -9,7 +9,7 @@
 #import "HTMLPurifier_Lexer.h"
 #import <libxml/tree.h>
 
-@class HTMLPurifier_TokenFactory, HTMLPurifier_Token;
+@class HTMLPurifier_TokenFactory, HTMLPurifier_Token, HTMLPurifier_Context, HTMLPurifier_Config;
 
 @interface HTMLPurifier_Lexer_libxmlLex : HTMLPurifier_Lexer
 {
@@ -27,7 +27,7 @@
  * @param HTMLPurifier_Context $context
  * @return HTMLPurifier_Token[]
  */
-- (NSArray*)tokenizeHTMLWithString:(NSString *)string config:(NSString *)config context:(NSString *)context;
+- (NSArray*)tokenizeHTMLWithString:(NSString *)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 /**
  * Iterative function that tokenizes a node, putting it into an accumulator.

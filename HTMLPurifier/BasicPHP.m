@@ -551,6 +551,35 @@ NSString* trimWithFormat(NSString* string, NSString* format)
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
 }
 
+NSString* htmlspecialchars_ENT_NOQUOTES(NSString* string)
+{
+    NSMutableString* newString = [NSMutableString new];
+    for(NSInteger i = 0; i<string.length; i++)
+    {
+        switch([string characterAtIndex:i])
+        {
+            case '&':
+                [newString appendString:@"&amp;"];
+                break;
+            /*case '"':
+                [newString appendString:@"&quot;"];
+                break;
+            case '\'':
+                [newString appendString:@"&#039"];
+                break;*/
+            case '<':
+                [newString appendString:@"&lt;"];
+                break;
+            case '>':
+                [newString appendString:@"&gt;"];
+                break;
+            default:
+                [newString appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+        }
+    }
+    return newString;
+}
+
 
 NSString* htmlspecialchars(NSString* string)
 {

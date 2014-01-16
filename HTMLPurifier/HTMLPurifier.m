@@ -225,7 +225,7 @@
     //TODO maybe change names
     //purifed HTML
 
-    html = [generator generateFromTokens:[[strategy execute:[lexer tokenizeHTMLWithString:html config:config context:localContext] config:config context:localContext] mutableCopy]];
+    html = [generator generateFromTokens:[[strategy execute:[[lexer tokenizeHTMLWithString:html config:config context:localContext] mutableCopy] config:config context:localContext] mutableCopy]];
     
     for (NSInteger i = filter_size - 1; i>=0; i--)
     {

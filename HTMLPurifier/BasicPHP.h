@@ -106,6 +106,7 @@ NSString* trimWithFormat(NSString* string, NSString* format);
 
 NSString* htmlspecialchars(NSString* string);
 NSString* htmlspecialchars_ENT_COMPAT(NSString* string);
+NSString* htmlspecialchars_ENT_NOQUOTES(NSString* string);
 
 BOOL ctype_alpha (NSString* text);
 BOOL ctype_space(NSString* string);
