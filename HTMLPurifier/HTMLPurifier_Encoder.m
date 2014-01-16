@@ -43,6 +43,11 @@
     {
     }
 
++ (NSString*)unichr:(int)code
+{
+    return [NSString stringWithFormat:@"%c", (unichar)code];
+}
+
     /**
      * iconv wrapper which mutes errors, but doesn't work around bugs.
      * @param string $in Input encoding

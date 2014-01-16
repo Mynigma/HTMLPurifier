@@ -551,6 +551,35 @@ NSString* trimWithFormat(NSString* string, NSString* format)
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
 }
 
+NSString* htmlspecialchars_ENT_NOQUOTES(NSString* string)
+{
+    NSMutableString* newString = [NSMutableString new];
+    for(NSInteger i = 0; i<string.length; i++)
+    {
+        switch([string characterAtIndex:i])
+        {
+            case '&':
+                [newString appendString:@"&amp;"];
+                break;
+            /*case '"':
+                [newString appendString:@"&quot;"];
+                break;
+            case '\'':
+                [newString appendString:@"&#039"];
+                break;*/
+            case '<':
+                [newString appendString:@"&lt;"];
+                break;
+            case '>':
+                [newString appendString:@"&gt;"];
+                break;
+            default:
+                [newString appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+        }
+    }
+    return newString;
+}
+
 
 NSString* htmlspecialchars(NSString* string)
 {
@@ -976,6 +1005,11 @@ NSInteger hexdec(NSString* hex_string)
     return result;
 }
 
+NSString* dechex(NSString* hex_string)
+{
+    return [NSString stringWithFormat:@"%lX", (long)hex_string.integerValue];
+}
+
 
 
 
@@ -1012,7 +1046,10 @@ NSInteger hexdec(NSString* hex_string)
 
     NSArray* results = [regex matchesInString:haystack options:0 range:NSMakeRange(0, haystack.length)];
 
-    NSString* replacement = callBack(results);
+    NSString* replacement = results ? callBack(results) : nil;
+
+    if(!replacement)
+        replacement = @"";
 
     NSMutableString* newHaystack = [haystack mutableCopy];
 

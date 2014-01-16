@@ -24,6 +24,7 @@
     self = [super init];
     if (self) {
         _armor = [NSMutableDictionary new];
+        _isTag = NO;
     }
     return self;
 }
@@ -50,6 +51,7 @@
                 return @"comment";
         return nil;
     }
+
 /*
 - (NSString*)name
 {

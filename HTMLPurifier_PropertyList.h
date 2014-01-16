@@ -40,13 +40,13 @@
  * @param string $name
  * @throws HTMLPurifier_Exception
  */
-- (NSString*)get:(NSString*)name;
+- (NSObject*)get:(NSString*)name;
 /**
  * Sets the value of a key, for this plist
  * @param string $name
  * @param mixed $value
  */
-- (void)set:(NSString*)name value:(NSString*)value;
+- (void)set:(NSString*)name value:(NSObject*)value;
 /**
  * Returns true if a given key exists
  * @param string $name

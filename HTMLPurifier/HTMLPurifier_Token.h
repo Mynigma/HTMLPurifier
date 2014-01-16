@@ -50,6 +50,14 @@
      */
 @property NSObject* carryover;
 
+
+@property NSString* name;
+
+@property NSMutableDictionary* attr;
+
+@property BOOL isTag;
+
+
 - (id)init;
 
 /**

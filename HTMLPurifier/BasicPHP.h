@@ -106,6 +106,7 @@ NSString* trimWithFormat(NSString* string, NSString* format);
 
 NSString* htmlspecialchars(NSString* string);
 NSString* htmlspecialchars_ENT_COMPAT(NSString* string);
+NSString* htmlspecialchars_ENT_NOQUOTES(NSString* string);
 
 BOOL ctype_alpha (NSString* text);
 BOOL ctype_space(NSString* string);
@@ -131,6 +132,7 @@ NSInteger strcspn_2(NSString* string1, NSString* string2);
 NSInteger strcspn_3(NSString* string1, NSString* string2, NSInteger start);
 
 NSInteger hexdec(NSString* hex_string);
+NSString* dechex(NSString* hex_string);
 
 
 NSString* ltrim_whitespaces(NSString* string);

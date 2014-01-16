@@ -26,6 +26,17 @@ static HTMLPurifier* purifier;
  * a convenience purifier for integration testing.
  */
 
+- (HTMLPurifier_Config*)config
+{
+    return config;
+}
+
+- (HTMLPurifier_Context*)context
+{
+    return context;
+}
+
+
 - (void)setUp
 {
     [super setUp];

@@ -36,7 +36,7 @@
  * @param string $name
  * @throws HTMLPurifier_Exception
  */
-- (NSString*)get:(NSString*)name
+- (NSObject*)get:(NSString*)name
 {
     if ([self has:name])
     {
@@ -54,7 +54,7 @@
  * @param string $name
  * @param mixed $value
  */
-- (void)set:(NSString*)name value:(NSString*)value
+- (void)set:(NSString*)name value:(NSObject*)value
 {
     data[name] = value;
 }

@@ -65,7 +65,7 @@
     if(pair.count>0)
         token = pair[0];
     if(pair.count>1)
-        token = pair[1];
+        d = pair[1];
 
     [context registerWithName:@"CurrentNode" ref:node];
     [context registerWithName:@"CurrentToken" ref:token];
@@ -136,7 +136,7 @@
         if(pair.count>0)
             token = pair[0];
         if(pair.count>1)
-            token = pair[1];
+            d = pair[1];
 
 
         // base case

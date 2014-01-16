@@ -11,7 +11,7 @@
 #ifndef HTMLPurifier_HTMLPurifier_Harness_h
 #define HTMLPurifier_HTMLPurifier_Harness_h
 
-@class HTMLPurifier_Config;
+@class HTMLPurifier_Config, HTMLPurifier_Context;
 
 @interface HTMLPurifier_Harness : XCTestCase
 
@@ -22,6 +22,10 @@
 - (void)testExample;
 
 - (id)init;
+
+- (HTMLPurifier_Config*)config;
+
+- (HTMLPurifier_Context*)context;
 
 
 /**
@@ -34,7 +38,7 @@
  * @param &$config Reference to config variable
  * @param &$context Reference to context variable
  */
-- (void)prepareCommon:(HTMLPurifier_Config**)config context:context;
+- (void)prepareCommon:(HTMLPurifier_Config**)config context:(HTMLPurifier_Context*)context;
 /**
  * Generates default configuration and context objects
  * @return Defaults in form of array($config, $context)
