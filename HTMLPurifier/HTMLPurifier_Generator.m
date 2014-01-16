@@ -325,6 +325,12 @@
      *               permissible for non-attribute output.
      * @return string escaped data.
      */
+- (NSString*)escape:(NSString*)string
+{
+    return [self escape:nil];
+}
+
+
 - (NSString*)escape:(NSString*)string quote:(NSString *)quote
     {
         // Workaround for APC bug on Mac Leopard reported by sidepodcast
