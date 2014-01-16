@@ -25,28 +25,29 @@
  */
 -(NSString*)validateWithString:string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    NSMutableArray* colors = [NSMutableArray new];
+    NSDictionary* colors = [NSDictionary new];
     if ([colors count] == 0)
     {
-        colors = (NSMutableArray*)[[config get:@"Core.ColorKeywords"] mutableCopy];
+        colors = (NSDictionary*)[config get:@"Core.ColorKeywords"];
     }
     
     string = trim(string);
     
-    if ([string isEmpty])
+    if ([string length] == 0)
     {
         return nil;
     }
     
     NSString* lower =  [string lowercaseString];
-    if ([colors containsObject:lower])
+    NSString* known_color = [colors objectForKey:lower];
+    if (known_color)
     {
-        return lower;
+        return known_color;
     }
     
     NSString* hex = [NSString new];
     
-    if ([string[0] isEqual:@"#"])
+    if ([string characterAtIndex:0] == '#')
     {
       hex = substr(string, 1);
     }
@@ -67,7 +68,7 @@
     }
     if (length == 3)
     {
-        hex = [NSString stringWithFormat:@"%hu%hu%hu%hu%hu%hu",[hex characterAtIndex:0],[hex characterAtIndex:0],[hex characterAtIndex:1],[hex characterAtIndex:1],[hex characterAtIndex:2],[hex characterAtIndex:2]];
+        hex = [NSString stringWithFormat:@"%c%c%c%c%c%c",[hex.copy characterAtIndex:0],[hex.copy characterAtIndex:0],[hex.copy characterAtIndex:1],[hex.copy characterAtIndex:1],[hex.copy characterAtIndex:2],[hex.copy characterAtIndex:2]];
     }
     return [@"#" stringByAppendingString:hex];
 }

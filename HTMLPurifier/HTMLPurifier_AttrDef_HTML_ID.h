@@ -26,4 +26,12 @@
  */
 @property NSNumber* selector;
 
+/**
+ * @param string $id
+ * @param HTMLPurifier_Config $config
+ * @param HTMLPurifier_Context $context
+ * @return bool|string
+ */
+-(NSString*) validateWithString:(NSString*)ID config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
 @end

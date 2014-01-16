@@ -139,7 +139,7 @@ static HTMLPurifier_VarParser_Flexible* theParser;
             return nil;
         }
     }
-    return [plist get:key];
+    return [_def.info objectForKey:key];
 }
 
 /**
@@ -247,7 +247,8 @@ static HTMLPurifier_VarParser_Flexible* theParser;
         return;
     }
 
-    [plist set:key value:value];
+    //Changed from plist
+    [self.def.info setObject:value forKey:key];
 
     // reset definitions if the directives they depend on changed
     // this is a very costly process, so it's discouraged
