@@ -9,6 +9,27 @@
 #import "HTMLPurifier_PropertyList.h"
 #import "BasicPHP.h"
 
+
+#define BUNDLE (NSClassFromString(@"HTMLPurifierTests")!=nil)?[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifierTests") class]]:[NSBundle mainBundle]
+
+
+
+
+//
+//  XPathQuery.m
+//  FuelFinder
+//
+//  Created by Matt Gallagher on 4/08/08.
+//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//
+//  Permission is given to use this source code file, free of charge, in any
+//  project, commercial or otherwise, entirely at your risk, with the condition
+//  that any redistribution (in part or whole) of source code must retain
+//  this copyright and permission notice. Attribution in compiled projects is
+//  appreciated but not required.
+//
+
+
 @implementation HTMLPurifier_PropertyList
 
 
@@ -17,18 +38,28 @@
     self = [super init];
     if (self) {
         parent = parentPlist;
-        data = [NSMutableDictionary new];
+        [self actuallyReadPlist];
     }
     return self;
 }
 
+- (void)actuallyReadPlist
+{
+    NSURL* configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
+    if(!configPlistPath)
+    {
+        NSLog(@"Error opening config plist file!");
+        return;
+    }
+
+    data = [[NSDictionary dictionaryWithContentsOfURL:configPlistPath] mutableCopy];
+
+}
+
+
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        data = [NSMutableDictionary new];
-    }
-    return self;
+    return [self initWithParent:nil];
 }
 
 /**

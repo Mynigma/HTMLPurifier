@@ -35,23 +35,10 @@
  */
 
 static HTMLPurifier_ConfigSchema* theDefinition;
-static HTMLPurifier_VarParser* theParser;
+static HTMLPurifier_VarParser_Flexible* theParser;
 
 @implementation HTMLPurifier_Config
 
-- (HTMLPurifier_ConfigSchema*)definition
-{
-    if(!theDefinition)
-        theDefinition = [HTMLPurifier_ConfigSchema singleton];
-    return theDefinition;
-}
-
-- (HTMLPurifier_VarParser*)parser
-{
-    if(!theParser)
-        theParser = [HTMLPurifier_VarParser_Flexible new];
-    return theParser;
-}
 
 - (id)init
 {
@@ -65,14 +52,21 @@ static HTMLPurifier_VarParser* theParser;
     if (self) {
         _auto_finalize = YES;
         _chatty = YES;
+
+        plist = [HTMLPurifier_PropertyList new];
+
         if(definition)
             _def = definition;
         else
-            _def = [HTMLPurifier_ConfigSchema new];
-        
-        //_parent = newParent ? newParent : [definition defaultPlist];
-        //theDefinition = definition;
-        //parser = [HTMLPurifier_VarParser_Flexible new];
+        {
+            if(!theDefinition)
+                theDefinition = [HTMLPurifier_ConfigSchema new];
+            _def = theDefinition;
+        }
+        if(!theParser)
+            theParser = [HTMLPurifier_VarParser_Flexible new];
+
+        parser = theParser;
     }
     return self;
 }
@@ -107,9 +101,7 @@ static HTMLPurifier_VarParser* theParser;
  */
 + (HTMLPurifier_Config*)createDefault
 {
-    HTMLPurifier_ConfigSchema* def = [HTMLPurifier_ConfigSchema singleton];
-    HTMLPurifier_Config* config = [[HTMLPurifier_Config alloc] initWithDefinition:def parent:nil];
-    return config;
+    return [HTMLPurifier_Config new];
 }
 
 /**
@@ -129,7 +121,8 @@ static HTMLPurifier_VarParser* theParser;
         TRIGGER_ERROR(@"Cannot retrieve value of undefined directive");
         return nil;
     }
-    if ([[[_def.info objectForKey:key] valueForKey:@"isAlias"] boolValue])
+    if([[_def.info objectForKey:key] isKindOfClass:[NSDictionary class]])
+    if ([[[_def.info objectForKey:key] objectForKey:@"isAlias"] boolValue])
     {
 
         TRIGGER_ERROR(@"Cannot get value from aliased directive, use real name");
