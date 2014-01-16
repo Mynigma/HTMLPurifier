@@ -957,6 +957,25 @@ NSArray* array_splice_4 (NSArray* input, NSInteger* offset, NSInteger* length, N
     return nil;
 }
 
+NSInteger hexdec(NSString* hex_string)
+{
+    unsigned result = 0;
+    NSScanner *scanner = [NSScanner scannerWithString:hex_string];
+    
+    if ([hex_string characterAtIndex:0] == '#')
+    {
+        [scanner setScanLocation:1]; // bypass '#' character
+    }
+    else
+    {
+        [scanner setScanLocation:0];
+    }
+    
+    [scanner scanHexInt:&result];
+    
+    return result;
+}
+
 
 
 
