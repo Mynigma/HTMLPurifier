@@ -65,6 +65,11 @@ static HTMLPurifier_VarParser* theParser;
     if (self) {
         _auto_finalize = YES;
         _chatty = YES;
+        if(definition)
+            _def = definition;
+        else
+            _def = [HTMLPurifier_ConfigSchema new];
+        
         //_parent = newParent ? newParent : [definition defaultPlist];
         //theDefinition = definition;
         //parser = [HTMLPurifier_VarParser_Flexible new];
