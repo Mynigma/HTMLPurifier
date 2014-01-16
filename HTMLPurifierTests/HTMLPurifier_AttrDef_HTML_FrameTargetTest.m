@@ -54,8 +54,7 @@
     [self assertDef:@"baz" expect: nil];
 }
 
-/* *** setString:object not yet implemented  ***
- 
+
 -(void) test
 {
     [config setString:@"Attr.AllowedFrameTargets" object:@"foo,_blank"];
@@ -64,5 +63,5 @@
     [self assertDef:@"_blank" expect: @"_blank"];
     [self assertDef:@"baz" expect: false];
 }
-*/
+
 @end

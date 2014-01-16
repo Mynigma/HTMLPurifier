@@ -77,9 +77,9 @@
     
 }
 
-/*-(void) testPrefix
+-(void) testPrefix
 {
-    [config set:@"Attr.IDPrefix" object:@"user_"];
+    [config setString:@"Attr.IDPrefix" object:@"user_"];
     
     [self assertDef:@"alpha" expect: @"user_alpha"];
     [self assertDef:@"<asa" expect: nil];
@@ -93,8 +93,8 @@
 
 -(void) testTwoPrefixes
 {
-    [config set:@"Attr.IDPrefix" object: @"user_"];
-    [config set:@"Attr.IDPrefixLocal" object: @"story95_"];
+    [config setString:@"Attr.IDPrefix" object: @"user_"];
+    [config setString:@"Attr.IDPrefixLocal" object: @"story95_"];
     
     [self assertDef:@"alpha" expect: @"user_story95_alpha"];
     [self assertDef:@"<asa" expect: nil];
@@ -109,19 +109,19 @@
 -(void) testLocalPrefixWithoutMainPrefix
 {
     // no effect when IDPrefix isn"t set
-    [config set:@"Attr.IDPrefix" object: @""];
-    [config set:@"Attr.IDPrefixLocal" object: @"story95_"];
-// [expectError(@"%Attr.IDPrefixLocal cannot be used unless %Attr.IDPrefix is set"];
+    [config setString:@"Attr.IDPrefix" object: @""];
+    [config setString:@"Attr.IDPrefixLocal" object: @"story95_"];
+ // [expectError(@"%Attr.IDPrefixLocal cannot be used unless %Attr.IDPrefix is set"];
     [self assertDef:@"amherst" expect:@"amherst"];
 }
 
 -(void) testRegexp
 {
-    [config set:@"Attr.IDBlacklistRegexp" object:@"/^g_/"];
+    [config setString:@"Attr.IDBlacklistRegexp" object:@"/^g_/"];
     
     [self assertDef:@"good_id" expect:@"good_id"];
     [self assertDef:@"g_bad_id" expect: nil];
 }
-*/
+
  
 @end
