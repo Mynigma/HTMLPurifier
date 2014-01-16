@@ -1024,6 +1024,9 @@ NSArray* array_splice_4 (NSArray* input, NSInteger* offset, NSInteger* length, N
 
     NSString* replacement = callBack(results);
 
+    if(!replacement)
+        replacement = @"";
+
     NSMutableString* newHaystack = [haystack mutableCopy];
 
     [regex replaceMatchesInString:newHaystack options:0 range:NSMakeRange(0, haystack.length) withTemplate:replacement];

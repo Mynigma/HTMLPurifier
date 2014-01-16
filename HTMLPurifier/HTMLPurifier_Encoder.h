@@ -300,7 +300,8 @@
 //    // | 00000000 | 00010000 | 11111111 | 11111111 | Defined upper limit of legal scalar codes
 //    // +----------+----------+----------+----------+
 //
-//    public static function unichr($code)
++ (NSString*)unichr:(int)code;
+
 //    {
 //        if ($code > 1114111 or $code < 0 or
 //            ($code >= 55296 and $code <= 57343) ) {

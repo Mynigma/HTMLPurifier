@@ -40,8 +40,9 @@
                 [att removeObjectForKey:key];
             }
         }
-
         self.attr = att;
+
+        self.isTag = YES;
         self.line = l;
         self.col = c;
         self.armor = arm;

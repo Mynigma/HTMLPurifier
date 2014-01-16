@@ -43,6 +43,8 @@
 
 @end
 
+static HTMLPurifier_Lexer* commonLexer;
+
 @implementation HTMLPurifier_RemoveForeignElementsTest
 
 - (void)setUp
@@ -53,6 +55,9 @@
     to_tokens = YES;
     func = @selector(execute:config:context:);
     obj = [HTMLPurifier_Strategy_RemoveForeignElements new];
+    if(!commonLexer)
+        commonLexer = [HTMLPurifier_Lexer createWithConfig:[super config]];
+    lexer = commonLexer;
 }
 
 - (void)tearDown

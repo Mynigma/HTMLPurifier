@@ -16,6 +16,8 @@
 #import "HTMLPurifier_Token_Empty.h"
 #import "HTMLPurifier_ElementDef.h"
 #import "HTMLPurifier_AttrDef.h"
+//#import "HTMLPurifier_Transform.h"
+#import "BasicPHP.h"
 
 
 @implementation HTMLPurifier_AttrValidator
@@ -53,29 +55,30 @@
     NSMutableDictionary* attr = [[token valueForKey:@"attr"] mutableCopy];
 
     /*
-    // do global transformations (pre)
-    // nothing currently utilizes this
-    for(HTMLPurifier_Transform*
-        definition info_attr_transform_pre as transform) {
-        attr = transform transform(o = attr, config, context];
-        if (e) {
-            if (attr != o) {
-                e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
-            }
-        }
-    }*/
+     // do global transformations (pre)
+     // nothing currently utilizes this
+     for(HTMLPurifier_Transform*
+     definition info_attr_transform_pre as transform) {
+     attr = transform transform(o = attr, config, context];
+     if (e) {
+     if (attr != o) {
+     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
+     }
+     }
+     }*/
 
     // do local transformations only applicable to this element (pre)
     // ex. <p align="right"> to <p style="text-align:right;">
-    for(HTMLPurifier_Transform* transform in [(HTMLPurifier_ElementDef*)definition.info[[token valueForKey:@"name"]] attr_transform_pre])
-    {
-        attr = [transform transform:o = attr, config, context];
-        /*if (e) {
-            if (attr != o) {
-                e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
-            }
-        }*/
-    }
+    /*
+     for(HTMLPurifier_Transform* transform in [(HTMLPurifier_ElementDef*)definition.info[[token valueForKey:@"name"]] attr_transform_pre])
+     {
+     attr = [transform transform:o = attr, config, context];
+     if (e) {
+     if (attr != o) {
+     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
+     }
+     }
+     }*/
 
     // create alias to this element's attribute definition array, see
     // also d_defs (global attribute definition array)
@@ -120,7 +123,9 @@
             // to the global definition
             result = [(HTMLPurifier_AttrDef*)d_defs[key] validateWithString:value config:config context:context];
 
-        } else {
+        }
+        else
+        {
             // system never heard of the attribute? DELETE!
             result = nil;
         }
@@ -129,12 +134,12 @@
         if (!result)
         {
             TRIGGER_ERROR(@"AttrValidator: Attribute removed");
-        }
 
             // remove the attribute
 
-        [attr removeObjectForKey:key];
-        } else if (result)
+            [attr removeObjectForKey:key];
+        }
+        else if (result)
         {
             // generally, if a substitution is happening, there
             // was some sort of implicit correction going on. We'll
@@ -158,47 +163,45 @@
     // post transforms
 
     /*
-    // global (error reporting untested)
-    for(definition info_attr_transform_post as transform) {
-        attr = transform transform(o = attr, config, context];
-        if (e) {
-            if (attr != o) {
-                e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
-            }
-        }
-    }*/
-/*
-for(HTMLPurifier_Transform* transform in [(HTMLPurifier_ElementDef*)definition.info[[token valueForKey:@"name"]] attr_transform_pre])
-{
-    attr = [transform transform:o = attr, config, context];
-    /*if (e) {
+     // global (error reporting untested)
+     for(definition info_attr_transform_post as transform) {
+     attr = transform transform(o = attr, config, context];
+     if (e) {
      if (attr != o) {
      e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
      }
      }
-}
+     }*/
+    /*
+     for(HTMLPurifier_Transform* transform in [(HTMLPurifier_ElementDef*)definition.info[[token valueForKey:@"name"]] attr_transform_pre])
+     {
+     attr = [transform transform:o = attr, config, context];
+     if (e) {
+     if (attr != o) {
+     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
+     }
+     }
+     }
 
-    // local (error reporting untested)
-    for(
-        definition info[token name] attr_transform_post as transform) {
-        attr = transform transform(o = attr, config, context];
-        if (e) {
-            if (attr != o) {
-                e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
-            }
-        }
-    }*/
+     // local (error reporting untested)
+     for(
+     definition info[token name] attr_transform_post as transform) {
+     attr = transform transform(o = attr, config, context];
+     if (e) {
+     if (attr != o) {
+     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
+     }
+     }
+     }*/
 
-    [token performSelector attr = attr;
+    [token setAttr:attr];
 
     // destroy CurrentToken if we made it ourselves
     if (!current_token) {
         [context destroy:@"CurrentToken"];
     }
-
 }
 
 
-}
 
 @end

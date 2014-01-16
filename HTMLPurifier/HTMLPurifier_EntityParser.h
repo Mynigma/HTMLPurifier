@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTMLPurifier_EntityLookup;
+
 @interface HTMLPurifier_EntityParser : NSObject
+{
+    HTMLPurifier_EntityLookup* _entityLookup;
 
-- (NSObject*)valueForUndefinedKey:(NSString*)key;
+    NSString* _substituteEntitiesRegex;
 
+    NSDictionary* _specialDec2Str;
+
+    NSDictionary* _specialEnt2Dec;
+}
 
 
 //    /**
@@ -81,32 +89,6 @@
 //     */
 //
 - (NSString*)nonSpecialEntityCallback:(NSArray*)matches;
-//    {
-//        // replaces all but big five
-//        $entity = $matches[0];
-//        $is_num = (@$matches[0][1] === '#');
-//        if ($is_num) {
-//            $is_hex = (@$entity[2] === 'x');
-//            $code = $is_hex ? hexdec($matches[1]) : (int) $matches[2];
-//            // abort for special characters
-//            if (isset($this->_special_dec2str[$code])) {
-//                return $entity;
-//            }
-//            return HTMLPurifier_Encoder::unichr($code);
-//        } else {
-//            if (isset($this->_special_ent2dec[$matches[3]])) {
-//                return $entity;
-//            }
-//            if (!$this->_entity_lookup) {
-//                $this->_entity_lookup = HTMLPurifier_EntityLookup::instance();
-//            }
-//            if (isset($this->_entity_lookup->table[$matches[3]])) {
-//                return $this->_entity_lookup->table[$matches[3]];
-//            } else {
-//                return $entity;
-//            }
-//        }
-//    }
 //
 //    /**
 //     * Substitutes only special entities with their parsed equivalents.

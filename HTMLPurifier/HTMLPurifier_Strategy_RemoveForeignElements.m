@@ -13,7 +13,15 @@
 #import "HTMLPurifier_AttrValidator.h"
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier_Token.h"
-
+#import "HTMLPurifier_Token_Start.h"
+#import "HTMLPurifier_Token_End.h"
+#import "HTMLPurifier_Token_Empty.h"
+#import "HTMLPurifier_Token_Text.h"
+#import "HTMLPurifier_Token_Tag.h"
+#import "HTMLPurifier_Token_Comment.h"
+#import "HTMLPurifier_ElementDef.h"
+#import "HTMLPurifier_TagTransform.h"
+#import "BasicPHP.h"
 
 
 @implementation HTMLPurifier_Strategy_RemoveForeignElements
@@ -23,7 +31,7 @@
 
 - (NSMutableArray*)execute:(NSMutableArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    HTMLPurifier_Definition* definition = [config getHTMLDefinition];
+    HTMLPurifier_HTMLDefinition* definition = [config getHTMLDefinition];
     HTMLPurifier_Generator* generator = [[HTMLPurifier_Generator alloc] initWithConfig:config context:context];
     NSMutableArray* result = [NSMutableArray new];
 
@@ -32,12 +40,12 @@
 
     // currently only used to determine if comments should be kept
     BOOL trusted = NO; // $config->get('HTML.Trusted');
-    NSArray* comment_lookup = nil; // $config->get('HTML.AllowedComments');
-    NSArray* comment_regexp = nil; // $config->get('HTML.AllowedCommentsRegexp');
+    NSDictionary* comment_lookup = nil; // $config->get('HTML.AllowedComments');
+    NSString* comment_regexp = nil; // $config->get('HTML.AllowedCommentsRegexp');
     BOOL check_comments = NO; //comment_lookup !== array() || $comment_regexp !== null;
 
     BOOL remove_script_contents = NO; // $config->get('Core.RemoveScriptContents');
-    BOOL hidden_elements = [(NSNumber*)[config get:@"Core.HiddenElements"] boolValue];
+    NSMutableDictionary* hidden_elements = [[config get:@"Core.HiddenElements"] mutableCopy];
 
     /*
      // remove script contents compatibility
@@ -47,15 +55,15 @@
      unset($hidden_elements['script']);
      }*/
 
-    HTMLPurifier_AttrValidator attr_validator = [HTMLPurifier_AttrValidator new];
+    HTMLPurifier_AttrValidator* attr_validator = [HTMLPurifier_AttrValidator new];
 
     // removes tokens until it reaches a closing tag with its value
-    BOOL remove_until = NO;
+    NSString* remove_until = nil;
 
     // converts comments into text tokens when this is equal to a tag name
-    BOOL textify_comments = NO;
+    NSString* textify_comments = nil;
 
-    [context registerWithString:@"CurrentToken" object:@NO];
+    [context registerWithName:@"CurrentToken" ref:@NO];
 
     /*
      $e = false;
@@ -63,41 +71,52 @@
      $e =& $context->get('ErrorCollector');
      }*/
 
-    for(HTMLPurifier_Token* token in tokens)
+    for(HTMLPurifier_Token* enumToken in tokens)
     {
+        //may want to change the token, but that's not possible with fast enumeration, so create a copy...
+        HTMLPurifier_Token* token = enumToken;
         if (remove_until)
         {
-            if ([[token is_tag] count]==0 || ![token.name isEqual:remove_until])
+            if (![token isTag] || ![token.name isEqual:remove_until])
             {
                 continue;
             }
         }
-        if ([[token is_tag] count]>0)
+        if ([token isTag])
         {
             // DEFINITION CALL
 
+            NSString* tokenName = token.name;
+
             // before any processing, try to transform the element
-            if (definition.info_tag_transform[token.name])
+            NSMutableDictionary* deprecatedTagNameTransforms = definition.info_tag_transform;
+
+            HTMLPurifier_TagTransform* transform = deprecatedTagNameTransforms[tokenName];
+
+            if (transform)
             {
-                original_name = token.name;
                 // there is a transformation for this tag
+
                 // DEFINITION CALL
-                token = [definition
-                         info_tag_transform[token.name] transform:token config:config context:context];
+                HTMLPurifier_Token* token = [transform transform:(HTMLPurifier_Token_Tag*)token config:config context:context];
             }
 
-            if(definition.info[token.name])
+            NSMutableDictionary* elementDefs = definition.info;
+
+            HTMLPurifier_ElementDef* elementDef = elementDefs[tokenName];
+
+            if(elementDef)
             {
                 // mostly everything's good, but
                 // we need to make sure required attributes are in order
-                if ([token isKindOfClass:[HTMLPurifier_Token_Start class]] || [token isKindOfClass:[HTMLPurifier_Token_Empty class]]) &&
-                    [definition.info[token.name] required_attr] &&
+                if (([token isKindOfClass:[HTMLPurifier_Token_Start class]] || [token isKindOfClass:[HTMLPurifier_Token_Empty class]]) &&
+                    [elementDef required_attr]!=nil &&
                     (![token.name isEqual:@"img"] || remove_invalid_img) // ensure config option still works
                     )
                 {
                     [attr_validator validateToken:token config:config context:context];
-                    ok = YES;
-                    for(NSString* name in [definition.info[token.name] required_attr])
+                    BOOL ok = YES;
+                    for(NSString* name in [elementDef required_attr])
                     {
                         if (!token.attr[name])
                         {
@@ -106,70 +125,84 @@
                         }
                         continue;
                     }
-                    [token->armor setObject:@YES forKey:@"ValidateAttributes"];
+                    if(!ok)
+                        TRIGGER_ERROR(@"Strategy_RemoveForeignElements: Missing required attribute");
+
+                    [token.armor setObject:@YES forKey:@"ValidateAttributes"];
                 }
 
-                if (hidden_elements[token.name]) && [token isKindOfClass:[HTMLPurifier_Token_Start class]])
+                if (hidden_elements[tokenName] && [token isKindOfClass:[HTMLPurifier_Token_Start class]])
                 {
-                    textify_comments = token.name;
-                } else if ([token.name isEqual:textify_comments] && [token isKindOfClass:[HTMLPurifier_Token_End class]])
+                    textify_comments = tokenName;
+                }
+                else if ([tokenName isEqual:textify_comments] && [token isKindOfClass:[HTMLPurifier_Token_End class]])
                 {
-                    textify_comments = NO;
+                    textify_comments = nil;
                 }
 
             }
             else if (escape_invalid_tags)
             {
                 // invalid tag, generate HTML representation and insert in
-                token = [[HTMLPurifier_Token_Text alloc] initWith:[generator generateFromToken:token]];
+                token = [[HTMLPurifier_Token_Text alloc] initWithData:[generator generateFromToken:token]];
             }
             else
             {
                 // check if we need to destroy all of the tag's children
                 // CAN BE GENERICIZED
-                if (hidden_elements[token.name]))
+                if (hidden_elements[tokenName])
                 {
                     if ([token isKindOfClass:[HTMLPurifier_Token_Start class]])
                     {
-                        remove_until = token.name;
-                    } else if ([token isKindOfClass:[HTMLPurifier_Token_Empty class]])
+                        remove_until = tokenName;
+                    }
+                    else if ([token isKindOfClass:[HTMLPurifier_Token_Empty class]])
                     {
                         // do nothing: we're still looking
-                    } else
+                    }
+                    else
                     {
                         remove_until = NO;
                     }
                     NSLog(@"Strategy_RemoveForeignElements: Foreign meta element removed");
                 }
+                else
+                {
+                    NSLog(@"Strategy_RemoveForeignElements: Foreign element removed");
+                }
+                continue;
             }
-            else
-            {
-                NSLog(@"Strategy_RemoveForeignElements: Foreign element removed");
-            }
-            continue;
         }
         else if ([token isKindOfClass:[HTMLPurifier_Token_Comment class]])
         {
+            NSString* dataString = [(HTMLPurifier_Token_Comment*)token data];
             // textify comments in script tags when they are allowed
-            if (textify_comments != NO)
+            if (textify_comments)
             {
-                data = token.data;
-                token = [[HTMLPurifier_Token_Text alloc] initWithData:data];
+                token = [[HTMLPurifier_Token_Text alloc] initWithData:dataString];
             }
             else if (trusted || check_comments)
             {
                 // always cleanup comments
                 BOOL trailing_hyphen = NO;
-                [token setData:rtrim(token.data, @"-")];
-                while (strpos($token->data, '--') !== false)
+                dataString = rtrim_2(dataString, @"-");
+                while ([dataString rangeOfString:@"--"].location != NSNotFound)
                 {
-                    $token->data = str_replace('--', '-', $token->data);
+                    dataString = (NSString*)str_replace(@"--", @"-", dataString);
                 }
-                if ($trusted || [comment_lookup[trim($token->data)] count]!=0 ||
-                    (comment_regexp && preg_match(comment_regexp, trim(token.data))))
+                [(HTMLPurifier_Token_Comment*)token setData:dataString];
+
+                if (trusted || [comment_lookup[trim(dataString)] count]!=0 ||
+                    (comment_regexp && preg_match_2(comment_regexp, trim(dataString))))
                 {
                     // OK good
-                    //if ($e) {
+                    if (trailing_hyphen) {
+                        TRIGGER_ERROR(@"Strategy_RemoveForeignElements: Trailing hyphen in comment removed");
+                    }
+                    //if (found_double_hyphen) {
+                    //    TRIGGER_ERROR(@"Strategy_RemoveForeignElements: Hyphens in comment collapsed");
+                    //}
+
                 }
             }
             else

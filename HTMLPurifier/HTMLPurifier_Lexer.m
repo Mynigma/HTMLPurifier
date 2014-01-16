@@ -116,6 +116,9 @@
  */
 - (NSString*)escapeCDATAWithString:(NSString*)string
 {
+    if(!string)
+        return nil;
+    
     return [BasicPHP pregReplace:@"/<!\\[CDATA\\[(.+?)\\]\\]>/s" callback:^(NSArray* array){
         return [HTMLPurifier_Lexer CDATACallback:array];
     } haystack:string];
@@ -156,7 +159,10 @@
 + (NSString*) CDATACallback:(NSArray*)matches
 {
     // not exactly sure why the character set is needed, but whatever
-    return htmlspecialchars_ENT_COMPAT(matches[1]);
+    if(matches.count>1)
+        return htmlspecialchars_ENT_COMPAT(matches[1]);
+    else
+        return nil;
 }
 
 /**
