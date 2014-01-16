@@ -11,6 +11,9 @@
 
 NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* subject)
 {
+    if(!subject || !replacement || !pattern)
+        return subject;
+
     NSError* error = nil;
 
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
@@ -1040,20 +1043,37 @@ NSString* dechex(NSString* hex_string)
 
 + (NSString*)pregReplace:(NSString*)pattern callback:(NSString*(^)(NSArray*))callBack haystack:(NSString*)haystack
 {
+    if(!pattern || !haystack)
+        return nil;
+
     NSError* error = nil;
 
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
 
-    NSArray* results = [regex matchesInString:haystack options:0 range:NSMakeRange(0, haystack.length)];
-
-    NSString* replacement = results ? callBack(results) : nil;
-
-    if(!replacement)
-        replacement = @"";
+    NSArray* matches = [regex matchesInString:haystack options:0 range:NSMakeRange(0, haystack.length)];
 
     NSMutableString* newHaystack = [haystack mutableCopy];
 
-    [regex replaceMatchesInString:newHaystack options:0 range:NSMakeRange(0, haystack.length) withTemplate:replacement];
+    //NSMutableArray* replacements = [NSMutableArray new];
+
+    for (NSTextCheckingResult *match in [matches reverseObjectEnumerator]) {
+
+        NSMutableArray* resultArray = [NSMutableArray new];
+
+        for(NSInteger index = 0; index < match.numberOfRanges; index++)
+        {
+            NSRange range = [match rangeAtIndex:index];
+            if(range.location!=NSNotFound)
+                [resultArray addObject:[haystack substringWithRange:range]];
+            else
+                [resultArray addObject:@""];
+        }
+
+        NSString* replacement = callBack(resultArray);
+
+        if(replacement)
+            [newHaystack replaceCharactersInRange:match.range withString:replacement];
+    }
 
     return newHaystack;
 }

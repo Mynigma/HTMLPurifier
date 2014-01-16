@@ -100,13 +100,6 @@
 //     * @return string Parsed string.
 //     */
 - (NSString*)substituteSpecialEntities:(NSString*)string;
-//    {
-//        return preg_replace_callback(
-//                                     $this->_substituteEntitiesRegex,
-//                                     array($this, 'specialEntityCallback'),
-//                                     $string
-//                                     );
-//    }
 //
 //    /**
 //     * Callback function for substituteSpecialEntities() that does the work.

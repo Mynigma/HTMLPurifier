@@ -56,7 +56,7 @@
             do {
                 old = html;
                 html = preg_replace_3([NSString stringWithFormat:@"/<(%@)/i", chars], @"&lt;\\1", html);
-            } while (![html isEqualToString:old]);
+            } while (html && ![html isEqualToString:old]);
             html = [BasicPHP pregReplace:comment callback:^(NSArray* array){ return [self callbackUndoCommentSubst:array]; } haystack:html]; // fix comments
         }
 
