@@ -32,6 +32,13 @@
  */
 @synthesize selector;
 
+
+-(id) init
+{
+    self = [super init];
+    selector = @NO;
+    return self;
+}
 /**
  * @param bool selector
  */
@@ -44,7 +51,7 @@
     }
     else
     {
-        selector = NO;
+        selector = @NO;
     }
     return self;
 }
@@ -55,7 +62,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) validateWithID:(NSString*)ID Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSString*) validateWithString:(NSString*)ID config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     if (!selector && ![config get:@"Attr.EnableID"])
     {

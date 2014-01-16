@@ -24,10 +24,10 @@
 {
     [super setUp];
     
-    
     config = [HTMLPurifier_Config createDefault];
     context = [HTMLPurifier_Context new];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    def = [HTMLPurifier_AttrDef_HTML_FrameTarget new];
 }
 
 - (void) assertDef:(NSString*) string expect:(NSString*)expect
@@ -48,10 +48,10 @@
 
 - (void)testNoneAllowed
 {
-    [self assertDef:@"" expect: false];
-    [self assertDef:@"foo" expect: false];
-    [self assertDef:@"_blank" expect: false];
-    [self assertDef:@"baz" expect: false];
+    [self assertDef:@"" expect: nil];
+    [self assertDef:@"foo" expect: nil];
+    [self assertDef:@"_blank" expect: nil];
+    [self assertDef:@"baz" expect: nil];
 }
 
 /* *** setString:object not yet implemented  ***

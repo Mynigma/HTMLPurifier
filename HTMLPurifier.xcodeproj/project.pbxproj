@@ -223,6 +223,7 @@
 		808CB9C71887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9C61887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.m */; };
 		808CB9C918881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9C818881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m */; };
 		808CB9CB18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9CA18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m */; };
+		808CB9CD1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9CC1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m */; };
 		80B94C8718870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */; };
 		80B94C8818870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */; };
 		80B94C8B18870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */; };
@@ -295,8 +296,8 @@
 		1E5FAACA1885AC8B0073CA79 /* HTMLPurifier_Injector_Linkify.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Injector_Linkify.m; sourceTree = "<group>"; };
 		1E5FAACD1886065F0073CA79 /* HTMLPurifier_ChildDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_ChildDef.h; sourceTree = "<group>"; };
 		1E5FAACE1886065F0073CA79 /* HTMLPurifier_ChildDef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef.m; sourceTree = "<group>"; };
-		1E5FAAD118869CF70073CA79 /* HTMLPurifier_PropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_PropertyList.h; sourceTree = "<group>"; };
-		1E5FAAD218869CF70073CA79 /* HTMLPurifier_PropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_PropertyList.m; sourceTree = "<group>"; };
+		1E5FAAD118869CF70073CA79 /* HTMLPurifier_PropertyList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_PropertyList.h; sourceTree = SOURCE_ROOT; };
+		1E5FAAD218869CF70073CA79 /* HTMLPurifier_PropertyList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_PropertyList.m; sourceTree = SOURCE_ROOT; };
 		1E5FAAD51886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_DefinitionCacheFactory.h; sourceTree = "<group>"; };
 		1E5FAAD61886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_DefinitionCacheFactory.m; sourceTree = "<group>"; };
 		1E5FAAD91886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_DefinitionCache.h; sourceTree = "<group>"; };
@@ -471,6 +472,7 @@
 		808CB9C61887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDefHarness.m; sourceTree = "<group>"; };
 		808CB9C818881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_ColorTest.m; sourceTree = "<group>"; };
 		808CB9CA18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_FrameTargetTest.m; sourceTree = "<group>"; };
+		808CB9CC1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_IDTest.m; sourceTree = "<group>"; };
 		80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h; sourceTree = "<group>"; };
 		80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m; sourceTree = "<group>"; };
 		80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Filter.h; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 				808CB9C11887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m */,
 				808CB9C818881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m */,
 				808CB9CA18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m */,
+				808CB9CC1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m */,
 			);
 			name = HTML;
 			sourceTree = "<group>";
@@ -751,8 +754,6 @@
 				1E5FAAD51886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.h */,
 				1E5FAAD61886AE2A0073CA79 /* HTMLPurifier_DefinitionCacheFactory.m */,
 				80EDF9C418803B3200EB1E89 /* HTMLPurifier */,
-				1E5FAAD118869CF70073CA79 /* HTMLPurifier_PropertyList.h */,
-				1E5FAAD218869CF70073CA79 /* HTMLPurifier_PropertyList.m */,
 				80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */,
 				80EDF9BD18803B3200EB1E89 /* Frameworks */,
 				80EDF9BC18803B3200EB1E89 /* Products */,
@@ -865,6 +866,8 @@
 				1E5FAAB6188576210073CA79 /* HTMLPurifier_URIParser.m */,
 				1E5FAAC91885AC8B0073CA79 /* HTMLPurifier_Injector_Linkify.h */,
 				1E5FAACA1885AC8B0073CA79 /* HTMLPurifier_Injector_Linkify.m */,
+				1E5FAAD118869CF70073CA79 /* HTMLPurifier_PropertyList.h */,
+				1E5FAAD218869CF70073CA79 /* HTMLPurifier_PropertyList.m */,
 				1E5FAACD1886065F0073CA79 /* HTMLPurifier_ChildDef.h */,
 				1E5FAACE1886065F0073CA79 /* HTMLPurifier_ChildDef.m */,
 			);
@@ -1236,6 +1239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				808CB9CD1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m in Sources */,
 				808CB9C71887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.m in Sources */,
 				808CB9C21887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */,
 				808CB9CB18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */,
