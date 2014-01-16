@@ -19,7 +19,7 @@
     self = [super init];
     if (self) {
         
-        _substituteEntitiesRegex = @"/&(?:[#]x([a-fA-F0-9]+)|[#]0*(\\d+)|([A-Za-z_:][A-Za-z0-9.\\-_:]*));?/";
+        _substituteEntitiesRegex = @"/&(?:[#]x([a-fA-F0-9]+)|([A-Za-z_:][A-Za-z0-9.\\-_:]*));?/";
         //    //     1. hex             2. dec      3. string (XML style)
 
         _specialDec2Str = @{@34 : @"\"",
