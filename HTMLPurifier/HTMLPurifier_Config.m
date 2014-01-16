@@ -138,7 +138,7 @@ static HTMLPurifier_VarParser_Flexible* theParser;
             return nil;
         }
     }
-    return [plist get:key];
+    return [_def.info objectForKey:key];
 }
 
 /**
