@@ -8,6 +8,8 @@
 
 #import "HTMLPurifier_EntityLookup.h"
 
+#define BUNDLE (NSClassFromString(@"HTMLPurifierTests")!=nil)?[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifierTests") class]]:[NSBundle mainBundle]
+
 
 static HTMLPurifier_EntityLookup* commonLookup;
 
@@ -21,7 +23,7 @@ static HTMLPurifier_EntityLookup* commonLookup;
 
     self = [super init];
     if (self) {
-        NSURL* plistURL = [[NSBundle mainBundle] URLForResource:@"entities" withExtension:@"plist"];
+        NSURL* plistURL = [BUNDLE URLForResource:@"entities" withExtension:@"plist"];
 
         _table = [NSDictionary dictionaryWithContentsOfURL:plistURL];
 

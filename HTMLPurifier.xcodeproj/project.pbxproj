@@ -26,6 +26,8 @@
 		1E35ECEF188818D200E8FF31 /* HTMLPurifier_EntityLookup.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E35ECED188818D200E8FF31 /* HTMLPurifier_EntityLookup.h */; };
 		1E35ECF0188818D200E8FF31 /* HTMLPurifier_EntityLookup.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECEE188818D200E8FF31 /* HTMLPurifier_EntityLookup.m */; };
 		1E35ECF218881FC500E8FF31 /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E35ECF118881FC500E8FF31 /* entities.plist */; };
+		1E35ECF318882F9100E8FF31 /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E35ECF118881FC500E8FF31 /* entities.plist */; };
+		1E35ECF418882F9300E8FF31 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA218853F780073CA79 /* config.plist */; };
 		1E5FAAA318853F780073CA79 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA218853F780073CA79 /* config.plist */; };
 		1E5FAAA7188542C60073CA79 /* HTMLPurifier_HTMLModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5FAAA5188542C60073CA79 /* HTMLPurifier_HTMLModule.h */; };
 		1E5FAAA8188542C60073CA79 /* HTMLPurifier_HTMLModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA6188542C60073CA79 /* HTMLPurifier_HTMLModule.m */; };
@@ -1111,6 +1113,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
+				1E35ECF318882F9100E8FF31 /* entities.plist in Resources */,
+				1E35ECF418882F9300E8FF31 /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -87,7 +87,7 @@
                     [chars addObject:[NSString stringWithFormat:@"%c%c", [arg[1] characterAtIndex:i], [arg[1] characterAtIndex:i+1]]];
                 }
                 for(NSString* charString in chars) {
-                    [expect appendFormat:@"%c", (unichar)(hexdec(charString))];
+                    [expect appendFormat:@"%c", (unsigned char)(hexdec(charString))];
                 }
                 [expect appendString:[expect copy]]; // double it
             }

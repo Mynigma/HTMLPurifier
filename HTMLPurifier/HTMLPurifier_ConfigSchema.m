@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
+#define BUNDLE (NSClassFromString(@"HTMLPurifierTests")!=nil)?[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifierTests") class]]:[NSBundle mainBundle]
+
+
+
 #import "HTMLPurifier_ConfigSchema.h"
 //#import "XPathQuery.h"
 #import <libxml/parser.h>
@@ -146,20 +150,14 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
 - (void)actuallyReadPlist
 {
-    NSData* contents = [NSData dataWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"config" ofType:@"plist"]];
-    if(!contents)
+    NSURL* configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
+    if(!configPlistPath)
     {
         NSLog(@"Error opening config plist file!");
         return;
     }
 
-    CFStringEncoding cfenc = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
-    CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
-    const char *enc = CFStringGetCStringPtr(cfencstr, 0);
-    // _doc = htmlParseDoc((xmlChar*)[string UTF8String], enc);
-    xmlDocPtr doc = xmlReadDoc ((xmlChar*)contents.bytes, NULL, enc, 0);
-
-    NSDictionary* configDict = DictionaryForNode(&doc->children[0], nil);
+    NSDictionary* configDict = [NSDictionary dictionaryWithContentsOfURL:configPlistPath];
 
     [self setDefaultPList:configDict[@"defaultPlist"]];
     [self setInfo:[configDict[@"info"] mutableCopy]];
