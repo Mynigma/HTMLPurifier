@@ -1239,6 +1239,7 @@
 				1E9A62E71884502700EA7A85 /* HTMLPurifier_Harness.m in Sources */,
 				1E9A62E518844FCB00EA7A85 /* URIParserTest.m in Sources */,
 				1E5FAABE18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m in Sources */,
+				1E35ECDC1887396100E8FF31 /* PropertyListTest.m in Sources */,
 				808CB9C918881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m in Sources */,
 				1E35ECDA188727D000E8FF31 /* HTMLPurifier_ElementDefTest.m in Sources */,
 				1E35ECDE188747B700E8FF31 /* HTMLPurifier_RemoveForeignElementsTest.m in Sources */,

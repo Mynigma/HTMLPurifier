@@ -48,19 +48,21 @@
 
 - (void)testNoneAllowed
 {
-    $this->assertDef('', false);
-    $this->assertDef('foo', false);
-    $this->assertDef('_blank', false);
-    $this->assertDef('baz', false);
+    [self assertDef:@"" expect: false];
+    [self assertDef:@"foo" expect: false];
+    [self assertDef:@"_blank" expect: false];
+    [self assertDef:@"baz" expect: false];
 }
 
+/* *** setString:object not yet implemented  ***
+ 
 -(void) test
 {
-    $this->config->set('Attr.AllowedFrameTargets', 'foo,_blank');
-    $this->assertDef('', false);
-    $this->assertDef('foo');
-    $this->assertDef('_blank');
-    $this->assertDef('baz', false);
+    [config setString:@"Attr.AllowedFrameTargets" object:@"foo,_blank"];
+    [self assertDef:@"" expect: false];
+    [self assertDef:@"foo" expect: @"foo"];
+    [self assertDef:@"_blank" expect: @"_blank"];
+    [self assertDef:@"baz" expect: false];
 }
-
+*/
 @end
