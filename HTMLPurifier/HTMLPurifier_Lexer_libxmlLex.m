@@ -75,8 +75,10 @@
         optionsHtml = optionsHtml | HTML_PARSE_NOWARNING;
         htmlDocPtr doc = htmlReadDoc ((xmlChar*)[string UTF8String], NULL, enc, optionsHtml);
 
-        [self tokenizeDOMNode:(xmlNode*)(&(doc->children[0].children[0])) tokens:tokens];
-
+        if(doc!=NULL && doc->children!=NULL  && doc->children[0].children!=NULL)
+        {
+            [self tokenizeDOMNode:(xmlNode*)(&(doc->children[0].children[0])) tokens:tokens];
+        }
         return tokens;
     }
 
@@ -270,7 +272,8 @@
      */
 - (NSString*)wrapHTML:(NSString*)html config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
-        HTMLPurifier_HTMLDefinition* def = (HTMLPurifier_HTMLDefinition*)[HTMLPurifier_Definition new];
+        //HTMLPurifier_HTMLDefinition* def = [config getDefinition:@"HTML"];
+        HTMLPurifier_HTMLDefinition* def = (HTMLPurifier_HTMLDefinition*)[HTMLPurifier_HTMLDefinition new];
 
         NSMutableString* ret = [NSMutableString new];
         if ([[def doctype] dtdPublic] || [[def doctype] dtdSystem]) {

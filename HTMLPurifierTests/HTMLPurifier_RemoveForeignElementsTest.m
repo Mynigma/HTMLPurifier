@@ -43,7 +43,7 @@
 
 @end
 
-static HTMLPurifier_Lexer* commonLexer;
+static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 
 @implementation HTMLPurifier_RemoveForeignElementsTest
 
@@ -56,7 +56,7 @@ static HTMLPurifier_Lexer* commonLexer;
     func = @selector(execute:config:context:);
     obj = [HTMLPurifier_Strategy_RemoveForeignElements new];
     if(!commonLexer)
-        commonLexer = [HTMLPurifier_Lexer createWithConfig:[super config]];
+        commonLexer = (HTMLPurifier_Lexer_libxmlLex*)[HTMLPurifier_Lexer_libxmlLex createWithConfig:[super config]];
     lexer = commonLexer;
 }
 
@@ -96,7 +96,7 @@ static HTMLPurifier_Lexer* commonLexer;
 
 - (void)testPreserveRecognizedElements
 {
-    NSString* testString = @"This is <b>bold text</b>.";
+     NSString* testString = @"This is <b>bold text</b>.";
         [self runOnString:testString withExpectedResult:testString];
 }
 

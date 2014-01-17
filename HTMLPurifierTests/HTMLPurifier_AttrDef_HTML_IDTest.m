@@ -117,7 +117,7 @@
 
 -(void) testRegexp
 {
-    [config setString:@"Attr.IDBlacklistRegexp" object:@"/^g_/"];
+    [config setString:@"Attr.IDBlacklistRegexp" object:@"^g_"];
     
     [self assertDef:@"good_id" expect:@"good_id"];
     [self assertDef:@"g_bad_id" expect: nil];

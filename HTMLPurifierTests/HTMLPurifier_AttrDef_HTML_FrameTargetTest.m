@@ -55,9 +55,10 @@
 }
 
 
--(void) test
+-(void)test
 {
-    [config setString:@"Attr.AllowedFrameTargets" object:@"foo,_blank"];
+    [config setString:@"Attr.AllowedFrameTargets" object:@{@"foo": @YES,@"_blank":@YES}];
+
     [self assertDef:@"" expect: false];
     [self assertDef:@"foo" expect: @"foo"];
     [self assertDef:@"_blank" expect: @"_blank"];

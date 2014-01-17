@@ -556,6 +556,11 @@ NSString* trimWithFormat(NSString* string, NSString* format)
     return [string stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:format]];
 }
 
+NSString* trimCharacters(NSString* string, NSCharacterSet* characters)
+{
+    return [string stringByTrimmingCharactersInSet:characters];
+}
+
 NSString* htmlspecialchars_ENT_NOQUOTES(NSString* string)
 {
     NSMutableString* newString = [NSMutableString new];

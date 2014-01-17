@@ -103,6 +103,7 @@ NSString* trim(NSString* string);
 //trim with Format like 'A..Za..z0..9:-._' some kind of regex
 // TODO
 NSString* trimWithFormat(NSString* string, NSString* format);
+NSString* trimCharacters(NSString* string, NSCharacterSet* characters);
 
 NSString* htmlspecialchars(NSString* string);
 NSString* htmlspecialchars_ENT_COMPAT(NSString* string);

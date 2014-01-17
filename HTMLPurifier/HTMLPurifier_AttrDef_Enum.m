@@ -13,21 +13,21 @@
 
 - (id)init
 {
-    return [self initWithValidValues:@[] caseSensitive:NO];
+    return [self initWithValidValues:nil caseSensitive:NO];
 }
 
-- (id)initWithValidValues:(NSArray*)array
+- (id)initWithValidValues:(NSDictionary*)dict
 {
-    return [self initWithValidValues:array caseSensitive:NO];
+    return [self initWithValidValues:dict caseSensitive:NO];
 }
 
 
-- (id)initWithValidValues:(NSArray*)array caseSensitive:(BOOL)newCaseSensitive
+- (id)initWithValidValues:(NSDictionary*)dict caseSensitive:(BOOL)newCaseSensitive
 {
     self = [super init];
     if (self) {
-        _validValues = [array mutableCopy];
-        caseSensitive = newCaseSensitive;
+        _validValues = [dict mutableCopy];
+        _caseSensitive = newCaseSensitive;
     }
     return self;
 }
@@ -35,11 +35,17 @@
 - (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context *)context
 {
     NSString* newString = trim(string);
-    if(!caseSensitive)
+    if(!self.caseSensitive)
     {
         newString = [newString lowercaseString];
     }
-    BOOL result = [self.validValues objectForKey:newString]!=nil;
+    BOOL result = NO;
+
+    //TO DO: fix
+    //validValues is sometimes set to a string
+    
+    if([self.validValues isKindOfClass:[NSDictionary class]])
+        result = [self.validValues objectForKey:newString]!=nil;
 
     return result?newString:nil;
 }

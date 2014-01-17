@@ -28,7 +28,7 @@
     /**
      * @type HTMLPurifier_DefinitionCache_Decorator[]
      */
-    NSMutableArray* decorators;
+    NSMutableDictionary* decorators;
 }
     /**
      * Initialize default decorators

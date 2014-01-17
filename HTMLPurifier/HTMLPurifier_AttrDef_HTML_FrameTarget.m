@@ -13,12 +13,10 @@
 /**
  * @type array
  */
-@synthesize valid_values;
 
 /**
  * @type bool
  */
-@synthesize case_sensitive;
 
 -(id) init
 {
@@ -34,9 +32,9 @@
  */
 -(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    if (!valid_values)
+    if (!self.validValues)
     {
-        valid_values = (NSMutableArray*)[[config get:@"Attr.AllowedFrameTargets"] mutableCopy];
+        [self setValidValues:[(NSMutableDictionary*)[config get:@"Attr.AllowedFrameTargets"] mutableCopy] ];
     }
     return [super validateWithString:string config:config context:context];
 }

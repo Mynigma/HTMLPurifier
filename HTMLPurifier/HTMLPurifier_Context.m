@@ -12,6 +12,17 @@
 
 @implementation HTMLPurifier_Context
 
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _storage = [NSMutableDictionary new];
+    }
+    return self;
+}
+
+
 - (void)registerWithName:(NSString*)name  ref:(NSObject*)ref
 {
     if([_storage objectForKey:name])
@@ -29,7 +40,7 @@
 
 - (NSObject*)getWithName:(NSString*)name ignoreError:(BOOL)ignoreError
 {
-    if([_storage objectForKey:name])
+    if(![_storage objectForKey:name])
     {
         if(!ignoreError)
             TRIGGER_ERROR(@"ERROR: Attempted to retrieve non-existent variable name %@", name);
@@ -55,7 +66,7 @@
  * Destroys a variable in the context.
  * @param string $name String name
  */
--(void) destroy:(NSString*)name
+-(void)destroy:(NSString*)name
 {
     if (![_storage objectForKey:name])
     {

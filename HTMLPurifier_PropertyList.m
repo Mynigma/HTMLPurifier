@@ -52,7 +52,7 @@
         return;
     }
 
-    data = [[NSDictionary dictionaryWithContentsOfURL:configPlistPath] mutableCopy];
+    data = [[[NSDictionary dictionaryWithContentsOfURL:configPlistPath] mutableCopy] objectForKey:@"defaultPlist"];
 
 }
 

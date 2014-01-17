@@ -81,7 +81,7 @@
         isNum = YES;
     if(isNum)
     {
-        BOOL isHex = ([hexVal isEqualToString:@"x"]);
+        BOOL isHex = ([hexVal length]>0);
 
         NSNumber* code = (isHex ? @(hexdec(hexVal)) : (NSNumber*)decVal);
 
@@ -90,7 +90,10 @@
         {
             return (NSString*)entity;
         }
-        return [HTMLPurifier_Encoder unichr:code.intValue];
+            NSString* unicharStr = [HTMLPurifier_Encoder unichr:code.intValue];
+            if(unicharStr.length>0)
+                return unicharStr;
+            return entity;
     }
     else
     {
@@ -264,7 +267,7 @@
             isNum = YES;
         if(isNum)
         {
-            BOOL isHex = ([hexVal isEqualToString:@"x"]);
+            BOOL isHex = ([hexVal length]>0);
 
             NSNumber* code = (isHex ? @(hexdec(hexVal)) : [NSNumber numberWithInteger:decVal.integerValue]);
 

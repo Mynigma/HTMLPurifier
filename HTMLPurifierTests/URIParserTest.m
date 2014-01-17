@@ -65,13 +65,13 @@
 
 - (void)testPercentEncoding
 {
-    [self assertParsing:@"http://en.wikipedia.org/wiki/Clich%%C3%%A9" scheme:@"http" userinfo:nil host:@"en.wikipedia.org" port:nil path:@"/wiki/Clich%%C3%%A9" query:nil fragment:nil];
+    [self assertParsing:@"http://en.wikipedia.org/wiki/Clich%C3%A9" scheme:@"http" userinfo:nil host:@"en.wikipedia.org" port:nil path:@"/wiki/Clich%C3%A9" query:nil fragment:nil];
     }
 
 
 - (void)testEmptyQuery
 {
-    [self assertParsing:@"http://www.example.com/?#" scheme:@"http" userinfo:nil host:@"www.example.com" port:nil path:@"/" query:@"" fragment:nil];
+    [self assertParsing:@"http://www.example.com/?#" scheme:@"http" userinfo:nil host:@"www.example.com" port:nil path:@"/" query:@"" fragment:@""];
 }
 
 - (void)testEmptyPath
@@ -111,7 +111,7 @@
 
 - (void)testPathAbsolute
 {
-        [self assertParsing:@"http:/this/is/path" scheme:@"http" userinfo:nil host:nil port:nil path:@"this/is/path" query:nil fragment:nil];
+    [self assertParsing:@"http:/this/is/path" scheme:@"http" userinfo:nil host:nil port:nil path:@"/this/is/path" query:nil fragment:nil];
 }
 
 - (void)testPathRootless

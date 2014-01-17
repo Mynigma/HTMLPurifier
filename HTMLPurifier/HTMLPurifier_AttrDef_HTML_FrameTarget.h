@@ -10,8 +10,6 @@
 
 @interface HTMLPurifier_AttrDef_HTML_FrameTarget : HTMLPurifier_AttrDef_Enum
 
-@property NSMutableArray* valid_values;
-
 @property BOOL case_sensitive;
 
 /**

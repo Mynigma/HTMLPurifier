@@ -166,14 +166,16 @@
     //setup HTML generator
     generator = [[HTMLPurifier_Generator alloc] initWithConfig:config context:localContext];
     [localContext registerWithName:@"Generator" ref:generator];
-    
+
+
+    /*
     //setup global context variables
     if ([config get:@"Core.CollectErrors"])
     {
         HTMLPurifier_LanguageFactory* language_factory = [HTMLPurifier_LanguageFactory instance];
         HTMLPurifier_Language* language = [language_factory create:config context:localContext];
         [localContext registerWithName:@"Locale" ref:language];
-    }
+    }*/
     
     // setup id_accumulator context, necessary due to the fact that AttrValidator can be called from many places
     HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config context:localContext];

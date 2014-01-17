@@ -24,56 +24,147 @@
 
 @implementation HTMLPurifier_Encoder
 
-    /**
-     * Constructor throws fatal error if you attempt to instantiate class
-     */
-    - (id)init
-    {
-        self = [super init];
+/**
+ * Constructor throws fatal error if you attempt to instantiate class
+ */
+- (id)init
+{
+    self = [super init];
     if (self) {
         TRIGGER_ERROR(@"Cannot instantiate encoder, call methods statically");
     }
-        return self;
-    }
+    return self;
+}
 
-    /**
-     * Error-handler that mutes errors, alternative to shut-up operator.
-     */
- + (void)muteErrorHandler
-    {
-    }
+/**
+ * Error-handler that mutes errors, alternative to shut-up operator.
+ */
++ (void)muteErrorHandler
+{
+}
 
 + (NSString*)unichr:(int)code
 {
-    return [NSString stringWithFormat:@"%c", (unichar)code];
-}
+    if(code < 0 || (code >= 55296 && code <= 57343) || code > 1114111)
+        return @"";
 
-    /**
-     * iconv wrapper which mutes errors, but doesn't work around bugs.
-     * @param string $in Input encoding
-     * @param string $out Output encoding
-     * @param string $text The text to convert
-     * @return string
-     */
-+ (NSString*)unsafeIconvWithIn:(NSObject*)in out:(NSObject*)out text:(NSObject*)text
+    //zero char doesn't work with format specifiers, for some reason...
+    if(code ==0)
+        return @"\0";
+
+    NSInteger x = 0;
+    NSInteger y = 0;
+    NSInteger z = 0;
+    NSInteger w = 0;
+
+    if(code < 128)
     {
-        return nil;
-        /*
-        set_error_handler(array('HTMLPurifier_Encoder', 'muteErrorHandler'));
-        NSString* r = iconv(in, out, text);
-        restore_error_handler();
-        return r;
-         */
+        x = code;
+    }
+    else
+    {
+        x = (code & 63) | 128;
+        if(code < 2048)
+        {
+            y = ((code & 2047) >> 6) | 192;
+        }
+        else
+        {
+            y = ((code & 4032) >> 6) | 128;
+            if(code < 65536)
+            {
+                z = ((code >> 12) & 15) | 224;
+            }
+            else
+            {
+                z = ((code >> 12) & 63) | 128;
+                w = ((code >> 18) & 7) | 240;
+            }
+        }
     }
 
-    /**
-     * iconv wrapper which mutes errors and works around bugs.
-     * @param string $in Input encoding
-     * @param string $out Output encoding
-     * @param string $text The text to convert
-     * @param int $max_chunk_size
-     * @return string
+    // set up the actual character
+    NSMutableString* ret = [NSMutableString new];
+    if (w) {
+        [ret appendFormat:@"%C", (unichar)(w)];
+    }
+    if (z) {
+        [ret appendFormat:@"%C", (unichar)(z)];
+    }
+    if (y) {
+        [ret appendFormat:@"%C", (unichar)(y)];
+    }
+    [ret appendFormat:@"%C", (unichar)(x)];
+
+    return ret;
+}
+
+
+
+//return [NSString stringWithFormat:@"%C", (unichar)code];
+
+//
+//        $x = $y = $z = $w = 0;
+//        if ($code < 128) {
+//            // regular ASCII character
+//            $x = $code;
+//        } else {
+//            // set up bits for UTF-8
+//            $x = ($code & 63) | 128;
+//            if ($code < 2048) {
+//                $y = (($code & 2047) >> 6) | 192;
+//            } else {
+//                $y = (($code & 4032) >> 6) | 128;
+//                if ($code < 65536) {
+//                    $z = (($code >> 12) & 15) | 224;
+//                } else {
+//                    $z = (($code >> 12) & 63) | 128;
+//                    $w = (($code >> 18) & 7)  | 240;
+//                }
+//            }
+//        }
+//        // set up the actual character
+//        $ret = '';
+//        if ($w) {
+//            $ret .= chr($w);
+//        }
+//        if ($z) {
+//            $ret .= chr($z);
+//        }
+//        if ($y) {
+//            $ret .= chr($y);
+//        }
+//        $ret .= chr($x);
+//
+//        return $ret;
+//    }}
+
+/**
+ * iconv wrapper which mutes errors, but doesn't work around bugs.
+ * @param string $in Input encoding
+ * @param string $out Output encoding
+ * @param string $text The text to convert
+ * @return string
+ */
++ (NSString*)unsafeIconvWithIn:(NSObject*)in out:(NSObject*)out text:(NSObject*)text
+{
+    return nil;
+    /*
+     set_error_handler(array('HTMLPurifier_Encoder', 'muteErrorHandler'));
+     NSString* r = iconv(in, out, text);
+     restore_error_handler();
+     return r;
      */
+}
+
+/**
+ * iconv wrapper which mutes errors and works around bugs.
+ * @param string $in Input encoding
+ * @param string $out Output encoding
+ * @param string $text The text to convert
+ * @param int $max_chunk_size
+ * @return string
+ */
 + (NSString*)iconvWithIn:(NSString*)inputEncoding out:(NSString*)outputEncoding text:(NSString*)text;
 {
     return [self iconvWithIn:inputEncoding out:outputEncoding text:text maxChunkSize:8000];
@@ -90,58 +181,58 @@
 }
 
 + (NSString*)iconvWithIn:(NSString*)inputEncoding out:(NSString*)outputEncoding text:(NSString*)text maxChunkSize:(NSInteger)max_chunk_size
-    {
-        return nil;
-        /*
-        NSString* code = [HTMLPurifier_Encoder testIconvTruncateBug];
-        if ([code isEqualTo:ICONV_OK])
-        {
-            return [self unsafeIconvWithIn:inputEncoding out:outputEncoding text:text];
-        } else if ([code isEqualTo:ICONV_TRUNCATES]) {
-            // we can only work around this if the input character set
-            // is utf-8
-            if ([inputEncoding isEqualTo:@"utf-8"]) {
-                if (max_chunk_size < 4) {
-                    TRIGGER_ERROR(@"max_chunk_size is too small");
-                    return nil;
-                }
-                // split into 8000 byte chunks, but be careful to handle
-                // multibyte boundaries properly
-                NSInteger c = text.length;
-                if (c <= maxChunkSize)
-                {
-                    return [self unsafeIconvWithIn:inputEncoding out:outputEncoding text:text];
-                }
-                NSMutableString* r = [NSMutableString new];
-                NSInteger i = 0;
-                while (true) {
-                    if (i + max_chunk_size >= c) {
-                        [r appendString:[self unsafeIconvWithIn:inputEncoding out:outputEncoding text:text]];                        break;
-                    }
-                    // wibble the boundary
-                    if (0x80 != (0xC0 & ord($text[$i + max_chunk_size]))) {
-                        chunk_size = max_chunk_size;
-                    } else if (0x80 != (0xC0 & ord($text[$i + $max_chunk_size - 1]))) {
-                        chunk_size = $max_chunk_size - 1;
-                    } else if (0x80 != (0xC0 & ord($text[$i + $max_chunk_size - 2]))) {
-                        chunk_size = $max_chunk_size - 2;
-                    } else if (0x80 != (0xC0 & ord($text[$i + $max_chunk_size - 3]))) {
-                        chunk_size = $max_chunk_size - 3;
-                    } else {
-                        return false; // rather confusing UTF-8...
-                    }
-                    $chunk = substr($text, $i, $chunk_size); // substr doesn't mind overlong lengths
-                    $r .= self::unsafeIconv($in, $out, $chunk);
-                    $i += $chunk_size;
-                }
-                return $r;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }*/
-    }
+{
+    return nil;
+    /*
+     NSString* code = [HTMLPurifier_Encoder testIconvTruncateBug];
+     if ([code isEqualTo:ICONV_OK])
+     {
+     return [self unsafeIconvWithIn:inputEncoding out:outputEncoding text:text];
+     } else if ([code isEqualTo:ICONV_TRUNCATES]) {
+     // we can only work around this if the input character set
+     // is utf-8
+     if ([inputEncoding isEqualTo:@"utf-8"]) {
+     if (max_chunk_size < 4) {
+     TRIGGER_ERROR(@"max_chunk_size is too small");
+     return nil;
+     }
+     // split into 8000 byte chunks, but be careful to handle
+     // multibyte boundaries properly
+     NSInteger c = text.length;
+     if (c <= maxChunkSize)
+     {
+     return [self unsafeIconvWithIn:inputEncoding out:outputEncoding text:text];
+     }
+     NSMutableString* r = [NSMutableString new];
+     NSInteger i = 0;
+     while (true) {
+     if (i + max_chunk_size >= c) {
+     [r appendString:[self unsafeIconvWithIn:inputEncoding out:outputEncoding text:text]];                        break;
+     }
+     // wibble the boundary
+     if (0x80 != (0xC0 & ord($text[$i + max_chunk_size]))) {
+     chunk_size = max_chunk_size;
+     } else if (0x80 != (0xC0 & ord($text[$i + $max_chunk_size - 1]))) {
+     chunk_size = $max_chunk_size - 1;
+     } else if (0x80 != (0xC0 & ord($text[$i + $max_chunk_size - 2]))) {
+     chunk_size = $max_chunk_size - 2;
+     } else if (0x80 != (0xC0 & ord($text[$i + $max_chunk_size - 3]))) {
+     chunk_size = $max_chunk_size - 3;
+     } else {
+     return false; // rather confusing UTF-8...
+     }
+     $chunk = substr($text, $i, $chunk_size); // substr doesn't mind overlong lengths
+     $r .= self::unsafeIconv($in, $out, $chunk);
+     $i += $chunk_size;
+     }
+     return $r;
+     } else {
+     return false;
+     }
+     } else {
+     return false;
+     }*/
+}
 
 //    /**
 //     * Cleans a UTF-8 string for well-formedness and SGML validity
@@ -568,9 +659,9 @@
 //     * @return int Error code indicating severity of bug.
 //     */
 + (NSString*)testIconvTruncateBug
-                {
-                    return nil;
-                }
+{
+    return nil;
+}
 //    {
 //        static $code = null;
 //        if ($code === null) {

@@ -139,7 +139,11 @@ static HTMLPurifier_VarParser_Flexible* theParser;
             return nil;
         }
     }
-    return [_def.info objectForKey:key];
+    NSObject* returnValue = [plist get:key];
+    if([returnValue isEqual:@"nil"])
+        returnValue = nil;
+
+    return returnValue;
 }
 
 /**
@@ -248,7 +252,7 @@ static HTMLPurifier_VarParser_Flexible* theParser;
     }
 
     //Changed from plist
-    [self.def.info setObject:value forKey:key];
+    [plist set:key value:value];
 
     // reset definitions if the directives they depend on changed
     // this is a very costly process, so it's discouraged

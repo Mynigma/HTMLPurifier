@@ -10,21 +10,20 @@
 #import "HTMLPurifier_Token.h"
 #import "HTMLPurifier_Token_Empty.h"
 #import "HTMLPurifier_Token_Start.h"
-//#import "HTMLPurifier_AttrValidator.h"
+#import "HTMLPurifier_AttrValidator.h"
+#import "HTMLPurifier_Context.h"
 
 @implementation HTMLPurifier_Strategy_ValidateAttributes
 
 
 - (NSMutableArray*)execute:(NSMutableArray*)tokens config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 {
-    return nil;
-    /*
     // setup validator
     HTMLPurifier_AttrValidator* validator = [HTMLPurifier_AttrValidator new];
 
-    [context registerString:@"CurrentToken", @NO);
+    [context registerWithName:@"CurrentToken" ref:@NO];
 
-    for(HTMLPurifier_Token* token in tokens.allValues)
+    for(HTMLPurifier_Token* token in tokens)
     {
         // only process tokens that have attributes,
         //   namely start and empty tags
@@ -44,7 +43,6 @@
     }
     [context destroy:@"CurrentToken"];
     return tokens;
-     */
 }
 
 

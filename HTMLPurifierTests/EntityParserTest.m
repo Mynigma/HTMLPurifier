@@ -86,14 +86,20 @@
                 for (NSInteger i = 0; [(NSString*)arg[1] length] > i; i += 2) {
                     [chars addObject:[NSString stringWithFormat:@"%c%c", [arg[1] characterAtIndex:i], [arg[1] characterAtIndex:i+1]]];
                 }
-                for(NSString* charString in chars) {
-                    [expect appendFormat:@"%c", (unsigned char)(hexdec(charString))];
+                for(NSString* charString in chars)
+                {
+                    unsigned char hexChar = hexdec(charString);
+                    if(hexChar==0)
+                        [expect appendString:@"\0"];
+                    else
+                        [expect appendFormat:@"%c", (unsigned char)(hexChar)];
                 }
-                [expect appendString:[expect copy]]; // double it
+                expect = [NSMutableString stringWithFormat:@"%@%@", [expect copy], [expect copy]]; // double it
             }
             else
                 expect = [string mutableCopy];
-            XCTAssertEqualObjects([parser substituteNonSpecialEntities:string], expect);
+            NSString* result = [parser substituteNonSpecialEntities:string];
+            XCTAssertEqualObjects(result, expect);
          }
 
     }

@@ -30,10 +30,10 @@
         NSMutableCharacterSet* newPreservedCharacters = [NSMutableCharacterSet new];
 
         [newPreservedCharacters addCharactersInString:@"-_~."];
-        [newPreservedCharacters addCharactersInRange:NSMakeRange('a', 'z'-'a')];
-        [newPreservedCharacters addCharactersInRange:NSMakeRange('A', 'Z'-'A')];
-        [newPreservedCharacters addCharactersInRange:NSMakeRange('0', '9'-'0')];
-        [newPreservedCharacters addCharactersInRange:NSMakeRange(0x80, 0xFF - 0x80)];
+        [newPreservedCharacters addCharactersInRange:NSMakeRange('a', 'z'-'a' + 1)];
+        [newPreservedCharacters addCharactersInRange:NSMakeRange('A', 'Z'-'A' + 1)];
+        [newPreservedCharacters addCharactersInRange:NSMakeRange('0', '9'-'0' + 1)];
+        //[newPreservedCharacters addCharactersInRange:NSMakeRange(0x80, 0xFF - 0x80)];
         if(preservedCharacters)
             [newPreservedCharacters formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:preservedCharacters]];
 
@@ -104,7 +104,8 @@
             NSScanner *scanner = [NSScanner scannerWithString:encoding];
             unsigned int intCode = 0;
             [scanner scanHexInt:&intCode];
-            if ([preservedChars characterIsMember:(unichar)intCode]) {
+            if (([preservedChars characterIsMember:(unichar)intCode]) && (intCode<0x80))
+            {
                 [ret appendFormat:@"%c%@", intCode, text];
                 continue;
             }

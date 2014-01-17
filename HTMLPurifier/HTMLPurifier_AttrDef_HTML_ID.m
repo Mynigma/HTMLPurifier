@@ -77,22 +77,24 @@
     }
 
     NSString* prefix = (NSString*)[config get:@"Attr.IDPrefix"];
-    if (![prefix isEqual:@""])
+    if (prefix && prefix.length>0)
     {
-        prefix = [prefix stringByAppendingString:(NSString*)[config get:@"Attr.IDPrefixLocal"]];
+        NSString* localPrefix = (NSString*)[config get:@"Attr.IDPrefixLocal"];
+        if(localPrefix)
+            prefix = [prefix stringByAppendingString:localPrefix];
         // prevent re-appending the prefix
         if (strpos(ID, prefix) != 0)
         {
             ID = [prefix stringByAppendingString:ID];
         }
     }
-    else if (![[config get:@"Attr.IDPrefixLocal"] isEqual:@""])
+    else if ([config get:@"Attr.IDPrefixLocal"] && ![[config get:@"Attr.IDPrefixLocal"] isEqual:@""])
     {
         TRIGGER_ERROR(@"Attr.IDPrefixLocal cannot be used unless Attr.IDPrefix is set");
     }
     
     HTMLPurifier_IDAccumulator* id_accumulator;
-    if (!selector)
+    if ([selector isEqual:@NO])
     {
         id_accumulator = (HTMLPurifier_IDAccumulator*)[context getWithName:@"IDAccumulator"];
         
@@ -116,20 +118,23 @@
     {
         return nil;
     }
-        // primitive style of regexps, I suppose
-        NSString* trim = trimWithFormat(ID, @"A..Za..z0..9:-._");
+        NSMutableCharacterSet* characterSet = [NSMutableCharacterSet new];
+        [characterSet addCharactersInRange:NSMakeRange('a', 'z' - 'a' + 1)];
+        [characterSet addCharactersInRange:NSMakeRange('0', '9' - '0' + 1)];
+        [characterSet addCharactersInString:@":-._"];
+        NSString* trim = trimCharacters(ID, characterSet);
         result = ([trim isEqual:@""]);
     }
     
     NSString* regexp = (NSString*)[config get:@"Attr.IDBlacklistRegexp"];
-    
+
     //Preg_match returns Array. TODO
     if (regexp && preg_match_2(regexp, ID))
     {
         return nil;
     }
     
-    if (!selector && result)
+    if ([selector isEqual:@NO] && result)
     {
         [id_accumulator addWithID:ID];
     }

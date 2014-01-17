@@ -36,7 +36,7 @@ HTMLPurifier_Context* context;
     [super tearDown];
 }
 
-- (void) assertDef:(NSString*) string expect:(NSString*)expect
+- (void)assertDef:(NSString*) string expect:(NSString*)expect
 {
     // $expect can be a string or bool
     NSString* result = [def validateWithString:string config:config context:context];
@@ -45,7 +45,7 @@ HTMLPurifier_Context* context;
     
 }
 
-- (void) test
+- (void)testColors
 {
     def = [HTMLPurifier_AttrDef_HTML_Color  new];
 
