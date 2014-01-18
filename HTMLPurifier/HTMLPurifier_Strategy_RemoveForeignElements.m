@@ -98,7 +98,7 @@
                 // there is a transformation for this tag
 
                 // DEFINITION CALL
-                HTMLPurifier_Token* token = [transform transform:(HTMLPurifier_Token_Tag*)token config:config context:context];
+                token = [transform transform:(HTMLPurifier_Token_Tag*)token config:config context:context];
             }
 
             NSMutableDictionary* elementDefs = definition.info;

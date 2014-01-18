@@ -315,7 +315,8 @@
     NSMutableDictionary* allowed_properties = [[config get:@"CSS.AllowedProperties"] mutableCopy];
     if (allowed_properties)
     {
-        for(NSString* name in self.info.allKeys)
+        NSArray* allTheKeys = self.info.allKeys;
+        for(NSString* name in allTheKeys)
         {
             if(!allowed_properties[name])
             {

@@ -54,6 +54,10 @@ static HTMLPurifier_VarParser_Flexible* theParser;
         _auto_finalize = YES;
         _chatty = YES;
 
+        definitions = [NSMutableDictionary new];
+
+
+
         plist = [HTMLPurifier_PropertyList new];
 
         if(definition)
@@ -377,7 +381,8 @@ static HTMLPurifier_VarParser_Flexible* theParser;
         // full definition
         // ---------------
         // check if definition is in memory
-        if ([definitions[type] count]!=0) {
+        if (definitions[type])
+        {
             HTMLPurifier_Definition* def = definitions[type];
             // check if the definition is setup
             if ([def setup]) {
