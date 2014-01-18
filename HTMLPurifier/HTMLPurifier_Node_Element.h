@@ -21,7 +21,6 @@
      * insensitive.
      * @type string
      */
-@property NSString* name;
 
     /**
      * Associative array of the node's attributes.
@@ -33,20 +32,20 @@
      * List of child elements.
      * @type array
      */
-@property NSMutableArray* children;
 
     /**
      * Does this use the <a></a> form or the </a> form, i.e.
      * is it a pair of start/end tokens or an empty token.
      * @bool
      */
-@property BOOL empty;
 
 @property NSNumber* endCol;
 
 @property NSNumber* endLine;
 
 @property NSMutableDictionary* endArmor;
+
+- (id)initWithName:(NSString*)n;
 
 - (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
 

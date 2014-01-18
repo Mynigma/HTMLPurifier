@@ -61,6 +61,8 @@
         {
             continue;
         }
+
+
         //list(property, $value) = explode(':', $declaration, 2);
         NSArray* temp = explodeWithLimit(@":",declaration,2);
         NSString* property_string = nil;
@@ -76,6 +78,7 @@
         
         property_string = trim(property_string);
         value = trim(value);
+        
         NSNumber* ok = @(NO);
         do {
             if ([definition info][property_string])

@@ -13,18 +13,23 @@
 
 @implementation HTMLPurifier_Node_Element
 
+- (id)initWithName:(NSString*)n
+{
+    return [self initWithName:n attr:nil line:nil col:nil armor:nil];
+}
+
 
 - (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm
 {
     self = [super init];
     if (self) {
-        _name = n;
+        self.name = n;
         _attr = att;
         self.line = l;
         self.col = c;
         self.armor = arm;
-        _empty = NO;
-        _children = [NSMutableArray new];
+        self.empty = NO;
+        self.children = [NSMutableArray new];
         _endArmor = [NSMutableDictionary new];
         _endCol = nil;
         _endLine = nil;

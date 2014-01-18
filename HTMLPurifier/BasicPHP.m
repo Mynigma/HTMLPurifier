@@ -431,14 +431,14 @@ NSInteger preg_match_all_2(NSString* pattern, NSString* subject)
     return [regex numberOfMatchesInString:subject options:0 range:NSMakeRange(0, subject.length)];
 }
 
-BOOL ctype_xdigit (NSString* text)
+BOOL ctype_xdigit(NSString* text)
 {
     for(NSInteger i=0; i<text.length; i++)
     {
         unichar character = [text characterAtIndex:i];
         if(!isxdigit(character))
             return NO;
-     }
+    }
     return YES;
 }
 

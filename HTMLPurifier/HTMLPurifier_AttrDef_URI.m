@@ -38,13 +38,13 @@
 {
     self = [super init];
     parser = [HTMLPurifier_URIParser new];
-    if (new_embeds_resource)
+    if (new_embeds_resource.boolValue)
     {
         embedsResource = new_embeds_resource;
     }
     else
     {
-        embedsResource = NO;
+        embedsResource = @NO;
     }
     return self;
 }

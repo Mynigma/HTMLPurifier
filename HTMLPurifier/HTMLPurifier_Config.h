@@ -36,7 +36,7 @@
 
 + (HTMLPurifier_Config*)createWithConfig:(HTMLPurifier_Config*)config;
 
-- (HTMLPurifier_ConfigSchema*)definition;
+//- (HTMLPurifier_ConfigSchema*)definition;
 
 
 - (id)initWithDefinition:(HTMLPurifier_ConfigSchema*)definition parent:(HTMLPurifier_PropertyList*)newParent;

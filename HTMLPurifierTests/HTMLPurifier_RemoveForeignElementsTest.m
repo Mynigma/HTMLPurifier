@@ -51,6 +51,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 
 - (void)setUp
 {
+    [super createCommon];
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
     to_html = YES;
@@ -89,6 +90,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
     NSString* testString = @"";
     XCTAssertEqualObjects([self runOnString:testString], testString);
 }
+
 
 - (void)testPreserveRecognizedElements
 {

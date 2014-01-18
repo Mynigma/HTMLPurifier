@@ -10,7 +10,14 @@
 
 @implementation HTMLPurifier_Node
 
-
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        _isWhitespace = NO;
+    }
+    return self;
+}
 
 - (NSArray*)toTokenPair
 {
