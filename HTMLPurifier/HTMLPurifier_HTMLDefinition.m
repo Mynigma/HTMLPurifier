@@ -63,7 +63,7 @@
  * @see HTMLPurifier_HTMLModule::addElement() for detailed
  *       parameter and return value descriptions.
  */
-- (HTMLPurifier_ElementDef*)addElement:(NSString*)element_name type:(NSString*)type contents:(NSDictionary*)contents attrCollections:(NSDictionary*)attr_collections attributes:(NSDictionary*)attributes
+- (HTMLPurifier_ElementDef*)addElement:(NSString*)element_name type:(NSString*)type contents:(NSString*)contents attrCollections:(NSArray*)attr_collections attributes:(NSDictionary*)attributes
 {
     HTMLPurifier_HTMLModule* module = [self getAnonymousModule];
     // assume that if the user is calling this, the element

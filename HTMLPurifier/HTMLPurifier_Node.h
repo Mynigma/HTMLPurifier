@@ -18,6 +18,18 @@
  */
 @interface HTMLPurifier_Node : NSObject
 
+
+@property NSString* name;
+
+
+@property NSMutableArray* children;
+
+
+@property BOOL empty;
+
+
+
+@property BOOL isWhitespace;
     /**
      * Line number of the start token in the source document
      * @type int

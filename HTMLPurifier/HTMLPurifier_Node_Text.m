@@ -23,7 +23,7 @@
     self = [super init];
     if (self) {
         _data = d;
-        _isWhitespace = isW;
+        self.isWhitespace = isW;
         self.line = l;
         self.col = c;
         self.name = @"#PCDATA";

@@ -20,10 +20,6 @@
      */
 @property NSString* data;
 
-    /**
-     * @type bool
-     */
-@property BOOL isWhitespace;
 
 - (id)initWithData:(NSString*)d line:(NSNumber*)l col:(NSNumber*)c;
 

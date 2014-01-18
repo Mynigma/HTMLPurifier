@@ -40,7 +40,7 @@ static HTMLPurifier_VarParser_Flexible* theParser;
 
 
 static HTMLPurifier_CSSDefinition* theCSSDefinition;
-
+static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
 
 @implementation HTMLPurifier_Config
 
@@ -387,7 +387,8 @@ static HTMLPurifier_CSSDefinition* theCSSDefinition;
     if([type isEqualToString:@"CSS"] && theCSSDefinition)
         return theCSSDefinition;
 
-
+    if([type isEqualToString:@"HTML"] && theHTMLDefinition)
+        return theHTMLDefinition;
 
     // temporarily suspend locks, so we can handle recursive definition calls
     NSString* localLock = lock;
@@ -427,6 +428,9 @@ static HTMLPurifier_CSSDefinition* theCSSDefinition;
 
         if([type isEqualToString:@"CSS"])
             theCSSDefinition = (HTMLPurifier_CSSDefinition*)def;
+
+        if([type isEqualToString:@"HTML"])
+            theHTMLDefinition = (HTMLPurifier_CSSDefinition*)def;
 
         // set it up
         lock = type;

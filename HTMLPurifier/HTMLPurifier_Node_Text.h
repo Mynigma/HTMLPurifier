@@ -24,7 +24,6 @@
      * HTMLPurifier_ChildDef_Custom for details.
      * @type string
      */
-@property NSString* name;
 
     /**
      * @type string
@@ -32,10 +31,6 @@
 @property NSString* data;
     /**< Parsed character data of text. */
 
-    /**
-     * @type bool
-     */
-@property BOOL isWhitespace;
 
     /**< Bool indicating if node is whitespace. */
 

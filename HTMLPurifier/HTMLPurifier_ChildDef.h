@@ -14,6 +14,9 @@
  * Defines allowed child nodes and validates nodes against it.
  */
 @interface HTMLPurifier_ChildDef : NSObject
+{
+    BOOL whitespace;
+}
 
     /**
      * Type of child definition, usually right-most part of class name lowercase.

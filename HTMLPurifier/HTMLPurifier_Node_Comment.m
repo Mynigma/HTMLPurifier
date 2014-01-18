@@ -28,7 +28,7 @@
         _data = d;
         self.line = l;
         self.col = c;
-        _isWhitespace = YES;
+        self.isWhitespace = YES;
     }
     return self;
 }
