@@ -72,7 +72,7 @@
                     if (floatNum > 100) {
                         floatNum = 100;
                     }
-                    [new_parts addObject:[NSString stringWithFormat:@"%f%%", floatNum]];
+                    [new_parts addObject:[NSString stringWithFormat:@"%d%%", (int)floatNum]];
                 } else {
                     // handle integers
                     if (!type) {
@@ -80,7 +80,7 @@
                     } else if (![type isEqualTo:@"integer"]) {
                         return nil;
                     }
-                    NSString* num = [newPart substringWithRange:NSMakeRange(0, length-1)];
+                    NSString* num = newPart;//[newPart substringWithRange:NSMakeRange(0, length-1)];
                     float floatNum = num.floatValue;
                     if (floatNum < 0) {
                         floatNum = 0;
@@ -88,7 +88,7 @@
                     if (floatNum > 255) {
                         floatNum = 255;
                     }
-                    [new_parts addObject:[NSString stringWithFormat:@"%f", floatNum]];
+                    [new_parts addObject:[NSString stringWithFormat:@"%d", (int)floatNum]];
                 }
             }
             NSString* new_triad = implode(@",", new_parts);

@@ -9,7 +9,7 @@
 #import "HTMLPurifier_Length.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_AttrDef_CSS_Number.h"
-//#import "HTMLPurifier_UnitConverter.h"
+#import "HTMLPurifier_UnitConverter.h"
 
 @implementation HTMLPurifier_Length
 
@@ -56,7 +56,7 @@
         NSInteger n_length = php_strspn((NSString*)s, @"1234567890.+-");
         NSString* newN = [(NSString*)s substringWithRange:NSMakeRange(0, n_length)];
 
-        NSString* newUnit = [(NSString*)s substringWithRange:NSMakeRange(0, n_length)];
+        NSString* newUnit = [(NSString*)s substringWithRange:NSMakeRange(n_length, [(NSString*)s length] - n_length)];
         if ([newUnit isEqualTo:@""]) {
             newUnit = nil;
         }
@@ -148,20 +148,19 @@
  */
 - (NSNumber*)compareTo:(HTMLPurifier_Length*)l
 {
-    return nil;
-//    if (!l) {
-//        return nil;
-//    }
-//    if(![[l getUnit] isEqual:self->unit])
-//    {
-//        HTMLPurifier_UnitConverter* converter = [HTMLPurifier_UnitConverter new];
-//        l = [converter convert:l unit:unit];
-//        if(!l)
-//        {
-//            return nil;
-//        }
-//    }
-//    return @(n.floatValue - [l getN].floatValue);
+    if (!l) {
+        return nil;
+    }
+    if(![[l getUnit] isEqual:self->unit])
+    {
+        HTMLPurifier_UnitConverter* converter = [HTMLPurifier_UnitConverter new];
+        l = [converter convert:l unit:unit];
+        if(!l)
+        {
+            return nil;
+        }
+    }
+    return @(n.floatValue - [l getN].floatValue);
 }
 
 @end
