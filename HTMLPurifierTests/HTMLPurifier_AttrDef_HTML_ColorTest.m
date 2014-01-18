@@ -12,9 +12,9 @@
 
 @interface HTMLPurifier_AttrDef_HTML_ColorTest : HTMLPurifier_AttrDefHarness
 {
-HTMLPurifier_AttrDef_HTML_Color* def;
 HTMLPurifier_Config* config;
 HTMLPurifier_Context* context;
+HTMLPurifier_AttrDef_HTML_Color* def;
 }
 @end
 
@@ -23,11 +23,9 @@ HTMLPurifier_Context* context;
 - (void)setUp
 {
     [super setUp];
-    
     config = [HTMLPurifier_Config createDefault];
     context = [HTMLPurifier_Context new];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    
+
 }
 
 - (void)tearDown

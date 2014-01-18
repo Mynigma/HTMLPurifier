@@ -12,9 +12,10 @@
 
 @interface HTMLPurifier_AttrDef_HTML_BoolTest : HTMLPurifier_AttrDefHarness
 {
-    HTMLPurifier_AttrDef_HTML_Bool* def;
-    HTMLPurifier_Config* config;
-    HTMLPurifier_Context* context;
+
+HTMLPurifier_Config* config;
+HTMLPurifier_Context* context;
+HTMLPurifier_AttrDef_HTML_Bool* def;
 }
 @end
 
@@ -23,10 +24,8 @@
 - (void)setUp
 {
     [super setUp];
-    
     config = [HTMLPurifier_Config createDefault];
     context = [HTMLPurifier_Context new];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
@@ -56,7 +55,9 @@
 -(void)testMake
 {
     HTMLPurifier_AttrDef_HTML_Bool* factory = [HTMLPurifier_AttrDef_HTML_Bool new];
+    
     def = [factory makeWithString:@"foo"];
+
     HTMLPurifier_AttrDef_HTML_Bool* def2 = [[HTMLPurifier_AttrDef_HTML_Bool alloc] initWithName:@"foo"];
     XCTAssertEqualObjects(def.name,def2.name,@"");
 }
