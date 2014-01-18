@@ -41,7 +41,7 @@
     
     NSString* points =  [string substringToIndex:length-1];
     
-    if (!is_numeric(points))
+    if (!stringIsNumeric(points))
     {
         return nil;
     }

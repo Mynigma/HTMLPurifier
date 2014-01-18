@@ -14,9 +14,9 @@
 
 @interface HTMLPurifier_AttrDef_HTML_IDTest : HTMLPurifier_AttrDefHarness
 {
-    HTMLPurifier_AttrDef_HTML_ID* def;
     HTMLPurifier_Config* config;
     HTMLPurifier_Context* context;
+    HTMLPurifier_AttrDef_HTML_ID* def;
 }
 @end
 
@@ -25,17 +25,14 @@
 - (void)setUp
 {
     [super setUp];
-    
+
     config = [HTMLPurifier_Config createDefault];
     context = [HTMLPurifier_Context new];
     
     HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator new];
     [context registerWithName:@"IDAccumulator" ref:id_accumulator];
-  //  [config set:@"Attr.EnableID" object:true];
+    [config setString:@"Attr.EnableID" object:@YES];
     def = [HTMLPurifier_AttrDef_HTML_ID new];
-
-
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown

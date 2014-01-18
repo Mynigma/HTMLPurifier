@@ -12,9 +12,9 @@
 
 @interface HTMLPurifier_AttrDef_HTML_FrameTargetTest : HTMLPurifier_AttrDefHarness
 {
-    HTMLPurifier_AttrDef_HTML_FrameTarget* def;
     HTMLPurifier_Config* config;
     HTMLPurifier_Context* context;
+    HTMLPurifier_AttrDef_HTML_FrameTarget* def;
 }
 @end
 
@@ -23,10 +23,8 @@
 - (void)setUp
 {
     [super setUp];
-    
     config = [HTMLPurifier_Config createDefault];
     context = [HTMLPurifier_Context new];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
     def = [HTMLPurifier_AttrDef_HTML_FrameTarget new];
 }
 
