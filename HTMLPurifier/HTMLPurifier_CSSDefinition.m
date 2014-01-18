@@ -336,7 +336,8 @@
     NSMutableDictionary* forbidden_properties = [[config get:@"CSS.ForbiddenProperties"] mutableCopy];
     if (forbidden_properties)
     {
-        for(NSString* name in self.info)
+        NSArray* allTheKeys = self.info.allKeys;
+        for(NSString* name in allTheKeys)
         {
             [self.info removeObjectForKey:name];
         }
