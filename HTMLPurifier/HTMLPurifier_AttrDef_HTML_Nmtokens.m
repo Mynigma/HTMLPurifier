@@ -35,8 +35,7 @@
     
     NSMutableArray* tokens = [self splitWithString:string config:config context:context];
     
-    // function does nothing
-    //tokens = [self filterWithTokens:tokens config:config context:context];
+    tokens = [self filterWithTokens:tokens config:config context:context];
     
     if ([tokens count] == 0)
     {

@@ -1,5 +1,5 @@
 //
-//  HTMLPurifier_AttrDef_HTML_LengthTest.m
+//  HTMLPurifier_AttrDef_HTML_MultiLengthTest.m
 //  HTMLPurifier
 //
 //  Created by Lukas Neumann on 18.01.14.
@@ -8,24 +8,24 @@
 
 #import <XCTest/XCTest.h>
 #import "HTMLPurifier_AttrDefHarness.h"
-#import "HTMLPurifier_AttrDef_HTML_Length.h"
+#import "HTMLPurifier_AttrDef_HTML_MultiLength.h"
 
-@interface HTMLPurifier_AttrDef_HTML_LengthTest : HTMLPurifier_AttrDefHarness
+@interface HTMLPurifier_AttrDef_HTML_MultiLengthTest : HTMLPurifier_AttrDefHarness
 {
-    HTMLPurifier_Config* config;
-    HTMLPurifier_Context* context;
-    HTMLPurifier_AttrDef_HTML_Length* def;
+HTMLPurifier_Config* config;
+HTMLPurifier_Context* context;
+HTMLPurifier_AttrDef_HTML_MultiLength* def;
 }
 @end
 
-@implementation HTMLPurifier_AttrDef_HTML_LengthTest
+@implementation HTMLPurifier_AttrDef_HTML_MultiLengthTest
 
 - (void)setUp
 {
     [super setUp];
     config = [HTMLPurifier_Config createDefault];
     context = [HTMLPurifier_Context new];
-    def = [HTMLPurifier_AttrDef_HTML_Length new];
+    def = [HTMLPurifier_AttrDef_HTML_MultiLength new];
 }
 
 - (void)tearDown
@@ -44,19 +44,14 @@
 
 - (void)test
 {
+    [self assertDef:@"*" expect:@"*"];
+    [self assertDef:@"1*" expect:@"*"];
+    [self assertDef:@"56*" expect:@"56*"];
     
-    // percent check
-    [self assertDef:@"25%" expect:@"25%"];
+    [self assertDef:@"**" expect:nil]; // plain old bad
     
-    // Firefox maintains percent, so will we
-    [self assertDef:@"0%" expect:@"0%"];
-    
-    // 0% <= percent <= 100%
-    [self assertDef:@"-15%" expect:@"0%"];
-    [self assertDef:@"120%" expect:@"100%"];
-    
-    // fractional percents, apparently, aren't allowed
-    [self assertDef:@"56.5%" expect:@"56%"];
+    [self assertDef:@"5.4*" expect:@"5*"]; // no decimals
+    [self assertDef:@"-3*" expect:nil]; // no negatives
 }
 
 @end

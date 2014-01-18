@@ -26,7 +26,7 @@
     }
     
     NSString* parent_result = [super validateWithString:string config:config context:context];
-    if (!parent_result)
+    if (parent_result)
     {
         return parent_result;
     }
@@ -42,9 +42,9 @@
     
     if ([sub isEqual:@""])
     {
-        return @"";
+        return @"*";
     }
-    if (!is_numeric(sub))
+    if (!stringIsNumeric(sub))
     {
         return nil;
     }
@@ -59,7 +59,7 @@
     if (subnum == 1) {
         return @"*";
     }
-    return [NSString stringWithFormat:@"%@%@",sub,@"*"];
+    return [NSString stringWithFormat:@"%d%@",subnum,@"*"];
 }
 
 @end
