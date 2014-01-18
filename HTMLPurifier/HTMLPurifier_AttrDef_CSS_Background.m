@@ -22,11 +22,12 @@
     self = [super init];
     if (self) {
         HTMLPurifier_CSSDefinition* def = [config getCSSDefinition];
-        [self->info setObject:[def.info objectForKey:@"background-color"] forKey:@"background-color"];
-        [self->info setObject:[def.info objectForKey:@"background-image"] forKey:@"background-image"];
-        [self->info setObject:[def.info objectForKey:@"background-repeat"] forKey:@"background-repeat"];
-        [self->info setObject:[def.info objectForKey:@"background-attachment"] forKey:@"background-attachment"];
-        [self->info setObject:[def.info objectForKey:@"background-position"] forKey:@"background-position"];
+        info = [NSMutableDictionary new];
+        [info setObject:[def.info objectForKey:@"background-color"] forKey:@"background-color"];
+        [info setObject:[def.info objectForKey:@"background-image"] forKey:@"background-image"];
+        [info setObject:[def.info objectForKey:@"background-repeat"] forKey:@"background-repeat"];
+        [info setObject:[def.info objectForKey:@"background-attachment"] forKey:@"background-attachment"];
+        [info setObject:[def.info objectForKey:@"background-position"] forKey:@"background-position"];
     }
     return self;
 }
@@ -102,8 +103,9 @@
         }
 
         NSMutableArray* ret = [NSMutableArray new];
-            for(NSObject* value in caught)
+            for(NSObject* key in caught)
             {
+                NSObject* value = caught[key];
                 if([value isEqualTo:@NO])
                     continue;
                 [ret addObject:value];

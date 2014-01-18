@@ -20,9 +20,10 @@
     self = [super init];
     if (self) {
         HTMLPurifier_CSSDefinition* def = [config getCSSDefinition];
-        [self->info setObject:[[def info] objectForKey:@"list-style-type"] forKey:@"list-style-type"];
-        [self->info setObject:[[def info] objectForKey:@"list-style-position"] forKey:@"list-style-position"];
-        [self->info setObject:[[def info] objectForKey:@"list-style-image"] forKey:@"list-style-image"];
+        info = [NSMutableDictionary new];
+        [info setObject:[[def info] objectForKey:@"list-style-type"] forKey:@"list-style-type"];
+        [info setObject:[[def info] objectForKey:@"list-style-position"] forKey:@"list-style-position"];
+        [info setObject:[[def info] objectForKey:@"list-style-image"] forKey:@"list-style-image"];
     }
     return self;
 }
@@ -63,24 +64,26 @@
             }
             for(NSString* key in caught)
             {
-                //pointless...
-                if (![caught objectForKey:key])
-                {
-                    continue;
-                }
-                NSString* r = [[self->info objectForKey:[@"list-style-" stringByAppendingString:key]] validateWithString:bit config:config context:context];
+                NSString* attrDefKey = [@"list-style-" stringByAppendingString:key];
+                HTMLPurifier_AttrDef* attrDef = info[attrDefKey];
+                NSString* r = [attrDef validateWithString:bit config:config context:context];
 
                 if (!r)
                 {
                     continue;
                 }
-                if ([r isEqualTo:@"none"]) {
-                    if (none) {
+                if ([r isEqualTo:@"none"])
+                {
+                    if (none)
+                    {
                         continue;
-                    } else {
+                    }
+                    else
+                    {
                         none = YES;
                     }
-                    if ([key isEqualTo:@"image"]) {
+                    if ([key isEqualTo:@"image"])
+                    {
                         continue;
                     }
                 }
@@ -98,19 +101,19 @@
         NSMutableArray* ret = [NSMutableArray new];
 
         // construct type
-        if ([caught objectForKey:@"type"])
+        if (![[caught objectForKey:@"type"] isEqual:@NO])
         {
             [ret addObject:[caught objectForKey:@"type"]];
         }
 
         // construct image
-        if ([caught objectForKey:@"image"])
+        if (![[caught objectForKey:@"image"] isEqual:@NO])
         {
             [ret addObject:[caught objectForKey:@"image"]];
         }
 
         // construct position
-        if ([caught objectForKey:@"position"])
+        if (![[caught objectForKey:@"position"] isEqual:@NO])
         {
             [ret addObject:[caught objectForKey:@"position"]];
         }

@@ -313,7 +313,7 @@
     // setup allowed elements
     NSString* support = @"(for information on implementing this, see the support forums) ";
     NSMutableDictionary* allowed_properties = [[config get:@"CSS.AllowedProperties"] mutableCopy];
-    if (allowed_properties)
+    if ([allowed_properties isKindOfClass:[NSDictionary class]])
     {
         NSArray* allTheKeys = self.info.allKeys;
         for(NSString* name in allTheKeys)
@@ -334,9 +334,9 @@
     }
 
     NSMutableDictionary* forbidden_properties = [[config get:@"CSS.ForbiddenProperties"] mutableCopy];
-    if (forbidden_properties)
+    if ([forbidden_properties isKindOfClass:[NSDictionary class]])
     {
-        NSArray* allTheKeys = self.info.allKeys;
+        NSArray* allTheKeys = forbidden_properties.allKeys;
         for(NSString* name in allTheKeys)
         {
             [self.info removeObjectForKey:name];

@@ -99,7 +99,8 @@
         if (![[value lowercaseString] isEqual:@"inherit"])
         {
             // inherit works for everything (but only on the base property)
-            result = [[definition info][property_string] validateWithString:value config:config context:context];
+            HTMLPurifier_AttrDef* attrDef = definition.info[property_string];
+            result = [attrDef validateWithString:value config:config context:context];
         }
         else
         {
@@ -109,7 +110,7 @@
         {
             continue;
         }
-        propvalues[property] = result;
+        propvalues[property_string] = result;
     }
     
     [context destroy:@"CurrentCSSProperty"];
@@ -124,7 +125,7 @@
         new_declarations = [new_declarations stringByAppendingString:[NSString stringWithFormat:@"%@:%@;",key,propvalues[key]]];
     }
     
-    return [new_declarations isEqual:@""] ? new_declarations : nil;
+    return [new_declarations isEqual:@""] ?  nil : new_declarations;
     
 }
 

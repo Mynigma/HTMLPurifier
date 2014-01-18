@@ -38,6 +38,10 @@
 static HTMLPurifier_ConfigSchema* theDefinition;
 static HTMLPurifier_VarParser_Flexible* theParser;
 
+
+static HTMLPurifier_CSSDefinition* theCSSDefinition;
+
+
 @implementation HTMLPurifier_Config
 
 
@@ -55,8 +59,6 @@ static HTMLPurifier_VarParser_Flexible* theParser;
         _chatty = YES;
 
         definitions = [NSMutableDictionary new];
-
-
 
         plist = [HTMLPurifier_PropertyList new];
 
@@ -382,6 +384,11 @@ static HTMLPurifier_VarParser_Flexible* theParser;
         [self autoFinalize];
     }
 
+    if([type isEqualToString:@"CSS"] && theCSSDefinition)
+        return theCSSDefinition;
+
+
+
     // temporarily suspend locks, so we can handle recursive definition calls
     NSString* localLock = lock;
     lock = nil;
@@ -413,12 +420,20 @@ static HTMLPurifier_VarParser_Flexible* theParser;
             [definitions setObject:def forKey:type];
             return def;
         }
+
         // initialize it
         def = [self InitialiseDefinition:type];
+
+
+        if([type isEqualToString:@"CSS"])
+            theCSSDefinition = (HTMLPurifier_CSSDefinition*)def;
+
         // set it up
         lock = type;
         [def setup:self];
         lock = nil;
+
+
         // save in cache
         [cache add:def config:self];
         // return it
