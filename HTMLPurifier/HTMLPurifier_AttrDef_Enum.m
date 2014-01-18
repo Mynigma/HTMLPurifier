@@ -16,17 +16,17 @@
     return [self initWithValidValues:nil caseSensitive:NO];
 }
 
-- (id)initWithValidValues:(NSDictionary*)dict
+- (id)initWithValidValues:(NSArray*)array
 {
-    return [self initWithValidValues:dict caseSensitive:NO];
+    return [self initWithValidValues:array caseSensitive:NO];
 }
 
 
-- (id)initWithValidValues:(NSDictionary*)dict caseSensitive:(BOOL)newCaseSensitive
+- (id)initWithValidValues:(NSArray*)array caseSensitive:(BOOL)newCaseSensitive
 {
     self = [super init];
     if (self) {
-        _validValues = [dict mutableCopy];
+        _validValues = [array mutableCopy];
         _caseSensitive = newCaseSensitive;
     }
     return self;
@@ -45,7 +45,7 @@
     //validValues is sometimes set to a string
     
     if([self.validValues isKindOfClass:[NSDictionary class]])
-        result = [self.validValues objectForKey:newString]!=nil;
+        result = [self.validValues containsObject:newString];
 
     return result?newString:nil;
 }

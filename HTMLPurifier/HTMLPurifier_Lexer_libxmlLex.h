@@ -9,7 +9,7 @@
 #import "HTMLPurifier_Lexer.h"
 #import <libxml/tree.h>
 
-@class HTMLPurifier_TokenFactory, HTMLPurifier_Token, HTMLPurifier_Context, HTMLPurifier_Config;
+@class HTMLPurifier_TokenFactory, HTMLPurifier_Token, HTMLPurifier_Context, HTMLPurifier_Config, HTMLPurifier_DOMNode;
 
 @interface HTMLPurifier_Lexer_libxmlLex : HTMLPurifier_Lexer
 {
@@ -36,7 +36,7 @@
  * @param HTMLPurifier_Token[] $tokens   Array-list of already tokenized tokens.
  * @return HTMLPurifier_Token of node appended to previously passed tokens.
  */
-- (void)tokenizeDOMNode:(xmlNode*)node tokens:(NSMutableArray*)tokens;
+- (void)tokenizeDOMNode:(HTMLPurifier_DOMNode*)node tokens:(NSMutableArray*)tokens;
 /**
  * @param DOMNode $node DOMNode to be tokenized.
  * @param HTMLPurifier_Token[] $tokens   Array-list of already tokenized tokens.
@@ -46,13 +46,13 @@
  * @return bool if the token needs an endtoken
  * @todo data and tagName properties don't seem to exist in DOMNode?
  */
-- (BOOL)createStartNode:(xmlNode*)node tokens:(NSMutableArray*)tokens collect:(BOOL)collect;
+- (BOOL)createStartNode:(HTMLPurifier_DOMNode*)node tokens:(NSMutableArray*)tokens collect:(BOOL)collect;
 
 /**
  * @param DOMNode $node
  * @param HTMLPurifier_Token[] $tokens
  */
-- (void)createEndNode:(xmlNode*)node tokens:(NSMutableArray*)tokens;
+- (void)createEndNode:(HTMLPurifier_DOMNode*)node tokens:(NSMutableArray*)tokens;
 
 
 /**

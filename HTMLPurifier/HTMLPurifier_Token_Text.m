@@ -43,4 +43,13 @@
     return @[[[HTMLPurifier_Node_Text alloc] initWithData:self.data isWhitespace:NO line:self.line col:self.col], [NSNull null]];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_Token_Text* newToken = [super copyWithZone:zone];
+    [newToken setData:[_data copyWithZone:zone]];
+    [newToken setIsWhitespace:_isWhitespace];
+
+    return newToken;
+}
+
 @end

@@ -177,7 +177,9 @@
 
 + (NSString*)cleanUTF8:(NSString*)str forcePHP:force_php
 {
-    return nil;
+    //TO DO: implement(!)
+
+    return str;
 }
 
 + (NSString*)iconvWithIn:(NSString*)inputEncoding out:(NSString*)outputEncoding text:(NSString*)text maxChunkSize:(NSInteger)max_chunk_size

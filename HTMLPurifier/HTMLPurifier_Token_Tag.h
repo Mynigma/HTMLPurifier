@@ -22,7 +22,6 @@
      * without having to use a function call <tt>is_a()</tt>.
      * @type bool
      */
-@property BOOL is_tag;
 
     /**
      * The lower-case name of the tag, like 'a', 'b' or 'blockquote'.

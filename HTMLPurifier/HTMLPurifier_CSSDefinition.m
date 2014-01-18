@@ -35,11 +35,12 @@
     self = [super init];
     if (self) {
         _typeString = @"CSS";
+        _info = [NSMutableDictionary new];
     }
     return self;
 }
 
-- (void)doSetupWithConfig:(HTMLPurifier_Config*)config
+- (void)doSetup:(HTMLPurifier_Config*)config
 {
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"left", @"right", @"center", @"justify"] caseSensitive:NO] forKey:@"text-align"];
 

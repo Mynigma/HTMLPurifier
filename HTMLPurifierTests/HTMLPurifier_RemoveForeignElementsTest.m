@@ -11,6 +11,8 @@
 #import "HTMLPurifier_Lexer_libxmlLex.h"
 #import "HTMLPurifier_Harness.h"
 #import "HTMLPurifier_Generator.h"
+#import "HTMLPurifier_Config.h"
+#import "HTMLPurifier_HTMLDefinition.h"
 
 
 @interface HTMLPurifier_RemoveForeignElementsTest : HTMLPurifier_Harness
@@ -66,130 +68,175 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
     [super tearDown];
 }
 
-- (NSString*)runOnString:(NSString*)string withExpectedResult:(NSObject*)expected
+- (NSString*)runOnString:(NSString*)string
 {
     //NSString* stringCopy = [string copy];
     NSArray* tokenizedString = [lexer tokenizeHTMLWithString:string config:[super config] context:[super context]];
-    
+
+
     IMP imp = [obj methodForSelector:func];
     NSArray* (*function)(id, SEL, NSArray*, HTMLPurifier_Config*, HTMLPurifier_Context*) = (void *)imp;
     NSArray* result = function(obj, func, tokenizedString, [super config], [super context]);
 
-    if([result isKindOfClass:[NSNumber class]])
-    {
-        XCTAssertEqualObjects(result, expected);
-    }
-
     HTMLPurifier_Generator* generator = [[HTMLPurifier_Generator alloc] initWithConfig:[super config] context:[super context]];
-    NSString* htmlString = [generator generateFromTokens:tokenizedString];
+    NSString* htmlString = [generator generateFromTokens:result];
 
-    if([expected isKindOfClass:[NSArray class]])
-        expected = [generator generateFromTokens:(NSArray*)expected];
-
-    XCTAssertEqualObjects(htmlString, expected);
+    return htmlString;
 }
 
 - (void)testBlankInput
 {
-    [self runOnString:@"" withExpectedResult:@""];
+    NSString* testString = @"";
+    XCTAssertEqualObjects([self runOnString:testString], testString);
 }
 
 - (void)testPreserveRecognizedElements
 {
-     NSString* testString = @"This is <b>bold text</b>.";
-        [self runOnString:testString withExpectedResult:testString];
+    NSString* testString = @"This is <b>bold text</b>.";
+    XCTAssertEqualObjects([self runOnString:testString], testString);
 }
 
 
+- (void)testRemoveForeignElements
+{
+    NSString* before = @"<asdf>Bling</asdf><d href=\"bang\">Bong</d><foobar />";
+    NSString* after = @"BlingBong";
+    before = [self runOnString:before];
+
+    XCTAssertEqualObjects(before, after);
+}
+
+- (void)testRemoveScriptAndContents
+{
+    NSString* before = @"<script>alert();</script>";
+    NSString* after = @"";
+    before = [self runOnString:before];
+
+    XCTAssertEqualObjects(before, after);
+}
+
+- (void)testRemoveStyleAndContents
+{
+    NSString* before = @"<style>.foo {blink;}</style>";
+    NSString* after = @"";
+    before = [self runOnString:before];
+
+    XCTAssertEqualObjects(before, after);
+}
+
 /*
-    function testRemoveForeignElements() {
-        $this->assertResult(
-                            '<asdf>Bling</asdf><d href="bang">Bong</d><foobar />',
-                            'BlingBong'
-                            );
-    }
+- (void)testRemoveOnlyScriptTagsLegacy
+{
+    [super.config setString:@"Core.RemoveScriptContents" object:@NO];
+        NSString* before = @"<script>alert();</script>";
+        NSString* after = @"alert();";
+    before = [self runOnString:before];
 
-    function testRemoveScriptAndContents() {
-        $this->assertResult(
-                            '<script>alert();</script>',
-                            ''
-                            );
-    }
+    XCTAssertEqualObjects(before, after);
+}
 
-    function testRemoveStyleAndContents() {
-        $this->assertResult(
-                            '<style>.foo {blink;}</style>',
-                            ''
-                            );
-    }
 
-    function testRemoveOnlyScriptTagsLegacy() {
-        $this->config->set('Core.RemoveScriptContents', false);
-        $this->assertResult(
-                            '<script>alert();</script>',
-                            'alert();'
-                            );
-    }
+- (void)testRemoveOnlyScriptTags
+{
+    [super.config setString:@"Core.HiddenElements" object:@[]];
+    NSString* before = @"<script>alert();</script>";
+        NSString* after = @"alert();";
+    before = [self runOnString:before];
 
-    function testRemoveOnlyScriptTags() {
-        $this->config->set('Core.HiddenElements', array());
-        $this->assertResult(
-                            '<script>alert();</script>',
-                            'alert();'
-                            );
-    }
+        XCTAssertEqualObjects(before, after);
+}
+*/
 
-    function testRemoveInvalidImg() {
-        $this->assertResult('<img />', '');
-    }
+- (void)testRemoveInvalidImg
+{
+        NSString* before = @"<img />";
+        NSString* after = @"";
+    before = [self runOnString:before];
 
-    function testPreserveValidImg() {
-        $this->assertResult('<img src="foobar.gif" alt="foobar.gif" />');
-    }
+        XCTAssertEqualObjects(before, after);
+}
 
-    function testPreserveInvalidImgWhenRemovalIsDisabled() {
-        $this->config->set('Core.RemoveInvalidImg', false);
-        $this->assertResult('<img />');
-    }
+- (void)testPreserveValidImg
+{
+        NSString* before = @"<img src=\"foobar.gif\" alt=\"foobar.gif\" />";
+        NSString* after = @"<img src=\"foobar.gif\" alt=\"foobar.gif\" />";
+    before = [self runOnString:before];
 
-    function testTextifyCommentedScriptContents() {
-        $this->config->set('HTML.Trusted', true);
-        $this->config->set('Output.CommentScriptContents', false); // simplify output
-        $this->assertResult(
-                            '<script type="text/javascript"><!--
-                            alert(<b>bold</b>);
-                            // --></script>',
-                            '<script type="text/javascript">
-                            alert(&lt;b&gt;bold&lt;/b&gt;);
-                            // </script>'
-                            );
-    }
+        XCTAssertEqualObjects(before, after);
+}
 
-    function testRequiredAttributesTestNotPerformedOnEndTag() {
-        $this->config->set('HTML.DefinitionID',
-                           'HTMLPurifier_Strategy_RemoveForeignElementsTest'.
-                           '->testRequiredAttributesTestNotPerformedOnEndTag');
-        $def = $this->config->getHTMLDefinition(true);
-        $def->addElement('f', 'Block', 'Optional: #PCDATA', false, array('req*' => 'Text'));
-        $this->assertResult('<f req="text">Foo</f> Bar');
+/*
+- (void)testPreserveInvalidImgWhenRemovalIsDisabled
+{
+    [super.config setString:@"Core.RemoveInvalidImg" object:@NO];
+        NSString* before = @"<img />";
+        NSString* after = @"<img />";
+    before = [self runOnString:before];
+
+        XCTAssertEqualObjects(before, after);
+}
+
+- (void)testTextifyCommentedScriptContents
+{
+    [super.config setString:@"HTML.Trusted" object:@YES];
+    [super.config setString:@"Output.CommentScriptContents" object:@NO];
+    NSString* before = @"<script type=\"text/javascript\"><!--\n    alert(<b>bold</b>);\n    // --></script>";
+    NSString* after = @"<script type=\"text/javascript\"><!--\n    alert(<b>bold</b>);\n    // --></script>";
+    before = [self runOnString:before];
+
+    XCTAssertEqualObjects(before, after);
+}
+*/
+/*
+- (void)testRequiredAttributesTestNotPerformedOnEndTag
+{
+    [super.config setString:@"HTML.DefinitionID" object:@{@"HTMLPurifier_Strategy_RemoveForeignElementsTest":@"testRequiredAttributesTestNotPerformedOnEndTag"}];
+    HTMLPurifier_HTMLDefinition* def = [super.config getHTMLDefinition]; //parameter: YES
+
+    [def addElement:@"f" type:@"Block" contents:@{@"Optional": @"#PCDATA"} attrCollections:nil attributes:@{@"req*" : @"Text"}];
+
+    NSString* before = @"<f req=\"text\">Foo</f> Bar";
+    NSString* after = @"<f req=\"text\">Foo</f> Bar";
+    before = [self runOnString:before];
+
+        XCTAssertEqualObjects(before, after);
+    }
+*/
+/*
+- (void)testPreserveCommentsWithHTMLTrusted
+{
+    [super.config setString:@"HTML.Trusted" object:@YES];
+
+        NSString* before = @"<!-- foo -->";
+        NSString* after = @"<!-- foo -->";
+
+    before = [self runOnString:before];
+        XCTAssertEqualObjects(before, after);
     }
     
-    function testPreserveCommentsWithHTMLTrusted() {
-        $this->config->set('HTML.Trusted', true);
-        $this->assertResult('<!-- foo -->');
+- (void)testRemoveTrailingHyphensInComment
+{
+    [super.config setString:@"HTML.Trusted" object:@YES];
+
+    NSString* before = @"<!-- foo ----->";
+        NSString* after = @"<!-- foo -->";
+    before = [self runOnString:before];
+
+        XCTAssertEqualObjects(before, after);
     }
     
-    function testRemoveTrailingHyphensInComment() {
-        $this->config->set('HTML.Trusted', true);
-        $this->assertResult('<!-- foo ----->', '<!-- foo -->');
+- (void)testCollapseDoubleHyphensInComment
+{
+    [super.config setString:@"HTML.Trusted" object:@YES];
+
+    NSString* before = @"<!-- bo --- asdf--as -->";
+        NSString* after = @"<!-- bo - asdf-as -->";
+    before = [self runOnString:before];
+
+        XCTAssertEqualObjects(before, after);
     }
-    
-    function testCollapseDoubleHyphensInComment() {
-        $this->config->set('HTML.Trusted', true);
-        $this->assertResult('<!-- bo --- asdf--as -->', '<!-- bo - asdf-as -->');
-    }
-    
-}*/
+ */
+
 
 
 @end

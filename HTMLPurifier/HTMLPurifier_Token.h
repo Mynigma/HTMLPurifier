@@ -43,12 +43,12 @@
     /**
      * @type
      */
-@property NSObject* rewind;
+@property NSNumber* rewind;
 
     /**
      * @type
      */
-@property NSObject* carryover;
+@property NSNumber* carryover;
 
 
 @property NSString* name;
@@ -84,5 +84,9 @@
  * Converts a token into its corresponding node.
  */
 - (HTMLPurifier_Node*)toNode;
+
+- (id)copyWithZone:(NSZone *)zone;
+
+
 
 @end

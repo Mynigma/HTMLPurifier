@@ -30,7 +30,13 @@
 + (HTMLPurifier_IDAccumulator*)buildWithConfig:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
         HTMLPurifier_IDAccumulator* id_accumulator = [[HTMLPurifier_IDAccumulator alloc] init];
-        [id_accumulator loadWithIDs:(NSArray*)[config get:@"Attr.IDBlacklist"]];
+
+        NSObject* idsObject = [config get:@"Attr.IDBlacklist"];
+
+        if(![idsObject isKindOfClass:[NSArray class]])
+            idsObject = nil;
+
+        [id_accumulator loadWithIDs:(NSArray*)idsObject];
         return id_accumulator;
     }
 
@@ -55,6 +61,7 @@
      */
 - (void)loadWithIDs:(NSArray*)IDs
     {
+        if(IDs)
         for(id newID in IDs)
             [_ids setObject:@YES forKey:newID];
     }

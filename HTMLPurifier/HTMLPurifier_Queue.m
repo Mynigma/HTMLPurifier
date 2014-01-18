@@ -50,6 +50,9 @@
  */
 - (void)push:(NSObject*)x
 {
+    if(!x)
+        return;
+
     array_push(input, x);
 }
 

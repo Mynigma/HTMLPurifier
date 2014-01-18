@@ -192,7 +192,7 @@
                     [_flashStack addObject:flashStackObject];
                 }
             }
-            return [NSString stringWithFormat:@"<%@%@>", [token valueForKey:@"name"], (attrString?[@" " stringByAppendingString:attrString]:@"")];
+            return [NSString stringWithFormat:@"<%@%@>", [token valueForKey:@"name"], ([attrString length]>0?[@" " stringByAppendingString:attrString]:@"")];
         } else if ([token isKindOfClass:[HTMLPurifier_Token_End class]])
         {
             NSString* _extra = @"";
@@ -327,7 +327,7 @@
      */
 - (NSString*)escape:(NSString*)string
 {
-    return [self escape:nil];
+    return [self escape:string quote:nil];
 }
 
 

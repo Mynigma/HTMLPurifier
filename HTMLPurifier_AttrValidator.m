@@ -29,8 +29,8 @@
 
     // initialize IDAccumulator if necessary
 
-    NSNumber* ok = (NSNumber*)[context getWithName:@"IDAccumulator" ignoreError:YES];
-    if (!ok.boolValue) {
+    HTMLPurifier_IDAccumulator* ok = (HTMLPurifier_IDAccumulator*)[context getWithName:@"IDAccumulator" ignoreError:YES];
+    if (!ok) {
         HTMLPurifier_IDAccumulator* id_accumulator = [HTMLPurifier_IDAccumulator buildWithConfig:config context:context];
         [context registerWithName:@"IDAccumulator" ref:id_accumulator];
     }

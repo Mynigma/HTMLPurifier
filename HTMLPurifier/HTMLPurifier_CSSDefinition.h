@@ -16,7 +16,7 @@
 @property NSString* typeString;
 @property NSMutableDictionary* info;
 
-- (void)doSetupWithConfig:(HTMLPurifier_Config*)config;
+- (void)doSetup:(HTMLPurifier_Config*)config;
 
 - (void)setupConfigStuff:(HTMLPurifier_Config*)config;
 

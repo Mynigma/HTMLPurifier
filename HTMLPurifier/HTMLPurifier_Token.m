@@ -106,5 +106,22 @@
     return nil;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_Token* newToken = [[[self class] allocWithZone:zone] init];
+    [newToken setLine:[self.line copyWithZone:zone]];
+    [newToken setCol:[self.col copyWithZone:zone]];
+    [newToken setName:[self.name copyWithZone:zone]];
+    [newToken setArmor:[self.armor copyWithZone:zone]];
+    [newToken setSkip:[self.skip copyWithZone:zone]];
+    [newToken setRewind:[self.rewind copyWithZone:zone]];
+    [newToken setSkip:[self.skip copyWithZone:zone]];
+    [newToken setAttr:[self.attr copyWithZone:zone]];
+    [newToken setIsTag:self.isTag];
+
+    return newToken;
+}
+
+
 
 @end

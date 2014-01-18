@@ -63,8 +63,16 @@
         }
         //list(property, $value) = explode(':', $declaration, 2);
         NSArray* temp = explodeWithLimit(@":",declaration,2);
-        NSString* property_string = [temp objectAtIndex:0];
-        NSString*  value = [temp objectAtIndex:1];
+        NSString* property_string = nil;
+        if(temp.count>0)
+            property_string = [temp objectAtIndex:0];
+        else
+            continue;
+        NSString*  value = nil;
+        if(temp.count>1)
+            value = [temp objectAtIndex:1];
+        else
+            continue;
         
         property_string = trim(property_string);
         value = trim(value);
