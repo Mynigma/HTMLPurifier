@@ -28,14 +28,14 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) validateWithAip:(NSString*)aIP Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSString*) validateWithString:(NSString*)aIP config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     if (!ip4)
     {
        [self loadRegex];
     }
     
-    if (preg_match_2([NSString stringWithFormat:@"#^%@$#s",ip4],aIP))
+    if (preg_match_2_WithLineBreak([NSString stringWithFormat:@"^%@$",ip4],aIP))
     {
         return aIP;
     }

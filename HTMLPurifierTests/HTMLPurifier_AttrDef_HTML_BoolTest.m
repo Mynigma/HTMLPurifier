@@ -12,7 +12,6 @@
 
 @interface HTMLPurifier_AttrDef_HTML_BoolTest : HTMLPurifier_AttrDefHarness
 {
-
 HTMLPurifier_Config* config;
 HTMLPurifier_Context* context;
 HTMLPurifier_AttrDef_HTML_Bool* def;
@@ -34,7 +33,7 @@ HTMLPurifier_AttrDef_HTML_Bool* def;
     [super tearDown];
 }
 
-- (void) assertDef:(NSString*) string Expect:(NSString*)expect
+- (void) assertDef:(NSString*) string expect:(NSString*)expect
 {
     // $expect can be a string or bool
     NSString* result = [def validateWithString:string config:config context:context];
@@ -47,9 +46,9 @@ HTMLPurifier_AttrDef_HTML_Bool* def;
 {
     def = [[HTMLPurifier_AttrDef_HTML_Bool  alloc] initWithName:@"foo"];
     
-    [self assertDef:@"foo" Expect:@"foo"];
-    [self assertDef:@"" Expect:nil];
-    [self assertDef:@"bar" Expect:@"foo"];
+    [self assertDef:@"foo" expect:@"foo"];
+    [self assertDef:@"" expect:nil];
+    [self assertDef:@"bar" expect:@"foo"];
 }
 
 -(void)testMake

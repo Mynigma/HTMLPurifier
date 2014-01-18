@@ -77,12 +77,16 @@ NSArray* preg_split_3_PREG_SPLIT_DELIM_CAPTURE(NSString* expression, NSString* s
 
 BOOL preg_match_2(NSString* pattern, NSString* subject);
 
+BOOL preg_match_2_WithLineBreak(NSString* pattern, NSString* subject);
+
 
 //Returns all matches & subpattern matches
 // Structure is array of arrays
 BOOL preg_match_all_3(NSString* pattern, NSString* subject, NSMutableArray* matches);
 
 BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches);
+
+BOOL preg_match_3_withLineBreak(NSString* pattern, NSString* subject, NSMutableArray* matches);
 
 
 NSInteger preg_match_all_2(NSString* pattern, NSString* subject);
@@ -174,7 +178,7 @@ NSDictionary* dict_merge_2(NSDictionary* dict1, NSDictionary* dict2);
 
 
 //TODO array_splice
-NSArray* array_splice_4 (NSArray* input, NSInteger* offset, NSInteger* length, NSObject* replacement);
+NSArray* array_splice_4 (NSArray* input, NSInteger offset, NSInteger length, NSArray* replacement);
 
 #define BASIC_PHP 1
 
