@@ -36,6 +36,7 @@
 - (BOOL)isOld:(NSString*)key config:(HTMLPurifier_Config*)config
 {
     return NO;
+
 }
 
 /**
