@@ -243,8 +243,18 @@ static HTMLPurifier_VarParser_Flexible* theParser;
  */
 - (void)setString:(NSString*)key object:(NSObject*)value
 {
-    NSArray* namespace = explode(@".", key);
-
+    NSArray* namespace = nil;
+    NSString* namespace_string = nil;
+    if (strpos(@".",key) == NSNotFound)
+    {
+        namespace_string = key;
+    }
+    else
+    {
+        namespace = explode(@".", key);
+        namespace_string = [namespace objectAtIndex:0];
+    }
+    
     if ([self isFinalized:@"Cannot set directive after finalization"])
     {
         return;
@@ -261,6 +271,7 @@ static HTMLPurifier_VarParser_Flexible* theParser;
     // reset definitions if the directives they depend on changed
     // this is a very costly process, so it's discouraged
     // with finalization
+    
     if ([namespace isEqual:@"HTML"] || [namespace isEqual:@"CSS"] || [namespace isEqual:@"URI"])
     {
         [definitions removeObjectForKey:namespace];

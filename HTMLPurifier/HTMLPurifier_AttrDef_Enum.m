@@ -44,7 +44,7 @@
     //TO DO: fix
     //validValues is sometimes set to a string
     
-    if([self.validValues isKindOfClass:[NSDictionary class]])
+    if([self.validValues isKindOfClass:[NSArray class]])
         result = [self.validValues containsObject:newString];
 
     return result?newString:nil;

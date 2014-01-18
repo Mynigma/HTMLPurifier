@@ -43,8 +43,10 @@
  */
 -(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    NSDictionary* allowed = (NSDictionary*)[config get:[NSString stringWithFormat:@"Attr.%@",name]];
-    if (!allowed || [allowed isEqual:@""])
+    NSArray* allowed = (NSArray*)[config get:[NSString stringWithFormat:@"Attr.%@",name]];
+    
+    //Not sure if allowed can be equal @"", since it should be an NSArray
+    if (!allowed || [allowed count] == 0 || [allowed isEqual:@""])
     {
         return nil;
     }
@@ -54,11 +56,12 @@
     
     // lookup to prevent duplicates
     NSMutableArray* ret_lookup = [NSMutableArray new];
+    
     for (NSString* part in parts)
     {
         NSString* thisPart = [part mutableCopy];
         thisPart = [trim(thisPart) lowercaseString];
-        if (![allowed objectForKey:thisPart])
+        if (![allowed containsObject:thisPart])
         {
             continue;
         }
