@@ -19,7 +19,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
+-(NSString*) splitWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 /**
  * @param array $tokens
@@ -27,6 +27,6 @@
  * @param HTMLPurifier_Context $context
  * @return array
  */
--(NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context;
+-(NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 @end

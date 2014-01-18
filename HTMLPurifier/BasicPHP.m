@@ -531,6 +531,20 @@ BOOL ctype_alnum(NSString* string)
 }
 
 
+//better to use this, also recognizes negative numbers
+BOOL stringIsNumeric(NSString *str)
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    
+    //Recognize decimal number (e.g. 4.7)
+    [formatter setDecimalSeparator:@"."];
+    
+    NSNumber *number = [formatter numberFromString:str];
+
+    return !!number; // If the string is not numeric, number will be nil
+}
+
+//Does not check for  + - Upfront
 BOOL is_numeric(NSString* string)
 {
     for(NSInteger i=0;i <string.length; i++)

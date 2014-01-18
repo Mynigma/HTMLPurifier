@@ -57,12 +57,12 @@
 
 -(void)test
 {
-    [config setString:@"Attr.AllowedFrameTargets" object:@{@"foo": @YES,@"_blank":@YES}];
+    [config setString:@"Attr.AllowedFrameTargets" object:@[@"foo",@"_blank"]];
 
-    [self assertDef:@"" expect: false];
+    [self assertDef:@"" expect: nil];
     [self assertDef:@"foo" expect: @"foo"];
     [self assertDef:@"_blank" expect: @"_blank"];
-    [self assertDef:@"baz" expect: false];
+    [self assertDef:@"baz" expect: nil];
 }
 
 @end

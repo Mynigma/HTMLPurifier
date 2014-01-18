@@ -22,7 +22,7 @@
 * @param HTMLPurifier_Context $context
 * @return bool|string
 */
-- (NSString*) validateWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+- (NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     string = trim(string);
     
@@ -33,8 +33,11 @@
         return nil;
     }
     
-    NSMutableArray* tokens = [self splitWithString:string Config:config Context:context];
-    tokens = [self filterWithTokens:tokens Config:config Context:context];
+    NSMutableArray* tokens = [self splitWithString:string config:config context:context];
+    
+    // function does nothing
+    //tokens = [self filterWithTokens:tokens config:config context:context];
+    
     if ([tokens count] == 0)
     {
         return nil;
@@ -49,7 +52,7 @@
  * @param HTMLPurifier_Context $context
  * @return array
  */
--(NSArray*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSArray*) splitWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     // OPTIMIZABLE!
     // do the preg_match, capture all subpatterns for reformulation
@@ -66,7 +69,21 @@
     // look ahead for space or string end
     pattern = [pattern stringByAppendingString:@"(?:(?=\\s)|\\z)"];
     NSMutableArray* matches = [NSMutableArray new];
+    
     preg_match_all_3(pattern, string, matches);
+    
+    // Nothing found?
+    if ([matches count] == 0)
+    {
+        return matches;
+    }
+    
+    //matches can includes subpattern (unwanted I guess)
+    if ([[matches objectAtIndex:0] isKindOfClass:[NSArray class]])
+    {
+        return [matches objectAtIndex:0];
+    }
+    
     return matches;
 }
 
@@ -79,7 +96,7 @@
  * @param HTMLPurifier_Context $context
  * @return array
  */
-- (NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+- (NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     return tokens;
 }

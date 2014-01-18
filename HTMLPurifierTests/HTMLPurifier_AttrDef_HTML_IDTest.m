@@ -12,8 +12,6 @@
 #import "HTMLPurifier_AttrDef_HTML_ID.h"
 #import "HTMLPurifier_IDAccumulator.h"
 
-#import <XCTest/XCTest.h>
-
 @interface HTMLPurifier_AttrDef_HTML_IDTest : HTMLPurifier_AttrDefHarness
 {
     HTMLPurifier_AttrDef_HTML_ID* def;

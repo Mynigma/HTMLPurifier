@@ -96,6 +96,7 @@ NSString* decodeXMLEntities(NSString* string);
 BOOL ctype_lower (NSString* text);
 BOOL ctype_alnum(NSString* string);
 
+BOOL stringIsNumeric(NSString *str);
 
 BOOL is_numeric(NSString* string);
 NSString* trim(NSString* string);

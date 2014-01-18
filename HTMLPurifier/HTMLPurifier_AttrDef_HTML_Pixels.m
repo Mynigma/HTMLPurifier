@@ -53,15 +53,16 @@
     }
     NSUInteger length = string.length;
     
-    if ([substr(string,length - 2) isEqual:@"px"])
+    if ((length >= 2) && [substr(string,length - 2) isEqual:@"px"])
     {
         string = [string substringToIndex:(length - 2)];
     }
-    if ([string isKindOfClass:[NSNumber class]])
+    if (!stringIsNumeric(string))
     {
         return nil;
     }
-    NSNumber* num = @([string intValue]);
+    
+    int num = [string intValue];
     
     if (num < 0)
     {
@@ -71,12 +72,13 @@
     // upper-bound value, extremely high values can
     // crash operating systems, see <http://ha.ckers.org/imagecrash.html>
     // WARNING, above link WILL crash you if you're using Windows
+    NSNumber* numToNum = @(num);
     
-    if (max && (num > max))
+    if (max && (numToNum > max))
     {
         return [NSString stringWithFormat:@"%@",max];
     }
-    return [NSString stringWithFormat:@"%@",num];
+    return [NSString stringWithFormat:@"%@",numToNum];
 }
 
 /**

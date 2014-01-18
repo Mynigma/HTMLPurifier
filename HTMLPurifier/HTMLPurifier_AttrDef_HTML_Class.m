@@ -28,13 +28,13 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSArray*) splitWithString:(NSString*)string Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSArray*) splitWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     // really, this twiddle should be lazy loaded
     NSString* name = [(HTMLPurifier_Doctype*)[(HTMLPurifier_HTMLDefinition*)[config getDefinition:@"HTML"] doctype] name];
     if ([name isEqual:@"XHTML 1.1"] || [name isEqual:@"XHTML 2.0"])
     {
-        return [super splitWithString:string Config:config Context:context];
+        return [super splitWithString:string config:config context:context];
     }
     else
     {
@@ -48,7 +48,7 @@
  * @param HTMLPurifier_Context $context
  * @return array
  */
--(NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens Config:(HTMLPurifier_Config*)config Context:(HTMLPurifier_Context*)context
+-(NSMutableArray*) filterWithTokens:(NSMutableArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     NSMutableArray* allowed = (NSMutableArray*)[[config get:@"Attr.AllowedClasses"] mutableCopy];
     NSMutableArray* forbidden = (NSMutableArray*)[[config get:@"Attr.ForbiddenClasses"] mutableCopy];
