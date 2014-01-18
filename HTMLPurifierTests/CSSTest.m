@@ -198,6 +198,8 @@
 
 }
 
+
+/*
 - (void)testProprietary
 {
     [super.config setString:@"CSS.Proprietary" object:@YES];
@@ -228,7 +230,7 @@
     [self assertDef:@"display:none;"];
     [self assertDef:@"visibility:visible;"];
     [self assertDef:@"overflow:scroll;"];
-}
+}*/
 
 
 @end

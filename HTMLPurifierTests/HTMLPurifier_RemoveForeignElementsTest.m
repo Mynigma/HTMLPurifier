@@ -90,6 +90,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
     XCTAssertEqualObjects([self runOnString:testString], testString);
 }
 
+
 - (void)testPreserveRecognizedElements
 {
     NSString* testString = @"This is <b>bold text</b>.";

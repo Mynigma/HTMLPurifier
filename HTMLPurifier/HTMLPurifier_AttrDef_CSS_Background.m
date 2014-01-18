@@ -14,9 +14,9 @@
 
 @implementation HTMLPurifier_AttrDef_CSS_Background
 
-    /**
-     * @param HTMLPurifier_Config $config
-     */
+/**
+ * @param HTMLPurifier_Config $config
+ */
 - (id)initWithConfig:(HTMLPurifier_Config*)config
 {
     self = [super init];
@@ -32,69 +32,75 @@
     return self;
 }
 
-    /**
-     * @param string $string
-     * @param HTMLPurifier_Config $config
-     * @param HTMLPurifier_Context $context
-     * @return bool|string
-     */
+/**
+ * @param string $string
+ * @param HTMLPurifier_Config $config
+ * @param HTMLPurifier_Context $context
+ * @return bool|string
+ */
 - (NSString*)validateWithString:(NSString *)someString config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
+{
+    // regular pre-processing
+    NSString* string = [self parseCDATAWithString:someString];
+    if ([string isEqualTo:@""]) {
+        return nil;
+    }
+
+    // munge rgb() decl if necessary
+    string = [self mungeRgbWithString:string];
+
+    // assumes URI doesn't have spaces in it
+    NSArray* bits = explode(@" ", string); // bits to process
+
+    NSMutableDictionary* caught = [NSMutableDictionary dictionaryWithDictionary:@{@"color":@NO, @"image":@NO, @"repeat":@NO, @"attachment":@NO, @"position":@NO}];
+
+
+    NSInteger i = 0; // number of catches
+
+    NSString* r = nil;
+
+    for(NSString* bit in bits)
     {
-        // regular pre-processing
-        NSString* string = [self parseCDATAWithString:someString];
-        if ([string isEqualTo:@""]) {
-            return nil;
-        }
-
-        // munge rgb() decl if necessary
-        string = [self mungeRgbWithString:string];
-
-        // assumes URI doesn't have spaces in it
-        NSArray* bits = explode(@" ", string); // bits to process
-
-        NSMutableDictionary* caught = [NSMutableDictionary dictionaryWithDictionary:@{@"color":@NO, @"image":@NO, @"repeat":@NO, @"attachment":@NO, @"position":@NO}];
-
-        NSInteger i = 0; // number of catches
-
-        NSString* r = nil;
-
-        for(NSString* bit in bits)
+        if ([bit isEqualTo:@""])
         {
-            if ([bit isEqualTo:@""]) {
-                continue;
-            }
-            for(NSString* key in caught)
-            {
-                if(![key isEqualTo:@"position"])
-                {
-                    if(![[caught objectForKey:@"position"] isEqualTo:@NO])
-                        continue;
-                    r = [[self->info objectForKey:[NSString stringWithFormat:@"background-%@", key]] validateWithString:bit config:config context:context];
-                }
-                else
-                {
-                    r = bit;
-                }
-                if(!r)
-                    continue;
+            continue;
+        }
+        for(NSString* key in caught)
+        {
+            NSObject* status = caught[key];
 
-                if ([key  isEqualTo:@"position"])
-                {
-                    if([[caught objectForKey:@"position"] isEqualTo:@NO])
+            if(![key isEqualTo:@"position"])
+            {
+                if(![status isEqualTo:@NO])
+                    continue;
+                r = [[info objectForKey:[NSString stringWithFormat:@"background-%@", key]] validateWithString:bit config:config context:context];
+            }
+            else
+            {
+                r = bit;
+            }
+            if(!r)
+                continue;
+
+            if ([key isEqualTo:@"position"])
+            {
+                if([status isEqualTo:@NO])
                 {
                     [caught setObject:@"" forKey:key];
                 }
                 [caught setObject:[NSString stringWithFormat:@"%@%@ ",[[caught objectForKey:key] copy], r] forKey:key];
-                }
-                else
-                {
-                    [caught setObject:r forKey:key];
-                }
-                i++;
-                break;
             }
+            else
+            {
+                [caught setObject:r forKey:key];
+            }
+            i++;
+            break;
+        }
+    }
 
-        if(i==0) {
+        if(i==0)
+        {
             return false;
         }
         if(![[caught objectForKey:@"position"] isEqualTo:@NO])
@@ -103,20 +109,20 @@
         }
 
         NSMutableArray* ret = [NSMutableArray new];
-            for(NSObject* key in caught)
-            {
-                NSObject* value = caught[key];
-                if([value isEqualTo:@NO])
-                    continue;
-                [ret addObject:value];
-            }
+        for(NSObject* key in caught)
+        {
+            NSObject* value = caught[key];
+            if([value isEqualTo:@NO])
+                continue;
+            [ret addObject:value];
+        }
 
-        if (ret.count==0) {
+        if (ret.count==0)
+        {
             return nil;
         }
         return implode(@" ", ret);
     }
-    return nil;
-}
+
 
 @end
