@@ -289,6 +289,17 @@ BOOL preg_match_2(NSString* pattern, NSString* subject)
     return (result != nil);
 }
 
+BOOL preg_match_2_WithLineBreak(NSString* pattern, NSString* subject)
+{
+    NSError* error = nil;
+    
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive | NSRegularExpressionDotMatchesLineSeparators error:&error];
+    
+    NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0,subject.length)];
+    
+    return (result != nil);
+}
+
 
 //Returns all matches & subpattern matches
 // Structure is array of arrays
@@ -380,6 +391,32 @@ BOOL preg_match_3(NSString* pattern, NSString* subject, NSMutableArray* matches)
             [matches addObject:@""];
     }
 
+    //Matched at least one thing
+    return YES;
+}
+
+BOOL preg_match_3_withLineBreak(NSString* pattern, NSString* subject, NSMutableArray* matches)
+{
+    NSError* error = nil;
+    
+    NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive | NSRegularExpressionDotMatchesLineSeparators error:&error];
+    
+    NSTextCheckingResult* result = [regex firstMatchInString:subject options:0 range:NSMakeRange(0, subject.length)];
+    
+    [matches removeAllObjects];
+    
+    // matched nothing?
+    if (result == nil)
+        return NO;
+    
+    for(NSUInteger i = 0; i<result.numberOfRanges; i++)
+    {
+        if([result rangeAtIndex:i].location!=NSNotFound)
+            [matches addObject:[subject substringWithRange:[result rangeAtIndex:i]]];
+        else
+            [matches addObject:@""];
+    }
+    
     //Matched at least one thing
     return YES;
 }
@@ -1005,8 +1042,21 @@ NSDictionary* dict_merge_2(NSDictionary* dict1, NSDictionary* dict2)
 
 
 //TODO array_splice
-NSArray* array_splice_4 (NSArray* input, NSInteger* offset, NSInteger* length, NSObject* replacement)
+NSArray* array_splice_4 (NSArray* ninput, NSInteger offset, NSInteger length, NSArray* replacement)
 {
+    NSMutableArray* input = [ninput mutableCopy];
+    if (offset >= 0) {
+        if (length > 0)
+        {
+            NSInteger maxLength = [input count] - offset;
+            if (maxLength < length)
+                length = maxLength;
+            [input replaceObjectsInRange:NSMakeRange(offset,length) withObjectsFromArray:replacement];
+            return input;
+        }
+        // TODO length <=0
+    }
+    //TODO offset < 0
     return nil;
 }
 
@@ -1029,9 +1079,9 @@ NSInteger hexdec(NSString* hex_string)
     return result;
 }
 
-NSString* dechex(NSString* hex_string)
+NSString* dechex(NSString* dec_string)
 {
-    return [NSString stringWithFormat:@"%lX", (long)hex_string.integerValue];
+    return [NSString stringWithFormat:@"%lX", (long)dec_string.integerValue];
 }
 
 

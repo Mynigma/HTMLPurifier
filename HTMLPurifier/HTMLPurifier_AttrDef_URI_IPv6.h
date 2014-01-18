@@ -16,6 +16,6 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) validateWithAip:(NSString *)aIP Config:(HTMLPurifier_Config *)config Context:(HTMLPurifier_Context *)context;
+-(NSString*) validateWithString:(NSString *)aIP config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
 @end
