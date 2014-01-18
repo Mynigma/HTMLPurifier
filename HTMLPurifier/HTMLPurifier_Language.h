@@ -76,7 +76,7 @@
      * @param string $key string identifier of message
      * @return string localised message
      */
--(NSString*)getMessage:(NSString*)key;
+- (NSString*)getMessage:(NSString*)key;
 
     /**
      * Retrieves a localised error name.

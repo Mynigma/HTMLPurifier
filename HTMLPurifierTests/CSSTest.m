@@ -116,20 +116,48 @@
     [self assertDef:@"border-width:5px 1px 4px 2px;"];
 }
 
-- (void)test
+- (void)testBorderTopWidth
 {
     [self assertDef:@"border-top-width:-12px;" expected:nil];
+}
+
+- (void)testLetterSpacingNormal
+{
     [self assertDef:@"letter-spacing:normal;"];
+}
+
+- (void)testLetterSpacing2px
+{
     [self assertDef:@"letter-spacing:2px;"];
+}
+
+- (void)testWordSpacingNormal
+{
     [self assertDef:@"word-spacing:normal;"];
+}
+
+- (void)testWordSpacing3em
+{
     [self assertDef:@"word-spacing:3em;"];
+}
+
+- (void)testFontSize200
+{
     [self assertDef:@"font-size:200%;"];
+}
+
+- (void)testFontSizeLarger
+{
     [self assertDef:@"font-size:larger;"];
     [self assertDef:@"font-size:12pt;"];
     [self assertDef:@"line-height:2;"];
     [self assertDef:@"line-height:2em;"];
     [self assertDef:@"line-height:20%;"];
     [self assertDef:@"line-height:normal;"];
+}
+
+- (void)testMore
+{
     [self assertDef:@"line-height:-20%;" expected:nil];
     [self assertDef:@"margin-left:5px;"];
     [self assertDef:@"margin-right:20%;"];
@@ -142,6 +170,10 @@
     [self assertDef:@"text-indent:3em;"];
     [self assertDef:@"text-indent:5%;"];
     [self assertDef:@"text-indent:-3em;"];
+}
+
+- (void)testEvenMore
+{
     [self assertDef:@"width:50%;"];
     [self assertDef:@"width:50px;"];
     [self assertDef:@"width:auto;"];

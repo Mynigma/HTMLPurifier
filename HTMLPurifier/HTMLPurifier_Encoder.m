@@ -21,6 +21,7 @@
 #import "HTMLPurifier_Encoder.h"
 #import "HTMLPurifier.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_Config.h"
 
 @implementation HTMLPurifier_Encoder
 
@@ -510,12 +511,15 @@
 //     * @param HTMLPurifier_Context $context
 //     * @return string
 //     */
-//    public static function convertToUTF8($str, $config, $context)
-//    {
-//        $encoding = $config->get('Core.Encoding');
-//        if ($encoding === 'utf-8') {
-//            return $str;
-//        }
++ (NSString*)convertToUTF8:(NSString*)str config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+{
+    NSNumber* encoding = (NSNumber*)[config get:@"Core.Encoding"];
+    if (encoding.integerValue == NSUTF8StringEncoding)
+    {
+        return str;
+    }
+    return [[NSString alloc] initWithData:[str dataUsingEncoding:encoding.integerValue] encoding:NSUTF8StringEncoding];
+}
 //        static $iconv = null;
 //        if ($iconv === null) {
 //            $iconv = self::iconvAvailable();
@@ -558,7 +562,24 @@
 //     * @note Currently, this is a lossy conversion, with unexpressable
 //     *       characters being omitted.
 //     */
-//    public static function convertFromUTF8($str, $config, $context)
++ (NSString*)convertFromUTF8:(NSString*)passedStr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+{
+    NSString* str = passedStr;
+    NSNumber* encoding = (NSNumber*)[config get:@"Core.Encoding"];
+    NSNumber* escape = (NSNumber*)[config get:@"Core.EscapeNonASCIICharacters"];
+
+    if (encoding.integerValue == NSUTF8StringEncoding)
+    {
+        return str;
+    }
+
+    if(escape.boolValue)
+    {
+        [self convertToASCIIDumbLossless:str];
+    }
+
+    return [[NSString alloc] initWithData:[str dataUsingEncoding:encoding.integerValue allowLossyConversion:!escape.boolValue] encoding:NSUTF8StringEncoding];
+}
 //    {
 //        $encoding = $config->get('Core.Encoding');
 //        if ($escape = $config->get('Core.EscapeNonASCIICharacters')) {
@@ -612,7 +633,10 @@
 //     * @note Sort of with cleanUTF8() but it assumes that $str is
 //     *       well-formed UTF-8
 //     */
-//    public static function convertToASCIIDumbLossless($str)
++ (NSString*)convertToASCIIDumbLossless:(NSString*)str
+{
+    return str;
+}
 //    {
 //        $bytesleft = 0;
 //        $result = '';

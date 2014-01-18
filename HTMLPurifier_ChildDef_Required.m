@@ -22,14 +22,20 @@
         NSObject* elements = newElements;
         if([elements isKindOfClass:[NSString class]])
         {
-            elements = str_replace(@" ", @"", elements);
-            elements = explode(@"|", elements);
+            elements = str_replace(@" ", @"", (NSString*)elements);
+            elements = explode(@"|", (NSString*)elements);
         }
         //NSDictionary* dict = [NSDictionary alloc] init
         //NSArray* keys = [(NSArray*)elements;
 
     }
     return self;
+}
+
+
+- (NSObject*)validateChildren:(NSArray *)children config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
+{
+    return nil;
 }
 
 //    /**

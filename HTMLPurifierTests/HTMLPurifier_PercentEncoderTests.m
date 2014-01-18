@@ -32,12 +32,6 @@
     [super tearDown];
 }
 
-- (void)testExample
-{
-    HTMLPurifier_Config* config = [super config];
-    
-}
-
 - (void)assertDecode:(NSString*)string
 {
     [self assertDecode:string expect:@YES];

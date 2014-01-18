@@ -44,7 +44,7 @@
     NSString* comment_regexp = nil; // $config->get('HTML.AllowedCommentsRegexp');
     BOOL check_comments = NO; //comment_lookup !== array() || $comment_regexp !== null;
 
-    BOOL remove_script_contents = NO; // $config->get('Core.RemoveScriptContents');
+    //BOOL remove_script_contents = NO; // $config->get('Core.RemoveScriptContents');
     NSMutableDictionary* hidden_elements = [[config get:@"Core.HiddenElements"] mutableCopy];
 
     /*

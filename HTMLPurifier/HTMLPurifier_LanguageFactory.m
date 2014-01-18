@@ -28,4 +28,29 @@
     return nil;
 }
 
++ (HTMLPurifier_LanguageFactory*)instanceWithPrototype:(HTMLPurifier_LanguageFactory*)prototype
+{
+    return nil;
+}
+
+- (void)setup
+{
+
+}
+
+- (HTMLPurifier_Language*)create:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+{
+    return nil;
+}
+
+- (NSString*)getFallbackFor:(NSString*)code
+{
+    return nil;
+}
+
+- (NSString*)loadLanguage:(NSString*)code
+{
+    return nil;
+}
+
 @end

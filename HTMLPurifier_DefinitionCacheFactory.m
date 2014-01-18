@@ -96,4 +96,10 @@ static HTMLPurifier_DefinitionCacheFactory* theFactory;
         [self decorators[decorator.name] = decorator;
      }*/
 }
+
+- (void)registerWithShortName:(NSString*)shortName longName:(NSString*)longName
+{
+
+}
+
 @end

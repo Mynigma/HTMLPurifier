@@ -47,7 +47,7 @@
         else
         {
             NSObject* start = [[HTMLPurifier_Token_Start alloc] initWithName:self.name attr:self.attr line:self.line col:self.col armor:self.armor];
-            NSObject* end = [[HTMLPurifier_Token_End alloc] initWithName:self.name attr:@[] line:_endLine col:_endCol armor:self.endArmor];
+            NSObject* end = [[HTMLPurifier_Token_End alloc] initWithName:self.name attr:@{} line:_endLine col:_endCol armor:self.endArmor];
             return @[start, end];
         }
     }

@@ -430,7 +430,7 @@ static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
             theCSSDefinition = (HTMLPurifier_CSSDefinition*)def;
 
         if([type isEqualToString:@"HTML"])
-            theHTMLDefinition = (HTMLPurifier_CSSDefinition*)def;
+            theHTMLDefinition = (HTMLPurifier_HTMLDefinition*)def;
 
         // set it up
         lock = type;

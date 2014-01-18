@@ -596,7 +596,7 @@
     if (injector.integerValue > -1)
     {
         // determine appropriate skips
-        NSArray* oldskip = old[0] ? [old[0] skip] : @[];
+        NSArray* oldskip = old[0] ? (NSArray*)[old[0] skip] : @[];
         for(HTMLPurifier_Token* object in tokenArray)
         {
             [object setSkip:[oldskip mutableCopy]];
