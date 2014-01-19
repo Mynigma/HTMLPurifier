@@ -44,7 +44,9 @@
     
     NSArray* declarations = explode(@";",css);
     NSMutableDictionary* propvalues = [NSMutableDictionary new];
-    
+
+    //array of propvalue_keys (for preserving sort order)
+    NSMutableArray* propvalue_keys = [NSMutableArray new];
     /**
      * Name of the current CSS property being validated.
      */
@@ -53,7 +55,7 @@
     
     for (NSString* declaration in declarations)
     {
-        if (!declaration)
+        if (declaration.length==0)
         {
             continue;
         }
@@ -113,7 +115,10 @@
         {
             continue;
         }
+        if([propvalue_keys containsObject:property_string])
+            [propvalue_keys removeObject:property_string];
         propvalues[property_string] = result;
+        [propvalue_keys addObject:property_string];
     }
     
     [context destroy:@"CurrentCSSProperty"];
@@ -123,7 +128,7 @@
     // duplicates. Perhaps config to optimize it, but not now.
     
     NSString* new_declarations = @"";
-    for (NSString* key in propvalues.allKeys)
+    for (NSString* key in propvalue_keys)
     {
         new_declarations = [new_declarations stringByAppendingString:[NSString stringWithFormat:@"%@:%@;",key,propvalues[key]]];
     }
