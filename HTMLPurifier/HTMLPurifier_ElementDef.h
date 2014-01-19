@@ -57,13 +57,13 @@
      * List of tags HTMLPurifier_AttrTransform to be done before validation.
      * @type array
      */
-@property NSMutableArray* attr_transform_pre;
+@property NSMutableDictionary* attr_transform_pre;
 
     /**
      * List of tags HTMLPurifier_AttrTransform to be done after validation.
      * @type array
      */
-@property NSMutableArray* attr_transform_post;
+@property NSMutableDictionary* attr_transform_post;
 
     /**
      * HTMLPurifier_ChildDef of this tag.

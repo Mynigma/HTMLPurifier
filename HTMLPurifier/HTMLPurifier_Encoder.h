@@ -15,6 +15,9 @@
 
 + (void)muteErrorHandler;
 
++ (NSString*)convertToASCIIDumbLossless:(NSString*)str;
+
+
 //    /**
 //     * iconv wrapper which mutes errors, but doesn't work around bugs.
 //     * @param string $in Input encoding

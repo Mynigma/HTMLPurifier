@@ -63,7 +63,7 @@
     
     // look behind for space or string start
     NSString* pattern = @"(?:(?<=\\s)|\\A)";
-    //The actuall pattern
+    //The actual pattern
     pattern = [pattern stringByAppendingString:@"((?:--|-?[A-Za-z_])[A-Za-z_\\-0-9]*)"];
     // look ahead for space or string end
     pattern = [pattern stringByAppendingString:@"(?:(?=\\s)|\\z)"];

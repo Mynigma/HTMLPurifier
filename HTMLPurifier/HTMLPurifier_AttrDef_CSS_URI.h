@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifier_AttrDef.h"
+#import "HTMLPurifier_AttrDef_URI.h"
 
-@interface HTMLPurifier_AttrDef_CSS_URI : HTMLPurifier_AttrDef
+@interface HTMLPurifier_AttrDef_CSS_URI : HTMLPurifier_AttrDef_URI
 
 /*
  public function __construct()

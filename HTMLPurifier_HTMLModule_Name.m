@@ -28,7 +28,7 @@
             element.attr[@"name"] = @"CDATA";
             if(![config get:@"HTML.Attr.Name.UseCDATA"])
             {
-                [element.attr_transform_post addObject:[HTMLPurifier_AttrTransform_NameSync new]];
+                [element.attr_transform_post setObject:[HTMLPurifier_AttrTransform_NameSync new] forKey:@(element.attr_transform_post.allKeys.count)];
             }
         }
     }

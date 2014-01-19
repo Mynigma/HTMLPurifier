@@ -18,8 +18,8 @@
     if (self) {
         _standalone = YES;
         _attr = [NSMutableDictionary new];
-        _attr_transform_post = [NSMutableArray new];
-        _attr_transform_pre = [NSMutableArray new];
+        _attr_transform_post = [NSMutableDictionary new];
+        _attr_transform_pre = [NSMutableDictionary new];
         _descendants_are_inline = NO;
         _required_attr = [NSMutableArray new];
         _excludes = [NSMutableDictionary new];
@@ -74,8 +74,8 @@
         }
 
         [self _mergeIntoAssocArray:self.excludes from:def.excludes];
-        [self.attr_transform_pre addObjectsFromArray:def.attr_transform_pre];
-        [self.attr_transform_post addObjectsFromArray:def.attr_transform_post];
+        [self _mergeIntoAssocArray:self.attr_transform_pre from:def.attr_transform_pre];
+        [self _mergeIntoAssocArray:self.attr_transform_post from:def.attr_transform_post];
 
         if (def.content_model.length>0) {
             self.content_model = [def.content_model stringByReplacingOccurrencesOfString:@"#SUPER" withString:self.content_model];

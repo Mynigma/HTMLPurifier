@@ -110,13 +110,13 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Length alloc] init]]] forKey:@"letter-spacing"];
 
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[@"normal"]] forKey:@"word-spacing"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [HTMLPurifier_AttrDef_CSS_Length new]]] forKey:@"word-spacing"];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"xx-small", @"x-small", @"small", @"medium", @"large", @"x-large", @"xx-large", @"larger", @"smaller"]], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] init]]] forKey:@"font-size"];
 
      self.info[@"line-height"] = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
 
-     HTMLPurifier_AttrDef_CSS_Composite* margin = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
+     HTMLPurifier_AttrDef_CSS_Composite* margin = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
 
      [self.info setObject:margin forKey:@"margin-top"];
      [self.info setObject:margin forKey:@"margin-bottom"];

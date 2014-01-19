@@ -82,13 +82,13 @@
      * List of HTMLPurifier_AttrTransform to be performed before validation.
      * @type array
      */
-@property NSMutableDictionary* info_attr_transform_pre;
+@property NSMutableArray* info_attr_transform_pre;
 
     /**
      * List of HTMLPurifier_AttrTransform to be performed after validation.
      * @type array
      */
-@property NSMutableDictionary* info_attr_transform_post;
+@property NSMutableArray* info_attr_transform_post;
 
     /**
      * List of HTMLPurifier_Injector to be performed during well-formedness fixing.

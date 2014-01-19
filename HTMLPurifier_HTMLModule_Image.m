@@ -23,8 +23,8 @@
         NSNumber* max = (NSNumber*)[config get:@"HTML.MaxImgLength"];
         HTMLPurifier_ElementDef* img = [self addElement:@"img" type:@"Inline" contents:@"Empty" attrIncludes:@"Common" attr:@{@"alt*":@"Text", @"height":[NSString stringWithFormat:@"Pixels#%@", max], @"width":[NSString stringWithFormat:@"Pixels#%@", max], @"longdesc":@"URI", @"src*":[[HTMLPurifier_AttrDef_URI alloc] initWithNumber:@YES]}];
         HTMLPurifier_AttrTransform_ImgRequired* transform = [HTMLPurifier_AttrTransform_ImgRequired new];
-        [img.attr_transform_post addObject:transform];
-        [img.attr_transform_pre addObject:transform];
+        [img.attr_transform_post setObject:transform forKey:@(img.attr_transform_post.allKeys.count)];
+        [img.attr_transform_pre setObject:transform forKey:@(img.attr_transform_pre.allKeys.count)];
     }
     return self;
 }

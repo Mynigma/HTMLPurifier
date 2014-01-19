@@ -29,8 +29,8 @@
         _attr_collections = [NSMutableDictionary new];
         _content_sets = [NSMutableDictionary new];
         _info_tag_transform = [NSMutableDictionary new];
-        _info_attr_transform_pre = [NSMutableDictionary new];
-        _info_attr_transform_post = [NSMutableDictionary new];
+        _info_attr_transform_pre = [NSMutableArray new];
+        _info_attr_transform_post = [NSMutableArray new];
         _info_injector = [NSMutableArray new];
         _defines_child_def = NO;
         _safe = YES;

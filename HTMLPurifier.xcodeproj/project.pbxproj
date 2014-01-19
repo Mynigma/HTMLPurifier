@@ -166,6 +166,7 @@
 		1EBB82081882E585008B7FA4 /* HTMLPurifier_Token_Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB82061882E585008B7FA4 /* HTMLPurifier_Token_Text.m */; };
 		1EBB820B1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EBB82091882E65E008B7FA4 /* HTMLPurifier_TokenFactory.h */; };
 		1EBB820C1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB820A1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.m */; };
+		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; };
 		1ED0392C1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0392A1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h */; };
 		1ED0392D1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0392B1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m */; };
 		1ED03930188057C60075F6A4 /* HTMLPurifier_AttrDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0392E188057C60075F6A4 /* HTMLPurifier_AttrDef.h */; };
@@ -478,6 +479,7 @@
 		1EBB82061882E585008B7FA4 /* HTMLPurifier_Token_Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Token_Text.m; sourceTree = "<group>"; };
 		1EBB82091882E65E008B7FA4 /* HTMLPurifier_TokenFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_TokenFactory.h; sourceTree = "<group>"; };
 		1EBB820A1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_TokenFactory.m; sourceTree = "<group>"; };
+		1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_EncoderTest.m; sourceTree = "<group>"; };
 		1ED0392A1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_CSSDefinition.h; sourceTree = "<group>"; };
 		1ED0392B1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_CSSDefinition.m; sourceTree = "<group>"; };
 		1ED0392E188057C60075F6A4 /* HTMLPurifier_AttrDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef.h; sourceTree = SOURCE_ROOT; };
@@ -1094,6 +1096,7 @@
 		80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */ = {
 			isa = PBXGroup;
 			children = (
+				1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */,
 				1E35ECD61886F6D400E8FF31 /* HTMLPurifier_Harness.h */,
 				1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */,
 				808CB9C51887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.h */,
@@ -1520,6 +1523,7 @@
 				808CB9D9188AEA3A00AFB841 /* HTMLPurifier_AttrDef_HTML_LengthTest.m in Sources */,
 				1E35ECDE188747B700E8FF31 /* HTMLPurifier_RemoveForeignElementsTest.m in Sources */,
 				1E35ECEC188813D300E8FF31 /* EntityParserTest.m in Sources */,
+				1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */,
 				808CB9E8188B030700AFB841 /* HTMLPurifier_AttrDef_URI_IPv4Test.m in Sources */,
 				808CB9D1188A862500AFB841 /* HTMLPurifier_AttrDef_HTML_LinkTypesTest.m in Sources */,
 				1EA6BD67188A084400C2BAE7 /* CSSTest.m in Sources */,
