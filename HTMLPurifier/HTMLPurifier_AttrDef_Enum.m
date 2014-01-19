@@ -50,7 +50,7 @@
     return result?newString:nil;
 }
 
-- (HTMLPurifier_AttrDef_Enum*)makeWithString:(NSString*)string;
+- (HTMLPurifier_AttrDef_Enum*)make:(NSString*)string;
 {
     BOOL sensitive;
     if (string.length > 2 && [string characterAtIndex:0] == 's' && [string characterAtIndex:1] == ':') {

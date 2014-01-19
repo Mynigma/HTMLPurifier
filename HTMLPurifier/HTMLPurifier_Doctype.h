@@ -33,7 +33,7 @@
      * List of modules to use for tidying up code
      * @type array
      */
-@property NSMutableDictionary* tidyModules;
+@property NSMutableArray* tidyModules;
 
     /**
      * Is the language derived from XML (i.e. XHTML)?
@@ -45,7 +45,7 @@
      * List of aliases for this doctype
      * @type array
      */
-@property NSMutableDictionary* aliases;
+@property NSMutableArray* aliases;
 
     /**
      * Public DTD identifier
@@ -60,7 +60,10 @@
 @property NSString* dtdSystem;
 
 
-- (id)initWithName:(NSString*)name xml:(BOOL)xml modules:(NSMutableArray*)modules tidyModules:(NSMutableDictionary*)tidyModules aliases:(NSMutableDictionary*)aliases dtdPublic:(NSString*)dtdPublic dtdSystem:(NSString*)dtdSystem;
+- (id)initWithName:(NSString*)name xml:(BOOL)xml modules:(NSArray*)modules tidyModules:(NSArray*)tidyModules aliases:(NSArray*)aliases dtdPublic:(NSString*)dtdPublic dtdSystem:(NSString*)dtdSystem;
+
+
+- (id)initWithName:(NSString*)name;
 
 
 @end

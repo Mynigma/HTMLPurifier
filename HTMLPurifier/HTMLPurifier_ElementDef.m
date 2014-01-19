@@ -22,7 +22,7 @@
         _attr_transform_pre = [NSMutableDictionary new];
         _descendants_are_inline = NO;
         _required_attr = [NSMutableArray new];
-        _excludes = [NSMutableDictionary new];
+        _excludes = [NSMutableSet new];
         _autoclose = [NSMutableArray new];
     }
     return self;
@@ -73,7 +73,7 @@
             self.attr[key] = v;
         }
 
-        [self _mergeIntoAssocArray:self.excludes from:def.excludes];
+        [self.excludes unionSet:def.excludes];
         [self _mergeIntoAssocArray:self.attr_transform_pre from:def.attr_transform_pre];
         [self _mergeIntoAssocArray:self.attr_transform_post from:def.attr_transform_post];
 
@@ -117,6 +117,26 @@
         }
     }
 
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_ElementDef* newElementDef = [[[self class] allocWithZone:zone] init];
+
+    [newElementDef setAttr:self.attr];
+    [newElementDef setAttr_transform_post:self.attr_transform_post];
+    [newElementDef setAttr_transform_pre:self.attr_transform_pre];
+    [newElementDef setChild:self.child];
+    [newElementDef setContent_model:self.content_model];
+    [newElementDef setContent_model_type:self.content_model_type];
+    [newElementDef setDescendants_are_inline:self.descendants_are_inline];
+    [newElementDef setExcludes:self.excludes];
+    [newElementDef setFormatting:self.formatting];
+    [newElementDef setRequired_attr:self.required_attr];
+    [newElementDef setStandalone:self.standalone];
+    [newElementDef setWrap:self.wrap];
+
+    return newElementDef;
+}
 
 
 @end

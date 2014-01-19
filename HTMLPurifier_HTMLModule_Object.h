@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_HTMLModule.h"
 
-@interface HTMLPurifer_HTMLModule_Object : HTMLPurifier_HTMLModule
+@interface HTMLPurifier_HTMLModule_Object : HTMLPurifier_HTMLModule
 
 
 - (id)initWithConfig:(HTMLPurifier_Config*)config;

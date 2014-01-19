@@ -67,6 +67,7 @@
  */
 - (HTMLPurifier_AttrDef*)initWithString:(NSString*)string;
 
+- (HTMLPurifier_AttrDef*)make:(NSString*)string;
 
 /**
  * Parses a possibly escaped CSS string and returns the "pure"

@@ -85,7 +85,7 @@
  * @param string $string
  * @return HTMLPurifier_AttrDef
  */
--(HTMLPurifier_AttrDef*) makeWithString:(NSString*)string
+-(HTMLPurifier_AttrDef*) make:(NSString*)string
 {
     if ([string isEqual:@""])
     {

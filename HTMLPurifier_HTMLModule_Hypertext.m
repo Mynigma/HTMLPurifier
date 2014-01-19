@@ -20,7 +20,7 @@
         self.name = @"Hypertext";
         HTMLPurifier_ElementDef* a = [self addElement:@"a" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:@{@"href":@"URI",@"rel":[[HTMLPurifier_AttrDef_HTML_LinkTypes alloc] initWithName:@"rel"], @"rev":[[HTMLPurifier_AttrDef_HTML_LinkTypes alloc] initWithName:@"rev"]}];
         a.formatting = YES;
-        a.excludes = [@{@"a":@YES} mutableCopy];
+        a.excludes = [NSMutableSet setWithObject:@"a"];
     }
     return self;
 }

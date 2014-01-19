@@ -52,7 +52,7 @@
     NSMutableDictionary* d_defs = [definition info_global_attr];
 
     // don't update token until the very end, to ensure an atomic update
-    NSMutableDictionary* attr = [[token valueForKey:@"attr"] mutableCopy];
+    NSMutableDictionary* attr = [token.attr mutableCopy];
 
     /*
      // do global transformations (pre)
@@ -83,7 +83,9 @@
     // create alias to this element's attribute definition array, see
     // also d_defs (global attribute definition array)
     // DEFINITION CALL
-    NSMutableDictionary* defs = [definition.info[[token valueForKey:@"name"]] attr];
+    NSDictionary* definitionInfo = definition.info;
+    HTMLPurifier_ElementDef* elementDef = definitionInfo[token.name];
+    NSMutableDictionary* defs = [elementDef attr];
 
     NSString* result = nil;
 

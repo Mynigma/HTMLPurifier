@@ -31,6 +31,22 @@
     return self;
 }
 
+
+/**
+ * Factory method for creating this class from a string.
+ * @param string $string String construction info
+ * @return HTMLPurifier_AttrDef Created AttrDef object corresponding to $string
+ */
+- (HTMLPurifier_AttrDef*)make:(NSString*)string
+{
+    // default implementation, return a flyweight of this object.
+    // If $string has an effect on the returned object (i.e. you
+    // need to overload this method), it is best
+    // to clone or instantiate new copies. (Instantiation is safer.)
+    return self;
+}
+
+
 - (NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     NSLog(@"Calling validateWithString on HTMLPurifier_AttrDef!!");

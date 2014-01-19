@@ -35,7 +35,7 @@
  * @param string $string Name of attribute
  * @return HTMLPurifier_AttrDef_HTML_Bool
  */
--(HTMLPurifier_AttrDef_HTML_Bool*) makeWithString:(NSString*)string;
+-(HTMLPurifier_AttrDef_HTML_Bool*) make:(NSString*)string;
 
 
 @end

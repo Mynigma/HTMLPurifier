@@ -24,7 +24,7 @@
  *       objects (include it anyway if that's the correspondence though).
  * @todo Consider making some member functions protected
  */
-@interface HTMLPurifier_HTMLModule : NSObject
+@interface HTMLPurifier_HTMLModule : NSObject <NSCopying>
 
 
 - (NSObject*)valueForUndefinedKey:(NSString*)key;
@@ -90,6 +90,9 @@
      */
 @property NSMutableArray* info_attr_transform_post;
 
+
+@property NSMutableArray* child;
+
     /**
      * List of HTMLPurifier_Injector to be performed during well-formedness fixing.
      * An injector will only be invoked if all of it's pre-requisites are met;
@@ -97,7 +100,7 @@
      * silently disabled.
      * @type array
      */
-@property NSMutableArray* info_injector;
+@property NSMutableDictionary* info_injector;
 
     /**
      * Boolean flag that indicates whether or not getChildDef is implemented.

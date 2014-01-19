@@ -117,7 +117,7 @@
      * Indexed list of HTMLPurifier_Injector to be used.
      * @type HTMLPurifier_Injector[]
      */
-@property NSMutableArray* info_injector;
+@property NSMutableDictionary* info_injector;
 
     /**
      * Doctype object

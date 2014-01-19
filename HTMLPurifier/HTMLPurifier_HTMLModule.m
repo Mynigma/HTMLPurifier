@@ -8,7 +8,7 @@
 
 #import "HTMLPurifier_HTMLModule.h"
 #import "HTMLPurifier_ChildDef.h"
-//#import "HTMLPurifier_HTMLElementDef.h"
+#import "HTMLPurifier_ElementDef.h"
 
 @implementation HTMLPurifier_HTMLModule
 
@@ -24,6 +24,8 @@
 {
     self = [super init];
     if (self) {
+        _name = NSStringFromClass([self class]);
+
         _elements = [NSMutableArray new];
         _info = [NSMutableDictionary new];
         _attr_collections = [NSMutableDictionary new];
@@ -31,7 +33,7 @@
         _info_tag_transform = [NSMutableDictionary new];
         _info_attr_transform_pre = [NSMutableArray new];
         _info_attr_transform_post = [NSMutableArray new];
-        _info_injector = [NSMutableArray new];
+        _info_injector = [NSMutableDictionary new];
         _defines_child_def = NO;
         _safe = YES;
     }
@@ -69,9 +71,34 @@
  * @return HTMLPurifier_ElementDef Created element definition object, so you
  *         can set advanced parameters
  */
-- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSObject*)contents attrIncludes:(NSObject*)attr_includes attr:(NSDictionary*)att
+- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSObject*)contents attrIncludes:(NSObject*)attr_includes attr:(NSDictionary*)attr
 {
-    return nil;
+    [self.elements addObject:element];
+    // parse content_model
+    NSArray* pair = [self parseContents:contents];
+    NSString* content_model_type = nil;
+    NSString* content_model = nil;
+    if(pair.count>0)
+        content_model_type = pair[0];
+    if(pair.count>1)
+        content_model = pair[1];
+
+    // merge in attribute inclusions
+    [self mergeInAttrIncludes:attr attrIncludes:attr_includes];
+    // add element to content sets
+    if (type)
+    {
+        [self addElementToContentSet:element type:type];
+    }
+    // create element
+    self.info[element] = [HTMLPurifier_ElementDef create:content_model contentModelType:content_model_type attr:attr];
+
+    // literal object $contents means direct child manipulation
+    if ([contents isKindOfClass:[HTMLPurifier_ChildDef class]])
+    {
+        [(HTMLPurifier_ElementDef*)self.info[element] setChild:(HTMLPurifier_ChildDef*)contents];
+    }
+    return self.info[element];
 }
 
 /**
@@ -107,7 +134,7 @@
  *       returned, and the callee needs to take the original $contents
  *       and use it directly.
  */
-- (NSDictionary*)parseContents:(NSString*)contents
+- (NSArray*)parseContents:(NSString*)contents
 {
     return nil;
 }
@@ -147,5 +174,24 @@
 
 }
 
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_HTMLModule* newModule = [[[self class] allocWithZone:zone] init];
+    [newModule setAttr_collections:self.attr_collections];
+    [newModule setChild:self.child];
+    [newModule setContent_sets:self.content_sets];
+    [newModule setDefines_child_def:self.defines_child_def];
+    [newModule setElements:self.elements];
+    [newModule setInfo:self.info];
+    [newModule setInfo_attr_transform_post:self.info_attr_transform_post];
+    [newModule setInfo_attr_transform_pre:self.info_attr_transform_pre];
+    [newModule setInfo_injector:self.info_injector];
+    [newModule setInfo_tag_transform:self.info_tag_transform];
+    [newModule setName:self.name];
+    [newModule setSafe:self.safe];
+
+    return newModule;
+}
 
 @end

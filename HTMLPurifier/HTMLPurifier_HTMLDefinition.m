@@ -10,6 +10,9 @@
 #import "HTMLPurifier_HTMLModule.h"
 #import "HTMLPurifier_HTMLModuleManager.h"
 #import "HTMLPurifier_ElementDef.h"
+#import "HTMLPurifier_Config.h"
+#import "HTMLPurifier_ContentSets.h"
+#import "BasicPHP.h"
 
 
 @implementation HTMLPurifier_HTMLDefinition
@@ -27,7 +30,7 @@
         _info_attr_transform_pre = [NSMutableArray new];
         _info_attr_transform_post = [NSMutableArray new];
         _info_content_sets = [NSMutableDictionary new];
-        _info_injector = [NSMutableArray new];
+        _info_injector = [NSMutableDictionary new];
         _anonModule = nil;
         _typeString = @"HTML";
         _manager = [HTMLPurifier_HTMLModuleManager new];
@@ -120,22 +123,7 @@
     }
 }
 
-/**
- * Extract out the information from the manager
- * @param HTMLPurifier_Config $config
- */
-- (void)processModules:(HTMLPurifier_Config*)config
-{
 
-}
-/**
- * Sets up stuff based on config. We need a better way of doing this.
- * @param HTMLPurifier_Config $config
- */
-- (void)setupConfigStuff:(HTMLPurifier_Config*)config
-{
-
-}
 /**
  * Parses a TinyMCE-flavored Allowed Elements and Attributes list into
  * separate lists for processing. Format is element[attr1|attr2],element2...
@@ -152,289 +140,322 @@
 
 
 
-///**
-// * Extract out the information from the manager
-// * @param HTMLPurifier_Config $config
-// */
-//protected function processModules($config)
-//{
-//    if ($this->_anonModule) {
-//        // for user specific changes
-//        // this is late-loaded so we don't have to deal with PHP4
-//        // reference wonky-ness
-//        $this->manager->addModule($this->_anonModule);
-//        unset($this->_anonModule);
-//    }
-//
-//    $this->manager->setup($config);
-//    $this->doctype = $this->manager->doctype;
-//
-//    foreach ($this->manager->modules as $module) {
-//        foreach ($module->info_tag_transform as $k => $v) {
-//            if ($v === false) {
-//                unset($this->info_tag_transform[$k]);
-//            } else {
-//                $this->info_tag_transform[$k] = $v;
-//            }
-//        }
-//        foreach ($module->info_attr_transform_pre as $k => $v) {
-//            if ($v === false) {
-//                unset($this->info_attr_transform_pre[$k]);
-//            } else {
-//                $this->info_attr_transform_pre[$k] = $v;
-//            }
-//        }
-//        foreach ($module->info_attr_transform_post as $k => $v) {
-//            if ($v === false) {
-//                unset($this->info_attr_transform_post[$k]);
-//            } else {
-//                $this->info_attr_transform_post[$k] = $v;
-//            }
-//        }
-//        foreach ($module->info_injector as $k => $v) {
-//            if ($v === false) {
-//                unset($this->info_injector[$k]);
-//            } else {
-//                $this->info_injector[$k] = $v;
-//            }
-//        }
-//    }
-//    $this->info = $this->manager->getElements();
-//    $this->info_content_sets = $this->manager->contentSets->lookup;
-//}
-//
-///**
-// * Sets up stuff based on config. We need a better way of doing this.
-// * @param HTMLPurifier_Config $config
-// */
-//- (void)setupConfigStuff:(HTMLPurifier_Config*)config
-//{
-//    block_wrapper = [config get:@"HTML.BlockWrapper"];
-//    if (self->info_content_sets[@"Block"][block_wrapper]) {
-//        self->info_block_wrapper = $block_wrapper;
-//    } else {
-//        TRIGGER_ERROR(@"Cannot use non-block element as block wrapper");
-//    }
-//
-//    $parent = $config->get('HTML.Parent');
-//    $def = $this->manager->getElement($parent, true);
-//    if ($def) {
-//        $this->info_parent = $parent;
-//        $this->info_parent_def = $def;
-//    } else {
-//        trigger_error(
-//                      'Cannot use unrecognized element as parent',
-//                      E_USER_ERROR
-//                      );
-//        $this->info_parent_def = $this->manager->getElement($this->info_parent, true);
-//    }
-//
-//    // support template text
-//    $support = "(for information on implementing this, see the support forums) ";
-//
-//    // setup allowed elements -----------------------------------------
-//
-//    $allowed_elements = $config->get('HTML.AllowedElements');
-//    $allowed_attributes = $config->get('HTML.AllowedAttributes'); // retrieve early
-//
-//    if (!is_array($allowed_elements) && !is_array($allowed_attributes)) {
-//        $allowed = $config->get('HTML.Allowed');
-//        if (is_string($allowed)) {
-//            list($allowed_elements, $allowed_attributes) = $this->parseTinyMCEAllowedList($allowed);
-//        }
-//    }
-//
-//    if (is_array($allowed_elements)) {
-//        foreach ($this->info as $name => $d) {
-//            if (!isset($allowed_elements[$name])) {
-//                unset($this->info[$name]);
-//            }
-//            unset($allowed_elements[$name]);
-//        }
-//        // emit errors
-//        foreach ($allowed_elements as $element => $d) {
-//            $element = htmlspecialchars($element); // PHP doesn't escape errors, be careful!
-//            trigger_error("Element '$element' is not supported $support", E_USER_WARNING);
-//        }
-//    }
-//
-//    // setup allowed attributes ---------------------------------------
-//
-//    $allowed_attributes_mutable = $allowed_attributes; // by copy!
-//    if (is_array($allowed_attributes)) {
-//        // This actually doesn't do anything, since we went away from
-//        // global attributes. It's possible that userland code uses
-//        // it, but HTMLModuleManager doesn't!
-//        foreach ($this->info_global_attr as $attr => $x) {
-//            $keys = array($attr, "*@$attr", "*.$attr");
-//            $delete = true;
-//            foreach ($keys as $key) {
-//                if ($delete && isset($allowed_attributes[$key])) {
-//                    $delete = false;
-//                }
-//                if (isset($allowed_attributes_mutable[$key])) {
-//                    unset($allowed_attributes_mutable[$key]);
-//                }
-//            }
-//            if ($delete) {
-//                unset($this->info_global_attr[$attr]);
-//            }
-//        }
-//
-//        foreach ($this->info as $tag => $info) {
-//            foreach ($info->attr as $attr => $x) {
-//                $keys = array("$tag@$attr", $attr, "*@$attr", "$tag.$attr", "*.$attr");
-//                $delete = true;
-//                foreach ($keys as $key) {
-//                    if ($delete && isset($allowed_attributes[$key])) {
-//                        $delete = false;
-//                    }
-//                    if (isset($allowed_attributes_mutable[$key])) {
-//                        unset($allowed_attributes_mutable[$key]);
-//                    }
-//                }
-//                if ($delete) {
-//                    if ($this->info[$tag]->attr[$attr]->required) {
-//                        trigger_error(
-//                                      "Required attribute '$attr' in element '$tag' " .
-//                                      "was not allowed, which means '$tag' will not be allowed either",
-//                                      E_USER_WARNING
-//                                      );
-//                    }
-//                    unset($this->info[$tag]->attr[$attr]);
-//                }
-//            }
-//        }
-//        // emit errors
-//        foreach ($allowed_attributes_mutable as $elattr => $d) {
-//            $bits = preg_split('/[.@]/', $elattr, 2);
-//            $c = count($bits);
-//            switch ($c) {
-//                case 2:
-//                    if ($bits[0] !== '*') {
-//                        $element = htmlspecialchars($bits[0]);
-//                        $attribute = htmlspecialchars($bits[1]);
-//                        if (!isset($this->info[$element])) {
-//                            trigger_error(
-//                                          "Cannot allow attribute '$attribute' if element " .
-//                                          "'$element' is not allowed/supported $support"
-//                                          );
-//                        } else {
-//                            trigger_error(
-//                                          "Attribute '$attribute' in element '$element' not supported $support",
-//                                          E_USER_WARNING
-//                                          );
-//                        }
-//                        break;
-//                    }
-//                    // otherwise fall through
-//                case 1:
-//                    $attribute = htmlspecialchars($bits[0]);
-//                    trigger_error(
-//                                  "Global attribute '$attribute' is not ".
-//                                  "supported in any elements $support",
-//                                  E_USER_WARNING
-//                                  );
-//                    break;
-//            }
-//        }
-//    }
-//
-//    // setup forbidden elements ---------------------------------------
-//
-//    $forbidden_elements   = $config->get('HTML.ForbiddenElements');
-//    $forbidden_attributes = $config->get('HTML.ForbiddenAttributes');
-//
-//    foreach ($this->info as $tag => $info) {
-//        if (isset($forbidden_elements[$tag])) {
-//            unset($this->info[$tag]);
-//            continue;
-//        }
-//        foreach ($info->attr as $attr => $x) {
-//            if (isset($forbidden_attributes["$tag@$attr"]) ||
-//                isset($forbidden_attributes["*@$attr"]) ||
-//                isset($forbidden_attributes[$attr])
-//                ) {
-//                unset($this->info[$tag]->attr[$attr]);
-//                continue;
-//            } elseif (isset($forbidden_attributes["$tag.$attr"])) { // this segment might get removed eventually
-//                                                                    // $tag.$attr are not user supplied, so no worries!
-//                trigger_error(
-//                              "Error with $tag.$attr: tag.attr syntax not supported for " .
-//                              "HTML.ForbiddenAttributes; use tag@attr instead",
-//                              E_USER_WARNING
-//                              );
-//            }
-//        }
-//    }
-//    foreach ($forbidden_attributes as $key => $v) {
-//        if (strlen($key) < 2) {
-//            continue;
-//        }
-//        if ($key[0] != '*') {
-//            continue;
-//        }
-//        if ($key[1] == '.') {
-//            trigger_error(
-//                          "Error with $key: *.attr syntax not supported for HTML.ForbiddenAttributes; use attr instead",
-//                          E_USER_WARNING
-//                          );
-//        }
-//    }
-//
-//    // setup injectors -----------------------------------------------------
-//    foreach ($this->info_injector as $i => $injector) {
-//        if ($injector->checkNeeded($config) !== false) {
-//            // remove injector that does not have it's required
-//            // elements/attributes present, and is thus not needed.
-//            unset($this->info_injector[$i]);
-//        }
-//    }
-//}
-//
-///**
-// * Parses a TinyMCE-flavored Allowed Elements and Attributes list into
-// * separate lists for processing. Format is element[attr1|attr2],element2...
-// * @warning Although it's largely drawn from TinyMCE's implementation,
-// *      it is different, and you'll probably have to modify your lists
-// * @param array $list String list to parse
-// * @return array
-// * @todo Give this its own class, probably static interface
-// */
-//public function parseTinyMCEAllowedList($list)
-//{
-//    $list = str_replace(array(' ', "\t"), '', $list);
-//
-//    $elements = array();
-//    $attributes = array();
-//
-//    $chunks = preg_split('/(,|[\n\r]+)/', $list);
-//    foreach ($chunks as $chunk) {
-//        if (empty($chunk)) {
-//            continue;
-//        }
-//        // remove TinyMCE element control characters
-//        if (!strpos($chunk, '[')) {
-//            $element = $chunk;
-//            $attr = false;
-//        } else {
-//            list($element, $attr) = explode('[', $chunk);
-//        }
-//        if ($element !== '*') {
-//            $elements[$element] = true;
-//        }
-//        if (!$attr) {
-//            continue;
-//        }
-//        $attr = substr($attr, 0, strlen($attr) - 1); // remove trailing ]
-//        $attr = explode('|', $attr);
-//        foreach ($attr as $key) {
-//            $attributes["$element.$key"] = true;
-//        }
-//    }
-//    return array($elements, $attributes);
-//}
-//}
+/**
+ * Extract out the information from the manager
+ * @param HTMLPurifier_Config $config
+ */
+- (void)processModules:(HTMLPurifier_Config*)config
+{
+    if (_anonModule)
+    {
+        // for user specific changes
+        // this is late-loaded so we don't have to deal with PHP4
+        // reference wonky-ness
+        [self.manager addModule:_anonModule];
+        _anonModule = nil;
+    }
+
+    [self.manager setup:config];
+    self.doctype = (HTMLPurifier_Doctype*)self.manager.doctype;
+
+    for(HTMLPurifier_HTMLModule* module in self.manager.modules.allValues)
+        if([module isKindOfClass:[HTMLPurifier_HTMLModule class]])
+    {
+        NSArray* keyArray = module.info_tag_transform.allKeys;
+        for(NSString* k in keyArray)
+        {
+            NSObject* v = module.info_tag_transform[k];
+            if ([v isEqual:@NO])
+            {
+                [self.info_tag_transform removeObjectForKey:k];
+            } else {
+                self.info_tag_transform[k] = v;
+            }
+        }
+        keyArray = module.info_attr_transform_pre;
+        for(NSObject* v in keyArray)
+        {
+            //NSObject* v = module.info_attr_transform_pre[k];
+            if ([v isEqual:@NO])
+            {
+                [self.info_attr_transform_pre removeObject:v];
+            }
+            else
+            {
+                [self.info_attr_transform_pre addObject:v];
+            }
+        }
+        keyArray = module.info_attr_transform_post;
+        for(NSObject* v in keyArray)
+        {
+            //NSObject* v = module.info_tag_transform_post[k];
+            if ([v isEqual:@NO])
+            {
+                [self.info_attr_transform_post removeObject:v];
+            }
+            else
+            {
+                [self.info_attr_transform_post addObject:v];
+            }
+
+        }
+        keyArray = module.info_injector.allValues;
+        for(NSString* k in keyArray)
+        {
+            NSObject* v = module.info_injector[k];
+            if ([v isEqual:@NO])
+            {
+                [self.info_injector removeObjectForKey:k];
+            }
+            else
+            {
+                self.info_injector[k] = v;
+            }
+
+        }
+    }
+    self.info = [self.manager getElements];
+    self.info_content_sets = self.manager.contentSets.lookup;
+}
+
+/**
+ * Sets up stuff based on config. We need a better way of doing this.
+ * @param HTMLPurifier_Config $config
+ */
+- (void)setupConfigStuff:(HTMLPurifier_Config*)config
+{
+    NSString* block_wrapper = (NSString*)[config get:@"HTML.BlockWrapper"];
+    if(self.info_content_sets[@"Block"][block_wrapper]) {
+        self.info_block_wrapper = block_wrapper;
+    } else {
+        TRIGGER_ERROR(@"Cannot use non-block element as block wrapper");
+    }
+
+
+    NSString* parent = (NSString*)[config get:@"HTML.Parent"];
+    HTMLPurifier_ElementDef* def = [self.manager getElement:parent trusted:YES];
+    if (def) {
+        self.info_parent = parent;
+        self.info_parent_def = def;
+    } else {
+        TRIGGER_ERROR(@"Cannot use unrecognized element as parent");
+        self.info_parent_def = [self.manager getElement:_info_parent trusted:YES];
+    }
+
+    // support template text
+    //NSString* support = @"(for information on implementing this, see the support forums) ";
+
+    // setup allowed elements -----------------------------------------
+
+
+    NSMutableDictionary* allowed_elements = [[config get:@"HTML.AllowedElements"] mutableCopy];
+    NSMutableDictionary* allowed_attributes = [[config get:@"HTML.AllowedAttributes"] mutableCopy]; // retrieve early
+
+    /*
+    if (![allowed_elements isKindOfClass:[NSArray class]]) && ![allowed_attributes isKindOfClass:[NSArray class]]) {
+        NSString* allowed = [config get:@"HTML.Allowed"];
+        if ([allowed isKindOfClass:[NSString class]])
+        {
+
+            list($allowed_elements, $allowed_attributes) = [self parseTinyMCEAllowedList:allowed];
+        }
+    }
+
+    if (is_array($allowed_elements)) {
+        foreach ($this->info as $name => $d) {
+            if (!isset($allowed_elements[$name])) {
+                unset($this->info[$name]);
+            }
+            unset($allowed_elements[$name]);
+        }
+        // emit errors
+        foreach ($allowed_elements as $element => $d) {
+            $element = htmlspecialchars($element); // PHP doesn't escape errors, be careful!
+            trigger_error("Element '$element' is not supported $support", E_USER_WARNING);
+        }
+    }*/
+
+    // setup allowed attributes ---------------------------------------
+
+/*
+    NSMutableDictionary* allowed_attributes_mutable = allowed_attributes; // by copy!
+    if ([allowed_attributes isKindOfClass:[NSDictionary class]]) {
+        // This actually doesn't do anything, since we went away from
+        // global attributes. It's possible that userland code uses
+        // it, but HTMLModuleManager doesn't!
+        foreach ($this->info_global_attr as $attr => $x) {
+            $keys = array($attr, "*@$attr", "*.$attr");
+            $delete = true;
+            foreach ($keys as $key) {
+                if ($delete && isset($allowed_attributes[$key])) {
+                    $delete = false;
+                }
+                if (isset($allowed_attributes_mutable[$key])) {
+                    unset($allowed_attributes_mutable[$key]);
+                }
+            }
+            if ($delete) {
+                unset($this->info_global_attr[$attr]);
+            }
+        }
+
+        foreach ($this->info as $tag => $info) {
+            foreach ($info->attr as $attr => $x) {
+                $keys = array("$tag@$attr", $attr, "*@$attr", "$tag.$attr", "*.$attr");
+                $delete = true;
+                foreach ($keys as $key) {
+                    if ($delete && isset($allowed_attributes[$key])) {
+                        $delete = false;
+                    }
+                    if (isset($allowed_attributes_mutable[$key])) {
+                        unset($allowed_attributes_mutable[$key]);
+                    }
+                }
+                if ($delete) {
+                    if ($this->info[$tag]->attr[$attr]->required) {
+                        trigger_error(
+                                      "Required attribute '$attr' in element '$tag' " .
+                                      "was not allowed, which means '$tag' will not be allowed either",
+                                      E_USER_WARNING
+                                      );
+                    }
+                    unset($this->info[$tag]->attr[$attr]);
+                }
+            }
+        }
+        // emit errors
+        foreach ($allowed_attributes_mutable as $elattr => $d) {
+            $bits = preg_split('/[.@]/', $elattr, 2);
+            $c = count($bits);
+            switch ($c) {
+                case 2:
+                    if ($bits[0] !== '*') {
+                        $element = htmlspecialchars($bits[0]);
+                        $attribute = htmlspecialchars($bits[1]);
+                        if (!isset($this->info[$element])) {
+                            trigger_error(
+                                          "Cannot allow attribute '$attribute' if element " .
+                                          "'$element' is not allowed/supported $support"
+                                          );
+                        } else {
+                            trigger_error(
+                                          "Attribute '$attribute' in element '$element' not supported $support",
+                                          E_USER_WARNING
+                                          );
+                        }
+                        break;
+                    }
+                    // otherwise fall through
+                case 1:
+                    $attribute = htmlspecialchars($bits[0]);
+                    trigger_error(
+                                  "Global attribute '$attribute' is not ".
+                                  "supported in any elements $support",
+                                  E_USER_WARNING
+                                  );
+                    break;
+            }
+        }
+    }*/
+
+    // setup forbidden elements ---------------------------------------
+
+    /*
+    $forbidden_elements   = $config->get('HTML.ForbiddenElements');
+    $forbidden_attributes = $config->get('HTML.ForbiddenAttributes');
+
+    foreach ($this->info as $tag => $info) {
+        if (isset($forbidden_elements[$tag])) {
+            unset($this->info[$tag]);
+            continue;
+        }
+        foreach ($info->attr as $attr => $x) {
+            if (isset($forbidden_attributes["$tag@$attr"]) ||
+                isset($forbidden_attributes["*@$attr"]) ||
+                isset($forbidden_attributes[$attr])
+                ) {
+                unset($this->info[$tag]->attr[$attr]);
+                continue;
+            } elseif (isset($forbidden_attributes["$tag.$attr"])) { // this segment might get removed eventually
+                                                                    // $tag.$attr are not user supplied, so no worries!
+                trigger_error(
+                              "Error with $tag.$attr: tag.attr syntax not supported for " .
+                              "HTML.ForbiddenAttributes; use tag@attr instead",
+                              E_USER_WARNING
+                              );
+            }
+        }
+    }
+    foreach ($forbidden_attributes as $key => $v) {
+        if (strlen($key) < 2) {
+            continue;
+        }
+        if ($key[0] != '*') {
+            continue;
+        }
+        if ($key[1] == '.') {
+            trigger_error(
+                          "Error with $key: *.attr syntax not supported for HTML.ForbiddenAttributes; use attr instead",
+                          E_USER_WARNING
+                          );
+        }
+    }*/
+
+    // setup injectors -----------------------------------------------------
+
+    /*
+    foreach ($this->info_injector as $i => $injector) {
+        if ($injector->checkNeeded($config) !== false) {
+            // remove injector that does not have it's required
+            // elements/attributes present, and is thus not needed.
+            unset($this->info_injector[$i]);
+        }
+    }*/
+}
+
+/**
+ * Parses a TinyMCE-flavored Allowed Elements and Attributes list into
+ * separate lists for processing. Format is element[attr1|attr2],element2...
+ * @warning Although it's largely drawn from TinyMCE's implementation,
+ *      it is different, and you'll probably have to modify your lists
+ * @param array $list String list to parse
+ * @return array
+ * @todo Give this its own class, probably static interface
+ */
+/*
+- (NSString*)parseTinyMCEAllowedList($list)
+{
+    $list = str_replace(array(' ', "\t"), '', $list);
+
+    $elements = array();
+    $attributes = array();
+
+    $chunks = preg_split('/(,|[\n\r]+)/', $list);
+    foreach ($chunks as $chunk) {
+        if (empty($chunk)) {
+            continue;
+        }
+        // remove TinyMCE element control characters
+        if (!strpos($chunk, '[')) {
+            $element = $chunk;
+            $attr = false;
+        } else {
+            list($element, $attr) = explode('[', $chunk);
+        }
+        if ($element !== '*') {
+            $elements[$element] = true;
+        }
+        if (!$attr) {
+            continue;
+        }
+        $attr = substr($attr, 0, strlen($attr) - 1); // remove trailing ]
+        $attr = explode('|', $attr);
+        foreach ($attr as $key) {
+            $attributes["$element.$key"] = true;
+        }
+    }
+    return array($elements, $attributes);
+}*/
 
 
 @end

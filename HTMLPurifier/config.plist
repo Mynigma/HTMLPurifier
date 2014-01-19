@@ -237,7 +237,7 @@
 		<key>HTML.SafeObject</key>
 		<string>nil</string>
 		<key>HTML.SafeScripting</key>
-		<string></string>
+		<string>nil</string>
 		<key>HTML.Strict</key>
 		<string>nil</string>
 		<key>HTML.TargetBlank</key>
@@ -549,7 +549,7 @@
 		<key>HTML.SafeObject</key>
 		<string>nil</string>
 		<key>HTML.SafeScripting</key>
-		<string></string>
+		<string>nil</string>
 		<key>HTML.Strict</key>
 		<string>nil</string>
 		<key>HTML.TargetBlank</key>

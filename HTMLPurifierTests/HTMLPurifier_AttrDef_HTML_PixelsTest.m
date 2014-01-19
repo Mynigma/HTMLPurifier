@@ -72,7 +72,7 @@
 - (void)test_make
 {
     HTMLPurifier_AttrDef_HTML_Pixels* factory = [HTMLPurifier_AttrDef_HTML_Pixels new];
-    def = (HTMLPurifier_AttrDef_HTML_Pixels*)[factory makeWithString:@"30"];
+    def = (HTMLPurifier_AttrDef_HTML_Pixels*)[factory make:@"30"];
     [self assertDef:@"25" expect:@"25"];
     [self assertDef:@"35" expect:@"30"];
 }
