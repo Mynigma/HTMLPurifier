@@ -166,7 +166,7 @@
 		1EBB82081882E585008B7FA4 /* HTMLPurifier_Token_Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB82061882E585008B7FA4 /* HTMLPurifier_Token_Text.m */; };
 		1EBB820B1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EBB82091882E65E008B7FA4 /* HTMLPurifier_TokenFactory.h */; };
 		1EBB820C1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EBB820A1882E65E008B7FA4 /* HTMLPurifier_TokenFactory.m */; };
-		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; };
+		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		1ED0392C1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0392A1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.h */; };
 		1ED0392D1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ED0392B1880530A0075F6A4 /* HTMLPurifier_CSSDefinition.m */; };
 		1ED03930188057C60075F6A4 /* HTMLPurifier_AttrDef.h in Headers */ = {isa = PBXBuildFile; fileRef = 1ED0392E188057C60075F6A4 /* HTMLPurifier_AttrDef.h */; };
@@ -1577,7 +1577,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = /usr/lib/libxml2.dylib;
+				FRAMEWORK_SEARCH_PATHS = /usr/lib/;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1625,7 +1625,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
-				FRAMEWORK_SEARCH_PATHS = /usr/lib/libxml2.dylib;
+				FRAMEWORK_SEARCH_PATHS = /usr/lib/;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
