@@ -41,6 +41,7 @@ static HTMLPurifier_VarParser_Flexible* theParser;
 
 static HTMLPurifier_CSSDefinition* theCSSDefinition;
 static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
+static HTMLPurifier_URIDefinition* theURIDefinition;
 
 @implementation HTMLPurifier_Config
 
@@ -281,6 +282,8 @@ static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
             theHTMLDefinition = nil;
         if([namespace isEqual:@"CSS"])
             theCSSDefinition = nil;
+        if([namespace isEqual:@"URI"])
+            theURIDefinition = nil;
     }
 
     [serials setObject:@NO forKey:namespace_string];
@@ -394,6 +397,9 @@ static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
     if([type isEqualToString:@"HTML"] && theHTMLDefinition)
         return theHTMLDefinition;
 
+    if([type isEqualToString:@"URI"] && theURIDefinition)
+        return theURIDefinition;
+
     // temporarily suspend locks, so we can handle recursive definition calls
     NSString* localLock = lock;
     lock = nil;
@@ -435,6 +441,9 @@ static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
 
         if([type isEqualToString:@"HTML"])
             theHTMLDefinition = (HTMLPurifier_HTMLDefinition*)def;
+
+        if([type isEqualToString:@"URI"])
+            theURIDefinition = (HTMLPurifier_URIDefinition*)def;
 
         // set it up
         lock = type;
