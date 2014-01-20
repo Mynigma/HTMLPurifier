@@ -52,7 +52,7 @@
 
     uri = [self expandCSSEscapeWithString:uri];
 
-    NSString* result = [super validateWithUri:uri config:config context:context];
+    NSString* result = [super validateWithString:uri config:config context:context];
 
     if (!result) {
         return nil;
