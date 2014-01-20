@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Mynigma. All rights reserved.
 //
 
-#import "HTMLPurifer_HTMLModule_Object.h"
+#import "HTMLPurifier_HTMLModule_Object.h"
 
-@implementation HTMLPurifer_HTMLModule_Object
+@implementation HTMLPurifier_HTMLModule_Object
 
 - (id)initWithConfig:(HTMLPurifier_Config*)config
 {

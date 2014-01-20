@@ -21,8 +21,8 @@
     self = [super init];
     if (self) {
         self.name = @"StyleAttribute";
-        self.attr_collections = [@{@"Style":@{@"style":@NO},@"Core":@{@0:@[@"Style"]}} mutableCopy];
-        self.attr_collections[@"Style"][@"style"] = [HTMLPurifier_AttrDef_CSS new];
+        self.attr_collections = [@{@"Style":@{@"style":[HTMLPurifier_AttrDef_CSS new]},@"Core":@{@0:@[@"Style"]}} mutableCopy];
+        //self.attr_collections[@"Style"][@"style"] = [HTMLPurifier_AttrDef_CSS new];
 
     }
     return self;

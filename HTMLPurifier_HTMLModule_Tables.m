@@ -27,7 +27,7 @@
 
         NSDictionary* cell_align = @{@"align":@"Enum#left,center,right,justify,char", @"charoff":@"Length", @"valign":@"Enum#top,middle,bottom,baseline"};
 
-        NSMutableDictionary* cell_t = [cell_align copy];
+        NSMutableDictionary* cell_t = [cell_align mutableCopy];
         [cell_t addEntriesFromDictionary:@{@"abbr":@"Text", @"colspan":@"Number", @"rowspan":@"Number", @"scope":@"Enum#row,col,rowgroup,colgroup"}];
 
         [self addElement:@"td" type:nil contents:@"Flow" attrIncludes:@"Common" attr:cell_t];

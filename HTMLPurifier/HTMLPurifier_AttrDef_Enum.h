@@ -20,7 +20,7 @@
 
 - (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context *)context;
 
-- (HTMLPurifier_AttrDef_Enum*)makeWithString:(NSString*)string;
+- (HTMLPurifier_AttrDef_Enum*)make:(NSString*)string;
 
 
 @end

@@ -54,7 +54,7 @@
     NSString* number = [string substringWithRange:NSMakeRange(0, length-1)];
     number = [self->numberDef validateWithString:number config:config context:context];
 
-    if (number == nil) {
+    if (!number) {
         return NO;
     }
     return [NSString stringWithFormat:@"%@%%", number];

@@ -214,7 +214,7 @@
                 [params setObject:value forKey:key];
             }
             NSString* attrString = [self generateAttributes:[(HTMLPurifier_Token_Empty*)token attr] element:[(HTMLPurifier_Token_Empty*)token name]];
-            return [NSString stringWithFormat:@"<%@%@%@>", [(HTMLPurifier_Token_Empty*)token name], (attrString?[NSString stringWithFormat:@" attr"]:@""), _xhtml?@" /":@""];
+            return [NSString stringWithFormat:@"<%@%@%@%@>", [(HTMLPurifier_Token_Empty*)token name], ([attrString length]>0?[NSString stringWithFormat:@" "]:@""), attrString, _xhtml?@" /":@""];
         } else if ([token isKindOfClass:[HTMLPurifier_Token_Text class]])
         {
             return [self escape:[token valueForKey:@"data"] quote:ENT_NOQUOTES];

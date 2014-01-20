@@ -55,7 +55,7 @@ HTMLPurifier_AttrDef_HTML_Bool* def;
 {
     HTMLPurifier_AttrDef_HTML_Bool* factory = [HTMLPurifier_AttrDef_HTML_Bool new];
     
-    def = [factory makeWithString:@"foo"];
+    def = [factory make:@"foo"];
 
     HTMLPurifier_AttrDef_HTML_Bool* def2 = [[HTMLPurifier_AttrDef_HTML_Bool alloc] initWithName:@"foo"];
     XCTAssertEqualObjects(def.name,def2.name,@"");

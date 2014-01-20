@@ -156,75 +156,263 @@
     [self assertDef:@"line-height:normal;"];
 }
 
-- (void)testMore
+- (void)testLineHeightMinus
 {
     [self assertDef:@"line-height:-20%;" expected:nil];
+}
+
+- (void)testMarginLeft
+{
     [self assertDef:@"margin-left:5px;"];
+}
+
+- (void)testMarginRight
+{
     [self assertDef:@"margin-right:20%;"];
+}
+
+- (void)testMarginTop
+{
     [self assertDef:@"margin-top:auto;"];
+}
+
+- (void)testMarginAuto
+{
     [self assertDef:@"margin:auto 5%;"];
+}
+
+- (void)testPaddingBottom
+{
     [self assertDef:@"padding-bottom:5px;"];
+}
+
+- (void)testPaddingTop
+{
     [self assertDef:@"padding-top:20%;"];
+}
+
+- (void)testPaddingPercent
+{
     [self assertDef:@"padding:20% 10%;"];
+}
+
+- (void)testPaddingTopNegativePercent
+{
     [self assertDef:@"padding-top:-20%;" expected:nil];
+}
+
+- (void)testTextIndentEm
+{
     [self assertDef:@"text-indent:3em;"];
-    [self assertDef:@"text-indent:5%;"];
+}
+
+- (void)testTextIndentPercent
+{
+   [self assertDef:@"text-indent:5%;"];
+}
+
+- (void)testTextIndentNegativeEm
+{
     [self assertDef:@"text-indent:-3em;"];
 }
 
 - (void)testEvenMore
 {
     [self assertDef:@"width:50%;"];
+}
+
+- (void)testWidth
+{
     [self assertDef:@"width:50px;"];
+}
+
+- (void)testWithAuto
+{
     [self assertDef:@"width:auto;"];
+}
+
+- (void)testWidthNegative
+{
     [self assertDef:@"width:-50px;" expected:nil];
+}
+
+- (void)testTextDeco
+{
     [self assertDef:@"text-decoration:underline;"];
+}
+
+- (void)testFontSans
+{
     [self assertDef:@"font-family:sans-serif;"];
+}
+
+- (void)testFontGill
+{
     [self assertDef:@"font-family:Gill, \'Times New Roman\', sans-serif;"];
+}
+
+- (void)testFont12px
+{
     [self assertDef:@"font:12px serif;"];
+}
+
+- (void)testBorder
+{
     [self assertDef:@"border:1px solid #000;"];
+}
+
+- (void)testBorderBottom
+{
     [self assertDef:@"border-bottom:2em double #FF00FA;"];
+}
+
+- (void)testBorderCollapse
+{
     [self assertDef:@"border-collapse:collapse;"];
+}
+
+- (void)testBorderSeparate
+{
     [self assertDef:@"border-collapse:separate;"];
+}
+
+- (void)testCaptionSide
+{
     [self assertDef:@"caption-side:top;"];
+}
+
+- (void)testVerticalAlignMiddle
+{
     [self assertDef:@"vertical-align:middle;"];
+}
+
+- (void)testVerticalAlign
+{
     [self assertDef:@"vertical-align:12px;"];
+}
+
+- (void)testVerticalAlignPercent
+{
     [self assertDef:@"vertical-align:50%;"];
+}
+
+- (void)testTableLayout
+{
     [self assertDef:@"table-layout:fixed;"];
+}
+
+- (void)testListStyleImage
+{
     [self assertDef:@"list-style-image:url(nice.jpg);"];
+}
+
+- (void)testListStyle
+{
     [self assertDef:@"list-style:disc url(nice.jpg) inside;"];
+}
+
+- (void)testBackgroundImageUrl
+{
     [self assertDef:@"background-image:url(foo.jpg);"];
+}
+
+- (void)testBackgroundImageNone
+{
     [self assertDef:@"background-image:none;"];
+}
+
+- (void)testBackgroundRepeat
+{
     [self assertDef:@"background-repeat:repeat-y;"];
+}
+
+- (void)testBackgroundAttachment
+{
     [self assertDef:@"background-attachment:fixed;"];
+}
+
+- (void)testBackgroundPosition
+{
     [self assertDef:@"background-position:left 90%;"];
+}
+
+- (void)testBorderSpacing
+{
     [self assertDef:@"border-spacing:1em;"];
+}
+
+- (void)testBorderSpacingTwo
+{
     [self assertDef:@"border-spacing:1em 2em;"];
 
+}
+
+- (void)testTextAlignSeveral
+{
     // duplicates
     [self assertDef:@"text-align:right;text-align:left;" expected:@"text-align:left;"];
 
+}
+
+- (void)testFontVariant
+{
     // a few composites
     [self assertDef:@"font-variant:small-caps;font-weight:900;"];
+}
+
+- (void)testFloat
+{
     [self assertDef:@"float:right;text-align:right;"];
 
+}
+
+- (void)testTestTransform
+{
     // selective removal
     [self assertDef:@"text-transform:capitalize;destroy:it;" expected:@"text-transform:capitalize;"];
 
+}
+
+- (void)testTextAlignInherit
+{
     // inherit works for everything
     [self assertDef:@"text-align:inherit;"];
 
+}
+
+- (void)testNodice
+{
     // bad props
     [self assertDef:@"nodice:foobar;" expected:nil];
+}
+
+- (void)testPositionAbsolute
+{
     [self assertDef:@"position:absolute;" expected:nil];
+}
+
+- (void)testBackgroundImageUrlScript
+{
     [self assertDef:@"background-image:url(javascript:alert\\(\\));" expected:nil];
 
+}
+
+- (void)testAiry
+{
     // airy input
     [self assertDef:@" font-weight : bold; color : #ff0000" expected:@"font-weight:bold;color:#ff0000;"];
 
     // case-insensitivity
+}
+
+- (void)testFLOATLEFT
+{
     [self assertDef:@"FLOAT:LEFT;" expected:@"float:left;"];
 
+}
+
+- (void)testImportant
+{
     // !important stripping
     [self assertDef:@"float:left !important;" expected:@"float:left;"];
 

@@ -88,20 +88,26 @@
     NSMutableArray* ret = [NSMutableArray new];
 
     // first keyword
-    if (keywords[@"h"]) {
+    if (keywords[@"h"] && ![keywords[@"h"] isEqual:@NO])
+    {
         [ret addObject:keywords[@"h"]];
-    } else if (keywords[@"ch"]) {
+    } else if (keywords[@"ch"] && ![keywords[@"ch"] isEqual:@NO])
+    {
         [ret addObject:keywords[@"ch"]];
-        keywords[@"cv"] = NO; // prevent re-use: center = center center
-    } else if (measures.count>0) {
+        keywords[@"cv"] = @NO; // prevent re-use: center = center center
+    } else if (measures.count>0)
+    {
         [ret addObject:array_shift(measures)];
     }
 
-    if (keywords[@"v"]) {
+    if (keywords[@"v"] && ![keywords[@"v"] isEqual:@NO])
+    {
         [ret addObject:keywords[@"v"]];
-    } else if (keywords[@"cv"]) {
+    } else if (keywords[@"cv"] && ![keywords[@"cv"] isEqual:@NO])
+    {
         [ret addObject:keywords[@"cv"]];
-    } else if (measures.count>0) {
+    } else if (measures.count>0)
+    {
         [ret addObject:array_shift(measures)];
     }
 

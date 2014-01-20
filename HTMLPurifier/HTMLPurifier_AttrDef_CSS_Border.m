@@ -49,7 +49,7 @@
                 NSString* r = [validator validateWithString:bit config:config context:context];
                 if(r)
                 {
-                    [ret appendString:r];
+                    [ret appendFormat:@"%@ ", r];
                     [done setObject:@YES forKey:propname];
                     break;
                 }

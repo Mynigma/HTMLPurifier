@@ -28,7 +28,7 @@
  * @param HTMLPurifier_AttrDef $def Definition to wrap
  * @param bool $allow Whether or not to allow !important
  */
--(id) initWithDef:(HTMLPurifier_AttrDef*)ndef AllowImportnat:(NSNumber*)nallow
+-(id) initWithDef:(HTMLPurifier_AttrDef*)ndef AllowImportant:(NSNumber*)nallow
 {
     self = [super init];
     def = ndef;

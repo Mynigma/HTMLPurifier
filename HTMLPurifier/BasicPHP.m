@@ -814,7 +814,7 @@ NSInteger strspn_2(NSString* subject, NSString* mask)
     NSInteger i = 0;
     for(; i<subject.length; i++)
     {
-        if([mask rangeOfString:[subject substringWithRange:NSMakeRange(1, 1)]].location==NSNotFound)
+        if([mask rangeOfString:[subject substringWithRange:NSMakeRange(i, 1)]].location==NSNotFound)
         {
             break;
         }

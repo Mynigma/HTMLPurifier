@@ -31,6 +31,22 @@
     return self;
 }
 
+
+/**
+ * Factory method for creating this class from a string.
+ * @param string $string String construction info
+ * @return HTMLPurifier_AttrDef Created AttrDef object corresponding to $string
+ */
+- (HTMLPurifier_AttrDef*)make:(NSString*)string
+{
+    // default implementation, return a flyweight of this object.
+    // If $string has an effect on the returned object (i.e. you
+    // need to overload this method), it is best
+    // to clone or instantiate new copies. (Instantiation is safer.)
+    return self;
+}
+
+
 - (NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     NSLog(@"Calling validateWithString on HTMLPurifier_AttrDef!!");
@@ -52,47 +68,48 @@
 
 - (NSString*)expandCSSEscapeWithString:(NSString*)string
 {
-    return nil;
-//    // flexibly parse it
-//    NSMutableString* ret = [@"" mutableCopy];
-//    NSInteger c = string.length;
-//    for (NSInteger i = 0; i < c; i++)
-//    {
-//        if ([string characterAtIndex:i] == '\\') {
-//            i++;
-//            if (i >= c) {
-//                [ret appendString:@"\\"];
-//                break;
-//            }
-//            if (ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
-//                NSMutableString* code = [[string substringWithRange:NSMakeRange(i, 1)] mutableCopy];
-//                i++;
-//                for (NSInteger a = 1; i < c && a < 6; i++, a++) {
-//                    if (!ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
-//                        break;
-//                    }
-//                    [code appendString:[string substringWithRange:NSMakeRange(i, 1)]];
-//                }
-//                // We have to be extremely careful when adding
-//                // new characters, to make sure we're not breaking
-//                // the encoding.
-//                unichar character = [HTMLPurifier_Encoder unichrWith(hexdec($code));
-//                if ([HTMLPurifier_Encoder cleanUTF8Wit($char) === '') {
-//                    continue;
-//                }
-//                [ret appendFormat:@"%c", character];
-//                if (i < c && ![trim([string substringWithRange:NSMakeRange(i, 1)]) isEqualTo:@""]) {
-//                    i--;
-//                }
-//                continue;
-//            }
-//            if ([[string substringWithRange:NSMakeRange(i, 1)] isEqual:@"\n"]) {
-//                continue;
-//            }
-//        }
-//        [ret appendString:[string substringWithRange:NSMakeRange(i, 1)]];
-//    }
-//    return ret;
+    // flexibly parse it
+    NSMutableString* ret = [@"" mutableCopy];
+    NSInteger c = string.length;
+    for (NSInteger i = 0; i < c; i++)
+    {
+        if ([string characterAtIndex:i] == '\\') {
+            i++;
+            if (i >= c) {
+                [ret appendString:@"\\"];
+                break;
+            }
+            if (ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
+                NSMutableString* code = [[string substringWithRange:NSMakeRange(i, 1)] mutableCopy];
+                i++;
+                for (NSInteger a = 1; i < c && a < 6; i++, a++) {
+                    if (!ctype_xdigit([string substringWithRange:NSMakeRange(i, 1)])) {
+                        break;
+                    }
+                    [code appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+                }
+                // We have to be extremely careful when adding
+                // new characters, to make sure we're not breaking
+                // the encoding.
+                NSString* characterString = [HTMLPurifier_Encoder unichr:(int)hexdec(code)];
+                characterString = [HTMLPurifier_Encoder cleanUTF8:characterString];
+                if (!characterString || [characterString isEqual:@""])
+                {
+                    continue;
+                }
+                [ret appendString:characterString];
+                if (i < c && ![trim([string substringWithRange:NSMakeRange(i, 1)]) isEqualTo:@""]) {
+                    i--;
+                }
+                continue;
+            }
+            if ([[string substringWithRange:NSMakeRange(i, 1)] isEqual:@"\n"]) {
+                continue;
+            }
+        }
+        [ret appendString:[string substringWithRange:NSMakeRange(i, 1)]];
+    }
+    return ret;
 }
 
 

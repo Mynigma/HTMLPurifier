@@ -173,14 +173,17 @@
 
 + (NSString*)cleanUTF8:(NSString*)str
 {
-    return [HTMLPurifier_Encoder cleanUTF8:str forcePHP:NO];
+    if (preg_match_2(@"^[\\x{9}\\x{A}\\x{D}\\x{20}-\\x{7E}\\x{A0}-\\x{D7FF}\\x{E000}-\\x{FFFD}\\x{10000}-\\x{10FFFF}]*$",
+                   str
+                   ))
+        return str;
+    return @"";
+    //return [HTMLPurifier_Encoder cleanUTF8:str forcePHP:NO];
 }
 
 + (NSString*)cleanUTF8:(NSString*)str forcePHP:force_php
 {
-    //TO DO: implement(!)
-
-    return str;
+    return [self cleanUTF8:str];
 }
 
 + (NSString*)iconvWithIn:(NSString*)inputEncoding out:(NSString*)outputEncoding text:(NSString*)text maxChunkSize:(NSInteger)max_chunk_size
@@ -578,7 +581,7 @@
         [self convertToASCIIDumbLossless:str];
     }
 
-    return [[NSString alloc] initWithData:[str dataUsingEncoding:encoding.integerValue allowLossyConversion:!escape.boolValue] encoding:NSUTF8StringEncoding];
+    return [[NSString alloc] initWithData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:!escape.boolValue] encoding:encoding.integerValue];
 }
 //    {
 //        $encoding = $config->get('Core.Encoding');
