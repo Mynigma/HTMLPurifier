@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTMLPurifier_Config , HTMLPurifier_Context,HTMLPurifier_URIScheme;
+
 @interface HTMLPurifier_URI : NSObject
 
 - (id)initWithScheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSNumber*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment;
@@ -47,6 +49,15 @@
  */
 @property NSString* fragment;
 
+-(HTMLPurifier_URIScheme*) getSchemeObj:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
+-(BOOL) validateWithConfig:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
+-(BOOL) isBenign:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
+-(BOOL) isLocal:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
+-(NSString*) toString;
 
 
 @end

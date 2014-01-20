@@ -46,7 +46,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
-- (NSString*)validateWithUri:(NSString *)uri config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
+-(NSString*) validateWithString:(NSString *)uri config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
 
 @end
