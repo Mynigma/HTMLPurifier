@@ -40,7 +40,7 @@
 {
     self = [super init];
     parser = [HTMLPurifier_URIParser new];
-    if (new_embeds_resource.boolValue)
+    if (new_embeds_resource && [new_embeds_resource boolValue])
     {
         embedsResource = new_embeds_resource;
     }
@@ -49,6 +49,11 @@
         embedsResource = @NO;
     }
     return self;
+}
+
+- (id)init
+{
+    return [self initWithNumber:nil];
 }
 
 /**

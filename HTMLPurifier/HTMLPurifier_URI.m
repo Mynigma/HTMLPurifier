@@ -265,7 +265,7 @@
     {
         result = [NSString stringWithFormat:@"%@?%@",result,self.query];
     }
-    if (self.fragment)
+    if (self.fragment && [self.fragment length]>0)
     {
         result =[NSString stringWithFormat:@"%@#%@",result,self.fragment];
     }

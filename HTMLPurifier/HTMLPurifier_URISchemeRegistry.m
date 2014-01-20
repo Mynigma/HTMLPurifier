@@ -22,7 +22,17 @@
  * Cache of retrieved schemes.
  * @type HTMLPurifier_URIScheme[]
  */
+
 @synthesize schemes;
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        schemes = [NSMutableDictionary new];
+    }
+    return self;
+}
 
 /**
  * Retrieve sole instance of the registry.
