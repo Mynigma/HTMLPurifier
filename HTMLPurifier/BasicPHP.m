@@ -7,6 +7,7 @@
 //
 
 #import "BasicPHP.h"
+#import <CommonCrypto/CommonHMAC.h>
 
 
 NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* subject)
@@ -766,6 +767,11 @@ NSInteger strpos(NSString* haystack, NSString* needle)
     return [haystack rangeOfString:needle].location;
 }
 
+NSInteger strrpos(NSString* haystack, NSString* needle)
+{
+    return [haystack rangeOfString:needle options:NSBackwardsSearch].location;
+}
+
 NSString* substr(NSString* string, NSInteger start)
 {
     return [string substringFromIndex:start];
@@ -1084,7 +1090,33 @@ NSString* dechex(NSString* dec_string)
     return [NSString stringWithFormat:@"%lX", (long)dec_string.integerValue];
 }
 
+NSData* base64_decode(NSString* base64String)
+{
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+    // NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
+    return decodedData;
+}
 
+NSString* base64_encode(NSString* plainString)
+{
+    NSData *plainData = [plainString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64String = [plainData base64EncodedStringWithOptions:0];
+    return base64String;
+}
+
+
+NSString* hash_hmac(NSString* algo, NSString* data, NSString* key)
+{
+    if ([algo isEqual:@"sha256"])
+    {
+        const char *cKey  = [key cStringUsingEncoding:NSASCIIStringEncoding];
+        const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
+        unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
+        CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
+        return [[NSString alloc] initWithData:[[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)]encoding:NSUTF8StringEncoding];
+    }
+    return nil;
+}
 
 
 @implementation BasicPHP

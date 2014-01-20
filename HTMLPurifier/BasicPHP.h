@@ -122,6 +122,9 @@ NSInteger php_strspn(NSString* string, NSString* characterList);
 
 NSInteger strpos(NSString* haystack, NSString* needle);
 
+//Backwardssearch
+NSInteger strrpos(NSString* haystack, NSString* needle);
+
 NSString* substr(NSString* string, NSInteger start);
 
 
@@ -176,9 +179,13 @@ NSArray* array_merge_2(NSArray* array1, NSArray* array2);
 //PHP array_merge also works as "dictionary_merge"
 NSDictionary* dict_merge_2(NSDictionary* dict1, NSDictionary* dict2);
 
-
-//TODO array_splice
 NSArray* array_splice_4 (NSArray* input, NSInteger offset, NSInteger length, NSArray* replacement);
+
+NSData* base64_decode(NSString* base64String);
+
+NSString* base64_encode(NSString* plainString);
+
+NSString* hash_hmac(NSString* algo, NSString* data, NSString* key);
 
 #define BASIC_PHP 1
 
