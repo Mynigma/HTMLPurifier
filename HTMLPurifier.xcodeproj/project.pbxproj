@@ -349,6 +349,7 @@
 		808CBA4C188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */; };
 		808CBA4E188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */; };
 		808CBA50188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */; };
+		808CBA52188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */; };
 		80B94C8718870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */; };
 		80B94C8818870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */; };
 		80B94C8B18870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */; };
@@ -725,6 +726,7 @@
 		808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_MakeAbsoluteTest.m; sourceTree = "<group>"; };
 		808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_MungeTest.m; sourceTree = "<group>"; };
 		808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIDefinitionTest.m; sourceTree = "<group>"; };
+		808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URISchemeTest.m; sourceTree = "<group>"; };
 		80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h; sourceTree = "<group>"; };
 		80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m; sourceTree = "<group>"; };
 		80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Filter.h; sourceTree = "<group>"; };
@@ -1155,6 +1157,7 @@
 		808CBA3A188D6EA200AFB841 /* URI */ = {
 			isa = PBXGroup;
 			children = (
+				1E9A62E418844FCB00EA7A85 /* URIParserTest.m */,
 				808CBA3C188D6EC300AFB841 /* URIScheme */,
 				808CBA3B188D6EB800AFB841 /* URIFilter */,
 				808CBA3D188D6F1900AFB841 /* HTMLPurifier_URIHarness.h */,
@@ -1182,6 +1185,7 @@
 		808CBA3C188D6EC300AFB841 /* URIScheme */ = {
 			isa = PBXGroup;
 			children = (
+				808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */,
 			);
 			name = URIScheme;
 			sourceTree = "<group>";
@@ -1359,7 +1363,6 @@
 				80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */,
 				1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */,
 				808CB9C31887DCC800AFB841 /* AttrDef */,
-				1E9A62E418844FCB00EA7A85 /* URIParserTest.m */,
 				80EDF9DA18803B3200EB1E89 /* Supporting Files */,
 				1E35ECD9188727D000E8FF31 /* HTMLPurifier_ElementDefTest.m */,
 				1E35ECDB1887396100E8FF31 /* PropertyListTest.m */,
@@ -1814,6 +1817,7 @@
 				808CB9D3188A953B00AFB841 /* HTMLPurifier_AttrDef_HTML_NmtokensTest.m in Sources */,
 				808CBA4C188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */,
 				808CB9C71887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.m in Sources */,
+				808CBA52188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m in Sources */,
 				808CB9C21887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */,
 				808CBA46188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */,
 				808CB9CB18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */,
