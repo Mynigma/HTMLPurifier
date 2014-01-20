@@ -119,7 +119,7 @@
      *       Modularization Abstract Modules are blithely unaware of such
      *       distinctions.
      */
-@property NSMutableSet* excludes;
+@property NSMutableDictionary* excludes;
 
     /**
      * This tag is explicitly auto-closed by the following tags.

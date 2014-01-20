@@ -60,7 +60,7 @@
 		<key>AutoFormat.RemoveSpansWithoutAttributes</key>
 		<string>nil</string>
 		<key>CSS.AllowImportant</key>
-		<string>nil</string>
+		<false/>
 		<key>CSS.AllowTricky</key>
 		<string>nil</string>
 		<key>CSS.AllowedFonts</key>

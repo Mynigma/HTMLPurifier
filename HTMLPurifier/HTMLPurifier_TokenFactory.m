@@ -34,10 +34,10 @@
      * @param array $attr Associative array of attributes
      * @return HTMLPurifier_Token_Start Generated HTMLPurifier_Token_Start
      */
-- (HTMLPurifier_Token_Start*)createStartWithName:(NSString*)name attr:(NSMutableDictionary*)att
+- (HTMLPurifier_Token_Start*)createStartWithName:(NSString*)name attr:(NSMutableDictionary*)att sortedAttrKeys:(NSArray*)sortedAttrKeys
     {
         HTMLPurifier_Token_Start* p = [self.p_start copy];
-        return [p initWithName:name attr:att];
+        return [p initWithName:name attr:att sortedAttrKeys:sortedAttrKeys];
     }
 
     /**
@@ -57,10 +57,10 @@
      * @param array $attr Associative array of attributes
      * @return HTMLPurifier_Token_Empty Generated HTMLPurifier_Token_Empty
      */
-- (HTMLPurifier_Token_Empty*)createEmptyWithName:(NSString*)name attr:(NSDictionary*)attr
+- (HTMLPurifier_Token_Empty*)createEmptyWithName:(NSString*)name attr:(NSDictionary*)attr sortedAttrKeys:(NSArray*)sortedAttrKeys
     {
         HTMLPurifier_Token_Empty* p = [self.p_empty copy];
-        return [p initWithName:name attr:attr];
+        return [p initWithName:name attr:attr sortedAttrKeys:sortedAttrKeys];
     }
 
     /**

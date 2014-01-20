@@ -55,6 +55,8 @@
 
 @property NSMutableDictionary* attr;
 
+@property NSMutableArray* sortedAttrKeys;
+
 @property BOOL isTag;
 
 

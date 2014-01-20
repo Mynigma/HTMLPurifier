@@ -60,7 +60,7 @@
             }
             [tokenArray addObject:[[HTMLPurifier_Token_Text alloc] initWithData:bits[i]]];
         } else {
-            [tokenArray addObject:[[HTMLPurifier_Token_Start alloc] initWithName:@"a" attr:@{@"href":bits[i]} line:nil col:nil armor:[NSMutableDictionary new]]];
+            [tokenArray addObject:[[HTMLPurifier_Token_Start alloc] initWithName:@"a" attr:@{@"href":bits[i]} sortedAttrKeys:@[@"href"] line:nil col:nil armor:[NSMutableDictionary new]]];
             [tokenArray addObject:[[HTMLPurifier_Token_Text alloc] initWithData:bits[i]]];
             [tokenArray addObject:[[HTMLPurifier_Token_End alloc] initWithName:@"a"]];
         }

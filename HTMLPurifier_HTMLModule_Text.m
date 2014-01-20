@@ -56,7 +56,7 @@
         [self addElement:@"blockquote" type:@"Block" contents:@"Optional: Heading | Block | List" attrIncludes:@"Common" attr:@{@"cite":@"URI"}];
 
         HTMLPurifier_ElementDef* pre = [self addElement:@"pre" type:@"Block" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        pre.excludes = [NSMutableSet setWithObjects:@"img", @"big", @"small", @"object", @"applet", @"font", @"basefont", nil];
+        pre.excludes = [@{@"img":@YES, @"big":@YES, @"small":@YES, @"object":@YES, @"applet":@YES, @"font":@YES, @"basefont":@YES} mutableCopy];
 
         [self addElement:@"h1" type:@"Heading" contents:@"Inline" attrIncludes:@"Common" attr:nil];
         [self addElement:@"h2" type:@"Heading" contents:@"Inline" attrIncludes:@"Common" attr:nil];
@@ -74,5 +74,11 @@
     return self;
 }
 
+
+
+- (id)init
+{
+    return [self initWithConfig:nil];
+}
 
 @end

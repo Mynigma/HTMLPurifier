@@ -18,6 +18,8 @@
 
 @property NSDictionary* attr;
 
+@property NSArray* sortedAttrKeys;
+
 @property NSArray* children;
 
 @end

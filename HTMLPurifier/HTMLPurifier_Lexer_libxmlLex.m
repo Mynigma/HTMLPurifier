@@ -138,7 +138,12 @@
     if(node->type)
         [domNode setType:node->type];
     if(node->properties)
-        [domNode setAttr:[self transformAttrToAssoc:node->properties]];
+    {
+        NSArray* pair = [self transformAttrToAssoc:node->properties];
+        [domNode setAttr:pair[0]];
+        [domNode setSortedAttrKeys:pair[1]];
+    }
+
     if(node->children)
     {
         xmlNode* child = node->children;
@@ -249,6 +254,7 @@
     }
 
     NSMutableDictionary* attr = [node.attr mutableCopy];
+    NSArray* sortedAttrKeys = node.sortedAttrKeys;
 
     // We still have to make sure that the element actually IS empty
 
@@ -256,13 +262,13 @@
     {
         if (collect) {
             NSString* name = node.name;
-            [tokens addObject:[self->factory createEmptyWithName:name attr:attr]];
+            [tokens addObject:[self->factory createEmptyWithName:name attr:attr sortedAttrKeys:sortedAttrKeys]];
         }
         return NO;
     } else {
         if (collect) {
             NSString* name = node.name;
-            [tokens addObject:[self->factory createStartWithName:name attr:attr]];
+            [tokens addObject:[self->factory createStartWithName:name attr:attr sortedAttrKeys:sortedAttrKeys]];
         }
         return true;
     }
@@ -284,9 +290,10 @@
  * @param DOMNamedNodeMap $node_map DOMNamedNodeMap of DOMAttr objects.
  * @return array Associative array of attributes.
  */
-- (NSDictionary*)transformAttrToAssoc:(xmlAttr*)properties
+- (NSArray*)transformAttrToAssoc:(xmlAttr*)properties
 {
     NSMutableDictionary* propertiesLookup = [NSMutableDictionary new];
+    NSMutableArray* sortOrder = [NSMutableArray new];
     while(properties)
     {
         NSString* name = [NSString stringWithCString:(char*)properties->name encoding:NSUTF8StringEncoding];
@@ -295,12 +302,15 @@
         //IS THIS RIGHT?!?!?!?
         NSString* value = [NSString stringWithCString:(char*)properties->children->content encoding:NSUTF8StringEncoding];
         if(name && value)
+        {
             propertiesLookup[name] = value;
+            [sortOrder addObject:name];
+        }
         else
             TRIGGER_ERROR(@"Parse error: trying to assign propertiesLookup[%@] = %@", name, value);
         properties = properties->next;
     }
-    return propertiesLookup;
+    return @[propertiesLookup, sortOrder];
 }
 
 /**

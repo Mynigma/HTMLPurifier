@@ -15,16 +15,17 @@
 
 - (id)initWithName:(NSString*)n
 {
-    return [self initWithName:n attr:nil line:nil col:nil armor:nil];
+    return [self initWithName:n attr:nil sortedAttrKeys:@[] line:nil col:nil armor:nil];
 }
 
 
-- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att sortedAttrKeys:(NSArray *)sortedAttrKeys line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm
 {
     self = [super init];
     if (self) {
         self.name = n;
         _attr = att;
+        _sortedAttrKeys = [sortedAttrKeys mutableCopy];
         self.line = l;
         self.col = c;
         self.armor = arm;
@@ -42,12 +43,12 @@
         // XXX inefficiency here, normalization is not necessary
         if (self.empty)
         {
-            return @[[[HTMLPurifier_Token_Empty alloc] initWithName:self.name attr:self.attr line:self.line col:self.col armor:self.armor], [NSNull null]];
+            return @[[[HTMLPurifier_Token_Empty alloc] initWithName:self.name attr:self.attr sortedAttrKeys:self.sortedAttrKeys line:self.line col:self.col armor:self.armor], [NSNull null]];
         }
         else
         {
-            NSObject* start = [[HTMLPurifier_Token_Start alloc] initWithName:self.name attr:self.attr line:self.line col:self.col armor:self.armor];
-            NSObject* end = [[HTMLPurifier_Token_End alloc] initWithName:self.name attr:@{} line:_endLine col:_endCol armor:self.endArmor];
+            NSObject* start = [[HTMLPurifier_Token_Start alloc] initWithName:self.name attr:self.attr sortedAttrKeys:self.sortedAttrKeys line:self.line col:self.col armor:self.armor];
+            NSObject* end = [[HTMLPurifier_Token_End alloc] initWithName:self.name attr:@{} sortedAttrKeys:@[] line:_endLine col:_endCol armor:self.endArmor];
             return @[start, end];
         }
     }

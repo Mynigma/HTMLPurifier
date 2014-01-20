@@ -34,7 +34,10 @@
 {
     if (!self.validValues)
     {
-        [self setValidValues:[(NSMutableDictionary*)[config get:@"Attr.AllowedFrameTargets"] mutableCopy] ];
+        NSObject* allowedFrameTargets = [(NSMutableDictionary*)[config get:@"Attr.AllowedFrameTargets"] mutableCopy];
+        if(![allowedFrameTargets isKindOfClass:[NSArray class]])
+            allowedFrameTargets = [NSMutableArray new];
+        [self setValidValues:(NSMutableArray*)allowedFrameTargets];
     }
     return [super validateWithString:string config:config context:context];
 }

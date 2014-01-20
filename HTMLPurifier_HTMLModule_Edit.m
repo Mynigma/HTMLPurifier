@@ -34,6 +34,11 @@
     return self;
 }
 
+- (id)init
+{
+    return [self initWithConfig:nil];
+}
+
 /*
 - (HTMLPurifier_ChildDef_Chameleon*)getChildDef:(HTMLPurifier_ElementDef*)def
     {

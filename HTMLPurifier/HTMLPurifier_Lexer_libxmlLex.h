@@ -61,7 +61,7 @@
  * @param DOMNamedNodeMap $node_map DOMNamedNodeMap of DOMAttr objects.
  * @return array Associative array of attributes.
  */
-- (NSDictionary*)transformAttrToAssoc:(xmlAttr*)properties;
+- (NSArray*)transformAttrToAssoc:(xmlAttr*)properties;
 
 /**
  * Callback function for undoing escaping of stray angled brackets

@@ -43,7 +43,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
+- (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
     // test for ! and important tokens
     string = trim(string);
@@ -56,13 +56,13 @@
         // use a temp, because we might want to restore important
         if (([temp length] >= 1) && ([[temp substringFromIndex:[temp length]-1] isEqual:@"!"]))
         {
-            string = rtrim([temp substringFromIndex:[temp length]-1]);
+            string = rtrim([temp substringToIndex:[temp length]-1]);
             is_important = YES;
         }
     }
     
     string = [def validateWithString:string config:config context:context];
-    if (allow && is_important)
+    if (allow.boolValue && is_important)
     {
         string = [string stringByAppendingString:@" !important"];
     }

@@ -30,6 +30,7 @@
 		1E35ECF418882F9300E8FF31 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA218853F780073CA79 /* config.plist */; };
 		1E361074188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E361072188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.h */; };
 		1E361075188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E361073188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m */; };
+		1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */; };
 		1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */; };
 		1E5FAAA318853F780073CA79 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA218853F780073CA79 /* config.plist */; };
 		1E5FAAA7188542C60073CA79 /* HTMLPurifier_HTMLModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5FAAA5188542C60073CA79 /* HTMLPurifier_HTMLModule.h */; };
@@ -399,6 +400,7 @@
 		1E35ECF118881FC500E8FF31 /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entities.plist; sourceTree = "<group>"; };
 		1E361072188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_HTMLModule_Text.h; sourceTree = "<group>"; };
 		1E361073188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule_Text.m; sourceTree = "<group>"; };
+		1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ConfigTest.m; sourceTree = "<group>"; };
 		1E5573DC188C963900E7A1CE /* HTMLPurifier_LinkifyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_LinkifyTest.m; sourceTree = "<group>"; };
 		1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_InjectorHarness.m; sourceTree = "<group>"; };
 		1E5FAAA218853F780073CA79 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
@@ -1369,6 +1371,7 @@
 				1E6F2C36188AA9E900EEEB3F /* UnitConverterTest.m */,
 				1E5573DC188C963900E7A1CE /* HTMLPurifier_LinkifyTest.m */,
 				1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */,
+				1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */,
 			);
 			path = HTMLPurifierTests;
 			sourceTree = "<group>";
@@ -1825,6 +1828,7 @@
 				1E9A62E518844FCB00EA7A85 /* URIParserTest.m in Sources */,
 				1E5FAABE18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m in Sources */,
 				1E35ECDC1887396100E8FF31 /* PropertyListTest.m in Sources */,
+				1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */,
 				1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */,
 				808CB9E4188AFBD700AFB841 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheckTest.m in Sources */,
 				808CB9D5188AD1FE00AFB841 /* HTMLPurifier_AttrDef_HTML_PixelsTest.m in Sources */,

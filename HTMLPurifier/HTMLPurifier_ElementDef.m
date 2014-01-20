@@ -22,7 +22,7 @@
         _attr_transform_pre = [NSMutableDictionary new];
         _descendants_are_inline = NO;
         _required_attr = [NSMutableArray new];
-        _excludes = [NSMutableSet new];
+        _excludes = [NSMutableDictionary new];
         _autoclose = [NSMutableArray new];
     }
     return self;
@@ -73,7 +73,7 @@
             self.attr[key] = v;
         }
 
-        [self.excludes unionSet:def.excludes];
+        [self _mergeIntoAssocArray:self.excludes from:def.excludes];
         [self _mergeIntoAssocArray:self.attr_transform_pre from:def.attr_transform_pre];
         [self _mergeIntoAssocArray:self.attr_transform_post from:def.attr_transform_post];
 

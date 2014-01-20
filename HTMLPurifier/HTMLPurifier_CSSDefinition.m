@@ -25,6 +25,7 @@
 #import "HTMLPurifier_AttrDef_CSS_URI.h"
 #import "HTMLPurifier_AttrDef_CSS_FontFamily.h"
 #import "HTMLPurifier_AttrDef_CSS_Font.h"
+#import "HTMLPurifier_AttrDef_CSS_ImportantDecorator.h"
 #import "BasicPHP.h"
 
 
@@ -114,40 +115,40 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"xx-small", @"x-small", @"small", @"medium", @"large", @"x-large", @"xx-large", @"larger", @"smaller"]], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init], [[HTMLPurifier_AttrDef_CSS_Length alloc] init]]] forKey:@"font-size"];
 
-     self.info[@"line-height"] = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
+    self.info[@"line-height"] = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
 
-     HTMLPurifier_AttrDef_CSS_Composite* margin = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
+    HTMLPurifier_AttrDef_CSS_Composite* margin = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
 
-     [self.info setObject:margin forKey:@"margin-top"];
-     [self.info setObject:margin forKey:@"margin-bottom"];
-     [self.info setObject:margin forKey:@"margin-left"];
-     [self.info setObject:margin forKey:@"margin-right"];
+    [self.info setObject:margin forKey:@"margin-top"];
+    [self.info setObject:margin forKey:@"margin-bottom"];
+    [self.info setObject:margin forKey:@"margin-left"];
+    [self.info setObject:margin forKey:@"margin-right"];
 
-     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:margin] forKey:@"margin"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:margin] forKey:@"margin"];
 
-     HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
+    HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
 
-     [self.info setObject:padding forKey:@"padding-top"];
-     [self.info setObject:padding forKey:@"padding-bottom"];
-     [self.info setObject:padding forKey:@"padding-left"];
-     [self.info setObject:padding forKey:@"padding-right"];
+    [self.info setObject:padding forKey:@"padding-top"];
+    [self.info setObject:padding forKey:@"padding-bottom"];
+    [self.info setObject:padding forKey:@"padding-left"];
+    [self.info setObject:padding forKey:@"padding-right"];
 
-     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:padding] forKey:@"padding"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:padding] forKey:@"padding"];
 
-     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init]]] forKey:@"text-indent"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init]]] forKey:@"text-indent"];
 
-     HTMLPurifier_AttrDef_CSS_Composite* trusted_wh = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
+    HTMLPurifier_AttrDef_CSS_Composite* trusted_wh = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
 
     NSNumber* max = (NSNumber*)[config get:@"CSS.MaxImgLength"];
 
-     HTMLPurifier_AttrDef_CSS_Composite* composite = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
+    HTMLPurifier_AttrDef_CSS_Composite* composite = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
 
     HTMLPurifier_AttrDef* attrDef = (max==nil) ? trusted_wh:[[HTMLPurifier_AttrDef_Switch alloc] initWithTag:@"img" withTag:composite withoutTag:trusted_wh];
 
     [self.info setObject:attrDef forKey:@"width"];
     [self.info setObject:attrDef forKey:@"height"];
 
-     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_TextDecoration alloc] init] forKey:@"text-decoration"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_TextDecoration alloc] init] forKey:@"text-decoration"];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_FontFamily alloc] init] forKey:@"font-family"];
 
@@ -176,32 +177,38 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:2] forKey:@"border-spacing"];
 
-                                                             // These CSS properties don't work on many browsers, but we live
-                                                            // in THE FUTURE!
+    // These CSS properties don't work on many browsers, but we live
+    // in THE FUTURE!
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"nowrap", @"normal", @"pre", @"pre-wrap", @"pre-line"]] forKey:@"white-space"];
 
     /*
-    if ([[config get:@"CSS.Proprietary"] boolValue])
+     if ([[config get:@"CSS.Proprietary"] boolValue])
+     {
+     [self doSetupProprietary:config];
+     }
+
+     if ([[config get:@"CSS.AllowTricky"] boolValue])
+     {
+     [self doSetupTricky:config];
+     }
+
+
+     if ([config get:@"CSS.Trusted"])
+     {
+     [self doSetupTrusted:config];
+     }*/
+
+    BOOL allow_important = [[config get:@"CSS.AllowImportant"] isEqual:@YES];
+
+
+    // wrap all attr-defs with decorator that handles !important
+    NSArray* allKeys = self.info.allKeys;
+    for(NSString* k in allKeys)
     {
-        [self doSetupProprietary:config];
+        HTMLPurifier_AttrDef* v = self.info[k];
+        self.info[k] = [[HTMLPurifier_AttrDef_CSS_ImportantDecorator alloc] initWithDef:v AllowImportant:@(allow_important)];
     }
 
-    if ([[config get:@"CSS.AllowTricky"] boolValue])
-    {
-        [self doSetupTricky:config];
-    }
-
-
-    if ([config get:@"CSS.Trusted"])
-    {
-        [self doSetupTrusted:config];
-    }
-
-    $allow_important = $config->get('CSS.AllowImportant');
-                                                            // wrap all attr-defs with decorator that handles !important
-                                                            foreach ($this->info as $k => $v) {
-                                                                $this->info[$k] = new HTMLPurifier_AttrDef_CSS_ImportantDecorator($v, $allow_important);
-                                                            }*/
 
     [self setupConfigStuff:config];
 }
@@ -239,9 +246,9 @@
 //                                                                                                                                       )
 //                                                                                                                                 );
 //                                                                $this->info['page-break-inside'] = new HTMLPurifier_AttrDef_Enum(array('auto', 'avoid'));
-//                                                                
+//
 //                                                            }
-//                                                            
+//
 //                                                            /**
 //                                                             * @param HTMLPurifier_Config $config
 //                                                             */
@@ -274,7 +281,7 @@
 //                                                                                                                          );
 //                                                                $this->info['overflow'] = new HTMLPurifier_AttrDef_Enum(array('visible', 'hidden', 'auto', 'scroll'));
 //                                                            }
-//                                                            
+//
 //                                                            /**
 //                                                             * @param HTMLPurifier_Config $config
 //                                                             */
@@ -300,13 +307,13 @@
 //                                                                                                                                      )
 //                                                                                                                                );
 
-                                                            /**
-                                                             * Performs extra config-based processing. Based off of
-                                                             * HTMLPurifier_HTMLDefinition.
-                                                             * @param HTMLPurifier_Config $config
-                                                             * @todo Refactor duplicate elements into common class (probably using
-                                                             *       composition, not inheritance).
-                                                             */
+/**
+ * Performs extra config-based processing. Based off of
+ * HTMLPurifier_HTMLDefinition.
+ * @param HTMLPurifier_Config $config
+ * @todo Refactor duplicate elements into common class (probably using
+ *       composition, not inheritance).
+ */
 
 - (void)setupConfigStuff:(HTMLPurifier_Config*)config
 {
@@ -325,11 +332,11 @@
             [self.info removeObjectForKey:name];
         }
 
-    for(NSString* name in allowed_properties)
-    {
-        NSString* newName = htmlspecialchars(name);
-        TRIGGER_ERROR(@"Style attribute '%@' is not supported %@", newName, support);
-    }
+        for(NSString* name in allowed_properties)
+        {
+            NSString* newName = htmlspecialchars(name);
+            TRIGGER_ERROR(@"Style attribute '%@' is not supported %@", newName, support);
+        }
 
     }
 
