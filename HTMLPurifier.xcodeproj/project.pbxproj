@@ -348,6 +348,7 @@
 		808CBA4A188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA49188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m */; };
 		808CBA4C188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */; };
 		808CBA4E188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */; };
+		808CBA50188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */; };
 		80B94C8718870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */; };
 		80B94C8818870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */; };
 		80B94C8B18870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */; };
@@ -723,6 +724,7 @@
 		808CBA49188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_HostBlacklistTest.m; sourceTree = "<group>"; };
 		808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_MakeAbsoluteTest.m; sourceTree = "<group>"; };
 		808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_MungeTest.m; sourceTree = "<group>"; };
+		808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIDefinitionTest.m; sourceTree = "<group>"; };
 		80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h; sourceTree = "<group>"; };
 		80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m; sourceTree = "<group>"; };
 		80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Filter.h; sourceTree = "<group>"; };
@@ -1159,6 +1161,7 @@
 				808CBA3E188D6F1900AFB841 /* HTMLPurifier_URIHarness.m */,
 				808CBA40188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.h */,
 				808CBA41188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m */,
+				808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */,
 			);
 			name = URI;
 			sourceTree = "<group>";
@@ -1832,6 +1835,7 @@
 				808CB9C918881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m in Sources */,
 				808CBA4E188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m in Sources */,
 				1E35ECDA188727D000E8FF31 /* HTMLPurifier_ElementDefTest.m in Sources */,
+				808CBA50188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m in Sources */,
 				808CBA4A188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */,
 				808CBA42188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m in Sources */,
 				808CB9D9188AEA3A00AFB841 /* HTMLPurifier_AttrDef_HTML_LengthTest.m in Sources */,
