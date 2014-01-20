@@ -20,7 +20,7 @@
     self = [super init];
     if (self) {
         self.name = @"Bdo";
-        self.attr_collections = [@{@"I8N" : @{@"dir" : @NO}} mutableCopy];
+        self.attr_collections = [@{@"I18N" : [@{@"dir" : @NO} mutableCopy]} mutableCopy];
         [self addElement:@"bdo" type:@"Inline" contents:@"Inline" attrIncludes:@[@"Core", @"Lang"] attr:@{@"dir":@"Enum#ltr,rtl"}];
 
         //TO DO: add post transform: HTMLPurifier_AttrTransform_BdsDir

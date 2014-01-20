@@ -37,12 +37,21 @@
             for(NSNumber* attr_i in coll)
             {
                 NSObject* attr = coll[attr_i];
-                if([attr_i isEqual:@"0"] && self.info[coll_i][attr_i])
+
+                //NSMutableDictionary*
+
+                if([attr_i isEqual:@0] && self.info[coll_i][attr_i])
                 {
-                    self.info[coll_i][attr_i] = [self.info[coll_i][attr_i] arrayByAddingObject:attr];
+                    if([attr isKindOfClass:[NSArray class]])
+                        self.info[coll_i][attr_i] = [self.info[coll_i][attr_i] arrayByAddingObjectsFromArray:(NSArray*)attr];
+                    else
+                        self.info[coll_i][attr_i] = [self.info[coll_i][attr_i] arrayByAddingObject:attr];
                     continue;
                 }
-                self.info[coll_i][attr_i] = attr;
+                if([attr isKindOfClass:[NSArray class]])
+                    self.info[coll_i][attr_i] = attr;
+                else
+                    self.info[coll_i][attr_i] = @[attr];
             }
         }
         }
@@ -62,6 +71,10 @@
     return self;
 }
 
+- (id)init
+{
+    return [self initWithAttrTypes:nil modules:nil];
+}
 
     /**
      * Takes a reference to an attribute associative array and performs
@@ -73,7 +86,7 @@
         if (!attr[@0]) {
             return;
         }
-        NSMutableArray* merge = attr[@0];
+        NSMutableArray* merge = [attr[@0] mutableCopy];
         NSMutableSet* seen  = [NSMutableSet new]; // recursion guard
                           // loop through all the inclusions
         for (NSInteger i = 0; i<merge.count; i++)
@@ -84,7 +97,7 @@
             }
             [seen addObject:merge[i]];
             // foreach attribute of the inclusion, copy it over
-            if (!self.info[merge[i]] || [self.info[merge[i]] isEqual:@NO])
+            if (!self.info[merge[i]])
             {
                 continue;
             }
@@ -102,6 +115,7 @@
             {
                 // recursion
                 [merge addObjectsFromArray:self.info[merge[i]][@0]];
+                attr[@0] = merge;
             }
         }
         [attr removeObjectForKey:@0];
@@ -119,10 +133,16 @@
         // skip duplicates
         NSMutableSet* processed = [NSMutableSet new];
 
+        //while there are unprocessed objects in attr
+        while(processed.count<[processed setByAddingObjectsFromArray:attr.allKeys].count)
+        {
         NSArray* allKeys = attr.allKeys;
         for(NSString* def_i in allKeys)
         {
             NSObject* def = attr[def_i];
+            if([def isKindOfClass:[NSArray class]] && [(NSArray*)def count]>0)
+                def = [(NSArray*)def objectAtIndex:0];
+
             // skip inclusions
             if ([def_i isEqual:@0])
             {
@@ -149,11 +169,11 @@
             if ([def isKindOfClass:[HTMLPurifier_AttrDef class]])
             {
                 // preserve previous required
-                [(HTMLPurifier_AttrDef*)attr[def_i] setRequired:(required || [(HTMLPurifier_AttrDef*)attr[def_i] required])];
+                [(HTMLPurifier_AttrDef*)def setRequired:(required || [(HTMLPurifier_AttrDef*)def required])];
                 continue;
             }
 
-            if (!def || [def isEqual:@"NO"])
+            if (!def || [def isEqual:@NO])
             {
                 [attr removeObjectForKey:def_i];
                 continue;
@@ -169,6 +189,7 @@
             {
                 [attr removeObjectForKey:def_i];
             }
+        }
         }
     }
 

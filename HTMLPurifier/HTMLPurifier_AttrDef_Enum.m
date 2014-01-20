@@ -42,7 +42,9 @@
     BOOL result = NO;
 
     //TO DO: fix
-    //validValues is sometimes set to a string
+    //validValues is occasionally set to a string
+    if([self.validValues isKindOfClass:[NSString class]])
+        @throw [NSException exceptionWithName:@"AttrDef_Enum" reason:[NSString stringWithFormat:@"Valid values set to string: %@", self.validValues] userInfo:nil];
     
     if([self.validValues isKindOfClass:[NSArray class]])
         result = [self.validValues containsObject:newString];

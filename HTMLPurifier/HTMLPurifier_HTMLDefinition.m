@@ -278,12 +278,12 @@
     // setup allowed attributes ---------------------------------------
 
 /*
-    NSMutableDictionary* allowed_attributes_mutable = allowed_attributes; // by copy!
+    NSMutableDictionary* allowed_attributes_mutable = [allowed_attributes mutableCopy]; // by copy!
     if ([allowed_attributes isKindOfClass:[NSDictionary class]]) {
         // This actually doesn't do anything, since we went away from
         // global attributes. It's possible that userland code uses
         // it, but HTMLModuleManager doesn't!
-        foreach ($this->info_global_attr as $attr => $x) {
+        for($this->info_global_attr as $attr => $x) {
             $keys = array($attr, "*@$attr", "*.$attr");
             $delete = true;
             foreach ($keys as $key) {

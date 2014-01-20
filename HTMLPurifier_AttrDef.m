@@ -63,7 +63,7 @@
  */
 - (NSString*)mungeRgbWithString:(NSString*)string
 {
-    return preg_replace_3(@"/rgb\\((\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\)/", @"rgb(\\1,\\2,\\3)", string);
+    return preg_replace_3(@"rgb\\((\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)\\)", @"rgb(\\1,\\2,\\3)", string);
 }
 
 - (NSString*)expandCSSEscapeWithString:(NSString*)string

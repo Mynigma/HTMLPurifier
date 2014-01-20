@@ -33,7 +33,6 @@
         _registeredModules = [NSMutableDictionary new];
         _trusted = NO;
 
-        
         _attrTypes = [HTMLPurifier_AttrTypes new];
         _doctypes = [HTMLPurifier_DoctypeRegistry new];
 
@@ -60,6 +59,7 @@
         [_doctypes registerDoctype:@"XHTML 1.0 Strict" xml:YES modules:[[common arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Strict", @"Tidy_XHTML", @"Tidy_Strict", @"Tidy_Proprietary", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.0 Strict//EN" dtdSystem:@"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"];
 
         [_doctypes registerDoctype:@"XHTML 1.1" xml:YES modules:[[common arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:@[@"Ruby", @"Iframe"]] tidy_modules:@[@"Tidy_Strict", @"Tidy_XHTML", @"Tidy_Proprietary", @"Tidy_Strict", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.1//EN" dtdSystem:@"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"];
+
     }
     return self;
 }
