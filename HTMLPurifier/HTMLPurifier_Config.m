@@ -247,7 +247,7 @@ static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
 {
     NSArray* namespace = nil;
     NSString* namespace_string = nil;
-    if (strpos(@".",key) == NSNotFound)
+    if (strpos(key,@".") == NSNotFound)
     {
         namespace_string = key;
     }
@@ -274,12 +274,16 @@ static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
     // this is a very costly process, so it's discouraged
     // with finalization
     
-    if ([namespace isEqual:@"HTML"] || [namespace isEqual:@"CSS"] || [namespace isEqual:@"URI"])
+    if ([namespace_string isEqual:@"HTML"] || [namespace_string isEqual:@"CSS"] || [namespace_string isEqual:@"URI"])
     {
-        [definitions removeObjectForKey:namespace];
+        [definitions removeObjectForKey:namespace_string];
+        if([namespace isEqual:@"HTML"])
+            theHTMLDefinition = nil;
+        if([namespace isEqual:@"CSS"])
+            theCSSDefinition = nil;
     }
 
-    [serials setObject:@NO forKey:namespace];
+    [serials setObject:@NO forKey:namespace_string];
 }
 
 /**

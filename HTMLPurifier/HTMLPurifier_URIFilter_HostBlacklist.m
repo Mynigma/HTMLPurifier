@@ -38,7 +38,17 @@
  */
 - (BOOL) prepare:(HTMLPurifier_Config*)config
 {
-    self.blacklist = (NSArray*)[config get:@"URI.HostBlacklist"];
+    NSObject* def= [config get:@"URI.HostBlacklist"];
+    
+    // This List can be a single String
+    if ([def isKindOfClass:[NSString class]])
+    {
+        self.blacklist = [NSArray arrayWithObject:def];
+    }
+    else
+    {
+    self.blacklist = (NSArray*)def;
+    }
     return YES;
 }
 

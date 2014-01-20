@@ -339,6 +339,14 @@
 		808CBA35188BE2F900AFB841 /* HTMLPurifier_URIScheme_news.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA33188BE2F900AFB841 /* HTMLPurifier_URIScheme_news.m */; };
 		808CBA38188BE34000AFB841 /* HTMLPurifier_URIScheme_nntp.h in Headers */ = {isa = PBXBuildFile; fileRef = 808CBA36188BE34000AFB841 /* HTMLPurifier_URIScheme_nntp.h */; };
 		808CBA39188BE34000AFB841 /* HTMLPurifier_URIScheme_nntp.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA37188BE34000AFB841 /* HTMLPurifier_URIScheme_nntp.m */; };
+		808CBA3F188D6F1900AFB841 /* HTMLPurifier_URIHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA3E188D6F1900AFB841 /* HTMLPurifier_URIHarness.m */; };
+		808CBA42188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA41188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m */; };
+		808CBA44188D75F700AFB841 /* HTMLPurifier_URIFilter_DisableExternalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA43188D75F700AFB841 /* HTMLPurifier_URIFilter_DisableExternalTest.m */; };
+		808CBA46188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA45188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m */; };
+		808CBA48188D97EC00AFB841 /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA47188D97EC00AFB841 /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m */; };
+		808CBA4A188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA49188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m */; };
+		808CBA4C188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */; };
+		808CBA4E188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */; };
 		80B94C8718870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */; };
 		80B94C8818870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */; };
 		80B94C8B18870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h in Headers */ = {isa = PBXBuildFile; fileRef = 80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */; };
@@ -703,6 +711,16 @@
 		808CBA33188BE2F900AFB841 /* HTMLPurifier_URIScheme_news.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIScheme_news.m; sourceTree = "<group>"; };
 		808CBA36188BE34000AFB841 /* HTMLPurifier_URIScheme_nntp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_URIScheme_nntp.h; sourceTree = "<group>"; };
 		808CBA37188BE34000AFB841 /* HTMLPurifier_URIScheme_nntp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIScheme_nntp.m; sourceTree = "<group>"; };
+		808CBA3D188D6F1900AFB841 /* HTMLPurifier_URIHarness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_URIHarness.h; sourceTree = "<group>"; };
+		808CBA3E188D6F1900AFB841 /* HTMLPurifier_URIHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIHarness.m; sourceTree = "<group>"; };
+		808CBA40188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_URIFilterHarness.h; sourceTree = "<group>"; };
+		808CBA41188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilterHarness.m; sourceTree = "<group>"; };
+		808CBA43188D75F700AFB841 /* HTMLPurifier_URIFilter_DisableExternalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_DisableExternalTest.m; sourceTree = "<group>"; };
+		808CBA45188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_DisableResourcesTest.m; sourceTree = "<group>"; };
+		808CBA47188D97EC00AFB841 /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_DisableExternalResourcesTest.m; sourceTree = "<group>"; };
+		808CBA49188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_HostBlacklistTest.m; sourceTree = "<group>"; };
+		808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_MakeAbsoluteTest.m; sourceTree = "<group>"; };
+		808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_MungeTest.m; sourceTree = "<group>"; };
 		80B94C8518870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h; sourceTree = "<group>"; };
 		80B94C8618870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m; sourceTree = "<group>"; };
 		80B94C8918870B06001DEC3E /* HTMLPurifier_AttrDef_CSS_Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Filter.h; sourceTree = "<group>"; };
@@ -1130,6 +1148,39 @@
 			name = URISchemes;
 			sourceTree = "<group>";
 		};
+		808CBA3A188D6EA200AFB841 /* URI */ = {
+			isa = PBXGroup;
+			children = (
+				808CBA3C188D6EC300AFB841 /* URIScheme */,
+				808CBA3B188D6EB800AFB841 /* URIFilter */,
+				808CBA3D188D6F1900AFB841 /* HTMLPurifier_URIHarness.h */,
+				808CBA3E188D6F1900AFB841 /* HTMLPurifier_URIHarness.m */,
+				808CBA40188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.h */,
+				808CBA41188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m */,
+			);
+			name = URI;
+			sourceTree = "<group>";
+		};
+		808CBA3B188D6EB800AFB841 /* URIFilter */ = {
+			isa = PBXGroup;
+			children = (
+				808CBA43188D75F700AFB841 /* HTMLPurifier_URIFilter_DisableExternalTest.m */,
+				808CBA45188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m */,
+				808CBA47188D97EC00AFB841 /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m */,
+				808CBA49188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m */,
+				808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */,
+				808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */,
+			);
+			name = URIFilter;
+			sourceTree = "<group>";
+		};
+		808CBA3C188D6EC300AFB841 /* URIScheme */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = URIScheme;
+			sourceTree = "<group>";
+		};
 		80EDF9B118803B3200EB1E89 = {
 			isa = PBXGroup;
 			children = (
@@ -1307,6 +1358,7 @@
 				80EDF9DA18803B3200EB1E89 /* Supporting Files */,
 				1E35ECD9188727D000E8FF31 /* HTMLPurifier_ElementDefTest.m */,
 				1E35ECDB1887396100E8FF31 /* PropertyListTest.m */,
+				808CBA3A188D6EA200AFB841 /* URI */,
 				1E35ECDD188747B700E8FF31 /* HTMLPurifier_RemoveForeignElementsTest.m */,
 				1E35ECEB188813D300E8FF31 /* EntityParserTest.m */,
 				1EA6BD641889914800C2BAE7 /* ValidateAttributesTest.m */,
@@ -1754,14 +1806,18 @@
 				808CB9EC188B385300AFB841 /* HTMLPurifier_AttrDef_URITest.m in Sources */,
 				808CB9DD188AF62300AFB841 /* HTMLPurifier_AttrDef_HTML_ClassTest.m in Sources */,
 				808CB9D3188A953B00AFB841 /* HTMLPurifier_AttrDef_HTML_NmtokensTest.m in Sources */,
+				808CBA4C188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */,
 				808CB9C71887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.m in Sources */,
 				808CB9C21887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */,
+				808CBA46188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */,
 				808CB9CB18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */,
 				808CB9E6188AFEEA00AFB841 /* HTMLPurifier_AttrDef_URI_HostTest.m in Sources */,
 				808CB9EA188B0AB600AFB841 /* HTMLPurifier_AttrDef_URI_IPv6Test.m in Sources */,
 				80EDF9E018803B3200EB1E89 /* HTMLPurifierTests.m in Sources */,
+				808CBA3F188D6F1900AFB841 /* HTMLPurifier_URIHarness.m in Sources */,
 				1E9A62E71884502700EA7A85 /* HTMLPurifier_Harness.m in Sources */,
 				1E6F2C37188AA9E900EEEB3F /* UnitConverterTest.m in Sources */,
+				808CBA44188D75F700AFB841 /* HTMLPurifier_URIFilter_DisableExternalTest.m in Sources */,
 				1EA6BD651889914800C2BAE7 /* ValidateAttributesTest.m in Sources */,
 				1E9A62E518844FCB00EA7A85 /* URIParserTest.m in Sources */,
 				1E5FAABE18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m in Sources */,
@@ -1770,7 +1826,10 @@
 				808CB9E4188AFBD700AFB841 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheckTest.m in Sources */,
 				808CB9D5188AD1FE00AFB841 /* HTMLPurifier_AttrDef_HTML_PixelsTest.m in Sources */,
 				808CB9C918881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m in Sources */,
+				808CBA4E188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m in Sources */,
 				1E35ECDA188727D000E8FF31 /* HTMLPurifier_ElementDefTest.m in Sources */,
+				808CBA4A188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */,
+				808CBA42188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m in Sources */,
 				808CB9D9188AEA3A00AFB841 /* HTMLPurifier_AttrDef_HTML_LengthTest.m in Sources */,
 				1E35ECDE188747B700E8FF31 /* HTMLPurifier_RemoveForeignElementsTest.m in Sources */,
 				1E35ECEC188813D300E8FF31 /* EntityParserTest.m in Sources */,
@@ -1779,6 +1838,7 @@
 				808CB9D1188A862500AFB841 /* HTMLPurifier_AttrDef_HTML_LinkTypesTest.m in Sources */,
 				1EA6BD67188A084400C2BAE7 /* CSSTest.m in Sources */,
 				808CB9DB188AF26700AFB841 /* HTMLPurifier_AttrDef_HTML_MultiLengthTest.m in Sources */,
+				808CBA48188D97EC00AFB841 /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
