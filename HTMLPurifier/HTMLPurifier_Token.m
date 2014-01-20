@@ -117,6 +117,7 @@
     [newToken setRewind:[self.rewind copyWithZone:zone]];
     [newToken setSkip:[self.skip copyWithZone:zone]];
     [newToken setAttr:[self.attr copyWithZone:zone]];
+    [newToken setSortedAttrKeys:[self.sortedAttrKeys copyWithZone:zone]];
     [newToken setIsTag:self.isTag];
 
     return newToken;

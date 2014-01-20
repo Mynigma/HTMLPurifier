@@ -83,7 +83,7 @@
 
 - (void)testBackgroundImage
 {
-    [self assertDef:@"background:#333 url(chess.png) repeat fixed 50% top;"];
+    [self assertDef:@"background:#333 url(\"chess.png\") repeat fixed 50% top;"];
 }
 
 - (void)testColorHex
@@ -303,17 +303,17 @@
 
 - (void)testListStyleImage
 {
-    [self assertDef:@"list-style-image:url(nice.jpg);"];
+    [self assertDef:@"list-style-image:url(\"nice.jpg\");"];
 }
 
 - (void)testListStyle
 {
-    [self assertDef:@"list-style:disc url(nice.jpg) inside;"];
+    [self assertDef:@"list-style:disc url(\"nice.jpg\") inside;"];
 }
 
 - (void)testBackgroundImageUrl
 {
-    [self assertDef:@"background-image:url(foo.jpg);"];
+    [self assertDef:@"background-image:url(\"foo.jpg\");"];
 }
 
 - (void)testBackgroundImageNone

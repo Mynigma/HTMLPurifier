@@ -247,7 +247,7 @@ static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
 {
     NSArray* namespace = nil;
     NSString* namespace_string = nil;
-    if (strpos(@".",key) == NSNotFound)
+    if (strpos(key, @".") == NSNotFound)
     {
         namespace_string = key;
     }

@@ -54,6 +54,7 @@
 
     NSMutableDictionary* caught = [NSMutableDictionary dictionaryWithDictionary:@{@"color":@NO, @"image":@NO, @"repeat":@NO, @"attachment":@NO, @"position":@NO}];
 
+    NSArray* sortedCaughtKeys = @[@"color", @"image", @"repeat", @"attachment", @"position"];
 
     NSInteger i = 0; // number of catches
 
@@ -65,7 +66,7 @@
         {
             continue;
         }
-        for(NSString* key in caught)
+        for(NSString* key in sortedCaughtKeys)
         {
             NSObject* status = caught[key];
 
@@ -109,7 +110,7 @@
         }
 
         NSMutableArray* ret = [NSMutableArray new];
-        for(NSObject* key in caught)
+        for(NSObject* key in sortedCaughtKeys)
         {
             NSObject* value = caught[key];
             if([value isEqualTo:@NO])

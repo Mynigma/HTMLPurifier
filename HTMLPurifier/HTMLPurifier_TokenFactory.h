@@ -56,7 +56,7 @@
  * @param array $attr Associative array of attributes
  * @return HTMLPurifier_Token_Start Generated HTMLPurifier_Token_Start
  */
-- (HTMLPurifier_Token_Start*)createStartWithName:(NSString*)name attr:(NSMutableDictionary*)att;
+- (HTMLPurifier_Token_Start*)createStartWithName:(NSString*)name attr:(NSMutableDictionary*)att sortedAttrKeys:(NSArray*)sortedAttrKeys;
 
 /**
  * Creates a HTMLPurifier_Token_End.
@@ -71,7 +71,7 @@
  * @param array $attr Associative array of attributes
  * @return HTMLPurifier_Token_Empty Generated HTMLPurifier_Token_Empty
  */
-- (HTMLPurifier_Token_Empty*)createEmptyWithName:(NSString*)name attr:(NSDictionary*)attr;
+- (HTMLPurifier_Token_Empty*)createEmptyWithName:(NSString*)name attr:(NSDictionary*)attr sortedAttrKeys:(NSArray*)sortedAttrKeys;
 
 /**
  * Creates a HTMLPurifier_Token_Text.

@@ -236,7 +236,7 @@
         BOOL ok = NO;
         if ([type isEqual:@"empty"] && [token isKindOfClass:[HTMLPurifier_Token_Start class]]) {
             // claims to be a start tag but is empty
-            token = [[HTMLPurifier_Token_Empty alloc] initWithName:[token valueForKey:@"name"] attr:[token valueForKey:@"attr"] line:token.line col:token.col armor:token.armor];
+            token = [[HTMLPurifier_Token_Empty alloc] initWithName:[token valueForKey:@"name"] attr:[token valueForKey:@"attr"] sortedAttrKeys:token.attr line:token.line col:token.col armor:token.armor];
             ok = YES;
         } else if (type && ![type isEqualToString:@"empty"] && [token isKindOfClass: [HTMLPurifier_Token_Empty class]])
         {
@@ -245,7 +245,7 @@
             HTMLPurifier_Token* old_token = token;
             token = [[HTMLPurifier_Token_End alloc] initWithName:[token valueForKey:@"name"]];
 
-            token = [self insertBefore:[[HTMLPurifier_Token_Start alloc] initWithName:[old_token valueForKey:@"name"] attr:[old_token valueForKey:@"attr"] line:old_token.line col:old_token.col armor:old_token.armor]];
+            token = [self insertBefore:[[HTMLPurifier_Token_Start alloc] initWithName:[old_token valueForKey:@"name"] attr:[old_token valueForKey:@"attr"] sortedAttrKeys:token.attr line:old_token.line col:old_token.col armor:old_token.armor]];
 
             // punt (since we had to modify the input stream in a non-trivial way)
             reprocess = YES;

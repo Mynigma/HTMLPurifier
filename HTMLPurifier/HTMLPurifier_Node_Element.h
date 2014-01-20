@@ -28,6 +28,8 @@
      */
 @property NSMutableDictionary* attr;
 
+@property NSMutableArray* sortedAttrKeys;
+
 /**
      * List of child elements.
      * @type array
@@ -47,7 +49,7 @@
 
 - (id)initWithName:(NSString*)n;
 
-- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
+- (id)initWithName:(NSString*)n attr:(NSMutableDictionary*)att sortedAttrKeys:(NSArray*)sortedAttrKeys line:(NSNumber*)l col:(NSNumber*)c armor:(NSMutableDictionary*)arm;
 
 - (NSArray*)toTokenPair;
 

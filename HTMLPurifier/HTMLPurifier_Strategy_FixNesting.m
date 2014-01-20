@@ -97,7 +97,7 @@
 
     NSInteger ix = 0;
 
-    NSMutableSet* excludes = [NSMutableSet new];
+    NSMutableDictionary* excludes = [NSMutableDictionary new];
 
     while (stack.count>0)
     {
@@ -126,7 +126,7 @@
                                    // child_def, but double check this...
                                    @(isInline || [def descendants_are_inline]),
                                    ([[def excludes] count]==0) ? excludes
-                                   : [excludes setByAddingObjectsFromSet:[def excludes]],
+                                   : dict_merge_2(excludes, [def excludes]),
                                    @0]];
                 break;
             }
@@ -142,7 +142,7 @@
 
 
         // base case
-        if (excludesEnabled && [excludes containsObject:node.name])
+        if (excludesEnabled && [excludes[node.name] isEqual:@YES])
         {
             node.dead = true;
             NSLog(@"Strategy_FixNesting: Node excluded: %@", node);

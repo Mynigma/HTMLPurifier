@@ -51,6 +51,10 @@
     return self;
 }
 
+- (id)init
+{
+    return [self initWithConfig:nil];
+}
 
 
 @end

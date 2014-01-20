@@ -58,7 +58,10 @@
         def1.content_model = @"old";
         def1.content_model_type = overloaded_old;
         def1.descendants_are_inline = NO;
-        def1.excludes = [NSMutableSet setWithObjects:@"old", @"removed-old", nil];
+        def1.excludes = [@{
+                               @"old" : @YES,
+                               @"removed-old" : @YES
+                                } mutableCopy];
 
         def2.standalone = false;
         def2.attr = [@{
@@ -78,7 +81,10 @@
         def2.content_model = @"#SUPER | new";
         def2.content_model_type = overloaded_new;
         def2.descendants_are_inline = YES;
-        def2.excludes = [NSMutableSet setWithObjects:@"new", @"removed-old", nil];
+        def2.excludes = [@{
+                               @"new" : @YES,
+                               @"removed-old" : @NO
+                                } mutableCopy];
 
         [def1 mergeIn:def2];
         [def1 mergeIn:def3]; // empty, has no effect
@@ -106,11 +112,14 @@
     XCTAssertEqualObjects(def1.content_model, @"old | new");
     XCTAssertEqualObjects(def1.content_model_type, overloaded_new);
     XCTAssertEqual(def1.descendants_are_inline, YES);
+    expectedDict = @{@"old" : @YES, @"new" : @YES};
 
-    NSSet* expectedSet = [NSMutableSet setWithObjects:@"old", @"new", nil];
+    expectedDict = @{ @"old" : @YES,
+                      @"new" : @YES };
 
-    XCTAssertEqualObjects(def1.excludes, expectedSet);
-}
+    XCTAssertEqualObjects(def1.excludes, expectedDict);
+        
+    }
 
 
 @end

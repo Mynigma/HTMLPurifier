@@ -54,6 +54,8 @@
     // don't update token until the very end, to ensure an atomic update
     NSMutableDictionary* attr = [token.attr mutableCopy];
 
+    NSArray* attrKeyOrder = token.sortedAttrKeys;
+
     /*
      // do global transformations (pre)
      // nothing currently utilizes this
@@ -94,11 +96,13 @@
 
     // iterate through all the attribute keypairs
 
-    NSArray* allAttrKeys = attr.allKeys;
+    NSMutableArray* newAttrKeySortOrder = [attrKeyOrder mutableCopy];
 
-    for(NSString* key in allAttrKeys)
+    for(NSString* key in attrKeyOrder)
     {
         NSString* value = attr[key];
+        if(!value)
+            return;
 
         // call the definition
         if (defs[key])
@@ -139,6 +143,8 @@
 
             // remove the attribute
 
+            if([newAttrKeySortOrder containsObject:key])
+                [newAttrKeySortOrder removeObject:key];
             [attr removeObjectForKey:key];
         }
         else if (result)
@@ -197,6 +203,8 @@
      }*/
 
     [token setAttr:attr];
+
+    [token setSortedAttrKeys:newAttrKeySortOrder];
 
     // destroy CurrentToken if we made it ourselves
     if (!current_token) {
