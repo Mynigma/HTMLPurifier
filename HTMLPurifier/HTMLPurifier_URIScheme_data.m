@@ -83,8 +83,8 @@
                 if (content_type)
                 {
                     continue;
-                }
-                // garbage
+                }// garbage
+                
                 content_type = cur;
             }
         }
@@ -93,7 +93,7 @@
     {
         data = result[0];
     }
-    if (content_type && [allowed_types containsObject:content_type])
+    if (content_type && ![allowed_types containsObject:content_type])
     {
         return NO;
     }
@@ -155,16 +155,30 @@
     
     struct CGImageSource* imgsrc = CGImageSourceCreateWithData((__bridge CFDataRef)(raw_data),(__bridge CFDictionaryRef)(@{}));
     
+    // Returns something like public.png
     NSString* real_type = CFBridgingRelease(CGImageSourceGetType(imgsrc));
-    
     CFRelease(imgsrc);
+    
+    if (!real_type)
+        return NO;
+    
+    if (strpos(real_type, @".") == NSNotFound)
+        return NO;
+    
+    
+    NSString* type = [explode(@".",real_type) objectAtIndex:1];
+
+    real_type = [@"image/" stringByAppendingString:type];
+    
     
     if (![real_type isEqual:content_type])
     {
         if ([allowed_types containsObject:real_type]){
             content_type = real_type;
+            
         }
-        return NO;
+        else
+            return NO;
     }
     
     //CHECK IMAGE TYPE: REAL VS GIVEN || ALLOWED ?

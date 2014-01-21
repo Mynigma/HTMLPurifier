@@ -69,7 +69,7 @@
             // encoded_path = [enc encode:[NSString stringWithFormat:@"%@;%@",[uri path],type]];
             [uri setPath:[NSString stringWithFormat:@"%@%%3B%@",[uri path],type]];
         }
-        [uri setPath:(NSString*)str_replace(@";", @"%%3B", [uri path])];
+        [uri setPath:(NSString*)str_replace(@";", @"%3B", [uri path])];
         [uri setPath:[[uri path] stringByAppendingString:type_ret]];
     }
     return YES;
