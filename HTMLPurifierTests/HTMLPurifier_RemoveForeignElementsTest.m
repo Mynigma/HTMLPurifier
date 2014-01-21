@@ -153,7 +153,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 {
         NSString* before = @"<img />";
         NSString* after = @"";
-    before = [self runOnString:before];
+        before = [self runOnString:before];
 
         XCTAssertEqualObjects(before, after);
 }
@@ -188,8 +188,8 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 
     XCTAssertEqualObjects(before, after);
 }
-*/
-/*
+
+
 - (void)testRequiredAttributesTestNotPerformedOnEndTag
 {
     [super.config setString:@"HTML.DefinitionID" object:@{@"HTMLPurifier_Strategy_RemoveForeignElementsTest":@"testRequiredAttributesTestNotPerformedOnEndTag"}];
@@ -203,8 +203,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 
         XCTAssertEqualObjects(before, after);
     }
-*/
-/*
+
 - (void)testPreserveCommentsWithHTMLTrusted
 {
     [super.config setString:@"HTML.Trusted" object:@YES];
@@ -237,7 +236,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 
         XCTAssertEqualObjects(before, after);
     }
- */
+*/
 
 
 

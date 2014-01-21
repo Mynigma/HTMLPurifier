@@ -55,8 +55,20 @@
 {
     [self assertCleanUTF8:@"Normal string."];
     [self assertCleanUTF8:@"Test\tAllowed\nControl\rCharacters"];
+}
+
+- (void)testNullByte
+{
     [self assertCleanUTF8:@"null byte: \0" expect:@"null byte: "];
+}
+
+- (void)testLowBytes
+{
     [self assertCleanUTF8:@"\1\2\3\4\5\6\7" expect:@""];
+}
+
+- (void)testMore
+{
     [self assertCleanUTF8:@"\x7F" expect:@""]; // one byte invalid SGML char
     [self assertCleanUTF8:@"\xC2\x80" expect:@""]; // two byte invalid SGML
     [self assertCleanUTF8:@"\xF3\xBF\xBF\xBF"]; // valid four byte

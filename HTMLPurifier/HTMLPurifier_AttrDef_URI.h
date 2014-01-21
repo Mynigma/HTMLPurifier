@@ -49,4 +49,5 @@
 -(NSString*) validateWithString:(NSString *)uri config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
 
+
 @end

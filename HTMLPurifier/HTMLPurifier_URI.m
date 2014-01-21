@@ -103,7 +103,8 @@
     if (self.host) {
         HTMLPurifier_AttrDef_URI_Host* host_def = [HTMLPurifier_AttrDef_URI_Host new];
         // will be nil if validation fails
-        self.host = [host_def validateWithString:self.host config:config context:context];
+        NSObject* result = [host_def validateWithString:self.host config:config context:context];
+        self.host = result?result:@"";
     }
     
     // validate scheme
@@ -208,7 +209,7 @@
     HTMLPurifier_PercentEncoder* qf_encoder = [[HTMLPurifier_PercentEncoder alloc] initWithPreservedChars:
                                                [chars_pchar stringByAppendingString:@"/?"]];
     
-    if (self.query)
+    if (!self.query)
     {
         self.query = [qf_encoder encode:self.query];
     }
@@ -265,7 +266,7 @@
     {
         result = [NSString stringWithFormat:@"%@?%@",result,self.query];
     }
-    if (self.fragment && [self.fragment length]>0)
+    if (self.fragment)
     {
         result =[NSString stringWithFormat:@"%@#%@",result,self.fragment];
     }
