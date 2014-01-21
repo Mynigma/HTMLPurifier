@@ -15,7 +15,7 @@
 
 + (void)muteErrorHandler;
 
-+ (NSString*)convertToASCIIDumbLossless:(NSString*)str;
++ (NSData*)convertToASCIIDumbLossless:(NSData*)str;
 
 
 //    /**

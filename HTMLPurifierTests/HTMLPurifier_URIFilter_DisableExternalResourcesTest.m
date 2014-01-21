@@ -39,8 +39,7 @@
     
     BOOL result = [self.filter filter:(HTMLPurifier_URI**)&uri config:self.config context:self.context];
     
-    [self assertEitherFailOrIdentical:result result:[(HTMLPurifier_URI*)uri toString]
-                               expect:expect_uri];
+    [self assertEitherFailOrIdentical:result result:uri expect:expect_uri];
 }
 
 - (void)assertEitherFailOrIdentical:(BOOL)status result:(NSObject*)result expect:(NSObject*)expect

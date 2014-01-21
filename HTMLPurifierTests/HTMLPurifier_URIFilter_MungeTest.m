@@ -162,7 +162,8 @@
 
 -(void) testSecureMungeStandard
 {
-    if (![self setSecureMunge:nil]) return;
+    if (![self setSecureMunge:nil])
+        return;
     [self assertFiltering:@"http://google.com" expect:@"/redirect.php?url=http%3A%2F%2Fgoogle.com&checksum=46267a796aca0ea5839f24c4c97ad2648373a4eca31b1c0d1fa7c7ff26798f79"];
 }
 

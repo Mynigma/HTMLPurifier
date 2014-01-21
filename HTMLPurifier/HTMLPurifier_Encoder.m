@@ -666,7 +666,9 @@
     {
         return str;
     }
-    return [[NSString alloc] initWithData:[str dataUsingEncoding:encoding.integerValue] encoding:NSUTF8StringEncoding];
+    NSData* rawData = [str dataUsingEncoding:encoding.integerValue];
+    NSString* utf8String = [[NSString alloc] initWithData:rawData encoding:NSUTF8StringEncoding];
+    return utf8String;
 }
 //        static $iconv = null;
 //        if ($iconv === null) {
@@ -716,17 +718,21 @@
     NSNumber* encoding = (NSNumber*)[config get:@"Core.Encoding"];
     NSNumber* escape = (NSNumber*)[config get:@"Core.EscapeNonASCIICharacters"];
 
-    if (encoding.integerValue == NSUTF8StringEncoding)
+    if (encoding.integerValue == NSUTF8StringEncoding && !escape.boolValue)
     {
         return str;
     }
 
+    NSData* stringData = [str dataUsingEncoding:NSUTF8StringEncoding];
+
     if(escape.boolValue)
     {
-        [self convertToASCIIDumbLossless:str];
+        stringData = [self convertToASCIIDumbLossless:stringData];
     }
 
-    return [[NSString alloc] initWithData:[str dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:!escape.boolValue] encoding:encoding.integerValue];
+    NSString* newString = [[NSString alloc] initWithData:stringData encoding:encoding.integerValue];
+
+    return newString;
 }
 //    {
 //        $encoding = $config->get('Core.Encoding');
@@ -781,41 +787,43 @@
 //     * @note Sort of with cleanUTF8() but it assumes that $str is
 //     *       well-formed UTF-8
 //     */
-+ (NSString*)convertToASCIIDumbLossless:(NSString*)str
++ (NSData*)convertToASCIIDumbLossless:(NSData*)data
 {
-    return str;
-}
-//    {
-//        $bytesleft = 0;
-//        $result = '';
-//        $working = 0;
-//        $len = strlen($str);
-//        for ($i = 0; $i < $len; $i++) {
-//            $bytevalue = ord($str[$i]);
-//            if ($bytevalue <= 0x7F) { //0xxx xxxx
-//                $result .= chr($bytevalue);
-//                $bytesleft = 0;
-//            } elseif ($bytevalue <= 0xBF) { //10xx xxxx
-//                $working = $working << 6;
-//                $working += ($bytevalue & 0x3F);
-//                $bytesleft--;
-//                if ($bytesleft <= 0) {
-//                    $result .= "&#" . $working . ";";
-//                }
-//            } elseif ($bytevalue <= 0xDF) { //110x xxxx
-//                $working = $bytevalue & 0x1F;
-//                $bytesleft = 1;
-//            } elseif ($bytevalue <= 0xEF) { //1110 xxxx
-//                $working = $bytevalue & 0x0F;
-//                $bytesleft = 2;
-//            } else { //1111 0xxx
-//                $working = $bytevalue & 0x07;
-//                $bytesleft = 3;
-//            }
-//        }
-//        return $result;
-//    }
-//
+        NSInteger bytesleft = 0;
+        NSMutableData* result = [NSMutableData new];
+        int working = 0;
+        NSInteger len = data.length;
+        const unsigned char* dataBytes = data.bytes;
+        for (NSInteger i = 0; i < len; i++)
+        {
+            unsigned char bytevalue = dataBytes[i];
+            if (bytevalue <= 0x7F) { //0xxx xxxx
+                [result appendBytes:&bytevalue length:1];
+                 //String:[NSString stringWithCharacters:(unichar*)&bytevalue length:1]];
+                bytesleft = 0;
+            } else if (bytevalue <= 0xBF) { //10xx xxxx
+                working = working << 6;
+                working += (bytevalue & 0x3F);
+                bytesleft--;
+                if (bytesleft <= 0) {
+                    NSString* string = [NSString stringWithFormat:@"&#%d;", working];
+                    [result appendData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+                     //appendFormat:@"&#%d;", working];
+                }
+            } else if (bytevalue <= 0xDF) { //110x xxxx
+                working = bytevalue & 0x1F;
+                bytesleft = 1;
+            } else if (bytevalue <= 0xEF) { //1110 xxxx
+                working = bytevalue & 0x0F;
+                bytesleft = 2;
+            } else { //1111 0xxx
+                working = bytevalue & 0x07;
+                bytesleft = 3;
+            }
+        }
+        return result;
+    }
+
 
 //
 //    /**

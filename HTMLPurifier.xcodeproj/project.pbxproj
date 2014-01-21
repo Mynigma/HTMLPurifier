@@ -222,6 +222,14 @@
 		1EE2D977188C1F350009DF07 /* HTMLPurifier_ChildDef_Custom.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2D975188C1F350009DF07 /* HTMLPurifier_ChildDef_Custom.m */; };
 		1EE2D97A188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE2D978188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.h */; };
 		1EE2D97B188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EE2D979188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.m */; };
+		1EEE87A8188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EEE87A6188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.h */; };
+		1EEE87A9188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE87A7188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.m */; };
+		1EEE87AC188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EEE87AA188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.h */; };
+		1EEE87AD188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEE87AB188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.m */; };
+		1EEE87B1188EC7B800BDA422 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87B0188EC7B800BDA422 /* libOCMock.a */; };
+		1EEE87B2188EC7EA00BDA422 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
+		1EEE87B4188ECDE400BDA422 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
+		1EEE87B5188ECE0700BDA422 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
 		803497AC188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 803497AB188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m */; };
 		803497AE188E80CA00A90FB9 /* HTMLPurifier_URITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 803497AD188E80CA00A90FB9 /* HTMLPurifier_URITest.m */; };
 		803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD417188042260010D799 /* HTMLPurifier_Config.h */; };
@@ -379,6 +387,19 @@
 			remoteInfo = HTMLPurifier;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1EEE87B3188ECDC200BDA422 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				1EEE87B5188ECE0700BDA422 /* OCMock.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1E1F2212188491FF00EAC2C1 /* HTMLPurifier_Injector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Injector.h; sourceTree = "<group>"; };
@@ -598,6 +619,12 @@
 		1EE2D975188C1F350009DF07 /* HTMLPurifier_ChildDef_Custom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_Custom.m; sourceTree = "<group>"; };
 		1EE2D978188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_ChildDef_Empty.h; sourceTree = "<group>"; };
 		1EE2D979188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_Empty.m; sourceTree = "<group>"; };
+		1EEE87A6188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_HTMLModule_NonXMLCommonAttributes.h; sourceTree = "<group>"; };
+		1EEE87A7188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule_NonXMLCommonAttributes.m; sourceTree = "<group>"; };
+		1EEE87AA188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_HTMLModule_XMLCommonAttributes.h; sourceTree = "<group>"; };
+		1EEE87AB188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule_XMLCommonAttributes.m; sourceTree = "<group>"; };
+		1EEE87AE188EC7AA00BDA422 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMock.framework; sourceTree = "<group>"; };
+		1EEE87B0188EC7B800BDA422 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		803497AB188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URISchemeRegistryTest.m; sourceTree = "<group>"; };
 		803497AD188E80CA00A90FB9 /* HTMLPurifier_URITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URITest.m; sourceTree = "<group>"; };
 		803FD417188042260010D799 /* HTMLPurifier_Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Config.h; sourceTree = "<group>"; };
@@ -761,9 +788,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EEE87B4188ECDE400BDA422 /* OCMock.framework in Frameworks */,
 				1E5FAAC81885A2640073CA79 /* libiconv.2.dylib in Frameworks */,
 				1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */,
 				80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */,
+				1EEE87B1188EC7B800BDA422 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -771,6 +800,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EEE87B2188EC7EA00BDA422 /* OCMock.framework in Frameworks */,
 				80EDF9D518803B3200EB1E89 /* Cocoa.framework in Frameworks */,
 				80EDF9D818803B3200EB1E89 /* HTMLPurifier.framework in Frameworks */,
 				80EDF9D418803B3200EB1E89 /* XCTest.framework in Frameworks */,
@@ -930,8 +960,14 @@
 				1E6F2C81188B292C00EEEB3F /* HTMLPurifier_HTMLModule_StyleAttribute.m */,
 				1E6F2C84188B2A1800EEEB3F /* HTMLPurifier_HTMLModule_Tables.h */,
 				1E6F2C85188B2A1800EEEB3F /* HTMLPurifier_HTMLModule_Tables.m */,
+				1E361072188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.h */,
+				1E361073188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m */,
 				1E5FAAA9188542E80073CA79 /* HTMLPurifier_HTMLModuleManager.h */,
 				1E5FAAAA188542E80073CA79 /* HTMLPurifier_HTMLModuleManager.m */,
+				1EEE87A6188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.h */,
+				1EEE87A7188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.m */,
+				1EEE87AA188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.h */,
+				1EEE87AB188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.m */,
 			);
 			name = HTMLModule;
 			path = ..;
@@ -1199,8 +1235,6 @@
 		80EDF9B118803B3200EB1E89 = {
 			isa = PBXGroup;
 			children = (
-				1E361072188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.h */,
-				1E361073188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m */,
 				1EE2D978188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.h */,
 				1EE2D979188C21DB0009DF07 /* HTMLPurifier_ChildDef_Empty.m */,
 				1EE2D974188C1F350009DF07 /* HTMLPurifier_ChildDef_Custom.h */,
@@ -1232,6 +1266,8 @@
 		80EDF9BD18803B3200EB1E89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1EEE87B0188EC7B800BDA422 /* libOCMock.a */,
+				1EEE87AE188EC7AA00BDA422 /* OCMock.framework */,
 				1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */,
 				1EBB81D91882C94D008B7FA4 /* libxml2.dylib */,
 				80EDF9BE18803B3200EB1E89 /* Cocoa.framework */,
@@ -1513,6 +1549,7 @@
 				1E6F2C62188B152F00EEEB3F /* HTMLPurifier_HTMLModule_Legacy.h in Headers */,
 				1EBB81E61882DB20008B7FA4 /* HTMLPurifier_Token_Tag.h in Headers */,
 				803FD421188048E30010D799 /* HTMLPurifier_Generator.h in Headers */,
+				1EEE87AC188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.h in Headers */,
 				803FD475188323D80010D799 /* HTMLPurifier_AttrDef_URI_Host.h in Headers */,
 				1E5FAAD318869CF70073CA79 /* HTMLPurifier_PropertyList.h in Headers */,
 				803FD45B1881621F0010D799 /* HTMLPurifier_AttrDef_HTML_ID.h in Headers */,
@@ -1523,6 +1560,7 @@
 				803FD4251880497E0010D799 /* HTMLPurifier_Context.h in Headers */,
 				1E35ECE91887F72900E8FF31 /* HTMLPurifier_TagTransform.h in Headers */,
 				808CBA34188BE2F900AFB841 /* HTMLPurifier_URIScheme_news.h in Headers */,
+				1EEE87A8188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.h in Headers */,
 				1E9A62DE18843F3600EA7A85 /* HTMLPurifier_VarParser.h in Headers */,
 				1E5FAAA7188542C60073CA79 /* HTMLPurifier_HTMLModule.h in Headers */,
 				1EBB81DD1882D7CD008B7FA4 /* HTMLPurifier_Token.h in Headers */,
@@ -1568,6 +1606,7 @@
 				80EDF9B718803B3200EB1E89 /* Frameworks */,
 				80EDF9B818803B3200EB1E89 /* Headers */,
 				80EDF9B918803B3200EB1E89 /* Resources */,
+				1EEE87B3188ECDC200BDA422 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1689,6 +1728,7 @@
 				803FD44C1880A73A0010D799 /* HTMLPurifier_AttrDef_HTML_Nmtokens.m in Sources */,
 				808CBA0B188B603A00AFB841 /* HTMLPurifier_URIFilter_Munge.m in Sources */,
 				803FD4681882D0160010D799 /* HTMLPurifier_AttrDef_HTML_LinkTypes.m in Sources */,
+				1EEE87AD188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.m in Sources */,
 				803FD43618805D190010D799 /* HTMLPurifier_Language.m in Sources */,
 				1E6F2C7B188B25F900EEEB3F /* HTMLPurifier_HTMLModule_Object.m in Sources */,
 				803FD43E18805F030010D799 /* HTMLPurifier_IDAccumulator.m in Sources */,
@@ -1794,6 +1834,7 @@
 				1EBB81E71882DB20008B7FA4 /* HTMLPurifier_Token_Tag.m in Sources */,
 				1E5FAADC1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.m in Sources */,
 				1ED0397718814A850075F6A4 /* HTMLPurifier_AttrDef_CSS_ListStyle.m in Sources */,
+				1EEE87A9188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.m in Sources */,
 				8088C7B31884422700E775ED /* HTMLPurifier_URIDefinition.m in Sources */,
 				808CBA39188BE34000AFB841 /* HTMLPurifier_URIScheme_nntp.m in Sources */,
 				80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */,
@@ -1984,10 +2025,18 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "HTMLPurifier/HTMLPurifier-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -1999,10 +2048,18 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "HTMLPurifier/HTMLPurifier-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = framework;
 			};
@@ -2016,6 +2073,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";
@@ -2038,6 +2096,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifier/HTMLPurifier-Prefix.pch";

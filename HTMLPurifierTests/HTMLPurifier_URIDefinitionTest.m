@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+
 #import "HTMLPurifier_URIDefinition.h"
 #import "HTMLPurifier_URIHarness.h"
 #import "HTMLPurifier_Config.h"
@@ -38,14 +40,49 @@
     [super tearDown];
 }
 
+
+- (HTMLPurifier_URIFilter*)createFilterMockWithURI:(HTMLPurifier_URI*)uri
+{
+    return [self createFilterMockWithExpect:YES result:YES port:NO setup:YES uri:uri];
+}
+
+static NSInteger i = 0;
+
+- (HTMLPurifier_URIFilter*)createFilterMockWithExpect:(BOOL)expect result:(BOOL)result port:(BOOL)post setup:(BOOL)setup uri:(HTMLPurifier_URI*)uri
+{
+    id filterMock = [OCMockObject mockForClass:[HTMLPurifier_URIFilter class]];
+
+    if(expect)
+        [[[filterMock expect] andReturnValue:@(result)] filter:(HTMLPurifier_URI __autoreleasing **)[OCMArg anyPointer] config:self.config context:self.context];
+    else
+        [[filterMock reject] filter:&uri config:self.config context:self.context];
+
+    [[[filterMock stub] andReturnValue:@(setup)] prepare:self.config];
+
+    NSString* uniqueName = [NSString stringWithFormat:@"%ld", (long)i++];
+    [[[filterMock stub] andReturn:uniqueName] name];
+    [[[filterMock stub] andReturnValue:@(post)] post];
+    return filterMock;
+}
+
 -(void) test_filter
 {
     def = [HTMLPurifier_URIDefinition new];
-    // Hardwired a filter =/
-    [def addFilter:[HTMLPurifier_URIFilter_HostBlacklist new] config:self.config];
-    [def addFilter:[HTMLPurifier_URIFilter_DisableResources new] config:self.config];
+
     HTMLPurifier_URI* uri = [self createURI:@"test"];
-    XCTAssertTrue([def filter:&uri config:self.config context:self.context]);
+
+    id filter1 = [self createFilterMockWithURI:uri];
+    id filter2 = [self createFilterMockWithURI:uri];
+
+    [def addFilter:filter1 config:self.config];
+    [def addFilter:filter2 config:self.config];
+
+    BOOL result = [def filter:&uri config:self.config context:self.context];
+
+    [filter1 verify];
+    [filter2 verify];
+
+    XCTAssertTrue(result);
 }
 
 /*

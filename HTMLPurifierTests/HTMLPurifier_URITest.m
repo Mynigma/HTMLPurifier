@@ -45,7 +45,7 @@
 
 -(void) test_construct
 {
-    HTMLPurifier_URI* uri1 = [[HTMLPurifier_URI alloc] initWithScheme:@"HTTP" userinfo:@"bob" host:@"example.com" port:@23 path:@"/foo!" query:@"bar=2" fragment:@"slash"];
+    HTMLPurifier_URI* uri1 = [[HTMLPurifier_URI alloc] initWithScheme:@"HTTP" userinfo:@"bob" host:@"example.com" port:@23 path:@"/foo" query:@"bar=2" fragment:@"slash"];
     
     HTMLPurifier_URI* uri2 = [[HTMLPurifier_URI alloc] initWithScheme:@"http" userinfo:@"bob" host:@"example.com" port:@23 path:@"/foo" query:@"bar=2" fragment:@"slash"];
     XCTAssertEqualObjects(uri1.toString, uri2.toString, @"");

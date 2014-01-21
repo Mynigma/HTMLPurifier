@@ -1090,6 +1090,16 @@ NSString* dechex(NSString* dec_string)
     return [NSString stringWithFormat:@"%lX", (long)dec_string.integerValue];
 }
 
+NSString* lowercase_dechex(NSData* dec_data)
+{
+    NSMutableString *str = [NSMutableString stringWithCapacity:[dec_data length]];
+    const unsigned char *byte = [dec_data bytes];
+    const unsigned char *endByte = byte + [dec_data length];
+    for (; byte != endByte; ++byte)
+        [str appendFormat:@"%02x", *byte];
+    return str;
+}
+
 NSData* base64_decode(NSString* base64String)
 {
     NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
@@ -1113,7 +1123,7 @@ NSData* hash_hmac(NSString* algo, NSString* data, NSString* key)
         const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
         unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
         CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
-        NSData* hmacData = [[NSData alloc] initWithBytes:&cHMAC length:sizeof(cHMAC)];
+        NSData* hmacData = [[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)];
         return hmacData;
     }
     return nil;

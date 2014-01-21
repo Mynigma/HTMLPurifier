@@ -43,7 +43,7 @@
     // convenience hack: the scheme should be explicitly specified
     HTMLPurifier_URIScheme* scheme = [(HTMLPurifier_URI*)uri getSchemeObj:self.config context:self.context];
     BOOL status = [scheme validate:(HTMLPurifier_URI*)uri config:self.config context:self.context];
-    [self assertEitherFailOrIdentical:status result:[(HTMLPurifier_URI*)uri toString] expect:expect_uri];
+    [self assertEitherFailOrIdentical:status result:uri expect:expect_uri];
 }
 
 - (void)assertEitherFailOrIdentical:(BOOL)status result:(NSObject*)result expect:(NSObject*)expect

@@ -159,7 +159,7 @@
     {
         is_folder = NO;
         // absorb an internally duplicated slash
-        if ([stack[i] isEqual:@""] && (i + 1 < stack.count))
+        if ([stack[i] isEqual:@""] && (i > 0) && (i + 1 < stack.count))
         {
             continue;
         }

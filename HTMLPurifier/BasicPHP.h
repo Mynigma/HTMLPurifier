@@ -142,6 +142,7 @@ NSInteger strcspn_3(NSString* string1, NSString* string2, NSInteger start);
 
 NSInteger hexdec(NSString* hex_string);
 NSString* dechex(NSString* hex_string);
+NSString* lowercase_dechex(NSData* dec_data);
 
 
 NSString* ltrim_whitespaces(NSString* string);

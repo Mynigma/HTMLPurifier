@@ -14,6 +14,7 @@
 #import "HTMLPurifier_URIScheme.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_Token.h"
+#import "HTMLPurifier_PercentEncoder.h"
 
 @implementation HTMLPurifier_URIFilter_Munge
 
@@ -115,13 +116,17 @@
         NSString* replacement = nil;
         if([value isKindOfClass:[NSString class]])
         {
-            replacement = [(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            HTMLPurifier_PercentEncoder* percentEncoder = [HTMLPurifier_PercentEncoder new];
+            replacement = [percentEncoder encode:(NSString*)value];
+                           //stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@"-_."]];
             //ReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             if(replacement)
             {
                 new_uri_string = [new_uri_string stringByReplacingOccurrencesOfString:tmp withString:replacement];
             }
         }
+        else
+            new_uri_string = [new_uri_string stringByReplacingOccurrencesOfString:tmp withString:@""];
     }];
 
     
@@ -157,7 +162,8 @@
     // not always available
     if (secretKey) {
         NSData * hmac = hash_hmac(@"sha256",string,secretKey);
-        [replace setObject:hmac?hmac:@"" forKey:@"%t"];
+        NSString* hmacString = lowercase_dechex(hmac);
+        [replace setObject:hmacString?hmacString:@"" forKey:@"%t"];
     }
 }
 
