@@ -59,5 +59,7 @@
 
 -(NSString*) toString;
 
+- (id)copyWithZone:(NSZone *)zone;
+
 
 @end

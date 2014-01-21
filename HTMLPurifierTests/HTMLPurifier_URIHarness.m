@@ -29,16 +29,15 @@
     [super tearDown];
 }
 
--(void) prepareURI:(NSObject**)uri expect:(NSObject**)expect_uri
+- (void)prepareURI:(NSObject**)uri expect:(NSObject**)expect_uri
 {
     HTMLPurifier_URIParser* parser = [HTMLPurifier_URIParser new];
     if ([*expect_uri isEqual:@YES])
         *expect_uri = *uri;
     *uri = [parser parse:(NSString*)*uri];
- 
- // Don't Parse, use string Representation
- //   if (![*expect_uri isEqual:@NO])
- //       *expect_uri = [parser parse:(NSString*)*expect_uri];
+
+    if (![*expect_uri isEqual:@NO])
+        *expect_uri = [parser parse:(NSString*)*expect_uri];
 }
 
 /**

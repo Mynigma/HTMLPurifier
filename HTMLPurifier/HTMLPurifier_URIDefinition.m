@@ -24,13 +24,6 @@
 @implementation HTMLPurifier_URIDefinition
 
 
-@synthesize type; // = 'URI';
-
-@synthesize filters;
-
-@synthesize postFilters;
-
-@synthesize registeredFilters;
 
 /**
  * HTMLPurifier_URI object of the base specified at %URI.Base
@@ -51,6 +44,11 @@
 -(id) init
 {
     self = [super init];
+
+    _typeString = @"URI";
+    _filters = [NSMutableDictionary new];
+    _postFilters = [NSMutableDictionary new];
+
     
     [self registerFilter:[HTMLPurifier_URIFilter_DisableExternal new]];
     [self registerFilter:[HTMLPurifier_URIFilter_DisableExternalResources new]];
@@ -65,7 +63,7 @@
 
 -(void) registerFilter:(HTMLPurifier_URIFilter*) filter
 {
-    [registeredFilters setObject:filter forKey:[filter name]];
+    [self.registeredFilters setObject:filter forKey:[filter name]];
 }
 
 -(void) addFilter:(HTMLPurifier_URIFilter*)filter config:(HTMLPurifier_Config*)config
@@ -75,10 +73,10 @@
         return; // null is ok, for backwards compat
     if ([filter post])
     {
-        [postFilters setObject:filter forKey:[filter name]];
+        [self.postFilters setObject:filter forKey:[filter name]];
     } else
     {
-        [filters setObject:filter forKey:[filter name]];
+        [self.filters setObject:filter forKey:[filter name]];
     }
 }
 
@@ -90,9 +88,9 @@
 
 -(void) setupFilters:(HTMLPurifier_Config*)config
 {
-    for (NSString* name in registeredFilters.allKeys)
+    for (NSString* name in self.registeredFilters.allKeys)
     {
-        HTMLPurifier_URIFilter* filter = [registeredFilters objectForKey:name];
+        HTMLPurifier_URIFilter* filter = [self.registeredFilters objectForKey:name];
         if ([filter always_load])
         {
             [self addFilter:filter config:config];
@@ -114,7 +112,7 @@
 {
     host = (NSString*)[config get:@"URI.Host"];
     NSString* base_uri = (NSString*)[config get:@"URI.Base"];
-    if (!base_uri)
+    if (base_uri)
     {
         HTMLPurifier_URIParser* parser = [HTMLPurifier_URIParser new];
         base = [parser parse:base_uri];
@@ -131,22 +129,22 @@
     return [[HTMLPurifier_URISchemeRegistry instance:nil] getScheme:defaultScheme config:config context:context];
 }
 
--(BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+-(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    for (NSString* name in filters.allKeys)
+    for (NSString* name in self.filters.allKeys)
     {
-        HTMLPurifier_URIFilter* f = [filters objectForKey:name];
+        HTMLPurifier_URIFilter* f = [self.filters objectForKey:name];
         BOOL result = [f filter:uri config:config context:context];
         if (!result) return NO;
     }
     return YES;
 }
 
--(BOOL) postFilter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+-(BOOL) postFilter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    for (NSString* name in postFilters.allKeys)
+    for (NSString* name in self.postFilters.allKeys)
     {
-        HTMLPurifier_URIFilter* f = [filters objectForKey:name];
+        HTMLPurifier_URIFilter* f = [self.filters objectForKey:name];
         BOOL result = [f filter:uri config:config context:context];
         if (!result)
             return NO;

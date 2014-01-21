@@ -83,14 +83,14 @@
  * @param HTMLPurifier_Context $context
  * @return bool
  */
--(BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+-(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     if ([context getWithName:@"EmbeddedURI" ignoreError:YES] && !doEmbed)
     {
         return YES;
     }
     
-    HTMLPurifier_URIScheme* scheme_obj = [uri getSchemeObj:config context:context];
+    HTMLPurifier_URIScheme* scheme_obj = [*uri getSchemeObj:config context:context];
     if (!scheme_obj)
     {
         return YES;
@@ -101,13 +101,13 @@
         return true;
         // ignore non-browseable schemes, since we can't munge those in a reasonable way
     }
-    if ([uri isBenign:config context:context])
+    if ([*uri isBenign:config context:context])
     {
         return TRUE;
         // don't redirect if a benign URL
     }
     
-    [self makeReplace:uri config:config context:context];
+    [self makeReplace:*uri config:config context:context];
     
     NSString* new_uri_string = target.mutableCopy;
 
@@ -121,11 +121,11 @@
     HTMLPurifier_URI* new_uri = [parser parse:new_uri_string];
     // don't redirect if the target host is the same as the
     // starting host
-    if ([[uri host] isEqual:[new_uri host]])
+    if ([[*uri host] isEqual:[new_uri host]])
     {
         return YES;
     }
-    uri = new_uri; // overwrite
+    *uri = new_uri; // overwrite
     return YES;
 }
 

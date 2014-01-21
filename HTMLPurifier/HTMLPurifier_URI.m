@@ -209,12 +209,12 @@
     HTMLPurifier_PercentEncoder* qf_encoder = [[HTMLPurifier_PercentEncoder alloc] initWithPreservedChars:
                                                [chars_pchar stringByAppendingString:@"/?"]];
     
-    if (!self.query)
+    if (self.query)
     {
         self.query = [qf_encoder encode:self.query];
     }
     
-    if (!self.fragment)
+    if (self.fragment)
     {
         self.fragment = [qf_encoder encode:self.fragment];
     }
@@ -407,6 +407,20 @@
 - (NSUInteger)hash
 {
     return [self.scheme hash] + [self.userinfo hash] + [self.host hash] + [self.port hash] + [self.path hash] + [self.query hash] + [self.fragment hash];
+}
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_URI* newURI = [[[self class] allocWithZone:zone] init];
+
+    [newURI setFragment:self.fragment];
+    [newURI setHost:self.host];
+    [newURI setPath:self.path];
+    [newURI setPort:self.port];
+    [newURI setQuery:self.query];
+    [newURI setScheme:self.scheme];
+
+    return newURI;
 }
 
 @end

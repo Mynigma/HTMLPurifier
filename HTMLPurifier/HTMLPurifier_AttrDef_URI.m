@@ -103,7 +103,7 @@
         
         // chained filtering
         HTMLPurifier_URIDefinition* uri_def = (HTMLPurifier_URIDefinition*)[config getDefinition:@"URI"];
-        BOOL result_bool = [uri_def filter:newUri config:config context:context];
+        BOOL result_bool = [uri_def filter:&newUri config:config context:context];
         if (!result_bool)
         {
             break;
@@ -127,7 +127,7 @@
         }
         
         // Post chained filtering
-        result_bool = [uri_def postFilter:newUri config:config context:context];
+        result_bool = [uri_def postFilter:&newUri config:config context:context];
         if (!result_bool)
         {
             break;

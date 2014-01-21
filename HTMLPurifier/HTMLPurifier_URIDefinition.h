@@ -13,7 +13,7 @@
 @interface HTMLPurifier_URIDefinition : HTMLPurifier_Definition
 
 
-@property NSString* type;
+@property NSString* typeString;
 
 @property NSMutableDictionary* filters;
 
@@ -48,9 +48,9 @@
 
 -(HTMLPurifier_URIScheme*) getDefaultScheme:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
--(BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+-(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
--(BOOL) postFilter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+-(BOOL) postFilter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 
 

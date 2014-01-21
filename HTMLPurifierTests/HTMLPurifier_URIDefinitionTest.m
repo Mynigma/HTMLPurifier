@@ -45,7 +45,7 @@
     [def addFilter:[HTMLPurifier_URIFilter_HostBlacklist new] config:self.config];
     [def addFilter:[HTMLPurifier_URIFilter_DisableResources new] config:self.config];
     HTMLPurifier_URI* uri = [self createURI:@"test"];
-    XCTAssertTrue([def filter:uri config:self.config context:self.context]);
+    XCTAssertTrue([def filter:&uri config:self.config context:self.context]);
 }
 
 /*

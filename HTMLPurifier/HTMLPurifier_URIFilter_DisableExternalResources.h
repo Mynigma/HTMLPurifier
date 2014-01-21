@@ -16,7 +16,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool
  */
-- (BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+- (BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 
 @end
