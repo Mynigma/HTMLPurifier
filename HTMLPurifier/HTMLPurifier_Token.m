@@ -124,5 +124,25 @@
 }
 
 
+-(BOOL) isEqual:(HTMLPurifier_Token*)object
+{
+    return  (self.line?[self.line isEqual:object.line]:object.line?NO:YES)  &&
+            (self.col?[self.col isEqual:object.col]:object.col?NO:YES)  &&
+            (self.armor?[self.armor isEqual:object.armor]:object.armor?NO:YES)  &&
+            (self.skip?[self.skip isEqual:object.skip]:object.skip?NO:YES)  &&
+            (self.rewind?[self.rewind isEqual:object.rewind]:object.rewind?NO:YES)  &&
+            (self.carryover?[self.carryover isEqual:object.carryover]:object.carryover?NO:YES)  &&
+            (self.name?[self.name isEqual:object.name]:object.name?NO:YES)  &&
+            (self.attr?[self.attr isEqual:object.attr]:object.attr?NO:YES)  &&
+            (self.sortedAttrKeys?[self.sortedAttrKeys isEqual:object.sortedAttrKeys]:object.sortedAttrKeys?NO:YES)  &&
+            (self.isTag == object.isTag);
+
+}
+
+-(NSUInteger) hash
+{
+    return [self.line hash] + [self.col hash] + [self.armor hash] + [self.rewind hash] + [self.skip hash] + [self.carryover hash] + [self.name hash] + [self.attr hash] + [self.sortedAttrKeys hash];
+}
+
 
 @end
