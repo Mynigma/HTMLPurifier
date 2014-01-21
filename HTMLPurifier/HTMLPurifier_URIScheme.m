@@ -120,4 +120,21 @@
     return [self doValidate:uri config:config context:context];
 }
 
+- (BOOL)isEqual:(HTMLPurifier_URIScheme*)object
+{
+    return [object isKindOfClass:[HTMLPurifier_URIScheme class]]    &&
+                [object.browsable isEqual:self.browsable]           &&
+                [object.default_port isEqual: self.default_port]    &&
+                [object.secure isEqual:self.secure]                 &&
+                [object.hierarchical isEqual:self.hierarchical]     &&
+                [object.may_omit_host isEqual:self.may_omit_host]   ;
+    
+}
+
+- (NSUInteger)hash
+{
+    return [self.browsable hash] + [self.default_port hash] + [self.secure hash] + [self.hierarchical hash] + [self.may_omit_host hash];
+}
+
+
 @end
