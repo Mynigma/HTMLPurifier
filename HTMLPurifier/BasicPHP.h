@@ -185,7 +185,7 @@ NSData* base64_decode(NSString* base64String);
 
 NSString* base64_encode(NSString* plainString);
 
-NSString* hash_hmac(NSString* algo, NSString* data, NSString* key);
+NSData* hash_hmac(NSString* algo, NSString* data, NSString* key);
 
 #define BASIC_PHP 1
 

@@ -1105,7 +1105,7 @@ NSString* base64_encode(NSString* plainString)
 }
 
 
-NSString* hash_hmac(NSString* algo, NSString* data, NSString* key)
+NSData* hash_hmac(NSString* algo, NSString* data, NSString* key)
 {
     if ([algo isEqual:@"sha256"])
     {
@@ -1113,7 +1113,8 @@ NSString* hash_hmac(NSString* algo, NSString* data, NSString* key)
         const char *cData = [data cStringUsingEncoding:NSASCIIStringEncoding];
         unsigned char cHMAC[CC_SHA256_DIGEST_LENGTH];
         CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
-        return [[NSString alloc] initWithData:[[NSData alloc] initWithBytes:cHMAC length:sizeof(cHMAC)]encoding:NSUTF8StringEncoding];
+        NSData* hmacData = [[NSData alloc] initWithBytes:&cHMAC length:sizeof(cHMAC)];
+        return hmacData;
     }
     return nil;
 }

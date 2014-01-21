@@ -83,9 +83,9 @@
  * @param HTMLPurifier_Context $context
  * @return bool
  */
--(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+- (BOOL)filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    if ([context getWithName:@"EmbeddedURI" ignoreError:YES] && !doEmbed)
+    if ([(NSNumber*)[context getWithName:@"EmbeddedURI" ignoreError:YES] boolValue] && !doEmbed)
     {
         return YES;
     }
@@ -96,7 +96,7 @@
         return YES;
         // ignore unknown schemes, maybe another postfilter did it
     }
-    if (![scheme_obj browsable])
+    if (![[scheme_obj browsable] boolValue])
     {
         return true;
         // ignore non-browseable schemes, since we can't munge those in a reasonable way
@@ -109,14 +109,21 @@
     
     [self makeReplace:*uri config:config context:context];
     
-    NSString* new_uri_string = target.mutableCopy;
+    __block NSString* new_uri_string = target.mutableCopy;
 
-    for (NSString* tmp in replace.allKeys) {
-        
-        //array_map(@"rawurlencode",replace)
-        //strtr(target,replace);
-       [new_uri_string stringByReplacingOccurrencesOfString:tmp withString:[replace[tmp] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    }
+    [replace enumerateKeysAndObjectsUsingBlock:^(NSString* tmp, NSObject* value, BOOL *stop) {
+        NSString* replacement = nil;
+        if([value isKindOfClass:[NSString class]])
+        {
+            replacement = [(NSString*)value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            //ReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            if(replacement)
+            {
+                new_uri_string = [new_uri_string stringByReplacingOccurrencesOfString:tmp withString:replacement];
+            }
+        }
+    }];
+
     
     HTMLPurifier_URI* new_uri = [parser parse:new_uri_string];
     // don't redirect if the target host is the same as the
@@ -139,14 +146,18 @@
     NSString* string = [uri toString];
     // always available
     [replace setObject:string forKey:@"%s"];
-    [replace setObject:(NSString*)[context getWithName:@"EmbeddedURI" ignoreError:YES] forKey:@"%r"];
+    NSNumber* embeddedURI = (NSNumber*)[context getWithName:@"EmbeddedURI" ignoreError:YES];
+    [replace setObject:embeddedURI?embeddedURI:@"" forKey:@"%r"];
     HTMLPurifier_Token* token = (HTMLPurifier_Token*) [context getWithName:@"CurrentToken" ignoreError:YES];
-    [replace setObject:(token ? [token name] :nil) forKey:@"%n"];
-    [replace setObject:(NSString*)[context getWithName:@"CurrentAttr" ignoreError:YES] forKey:@"%m"];
-    [replace setObject:(NSString*)[context getWithName:@"CurrentCSSProperty" ignoreError:YES] forKey:@"%p"];
+    [replace setObject:(token.name ? token.name :@"") forKey:@"%n"];
+    NSString* currentAttr = (NSString*)[context getWithName:@"CurrentAttr" ignoreError:YES];
+    [replace setObject:currentAttr?currentAttr:@"" forKey:@"%m"];
+    NSString* currentCSSProperty = (NSString*)[context getWithName:@"CurrentCSSProperty" ignoreError:YES];
+    [replace setObject:currentCSSProperty?currentCSSProperty:@"" forKey:@"%p"];
     // not always available
     if (secretKey) {
-        [replace setObject:hash_hmac(@"sha256",string,secretKey) forKey:@"%t"];
+        NSData * hmac = hash_hmac(@"sha256",string,secretKey);
+        [replace setObject:hmac?hmac:@"" forKey:@"%t"];
     }
 }
 

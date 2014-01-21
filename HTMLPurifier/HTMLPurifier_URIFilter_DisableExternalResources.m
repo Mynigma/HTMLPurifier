@@ -31,7 +31,7 @@
  */
 - (BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    if (![context getWithName:@"EmbeddedURI" ignoreError:YES]) {
+    if (![(NSNumber*)[context getWithName:@"EmbeddedURI" ignoreError:YES] boolValue]) {
         return YES;
     }
     return [super filter:uri config:config context:context];
