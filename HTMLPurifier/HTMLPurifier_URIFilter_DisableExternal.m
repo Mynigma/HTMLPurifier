@@ -56,9 +56,9 @@
  * @param HTMLPurifier_Context $context
  * @return bool
  */
-- (BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+- (BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    if (![uri host]) {
+    if (![*uri host]) {
         return YES;
     }
     if (!self.ourHostParts) {
@@ -72,7 +72,7 @@
      return FALSE;
      */
     
-    NSArray* host_parts = array_reverse([explode(@".", [uri host]) mutableCopy]);
+    NSArray* host_parts = array_reverse([explode(@".", [*uri host]) mutableCopy]);
     for (NSInteger i = 0; i < self.ourHostParts.count; i++)
     {
         if ( (i >= host_parts.count) || !host_parts[i]) {

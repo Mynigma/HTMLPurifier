@@ -38,7 +38,7 @@
 -(void) assertValidation:(NSString*)uri expect:(NSObject*)expect_uri
 {
     [self prepareURI:&uri expect:&expect_uri];
-    [self.config setString:@"URI.AllowedSchemes" object:[NSArray arrayWithObject:[(HTMLPurifier_URI*)uri scheme]]];
+    [self.config setString:@"URI.AllowedSchemes" object:@{[(HTMLPurifier_URI*)uri scheme]:@YES}];
     
     // convenience hack: the scheme should be explicitly specified
     HTMLPurifier_URIScheme* scheme = [(HTMLPurifier_URI*)uri getSchemeObj:self.config context:self.context];

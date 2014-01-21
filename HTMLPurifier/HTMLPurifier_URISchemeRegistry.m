@@ -70,8 +70,8 @@
     }
     
     // important, otherwise attacker could include arbitrary file
-    NSArray* allowed_schemes = (NSArray*)[config get:@"URI.AllowedSchemes"];
-    if ((![config get:@"URI.OverrideAllowedSchemes"]) && (![allowed_schemes containsObject:scheme]))
+    NSDictionary* allowed_schemes = (NSDictionary*)[config get:@"URI.AllowedSchemes"];
+    if ((![config get:@"URI.OverrideAllowedSchemes"]) && (![allowed_schemes objectForKey:scheme]))
     {
         return nil;
     }
@@ -80,7 +80,7 @@
     {
         return [schemes objectForKey:scheme];
     }
-    if (![allowed_schemes containsObject:scheme])
+    if (![allowed_schemes objectForKey:scheme])
     {
         return nil;
     }

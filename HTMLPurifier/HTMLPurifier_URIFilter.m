@@ -80,7 +80,7 @@
      *         URL is no good, true indicates continue processing. Note that
      *         all changes are committed directly on the URI object
      */
--(BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+-(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
         NSLog(@"WARNING: URIFILTER - ABSTRACT FUNCTION CALLED");
         return YES;

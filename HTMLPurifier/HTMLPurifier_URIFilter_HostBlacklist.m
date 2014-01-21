@@ -58,11 +58,11 @@
  * @param HTMLPurifier_Context $context
  * @return bool
  */
-- (BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+- (BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     for (NSString* blacklisted_host_fragment in self.blacklist)
     {
-        if (strpos([uri host],blacklisted_host_fragment) != NSNotFound)
+        if (strpos([*uri host],blacklisted_host_fragment) != NSNotFound)
         {
             return NO;
         }

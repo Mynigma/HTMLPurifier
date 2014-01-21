@@ -59,9 +59,9 @@
     
     [self.filter prepare:self.config];
     
-    BOOL result = [self.filter filter:(HTMLPurifier_URI*)uri config:self.config context:self.context];
+    BOOL result = [self.filter filter:(HTMLPurifier_URI**)&uri config:self.config context:self.context];
     
-    [self assertEitherFailOrIdentical:result result:[(HTMLPurifier_URI*)uri toString]
+    [self assertEitherFailOrIdentical:result result:uri
                                expect:expect_uri];
 }
 

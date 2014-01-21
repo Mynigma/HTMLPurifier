@@ -43,15 +43,15 @@
     
     [self.filter prepare:self.config];
     
-    BOOL result = [self.filter filter:(HTMLPurifier_URI*)uri config:self.config context:self.context];
+    BOOL result = [self.filter filter:(HTMLPurifier_URI**)&uri config:self.config context:self.context];
     
-    [self assertEitherFailOrIdentical:result result:[(HTMLPurifier_URI*)uri toString]
+    [self assertEitherFailOrIdentical:result result:uri
                                expect:expect_uri];
 }
 
 - (void)assertEitherFailOrIdentical:(BOOL)status result:(NSObject*)result expect:(NSObject*)expect
 {
-    if ([expect isKindOfClass:[NSNumber class]] && [(NSNumber*)expect boolValue] == NO)
+    if ([(NSNumber*)expect isEqual:@NO])
     {
         XCTAssertFalse(status, @"Expected false result, got true");
     }
@@ -212,7 +212,7 @@
 
 -(void) testErrorNoBase
 {
-    [self setBase:nil];
+    [self setBase:@""];
     //$this->expectError('URI.MakeAbsolute is being ignored due to lack of value for URI.Base configuration"];
     [self assertFiltering:@"foo/bar.txt" expect:@YES];
 }

@@ -67,28 +67,28 @@
  * @param HTMLPurifier_Context $context
  * @return bool
  */
--(BOOL) filter:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+-(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     if (!base)
     {
         // abort early
         return YES;
     }
-    if ([[uri path] isEqual:@""] && ![uri scheme] &&
-        ![uri host] && ![uri query] && ![uri fragment])
+    if ([[*uri path] isEqual:@""] && ![*uri scheme] &&
+        ![*uri host] && ![*uri query] && ![*uri fragment])
     {
         // reference to current document
-        uri = base.copy;
+        *uri = base.copy;
         return YES;
     }
-    if ([uri scheme])
+    if ([*uri scheme])
     {
         // absolute URI already: don't change
-        if ([uri host])
+        if ([*uri host])
         {
             return YES;
         }
-        HTMLPurifier_URIScheme* scheme_obj = [uri getSchemeObj:config context:context];
+        HTMLPurifier_URIScheme* scheme_obj = [*uri getSchemeObj:config context:context];
         if (!scheme_obj)
         {
             // scheme not recognized
@@ -101,47 +101,47 @@
         }
         // special case: had a scheme but always is hierarchical and had no authority
     }
-    if ([uri host])
+    if ([*uri host])
     {
         // network path, don't bother
         return YES;
     }
-    if ([[uri path] isEqual:@""])
+    if ([[*uri path] isEqual:@""])
     {
-        [uri setPath:base.path];
+        [*uri setPath:base.path];
     }
-    else if ([[uri path] characterAtIndex:0] != '/')
+    else if ([[*uri path] characterAtIndex:0] != '/')
     {
         // relative path, needs more complicated processing
-        NSArray* stack = explode(@"/", [uri path]);
+        NSArray* stack = explode(@"/", [*uri path]);
         NSMutableArray* new_stack = [array_merge_2(basePathStack, stack) mutableCopy];
         if (![new_stack[0] isEqual:@""] && [base host])
         {
             array_unshift_2(new_stack, @"");
         }
         new_stack = [self collapseStack:new_stack];
-        [uri setPath:implode(@"/",new_stack)];
+        [*uri setPath:implode(@"/",new_stack)];
     }
     else
     {
         // absolute path, but still we should collapse
-        [uri setPath:implode(@"/", [self collapseStack:explode(@"/",[uri path])])];
+        [*uri setPath:implode(@"/", [self collapseStack:explode(@"/",[*uri path])])];
     }
     // re-combine
-    [uri setScheme:[base scheme]];
+    [*uri setScheme:[base scheme]];
     
-    if (![uri userinfo])
+    if (![*uri userinfo])
     {
-        [uri setUserinfo:[base userinfo]];
+        [*uri setUserinfo:[base userinfo]];
     }
 
-    if (![uri host])
+    if (![*uri host])
     {
-        [uri setHost:[base host]];
+        [*uri setHost:[base host]];
     }
-    if (![uri port])
+    if (![*uri port])
     {
-        [uri setPort:[base port]];
+        [*uri setPort:[base port]];
     }
     return YES;
 }

@@ -196,7 +196,7 @@
     NSInteger len = str.length;
     for (NSInteger i = 0; i < len; i++)
     {
-        int inChar = 0;//ord($str{$i});
+        int inChar = [str characterAtIndex:i];
         [charString appendString:[str substringWithRange:NSMakeRange(i,1)]]; // append byte to char
         if (0 == mState) {
             // When mState is zero we expect either a US-ASCII character
