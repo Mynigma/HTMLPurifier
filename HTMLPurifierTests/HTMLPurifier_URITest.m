@@ -118,7 +118,7 @@
 {
     HTMLPurifier_URI* uri = [[HTMLPurifier_URI alloc] initWithScheme:scheme userinfo:userinfo host:host port:port path:path query:query fragment:fragment];
     NSString* string = uri.toString;
-    XCTAssertEqualObjects(<#a1#>, <#a2#>, <#format...#>) assertIdentical($string, $expect_uri);
+    XCTAssertEqualObjects(string, expect_uri, @"");
 }
 
 /*
