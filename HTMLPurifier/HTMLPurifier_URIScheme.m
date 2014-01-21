@@ -77,7 +77,7 @@
  */
 -(BOOL) validate:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    if (default_port == [uri port])
+    if (default_port.intValue == [uri port].intValue)
     {
         [uri setPort:nil];
     }
