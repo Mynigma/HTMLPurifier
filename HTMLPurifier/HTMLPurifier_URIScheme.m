@@ -83,7 +83,7 @@
     }
     // kludge: browsers do funny things when the scheme but not the
     // authority is set
-    if ((!may_omit_host &&
+    if ((!may_omit_host.boolValue &&
         // if the scheme is present, a missing host is always in error
         ([uri scheme] && (([uri host] == nil) || [[uri host] isEqual:@""]))) ||
         // if the scheme is not present, a *blank* host is in error,

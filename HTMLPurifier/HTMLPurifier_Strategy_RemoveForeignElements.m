@@ -126,7 +126,10 @@
                         continue;
                     }
                     if(!ok)
+                    {
                         TRIGGER_ERROR(@"Strategy_RemoveForeignElements: Missing required attribute");
+                        continue;
+                    }
 
                     [token.armor setObject:@YES forKey:@"ValidateAttributes"];
                 }

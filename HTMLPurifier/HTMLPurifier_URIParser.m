@@ -69,7 +69,7 @@
         NSMutableArray* matches = [NSMutableArray new];
         preg_match_3(r_authority, authority, matches);
         userinfo   = matches.count<3?nil:([matches[1] length]>0 ? matches[2] : nil);
-        host       = matches.count<4?nil:([matches[3] length]>0 ? matches[3] : nil);
+        host       = matches.count<4?nil:([matches[3] length]>0 ? matches[3] : @"");
         NSString* portString  = matches.count<6?nil:([matches[4] length]>0 ? matches[5] : nil);
         NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
         [f setNumberStyle:NSNumberFormatterDecimalStyle];

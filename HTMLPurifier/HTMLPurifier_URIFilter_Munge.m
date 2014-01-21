@@ -72,7 +72,7 @@
 {
     target = (NSString*)[config get:[@"URI." stringByAppendingString:super.name]];
     parser = [HTMLPurifier_URIParser new];
-    doEmbed = (BOOL)[config get:@"URI.MungeResources"];
+    doEmbed = (BOOL)[(NSNumber*)[config get:@"URI.MungeResources"] boolValue];
     secretKey = (NSString*)[config get:@"URI.MungeSecretKey"];
     return YES;
 }

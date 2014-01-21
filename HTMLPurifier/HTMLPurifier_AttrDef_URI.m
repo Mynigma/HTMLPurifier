@@ -116,7 +116,7 @@
         {
             break;
         }
-        if (embedsResource && ![scheme_obj browsable])
+        if (embedsResource.boolValue && ![[scheme_obj browsable] boolValue])
         {
             break;
         }

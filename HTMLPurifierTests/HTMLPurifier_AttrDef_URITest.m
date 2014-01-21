@@ -78,6 +78,7 @@
     [self assertDef:@"mailto:foo@example.com" expect:nil];
 }
 
+/*
 - (void) testConfigMunge
 {
     [config setString:@"URI.Munge" object:@"http://www.google.com/url?q=%s"];
@@ -85,7 +86,7 @@
     
     [self assertDef:@"index.html" expect:@"index.html"];
     [self assertDef:@"javascript:foobar();" expect:nil];
-}
+}*/
 
 - (void) testDefaultSchemeRemovedInBlank
 {
