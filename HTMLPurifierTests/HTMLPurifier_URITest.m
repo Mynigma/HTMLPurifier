@@ -16,6 +16,7 @@
 #import "HTMLPurifier_URIScheme.h"
 #import "HTMLPurifier_URIScheme_http.h"
 #import "HTMLPurifier_URIParser.h"
+#import "HTMLPurifier_URIScheme_mailto.h"
 
 @interface HTMLPurifier_URITest : HTMLPurifier_URIHarness
 {
@@ -45,10 +46,10 @@
 
 -(void) test_construct
 {
-    HTMLPurifier_URI* uri1 = [[HTMLPurifier_URI alloc] initWithScheme:@"HTTP" userinfo:@"bob" host:@"example.com" port:@23 path:@"/foo!" query:@"bar=2" fragment:@"slash"];
+    HTMLPurifier_URI* uri1 = [[HTMLPurifier_URI alloc] initWithScheme:@"HTTP" userinfo:@"bob" host:@"example.com" port:@23 path:@"/foo" query:@"bar=2" fragment:@"slash"];
     
     HTMLPurifier_URI* uri2 = [[HTMLPurifier_URI alloc] initWithScheme:@"http" userinfo:@"bob" host:@"example.com" port:@23 path:@"/foo" query:@"bar=2" fragment:@"slash"];
-    XCTAssertEqualObjects(uri1.toString, uri2.toString, @"");
+    XCTAssertEqualObjects(uri1, uri2);
 }
 
 -(HTMLPurifier_URISchemeRegistry*) setUpSchemeRegistryMock
@@ -73,53 +74,54 @@
     XCTAssertEqualObjects(scheme_obj, scheme_mock);
 }
 
-/*
+
 -(void) test_getSchemeObj_invalidScheme
 {
-    $this->setUpNoValidSchemes;
-    
-    $uri = $this->createURI('http:');
-    $result = $uri->getSchemeObj($this->config, $this->context);
-    $this->assertIdentical($result, false);
-    
-    $this->tearDownSchemeRegistryMock;
+    HTMLPurifier_URI* uri = [self createURI:@"hffp:"];
+    HTMLPurifier_URIScheme* result = [uri getSchemeObj:self.config context:self.context];
+    XCTAssertNil(result);
 }
+
 
 -(void) test_getSchemaObj_defaultScheme
 {
-    $scheme = 'foobar';
+    NSString* scheme = @"foobar";
     
-    $scheme_mock = $this->setUpSchemeMock($scheme);
-    $this->config->set('URI.DefaultScheme', $scheme);
+    // randomly chosen
+    HTMLPurifier_URIScheme* scheme_mock = [HTMLPurifier_URIScheme_mailto new];
     
-    $uri = $this->createURI('hmm');
-    $scheme_obj = $uri->getSchemeObj($this->config, $this->context);
-    $this->assertIdentical($scheme_obj, $scheme_mock);
+    [self.config setString:@"URI.DefaultScheme" object:scheme];
     
-    $this->tearDownSchemeRegistryMock;
+    HTMLPurifier_URI* uri = [self createURI:@"hmm"];
+    
+    HTMLPurifier_URIScheme* scheme_obj = [uri getSchemeObj:self.config context:self.context];
+    
+    XCTAssertEqualObjects(scheme_obj, scheme_mock);
 }
+
 
 -(void) test_getSchemaObj_invalidDefaultScheme
 {
-    $this->setUpNoValidSchemes;
-    $this->config->set('URI.DefaultScheme', 'foobar');
+    [self.config setString:@"URI.DefaultScheme" object:@"foobar"];
     
-    $uri = $this->createURI('hmm');
+    HTMLPurifier_URI* uri = [self createURI:@"hmm"];
     
-    $this->expectError('Default scheme object "foobar" was not readable');
-    $result = $uri->getSchemeObj($this->config, $this->context);
-    $this->assertIdentical($result, false);
+    // error? //
     
-    $this->tearDownSchemeRegistryMock;
+    HTMLPurifier_URIScheme* result = [uri getSchemeObj:self.config context:self.context];
+    
+    XCTAssertNil(result);
 }
 
-protected function assertToString($expect_uri, $scheme, $userinfo, $host, $port, $path, $query, $fragment)
+
+-(void) assertToString:(NSString*)expect_uri scheme:(NSString*)scheme userinfo:(NSString*)userinfo host:(NSString*)host port:(NSNumber*)port path:(NSString*)path query:(NSString*)query fragment:(NSString*)fragment
 {
-    $uri = new HTMLPurifier_URI($scheme, $userinfo, $host, $port, $path, $query, $fragment);
-    $string = $uri->toString;
-    $this->assertIdentical($string, $expect_uri);
+    HTMLPurifier_URI* uri = [[HTMLPurifier_URI alloc] initWithScheme:scheme userinfo:userinfo host:host port:port path:path query:query fragment:fragment];
+    NSString* string = uri.toString;
+    XCTAssertEqualObjects(<#a1#>, <#a2#>, <#format...#>) assertIdentical($string, $expect_uri);
 }
 
+/*
 -(void) test_toString_full
 {
     $this->assertToString(
