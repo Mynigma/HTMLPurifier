@@ -75,4 +75,7 @@
  */
 - (NSString*)expandCSSEscapeWithString:(NSString*)string;
 
+- (id)copyWithZone:(NSZone *)zone;
+
+
 @end

@@ -49,7 +49,8 @@
      */
 - (void)mergeIn:(HTMLPurifier_ElementDef*)def
     {
-        for(id<NSCopying> key in def.attr)
+        NSArray* allTheKeys = def.attr.allKeys;
+        for(id<NSCopying> key in allTheKeys)
         {
             if([(NSObject*)key isEqual:@0])
             {

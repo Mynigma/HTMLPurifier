@@ -86,7 +86,11 @@
         for(NSString* key in self.lookup)
         {
             NSSet* lookup = self.lookup[key];
-            self.info[key] = implode(@" | ", [lookup allObjects]);
+            NSMutableArray* lookupArray = [NSMutableArray new];
+            for(NSObject* item in lookup)
+                if([item isKindOfClass:[NSString class]])
+                    [lookupArray addObject:item];
+            self.info[key] = implode(@" | ", lookupArray);
         }
 
         self.keys = [NSMutableSet setWithArray:self.info.allKeys];
@@ -111,7 +115,8 @@
     if ([content_model isKindOfClass:[NSString class]])
     {
         // Assume that $this->keys is alphanumeric
-        def.content_model = [BasicPHP pregReplace:[NSString stringWithFormat:@"\b(' %@ ')\b", implode(@"|", [self.keys allObjects])] callback:^(NSArray* matches){
+        NSString* pregString = implode(@"|", [self.keys allObjects]);
+        def.content_model = [BasicPHP pregReplace:[NSString stringWithFormat:@"\\b(%@)\\b", pregString] callback:^(NSArray* matches){
             return [self generateChildDefCallback:matches];
         } haystack:content_model];
 
@@ -123,7 +128,8 @@
 
 - (NSString*)generateChildDefCallback:(NSArray*)matches
 {
-    return self.info[matches[0]];
+    NSString* returnValue = self.info[matches[0]];
+    return self.info[returnValue];
 }
 
 /**

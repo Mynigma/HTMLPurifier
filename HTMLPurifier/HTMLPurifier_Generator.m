@@ -182,7 +182,7 @@
         }
         if ([token isKindOfClass:[HTMLPurifier_Token_Start class]])
         {
-            NSString* attrString = [self generateAttributes:[(HTMLPurifier_Token_Start*)token attr] element:[token valueForKey:@"name"]];
+            NSString* attrString = [self generateAttributes:[(HTMLPurifier_Token_Start*)token attr] sortedKeys:token.sortedAttrKeys element:[token valueForKey:@"name"]];
             if (_flashCompat) {
                 if ([[token valueForKey:@"name"] isEqualToString:@"object"])
                 {
@@ -213,7 +213,7 @@
                 NSObject* value = [(HTMLPurifier_Token_Empty*)token attr][@"value"];
                 [params setObject:value forKey:key];
             }
-            NSString* attrString = [self generateAttributes:[(HTMLPurifier_Token_Empty*)token attr] element:[(HTMLPurifier_Token_Empty*)token name]];
+            NSString* attrString = [self generateAttributes:[(HTMLPurifier_Token_Empty*)token attr] sortedKeys:token.sortedAttrKeys element:[(HTMLPurifier_Token_Empty*)token name]];
             return [NSString stringWithFormat:@"<%@%@%@%@>", [(HTMLPurifier_Token_Empty*)token name], ([attrString length]>0?[NSString stringWithFormat:@" "]:@""), attrString, _xhtml?@" /":@""];
         } else if ([token isKindOfClass:[HTMLPurifier_Token_Text class]])
         {
@@ -254,20 +254,23 @@
      *        attribute minimization.
      * @return string Generated HTML fragment for insertion.
      */
-- (NSString*)generateAttributes:(NSMutableDictionary*)assoc_array_of_attributes
+- (NSString*)generateAttributes:(NSMutableDictionary*)assoc_array_of_attributes sortedKeys:(NSMutableArray*)sortedKeys
 {
-    return [self generateAttributes:assoc_array_of_attributes element:@""];
+    return [self generateAttributes:assoc_array_of_attributes sortedKeys:sortedKeys element:@""];
 }
 
-- (NSString*)generateAttributes:(NSMutableDictionary*)assoc_array_of_attributes element:(NSString *)element
+- (NSString*)generateAttributes:(NSMutableDictionary*)assoc_array_of_attributes sortedKeys:(NSMutableArray *)sortedKeys element:(NSString *)element
     {
         NSMutableString* html = [NSMutableString new];
         /*if (_sortAttr) {
             ksort(assoc_array_of_attributes);
         }*/
-        for(NSString* key in assoc_array_of_attributes.allKeys)
+        for(NSString* key in sortedKeys)
         {
             NSString* value = assoc_array_of_attributes[key];
+            if(!value)
+                continue;
+
             if (!_xhtml) {
                 // Remove namespaced attributes
                 if ([key rangeOfString:@":"].location != NSNotFound) {

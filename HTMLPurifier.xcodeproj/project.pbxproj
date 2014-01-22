@@ -1908,6 +1908,8 @@
 				808CBA52188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m in Sources */,
 				808CB9C21887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */,
 				1E01D00E1890194E00B5643E /* HTMLPurifier_AttrCollectionsTest.m in Sources */,
+				801F0165188FD01B00506C24 /* HTMLPurifier_Strategy_MakeWellFormedTest.m in Sources */,
+				801F016B1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m in Sources */,
 				808CBA46188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */,
 				808CB9CB18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */,
 				801F0160188F1F1F00506C24 /* HTMLPurifier_TokenTest.m in Sources */,

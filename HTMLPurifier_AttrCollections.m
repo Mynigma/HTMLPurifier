@@ -43,7 +43,17 @@
 
                 if([(NSObject*)attr_i isEqual:@0] && self.info[coll_i][attr_i])
                 {
-                    self.info[coll_i][attr_i] = [self.info[coll_i][attr_i] arrayByAddingObjectsFromArray:(NSArray*)attr];
+                    NSMutableArray* array1 = [self.info[coll_i][attr_i] mutableCopy];
+                    if(!array1)
+                        array1 = [@[] mutableCopy];
+                    if(![array1 isKindOfClass:[NSArray class]])
+                        array1 = [@[array1] mutableCopy];
+                    NSArray* array2 = (NSArray*)attr;
+                    if(!attr)
+                        array2 = @[];
+                    if(![array2 isKindOfClass:[NSArray class]])
+                        array2 = @[array2];
+                    self.info[coll_i][attr_i] = [array1 arrayByAddingObjectsFromArray:array2];
                     continue;
                 }
                 //if([attr isKindOfClass:[NSArray class]])
@@ -84,7 +94,11 @@
         if (!attr[@0]) {
             return;
         }
-        NSMutableArray* merge = [attr[@0] mutableCopy];
+        NSMutableArray* merge = nil;
+        if([attr[@0] isKindOfClass:[NSArray class]])
+            merge = [attr[@0] mutableCopy];
+        else
+            merge = [@[attr[@0]] mutableCopy];
         NSMutableSet* seen  = [NSMutableSet new]; // recursion guard
                           // loop through all the inclusions
         for (NSInteger i = 0; i<merge.count; i++)
@@ -112,7 +126,12 @@
             if ([self.info[merge[i]] isKindOfClass:[NSDictionary class]] && self.info[merge[i]][@0])
             {
                 // recursion
-                [merge addObjectsFromArray:self.info[merge[i]][@0]];
+                NSArray* array2 = (NSArray*)self.info[merge[i]][@0];
+                if(!attr)
+                    array2 = @[];
+                if(![array2 isKindOfClass:[NSArray class]])
+                    array2 = @[array2];
+                [merge addObjectsFromArray:array2];
                 attr[@0] = merge;
             }
         }

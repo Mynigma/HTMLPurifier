@@ -67,7 +67,7 @@
 
 - (id)copyWithZone:(NSZone *)zone
 {
-    HTMLPurifier_AttrDef_Enum* newAttrDef = [[[self class] allocWithZone:zone] init];
+    HTMLPurifier_AttrDef_Enum* newAttrDef = [super copyWithZone:zone];
 
     [newAttrDef setValidValues:self.validValues];
     [newAttrDef setCaseSensitive:self.caseSensitive];
@@ -78,6 +78,9 @@
 // For testing
 -(BOOL) isEqual:(HTMLPurifier_AttrDef_Enum*)object
 {
+    if(![object isKindOfClass:[HTMLPurifier_AttrDef_Enum class]])
+        return NO;
+
     return [_validValues isEqual:object.validValues] && (_caseSensitive == object.caseSensitive);
 }
 

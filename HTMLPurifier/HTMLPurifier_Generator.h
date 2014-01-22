@@ -47,8 +47,8 @@
  *        attribute minimization.
  * @return string Generated HTML fragment for insertion.
  */
-- (NSString*)generateAttributes:(NSDictionary*)assoc_array_of_attributes;
-- (NSString*)generateAttributes:(NSDictionary*)assoc_array_of_attributes element:(NSString*)element;
+- (NSString*)generateAttributes:(NSDictionary*)assoc_array_of_attributes sortedKeys:(NSMutableArray*)sortedKeys;
+- (NSString*)generateAttributes:(NSDictionary*)assoc_array_of_attributes sortedKeys:(NSMutableArray*)sortedKeys element:(NSString*)element;
 
 /**
  * Escapes raw text data.
