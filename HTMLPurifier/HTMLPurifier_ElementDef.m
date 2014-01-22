@@ -8,6 +8,7 @@
 
 #import "HTMLPurifier_ElementDef.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_ChildDef.h"
 
 @implementation HTMLPurifier_ElementDef
 
@@ -136,6 +137,32 @@
     [newElementDef setWrap:self.wrap];
 
     return newElementDef;
+}
+
+
+
+- (NSUInteger)hash
+{
+    return [self.attr hash] + [self.attr_transform_post hash] + [self.attr_transform_pre hash] + [self.child hash] + [self.content_model hash] + [self.content_model_type hash] + self.descendants_are_inline?0:8547 + [self.excludes hash] + self.formatting?34853:49853 + [self.required_attr hash] + self.standalone?3244:9598 + [self.wrap hash];
+}
+
+- (BOOL)isEqual:(HTMLPurifier_ElementDef*)object
+{
+    if(![object isKindOfClass:[HTMLPurifier_ElementDef class]])
+        return NO;
+    
+    return  (self.attr?[self.attr isEqual:object.attr]:object.attr?NO:YES)  &&
+    (self.attr_transform_post?[self.attr_transform_post isEqual:object.attr_transform_post]:object.attr_transform_post?NO:YES)  &&
+    (self.attr_transform_pre?[self.attr_transform_pre isEqual:object.attr_transform_pre]:object.attr_transform_pre?NO:YES)  &&
+    (self.child?[self.child isEqual:object.child]:object.child?NO:YES)  &&
+    (self.content_model?[self.content_model isEqual:object.content_model]:object.content_model?NO:YES)  &&
+    (self.content_model_type?[self.content_model_type isEqual:object.content_model_type]:object.content_model_type?NO:YES)  &&
+    (self.descendants_are_inline == object.descendants_are_inline) &&
+    (self.excludes?[self.excludes isEqual:object.excludes]:object.excludes?NO:YES)  &&
+    (self.formatting == object.formatting)  &&
+    (self.required_attr?[self.required_attr isEqual:object.required_attr]:object.required_attr?NO:YES)  &&
+    (self.standalone == object.standalone);
+    (self.wrap?[self.wrap isEqual:object.wrap]:object.wrap?NO:YES);
 }
 
 

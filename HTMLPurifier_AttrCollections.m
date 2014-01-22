@@ -32,26 +32,24 @@
             for(NSString* coll_i in module.attr_collections)
         {
             NSDictionary* coll = module.attr_collections[coll_i];
+
             if(!self.info[coll_i])
                 self.info[coll_i] = [NSMutableDictionary new];
-            for(NSNumber* attr_i in coll)
+
+            for(id<NSCopying> attr_i in coll)
             {
                 NSObject* attr = coll[attr_i];
 
-                //NSMutableDictionary*
 
-                if([attr_i isEqual:@0] && self.info[coll_i][attr_i])
+                if([(NSObject*)attr_i isEqual:@0] && self.info[coll_i][attr_i])
                 {
-                    if([attr isKindOfClass:[NSArray class]])
-                        self.info[coll_i][attr_i] = [self.info[coll_i][attr_i] arrayByAddingObjectsFromArray:(NSArray*)attr];
-                    else
-                        self.info[coll_i][attr_i] = [self.info[coll_i][attr_i] arrayByAddingObject:attr];
+                    self.info[coll_i][attr_i] = [self.info[coll_i][attr_i] arrayByAddingObjectsFromArray:(NSArray*)attr];
                     continue;
                 }
-                if([attr isKindOfClass:[NSArray class]])
+                //if([attr isKindOfClass:[NSArray class]])
                     self.info[coll_i][attr_i] = attr;
-                else
-                    self.info[coll_i][attr_i] = @[attr];
+                //else
+                //    self.info[coll_i][attr_i] = @[attr];
             }
         }
         }
@@ -134,14 +132,13 @@
         NSMutableSet* processed = [NSMutableSet new];
 
         //while there are unprocessed objects in attr
-        while(processed.count<[processed setByAddingObjectsFromArray:attr.allKeys].count)
+
+        while(![[NSSet setWithArray:attr.allKeys] isSubsetOfSet:processed])
         {
         NSArray* allKeys = attr.allKeys;
         for(NSString* def_i in allKeys)
         {
             NSObject* def = attr[def_i];
-            if([def isKindOfClass:[NSArray class]] && [(NSArray*)def count]>0)
-                def = [(NSArray*)def objectAtIndex:0];
 
             // skip inclusions
             if ([def_i isEqual:@0])
@@ -154,16 +151,17 @@
                 continue;
             }
 
+            NSString* new_def_i = def_i;
             // determine whether or not attribute is required
             BOOL required = (strpos(def_i, @"*") != NSNotFound);
             if (required) {
                 // rename the definition
                 [attr removeObjectForKey:def_i];
-                NSString* new_def_i = trimWithFormat(def_i, @"*");
+                new_def_i = trimWithFormat(def_i, @"*");
                 attr[new_def_i] = def;
             }
 
-            [processed addObject:def_i];
+            [processed addObject:new_def_i];
 
             // if we've already got a literal object, move on
             if ([def isKindOfClass:[HTMLPurifier_AttrDef class]])
@@ -175,19 +173,19 @@
 
             if (!def || [def isEqual:@NO])
             {
-                [attr removeObjectForKey:def_i];
+                [attr removeObjectForKey:new_def_i];
                 continue;
             }
 
             HTMLPurifier_AttrDef* t = [attr_types get:(NSString*)def];
             if(t)
             {
-                attr[def_i] = t;
-                [(HTMLPurifier_AttrDef*)attr[def_i] setRequired:required];
+                attr[new_def_i] = t;
+                [(HTMLPurifier_AttrDef*)attr[new_def_i] setRequired:required];
             }
             else
             {
-                [attr removeObjectForKey:def_i];
+                [attr removeObjectForKey:new_def_i];
             }
         }
         }

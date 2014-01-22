@@ -225,7 +225,7 @@
 - (void)setupConfigStuff:(HTMLPurifier_Config*)config
 {
     NSString* block_wrapper = (NSString*)[config get:@"HTML.BlockWrapper"];
-    if(self.info_content_sets[@"Block"][block_wrapper]) {
+    if([self.info_content_sets[@"Block"] containsObject:block_wrapper]) {
         self.info_block_wrapper = block_wrapper;
     } else {
         TRIGGER_ERROR(@"Cannot use non-block element as block wrapper");

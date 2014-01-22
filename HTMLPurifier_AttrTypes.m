@@ -97,7 +97,9 @@
     {
         NSString* string = nil;
         if(![type isKindOfClass:[NSString class]])
-            return nil;
+        {
+            @throw [NSException exceptionWithName:@"AttrDef get exception" reason:@"Epic fail: argument should be a string" userInfo:nil];
+        }
 
         // determine if there is any extra info tacked on
         if (strpos(type, @"#") != NSNotFound)

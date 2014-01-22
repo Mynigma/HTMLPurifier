@@ -37,5 +37,7 @@
      */
 - (NSObject*)validateChildren:(NSArray *)children config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
+- (id)initWithElements:(NSObject*)newElements;
+
 
 @end

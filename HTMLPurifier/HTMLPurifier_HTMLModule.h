@@ -153,7 +153,7 @@
      * @return HTMLPurifier_ElementDef Created element definition object, so you
      *         can set advanced parameters
      */
-- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSString*)contents attrIncludes:(NSDictionary*)attr_includes attr:(NSDictionary*)att;
+- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSString*)contents attrIncludes:(NSObject*)attr_includes attr:(NSDictionary*)att;
 
     /**
      * Convenience function that creates a totally blank, non-standalone
@@ -181,7 +181,7 @@
      *       returned, and the callee needs to take the original $contents
      *       and use it directly.
      */
-- (NSArray*)parseContents:(NSString*)contents;
+- (NSArray*)parseContents:(NSObject*)contents;
 
     /**
      * Convenience function that merges a list of attribute includes into
@@ -189,7 +189,7 @@
      * @param array $attr Reference to attr array to modify
      * @param array $attr_includes Array of includes / string include to merge in
      */
-- (void)mergeInAttrIncludes:(NSMutableDictionary*)attr attrIncludes:(NSDictionary*)attr_includes;
+- (void)mergeInAttrIncludes:(NSMutableDictionary*)attr attrIncludes:(NSObject*)attr_includes;
 
     /**
      * Convenience function that generates a lookup table with boolean
@@ -199,7 +199,7 @@
      *       place of the regular argument
      * @return array array equivalent of list
      */
-- (NSMutableArray*)makeLookup:(NSString*)list;
+- (NSDictionary*)makeLookup:(NSObject*)list;
     /**
      * Lazy load construction of the module after determining whether
      * or not it's needed, and also when a finalized configuration object

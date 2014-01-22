@@ -163,7 +163,7 @@
 - (void) _mergeIntoAssocArray:(NSMutableDictionary*)a1 from:(NSMutableDictionary*)a2;
 
 
-
+- (id)copyWithZone:(NSZone *)zone;
 
 
 @end

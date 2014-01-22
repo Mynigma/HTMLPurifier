@@ -148,4 +148,15 @@
     
 }
 
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_AttrDef_URI* newAttrDef = [[[self class] allocWithZone:zone] init];
+
+    [newAttrDef setParser:self.parser];
+    [newAttrDef setEmbedsResource:self.embedsResource];
+
+    return newAttrDef;
+}
+
 @end

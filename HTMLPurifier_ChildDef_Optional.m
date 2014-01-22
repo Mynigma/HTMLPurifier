@@ -21,6 +21,17 @@
     return self;
 }
 
+- (id)initWithElements:(NSObject*)newElements
+{
+    self = [super initWithElements:newElements];
+    if (self) {
+        self.allow_empty = YES;
+        self.typeString = @"optional";
+    }
+    return self;
+}
+
+
     /**
      * @param array $children
      * @param HTMLPurifier_Config $config

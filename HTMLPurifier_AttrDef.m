@@ -112,5 +112,14 @@
     return ret;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_AttrDef* newAttrDef = [[[self class] allocWithZone:zone] init];
+
+    [newAttrDef setMinimized:self.minimized];
+    [newAttrDef setRequired:self.required];
+
+    return newAttrDef;
+}
 
 @end

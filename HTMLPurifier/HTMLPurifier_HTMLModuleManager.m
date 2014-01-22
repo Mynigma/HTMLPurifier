@@ -192,6 +192,7 @@
         modules = moduleArray;
     }
 
+    /*
     // custom modules
     if ([config get:@"HTML.Proprietary"])
     {
@@ -217,11 +218,12 @@
     {
         [modules addObject:@"TargetBlank"];
     }
+*/
 
     // merge in custom modules
     [modules addObjectsFromArray:self.userModules];
 
-    for(HTMLPurifier_HTMLModule* module in modules)
+    for(NSString* module in modules)
     {
         [self processModule:module];
         [self.modules[module] setup:config];
@@ -280,7 +282,7 @@
  * Takes a module and adds it to the active module collection,
  * registering it if necessary.
  */
-- (void)processModule:(HTMLPurifier_HTMLModule*)module
+- (void)processModule:(NSString*)module
 {
     NSString* moduleName = [module isKindOfClass:[HTMLPurifier_HTMLModule class]]?[(HTMLPurifier_HTMLModule*)module name]:(NSString*)module;
     if (!self.registeredModules[moduleName] || [module isKindOfClass:[HTMLPurifier_HTMLModule class]])
@@ -358,7 +360,7 @@
 
     // iterate through each module that has registered itself to this
     // element
-    for(NSString* module_name in self.elementLookup[name])
+    for(NSString* module_name in [self.elementLookup[name] reverseObjectEnumerator])
     {
         HTMLPurifier_HTMLModule* module = self.modules[module_name];
 
@@ -423,6 +425,8 @@
         HTMLPurifier_AttrDef* attr_def = def.attr[attr_name];
         if (attr_def.required)
         {
+            if(![def.required_attr isKindOfClass:[NSArray class]])
+                def.required_attr = [NSMutableArray arrayWithObject:def.required_attr];
             [def.required_attr addObject:attr_name];
         }
     }

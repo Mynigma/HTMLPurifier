@@ -107,7 +107,7 @@
  * Takes a module and adds it to the active module collection,
  * registering it if necessary.
  */
-- (void)processModule:(HTMLPurifier_HTMLModule*)module;
+- (void)processModule:(NSString*)module;
 
 /**
  * Retrieves merged element definitions.

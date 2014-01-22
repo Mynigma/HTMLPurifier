@@ -65,5 +65,14 @@
     return [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:values caseSensitive:sensitive];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_AttrDef_Enum* newAttrDef = [[[self class] allocWithZone:zone] init];
+
+    [newAttrDef setValidValues:self.validValues];
+    [newAttrDef setCaseSensitive:self.caseSensitive];
+
+    return newAttrDef;
+}
 
 @end

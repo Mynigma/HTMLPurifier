@@ -51,4 +51,16 @@
     return [clone copy];
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_AttrDef_Clone* newClone = [[[self class] allocWithZone:zone] init];
+
+    [newClone setClone:self.clone];
+
+    return newClone;
+}
+
+
+
+
 @end

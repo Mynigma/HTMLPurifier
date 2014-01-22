@@ -61,16 +61,22 @@
         while(![old_lookup isEqual:self.lookup])
         {
             old_lookup = self.lookup;
-            for(NSString* i in self.lookup)
+            NSArray* allKeys = self.lookup.allKeys;
+            for(NSString* i in allKeys)
             {
-                NSDictionary* set = self.lookup[i];
+                NSSet* set = self.lookup[i];
                 NSMutableArray* add = [NSMutableArray new];
                 for(NSString* element in set)
                 {
                     if(self.lookup[element])
                     {
                         [add addObject:self.lookup[element]];
-                        [self.lookup[i] removeObjectForKey:element];
+                        if([self.lookup[i] containsObject:element])
+                        {
+                            NSMutableSet* newSet = [self.lookup[i] mutableCopy];
+                            [newSet removeObject:element];
+                            self.lookup[i] = newSet;
+                        }
                     }
                 }
                 self.lookup[i] = [self.lookup[i] setByAddingObject:add];
@@ -137,13 +143,14 @@
         TRIGGER_ERROR(@"Literal object child definitions should be stored in ElementDef->child not ElementDef->content_model");
         return value;
     }
-    if([def.content_model_type isEqual:@"required"])
+    NSString* model_type = [def.content_model_type lowercaseString];
+    if([model_type isEqual:@"required"])
         return [[HTMLPurifier_ChildDef_Required alloc] initWithElements:value];
-    if([def.content_model_type isEqual:@"optional"])
+    if([model_type isEqual:@"optional"])
         return [[HTMLPurifier_ChildDef_Optional alloc] initWithElements:value];
-    if([def.content_model_type isEqual:@"empty"])
+    if([model_type isEqual:@"empty"])
         return [HTMLPurifier_ChildDef_Empty new];
-    if([def.content_model_type isEqual:@"custom"])
+    if([model_type isEqual:@"custom"])
         return [[HTMLPurifier_ChildDef_Custom alloc] initWithDtdRegex:value];
 
     // defer to its module
@@ -159,7 +166,7 @@
     }
     // error-out
 
-    TRIGGER_ERROR(@"Could not determine which ChildDef class to instantiate");
+    TRIGGER_ERROR(@"Could not determine which ChildDef class to instantiate: %@", def.content_model_type);
     return nil;
 }
 

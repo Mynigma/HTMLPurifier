@@ -37,7 +37,7 @@
 
 - (HTMLPurifier_ChildDef_Chameleon*)getChildDef:(HTMLPurifier_ElementDef*)def
 {
-    if ([def.content_model_type isEqual:@"chameleon"])
+    if ([[def.content_model_type lowercaseString] isEqual:@"chameleon"])
     {
         return nil;
     }

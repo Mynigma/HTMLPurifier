@@ -9,6 +9,8 @@
 #import "HTMLPurifier_HTMLModule.h"
 #import "HTMLPurifier_ChildDef.h"
 #import "HTMLPurifier_ElementDef.h"
+#import "BasicPHP.h"
+#import "HTMLPurifier_AttrDef.h"
 
 @implementation HTMLPurifier_HTMLModule
 
@@ -71,7 +73,7 @@
  * @return HTMLPurifier_ElementDef Created element definition object, so you
  *         can set advanced parameters
  */
-- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSString*)contents attrIncludes:(NSDictionary*)attr_includes attr:(NSDictionary*)attr
+- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSString*)contents attrIncludes:(NSObject*)attr_includes attr:(NSDictionary*)attr
 {
     [self.elements addObject:element];
     // parse content_model
@@ -84,14 +86,17 @@
         content_model = pair[1];
 
     // merge in attribute inclusions
-    [self mergeInAttrIncludes:[attr mutableCopy] attrIncludes:attr_includes];
+    if(!attr)
+        attr = [NSDictionary new];
+    NSMutableDictionary* mutableAttr = [attr mutableCopy];
+    [self mergeInAttrIncludes:mutableAttr attrIncludes:attr_includes];
     // add element to content sets
-    if (type)
+    if(type)
     {
         [self addElementToContentSet:element type:type];
     }
     // create element
-    self.info[element] = [HTMLPurifier_ElementDef create:content_model contentModelType:content_model_type attr:attr];
+    self.info[element] = [HTMLPurifier_ElementDef create:content_model contentModelType:content_model_type attr:mutableAttr];
 
     // literal object $contents means direct child manipulation
     if ([contents isKindOfClass:[HTMLPurifier_ChildDef class]])
@@ -107,10 +112,17 @@
  * @param string $element Name of element to create
  * @return HTMLPurifier_ElementDef Created element
  */
-- (NSObject*)addBlankElement:(NSString*)elementName
+- (HTMLPurifier_ElementDef*)addBlankElement:(NSString*)element
 //- (HTMLPurifier_ElementDef*)addBlankElement:(NSString*)elementName
 {
-    return nil;
+    if (!self.info[element]) {
+        [self.elements addObject:element];
+        self.info[element] = [HTMLPurifier_ElementDef new];
+        [self.info[element] setStandalone:NO];
+    } else {
+        TRIGGER_ERROR(@"Definition for $element already exists in module, cannot redefine");
+    }
+    return self.info[element];
 }
 
 /**
@@ -121,7 +133,13 @@
  */
 - (void)addElementToContentSet:(NSString*)element type:(NSString*)type
 {
-
+    if (!self.content_sets[type])
+    {
+        self.content_sets[type] = @"";
+    } else {
+        self.content_sets[type] = [self.content_sets[type] stringByAppendingString:@" | "];
+    }
+    self.content_sets[type] = [self.content_sets[type] stringByAppendingString:element];
 }
 
 /**
@@ -134,9 +152,30 @@
  *       returned, and the callee needs to take the original $contents
  *       and use it directly.
  */
-- (NSArray*)parseContents:(NSString*)contents
+- (NSArray*)parseContents:(NSObject*)contents
 {
-    return nil;
+    if (![contents isKindOfClass:[NSString class]]) {
+        return nil;
+    } // defer
+    if([contents isEqualTo:@"Empty"])
+    {
+            // check for shorthand content model forms
+            return @[@"empty", @""];
+    }
+    else if([contents isEqualTo:@"Inline"])
+    {
+        return @[@"optional", @"Inline | #PCDATA"];
+    }
+    else if([contents isEqualTo:@"Flow"])
+    {
+        return @[@"optional", @"Flow | #PCDATA"];
+    }
+    NSArray* pair = explode(@":", (NSString*)contents);
+    if(pair.count<2)
+        return nil;
+    NSString* content_model_type = [trim(pair[0]) lowercaseString];
+    NSString* content_model = trim(pair[1]);
+    return @[content_model_type, content_model];
 }
 
 /**
@@ -145,9 +184,18 @@
  * @param array $attr Reference to attr array to modify
  * @param array $attr_includes Array of includes / string include to merge in
  */
-- (void)mergeInAttrIncludes:(NSMutableDictionary*)attr attrIncludes:(NSDictionary*)attr_includes
+- (void)mergeInAttrIncludes:(NSMutableDictionary*)attr attrIncludes:(NSObject*)attr_includes
 {
-
+    if (![attr_includes isKindOfClass:[NSArray class]])
+    {
+        if (!attr_includes || ([attr_includes isKindOfClass:[NSString class]] && [(NSString*)attr_includes length]==0))
+        {
+            attr_includes = [NSMutableArray new];
+        } else {
+            attr_includes = [NSMutableArray arrayWithObject:attr_includes];
+        }
+    }
+    attr[@0] = attr_includes;
 }
 
 /**
@@ -158,9 +206,21 @@
  *       place of the regular argument
  * @return array array equivalent of list
  */
-- (NSMutableArray*)makeLookup:(NSString*)list
+- (NSDictionary*)makeLookup:(NSObject*)list
 {
-    return nil;
+    if (![list isKindOfClass:[NSArray class]])
+    {
+        list = @[list];
+    }
+    NSMutableDictionary* ret = [NSMutableDictionary new];
+    for(NSString* value in (NSArray*)list)
+    {
+        /*if (!value)) {
+            continue;
+        }*/
+        ret[value] = @YES;
+    }
+    return ret;
 }
 
 /**
@@ -192,6 +252,31 @@
     [newModule setSafe:self.safe];
 
     return newModule;
+}
+
+
+- (NSUInteger)hash
+{
+    return [self.attr_collections hash] + [self.child hash] + [self.content_sets hash] + (self.defines_child_def?4549:349) + [self.elements hash] + [self.info hash] + [self.info_attr_transform_post hash] + [self.info_attr_transform_pre hash] + [self.info_injector hash] + [self.info_tag_transform hash] + [self.name hash] + (self.safe?0:4357);
+}
+
+
+
+- (BOOL)isEqual:(HTMLPurifier_HTMLModule*)object
+{
+    if(![object isKindOfClass:[HTMLPurifier_HTMLModule class]])
+         return NO;
+         return  (self.attr_collections?[self.attr_collections isEqual:object.attr_collections]:object.attr_collections?NO:YES)  &&
+         (self.child?[self.child isEqual:object.child]:object.child?NO:YES)  &&
+         (self.content_sets?[self.content_sets isEqual:object.content_sets]:object.content_sets?NO:YES)  &&
+         (self.defines_child_def == object.defines_child_def) &&
+         (self.elements?[self.elements isEqual:object.elements]:object.elements?NO:YES)  &&
+         (self.info?[self.info isEqual:object.info]:object.info?NO:YES)  &&
+         (self.info_attr_transform_post?[self.info_attr_transform_post isEqual:object.info_attr_transform_post]:object.info_attr_transform_post?NO:YES)  &&
+         (self.info_attr_transform_pre?[self.info_attr_transform_pre isEqual:object.info_attr_transform_pre]:object.info_attr_transform_pre?NO:YES)  &&
+         (self.info_injector?[self.info_injector isEqual:object.info_injector]:object.info_injector?NO:YES)  &&
+         (self.name?[self.name isEqual:object.name]:object.name?NO:YES)  &&
+         (self.safe == object.safe);
 }
 
 @end

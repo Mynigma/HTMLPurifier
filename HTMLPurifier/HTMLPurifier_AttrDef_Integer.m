@@ -122,4 +122,15 @@
     return integer;
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_AttrDef_Integer* newAttrDef = [[[self class] allocWithZone:zone] init];
+
+    [newAttrDef setNegative:self.negative];
+    [newAttrDef setPositive:self.positive];
+    [newAttrDef setZero:self.zero];
+
+    return newAttrDef;
+}
+
 @end

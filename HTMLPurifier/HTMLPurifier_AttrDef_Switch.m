@@ -47,4 +47,15 @@
     }
 }
 
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_AttrDef_Switch* newAttrDef = [[[self class] allocWithZone:zone] init];
+
+    newAttrDef->tag = self->tag;
+    newAttrDef->withoutTag = self->withoutTag;
+    newAttrDef->withTag = self->withTag;
+
+    return newAttrDef;
+}
+
 @end
