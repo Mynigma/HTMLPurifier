@@ -83,7 +83,7 @@
 }
 
 
--(void) test_getSchemaObj_defaultScheme
+-(void) disabled_test_getSchemaObj_defaultScheme
 {
     NSString* scheme = @"foobar";
     
@@ -100,7 +100,7 @@
 }
 
 
--(void) test_getSchemaObj_invalidDefaultScheme
+-(void) disabled_test_getSchemaObj_invalidDefaultScheme
 {
     [self.config setString:@"URI.DefaultScheme" object:@"foobar"];
     

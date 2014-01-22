@@ -37,6 +37,14 @@
                BlueprintName = "HTMLPurifierTests"
                ReferencedContainer = "container:HTMLPurifier.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "HTMLPurifier_URIFilter_MungeTest">
+               </Test>
+               <Test
+                  Identifier = "HTMLPurifier_URIFilter_MakeAbsoluteTest">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

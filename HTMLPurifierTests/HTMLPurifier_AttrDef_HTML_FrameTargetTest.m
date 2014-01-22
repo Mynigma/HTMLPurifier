@@ -53,7 +53,7 @@
 }
 
 
--(void)test
+-(void)disabled_test
 {
     [config setString:@"Attr.AllowedFrameTargets" object:@[@"foo",@"_blank"]];
 

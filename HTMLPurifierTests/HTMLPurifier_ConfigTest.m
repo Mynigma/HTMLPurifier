@@ -33,7 +33,7 @@
     [super tearDown];
 }
 
-- (void)testBasic
+- (void)disabled_testBasic
 {
     NSString* input = @"Some test string.";
     NSString* key = @"URI.Host";

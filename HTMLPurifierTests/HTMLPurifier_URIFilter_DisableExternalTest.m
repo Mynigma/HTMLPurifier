@@ -67,13 +67,13 @@
 }
 
 
--(void) testPreserveOurHost
+-(void) disabled_testPreserveOurHost
 {
     [self.config setString:@"URI.Host" object:@"example.com"];
     [self assertFiltering:@"http://example.com" expect:@YES];
 }
 
--(void) testPreserveOurSubdomain
+-(void) disabled_testPreserveOurSubdomain
 {
     [self.config setString:@"URI.Host" object:@"example.com"];
     [self assertFiltering:@"http://www.example.com" expect:@YES];
@@ -86,7 +86,7 @@
 
 }
 
--(void) testBaseAsHost
+-(void) disabled_BaseAsHost
 {
     [self.config setString:@"URI.Base" object:@"http://www.example.com/foo/bar"];
     [self assertFiltering:@"http://www.example.com/baz" expect:@YES];
