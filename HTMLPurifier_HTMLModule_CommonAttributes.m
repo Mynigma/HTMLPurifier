@@ -16,7 +16,7 @@
     self = [super init];
     if (self) {
         self.name = @"CommonAttributes";
-        self.attr_collections = [@{@"Core" : @{@0 : @"Style", @"class":@"Class", @"id":@"ID", @"title":@"CDATA"}, @"Lang":@{}, @"I18N":@{@0:@"Lang"}, @"Common":@{@0 : @[@"Core", @"I18N"]}} mutableCopy];
+        self.attr_collections = [@{@"Core" : @{@0 : @"Style", @"class":@"Class", @"id":@"ID", @"title":@"CDATA"}, @"Lang":@{}, @"I18N":@{@0 : @"Lang"}, @"Common" : @{ @0 : @[@"Core", @"I18N"]}} mutableCopy];
         }
     return self;
 }
