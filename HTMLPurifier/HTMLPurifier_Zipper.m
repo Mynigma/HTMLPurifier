@@ -97,7 +97,7 @@
      */
 - (NSObject*)delete
 {
-    return self.back.count==0 ? nil : array_pop(self.back);
+    return self.back.count==0 ? [NSNull null] : array_pop(self.back);
 }
 
     /**

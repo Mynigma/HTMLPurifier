@@ -48,7 +48,7 @@
     //if ($config->get('Core.AggressivelyFixLt'))
     {
         NSString* chars = @"[^a-z!\\/]";
-        NSString* comment = @"/<!--(.*?)(-->|\\z)/is";
+        NSString* comment = @"<!--(.*?)(-->|\\z)";
         html = [BasicPHP pregReplace:comment callback:^(NSArray* array)
                 {
                     return [self callbackArmorCommentEntities:array];
