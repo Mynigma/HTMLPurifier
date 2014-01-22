@@ -240,6 +240,7 @@
 		801F016718901DAB00506C24 /* HTMLPurifier_AttrDef_EnumTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F016618901DAB00506C24 /* HTMLPurifier_AttrDef_EnumTest.m */; };
 		801F01691890319600506C24 /* HTMLPurifier_AttrDef_IntegerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F01681890319600506C24 /* HTMLPurifier_AttrDef_IntegerTest.m */; };
 		801F016B1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F016A1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m */; };
+		801F016D1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F016C1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m */; };
 		803497AC188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 803497AB188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m */; };
 		803497AE188E80CA00A90FB9 /* HTMLPurifier_URITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 803497AD188E80CA00A90FB9 /* HTMLPurifier_URITest.m */; };
 		803FD419188042260010D799 /* HTMLPurifier_Config.h in Headers */ = {isa = PBXBuildFile; fileRef = 803FD417188042260010D799 /* HTMLPurifier_Config.h */; };
@@ -646,6 +647,7 @@
 		801F016618901DAB00506C24 /* HTMLPurifier_AttrDef_EnumTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_EnumTest.m; sourceTree = "<group>"; };
 		801F01681890319600506C24 /* HTMLPurifier_AttrDef_IntegerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_IntegerTest.m; sourceTree = "<group>"; };
 		801F016A1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_LangTest.m; sourceTree = "<group>"; };
+		801F016C1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_SwitchTest.m; sourceTree = "<group>"; };
 		803497AB188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URISchemeRegistryTest.m; sourceTree = "<group>"; };
 		803497AD188E80CA00A90FB9 /* HTMLPurifier_URITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URITest.m; sourceTree = "<group>"; };
 		803FD417188042260010D799 /* HTMLPurifier_Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Config.h; sourceTree = "<group>"; };
@@ -1123,6 +1125,7 @@
 				801F016618901DAB00506C24 /* HTMLPurifier_AttrDef_EnumTest.m */,
 				801F01681890319600506C24 /* HTMLPurifier_AttrDef_IntegerTest.m */,
 				801F016A1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m */,
+				801F016C1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m */,
 				808CB9DF188AFB2D00AFB841 /* URI */,
 				808CB9DE188AFB2300AFB841 /* CSS */,
 				808CB9C41887DCD700AFB841 /* HTML */,
@@ -1910,6 +1913,7 @@
 				1E01D00E1890194E00B5643E /* HTMLPurifier_AttrCollectionsTest.m in Sources */,
 				801F0165188FD01B00506C24 /* HTMLPurifier_Strategy_MakeWellFormedTest.m in Sources */,
 				801F016B1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m in Sources */,
+				801F016D1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m in Sources */,
 				808CBA46188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */,
 				808CB9CB18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */,
 				801F0160188F1F1F00506C24 /* HTMLPurifier_TokenTest.m in Sources */,
