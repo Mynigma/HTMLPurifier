@@ -142,7 +142,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
         NSString* after = [self runOnString:before];
         NSString* expected = @"<span lang=\"fr\" xml:lang=\"fr\">La soupe.</span>";
         XCTAssertEqualObjects(after, expected);
-    }
+}
 
                               /*
     - (void) testOnlyXMLLangInXHTML11

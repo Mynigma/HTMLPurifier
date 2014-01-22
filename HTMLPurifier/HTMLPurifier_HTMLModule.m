@@ -71,7 +71,7 @@
  * @return HTMLPurifier_ElementDef Created element definition object, so you
  *         can set advanced parameters
  */
-- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSObject*)contents attrIncludes:(NSObject*)attr_includes attr:(NSDictionary*)attr
+- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSString*)contents attrIncludes:(NSDictionary*)attr_includes attr:(NSDictionary*)attr
 {
     [self.elements addObject:element];
     // parse content_model
@@ -84,7 +84,7 @@
         content_model = pair[1];
 
     // merge in attribute inclusions
-    [self mergeInAttrIncludes:attr attrIncludes:attr_includes];
+    [self mergeInAttrIncludes:[attr mutableCopy] attrIncludes:attr_includes];
     // add element to content sets
     if (type)
     {
