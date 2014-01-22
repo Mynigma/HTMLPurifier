@@ -224,7 +224,7 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
     NSMutableDictionary* ret = [NSMutableDictionary new];
     for(NSString* name in [plist squash])
     {
-        NSObject* value = [self->plist valueForKey:name];
+        NSObject* value = [self->plist get:name];
         NSArray* exploded = explode(@".", name);
         NSString* ns = @"";
         NSString* key = @"";

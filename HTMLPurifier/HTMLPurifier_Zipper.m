@@ -31,6 +31,8 @@
 {
         HTMLPurifier_Zipper* z = [[HTMLPurifier_Zipper alloc] initWithFront:@[] back:array_reverse([array mutableCopy])];
         NSObject* t = [z delete]; // delete the "dummy hole"
+        if (!t)
+            return @[z];
         return @[z, t];
     }
 

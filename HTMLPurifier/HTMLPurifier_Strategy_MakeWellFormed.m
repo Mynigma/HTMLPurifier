@@ -63,7 +63,7 @@
     // -- begin INJECTOR --
 
     NSMutableDictionary* injectors = [[config getBatch:@"AutoFormat"] mutableCopy];
-    NSMutableArray* def_injectors = [definition info_injector];
+    NSMutableDictionary* def_injectors = [definition info_injector];
     NSMutableDictionary* custom_injectors = injectors[@"Custom"];
     [injectors removeObjectForKey:@"Custom"];
     for(NSString* injectorName in injectors)
@@ -163,9 +163,9 @@
         }
 
         // handle case of document end
-        if (!token) {
+        if (!token || [token isKindOfClass:[NSNull class]]) {
             // kill processing if stack is empty
-            if (!_stack) {
+            if ([_stack count] == 0) {
                 break;
             }
 
@@ -191,7 +191,7 @@
         //flush();
 
         // quick-check: if it's not a tag, no need to process
-        if (![token valueForKey:@"is_tag"])
+        if (!token.isTag)
         {
             if ([token isKindOfClass:[HTMLPurifier_Token_Text class]])
             {
@@ -301,6 +301,7 @@
                 }
 
                 BOOL carryover = NO;
+                // Useless like this
                 if (autoclose && [parent_def formatting]) {
                     carryover = NO;
                 }
