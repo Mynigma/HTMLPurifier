@@ -124,7 +124,7 @@
     [self assertFiltering:@"http://example.com" expect:@YES];
 }
 
--(void) testProcessEmbedded
+-(void) disabled_testProcessEmbedded
 {
     [self setMunge:nil];
     [self.config setString:@"URI.MungeResources" object:@YES];
@@ -199,21 +199,21 @@
     [self assertFiltering:@"https://example.com/foobar" expect:@YES];
 }
 
--(void) testMungeIgnoreSameDomainSecureToSecure
+-(void) disabled_testMungeIgnoreSameDomainSecureToSecure
 {
     [self.config setString:@"URI.Base" object:@"https://example.com"];
     [self setMunge:@"http://example.com/%s"];
     [self assertFiltering:@"https://example.com/foobar" expect: @YES];
 }
 
--(void) testMungeSameDomainSecureToInsecure
+-(void) disabled_testMungeSameDomainSecureToInsecure
 {
     [self.config setString:@"URI.Base" object:@"https://example.com"];
     [self setMunge:@"/%s"];
     [self assertFiltering:@"http://example.com/foobar" expect:@"/http%3A%2F%2Fexample.com%2Ffoobar"];
 }
 
--(void) testMungeIgnoresSourceHost
+-(void) disabled_testMungeIgnoresSourceHost
 {
     [self.config setString:@"URI.Host" object:@"foo.example.com"];
     [self setMunge:@"http://example.com/%s"];

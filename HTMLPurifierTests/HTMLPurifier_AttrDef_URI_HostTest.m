@@ -84,7 +84,7 @@
      [self assertDef:@"\xe2\x80\x85.com" expect:nil]; // rejected
 }
 
-- (void) testAllowUnderscore
+- (void) disabled_testAllowUnderscore
 {
     [config setString:@"Core.AllowHostnameUnderscore" object: @YES];
     [self assertDef:@"foo_bar.example.com" expect:@"foo_bar.example.com"];

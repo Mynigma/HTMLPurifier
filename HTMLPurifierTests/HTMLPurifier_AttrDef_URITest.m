@@ -113,7 +113,7 @@
     [self assertDef:@"///foo" expect:@"/foo"];
 }
 
-- (void) testResolveNullSchemeDoubleAmbiguity
+- (void) disabled_testResolveNullSchemeDoubleAmbiguity
 {
     [config setString:@"URI.Host" object:@"example.com"];
     [self assertDef:@"////foo" expect:@"//example.com//foo"];

@@ -72,7 +72,7 @@
     
 }
 
--(void) testPrefix
+-(void) disabled_testPrefix
 {
     [config setString:@"Attr.IDPrefix" object:@"user_"];
     
@@ -86,7 +86,7 @@
     [self assertDef:@"user_user_alas" expect: @"user_user_alas"]; // how to bypass
 }
 
--(void) testTwoPrefixes
+-(void) disabled_testTwoPrefixes
 {
     [config setString:@"Attr.IDPrefix" object: @"user_"];
     [config setString:@"Attr.IDPrefixLocal" object: @"story95_"];
@@ -101,7 +101,7 @@
     
 }
 
--(void) testLocalPrefixWithoutMainPrefix
+-(void) disabled_testLocalPrefixWithoutMainPrefix
 {
     // no effect when IDPrefix isn"t set
     [config setString:@"Attr.IDPrefix" object: @""];
@@ -110,7 +110,7 @@
     [self assertDef:@"amherst" expect:@"amherst"];
 }
 
--(void) testRegexp
+-(void) disabled_testRegexp
 {
     [config setString:@"Attr.IDBlacklistRegexp" object:@"^g_"];
     

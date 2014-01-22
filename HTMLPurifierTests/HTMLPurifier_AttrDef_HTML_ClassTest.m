@@ -44,7 +44,7 @@
     XCTAssertEqualObjects(expect, result, @"");
 }
 
-- (void)testAllowedClasses
+- (void) disabled_testAllowedClasses
 {
     [config setString:@"Attr.AllowedClasses" object:@[@"foo"]];
     [self assertDef:@"foo" expect:@"foo"];
@@ -52,7 +52,7 @@
     [self assertDef:@"foo bar" expect:@"foo"];
 }
 
-- (void) testForbiddenClasses
+- (void) disabled_testForbiddenClasses
 {
     [config setString:@"Attr.ForbiddenClasses" object:@[@"bar"]];
     [self assertDef:@"foo" expect:@"foo"];
@@ -84,7 +84,7 @@
     [self assertDef:@"valid valid" expect:@"valid"];
 }
 
-- (void) testXHTML11Behavior
+- (void) disabled_testXHTML11Behavior
 {
     [config setString:@"HTML.Doctype" object:@"XHTML 1.1"];
     [self assertDef:@"0invalid"  expect:nil];
