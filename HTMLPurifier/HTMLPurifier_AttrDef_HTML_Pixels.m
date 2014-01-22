@@ -23,15 +23,15 @@
 -(id) initWithMax:(NSNumber*)newMax
 {
     self = [super init];
-    if (newMax)
-    {
-        max = newMax;
-    }
-    else
-    {
-        max = nil;
-    }
+
+    max = newMax;
+
     return self;
+}
+
+- (id)init
+{
+    return [self initWithMax:nil];
 }
 
 /**
@@ -40,7 +40,7 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
+- (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
     string = trim(string);
     if ([string isEqual:@"0"])

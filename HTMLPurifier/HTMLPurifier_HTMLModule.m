@@ -73,7 +73,7 @@
  * @return HTMLPurifier_ElementDef Created element definition object, so you
  *         can set advanced parameters
  */
-- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSString*)contents attrIncludes:(NSObject*)attr_includes attr:(NSDictionary*)attr
+- (HTMLPurifier_ElementDef*)addElement:(NSString*)element type:(NSString*)type contents:(NSObject*)contents attrIncludes:(NSObject*)attr_includes attr:(NSDictionary*)attr
 {
     [self.elements addObject:element];
     // parse content_model

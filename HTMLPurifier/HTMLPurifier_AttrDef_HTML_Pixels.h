@@ -18,7 +18,7 @@
 /**
  * @param int $max
  */
--(id) initWithMax:(NSNumber*)newMax;
+- (id)initWithMax:(NSNumber*)newMax;
 
 /**
  * @param string $string
@@ -26,12 +26,12 @@
  * @param HTMLPurifier_Context $context
  * @return bool|string
  */
--(NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
+- (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;
 
 /**
  * @param string $string
  * @return HTMLPurifier_AttrDef
  */
--(HTMLPurifier_AttrDef*) make:(NSString*)string;
+- (HTMLPurifier_AttrDef*)make:(NSString*)string;
 
 @end

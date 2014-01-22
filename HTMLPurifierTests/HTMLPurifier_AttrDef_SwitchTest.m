@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+
 #import "HTMLPurifier_AttrDefHarness.h"
 #import "HTMLPurifier_AttrDef_Switch.h"
 #import "HTMLPurifier_Token_Start.h"
@@ -14,8 +16,8 @@
 @interface HTMLPurifier_AttrDef_SwitchTest : HTMLPurifier_AttrDefHarness
 {
     HTMLPurifier_AttrDef_Switch* def;
-    HTMLPurifier_AttrDefMock* with;
-    HTMLPurifier_AttrDefMock* without;
+    id withMock;
+    id withoutMock;
 }
 @end
 
@@ -24,10 +26,9 @@
 - (void)setUp
 {
     [super setUp];
-    generate_mock_once(@"HTMLPurifier_AttrDef");
-    with = [HTMLPurifier_AttrDefMock new];
-    without = [HTMLPurifier_AttrDefMock new];
-    def = [[HTMLPurifier_AttrDef_Switch alloc] initWithTag:@"tag" withTag:with withoutTag:without];
+    withMock = [OCMockObject mockForClass:[HTMLPurifier_AttrDef class]];
+    withoutMock = [OCMockObject mockForClass:[HTMLPurifier_AttrDef class]];
+    def = [[HTMLPurifier_AttrDef_Switch alloc] initWithTag:@"tag" withTag:withMock withoutTag:withoutMock];
 }
 
 - (void)tearDown
@@ -50,18 +51,18 @@
 {
     HTMLPurifier_Token_Start* token = [[HTMLPurifier_Token_Start alloc] initWithName:@"tag"];
     [[super context] registerWithName:@"CurrentToken" ref:token];
-    [with expectOnce:@"validate"];
-    [with setReturnValue:('validate', 'foo');
-    [self assertDef@"bar2" expect:@"foo"];
+    [[[withMock expect] andReturn:@"foo"] validateWithString:[OCMArg any] config:[OCMArg any] context:[OCMArg any]];
+    [self assertDef:@"bar2" expect:@"foo"];
+    [withMock verify];
 }
 
 -(void) testWithout
 {
     HTMLPurifier_Token_Start* token = [[HTMLPurifier_Token_Start alloc] initWithName:@"other-tag"];
     [[super context] registerWithName:@"CurrentToken" ref:token];
-    [without expectOnce:@"validate"];
-    [without setReturnValue:('validate', 'foo');
-    [self assertDef@"bar" expect:@"foo"];
+    [[[withoutMock expect] andReturn:@"foo"] validateWithString:[OCMArg any] config:[OCMArg any] context:[OCMArg any]];
+    [self assertDef:@"bar" expect:@"foo"];
+    [withMock verify];
 }
 
 @end
