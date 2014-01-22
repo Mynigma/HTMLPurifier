@@ -58,7 +58,7 @@
             }
             else
             {
-                [subtags insertObject:[primary_subtag lowercaseString] atIndex:0];
+                [subtags replaceObjectAtIndex:0 withObject:[primary_subtag lowercaseString]];
             }
             break;
         default:
@@ -80,7 +80,7 @@
         return new_string;
     }
 
-    [subtags insertObject:[second_subtag lowercaseString] atIndex:0];
+    [subtags replaceObjectAtIndex:1 withObject:[second_subtag lowercaseString]];
     
     new_string = [NSString stringWithFormat:@"%@-%@",new_string,[subtags objectAtIndex:1]];
     if (num_subtags == 2)
@@ -96,7 +96,7 @@
         {
             return new_string;
         }
-        [subtags insertObject:[[subtags objectAtIndex:i] lowercaseString] atIndex:i];
+        [subtags replaceObjectAtIndex:i withObject:[[subtags objectAtIndex:i] lowercaseString]];
         new_string = [NSString stringWithFormat:@"%@-%@",new_string,[subtags objectAtIndex:i]];
     }
     return new_string;
