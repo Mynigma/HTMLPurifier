@@ -38,6 +38,17 @@
  */
 @synthesize positive;
 
+
+-(id) init
+{
+    self = [super init];
+    negative = @YES;
+    zero = @YES;
+    positive = @YES;
+    
+    return self;
+}
+
 /**
  * @param $negative Bool indicating whether or not negative values are allowed
  * @param $zero Bool indicating whether or not zero is allowed
@@ -45,7 +56,10 @@
  */
 -(id) initWithNegative:(NSNumber*)nnegative Zero:(NSNumber*)nzero Positive:(NSNumber*)npositive
 {
+    
+    // If nil set it to @YES
     self = [super init];
+
     if (nnegative)
         negative = nnegative;
     else
@@ -81,7 +95,7 @@
     
     // clip leading sign
     NSString* digits = nil;
-    if (negative && ([integer characterAtIndex:0] == '-'))
+    if (negative.boolValue && ([integer characterAtIndex:0] == '-'))
     {
         digits = substr(integer, 1);
         if ([digits isEqual:@"0"])
@@ -89,7 +103,7 @@
             integer = @"0";
         } // rm minus sign for zero
     }
-    else if (positive && ([integer characterAtIndex:0] == '+'))
+    else if (positive.boolValue && ([integer characterAtIndex:0] == '+'))
     {
         integer = substr(integer, 1); // rm unnecessary plus
         digits = integer;
@@ -106,15 +120,15 @@
     }
     
     // perform scope tests
-    if (!zero && ([integer integerValue] == 0))
+    if (!zero.boolValue && ([integer integerValue] == 0))
     {
         return nil;
     }
-    if (!positive && ([integer integerValue] > 0))
+    if (!positive.boolValue && ([integer integerValue] > 0))
     {
         return nil;
     }
-    if (!negative && ([integer integerValue] < 0))
+    if (!negative.boolValue && ([integer integerValue] < 0))
     {
         return nil;
     }

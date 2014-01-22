@@ -66,4 +66,15 @@
 }
 
 
+// For testing
+-(BOOL) isEqual:(HTMLPurifier_AttrDef_Enum*)object
+{
+    return [_validValues isEqual:object.validValues] && (_caseSensitive == object.caseSensitive);
+}
+
+-(NSUInteger) hash
+{
+    return [_validValues hash] + [[NSNumber numberWithBool:_caseSensitive] hash];
+}
+
 @end
