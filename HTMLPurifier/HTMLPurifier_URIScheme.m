@@ -123,11 +123,11 @@
 - (BOOL)isEqual:(HTMLPurifier_URIScheme*)object
 {
     return [object isKindOfClass:[HTMLPurifier_URIScheme class]]    &&
-                [object.browsable isEqual:self.browsable]           &&
-                [object.default_port isEqual: self.default_port]    &&
-                [object.secure isEqual:self.secure]                 &&
-                [object.hierarchical isEqual:self.hierarchical]     &&
-                [object.may_omit_host isEqual:self.may_omit_host]   ;
+            ((!object.browsable && !self.browsable) || [object.browsable isEqual:self.browsable])           &&
+            ((!object.default_port && !self.default_port) || [object.default_port isEqual: self.default_port])    &&
+            ((!object.secure && !self.secure) || [object.secure isEqual:self.secure])                 &&
+            ((!object.hierarchical && !self.hierarchical) || [object.hierarchical isEqual:self.hierarchical])     &&
+            ((!object.may_omit_host && !self.may_omit_host) || [object.may_omit_host isEqual:self.may_omit_host])   ;
     
 }
 
