@@ -85,7 +85,7 @@
  * @param string $string
  * @return HTMLPurifier_AttrDef
  */
--(HTMLPurifier_AttrDef*) make:(NSString*)string
+- (HTMLPurifier_AttrDef*)make:(NSString*)string
 {
     if ([string isEqual:@""])
     {
@@ -93,10 +93,12 @@
     } else {
         max = @([string intValue]);
     }
-    
-    HTMLPurifier_AttrDef_HTML_Pixels* class = [HTMLPurifier_AttrDef_HTML_Pixels alloc];
-    
-    return [class initWithMax:max];
+
+    Class class = [self class];
+
+    HTMLPurifier_AttrDef_HTML_Pixels* newAttrDef = [class alloc];
+
+    return [newAttrDef initWithMax:max];
 }
 
 @end

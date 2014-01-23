@@ -33,7 +33,7 @@
      * Current token.
      * @type HTMLPurifier_Token
      */
-    HTMLPurifier_Token* _token;
+    NSObject* _token;
 
     /**
      * Zipper managing the true state.
