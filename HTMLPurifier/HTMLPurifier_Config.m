@@ -162,7 +162,9 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
  */
 - (NSDictionary*)getBatch:(NSString*)namespace
 {
-    [self autoFinalize];
+    if (!self->finalized) {
+        [self autoFinalize];
+    }
 
     NSDictionary* full = [self getAll];
     if (![full objectForKey:namespace]) {
@@ -224,7 +226,9 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
     NSMutableDictionary* ret = [NSMutableDictionary new];
     for(NSString* name in [plist squash])
     {
-        NSObject* value = [self->plist get:name];
+        NSObject* value = [plist get:name];
+        if(!value || [value isEqualTo:@"nil"])
+            continue;
         NSArray* exploded = explode(@".", name);
         NSString* ns = @"";
         NSString* key = @"";
@@ -232,6 +236,8 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
             ns = exploded[0];
         if(exploded.count>1)
             key = exploded[1];
+        if(![ret objectForKey:ns])
+            ret[ns] = [NSMutableDictionary new];
         [[ret objectForKey:ns] setObject:value forKey:key];
     }
     return ret;
@@ -764,6 +770,11 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
  */
 - (void)autoFinalize
 {
+    if (self.auto_finalize) {
+        [self finalize];
+    } else {
+        [self->plist squash:YES];
+    }
     [self finalize];
 }
 

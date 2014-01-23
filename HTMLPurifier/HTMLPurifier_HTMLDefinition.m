@@ -248,8 +248,8 @@
     // setup allowed elements -----------------------------------------
 
 
-    NSMutableDictionary* allowed_elements = [[config get:@"HTML.AllowedElements"] mutableCopy];
-    NSMutableDictionary* allowed_attributes = [[config get:@"HTML.AllowedAttributes"] mutableCopy]; // retrieve early
+    //NSMutableDictionary* allowed_elements = [[config get:@"HTML.AllowedElements"] mutableCopy];
+    //NSMutableDictionary* allowed_attributes = [[config get:@"HTML.AllowedAttributes"] mutableCopy]; // retrieve early
 
     /*
     if (![allowed_elements isKindOfClass:[NSArray class]]) && ![allowed_attributes isKindOfClass:[NSArray class]]) {

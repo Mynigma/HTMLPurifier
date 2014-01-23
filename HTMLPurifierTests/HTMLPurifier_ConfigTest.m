@@ -426,20 +426,20 @@
 
         $this->assertEqual($config_expect, $config_result);
 
-        /*
-         MAGIC QUOTES NOT TESTED!!!
 
-         $get = array(
-         'breakfast' => array(
-         'Pancake.Mix' => 'n\\asty'
-         )
-         );
-         $config_expect = HTMLPurifier_Config::create(array(
-         'Pancake.Mix' => 'n\\asty'
-         ));
-         $config_result = HTMLPurifier_Config::loadArrayFromForm($get, 'breakfast', true, false);
-         $this->assertEqual($config_expect, $config_result);
-         */
+//         MAGIC QUOTES NOT TESTED!!!
+//
+//         $get = array(
+//         'breakfast' => array(
+//         'Pancake.Mix' => 'n\\asty'
+//         )
+//         );
+//         $config_expect = HTMLPurifier_Config::create(array(
+//         'Pancake.Mix' => 'n\\asty'
+//         ));
+//         $config_result = HTMLPurifier_Config::loadArrayFromForm($get, 'breakfast', true, false);
+//         $this->assertEqual($config_expect, $config_result);
+*/
 //    }
 //    
 //    function test_getAllowedDirectivesForForm() {

@@ -25,6 +25,7 @@
     if (self) {
         _armor = [NSMutableDictionary new];
         _isTag = NO;
+        _skip = [NSMutableArray new];
     }
     return self;
 }
@@ -126,6 +127,9 @@
 
 -(BOOL) isEqual:(HTMLPurifier_Token*)object
 {
+    if(![object isKindOfClass:[HTMLPurifier_Token class]])
+        return NO;
+    
     return  (self.line?[self.line isEqual:object.line]:object.line?NO:YES)  &&
             (self.col?[self.col isEqual:object.col]:object.col?NO:YES)  &&
             (self.armor?[self.armor isEqual:object.armor]:object.armor?NO:YES)  &&

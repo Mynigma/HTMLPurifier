@@ -39,18 +39,17 @@
     return [self initWithConfig:nil];
 }
 
-/*
+
 - (HTMLPurifier_ChildDef_Chameleon*)getChildDef:(HTMLPurifier_ElementDef*)def
     {
-        if ([def.content_model_type isEqual:@"chameleon"])
+        if (![[def.content_model_type lowercaseString] isEqual:@"chameleon"])
         {
             return nil;
         }
         NSArray* value = explode(@"!", def.content_model);
-        return [[HTMLPurifier_ChildDef_Chameleon alloc] initWit
-                :value[0], value[1]];
+        return [[HTMLPurifier_ChildDef_Chameleon alloc] initWithInline:value[0] block:value[1]];
     }
-*/
+
 
 
 
