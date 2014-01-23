@@ -82,13 +82,13 @@
      * List of HTMLPurifier_AttrTransform to be performed before validation.
      * @type array
      */
-@property NSMutableArray* info_attr_transform_pre;
+@property NSMutableDictionary* info_attr_transform_pre;
 
     /**
      * List of HTMLPurifier_AttrTransform to be performed after validation.
      * @type array
      */
-@property NSMutableArray* info_attr_transform_post;
+@property NSMutableDictionary* info_attr_transform_post;
 
 
 @property NSMutableArray* child;

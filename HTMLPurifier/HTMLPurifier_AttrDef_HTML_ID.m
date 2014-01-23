@@ -64,7 +64,7 @@
  */
 -(NSString*) validateWithString:(NSString*)ID config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    if (!selector && ![config get:@"Attr.EnableID"])
+    if (!selector.boolValue && ![(NSNumber*)[config get:@"Attr.EnableID"] boolValue])
     {
         return nil;
     }

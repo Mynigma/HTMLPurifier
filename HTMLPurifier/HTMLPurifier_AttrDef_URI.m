@@ -75,7 +75,7 @@
  */
 -(NSString*) validateWithString:(NSString *)uri config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    if ([config get:@"URI.Disable"])
+    if ([(NSNumber*)[config get:@"URI.Disable"] boolValue])
     {
         return nil;
     }

@@ -98,13 +98,13 @@
      * Indexed list of HTMLPurifier_AttrTransform to be performed before validation.
      * @type HTMLPurifier_AttrTransform[]
      */
-@property NSMutableArray* info_attr_transform_pre;
+@property NSMutableDictionary* info_attr_transform_pre;
 
     /**
      * Indexed list of HTMLPurifier_AttrTransform to be performed after validation.
      * @type HTMLPurifier_AttrTransform[]
      */
-@property NSMutableArray* info_attr_transform_post;
+@property NSMutableDictionary* info_attr_transform_post;
 
     /**
      * Nested lookup array of content set name (Block, Inline) to

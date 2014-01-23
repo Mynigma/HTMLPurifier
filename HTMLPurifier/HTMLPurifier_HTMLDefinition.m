@@ -27,8 +27,8 @@
         _info_parent = @"div";
         _info_block_wrapper = @"p";
         _info_tag_transform = [NSMutableDictionary new];
-        _info_attr_transform_pre = [NSMutableArray new];
-        _info_attr_transform_post = [NSMutableArray new];
+        _info_attr_transform_pre = [NSMutableDictionary new];
+        _info_attr_transform_post = [NSMutableDictionary new];
         _info_content_sets = [NSMutableDictionary new];
         _info_injector = [NSMutableDictionary new];
         _anonModule = nil;
@@ -172,30 +172,32 @@
                 self.info_tag_transform[k] = v;
             }
         }
-        keyArray = module.info_attr_transform_pre;
-        for(NSObject* v in keyArray)
+        keyArray = module.info_attr_transform_pre.allKeys;
+        for(NSObject* k in keyArray)
         {
-            //NSObject* v = module.info_attr_transform_pre[k];
+            NSObject* v = module.info_attr_transform_pre[k];
             if ([v isEqual:@NO])
             {
-                [self.info_attr_transform_pre removeObject:v];
+                [self.info_attr_transform_pre removeObjectForKey:k];
             }
             else
             {
-                [self.info_attr_transform_pre addObject:v];
+                NSString* newKey = [NSString stringWithFormat:@"%ld", self.info_attr_transform_pre.count];
+                [self.info_attr_transform_pre setObject:v forKey:newKey];
             }
         }
-        keyArray = module.info_attr_transform_post;
-        for(NSObject* v in keyArray)
+        keyArray = module.info_attr_transform_post.allKeys;
+        for(NSObject* k in keyArray)
         {
-            //NSObject* v = module.info_tag_transform_post[k];
+            NSObject* v = module.info_attr_transform_post[k];
             if ([v isEqual:@NO])
             {
-                [self.info_attr_transform_post removeObject:v];
+                [self.info_attr_transform_post removeObjectForKey:k];
             }
             else
             {
-                [self.info_attr_transform_post addObject:v];
+                NSString* newKey = [NSString stringWithFormat:@"%ld", self.info_attr_transform_post.count];
+                [self.info_attr_transform_post setObject:v forKey:newKey];
             }
 
         }
