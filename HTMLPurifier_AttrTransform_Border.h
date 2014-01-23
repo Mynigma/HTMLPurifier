@@ -13,4 +13,7 @@
  */
 @interface HTMLPurifier_AttrTransform_Border : HTMLPurifier_AttrTransform
 
+- (NSDictionary*)transform:(NSDictionary*)attr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
+
 @end

@@ -18,13 +18,13 @@
  * Name of attribute to transform from.
  * @type string
  */
-protected $attr;
+@property NSString* attr_s;
 
 /**
  * Lookup array of attribute values to CSS.
  * @type array
  */
-protected $enumToCSS = array();
+@property NSDictionary* enumToCSS;
 
 /**
  * Case sensitivity of the matching.
@@ -32,6 +32,11 @@ protected $enumToCSS = array();
  * @warning Currently can only be guaranteed to work with ASCII
  *          values.
  */
-protected $caseSensitive = false;
+@property NSNumber* caseSensitive; // = false;
+
+- (NSDictionary*)transform:(NSDictionary*)attr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
+-(id) initWithAttr:(NSString*)attr enum:(NSDictionary*)enum_to_css caseSensitive:(NSNumber*)case_sensitive;
+
 
 @end

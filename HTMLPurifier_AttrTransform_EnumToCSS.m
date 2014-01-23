@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrTransform_EnumToCSS.h"
+#import "BasicPHP.h"
 
 /**
  * Generic pre-transform that converts an attribute with a fixed number of
@@ -19,13 +20,13 @@
  * Name of attribute to transform from.
  * @type string
  */
-protected $attr;
+@synthesize attr_s;
 
 /**
  * Lookup array of attribute values to CSS.
  * @type array
  */
-protected $enumToCSS = array();
+@synthesize enumToCSS; // = array();
 
 /**
  * Case sensitivity of the matching.
@@ -33,44 +34,54 @@ protected $enumToCSS = array();
  * @warning Currently can only be guaranteed to work with ASCII
  *          values.
  */
-protected $caseSensitive = false;
+@synthesize caseSensitive; // = false;
 
 /**
- * @param string $attr Attribute name to transform from
- * @param array $enum_to_css Lookup array of attribute values to CSS
- * @param bool $case_sensitive Case sensitivity indicator, default false
+ * @param string attr Attribute name to transform from
+ * @param array enum_to_css Lookup array of attribute values to CSS
+ * @param bool case_sensitive Case sensitivity indicator, default false
  */
-public function __construct($attr, $enum_to_css, $case_sensitive = false)
+-(id) initWithAttr:(NSString*)attr enum:(NSDictionary*)enum_to_css caseSensitive:(NSNumber*)case_sensitive
 {
-    $this->attr = $attr;
-    $this->enumToCSS = $enum_to_css;
-    $this->caseSensitive = (bool)$case_sensitive;
+    self = [super init];
+    attr_s = attr;
+    enumToCSS = enum_to_css;
+    if (case_sensitive)
+        caseSensitive = case_sensitive;
+    else
+        caseSensitive = @NO;
+    
+    return self;
 }
 
 /**
- * @param array $attr
- * @param HTMLPurifier_Config $config
- * @param HTMLPurifier_Context $context
+ * @param array attr
+ * @param HTMLPurifier_Config config
+ * @param HTMLPurifier_Context context
  * @return array
  */
-public function transform($attr, $config, $context)
+- (NSDictionary*)transform:(NSDictionary*)attr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    if (!isset($attr[$this->attr])) {
-        return $attr;
+    if (!attr[attr_s])
+    {
+        return attr;
     }
     
-    $value = trim($attr[$this->attr]);
-    unset($attr[$this->attr]);
+    NSString* value = trim(attr[attr_s]);
+    NSMutableDictionary* attr_m = [attr mutableCopy];
+    [attr_m removeObjectForKey:attr_s];
     
-    if (!$this->caseSensitive) {
-        $value = strtolower($value);
+    if (!caseSensitive)
+    {
+        value = [value lowercaseString];
     }
     
-    if (!isset($this->enumToCSS[$value])) {
-        return $attr;
+    if (!enumToCSS[value])
+    {
+        return attr_m;
     }
-    $this->prependCSS($attr, $this->enumToCSS[$value]);
-    return $attr;
+    [self prependCSS:attr_m css:enumToCSS[value]];
+    return attr_m;
 }
 
 
