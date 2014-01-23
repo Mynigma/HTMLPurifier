@@ -30,6 +30,6 @@
 -(id) initWithAttr:(NSString*)nattr andCSS:(NSString*)ncss;
 
 
-- (NSDictionary*)transform:(NSDictionary*)attr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+- (NSDictionary*)transform:(NSDictionary*)attr_d sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 @end

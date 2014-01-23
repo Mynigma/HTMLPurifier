@@ -34,7 +34,7 @@
  */
 @property NSNumber* caseSensitive; // = false;
 
-- (NSDictionary*)transform:(NSDictionary*)attr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+- (NSDictionary*)transform:(NSDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 -(id) initWithAttr:(NSString*)attr enum:(NSDictionary*)enum_to_css caseSensitive:(NSNumber*)case_sensitive;
 

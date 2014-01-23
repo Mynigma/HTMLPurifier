@@ -7,6 +7,7 @@
 //
 
 #import "HTMLPurifier_AttrTransform_Input.h"
+#import "HTMLPurifier_AttrDef_HTML_Pixels.h"
 
 /**
  * Performs miscellaneous cross attribute validation and filtering for
@@ -17,11 +18,13 @@
 /**
  * @type HTMLPurifier_AttrDef_HTML_Pixels
  */
-protected $pixels;
+@synthesize pixels;
 
-public function __construct()
+-(id) init
 {
-    $this->pixels = new HTMLPurifier_AttrDef_HTML_Pixels();
+    self = [super init];
+    pixels = [HTMLPurifier_AttrDef_HTML_Pixels new];
+    return self;
 }
 
 /**
@@ -30,34 +33,50 @@ public function __construct()
  * @param HTMLPurifier_Context $context
  * @return array
  */
-public function transform($attr, $config, $context)
+- (NSDictionary*)transform:(NSDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    if (!isset($attr['type'])) {
-        $t = 'text';
-    } else {
-        $t = strtolower($attr['type']);
+    NSString* t = nil;
+    
+    if (!attr[@"type"])
+    {
+        t = @"text";
     }
-    if (isset($attr['checked']) && $t !== 'radio' && $t !== 'checkbox') {
-        unset($attr['checked']);
+    else
+    {
+        t =  [attr[@"type"] lowercaseString];
     }
-    if (isset($attr['maxlength']) && $t !== 'text' && $t !== 'password') {
-        unset($attr['maxlength']);
+    
+    NSMutableDictionary* attr_m = [attr mutableCopy];
+    if (attr_m[@"checked"] && ![t isEqual:@"radio"] && ![t isEqual:@"checkbox"])
+    {
+        [attr_m removeObjectForKey:@"checked"];
     }
-    if (isset($attr['size']) && $t !== 'text' && $t !== 'password') {
-        $result = $this->pixels->validate($attr['size'], $config, $context);
-        if ($result === false) {
-            unset($attr['size']);
-        } else {
-            $attr['size'] = $result;
+    if (attr_m[@"maxlength"] && ![t isEqual:@"text"] && ![t isEqual:@"password"])
+    {
+        [attr_m removeObjectForKey:@"maxlength"];
+    }
+    if (attr_m[@"size"] && ![t isEqual:@"text"] && ![t isEqual:@"password"])
+    {
+        NSString* result = [pixels validateWithString:attr_m[@"size"] config:config context:context];
+        
+        if (!result)
+        {
+            [attr_m removeObjectForKey:@"size"];
+        }
+        else
+        {
+            [attr_m setObject:result forKey:@"size"];
         }
     }
-    if (isset($attr['src']) && $t !== 'image') {
-        unset($attr['src']);
+    if (attr_m[@"src"] && ![t isEqual:@"image"])
+    {
+        [attr_m removeObjectForKey:@"src"];
     }
-    if (!isset($attr['value']) && ($t === 'radio' || $t === 'checkbox')) {
-        $attr['value'] = '';
+    if (!attr_m[@"value"] && ( [t isEqual:@"radio"] || [t isEqual:@"checkbox"]))
+    {
+        [attr_m setObject:@"" forKey:@"value"];
     }
-    return $attr;
+    return attr_m;
 }
 
 @end

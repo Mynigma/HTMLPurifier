@@ -8,6 +8,7 @@
 
 #import "HTMLPurifier_AttrTransform.h"
 
+@class HTMLPurifier_AttrDef_HTML_Pixels;
 /**
  * Performs miscellaneous cross attribute validation and filtering for
  * input elements. This is meant to be a post-transform.
@@ -17,6 +18,8 @@
 /**
 * @type HTMLPurifier_AttrDef_HTML_Pixels
 */
-protected $pixels;
+@property HTMLPurifier_AttrDef_HTML_Pixels* pixels;
+
+- (NSDictionary*)transform:(NSDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 @end

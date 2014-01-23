@@ -40,7 +40,7 @@
  * @param HTMLPurifier_Context $context
  * @return array
  */
-- (NSDictionary*)transform:(NSDictionary*)attr_d config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+- (NSDictionary*)transform:(NSDictionary*)attr_d sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     if (!attr_d[attr])
     {
