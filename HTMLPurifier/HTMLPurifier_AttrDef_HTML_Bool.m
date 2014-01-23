@@ -55,5 +55,16 @@
     return [end initWithName:string];
 }
 
+/*
+- (id)copyWithZone:(NSZone *)zone
+{
+    HTMLPurifier_AttrDef_HTML_Bool* newAttrDef = [super copyWithZone:zone];
+
+    [newAttrDef setName:self.name];
+    [newAttrDef setMinimized:self.minimized];
+
+    return newAttrDef;
+}*/
+
 
 @end
