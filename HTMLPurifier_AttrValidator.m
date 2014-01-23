@@ -54,15 +54,15 @@
     // don't update token until the very end, to ensure an atomic update
     NSMutableDictionary* attr = [token.attr mutableCopy];
 
-    NSArray* attrKeyOrder = token.sortedAttrKeys;
+    NSMutableArray* attrKeyOrder = token.sortedAttrKeys;
 
 
      // do global transformations (pre)
      // nothing currently utilizes this
-     for(HTMLPurifier_AttrTransform* transform in definition.info_attr_transform_pre)
+     for(HTMLPurifier_AttrTransform* transform in definition.info_attr_transform_pre.allValues)
      {
          NSMutableDictionary* attrCopy = [attr copy];
-         attr = [[transform transform:attr config:config context:context] mutableCopy];
+         attr = [[transform transform:attr sortedKeys:attrKeyOrder config:config context:context] mutableCopy];
          if (![attr isEqual:attrCopy]) {
              NSLog(@"AttrValidator: Attributes transformed");
          }
@@ -71,13 +71,14 @@
     // do local transformations only applicable to this element (pre)
     // ex. <p align="right"> to <p style="text-align:right;">
 
-     for(HTMLPurifier_AttrTransform* transform in [(HTMLPurifier_ElementDef*)definition.info[token.name] attr_transform_pre])
+    for(HTMLPurifier_AttrTransform* transform in [(HTMLPurifier_ElementDef*)definition.info[token.name] attr_transform_pre].allValues)
      {
          NSMutableDictionary* attrCopy = [attr copy];
-     attr = [[transform transform:attr config:config context:context] mutableCopy];
-     if (![attr isEqual:attrCopy]) {
-     NSLog(@"AttrValidator: Attributes transformed");
-     }
+         attr = [[transform transform:attr sortedKeys:attrKeyOrder config:config context:context] mutableCopy];
+         if (![attr isEqual:attrCopy])
+         {
+             NSLog(@"AttrValidator: Attributes transformed");
+         }
      }
 
     // create alias to this element's attribute definition array, see
@@ -94,9 +95,9 @@
 
     // iterate through all the attribute keypairs
 
-    NSMutableArray* newAttrKeySortOrder = [attrKeyOrder mutableCopy];
+    NSArray* attrKeyOrderCopy = [attrKeyOrder copy];
 
-    for(NSString* key in attrKeyOrder)
+    for(NSString* key in attrKeyOrderCopy)
     {
         NSString* value = attr[key];
         if(!value)
@@ -141,8 +142,8 @@
 
             // remove the attribute
 
-            if([newAttrKeySortOrder containsObject:key])
-                [newAttrKeySortOrder removeObject:key];
+            if([attrKeyOrder containsObject:key])
+                [attrKeyOrder removeObject:key];
             [attr removeObjectForKey:key];
         }
         else if (result)
@@ -170,20 +171,20 @@
 
 
      // global
-     for(HTMLPurifier_AttrTransform* transform in definition.info_attr_transform_post)
+     for(HTMLPurifier_AttrTransform* transform in definition.info_attr_transform_post.allValues)
      {
                                 NSMutableDictionary* attrCopy = [attr copy];
-                                attr = [[transform transform:attr config:config context:context] mutableCopy];
+                                attr = [[transform transform:attr sortedKeys:attrKeyOrder config:config context:context] mutableCopy];
                                 if (![attr isEqual:attrCopy]) {
                                     NSLog(@"AttrValidator: Attributes transformed");
                                 }
      }
 
      // local
-     for(HTMLPurifier_AttrTransform* transform in [definition.info[token.name] attr_transform_post])
+     for(HTMLPurifier_AttrTransform* transform in [definition.info[token.name] attr_transform_post].allValues)
      {
                                 NSMutableDictionary* attrCopy = [attr copy];
-                                attr = [[transform transform:attr config:config context:context] mutableCopy];
+                                attr = [[transform transform:attr sortedKeys:attrKeyOrder config:config context:context] mutableCopy];
                                 if (![attr isEqual:attrCopy]) {
                                     NSLog(@"AttrValidator: Attributes transformed");
                                 }
@@ -191,10 +192,11 @@
 
     [token setAttr:attr];
 
-    [token setSortedAttrKeys:newAttrKeySortOrder];
+    [token setSortedAttrKeys:attrKeyOrder];
 
     // destroy CurrentToken if we made it ourselves
-    if (!current_token) {
+    if (!current_token)
+    {
         [context destroy:@"CurrentToken"];
     }
 }

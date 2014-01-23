@@ -15,6 +15,6 @@
  */
 @interface HTMLPurifier_AttrTransform_BdoDir : HTMLPurifier_AttrTransform
 
-- (NSDictionary*)transform:(NSDictionary*)attr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+- (NSDictionary*)transform:(NSDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
 @end

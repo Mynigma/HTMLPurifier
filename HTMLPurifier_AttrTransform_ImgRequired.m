@@ -28,7 +28,7 @@
      * @param HTMLPurifier_Context $context
      * @return array
      */
-- (NSDictionary*)transform:(NSDictionary*)passedAttr config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
+- (NSDictionary*)transform:(NSDictionary*)passedAttr sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
         BOOL src = YES;
         NSMutableDictionary* attr = [passedAttr mutableCopy];
@@ -39,6 +39,7 @@
                 return attr;
             }
             attr[@"src"] = (NSString*)[config get:@"Attr.DefaultInvalidImage"];
+            [sortedKeys addObject:@"src"];
             src = NO;
         }
 
@@ -51,14 +52,17 @@
                 {
                     // truncate if the alt is too long
                     NSString* lastPathComponent = [(NSString*)attr[@"src"] lastPathComponent];
-                    attr[@"alt"] = [lastPathComponent substringWithRange:NSMakeRange(0, 40)];
+                    attr[@"alt"] = [lastPathComponent substringWithRange:NSMakeRange(0, MIN(40, lastPathComponent.length))];
+                    [sortedKeys addObject:@"alt"];
                 }
                 else
                 {
                     attr[@"alt"] = alt;
+                    [sortedKeys addObject:@"alt"];
                 }
             } else {
                 attr[@"alt"] = (NSString*)[config get:@"Attr.DefaultInvalidImageAlt"];
+                [sortedKeys addObject:@"alt"];
             }
         }
         return attr;

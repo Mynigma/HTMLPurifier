@@ -143,6 +143,8 @@
         [domNode setAttr:pair[0]];
         [domNode setSortedAttrKeys:pair[1]];
     }
+    else
+        [domNode setAttr:@{}];
 
     if(node->children)
     {
@@ -254,7 +256,11 @@
     }
 
     NSMutableDictionary* attr = [node.attr mutableCopy];
+    if(!attr)
+        attr = [NSMutableDictionary new];
     NSArray* sortedAttrKeys = node.sortedAttrKeys;
+    if(!sortedAttrKeys)
+        sortedAttrKeys = [NSMutableArray new];
 
     // We still have to make sure that the element actually IS empty
 

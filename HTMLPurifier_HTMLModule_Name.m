@@ -26,9 +26,10 @@
         {
             HTMLPurifier_ElementDef* element = [self addBlankElement:name];
             element.attr[@"name"] = @"CDATA";
-            if(![config get:@"HTML.Attr.Name.UseCDATA"])
+            if(![(NSNumber*)[config get:@"HTML.Attr.Name.UseCDATA"] boolValue])
             {
-                [element.attr_transform_post setObject:[HTMLPurifier_AttrTransform_NameSync new] forKey:@(element.attr_transform_post.allKeys.count)];
+                NSString* newKey = [NSString stringWithFormat:@"%ld", element.attr_transform_post.count];
+                [element.attr_transform_post setObject:[HTMLPurifier_AttrTransform_NameSync new] forKey:newKey];
             }
         }
     }
