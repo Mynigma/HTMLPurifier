@@ -229,7 +229,7 @@
         [self.modules[module] setup:config];
     }
 
-    for(HTMLPurifier_HTMLModule* module in [(HTMLPurifier_Doctype*)self.doctype tidyModules])
+    for(NSString* module in [(HTMLPurifier_Doctype*)self.doctype tidyModules])
     {
         [self processModule:module];
         [self.modules[module] setup:config];

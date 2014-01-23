@@ -38,7 +38,7 @@
      * Used during MakeWellFormed.
      * @type
      */
-@property NSMutableDictionary* skip;
+@property NSMutableArray* skip;
 
     /**
      * @type

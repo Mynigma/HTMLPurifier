@@ -28,7 +28,10 @@
     return self;
 }
 
-
+- (id)init
+{
+    return [self initWithInline:@[] block:@[]];
+}
 
 /**
  * @param array $children

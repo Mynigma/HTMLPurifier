@@ -34,7 +34,7 @@
     // used for autoclose early abortion
     NSDictionary* global_parent_allowed_elements = [[[definition info_parent_def] child] getAllowedElements:config];
     //$e = $context->get('ErrorCollector', true);
-    NSInteger i = -1; // injector index
+    NSNumber* index = nil; // injector index
 
     NSArray* pair = [HTMLPurifier_Zipper fromArray:tokens];
 
@@ -62,9 +62,11 @@
 
     // -- begin INJECTOR --
 
+    self->_injectors = [NSMutableArray new];
+
     NSMutableDictionary* injectors = [[config getBatch:@"AutoFormat"] mutableCopy];
     NSMutableDictionary* def_injectors = [definition info_injector];
-    NSMutableDictionary* custom_injectors = injectors[@"Custom"];
+    NSMutableArray* custom_injectors = [injectors[@"Custom"] isKindOfClass:[NSArray class]]?injectors[@"Custom"]:nil;
     [injectors removeObjectForKey:@"Custom"];
     for(NSString* injectorName in injectors)
     {
@@ -76,7 +78,9 @@
         if (!injectors[injectorName]) {
             continue;
         }
-        [_injectors addObject:[NSClassFromString(newInjectorName) new]];
+        NSObject* newInjector = [NSClassFromString(newInjectorName) new];
+        if(newInjector)
+            [_injectors addObject:newInjector];
     }
 
     for(HTMLPurifier_Injector* injector in def_injectors)
@@ -92,23 +96,22 @@
             NSString* newInjectorName = [NSString stringWithFormat:@"HTMLPurifier_Injector_%@", injector];
             newInjector = [NSClassFromString(newInjectorName) new];
         }
-        [_injectors addObject:injector];
+        [_injectors addObject:newInjector];
     }
 
     // give the injectors references to the definition and context
     // variables for performance reasons
-    NSMutableArray* injectorsToBeRemoved = [NSMutableArray new];
-    for(HTMLPurifier_Injector* injector in _injectors)
+    NSArray* injectorsList = [_injectors copy];
+    for(HTMLPurifier_Injector* injector in injectorsList)
     {
         NSString* string = [injector prepare:config context:context];
         if (!string)
         {
             continue;
         }
-        [injectorsToBeRemoved addObject:injector];
+        [_injectors removeObject:injector];
         TRIGGER_ERROR(@"Cannot enable {%@} injector because %@ is not allowed", [injector name], string);
     }
-    [_injectors removeObjectsInArray:injectorsToBeRemoved];
 
     // -- end INJECTOR --
 
@@ -120,36 +123,29 @@
     //      was totally necessary, we don't have to update nesting; we just
     //      punt ($reprocess = true; continue;) and it does that for us.
 
-    BOOL firstTimeLoop = YES;
     // isset is in loop because $tokens size changes during loop exec
-    for (;;
-         // only increment if we don't need to reprocess
-)
+    while(reprocess?(reprocess = NO):((token = (HTMLPurifier_Token*)[_zipper next:token])!=nil))
     {
-        if(!firstTimeLoop)
-        {
-            if(reprocess)
-                reprocess = NO;
-            else
-                token = (HTMLPurifier_Token*)[_zipper next:token];
-        }
-        else
-            firstTimeLoop = NO;
+
+        // only increment if we don't need to reprocess
+        ;
+        
 
         // check for a rewind
-        if (i>=0) {
+        if ([index isKindOfClass:[NSNumber class]])
+        {
             // possibility: disable rewinding if the current token has a
             // rewind set on it already. This would offer protection from
             // infinite loop, but might hinder some advanced rewinding.
-            NSInteger rewind_offset = [_injectors[i] getRewindOffset];
+            NSInteger rewind_offset = [_injectors[index.intValue] getRewindOffset];
             if (rewind_offset>=0) {
                 for (NSInteger j = 0; j < rewind_offset; j++) {
                     if (![zipper front]) break;
                     token = (HTMLPurifier_Token*)[_zipper prev:token];
                     // indicate that other injectors should not process this token,
                     // but we need to reprocess it
-                    [(NSMutableArray*)[token skip] removeObjectAtIndex:i];
-                    [token setRewind:@(i)];
+                    [token.skip removeObjectAtIndex:index.intValue];
+                    [token setRewind:index];
                     if ([token isKindOfClass:[HTMLPurifier_Token_Start class]])
                     {
                         array_pop(_stack);
@@ -159,11 +155,11 @@
                     }
                 }
             }
-            i = -1;
+            index = nil;
         }
 
         // handle case of document end
-        if (!token || [token isKindOfClass:[NSNull class]]) {
+        if (!token) {
             // kill processing if stack is empty
             if ([_stack count] == 0) {
                 break;
@@ -180,7 +176,7 @@
              }*/
 
             // append, don't splice, since this is the end
-            token = [[HTMLPurifier_Token_End alloc] initWithName:[top_nesting valueForKey:@"name"]];
+            token = [[HTMLPurifier_Token_End alloc] initWithName:top_nesting.name];
 
             // punt!
             reprocess = YES;
@@ -195,10 +191,10 @@
         {
             if ([token isKindOfClass:[HTMLPurifier_Token_Text class]])
             {
-                for(NSInteger i=0; i<injectors.count; i++)
+                for(NSInteger i=0; i<_injectors.count; i++)
                 {
                     HTMLPurifier_Injector* injector = _injectors[i];
-                    if(token.skip[@(i)])
+                    if(token.skip[i])
                     {
                         continue;
                     }
@@ -227,7 +223,7 @@
         NSString* type;
         if (definition.info[[token valueForKey:@"name"]])
         {
-            type = [[definition.info[[token valueForKey:@"name"]] child] typeString];
+            type = [[definition.info[token.name] child] typeString];
         } else {
             type = nil; // Type is unknown, treat accordingly
         }
@@ -236,16 +232,16 @@
         BOOL ok = NO;
         if ([type isEqual:@"empty"] && [token isKindOfClass:[HTMLPurifier_Token_Start class]]) {
             // claims to be a start tag but is empty
-            token = [[HTMLPurifier_Token_Empty alloc] initWithName:[token valueForKey:@"name"] attr:[token valueForKey:@"attr"] sortedAttrKeys:token.attr line:token.line col:token.col armor:token.armor];
+            token = [[HTMLPurifier_Token_Empty alloc] initWithName:token.name attr:token.attr sortedAttrKeys:token.sortedAttrKeys line:token.line col:token.col armor:token.armor];
             ok = YES;
         } else if (type && ![type isEqualToString:@"empty"] && [token isKindOfClass: [HTMLPurifier_Token_Empty class]])
         {
             // claims to be empty but really is a start tag
             // NB: this assignment is required
             HTMLPurifier_Token* old_token = token;
-            token = [[HTMLPurifier_Token_End alloc] initWithName:[token valueForKey:@"name"]];
+            token = [[HTMLPurifier_Token_End alloc] initWithName:token.name];
 
-            token = [self insertBefore:[[HTMLPurifier_Token_Start alloc] initWithName:[old_token valueForKey:@"name"] attr:[old_token valueForKey:@"attr"] sortedAttrKeys:token.attr line:old_token.line col:old_token.col armor:old_token.armor]];
+            token = [self insertBefore:[[HTMLPurifier_Token_Start alloc] initWithName:old_token.name attr:old_token.attr sortedAttrKeys:token.sortedAttrKeys line:old_token.line col:old_token.col armor:old_token.armor]];
 
             // punt (since we had to modify the input stream in a non-trivial way)
             reprocess = YES;
@@ -278,20 +274,20 @@
                 HTMLPurifier_ElementDef* parent_def = nil;
                 NSMutableDictionary* parent_elements = [@{} mutableCopy];
                 BOOL autoclose = NO;
-                if (definition.info[[parent valueForKey:@"name"]]) {
-                    parent_def = definition.info[[parent valueForKey:@"name"]];
+                if (definition.info[parent.name]) {
+                    parent_def = definition.info[parent.name];
                     parent_elements = [[parent_def child] getAllowedElements:config];
-                    autoclose = (parent_elements[[token valueForKey:@"name"]]==nil);
+                    autoclose = (parent_elements[token.name]==nil);
                 }
 
-                if (autoclose && [definition.info[[token valueForKey:@"name"]] wrap]) {
+                if (autoclose && [definition.info[token.name] wrap]) {
                     // Check if an element can be wrapped by another
                     // element to make it valid in a context (for
                     // example, <ul><ul> needs a <li> in between)
-                    NSString* wrapname = [definition.info[[token valueForKey:@"name"]] wrap];
+                    NSString* wrapname = [definition.info[token.name] wrap];
                     HTMLPurifier_ElementDef* wrapdef = definition.info[wrapname];
                     NSMutableDictionary* elements = [[wrapdef child] getAllowedElements:config];
-                    if (elements[[token valueForKey:@"name"]] && parent_elements[wrapname])
+                    if (elements[token.name] && parent_elements[wrapname])
                     {
                         HTMLPurifier_Token_Start* newtoken = [[HTMLPurifier_Token_Start alloc] initWithName:wrapname];
                         token = [self insertBefore:newtoken];
@@ -369,7 +365,7 @@
             for(NSInteger i=0; i<_injectors.count; i++)
             {
                 HTMLPurifier_Injector* injector = _injectors[i];
-                if ([token skip][@(i)]) {
+                if ([token skip][i]) {
                     continue;
                 }
                 if ([token rewind] && ![[token rewind] isEqual:@(i)]) {
@@ -420,7 +416,7 @@
             for(NSInteger i=0; i<_injectors.count; i++)
             {
                 HTMLPurifier_Injector* injector = _injectors[i];
-                if ([token skip][@(i)])
+                if ([token skip][i])
                 {
                     continue;
                 }
@@ -601,7 +597,7 @@
         for(HTMLPurifier_Token* object in tokenArray)
         {
             [object setSkip:[oldskip mutableCopy]];
-            [object.skip setObject:@YES forKey:injector];
+            object.skip[injector.intValue] = @YES;
         }
     }
 

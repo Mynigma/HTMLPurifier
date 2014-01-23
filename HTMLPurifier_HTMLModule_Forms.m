@@ -35,15 +35,16 @@
 }
 
 
-- (HTMLPurifier_ChildDef_Chameleon*)getChildDef:(HTMLPurifier_ElementDef*)def
-{
-    if ([[def.content_model_type lowercaseString] isEqual:@"chameleon"])
-    {
-        return nil;
-    }
-    NSArray* value = explode(@"!", def.content_model);
-    return [[HTMLPurifier_ChildDef_Chameleon alloc] initWithInline:value[0] block: value[1]];
-}
+
+//- (HTMLPurifier_ChildDef_Chameleon*)getChildDef:(HTMLPurifier_ElementDef*)def
+//{
+//    if ([[def.content_model_type lowercaseString] isEqual:@"chameleon"])
+//    {
+//        return nil;
+//    }
+//    NSArray* value = explode(@"!", def.content_model);
+//    return [[HTMLPurifier_ChildDef_Chameleon alloc] initWithInline:value[0] block: value[1]];
+//}
 
 
 

@@ -96,14 +96,14 @@
 {
     // ABNF definitions from RFC 3986
     NSString* chars_sub_delims = @"!$&\'()*+,;=";
-    NSString* chars_gen_delims = @":/?#[]@";
+    //NSString* chars_gen_delims = @":/?#[]@";
     NSString* chars_pchar = [chars_sub_delims stringByAppendingString:@":@"];
     
     // validate host
     if (self.host) {
         HTMLPurifier_AttrDef_URI_Host* host_def = [HTMLPurifier_AttrDef_URI_Host new];
         // will be nil if validation fails
-        NSObject* result = [host_def validateWithString:self.host config:config context:context];
+        NSString* result = [host_def validateWithString:self.host config:config context:context];
         self.host = result?result:@"";
     }
     
