@@ -16,7 +16,7 @@
 #import "HTMLPurifier_Token_Empty.h"
 #import "HTMLPurifier_ElementDef.h"
 #import "HTMLPurifier_AttrDef.h"
-//#import "HTMLPurifier_Transform.h"
+#import "HTMLPurifier_AttrTransform.h"
 #import "BasicPHP.h"
 
 
@@ -56,31 +56,29 @@
 
     NSArray* attrKeyOrder = token.sortedAttrKeys;
 
-    /*
+
      // do global transformations (pre)
      // nothing currently utilizes this
-     for(HTMLPurifier_Transform*
-     definition info_attr_transform_pre as transform) {
-     attr = transform transform(o = attr, config, context];
-     if (e) {
-     if (attr != o) {
-     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
+     for(HTMLPurifier_AttrTransform* transform in definition.info_attr_transform_pre)
+     {
+         NSMutableDictionary* attrCopy = [attr copy];
+         attr = [[transform transform:attr config:config context:context] mutableCopy];
+         if (![attr isEqual:attrCopy]) {
+             NSLog(@"AttrValidator: Attributes transformed");
+         }
      }
-     }
-     }*/
 
     // do local transformations only applicable to this element (pre)
     // ex. <p align="right"> to <p style="text-align:right;">
-    /*
-     for(HTMLPurifier_Transform* transform in [(HTMLPurifier_ElementDef*)definition.info[[token valueForKey:@"name"]] attr_transform_pre])
+
+     for(HTMLPurifier_AttrTransform* transform in [(HTMLPurifier_ElementDef*)definition.info[token.name] attr_transform_pre])
      {
-     attr = [transform transform:o = attr, config, context];
-     if (e) {
-     if (attr != o) {
-     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
+         NSMutableDictionary* attrCopy = [attr copy];
+     attr = [[transform transform:attr config:config context:context] mutableCopy];
+     if (![attr isEqual:attrCopy]) {
+     NSLog(@"AttrValidator: Attributes transformed");
      }
      }
-     }*/
 
     // create alias to this element's attribute definition array, see
     // also d_defs (global attribute definition array)
@@ -170,37 +168,26 @@
 
     // post transforms
 
-    /*
-     // global (error reporting untested)
-     for(definition info_attr_transform_post as transform) {
-     attr = transform transform(o = attr, config, context];
-     if (e) {
-     if (attr != o) {
-     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
-     }
-     }
-     }*/
-    /*
-     for(HTMLPurifier_Transform* transform in [(HTMLPurifier_ElementDef*)definition.info[[token valueForKey:@"name"]] attr_transform_pre])
+
+     // global
+     for(HTMLPurifier_AttrTransform* transform in definition.info_attr_transform_post)
      {
-     attr = [transform transform:o = attr, config, context];
-     if (e) {
-     if (attr != o) {
-     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
-     }
-     }
+                                NSMutableDictionary* attrCopy = [attr copy];
+                                attr = [[transform transform:attr config:config context:context] mutableCopy];
+                                if (![attr isEqual:attrCopy]) {
+                                    NSLog(@"AttrValidator: Attributes transformed");
+                                }
      }
 
-     // local (error reporting untested)
-     for(
-     definition info[token name] attr_transform_post as transform) {
-     attr = transform transform(o = attr, config, context];
-     if (e) {
-     if (attr != o) {
-     e send(E_NOTICE, 'AttrValidator: Attributes transformed', o, attr];
+     // local
+     for(HTMLPurifier_AttrTransform* transform in [definition.info[token.name] attr_transform_post])
+     {
+                                NSMutableDictionary* attrCopy = [attr copy];
+                                attr = [[transform transform:attr config:config context:context] mutableCopy];
+                                if (![attr isEqual:attrCopy]) {
+                                    NSLog(@"AttrValidator: Attributes transformed");
+                                }
      }
-     }
-     }*/
 
     [token setAttr:attr];
 
