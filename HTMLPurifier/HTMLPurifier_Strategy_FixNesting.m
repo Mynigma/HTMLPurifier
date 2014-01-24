@@ -114,7 +114,7 @@
         // recursive call
         BOOL go = NO;
         HTMLPurifier_ElementDef* def = stack.count==0 ? [definition info_parent_def] : definition.info[[node valueForKey:@"name"]];
-        while (node.children[ix])
+        while (ix<node.children.count)
         {
             HTMLPurifier_Node_Element* child = node.children[ix++];
             if ([child isKindOfClass:[HTMLPurifier_Node_Element class]])
@@ -130,7 +130,7 @@
                                    @0]];
                 break;
             }
-        };
+        }
         if (go) continue;
         NSArray* pair = [node toTokenPair];
         HTMLPurifier_Token* token = nil;

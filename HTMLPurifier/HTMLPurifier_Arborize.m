@@ -67,7 +67,8 @@
                 start = pair[0];
             if(pair.count>1)
                 end = pair[1];
-            if (level.intValue > 0) {
+            if (level.intValue > 0)
+            {
                 [tokens addObject:start];
             }
             if (end) {

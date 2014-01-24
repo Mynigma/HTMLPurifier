@@ -57,6 +57,9 @@
 #import "HTMLPurifier_Encoder.h"
 #import "BasicPHP.h"
 
+
+static HTMLPurifier* theInstance;
+
 @implementation HTMLPurifier
 
 /**
@@ -148,7 +151,7 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purify:(NSString*)newHtml config:(HTMLPurifier_Config*)newConfig
+- (NSString*)purify:(NSString*)newHtml config:(HTMLPurifier_Config*)newConfig
 {
     
     NSString* html = newHtml;
@@ -248,7 +251,7 @@
  *
  * @return string[] Array of purified HTML
  */
-- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html
+- (NSMutableArray*) purifyArray:(NSArray*)array_of_html
 {
     NSMutableArray* context_array = [NSMutableArray new];
     
@@ -272,7 +275,7 @@
  *
  * @return string[] Array of purified HTML
  */
-- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html Config:(HTMLPurifier_Config*)newConfig
+- (NSMutableArray*) purifyArray:(NSArray*)array_of_html config:(HTMLPurifier_Config*)newConfig
 {
     NSMutableArray* context_array = [NSMutableArray new];
     
@@ -286,6 +289,32 @@
     context = context_array;
     return new_html_array;
 
+}
+
+
++ (HTMLPurifier*)instance
+{
+    return [HTMLPurifier instance:nil];
+}
+
++ (HTMLPurifier*)instance:(HTMLPurifier*)prototype
+{
+    if (!theInstance || prototype)
+    {
+        if ([prototype isKindOfClass:[HTMLPurifier class]])
+        {
+            theInstance = prototype;
+        }
+        else if (prototype)
+        {
+            theInstance = [[HTMLPurifier alloc] initWithConfig:(HTMLPurifier_Config*)prototype];
+        }
+        else
+        {
+            theInstance = [HTMLPurifier new];
+        }
+    }
+    return theInstance;
 }
 
 

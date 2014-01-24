@@ -67,10 +67,13 @@
 
 - (NSString*) purify:(NSString*)newHtml config:(HTMLPurifier_Config*)newConfig;
 
-- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html;
+- (NSMutableArray*) purifyArray:(NSArray*)array_of_html;
 
-- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html Config:(HTMLPurifier_Config*)newConfig;
+- (NSMutableArray*) purifyArray:(NSArray*)array_of_html config:(HTMLPurifier_Config*)newConfig;
 
++ (HTMLPurifier*)instance;
+
++ (HTMLPurifier*)instance:(HTMLPurifier*)prototype;
 
 
 @end

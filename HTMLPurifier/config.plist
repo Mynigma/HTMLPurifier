@@ -164,7 +164,7 @@
 		<key>Core.RemoveScriptContents</key>
 		<string>nil</string>
 		<key>Filter.Custom</key>
-		<string></string>
+		<string>nil</string>
 		<key>Filter.ExtractStyleBlocks</key>
 		<string>nil</string>
 		<key>Filter.ExtractStyleBlocks.Escaping</key>

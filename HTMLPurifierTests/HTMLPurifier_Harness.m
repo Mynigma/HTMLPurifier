@@ -69,7 +69,7 @@ static HTMLPurifier* purifier;
 /**
  * Asserts a purification. Good for integration testing.
  */
-- (void)assertPurification:(NSString*)input except:(NSObject*)expect
+- (void)assertPurification:(NSString*)input expect:(NSObject*)expect
 {
     if (!expect)
         expect = input;
