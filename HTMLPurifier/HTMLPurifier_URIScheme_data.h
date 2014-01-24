@@ -13,7 +13,6 @@
  */
 @interface HTMLPurifier_URIScheme_data : HTMLPurifier_URIScheme
 
-@property NSArray* allowed_types;
 
 /**
  * @param HTMLPurifier_URI $uri

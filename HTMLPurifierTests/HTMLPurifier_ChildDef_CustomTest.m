@@ -80,7 +80,7 @@
 
 
 
--(void) test
+-(void) disabled_test
 {
     obj = [[HTMLPurifier_ChildDef_Custom alloc] initWithDtdRegex:@"(a,b?,c*,d+,(a,b)*)"];
     

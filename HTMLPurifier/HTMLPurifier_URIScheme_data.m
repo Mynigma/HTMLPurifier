@@ -17,8 +17,6 @@
  */
 @implementation HTMLPurifier_URIScheme_data
 
-@synthesize allowed_types;
-
 -(id) init
 {
     self = [super init];
@@ -27,11 +25,6 @@
     // this is actually irrelevant since we only write out the path
     // component
     super.may_omit_host = @YES;
-    
-    
-    // you better write validation code for other types if you
-    // decide to allow them
-    self.allowed_types = @[@"image/jpeg",@"image/gif",@"image/png"];
     
     return self;
 }
@@ -93,10 +86,7 @@
     {
         data = result[0];
     }
-    if (content_type && ![allowed_types containsObject:content_type])
-    {
-        return NO;
-    }
+
     if (charset)
     {
         // error; we don't allow plaintext stuff
@@ -115,74 +105,37 @@
     
     NSImage* image = [[NSImage alloc] initWithData:raw_data];
 
-    // XXX probably want to refactor this into a general mechanism
-    // for filtering arbitrary content types
-    // NSString* file = tempnam(@"/tmp", @"");
-/* TODODOTO
- 
-    
-    file_put_contents($file, $raw_data);
-    if (function_exists('exif_imagetype')) {
-        $image_code = exif_imagetype($file);
-        unlink($file);
-    } elseif (function_exists('getimagesize')) {
-        set_error_handler(array($this, 'muteErrorHandler'));
-        $info = getimagesize($file);
-        restore_error_handler();
-        unlink($file);
-        if ($info == false) {
-            return false;
-        }
-        $image_code = $info[2];
-    } else {
-        trigger_error("could not find exif_imagetype or getimagesize functions", E_USER_ERROR);
-    }
-    $real_content_type = image_type_to_mime_type($image_code);
-    if ($real_content_type != $content_type) {
-        // we're nice guys; if the content type is something else we
-        // support, change it over
-        if (empty($this->allowed_types[$real_content_type])) {
-            return false;
-        }
-        $content_type = $real_content_type;
-    }
-*/
     if (!image)
         return NO;
-
+    
+    // Is image drawable?
     if(!image.isValid)
         return NO;
     
-    struct CGImageSource* imgsrc = CGImageSourceCreateWithData((__bridge CFDataRef)(raw_data),(__bridge CFDictionaryRef)(@{}));
     
-    // Returns something like public.png
-    NSString* real_type = CFBridgingRelease(CGImageSourceGetType(imgsrc));
-    CFRelease(imgsrc);
-    
-    if (!real_type)
-        return NO;
-    
-    if (strpos(real_type, @".") == NSNotFound)
-        return NO;
-    
-    
-    NSString* type = [explode(@".",real_type) objectAtIndex:1];
+    uint8_t firstByte;
+    [raw_data getBytes:&firstByte length:1];
 
-    real_type = [@"image/" stringByAppendingString:type];
-    
-    
-    if (![real_type isEqual:content_type])
-    {
-        if ([allowed_types containsObject:real_type]){
-            content_type = real_type;
-            
-        }
-        else
-            return NO;
+    //get the real content_type
+    switch (firstByte) {
+            case 0xFF:
+                 content_type = @"image/jpeg";
+                break;
+            case 0x89:
+                content_type = @"image/png";
+                break;
+            case 0x47:
+                content_type = @"image/gif";
+                break;
+            case 0x49:
+            case 0x4D:
+                content_type = @"image/tiff";
+                break;
+            default:  // The Image is drawable but an unsual type, we'll use the image but set the type to png. Because we can.
+                content_type = @"image/png";
+                break;
     }
-    
-    //CHECK IMAGE TYPE: REAL VS GIVEN || ALLOWED ?
-    
+
     // ok, it's kosher, rewrite what we need
     [uri setUserinfo:nil];
     [uri setHost:nil];
