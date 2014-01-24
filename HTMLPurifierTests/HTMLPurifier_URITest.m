@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
+
 #import "HTMLPurifier_URIDefinition.h"
 #import "HTMLPurifier_URIHarness.h"
 #import "HTMLPurifier_Config.h"
@@ -52,20 +54,21 @@
     XCTAssertEqualObjects(uri1, uri2);
 }
 
+
 -(HTMLPurifier_URISchemeRegistry*) setUpSchemeRegistryMock
 {
     oldRegistry = [HTMLPurifier_URISchemeRegistry instance:nil];
     
     //generate_mock_once('HTMLPurifier_URIScheme');
     //generate_mock_once('HTMLPurifier_URISchemeRegistry');
-    
-    HTMLPurifier_URISchemeRegistry * registry = [HTMLPurifier_URISchemeRegistry instance:
-                                                 [HTMLPurifier_URISchemeRegistry new]];
+    id registrySchemeMock = [OCMockObject mockForClass:[HTMLPurifier_URISchemeRegistry class]];
+
+    HTMLPurifier_URISchemeRegistry * registry = [HTMLPurifier_URISchemeRegistry instance:registrySchemeMock];
     return registry;
 }
 
 
--(void) test_getSchemeObj
+-(void) getSchemeObj
 {
     HTMLPurifier_URIScheme* scheme_mock = [HTMLPurifier_URIScheme_http new];
 
@@ -74,6 +77,36 @@
     XCTAssertEqualObjects(scheme_obj, scheme_mock);
 }
 
+- (HTMLPurifier_URIScheme*)setUpSchemeMock:(NSString*)name
+{
+    id registryMock = [self setUpSchemeRegistryMock];
+    id schemeMock = [OCMockObject partialMockForObject:[[HTMLPurifier_URIScheme alloc] init]];
+    [[[registryMock stub] andReturn:schemeMock] getScheme:name config:[OCMArg any] context:[OCMArg any]];
+    return schemeMock;
+}
+
+- (void)setUpNoValidSchemes
+{
+    id registryMock = [self setUpSchemeRegistryMock];
+    [[[registryMock stub] andReturn:nil] getScheme:[OCMArg any] config:[OCMArg any] context:[OCMArg any]];
+}
+
+- (void)tearDownSchemeRegistryMock
+{
+    [HTMLPurifier_URISchemeRegistry instance:oldRegistry];
+}
+
+
+- (void)test_getSchemeObj
+{
+    id scheme_mock = [self setUpSchemeMock:@"http"];
+
+    HTMLPurifier_URI* uri = [self createURI:@"http:"];
+    HTMLPurifier_URIScheme* scheme_obj = [uri getSchemeObj:self.config context:self.context];
+    [self assertIdentical:scheme_obj to:scheme_mock];
+
+    [self tearDownSchemeRegistryMock];
+}
 
 -(void) test_getSchemeObj_invalidScheme
 {
@@ -121,126 +154,117 @@
     XCTAssertEqualObjects(string, expect_uri, @"");
 }
 
-/*
+
 -(void) test_toString_full
 {
-    $this->assertToString(
-                          'http://bob@example.com:300/foo?bar=baz#fragment',
-                          'http', 'bob', 'example.com', 300, '/foo', 'bar=baz', 'fragment'
-                          );
+    [self assertToString:@"http://bob@example.com:300/foo?bar=baz#fragment" scheme:@"http" userinfo:@"bob" host:@"example.com" port:@300 path:@"/foo" query:@"bar=baz" fragment:@"fragment"];
 }
 
 -(void) test_toString_scheme
 {
-    $this->assertToString(
-                          'http:',
-                          'http', null, null, null, '', null, null
-                          );
+    [self assertToString:@"http:" scheme:@"http" userinfo:nil host:nil port:nil path:@"" query:nil fragment:nil];
 }
 
 -(void) test_toString_authority
 {
-    $this->assertToString(
-                          '//bob@example.com:8080',
-                          null, 'bob', 'example.com', 8080, '', null, null
-                          );
+    [self assertToString:@"//bob@example.com:8080" scheme:nil userinfo:@"bob" host:@"example.com" port:@8080 path:@"" query:nil fragment:nil];
+
 }
 
 -(void) test_toString_path
 {
-    $this->assertToString(
-                          '/path/to',
-                          null, null, null, null, '/path/to', null, null
-                          );
+    [self assertToString:@"/path/to" scheme:nil userinfo:nil host:nil port:nil path:@"/path/to" query:nil fragment:nil];
 }
 
 -(void) test_toString_query
 {
-    $this->assertToString(
-                          '?q=string',
-                          null, null, null, null, '', 'q=string', null
-                          );
+    [self assertToString:@"?q=string" scheme:nil userinfo:nil host:nil port:nil path:@"" query:@"q=string" fragment:nil];
 }
 
 -(void) test_toString_fragment
 {
-    $this->assertToString(
-                          '#fragment',
-                          null, null, null, null, '', null, 'fragment'
-                          );
+    [self assertToString:@"#fragment" scheme:nil userinfo:nil host:nil port:nil path:@"" query:nil fragment:@"fragment"];
 }
 
-protected function assertValidation($uri, $expect_uri = true)
+- (void)assertValidation:(NSString*)uri
 {
-    if ($expect_uri === true) $expect_uri = $uri;
-    $uri = $this->createURI($uri);
-    $result = $uri->validate($this->config, $this->context);
-    if ($expect_uri === false) {
-        $this->assertFalse($result);
+    [self assertValidation:uri expectUri:@YES];
+}
+
+- (void)assertValidation:(NSString*)uri expectUri:(NSObject*)expect_uri
+{
+    if ([expect_uri isEqual:@YES])
+        expect_uri = uri;
+    HTMLPurifier_URI* newURI = [self createURI:uri];
+    BOOL result = [newURI validateWithConfig:[self config] context:[self context]];
+    if ([expect_uri isEqual:@NO])
+    {
+        XCTAssertFalse(result);
     } else {
-        $this->assertTrue($result);
-        $this->assertIdentical($uri->toString, $expect_uri);
+        XCTAssertTrue(result);
+        XCTAssertEqualObjects([newURI toString], expect_uri);
     }
 }
 
 -(void) test_validate_overlongPort
 {
-    $this->assertValidation('http://example.com:65536', 'http://example.com');
+    [self assertValidation:@"http://example.com:65536" expectUri:@"http://example.com"];
 }
 
 -(void) test_validate_zeroPort
 {
-    $this->assertValidation('http://example.com:00', 'http://example.com');
+    [self assertValidation:@"http://example.com:00" expectUri:@"http://example.com"];
 }
 
 -(void) test_validate_invalidHostThatLooksLikeIPv6
 {
-    $this->assertValidation('http://[2001:0db8:85z3:08d3:1319:8a2e:0370:7334]', '');
+    [self assertValidation:@"http://[2001:0db8:85z3:08d3:1319:8a2e:0370:7334]" expectUri:@""];
 }
 
 -(void) test_validate_removeRedundantScheme
 {
-    $this->assertValidation('http:foo:/:', 'foo%3A/:');
+    [self assertValidation:@"http:foo:/:" expectUri:@"foo%3A/:"];
 }
 
 -(void) test_validate_username
 {
-    $this->assertValidation("http://user\xE3\x91\x94:@foo.com", 'http://user%E3%91%94:@foo.com');
+    [self assertValidation:@"http://user\xE3\x91\x94:@foo.com" expectUri:@"http://user%E3%91%94:@foo.com"];
 }
 
 -(void) test_validate_path_abempty
 {
-    $this->assertValidation("http://host/\xE3\x91\x94:", 'http://host/%E3%91%94:');
+    [self assertValidation:@"http://host/\xE3\x91\x94:" expectUri:@"http://host/%E3%91%94:"];
 }
 
 -(void) test_validate_path_absolute
 {
-    $this->assertValidation("/\xE3\x91\x94:", '/%E3%91%94:');
+    [self assertValidation:@"/\xE3\x91\x94:" expectUri:@"/%E3%91%94:"];
 }
 
 -(void) test_validate_path_rootless
 {
-    $this->assertValidation("mailto:\xE3\x91\x94:", 'mailto:%E3%91%94:');
+    [self assertValidation:@"mailto:\xE3\x91\x94:" expectUri:@"mailto:%E3%91%94:"];
 }
 
 -(void) test_validate_path_noscheme
 {
-    $this->assertValidation("\xE3\x91\x94", '%E3%91%94');
+    [self assertValidation:@"\xE3\x91\x94" expectUri:@"%E3%91%94"];
 }
 
 -(void) test_validate_query
 {
-    $this->assertValidation("?/\xE3\x91\x94", '?/%E3%91%94');
+    [self assertValidation:@"?/\xE3\x91\x94" expectUri:@"?/%E3%91%94"];
 }
 
 -(void) test_validate_fragment
 {
-    $this->assertValidation("#/\xE3\x91\x94", '#/%E3%91%94');
+    [self assertValidation:@"#/\xE3\x91\x94" expectUri:@"#/%E3%91%94"];
 }
 
 -(void) test_validate_path_empty
 {
-    $this->assertValidation('http://google.com');
+    [self assertValidation:@"http://google.com"];
 }
-*/
+
+
 @end

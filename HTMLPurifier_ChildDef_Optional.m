@@ -13,12 +13,7 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        self.allow_empty = YES;
-        self.typeString = @"optional";
-    }
-    return self;
+    return [self initWithElements:nil];
 }
 
 - (id)initWithElements:(NSObject*)newElements
@@ -41,6 +36,7 @@
 - (NSObject*)validateChildren:(NSArray*)children config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
     {
         NSObject* result = [super validateChildren:children config:config context:context];
+
         // we assume that $children is not modified
         if ([result isEqual:@"NO"])
         {

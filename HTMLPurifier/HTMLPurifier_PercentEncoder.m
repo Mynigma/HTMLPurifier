@@ -55,14 +55,16 @@
      */
 - (NSString*)encode:(NSString*)string
     {
+        NSData* stringData = [string dataUsingEncoding:NSUTF8StringEncoding];
         NSMutableString* ret = [NSMutableString new];
-        NSInteger c = string.length;
+        NSInteger c = stringData.length;
+        const char* dataBytes = stringData.bytes;
         for (NSInteger i = 0; i < c; i++)
         {
-            unichar character = [string characterAtIndex:i];
+            char character = dataBytes[i];
             if (character != '%' && ![preservedChars characterIsMember:character])
             {
-                [ret appendFormat: @"%%%02X", character];
+                [ret appendFormat: @"%%%02X", (Byte)character];
             }
             else
             {

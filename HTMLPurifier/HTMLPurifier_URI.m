@@ -103,8 +103,7 @@
     if (self.host) {
         HTMLPurifier_AttrDef_URI_Host* host_def = [HTMLPurifier_AttrDef_URI_Host new];
         // will be nil if validation fails
-        NSString* result = [host_def validateWithString:self.host config:config context:context];
-        self.host = result?result:@"";
+        self.host = [host_def validateWithString:self.host config:config context:context];
     }
     
     // validate scheme

@@ -36,7 +36,7 @@
     /**
      * Shifts an element off the front of the queue.
      */
-- (NSMutableArray*)shift;
+- (NSObject*)shift;
     /**
      * Pushes an element onto the front of the queue.
      */

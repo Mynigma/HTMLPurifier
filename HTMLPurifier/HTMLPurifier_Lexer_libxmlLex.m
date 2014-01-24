@@ -71,9 +71,9 @@
     CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
     const char *enc = CFStringGetCStringPtr(cfencstr, 0);
     // _doc = htmlParseDoc((xmlChar*)[string UTF8String], enc);
-    int optionsHtml = HTML_PARSE_RECOVER;
-    optionsHtml = optionsHtml;// | HTML_PARSE_NOERROR; //Uncomment this to see HTML errors
-    optionsHtml = optionsHtml;// | HTML_PARSE_NOWARNING;
+    int optionsHtml = 0;// = HTML_PARSE_RECOVER;
+    //optionsHtml = optionsHtml;// | HTML_PARSE_NOERROR; //Uncomment this to see HTML errors
+    //optionsHtml = optionsHtml;// | HTML_PARSE_NOWARNING;
     htmlDocPtr doc = htmlReadDoc ((xmlChar*)[html UTF8String], NULL, enc, optionsHtml);
 
     HTMLPurifier_DOMNode* domNode = [self domifyXMLDoc:doc];

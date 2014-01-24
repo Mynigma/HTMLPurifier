@@ -125,8 +125,24 @@
     BOOL reprocess = NO; // whether or not to reprocess the same token
                          //token = (HTMLPurifier_Token*)[_zipper next:token];
 
-    for(;;reprocess?(reprocess=NO):((_token = (HTMLPurifier_Token*)[_zipper next:_token])!=nil))
+    BOOL isFirstLoop = YES;
+
+    while(YES)
     {
+        if(!isFirstLoop)
+        {
+            if(reprocess)
+            {
+                reprocess = NO;
+            }
+            else
+            {
+                _token = (HTMLPurifier_Token*)[_zipper next:_token];
+            }
+        }
+        isFirstLoop = NO;
+
+
 
         // only increment if we don't need to reprocess
         
@@ -272,7 +288,7 @@
                 [_stack addObject:parent];
 
                 HTMLPurifier_ElementDef* parent_def = nil;
-                NSMutableDictionary* parent_elements = [@{} mutableCopy];
+                NSMutableDictionary* parent_elements = nil;
                 BOOL autoclose = NO;
                 if (definition.info[parent.name]) {
                     parent_def = definition.info[parent.name];

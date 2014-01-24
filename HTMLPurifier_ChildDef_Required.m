@@ -8,6 +8,10 @@
 
 #import "HTMLPurifier_ChildDef_Required.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_Node.h"
+#import "HTMLPurifier_Node_Text.h"
+#import "HTMLPurifier_Node_Element.h"
+#import "HTMLPurifier_Node_Comment.h"
 
 @implementation HTMLPurifier_ChildDef_Required
 
@@ -17,25 +21,91 @@
 {
     self = [super init];
     if (self) {
-        self.elements = [@{} mutableCopy];
         whitespace = NO;
+        self.allow_empty = NO;
+        self.typeString = @"required";
         NSObject* elements = newElements;
         if([elements isKindOfClass:[NSString class]])
         {
             elements = str_replace(@" ", @"", (NSString*)elements);
             elements = explode(@"|", (NSString*)elements);
         }
-        //NSDictionary* dict = [NSDictionary alloc] init
-        //NSArray* keys = [(NSArray*)elements;
-
+        NSMutableDictionary* elementLookup = [NSMutableDictionary new];
+        if([elements isKindOfClass:[NSArray class]])
+        {
+            for(id<NSCopying> element in (NSArray*)elements)
+            {
+                elementLookup[element] = @YES;
+            }
+        }
+        self.elements = elementLookup;
     }
     return self;
+}
+
+- (id)init
+{
+    return [self initWithElements:nil];
 }
 
 
 - (NSObject*)validateChildren:(NSArray *)children config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    return nil;
+    // Flag for subclasses
+    whitespace = NO;
+
+    if([children count]==0)
+        return NO;
+
+    NSMutableArray* result = [NSMutableArray new];
+
+// whether or not parsed character data is allowed
+// this controls whether or not we silently drop a tag
+// or generate escaped HTML from it
+    BOOL pcdata_allowed = (self.elements[@"#PCDATA"]!=nil);
+
+// a little sanity check to make sure it's not ALL whitespace
+    BOOL all_whitespace = YES;
+    NSMutableArray* stack = array_reverse(children);
+            while (stack.count>0)
+            {
+                HTMLPurifier_Node* node = (HTMLPurifier_Node*)array_pop(stack);
+                if (node.isWhitespace)
+                {
+                    [result addObject:node];
+                    continue;
+                }
+                all_whitespace = NO; // phew, we're not talking about whitespace
+
+                if (!self.elements[node.name])
+                {
+                    // special case text
+                    // XXX One of these ought to be redundant or something
+                    if (pcdata_allowed && [node isKindOfClass:[HTMLPurifier_Node_Text class]])
+                    {
+                        [result addObject:node];
+                        continue;
+                    }
+                  // spill the child contents in
+                 // ToDo: Make configurable
+                 if ([node isKindOfClass:[HTMLPurifier_Node_Element class]]) {
+                     for (NSInteger i = node.children.count - 1; i >= 0; i--) {
+                          [stack addObject:node.children[i]];
+                      }
+                      continue;
+                }
+                  continue;
+               }
+                [result addObject:node];
+           }
+           if (result.count==0) {
+              return NO;
+          }
+          if (all_whitespace) {
+              whitespace = YES;
+               return NO;
+           }
+          return result;
 }
 
 //    /**
