@@ -115,27 +115,27 @@
      */
 - (BOOL)allowsElement:(NSString*)name
     {
-        return NO;
-//        HTMLPurifier_ElementDef* parent = nil;
-//        if (currentNesting.count!=0) {
-//            HTMLPurifier_Token* parent_token = (HTMLPurifier_Token*)array_pop(currentNesting);
-//            [currentNesting addObject:parent_token];
-//            parent = htmlDefinition.info[[parent_token valueForKey:@"name"]];
-//        } else {
-//            parent = htmlDefinition.info_parent_def;
-//        }
-//        if (!parent.child.elements[name]) || parent.excludes[name])) {
-//            return NO;
-//        }
-//        // check for exclusion
-//        for (NSInteger i = currentNesting.count - 2; i >= 0; i--) {
-//            HTMLPurifier_Node* node = currentNesting[i];
-//            def  = htmlDefinition->info[node->name];
-//            if (def->excludes[name]) {
-//                return NO;
-//            }
-//        }
-//        return YES;
+        HTMLPurifier_ElementDef* parent = nil;
+        if (currentNesting.count!=0) {
+            HTMLPurifier_Token* parent_token = (HTMLPurifier_Token*)array_pop(currentNesting);
+            [currentNesting addObject:parent_token];
+            parent = htmlDefinition.info[[parent_token valueForKey:@"name"]];
+        } else {
+            parent = htmlDefinition.info_parent_def;
+        }
+        if (!parent.child.elements[name] || parent.excludes[name])
+        {
+            return NO;
+        }
+        // check for exclusion
+        for (NSInteger i = currentNesting.count - 2; i >= 0; i--) {
+            HTMLPurifier_Node* node = currentNesting[i];
+            HTMLPurifier_ElementDef* def  = htmlDefinition.info[node.name];
+            if (def.excludes[name]) {
+                return NO;
+            }
+        }
+        return YES;
     }
 
     /**

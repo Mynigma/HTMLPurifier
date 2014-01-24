@@ -232,6 +232,7 @@
         if ([last isKindOfClass:[HTMLPurifier_Token_Start class]] && ([[last valueForKey:@"name"] isEqual:@"script"] || [[last valueForKey:@"name"] isEqual:@"style"]))
         {
             NSMutableString* new_data = [trim(data) mutableCopy];
+            if(new_data.length>=4)
             if ([[new_data substringWithRange:NSMakeRange(0, 4)] isEqualTo:@"<!--"]) {
                 data = substr(new_data, 4);
                 if ([substr(data, -3) isEqualToString:@"-->"]) {

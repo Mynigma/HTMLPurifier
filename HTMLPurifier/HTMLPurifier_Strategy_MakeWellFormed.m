@@ -160,7 +160,9 @@
                     _token = (HTMLPurifier_Token*)[_zipper prev:_token];
                     // indicate that other injectors should not process this token,
                     // but we need to reprocess it
-                    [[(HTMLPurifier_Token*)_token skip] removeObjectAtIndex:index.intValue];
+                    HTMLPurifier_Injector* injector = _injectors[index.intValue];
+                    if([(HTMLPurifier_Token*)_token skip][index])
+                        [[(HTMLPurifier_Token*)_token skip] removeObjectForKey:index];
                     [(HTMLPurifier_Token*)_token setRewind:index];
                     if ([_token isKindOfClass:[HTMLPurifier_Token_Start class]])
                     {
@@ -210,12 +212,14 @@
                 for(NSInteger i=0; i<_injectors.count; i++)
                 {
                     HTMLPurifier_Injector* injector = _injectors[i];
-                    if([(HTMLPurifier_Token*)_token skip][i])
+                    if([(HTMLPurifier_Token*)_token skip][@(i)])
                     {
+                        index = @(i);
                         continue;
                     }
                     if ([(HTMLPurifier_Token*)_token rewind] && ![[(HTMLPurifier_Token*)_token rewind] isEqual:@(i)])
                     {
+                        index = @(i);
                         continue;
                     }
                     // XXX fuckup
@@ -228,8 +232,9 @@
                     //
 
 
-                    _token = [self processToken:r injector:@(i)];
+                    _token = [self processToken:r remove:@1 injector:@(i)];
                     reprocess = YES;
+                    index = @(i);
                     break;
                 }
             }
@@ -381,16 +386,19 @@
             for(NSInteger i=0; i<_injectors.count; i++)
             {
                 HTMLPurifier_Injector* injector = _injectors[i];
-                if ([(HTMLPurifier_Token*)_token skip][i]) {
+                if ([(HTMLPurifier_Token*)_token skip][@(i)]) {
+                    index = @(i);
                     continue;
                 }
                 if ([(HTMLPurifier_Token*)_token rewind] && ![[(HTMLPurifier_Token*)_token rewind] isEqual:@(i)]) {
+                    index = @(i);
                     continue;
                 }
                 HTMLPurifier_Token* r = (HTMLPurifier_Token*)_token;
                 [injector handleElement:&r];
-                _token = [self processToken:r injector:@(i)];
+                _token = [self processToken:r remove:@1 injector:@(i)];
                 reprocess = YES;
+                index = @(i);
                 break;
             }
             if (!reprocess) {
@@ -432,19 +440,22 @@
             for(NSInteger i=0; i<_injectors.count; i++)
             {
                 HTMLPurifier_Injector* injector = _injectors[i];
-                if ([(HTMLPurifier_Token*)_token skip][i])
+                if ([(HTMLPurifier_Token*)_token skip][@(i)])
                 {
+                    index = @(i);
                     continue;
                 }
                 if ([(HTMLPurifier_Token*)_token rewind] && ![[(HTMLPurifier_Token*)_token rewind] isEqual:@(i)])
                 {
+                    index = @(i);
                     continue;
                 }
                 HTMLPurifier_Token* r = (HTMLPurifier_Token*)_token;
                 [injector handleEnd:&r];
-                _token = [self processToken:r injector:@(i)];
+                _token = [self processToken:r remove:@1 injector:@(i)];
                 [_stack addObject:current_parent];
                 reprocess = YES;
+                index = @(i);
                 break;
             }
             continue;
@@ -552,50 +563,40 @@
     return [self processToken:@(-1)];
 }
 
-- (HTMLPurifier_Token*)processToken:(NSObject*)passedToken injector:(NSNumber*)injector
+- (HTMLPurifier_Token*)processToken:(NSObject*)passedToken remove:(NSNumber*)remove injector:(NSNumber*)injectorIndex
 {
-    _token = passedToken;
-
-    // normalize forms of token
-    if([_token isKindOfClass:[NSNumber class]])
+    if([passedToken isKindOfClass:[HTMLPurifier_Token class]])
     {
-        if([_token isEqual:@NO])
-        {
-            _token = @[@1];
-        }
-        else
-        {
-            _token = @[_token];
-        }
+        passedToken = @[passedToken];
     }
 
-    if([_token isKindOfClass:[HTMLPurifier_Token class]])
+    /*if([passedToken isKindOfClass:[NSArray class]])
     {
-        _token = @[@1, _token];
+        passedToken = passedToken;
+    }*/
+
+    if(!remove)
+        remove = @1;
+
+    if([passedToken isEqual:@NO])
+    {
+        remove = @1;
+        _token = nil;
     }
 
-    if (![_token isKindOfClass:[NSArray class]])
+
+    if (![passedToken isKindOfClass:[NSArray class]])
     {
-        @throw [NSException exceptionWithName:@"MakeWellFormed exception" reason:@"Deleting zero tokens is not valid" userInfo:nil];
+        @throw [NSException exceptionWithName:@"MakeWellFormed exception" reason:@"Invalid token" userInfo:nil];
     }
 
-    NSMutableArray* tokenArray = [(NSArray*)_token mutableCopy];
-
-    if (![tokenArray[0] isKindOfClass:[NSNumber class]])
-    {
-        array_unshift_2(tokenArray, @1);
-    }
-
-    if ([tokenArray isEqual:@0])
+    if ([remove isEqual:@0])
     {
         @throw [NSException exceptionWithName:@"MakeWellFormed exception" reason:@"Deleting zero tokens is not valid" userInfo:nil];
     }
-    
-    // $token is now an array with the following form:
-    // array(number nodes to delete, new node 1, new node 2, ...)
-    
-    NSNumber* numberOfDeletionsNeeded = (NSNumber*)array_shift(tokenArray);
-    NSArray* pair = (NSArray*)[_zipper splice:_token delete:numberOfDeletionsNeeded.integerValue replacement:tokenArray];
+
+
+    NSArray* pair = (NSArray*)[_zipper splice:_token delete:remove.integerValue replacement:(NSArray*)passedToken];
     NSArray* old = nil;
     HTMLPurifier_Token* r = nil;
     if(pair.count>0)
@@ -604,16 +605,15 @@
         r = pair[1];
 
 
-    //TO DO: check this section!!!
-
-    if (injector.integerValue > -1)
+    if (injectorIndex.integerValue > -1)
     {
         // determine appropriate skips
-        NSArray* oldskip = old[0] ? (NSArray*)[old[0] skip] : @[];
-        for(HTMLPurifier_Token* object in tokenArray)
+        NSMutableDictionary* oldskip = [old[0] skip] ? (NSMutableDictionary*)[old[0] skip] : [NSMutableDictionary new];
+        NSArray* enumArray = [passedToken isKindOfClass:[NSArray class]]?(NSArray*)passedToken:@[passedToken];
+        for(HTMLPurifier_Token* object in enumArray)
         {
-            [object setSkip:[oldskip mutableCopy]];
-            object.skip[injector.intValue] = @YES;
+            [object setSkip:oldskip];
+            [object.skip setObject:@YES forKey:injectorIndex];
         }
     }
 

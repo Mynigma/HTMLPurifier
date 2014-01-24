@@ -25,7 +25,7 @@
     if (self) {
         _armor = [NSMutableDictionary new];
         _isTag = NO;
-        _skip = [NSMutableArray new];
+        //_skip = [NSMutableArray new];
     }
     return self;
 }

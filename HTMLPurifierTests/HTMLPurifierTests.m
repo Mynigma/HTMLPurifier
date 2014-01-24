@@ -15,13 +15,6 @@
 
 @interface HTMLPurifierTests : HTMLPurifier_Harness
 {
-    HTMLPurifier_Config* config;
-
-    /**
-     * @type HTMLPurifier_Context
-     */
-    HTMLPurifier_Context* context;
-
     /**
      * @type HTMLPurifier
      */
@@ -34,8 +27,10 @@
 
 - (void)setUp
 {
+    [super createCommon];
+    [super.config setString:@"Output.Newline" object:@"\n"];
+    purifier = [HTMLPurifier new];
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
 - (void)tearDown
@@ -51,8 +46,8 @@
 
 - (void)test_purifyArray
 {
-    NSArray* result = [purifier purifyArray:@[@"Good", @"<b>Sketchy", @{@"foo" : @"<script>bad</script>"}]];
-    NSArray* expect = @[@"Good", @"<b>Sketchy</b>", @{@"foo" : @""}];
+    NSArray* result = [purifier purifyArray:@[@"Good", @"<b>Sketchy", @"<script>bad</script>"]];
+    NSArray* expect = @[@"Good", @"<b>Sketchy</b>", @""];
     XCTAssertEqualObjects(result, expect);
 
     XCTAssertTrue([purifier.context isKindOfClass:[NSArray class]]);
@@ -63,6 +58,14 @@
     HTMLPurifier* purifier1  = [HTMLPurifier instance];
     HTMLPurifier* purifier2 = [HTMLPurifier instance];
     XCTAssertEqual(purifier1, purifier2);
+}
+
+- (void)testLinkify
+{
+    NSString* result = [purifier purify:@"Hi Lukas, hier ist ein Link: http://www.mynigma.org/test.html"];
+    NSString* expect = @"Hi Lukas, hier ist ein Link: <a href=\"http://www.mynigma.org/test.html\">http://www.mynigma.org/test.html</a>";
+    XCTAssertEqualObjects(result, expect);
+
 }
 
 /*

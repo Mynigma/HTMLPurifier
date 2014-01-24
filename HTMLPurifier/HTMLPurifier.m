@@ -193,10 +193,11 @@ static HTMLPurifier* theInstance;
     [filter_flags removeObjectForKey:@"Custom"];
     
     NSMutableArray* newFilters = [NSMutableArray new];
-    
+
+
     for (NSString* key in filter_flags.allKeys)
     {
-        if ([filter_flags objectForKey:key])
+        if (![filter_flags objectForKey:key])
         {
             //This cannot happen
             continue;
@@ -207,8 +208,11 @@ static HTMLPurifier* theInstance;
         }
         
         NSString* class = [@"HTMLPurifier_Filter_" stringByAppendingString:key];
-        
-        [newFilters addObject:[NSClassFromString(class) new]];
+
+        HTMLPurifier_Filter* filter = [NSClassFromString(class) new];
+
+        if(filter)
+            [newFilters addObject:filter];
     }
     
     for (NSObject* object in custom_filters)
@@ -230,7 +234,11 @@ static HTMLPurifier* theInstance;
     //TODO maybe change names
     //purifed HTML
 
-    html = [generator generateFromTokens:[[strategy execute:[[lexer tokenizeHTMLWithString:html config:config context:localContext] mutableCopy] config:config context:localContext] mutableCopy]];
+    NSMutableArray* tokens = [[lexer tokenizeHTMLWithString:html config:config context:localContext] mutableCopy];
+
+    tokens = [strategy execute:tokens config:config context:localContext];
+
+    html = [generator generateFromTokens:tokens];
     
     for (NSInteger i = filter_size - 1; i>=0; i--)
     {
@@ -257,10 +265,25 @@ static HTMLPurifier* theInstance;
     
     NSMutableArray* new_html_array = [NSMutableArray new];
     
-    for(NSString* html in array_of_html)
+    for(NSObject* htmlObject in array_of_html)
     {
-        [new_html_array addObject: [self purify:html]];
-        [context_array addObject:context];
+        /*if([htmlObject isKindOfClass:[NSDictionary class]])
+        {
+            for(NSString* htmlValue in [(NSDictionary*)htmlObject allValues])
+            {
+                if([htmlValue isKindOfClass:[NSString class]])
+                {
+                    [new_html_array addObject: [self purify:(NSString*)htmlValue]];
+                    [context_array addObject:context];
+                }
+            }
+        }*/
+        if([htmlObject isKindOfClass:[NSString class]])
+        {
+            [new_html_array addObject: [self purify:(NSString*)htmlObject]];
+            [context_array addObject:context];
+        }
+
     }
     context = context_array;
     return new_html_array;
