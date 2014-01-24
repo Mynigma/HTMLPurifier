@@ -41,7 +41,7 @@
  */
 - (NSObject*)validateChildren:(NSArray*)children config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
-    if(![context getWithName:@"IsInline"])
+    if(![(NSNumber*)[context getWithName:@"IsInline"] boolValue])
     {
         return [self.block validateChildren:children config:config context:context];
     }

@@ -20,6 +20,8 @@
 {
     HTMLPurifier_ChildDef_Chameleon* obj;
     NSNumber* isInline;
+    BOOL to_html;
+    BOOL to_node_list;
 }
 @end
 
@@ -27,8 +29,14 @@
 
 - (void)setUp
 {
+    obj       = nil;
+    //func      = @selector(validateChildren:config:context:);
+    to_html   = YES;
+    to_node_list = YES;
     [super setUp];
     obj = [[HTMLPurifier_ChildDef_Chameleon alloc] initWithInline:@[@"b",@"i"] block:@[@"b",@"i",@"div"]];
+    isInline = @NO;
+    [[super context] registerWithName:@"IsInline" ref:isInline];
 }
 
 - (void)tearDown
@@ -39,8 +47,7 @@
 
 -(void) assertResult:(NSString*)input expect:(NSObject*)expect
 {
-    [[super context] registerWithName:@"IsInline" ref:isInline];
-  
+
     NSArray* input_children = [[HTMLPurifier_Arborize arborizeTokens:[self tokenize:input] config:[super config] context:[super context]] children];
 
     // call the function
@@ -52,8 +59,13 @@
         XCTAssertEqualObjects(expect, result);
         return;
     }
+    else if([result isKindOfClass:[NSNumber class]])
+    {
+        expect = result;
+    }
 
     //Result should be an Array...
+
     result = [self generateTokens:(NSArray*)result];
     
     result = [self generate:(NSArray*)result];

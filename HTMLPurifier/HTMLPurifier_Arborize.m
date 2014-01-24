@@ -72,6 +72,8 @@
                 [tokens addObject:start];
             }
             if (end) {
+                if(![closingTokens objectForKey:level])
+                    closingTokens[level] = [NSMutableArray new];
                 [[closingTokens objectForKey:level] addObject:end];
             }
             if ([node isKindOfClass:[HTMLPurifier_Node_Element class]]) {
@@ -82,7 +84,7 @@
            }
         }
         level = @(level.integerValue-1);
-        if (level && closingTokens[level]) {
+        if (level.integerValue>0 && closingTokens[level]) {
             HTMLPurifier_Token* token;
             while ((token = (HTMLPurifier_Token*)array_pop(closingTokens[level])))
             {
