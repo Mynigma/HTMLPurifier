@@ -15,8 +15,8 @@
 
 - (NSDictionary*)transform:(NSDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
 
-- (void)prependCSS:(NSMutableDictionary*)attr css:(NSString*)css;
+- (void)prependCSS:(NSMutableDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys css:(NSString*)css;
 
-- (NSObject*)confiscateAttr:(NSMutableDictionary*)attr key:(NSString*)key;
+- (NSObject*)confiscateAttr:(NSMutableDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys key:(NSString*)key;
 
 @end

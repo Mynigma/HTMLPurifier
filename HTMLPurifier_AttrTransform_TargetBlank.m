@@ -51,6 +51,8 @@
     {
         NSMutableDictionary* attr_m = [attr mutableCopy];
         [attr_m setObject:@"_blank" forKey:@"target"];
+        if (![sortedKeys containsObject:@"target"])
+            [sortedKeys addObject:@"target"];
         return attr_m;
     }
     return attr;

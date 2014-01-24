@@ -50,10 +50,12 @@
     if (attr_m[@"checked"] && ![t isEqual:@"radio"] && ![t isEqual:@"checkbox"])
     {
         [attr_m removeObjectForKey:@"checked"];
+        [sortedKeys removeObject:@"checked"];
     }
     if (attr_m[@"maxlength"] && ![t isEqual:@"text"] && ![t isEqual:@"password"])
     {
         [attr_m removeObjectForKey:@"maxlength"];
+        [sortedKeys removeObject:@"maxlength"];
     }
     if (attr_m[@"size"] && ![t isEqual:@"text"] && ![t isEqual:@"password"])
     {
@@ -62,6 +64,7 @@
         if (!result)
         {
             [attr_m removeObjectForKey:@"size"];
+            [sortedKeys removeObject:@"size"];
         }
         else
         {
@@ -71,10 +74,12 @@
     if (attr_m[@"src"] && ![t isEqual:@"image"])
     {
         [attr_m removeObjectForKey:@"src"];
+        [sortedKeys removeObject:@"src"];
     }
     if (!attr_m[@"value"] && ( [t isEqual:@"radio"] || [t isEqual:@"checkbox"]))
     {
         [attr_m setObject:@"" forKey:@"value"];
+        [sortedKeys addObject:@"value"];
     }
     return attr_m;
 }

@@ -49,8 +49,9 @@
     NSMutableDictionary* attr_m = [attr_d mutableCopy];
     
     [attr_m removeObjectForKey:attr];
+    [sortedKeys removeObject:attr];
     
-    [self prependCSS:attr_m css:css];
+    [self prependCSS:attr_m sortedKeys:sortedKeys css:css];
     
     return attr_m;
 }

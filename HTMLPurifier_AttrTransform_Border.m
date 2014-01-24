@@ -27,9 +27,9 @@
     
     NSMutableDictionary* attr_m = [attr mutableCopy];
     
-    NSObject* border_width = [self confiscateAttr:attr_m key:@"border"];
+    NSObject* border_width = [self confiscateAttr:attr_m sortedKeys:sortedKeys key:@"border"];
     // some validation should happen here
-    [self prependCSS:attr_m css:[NSString stringWithFormat:@"border:{%@}px solid;",border_width]];
+    [self prependCSS:attr_m sortedKeys:sortedKeys css:[NSString stringWithFormat:@"border:{%@}px solid;",border_width]];
     return attr_m;
 }
 

@@ -32,10 +32,12 @@
     if (lang && !xml_lang)
     {
         [attr_m setObject:lang forKey:@"xml:lang"];
+        [sortedKeys addObject:@"xml:lang"];
     }
     else if (xml_lang)
     {
         [attr_m setObject:xml_lang forKey:@"lang"];
+        [sortedKeys addObject:@"lang"];
     }
     return attr_m;
 }

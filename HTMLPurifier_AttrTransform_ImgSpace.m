@@ -54,7 +54,7 @@
     
     NSMutableDictionary* attr_m = [attr mutableCopy];
     
-    NSObject* width = [self confiscateAttr:attr_m key:attr_s];
+    NSObject* width = [self confiscateAttr:attr_m sortedKeys:sortedKeys key:attr_s];
     // some validation could happen here
     
     if (!css[attr_s])
@@ -68,7 +68,7 @@
         NSString* property = [@"margin-" stringByAppendingString:suffix];
         style = [NSString stringWithFormat:@"%@%@:{%@}px;",style,property,width];
     }
-    [self prependCSS:attr_m css:style];
+    [self prependCSS:attr_m sortedKeys:sortedKeys css:style];
     return attr_m;
 }
 

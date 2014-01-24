@@ -27,10 +27,14 @@
     if (!attr_m[@"cols"])
     {
         [attr_m setObject:@"22" forKey:@"cols"];
+        if (![sortedKeys containsObject:@"cols"])
+            [sortedKeys addObject:@"cols"];
     }
     if (!attr_m[@"rows"])
     {
         [attr_m setObject:@"3" forKey:@"rows"];
+        if (![sortedKeys containsObject:@"rows"])
+            [sortedKeys addObject:@"rows"];
     }
     return attr_m;
 }

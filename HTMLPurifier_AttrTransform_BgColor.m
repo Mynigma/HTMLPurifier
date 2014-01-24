@@ -27,10 +27,10 @@
     }
     
     NSMutableDictionary* attr_m = [attr mutableCopy];
-    NSObject* bgcolor = [self confiscateAttr:attr_m key:@"bgcolor"];
+    NSObject* bgcolor = [self confiscateAttr:attr_m sortedKeys:sortedKeys key:@"bgcolor"];
     // some validation should happen here
     
-    [self prependCSS:attr_m css:[NSString stringWithFormat:@"background-color:%@;",bgcolor]];
+    [self prependCSS:attr_m sortedKeys:sortedKeys css:[NSString stringWithFormat:@"background-color:%@;",bgcolor]];
     return attr_m;
 }
 

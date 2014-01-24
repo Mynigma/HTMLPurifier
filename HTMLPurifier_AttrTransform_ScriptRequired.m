@@ -26,6 +26,8 @@
     {
         NSMutableDictionary* attr_m = [attr mutableCopy];
         [attr_m setObject:@"text/javascript" forKey:@"type"];
+        if (![sortedKeys containsObject:@"type"])
+            [sortedKeys addObject:@"type"];
         return attr_m;
     }
     return attr;

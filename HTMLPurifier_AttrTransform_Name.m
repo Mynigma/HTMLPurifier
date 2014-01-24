@@ -34,12 +34,13 @@
     
     NSMutableDictionary* attr_m = [attr mutableCopy];
     
-    NSObject* id_c = [self confiscateAttr:attr_m key:@"name"];
+    NSObject* id_c = [self confiscateAttr:attr_m sortedKeys:sortedKeys key:@"name"];
     if (attr_m[@"id"])
     {
         return attr_m;
     }
     [attr_m setObject:id_c forKey:@"id"];
+    [sortedKeys addObject:@"id"];
    
     return attr_m;
 }
