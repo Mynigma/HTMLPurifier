@@ -33,7 +33,7 @@
         }
 
         // skip tokens that are armored
-        if ([[token armor][@"ValidateAttributes"] count]>0)
+        if ([token armor][@"ValidateAttributes"])
         {
             continue;
         }

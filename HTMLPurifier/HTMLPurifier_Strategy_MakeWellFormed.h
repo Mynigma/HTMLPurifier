@@ -117,7 +117,7 @@
  *        this is not an injector related operation.
  * @throws HTMLPurifier_Exception
  */
-- (HTMLPurifier_Token*)processToken:(NSObject*)token injector:(NSNumber*)injector;
+- (HTMLPurifier_Token*)processToken:(NSObject*)token remove:(NSNumber*)remove injector:(NSNumber*)injector;
 
 /**
  * Inserts a token before the current token. Cursor now points to

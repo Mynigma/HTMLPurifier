@@ -360,7 +360,7 @@
 
     // iterate through each module that has registered itself to this
     // element
-    for(NSString* module_name in [self.elementLookup[name] reverseObjectEnumerator])
+    for(NSString* module_name in self.elementLookup[name])
     {
         HTMLPurifier_HTMLModule* module = self.modules[module_name];
 

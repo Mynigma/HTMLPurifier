@@ -31,7 +31,7 @@
 /**
  * Asserts a purification. Good for integration testing.
  */
-- (void)assertPurification:(NSString*)input except:(NSObject*)expect;
+- (void)assertPurification:(NSString*)input expect:(NSObject*)expect;
 
 /**
  * Accepts config and context and prepares them into a valid state

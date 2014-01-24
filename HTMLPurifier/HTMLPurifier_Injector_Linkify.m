@@ -42,7 +42,7 @@
 
     // there is/are URL(s). Let's split the string:
     // Note: this regex is extremely permissive
-    NSArray* bits = preg_split_3_PREG_SPLIT_DELIM_CAPTURE(@"#((?:https?|ftp)://[^\\s\\'\",<>()]+)#Su", [*token valueForKey:@"data"], -1);
+    NSArray* bits = preg_split_3_PREG_SPLIT_DELIM_CAPTURE(@"((?:https?|ftp)://[^\\s\\'\",<>()]+)", [*token valueForKey:@"data"], -1);
 
 
     NSMutableArray* tokenArray = [NSMutableArray new];

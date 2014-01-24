@@ -65,12 +65,12 @@
             for(NSString* i in allKeys)
             {
                 NSSet* set = self.lookup[i];
-                NSMutableArray* add = [NSMutableArray new];
+                NSMutableSet* add = [NSMutableSet new];
                 for(NSString* element in set)
                 {
                     if(self.lookup[element])
                     {
-                        [add addObject:self.lookup[element]];
+                        [add unionSet:self.lookup[element]];
                         if([self.lookup[i] containsObject:element])
                         {
                             NSMutableSet* newSet = [self.lookup[i] mutableCopy];
@@ -79,7 +79,7 @@
                         }
                     }
                 }
-                self.lookup[i] = [self.lookup[i] setByAddingObject:add];
+                self.lookup[i] = [self.lookup[i] setByAddingObjectsFromSet:add];
             }
         }
 

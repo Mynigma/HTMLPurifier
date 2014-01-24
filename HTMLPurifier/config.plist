@@ -41,7 +41,7 @@
 		<key>AutoFormat.DisplayLinkURI</key>
 		<string>nil</string>
 		<key>AutoFormat.Linkify</key>
-		<string>nil</string>
+		<true/>
 		<key>AutoFormat.PurifierLinkify</key>
 		<string>nil</string>
 		<key>AutoFormat.PurifierLinkify.DocURL</key>
@@ -164,7 +164,7 @@
 		<key>Core.RemoveScriptContents</key>
 		<string>nil</string>
 		<key>Filter.Custom</key>
-		<string></string>
+		<string>nil</string>
 		<key>Filter.ExtractStyleBlocks</key>
 		<string>nil</string>
 		<key>Filter.ExtractStyleBlocks.Escaping</key>

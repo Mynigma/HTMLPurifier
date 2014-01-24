@@ -57,6 +57,9 @@
 #import "HTMLPurifier_Encoder.h"
 #import "BasicPHP.h"
 
+
+static HTMLPurifier* theInstance;
+
 @implementation HTMLPurifier
 
 /**
@@ -148,7 +151,7 @@
  *
  * @return string Purified HTML
  */
-- (NSString*) purify:(NSString*)newHtml config:(HTMLPurifier_Config*)newConfig
+- (NSString*)purify:(NSString*)newHtml config:(HTMLPurifier_Config*)newConfig
 {
     
     NSString* html = newHtml;
@@ -190,10 +193,11 @@
     [filter_flags removeObjectForKey:@"Custom"];
     
     NSMutableArray* newFilters = [NSMutableArray new];
-    
+
+
     for (NSString* key in filter_flags.allKeys)
     {
-        if ([filter_flags objectForKey:key])
+        if (![filter_flags objectForKey:key])
         {
             //This cannot happen
             continue;
@@ -204,8 +208,11 @@
         }
         
         NSString* class = [@"HTMLPurifier_Filter_" stringByAppendingString:key];
-        
-        [newFilters addObject:[NSClassFromString(class) new]];
+
+        HTMLPurifier_Filter* filter = [NSClassFromString(class) new];
+
+        if(filter)
+            [newFilters addObject:filter];
     }
     
     for (NSObject* object in custom_filters)
@@ -227,7 +234,11 @@
     //TODO maybe change names
     //purifed HTML
 
-    html = [generator generateFromTokens:[[strategy execute:[[lexer tokenizeHTMLWithString:html config:config context:localContext] mutableCopy] config:config context:localContext] mutableCopy]];
+    NSMutableArray* tokens = [[lexer tokenizeHTMLWithString:html config:config context:localContext] mutableCopy];
+
+    tokens = [strategy execute:tokens config:config context:localContext];
+
+    html = [generator generateFromTokens:tokens];
     
     for (NSInteger i = filter_size - 1; i>=0; i--)
     {
@@ -248,16 +259,31 @@
  *
  * @return string[] Array of purified HTML
  */
-- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html
+- (NSMutableArray*) purifyArray:(NSArray*)array_of_html
 {
     NSMutableArray* context_array = [NSMutableArray new];
     
     NSMutableArray* new_html_array = [NSMutableArray new];
     
-    for(NSString* html in array_of_html)
+    for(NSObject* htmlObject in array_of_html)
     {
-        [new_html_array addObject: [self purify:html]];
-        [context_array addObject:context];
+        /*if([htmlObject isKindOfClass:[NSDictionary class]])
+        {
+            for(NSString* htmlValue in [(NSDictionary*)htmlObject allValues])
+            {
+                if([htmlValue isKindOfClass:[NSString class]])
+                {
+                    [new_html_array addObject: [self purify:(NSString*)htmlValue]];
+                    [context_array addObject:context];
+                }
+            }
+        }*/
+        if([htmlObject isKindOfClass:[NSString class]])
+        {
+            [new_html_array addObject: [self purify:(NSString*)htmlObject]];
+            [context_array addObject:context];
+        }
+
     }
     context = context_array;
     return new_html_array;
@@ -272,7 +298,7 @@
  *
  * @return string[] Array of purified HTML
  */
-- (NSMutableArray*) purifyArray:(NSMutableArray*)array_of_html Config:(HTMLPurifier_Config*)newConfig
+- (NSMutableArray*) purifyArray:(NSArray*)array_of_html config:(HTMLPurifier_Config*)newConfig
 {
     NSMutableArray* context_array = [NSMutableArray new];
     
@@ -286,6 +312,32 @@
     context = context_array;
     return new_html_array;
 
+}
+
+
++ (HTMLPurifier*)instance
+{
+    return [HTMLPurifier instance:nil];
+}
+
++ (HTMLPurifier*)instance:(HTMLPurifier*)prototype
+{
+    if (!theInstance || prototype)
+    {
+        if ([prototype isKindOfClass:[HTMLPurifier class]])
+        {
+            theInstance = prototype;
+        }
+        else if (prototype)
+        {
+            theInstance = [[HTMLPurifier alloc] initWithConfig:(HTMLPurifier_Config*)prototype];
+        }
+        else
+        {
+            theInstance = [HTMLPurifier new];
+        }
+    }
+    return theInstance;
 }
 
 

@@ -8,18 +8,26 @@
 
 #import <XCTest/XCTest.h>
 #import "HTMLPurifier_Harness.m"
+#import "HTMLPurifier_Injector_Linkify.h"
 
 @interface HTMLPurifier_LinkifyTest : HTMLPurifier_Harness
+{
+    HTMLPurifier_Injector_Linkify* injector;
+}
 
 @end
 
 @implementation HTMLPurifier_LinkifyTest
+
+- (void)turnIntoToken:(NSString*)
+
 
 - (void)setUp
 {
     [super createCommon];
     [super setUp];
     [super.config setString:@"AutoFormat.Linkify" object:@YES];
+    injector = [HTMLPurifier_Injector_Linkify new];
     // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
@@ -30,17 +38,19 @@
 }
 
 
-/*
+
 
 - (void)testLinkifyURLInRootNode
 {
     NSString* before = @"http://example.com";
-    NSString* after = self
-    XCTAssertEqualObjects(',
+    NSString* after = [injector handleText:before];
+    NSString*
+    XCTAssertEqualObjects(,
                         '<a href="http://example.com">http://example.com</a>'
                         );
 }
 
+/*
 function testLinkifyURLInInlineNode() {
     $this->assertResult(
                         '<b>http://example.com</b>',

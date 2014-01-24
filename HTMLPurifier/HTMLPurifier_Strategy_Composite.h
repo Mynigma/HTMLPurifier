@@ -15,5 +15,7 @@
     NSMutableArray* strategies;
 }
 
+- (NSMutableArray*)execute:(NSMutableArray*)tokens config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;
+
 
 @end

@@ -58,7 +58,7 @@
     NSMutableDictionary* closingTokens = [NSMutableDictionary new];
     NSMutableArray* tokens = [NSMutableArray new];
     do {
-        while ([nodes objectForKey:level]) {
+        while ([nodes objectForKey:level] && [nodes[level] isKindOfClass:[HTMLPurifier_Queue class]] && ![(HTMLPurifier_Queue*)nodes[level] isEmpty]) {
             HTMLPurifier_Node* node = (HTMLPurifier_Node*)[(HTMLPurifier_Queue*)[nodes objectForKey:level] shift]; // FIFO
             NSArray* pair = [node toTokenPair];
             HTMLPurifier_Token* start;
@@ -67,7 +67,8 @@
                 start = pair[0];
             if(pair.count>1)
                 end = [pair[1] isEqual:[NSNull null]] ? nil : pair[1];
-            if (level.intValue > 0) {
+            if (level.intValue > 0 && start)
+            {
                 [tokens addObject:start];
             }
             if (end) {
