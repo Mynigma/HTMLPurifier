@@ -69,7 +69,7 @@
 
 // corresponding to RFC 2396
 
-/*
+
 -(void)  testPreserveAbsolute
 {
     [self assertFiltering:@"http://example.com/foo.html" expect:@YES];
@@ -157,6 +157,7 @@
 
 // edge cases below
 
+/*
 -(void) disabled_testFilterAbsolutePathBase
 {
     [self setBase:@"/foo/baz.txt"];
