@@ -163,7 +163,7 @@ NSMutableArray* array_slice_3(NSArray* array, NSInteger offset, NSInteger length
 NSInteger array_unshift_2(NSMutableArray* array, NSObject* object);
 NSObject* array_shift(NSMutableArray* array);
 
-NSMutableArray* array_reverse(NSMutableArray* oldArray);
+NSMutableArray* array_reverse(NSArray* oldArray);
 
 NSObject* array_pop(NSMutableArray* array);
 

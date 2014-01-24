@@ -122,8 +122,10 @@
 
 - (BOOL)isEqual:(HTMLPurifier_URIScheme*)object
 {
-    return [object isKindOfClass:[HTMLPurifier_URIScheme class]]    &&
-                [object.browsable isEqual:self.browsable]           &&
+    if(![object isKindOfClass:[HTMLPurifier_URIScheme class]])
+        return NO;
+
+    return      [object.browsable isEqual:self.browsable]           &&
                 [object.default_port isEqual: self.default_port]    &&
                 [object.secure isEqual:self.secure]                 &&
                 [object.hierarchical isEqual:self.hierarchical]     &&

@@ -972,7 +972,7 @@ NSObject* array_shift(NSMutableArray* array)
     return returnValue;
 }
 
-NSMutableArray* array_reverse(NSMutableArray* oldArray)
+NSMutableArray* array_reverse(NSArray* oldArray)
 {
     NSMutableArray *array = [NSMutableArray arrayWithCapacity:[oldArray count]];
     NSEnumerator *enumerator = [oldArray reverseObjectEnumerator];

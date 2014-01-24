@@ -16,6 +16,9 @@
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_URIScheme.h"
 
+
+static HTMLPurifier_URISchemeRegistry* theInstance;
+
 @implementation HTMLPurifier_URISchemeRegistry
 
 /**
@@ -44,16 +47,15 @@
  */
 +(HTMLPurifier_URISchemeRegistry*) instance:(HTMLPurifier_URISchemeRegistry*)prototype // = null)
 {
-    HTMLPurifier_URISchemeRegistry* instance = nil;
-    if (prototype != nil)
+    if (prototype)
     {
-        instance = prototype;
+        theInstance = prototype;
     }
-    else if (!instance || !prototype)
+    else if (!theInstance || [prototype isEqual:@YES])
     {
-        instance = [HTMLPurifier_URISchemeRegistry new];
+        theInstance = [HTMLPurifier_URISchemeRegistry new];
     }
-    return instance;
+    return theInstance;
 }
 
 /**
