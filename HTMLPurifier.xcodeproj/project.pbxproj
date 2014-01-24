@@ -419,6 +419,9 @@
 		80CA2565188747DC00176412 /* HTMLPurifier_AttrDef_CSS_ImportantDecorator.m in Sources */ = {isa = PBXBuildFile; fileRef = 80CA2563188747DC00176412 /* HTMLPurifier_AttrDef_CSS_ImportantDecorator.m */; };
 		80E0A56E1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */; };
 		80E0A570189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */; };
+		80E0A5721893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */; };
+		80E0A57418930A3500A13C41 /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A57318930A3500A13C41 /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m */; };
+		80E0A57618930E4500A13C41 /* HTMLPurifier_ChildDef_TablesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A57518930E4500A13C41 /* HTMLPurifier_ChildDef_TablesTest.m */; };
 		80E5A88A18926701008A093D /* HTMLPurifier_AttrTransformHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88918926701008A093D /* HTMLPurifier_AttrTransformHarness.m */; };
 		80E5A88C18926777008A093D /* HTMLPurifier_AttrTransformTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88B18926777008A093D /* HTMLPurifier_AttrTransformTest.m */; };
 		80E5A88E189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88D189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m */; };
@@ -874,6 +877,9 @@
 		80CA2563188747DC00176412 /* HTMLPurifier_AttrDef_CSS_ImportantDecorator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_ImportantDecorator.m; sourceTree = "<group>"; };
 		80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_ListTest.m; sourceTree = "<group>"; };
 		80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_OptionalTest.m; sourceTree = "<group>"; };
+		80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_RequiredTest.m; sourceTree = "<group>"; };
+		80E0A57318930A3500A13C41 /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_StrictBlockquoteTest.m; sourceTree = "<group>"; };
+		80E0A57518930E4500A13C41 /* HTMLPurifier_ChildDef_TablesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_TablesTest.m; sourceTree = "<group>"; };
 		80E5A88818926701008A093D /* HTMLPurifier_AttrTransformHarness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrTransformHarness.h; sourceTree = "<group>"; };
 		80E5A88918926701008A093D /* HTMLPurifier_AttrTransformHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransformHarness.m; sourceTree = "<group>"; };
 		80E5A88B18926777008A093D /* HTMLPurifier_AttrTransformTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransformTest.m; sourceTree = "<group>"; };
@@ -1466,6 +1472,9 @@
 				80E5A89218929F2E008A093D /* HTMLPurifier_ChildDef_CustomTest.m */,
 				80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */,
 				80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */,
+				80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */,
+				80E0A57318930A3500A13C41 /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m */,
+				80E0A57518930E4500A13C41 /* HTMLPurifier_ChildDef_TablesTest.m */,
 			);
 			name = ChildDef;
 			sourceTree = "<group>";
@@ -2125,6 +2134,7 @@
 				808CB9CD1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m in Sources */,
 				80E5A88E189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m in Sources */,
 				80E5A88A18926701008A093D /* HTMLPurifier_AttrTransformHarness.m in Sources */,
+				80E0A5721893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */,
 				808CB9EC188B385300AFB841 /* HTMLPurifier_AttrDef_URITest.m in Sources */,
 				80E5A8911892898D008A093D /* HTMLPurifier_ChildDef_ChameleonTest.m in Sources */,
 				808CB9DD188AF62300AFB841 /* HTMLPurifier_AttrDef_HTML_ClassTest.m in Sources */,
@@ -2147,6 +2157,7 @@
 				801F016718901DAB00506C24 /* HTMLPurifier_AttrDef_EnumTest.m in Sources */,
 				80EDF9E018803B3200EB1E89 /* HTMLPurifierTests.m in Sources */,
 				808CBA3F188D6F1900AFB841 /* HTMLPurifier_URIHarness.m in Sources */,
+				80E0A57618930E4500A13C41 /* HTMLPurifier_ChildDef_TablesTest.m in Sources */,
 				1E9A62E71884502700EA7A85 /* HTMLPurifier_Harness.m in Sources */,
 				1E6F2C37188AA9E900EEEB3F /* UnitConverterTest.m in Sources */,
 				808CBA44188D75F700AFB841 /* HTMLPurifier_URIFilter_DisableExternalTest.m in Sources */,
@@ -2158,6 +2169,7 @@
 				1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */,
 				1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */,
 				1E01D013189044E300B5643E /* HTMLPurifier_AttrCollections_TestForConstruct.m in Sources */,
+				80E0A57418930A3500A13C41 /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m in Sources */,
 				808CB9E4188AFBD700AFB841 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheckTest.m in Sources */,
 				808CB9D5188AD1FE00AFB841 /* HTMLPurifier_AttrDef_HTML_PixelsTest.m in Sources */,
 				1E40A0451892AFDF006992C5 /* Smoketest.m in Sources */,
