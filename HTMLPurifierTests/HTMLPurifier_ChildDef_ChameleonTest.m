@@ -13,6 +13,8 @@
 #import "HTMLPurifier_Arborize.h"
 #import "HTMLPurifier_Node.h"
 #import "HTMLPurifier_Lexer_libxmlLex.h"
+#import "HTMLPurifier_Generator.h"
+#import "HTMLPurifier_Node_Element.h"
 
 @interface HTMLPurifier_ChildDef_ChameleonTest : HTMLPurifier_Harness
 {
@@ -28,7 +30,6 @@
 {
     [super setUp];
     obj = [[HTMLPurifier_ChildDef_Chameleon alloc] initWithInline:@[@"b",@"i"] block:@[@"b",@"i",@"div"]];
-    [[super context] registerWithName:@"IsInline" ref:isInline];
     lexer = [HTMLPurifier_Lexer_libxmlLex new];
 }
 
@@ -40,10 +41,10 @@
 
 -(void) assertResult:(NSString*)input expect:(NSObject*)expect
 {
+    [[super context] registerWithName:@"IsInline" ref:isInline];
   
     NSArray* input_children = [[HTMLPurifier_Arborize arborizeTokens:[self tokenize:input] config:[super config] context:[super context]] children];
-    NSMutableArray* input_children_m = [input_children mutableCopy];
-    
+
     // call the function
     NSObject* result = [obj validateChildren:input_children config:[super config] context:[super context]];
     
@@ -54,21 +55,12 @@
         return;
     }
 
-    $result = $this->generateTokens($result);
-    if (is_array($expect) && !empty($expect) && $expect[0] instanceof HTMLPurifier_Node) {
-                $expect = $this->generateTokens($expect);
-    }
-    }
-    $result = $this->generate($result);
-        if (is_array($expect)) {
-            $expect = $this->generate($expect);
-        }
-    }
-    $this->assertIdentical($expect, $result);
+    //Result should be an Array...
+    result = [self generateTokens:(NSArray*)result];
     
-    if ($expect !== $result) {
-        echo '<pre>' . var_dump($result) . '</pre>';
-    }
+    result = [self generate:(NSArray*)result];
+
+    XCTAssertEqualObjects(expect, result);
     
 }
 
@@ -76,6 +68,21 @@
 {
     return [lexer tokenizeHTMLWithString:html config:[super config] context:[super context]];
 }
+
+-(NSString*) generate:(NSArray*)tokens
+{
+    HTMLPurifier_Generator* generator = [[HTMLPurifier_Generator alloc] initWithConfig:[super config] context:[super context]];
+    return [generator generateFromTokens:tokens];
+}
+
+- (NSArray*)generateTokens:(NSArray*)children
+{
+    HTMLPurifier_Node_Element* dummy = [[HTMLPurifier_Node_Element alloc] initWithName:@"dummy"];
+    dummy.children = [children mutableCopy];
+    return [HTMLPurifier_Arborize flattenNode:dummy config:self.config context:self.context];
+}
+
+
 
 
 /** The tests...**/
