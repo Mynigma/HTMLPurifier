@@ -20,7 +20,6 @@
 {
     HTMLPurifier_ChildDef_Chameleon* obj;
     NSNumber* isInline;
-    HTMLPurifier_Lexer_libxmlLex* lexer;
 }
 @end
 
@@ -30,7 +29,6 @@
 {
     [super setUp];
     obj = [[HTMLPurifier_ChildDef_Chameleon alloc] initWithInline:@[@"b",@"i"] block:@[@"b",@"i",@"div"]];
-    lexer = [HTMLPurifier_Lexer_libxmlLex new];
 }
 
 - (void)tearDown
@@ -66,6 +64,8 @@
 
 -(NSArray*) tokenize:(NSString*)html
 {
+    HTMLPurifier_Lexer_libxmlLex* lexer;
+    lexer = [HTMLPurifier_Lexer_libxmlLex new];
     return [lexer tokenizeHTMLWithString:html config:[super config] context:[super context]];
 }
 

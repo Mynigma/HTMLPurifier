@@ -420,6 +420,7 @@
 		80E5A88C18926777008A093D /* HTMLPurifier_AttrTransformTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88B18926777008A093D /* HTMLPurifier_AttrTransformTest.m */; };
 		80E5A88E189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88D189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m */; };
 		80E5A8911892898D008A093D /* HTMLPurifier_ChildDef_ChameleonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A8901892898D008A093D /* HTMLPurifier_ChildDef_ChameleonTest.m */; };
+		80E5A89318929F2E008A093D /* HTMLPurifier_ChildDef_CustomTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A89218929F2E008A093D /* HTMLPurifier_ChildDef_CustomTest.m */; };
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9C918803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9C718803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9CD18803B3200EB1E89 /* HTMLPurifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9CC18803B3200EB1E89 /* HTMLPurifier.m */; };
@@ -872,6 +873,7 @@
 		80E5A88B18926777008A093D /* HTMLPurifier_AttrTransformTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransformTest.m; sourceTree = "<group>"; };
 		80E5A88D189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransform_BackgroundTest.m; sourceTree = "<group>"; };
 		80E5A8901892898D008A093D /* HTMLPurifier_ChildDef_ChameleonTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_ChameleonTest.m; sourceTree = "<group>"; };
+		80E5A89218929F2E008A093D /* HTMLPurifier_ChildDef_CustomTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_CustomTest.m; sourceTree = "<group>"; };
 		80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HTMLPurifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		80EDF9BE18803B3200EB1E89 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		80EDF9C118803B3200EB1E89 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1455,6 +1457,7 @@
 			isa = PBXGroup;
 			children = (
 				80E5A8901892898D008A093D /* HTMLPurifier_ChildDef_ChameleonTest.m */,
+				80E5A89218929F2E008A093D /* HTMLPurifier_ChildDef_CustomTest.m */,
 			);
 			name = ChildDef;
 			sourceTree = "<group>";
@@ -2127,6 +2130,7 @@
 				801F016B1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m in Sources */,
 				801F016D1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m in Sources */,
 				808CBA46188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */,
+				80E5A89318929F2E008A093D /* HTMLPurifier_ChildDef_CustomTest.m in Sources */,
 				808CB9CB18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */,
 				801F0160188F1F1F00506C24 /* HTMLPurifier_TokenTest.m in Sources */,
 				808CB9E6188AFEEA00AFB841 /* HTMLPurifier_AttrDef_URI_HostTest.m in Sources */,
