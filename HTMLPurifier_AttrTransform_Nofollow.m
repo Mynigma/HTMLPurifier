@@ -63,6 +63,7 @@
         else
         {
             [attr_m setObject:@"nofollow" forKey:@"rel"];
+            [sortedKeys addObject:@"rel"];
         }
     }
     return attr_m;

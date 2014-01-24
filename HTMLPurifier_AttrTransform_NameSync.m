@@ -53,6 +53,7 @@
     if (!result)
     {
         [attr_m removeObjectForKey:@"name"];
+        [sortedKeys removeObject:@"name"];
     }
     else
     {

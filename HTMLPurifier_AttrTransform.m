@@ -44,10 +44,12 @@
     return attr;
 }
 
-- (void)prependCSS:(NSMutableDictionary*)attr css:(NSString*)css
+- (void)prependCSS:(NSMutableDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys css:(NSString*)css
 {
     attr[@"style"] = attr[@"style"] ? attr[@"style"] : @"";
-    attr[@"style"] = [NSString stringWithFormat:@"css%@", attr[@"style"]];
+    attr[@"style"] = [css stringByAppendingString:attr[@"style"]];
+    if (![sortedKeys containsObject:@"style"])
+        [sortedKeys addObject:@"style"];
 }
 
    /**
@@ -56,7 +58,7 @@
      * @param mixed $key Key of attribute to confiscate
      * @return mixed
      */
-- (NSObject*)confiscateAttr:(NSMutableDictionary*)attr key:(NSString*)key
+- (NSObject*)confiscateAttr:(NSMutableDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys key:(NSString*)key
     {
         if (!attr[key])
         {
@@ -64,6 +66,7 @@
         }
         NSObject* value = attr[key];
         [attr removeObjectForKey:key];
+        [sortedKeys removeObject:key];
         return value;
     }
 

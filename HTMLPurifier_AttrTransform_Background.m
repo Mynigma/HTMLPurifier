@@ -28,10 +28,10 @@
     
     NSMutableDictionary* attr_m = [attr mutableCopy];
     
-    NSObject* background = [self confiscateAttr:attr_m key:@"background"];
+    NSObject* background = [self confiscateAttr:attr_m sortedKeys:sortedKeys key:@"background"];
     // some validation should happen here
     
-    [self prependCSS:attr_m css:[NSString stringWithFormat:@"background-image:url(%@);",background]];
+    [self prependCSS:attr_m sortedKeys:sortedKeys css:[NSString stringWithFormat:@"background-image:url(%@);",background]];
     return attr_m;
 }
 

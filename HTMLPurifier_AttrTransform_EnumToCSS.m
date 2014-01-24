@@ -70,6 +70,8 @@
     NSString* value = trim(attr[attr_s]);
     NSMutableDictionary* attr_m = [attr mutableCopy];
     [attr_m removeObjectForKey:attr_s];
+    [sortedKeys removeObject:attr_s];
+
     
     if (!caseSensitive)
     {
@@ -80,7 +82,7 @@
     {
         return attr_m;
     }
-    [self prependCSS:attr_m css:enumToCSS[value]];
+    [self prependCSS:attr_m sortedKeys:sortedKeys css:enumToCSS[value]];
     return attr_m;
 }
 

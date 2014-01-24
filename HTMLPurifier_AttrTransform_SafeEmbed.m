@@ -33,8 +33,16 @@
 {
     NSMutableDictionary* attr_m = [attr mutableCopy];
     
+    if (![sortedKeys containsObject:@"allowscriptaccess"])
+        [sortedKeys addObject:@"allowscriptaccess"];
     [attr_m setObject:@"never" forKey:@"allowscriptaccess"];
+    
+    if (![sortedKeys containsObject:@"allownetworking"])
+        [sortedKeys addObject:@"allownetworking"];
     [attr_m setObject:@"internal" forKey:@"allownetworking"];
+    
+    if (![sortedKeys containsObject:@"type"])
+        [sortedKeys addObject:@"type"];
     [attr_m setObject:@"application/x-shockwave-flash" forKey:@"type"];
 
     return attr_m;

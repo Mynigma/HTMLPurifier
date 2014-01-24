@@ -46,13 +46,13 @@
     
     NSMutableDictionary* attr_m = [attr mutableCopy];
     
-    NSObject* length = [self confiscateAttr:attr_m key:name];
+    NSObject* length = [self confiscateAttr:attr_m sortedKeys:sortedKeys key:name];
     if (ctype_digit((NSString*)length))
     {
         length = [NSString stringWithFormat:@"%@px",length];
     }
     
-    [self prependCSS:attr_m css:[NSString stringWithFormat:@"%@:%@;",cssName,length]];
+    [self prependCSS:attr_m sortedKeys:sortedKeys css:[NSString stringWithFormat:@"%@:%@;",cssName,length]];
     
     return attr_m;
 }

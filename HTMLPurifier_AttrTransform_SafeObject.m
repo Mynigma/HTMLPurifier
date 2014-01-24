@@ -38,6 +38,7 @@
     {
         NSMutableDictionary* attr_m = [attr mutableCopy];
         [attr_m setObject:@"application/x-shockwave-flash" forKey:@"type"];
+        [sortedKeys addObject:@"type"];
         return attr_m;
     }
     return attr;
