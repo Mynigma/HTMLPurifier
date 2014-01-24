@@ -44,6 +44,9 @@
                <Test
                   Identifier = "HTMLPurifier_URIFilter_MakeAbsoluteTest">
                </Test>
+               <Test
+                  Identifier = "HTMLPurifier_ChildDef_CustomTest">
+               </Test>
             </SkippedTests>
          </TestableReference>
       </Testables>
