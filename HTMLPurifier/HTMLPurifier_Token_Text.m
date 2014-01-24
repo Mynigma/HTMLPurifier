@@ -38,9 +38,9 @@
 }
 
 
-- (NSArray*)toNode
+- (HTMLPurifier_Node_Text*)toNode
 {
-    return @[[[HTMLPurifier_Node_Text alloc] initWithData:self.data isWhitespace:NO line:self.line col:self.col], [NSNull null]];
+    return [[HTMLPurifier_Node_Text alloc] initWithData:self.data isWhitespace:NO line:self.line col:self.col];
 }
 
 - (id)copyWithZone:(NSZone *)zone

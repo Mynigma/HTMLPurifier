@@ -129,7 +129,7 @@
 - (NSString*)generateChildDefCallback:(NSArray*)matches
 {
     NSString* returnValue = self.info[matches[0]];
-    return self.info[returnValue];
+    return returnValue;
 }
 
 /**
