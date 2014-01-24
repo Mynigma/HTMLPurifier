@@ -79,73 +79,62 @@
 
 /*** Tests ***/
 
-public function testEmptyInput()
+-(void) testEmptyInput
 {
-    $this->assertResult('', false);
+    [self assertResult:@"" expect:false];
 }
 
-public function testSingleRow()
+-(void) testSingleRow
 {
-    $this->assertResult('<tr />');
+    [self assertResult:@"<tr />" expect:@"<tr />"];
 }
 
-public function testComplexContents()
+-(void) testComplexContents
 {
-    $this->assertResult('<caption /><col /><thead /><tfoot /><tbody>'.
-                        '<tr><td>asdf</td></tr></tbody>');
-    $this->assertResult('<col /><col /><col /><tr />');
+    [self assertResult:@"<caption /><col /><thead /><tfoot /><tbody><tr><td>asdf</td></tr></tbody>"
+                expect:@"<caption /><col /><thead /><tfoot /><tbody><tr><td>asdf</td></tr></tbody>"];
+    [self assertResult:@"<col /><col /><col /><tr />" expect:@"<col /><col /><col /><tr />"];
 }
 
-public function testReorderContents()
+-(void) testReorderContents
 {
-    $this->assertResult(
-                        '<col /><colgroup /><tbody /><tfoot /><thead /><tr>1</tr><caption /><tr />',
-                        '<caption /><col /><colgroup /><thead /><tfoot /><tbody /><tbody><tr>1</tr><tr /></tbody>');
+    [self assertResult:@"<col /><colgroup /><tbody /><tfoot /><thead /><tr>1</tr><caption /><tr />"
+                expect:@"<caption /><col /><colgroup /><thead /><tfoot /><tbody /><tbody><tr>1</tr><tr /></tbody>"];
 }
 
-public function testXhtml11Illegal()
+-(void) testXhtml11Illegal
 {
-    $this->assertResult(
-                        '<thead><tr><th>a</th></tr></thead><tr><td>a</td></tr>',
-                        '<thead><tr><th>a</th></tr></thead><tbody><tr><td>a</td></tr></tbody>'
-                        );
+    [self assertResult:@"<thead><tr><th>a</th></tr></thead><tr><td>a</td></tr>"
+                expect:@":<thead><tr><th>a</th></tr></thead><tbody><tr><td>a</td></tr></tbody>"];
 }
 
-public function testTrOverflowAndClose()
+-(void) testTrOverflowAndClose
 {
-    $this->assertResult(
-                        '<tr><td>a</td></tr><tr><td>b</td></tr><tbody><tr><td>c</td></tr></tbody><tr><td>d</td></tr>',
-                        '<tbody><tr><td>a</td></tr><tr><td>b</td></tr></tbody><tbody><tr><td>c</td></tr></tbody><tbody><tr><td>d</td></tr></tbody>'
-                        );
+    [self assertResult:@"<tr><td>a</td></tr><tr><td>b</td></tr><tbody><tr><td>c</td></tr></tbody><tr><td>d</td></tr>"
+                expect:@"<tbody><tr><td>a</td></tr><tr><td>b</td></tr></tbody><tbody><tr><td>c</td></tr></tbody><tbody><tr><td>d</td></tr></tbody>"];
 }
 
-public function testDuplicateProcessing()
+-(void) testDuplicateProcessing
 {
-    $this->assertResult(
-                        '<caption>1</caption><caption /><tbody /><tbody /><tfoot>1</tfoot><tfoot />',
-                        '<caption>1</caption><tfoot>1</tfoot><tbody /><tbody /><tbody />'
-                        );
+    [self assertResult:@"<caption>1</caption><caption /><tbody /><tbody /><tfoot>1</tfoot><tfoot />"
+                expect:@"<caption>1</caption><tfoot>1</tfoot><tbody /><tbody /><tbody />"];
 }
 
-public function testRemoveText()
+-(void) testRemoveText
 {
-    $this->assertResult('foo', false);
+    [self assertResult:@"foo" expect:false];
 }
 
-public function testStickyWhitespaceOnTr()
+-(void) disabled_testStickyWhitespaceOnTr
 {
-    $this->config->set('Output.Newline', "\n");
-    $this->assertResult("\n   <tr />\n  <tr />\n ");
+    [[super config] setString:@"Output.Newline" object:@"\n"];
+    [self assertResult:@"\n   <tr />\n  <tr />\n " expect:@"\n   <tr />\n  <tr />\n "];
 }
 
-public function testStickyWhitespaceOnTSection()
+-(void) disabled_testStickyWhitespaceOnTSection
 {
-    $this->config->set('Output.Newline', "\n");
-    $this->assertResult(
-                        "\n\t<tbody />\n\t\t<tfoot />\n\t\t\t",
-                        "\n\t<tfoot />\n\t\t\t<tbody />\n\t\t"
-                        );
-    
+    [[super config] setString:@"Output.Newline" object:@"\n"];
+    [self assertResult:@"\n\t<tbody />\n\t\t<tfoot />\n\t\t\t" expect:@"\n\t<tfoot />\n\t\t\t<tbody />\n\t\t"];
 }
 
 
