@@ -34,12 +34,16 @@
         NSMutableDictionary* attr = [passedAttr mutableCopy];
         if (!attr[@"src"])
         {
-            if ([config get:@"Core.RemoveInvalidImg"])
+            if ([config get:@"Core.RemoveInvalidImg"] && (BOOL)[config get:@"Core.RemoveInvalidImg"] == true)
             {
                 return attr;
             }
-            attr[@"src"] = (NSString*)[config get:@"Attr.DefaultInvalidImage"];
-            [sortedKeys addObject:@"src"];
+            if ([config get:@"Attr.DefaultInvalidImage"])
+                attr[@"src"] = (NSString*)[config get:@"Attr.DefaultInvalidImage"];
+            else
+                attr[@"src"] = @"";
+            if (![sortedKeys containsObject:@"src"])
+                [sortedKeys addObject:@"src"];
             src = NO;
         }
 
@@ -53,16 +57,22 @@
                     // truncate if the alt is too long
                     NSString* lastPathComponent = [(NSString*)attr[@"src"] lastPathComponent];
                     attr[@"alt"] = [lastPathComponent substringWithRange:NSMakeRange(0, MIN(40, lastPathComponent.length))];
-                    [sortedKeys addObject:@"alt"];
+                    if (![sortedKeys containsObject:@"alt"])
+                        [sortedKeys addObject:@"alt"];
                 }
                 else
                 {
                     attr[@"alt"] = alt;
-                    [sortedKeys addObject:@"alt"];
+                    if (![sortedKeys containsObject:@"alt"])
+                        [sortedKeys addObject:@"alt"];
                 }
             } else {
-                attr[@"alt"] = (NSString*)[config get:@"Attr.DefaultInvalidImageAlt"];
-                [sortedKeys addObject:@"alt"];
+                if ([config get:@"Attr.DefaultInvalidImageAlt"])
+                    attr[@"alt"] = (NSString*)[config get:@"Attr.DefaultInvalidImageAlt"];
+                else
+                    attr[@"alt"] = @"";
+                if (![sortedKeys containsObject:@"alt"])
+                    [sortedKeys addObject:@"alt"];
             }
         }
         return attr;
