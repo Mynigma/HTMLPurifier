@@ -160,7 +160,7 @@
                     _token = (HTMLPurifier_Token*)[_zipper prev:_token];
                     // indicate that other injectors should not process this token,
                     // but we need to reprocess it
-                    HTMLPurifier_Injector* injector = _injectors[index.intValue];
+                    //HTMLPurifier_Injector* injector = _injectors[index.intValue];
                     if([(HTMLPurifier_Token*)_token skip][index])
                         [[(HTMLPurifier_Token*)_token skip] removeObjectForKey:index];
                     [(HTMLPurifier_Token*)_token setRewind:index];

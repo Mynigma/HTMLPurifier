@@ -35,6 +35,11 @@
 		1E361075188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E361073188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m */; };
 		1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */; };
 		1E40A0451892AFDF006992C5 /* Smoketest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A0441892AFDF006992C5 /* Smoketest.m */; };
+		1E40A04A18931FB4006992C5 /* xssSmoketests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E40A04818931FAF006992C5 /* xssSmoketests.plist */; };
+		1E40A04D18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E40A04B18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.h */; };
+		1E40A04E18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A04C18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.m */; };
+		1E40A05118933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E40A04F18933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.h */; };
+		1E40A05218933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A05018933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.m */; };
 		1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */; };
 		1E5FAAA318853F780073CA79 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E5FAAA218853F780073CA79 /* config.plist */; };
 		1E5FAAA7188542C60073CA79 /* HTMLPurifier_HTMLModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E5FAAA5188542C60073CA79 /* HTMLPurifier_HTMLModule.h */; };
@@ -486,6 +491,11 @@
 		1E361073188C4C4D000435CC /* HTMLPurifier_HTMLModule_Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule_Text.m; sourceTree = "<group>"; };
 		1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ConfigTest.m; sourceTree = "<group>"; };
 		1E40A0441892AFDF006992C5 /* Smoketest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Smoketest.m; sourceTree = "<group>"; };
+		1E40A04818931FAF006992C5 /* xssSmoketests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xssSmoketests.plist; sourceTree = "<group>"; };
+		1E40A04B18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_HTMLModule_Tidy.h; sourceTree = "<group>"; };
+		1E40A04C18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule_Tidy.m; sourceTree = "<group>"; };
+		1E40A04F18933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_HTMLModule_Tidy_XHTML.h; sourceTree = "<group>"; };
+		1E40A05018933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_HTMLModule_Tidy_XHTML.m; sourceTree = "<group>"; };
 		1E5573DC188C963900E7A1CE /* HTMLPurifier_LinkifyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_LinkifyTest.m; sourceTree = "<group>"; };
 		1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_InjectorHarness.m; sourceTree = "<group>"; };
 		1E5FAAA218853F780073CA79 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
@@ -1082,6 +1092,10 @@
 				1EEE87A7188EBE8A00BDA422 /* HTMLPurifier_HTMLModule_NonXMLCommonAttributes.m */,
 				1EEE87AA188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.h */,
 				1EEE87AB188EBF3300BDA422 /* HTMLPurifier_HTMLModule_XMLCommonAttributes.m */,
+				1E40A04B18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.h */,
+				1E40A04C18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.m */,
+				1E40A04F18933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.h */,
+				1E40A05018933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.m */,
 			);
 			name = HTMLModule;
 			path = ..;
@@ -1605,6 +1619,7 @@
 		80EDF9C518803B3200EB1E89 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1E40A04818931FAF006992C5 /* xssSmoketests.plist */,
 				1E35ECF118881FC500E8FF31 /* entities.plist */,
 				1E5FAAA218853F780073CA79 /* config.plist */,
 				80EDF9C618803B3200EB1E89 /* HTMLPurifier-Info.plist */,
@@ -1692,6 +1707,7 @@
 				1E5FAADB1886B0DF0073CA79 /* HTMLPurifier_DefinitionCache.h in Headers */,
 				808CB9FA188B5F4D00AFB841 /* HTMLPurifier_URIFilter_DisableExternalResources.h in Headers */,
 				801F01AA1891716400506C24 /* HTMLPurifier_AttrTransform_SafeObject.h in Headers */,
+				1E40A04D18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.h in Headers */,
 				1EBB81D71882B3C1008B7FA4 /* HTMLPurifier_Lexer_libxmlLex.h in Headers */,
 				808CBA2C188BE27B00AFB841 /* HTMLPurifier_URIScheme_https.h in Headers */,
 				1E5FAABB1885783D0073CA79 /* HTMLPurifier_PercentEncoder.h in Headers */,
@@ -1728,6 +1744,7 @@
 				803FD4631882B18D0010D799 /* HTMLPurifier_AttrDef_HTML_Length.h in Headers */,
 				1E6F2C8E188B3AAE00EEEB3F /* HTMLPurifier_AttrTransform_ImgRequired.h in Headers */,
 				803FD4671882D0160010D799 /* HTMLPurifier_AttrDef_HTML_LinkTypes.h in Headers */,
+				1E40A05118933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.h in Headers */,
 				808CBA1C188BE1A100AFB841 /* HTMLPurifier_URIScheme_data.h in Headers */,
 				808CBA24188BE21900AFB841 /* HTMLPurifier_URIScheme_ftp.h in Headers */,
 				801F01BA189186C100506C24 /* HTMLPurifier_AttrTransform_Textarea.h in Headers */,
@@ -1928,6 +1945,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E40A04A18931FB4006992C5 /* xssSmoketests.plist in Resources */,
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
 				1E35ECF318882F9100E8FF31 /* entities.plist in Resources */,
 				1E35ECF418882F9300E8FF31 /* config.plist in Resources */,
@@ -1947,6 +1965,7 @@
 				803FD42E188055D60010D799 /* HTMLPurifier_Lexer.m in Sources */,
 				1EE2D977188C1F350009DF07 /* HTMLPurifier_ChildDef_Custom.m in Sources */,
 				80B94C8818870737001DEC3E /* HTMLPurifier_AttrDef_CSS_DenyElementDecorator.m in Sources */,
+				1E40A04E18932FFE006992C5 /* HTMLPurifier_HTMLModule_Tidy.m in Sources */,
 				1ED039551880CB150075F6A4 /* HTMLPurifier_AttrDef_Switch.m in Sources */,
 				1E6F2C77188B22AB00EEEB3F /* HTMLPurifier_AttrTransform.m in Sources */,
 				1E68BDFA1883504C0038DAB1 /* HTMLPurifier_Strategy.m in Sources */,
@@ -2109,6 +2128,7 @@
 				1ED0397F1881563F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Background.m in Sources */,
 				1ED039411880758F0075F6A4 /* HTMLPurifier_AttrDef_CSS_Composite.m in Sources */,
 				803FD41E188048780010D799 /* HTMLPurifier_Strategy_Core.m in Sources */,
+				1E40A05218933D7C006992C5 /* HTMLPurifier_HTMLModule_Tidy_XHTML.m in Sources */,
 				1E6F2C73188B224700EEEB3F /* HTMLPurifier_AttrTransform_NameSync.m in Sources */,
 				808CBA35188BE2F900AFB841 /* HTMLPurifier_URIScheme_news.m in Sources */,
 				1E6F2C87188B2A1800EEEB3F /* HTMLPurifier_HTMLModule_Tables.m in Sources */,

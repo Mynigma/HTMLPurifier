@@ -7,6 +7,8 @@
 //
 
 #import "HTMLPurifier_ChildDef_Custom.h"
+#import "BasicPHP.h"
+#import "HTMLPurifier_Node.h"
 
 @implementation HTMLPurifier_ChildDef_Custom
 
@@ -29,32 +31,36 @@
      */
 - (void)_compileRegex
     {
-//        $raw = str_replace(' ', '', $this->dtd_regex);
-//        if ($raw{0} != '(') {
-//            $raw = "($raw)";
-//        }
-//        $el = '[#a-zA-Z0-9_.-]+';
-//        $reg = $raw;
-//
-//        // COMPLICATED! AND MIGHT BE BUGGY! I HAVE NO CLUE WHAT I'M
-//        // DOING! Seriously: if there's problems, please report them.
-//
-//        // collect all elements into the $elements array
-//        preg_match_all("/$el/", $reg, $matches);
-//        foreach ($matches[0] as $match) {
-//            $this->elements[$match] = true;
-//        }
-//
-//        // setup all elements as parentheticals with leading commas
-//        $reg = preg_replace("/$el/", '(,\\0)', $reg);
-//
-//        // remove commas when they were not solicited
-//        $reg = preg_replace("/([^,(|]\(+),/", '\\1', $reg);
-//
-//        // remove all non-paranthetical commas: they are handled by first regex
-//        $reg = preg_replace("/,\(/", '(', $reg);
-//
-//        $this->_pcre_regex = $reg;
+        NSString* raw = (NSString*)str_replace(@" ", @"", self.dtd_regex);
+        if ([raw characterAtIndex:0] != '(')
+        {
+            raw = @"($raw)";
+        }
+        NSString* el = @"[#a-zA-Z0-9_.-]+";
+        NSString* reg = raw;
+
+        // COMPLICATED! AND MIGHT BE BUGGY! I HAVE NO CLUE WHAT I'M
+        // DOING! Seriously: if there's problems, please report them.
+
+        // collect all elements into the $elements array
+        NSMutableArray* matches = [NSMutableArray new];
+        preg_match_all_3(el, reg, matches);
+        if(matches.count>0 && [matches[0] isKindOfClass:[NSArray class]])
+            for(NSString* match in matches[0])
+            {
+                self.elements[match] = @YES;
+            }
+
+        // setup all elements as parentheticals with leading commas
+        reg = preg_replace_3(el, @"(,\\0)", reg);
+
+        // remove commas when they were not solicited
+        reg = preg_replace_3(@"([^,(|]\(+),", @"\\1", reg);
+
+        // remove all non-paranthetical commas: they are handled by first regex
+        reg = preg_replace_3(@"/,\(/", @"(", reg);
+
+        _pcre_regex = reg;
     }
 
     /**
@@ -65,23 +71,20 @@
      */
 - (NSObject*)validateChildren:(NSArray*)children config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
-        return nil;
-//        $list_of_children = '';
-//        $nesting = 0; // depth into the nest
-//        foreach ($children as $node) {
-//            if (!empty($node->is_whitespace)) {
-//                continue;
-//            }
-//            $list_of_children .= $node->name . ',';
-//        }
-//        // add leading comma to deal with stray comma declarations
-//        $list_of_children = ',' . rtrim($list_of_children, ',');
-//        $okay =
-//        preg_match(
-//                   '/^,?' . $this->_pcre_regex . '$/',
-//                   $list_of_children
-//                   );
-//        return (bool)$okay;
+        NSMutableString* list_of_children = [NSMutableString new];
+        //NSInteger nesting = 0; // depth into the nest
+        for(HTMLPurifier_Node* node in children)
+        {
+            if (!node.isWhitespace)
+            {
+                continue;
+            }
+            [list_of_children appendFormat:@"%@,", node.name];
+        }
+        // add leading comma to deal with stray comma declarations
+        list_of_children = [NSMutableString stringWithFormat:@",%@,", rtrim([list_of_children copy])];
+        BOOL okay = preg_match_2([NSString stringWithFormat:@"^,?%@$", _pcre_regex], list_of_children);
+        return okay?@YES:nil;
     }
 
 

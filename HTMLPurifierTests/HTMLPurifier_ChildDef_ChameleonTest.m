@@ -35,8 +35,6 @@
     to_node_list = YES;
     [super setUp];
     obj = [[HTMLPurifier_ChildDef_Chameleon alloc] initWithInline:@[@"b",@"i"] block:@[@"b",@"i",@"div"]];
-    isInline = @NO;
-    [[super context] registerWithName:@"IsInline" ref:isInline];
 }
 
 - (void)tearDown
@@ -102,18 +100,21 @@
 -(void) testInlineAlwaysAllowed
 {
     isInline = @YES;
+    [[super context] registerWithName:@"IsInline" ref:isInline];
     [self assertResult:@"<b>Allowed.</b>" expect:@"<b>Allowed.</b>"];
 }
 
 -(void) testBlockNotAllowedInInline
 {
     isInline = @YES;
+    [[super context] registerWithName:@"IsInline" ref:isInline];
     [self assertResult:@"<div>Not allowed.</div>" expect:@""];
 }
 
 -(void) testBlockAllowedInNonInline
 {
     isInline = @NO;
+    [[super context] registerWithName:@"IsInline" ref:isInline];
     [self assertResult:@"<div>Allowed.</div>" expect:@"<div>Allowed.</div>"];
 }
 

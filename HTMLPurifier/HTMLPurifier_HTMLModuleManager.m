@@ -45,8 +45,8 @@
 
         NSArray* transitional = @[@"Legacy", @"Target", @"Iframe"];
 
-        NSArray* xml = @[@"XMLAttributes"];
-        NSArray* non_xml = @[@"NonXMLAttributes"];
+        NSArray* xml = @[@"XMLCommonAttributes"];
+        NSArray* non_xml = @[@"NonXMLCommonAttributes"];
 
         // setup basic doctypes
         [_doctypes registerDoctype:@"HTML 4.01 Transitional" xml:NO modules:[[common arrayByAddingObjectsFromArray:transitional] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Transitional", @"Tidy_Proprietary"] aliases:@[] dtdPublic:@"-//W3C//DTD HTML 4.01 Transitional//EN" dtdSystem:@"http://www.w3.org/TR/html4/loose.dtd"];

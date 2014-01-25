@@ -307,6 +307,10 @@
 
         //TO DO:
         //IS THIS RIGHT?!?!?!?
+        if(properties->children)
+        {
+            if(properties->children->content)
+            {
         NSString* value = [NSString stringWithCString:(char*)properties->children->content encoding:NSUTF8StringEncoding];
         if(name && value)
         {
@@ -315,6 +319,13 @@
         }
         else
             TRIGGER_ERROR(@"Parse error: trying to assign propertiesLookup[%@] = %@", name, value);
+            }
+            else
+                TRIGGER_ERROR(@"Parse error: children without content");
+        }
+        else
+            TRIGGER_ERROR(@"Parse error: no children");
+        
         properties = properties->next;
     }
     return @[propertiesLookup, sortOrder];

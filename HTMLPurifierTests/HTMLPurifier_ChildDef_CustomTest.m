@@ -88,10 +88,10 @@
     NSDictionary* x = @{@"a" : @YES, @"b" : @YES, @"c" : @YES, @"d" : @YES};
     XCTAssertEqualObjects([obj elements], x);
     
-    [self assertResult:@"" expect: @NO];
-    [self assertResult:@"<a /><a />" expect: @NO]; // or nil?
+    [self assertResult:@"" expect: nil];
+    [self assertResult:@"<a /><a />" expect: nil]; // or nil?
     
-    [self assertResult:@"<a /><b /><c /><d /><a /><b />" expect:@YES]; //or do we expct a string?
+    [self assertResult:@"<a /><b /><c /><d /><a /><b />" expect:@YES]; //or do we expect a string?
     [self assertResult:@"<a /><d>Dob</d><a /><b>foo</b>" expect:@"<a href=\"moo\" /><b>foo</b>"];
     
 }
