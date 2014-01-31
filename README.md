@@ -3,7 +3,7 @@ HTMLPurifier
 
 **tl&dr**: Objective-C Framework for HTML filtering originated in Edward Z. Yangs [HTMLPurifier for PHP](http://htmlpurifier.org). 
 
-HTMLPurifier for Objective-C is an Standards-Compliant HTML Filtering Framework (getting there...). You can use it to prevent running bad code from **html emails** or other user submitted html code. 
+HTMLPurifier for Objective-C is an Standards-Compliant HTML Filtering Framework (getting there...). You can use it to prevent running evil code from **html emails** or filter user submitted html code. 
 
 Some built in features are:
 
