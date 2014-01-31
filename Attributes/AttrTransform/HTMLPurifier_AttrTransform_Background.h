@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrTransform_Background.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrTransform_Background.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 22.01.14.
 

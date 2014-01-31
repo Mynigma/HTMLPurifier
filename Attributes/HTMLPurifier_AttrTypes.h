@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrTypes.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrTypes.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 19.01.14.
 

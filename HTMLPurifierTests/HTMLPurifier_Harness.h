@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Harness.h
-//  HTMLPurifier
+//   HTMLPurifier_Harness.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 15.01.14.
 

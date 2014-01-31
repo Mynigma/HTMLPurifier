@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrDef_Text.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrDef_Text.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 13.01.14.
 

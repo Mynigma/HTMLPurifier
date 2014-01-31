@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Token_Text.h
-//  HTMLPurifier
+//   HTMLPurifier_Token_Text.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 12.01.14.
 

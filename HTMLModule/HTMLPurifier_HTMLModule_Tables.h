@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_HTMLModule_Tables.h
-//  HTMLPurifier
+//   HTMLPurifier_HTMLModule_Tables.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 18.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_VarParser_Flexible.h
-//  HTMLPurifier
+//   HTMLPurifier_VarParser_Flexible.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 13.01.14.
 

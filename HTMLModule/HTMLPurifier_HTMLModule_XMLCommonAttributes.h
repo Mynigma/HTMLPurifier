@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_HTMLModule_XMLCommonAttributes.h
-//  HTMLPurifier
+//   HTMLPurifier_HTMLModule_XMLCommonAttributes.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 21.01.14.
 

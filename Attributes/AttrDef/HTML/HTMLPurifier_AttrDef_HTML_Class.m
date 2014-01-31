@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrDef_HTML_Class.m
-//  HTMLPurifier
+//   HTMLPurifier_AttrDef_HTML_Class.m
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 10.01.14.
 

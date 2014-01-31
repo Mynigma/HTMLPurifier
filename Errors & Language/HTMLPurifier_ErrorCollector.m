@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_ErrorCollector.m
-//  HTMLPurifier
+//   HTMLPurifier_ErrorCollector.m
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 10.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Lexer.h
-//  HTMLPurifier
+//   HTMLPurifier_Lexer.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 10.01.14.
 

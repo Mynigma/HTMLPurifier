@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrTransform_ScriptRequired.m
-//  HTMLPurifier
+//   HTMLPurifier_AttrTransform_ScriptRequired.m
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 23.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_DefinitionCacheFactory.h
-//  HTMLPurifier
+//   HTMLPurifier_DefinitionCacheFactory.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 15.01.14.
 

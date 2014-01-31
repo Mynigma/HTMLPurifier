@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Config.h
-//  HTMLPurifier
+//   HTMLPurifier_Config.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 10.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_URIFilter_DisableResources.m
-//  HTMLPurifier
+//   HTMLPurifier_URIFilter_DisableResources.m
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 19.01.14.
 

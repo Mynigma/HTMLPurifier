@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrDef_CSS_ImportantDecorator.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrDef_CSS_ImportantDecorator.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 15.01.14.
 

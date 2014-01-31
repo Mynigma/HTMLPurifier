@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Zipper.h
-//  HTMLPurifier
+//   HTMLPurifier_Zipper.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 13.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrTransform_SafeObject.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrTransform_SafeObject.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 23.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_URISchemeRegistry.h
-//  HTMLPurifier
+//   HTMLPurifier_URISchemeRegistry.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 19.01.14.
 

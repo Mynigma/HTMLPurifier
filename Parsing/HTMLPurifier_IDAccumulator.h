@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_IDAccumulator.h
-//  HTMLPurifier
+//   HTMLPurifier_IDAccumulator.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 10.01.14.
 

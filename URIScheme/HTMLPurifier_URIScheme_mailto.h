@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_URIScheme_mailto.h
-//  HTMLPurifier
+//   HTMLPurifier_URIScheme_mailto.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 19.01.14.
 

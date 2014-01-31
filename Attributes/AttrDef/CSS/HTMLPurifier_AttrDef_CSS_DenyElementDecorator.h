@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrDef_CSS_DenyElementDecorator.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 15.01.14.
 

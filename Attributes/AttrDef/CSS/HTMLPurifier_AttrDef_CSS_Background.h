@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrDef_CSS_Background.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrDef_CSS_Background.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 11.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Strategy_RemoveForeignElements.m
-//  HTMLPurifier
+//   HTMLPurifier_Strategy_RemoveForeignElements.m
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 13.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_DOMNode.h
-//  HTMLPurifier
+//   HTMLPurifier_DOMNode.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 17.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_URIDefinition.h
-//  HTMLPurifier
+//   HTMLPurifier_URIDefinition.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 13.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Strategy_MakeWellFormed.m
-//  HTMLPurifier
+//   HTMLPurifier_Strategy_MakeWellFormed.m
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 13.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_URIScheme_nntp.h
-//  HTMLPurifier
+//   HTMLPurifier_URIScheme_nntp.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 19.01.14.
 

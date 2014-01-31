@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrDef_CSS_Composite.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrDef_CSS_Composite.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 10.01.14.
 

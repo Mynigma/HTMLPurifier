@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Injector_Linkify.h
-//  HTMLPurifier
+//   HTMLPurifier_Injector_Linkify.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 14.01.14.
 

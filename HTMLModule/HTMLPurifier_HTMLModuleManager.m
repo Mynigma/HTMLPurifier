@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_HTMLModuleManager.m
-//  HTMLPurifier
+//   HTMLPurifier_HTMLModuleManager.m
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 14.01.14.
 

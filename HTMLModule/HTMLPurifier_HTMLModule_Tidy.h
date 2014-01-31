@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Tidy.h
-//  HTMLPurifier
+//   HTMLPurifier_Tidy.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 25.01.14.
 

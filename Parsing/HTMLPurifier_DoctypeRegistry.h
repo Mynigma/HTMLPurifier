@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_DoctypeRegistry.h
-//  HTMLPurifier
+//   HTMLPurifier_DoctypeRegistry.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 19.01.14.
 

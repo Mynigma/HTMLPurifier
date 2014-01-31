@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_EntityLookup.m
-//  HTMLPurifier
+//   HTMLPurifier_EntityLookup.m
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 16.01.14.
 

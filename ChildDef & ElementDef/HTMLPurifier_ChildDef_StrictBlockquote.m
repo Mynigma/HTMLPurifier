@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_ChildDef_StrictBlockquote.m
-//  HTMLPurifier
+//   HTMLPurifier_ChildDef_StrictBlockquote.m
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 24.01.14.
 

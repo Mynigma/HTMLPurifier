@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Strategy_Core.h
-//  HTMLPurifier
+//   HTMLPurifier_Strategy_Core.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 10.01.14.
 

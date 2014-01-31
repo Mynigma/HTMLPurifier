@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_EntityParser.m
-//  HTMLPurifier
+//   HTMLPurifier_EntityParser.m
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 14.01.14.
 

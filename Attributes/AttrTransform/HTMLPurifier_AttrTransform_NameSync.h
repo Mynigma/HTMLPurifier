@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrTransform_NameSync.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrTransform_NameSync.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 18.01.14.
 

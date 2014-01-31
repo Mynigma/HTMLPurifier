@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrTransform_ImgRequired.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrTransform_ImgRequired.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 18.01.14.
 

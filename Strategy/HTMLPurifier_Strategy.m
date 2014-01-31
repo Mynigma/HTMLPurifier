@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Strategy.m
-//  HTMLPurifier
+//   HTMLPurifier_Strategy.m
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 12.01.14.
 

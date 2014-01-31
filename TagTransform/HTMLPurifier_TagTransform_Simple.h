@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_TagTransform_Simple.h
-//  HTMLPurifier
+//   HTMLPurifier_TagTransform_Simple.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 18.01.14.
 

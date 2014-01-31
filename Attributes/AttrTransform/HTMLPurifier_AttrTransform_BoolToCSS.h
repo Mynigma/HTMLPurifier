@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_AttrTransform_BoolToCSS.h
-//  HTMLPurifier
+//   HTMLPurifier_AttrTransform_BoolToCSS.h
+//   HTMLPurifier
 //
 //  Created by Lukas Neumann on 23.01.14.
 

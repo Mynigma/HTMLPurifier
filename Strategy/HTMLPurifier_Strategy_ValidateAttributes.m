@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_Strategy_ValidateAttributes.m
-//  HTMLPurifier
+//   HTMLPurifier_Strategy_ValidateAttributes.m
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 13.01.14.
 

@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier.h
-//  HTMLPurifier
+//   HTMLPurifier.h
+//   HTMLPurifier
 
 /*
  HTML Purifier for PHP 4.6.0 - Standards Compliant HTML Filtering

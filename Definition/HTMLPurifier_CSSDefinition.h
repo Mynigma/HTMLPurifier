@@ -1,6 +1,6 @@
 //
-//  HTMLPurifier_CSSDefinition.h
-//  HTMLPurifier
+//   HTMLPurifier_CSSDefinition.h
+//   HTMLPurifier
 //
 //  Created by Roman Priebe on 10.01.14.
 
