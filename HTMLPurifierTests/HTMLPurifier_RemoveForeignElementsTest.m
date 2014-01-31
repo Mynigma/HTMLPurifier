@@ -152,10 +152,11 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 - (void)testRemoveInvalidImg
 {
         NSString* before = @"<img />";
-        NSString* after = @"";
+        // was NSString* after = @"";
+        NSString* expect = @"<img src=\"\" alt=\"Invalid image\" />";
         before = [self runOnString:before];
 
-        XCTAssertEqualObjects(before, after);
+        XCTAssertEqualObjects(before, expect);
 }
 
 - (void)testPreserveValidImg
