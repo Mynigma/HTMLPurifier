@@ -5,23 +5,6 @@
 //  Created by Lukas Neumann on 10.01.14.
 
 /*
- * HTML Purifier is an HTML filter that will take an arbitrary snippet of
- * HTML and rigorously test, validate and filter it into a version that
- * is safe for output onto webpages. It achieves this by:
- *
- *  -# Lexing (parsing into tokens) the document,
- *  -# Executing various strategies on the tokens:
- *      -# Removing all elements not in the whitelist,
- *      -# Making the tokens well-formed,
- *      -# Fixing the nesting of the nodes, and
- *      -# Validating attributes of the nodes; and
- *  -# Generating HTML from the purified tokens.
- *
- * However, most users will only need to interface with the HTMLPurifier
- * and HTMLPurifier_Config.
- */
-
-/*
  HTML Purifier for PHP 4.6.0 - Standards Compliant HTML Filtering
  Copyright (C) 2006-2008 Edward Z. Yang
  
@@ -56,6 +39,26 @@
 #import "HTMLPurifier_IDAccumulator.h"
 #import "HTMLPurifier_Encoder.h"
 #import "BasicPHP.h"
+
+
+
+/*
+ * HTML Purifier is an HTML filter that will take an arbitrary snippet of
+ * HTML and rigorously test, validate and filter it into a version that
+ * is safe for output onto webpages. It achieves this by:
+ *
+ *  -# Lexing (parsing into tokens) the document,
+ *  -# Executing various strategies on the tokens:
+ *      -# Removing all elements not in the whitelist,
+ *      -# Making the tokens well-formed,
+ *      -# Fixing the nesting of the nodes, and
+ *      -# Validating attributes of the nodes; and
+ *  -# Generating HTML from the purified tokens.
+ *
+ * However, most users will only need to interface with the HTMLPurifier
+ * and HTMLPurifier_Config.
+ */
+
 
 
 static HTMLPurifier* theInstance;

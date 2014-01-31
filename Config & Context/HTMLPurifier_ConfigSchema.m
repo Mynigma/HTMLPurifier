@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Roman Priebe on 13.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 #define BUNDLE (NSClassFromString(@"HTMLPurifierTests")!=nil)?[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifierTests") class]]:[NSBundle mainBundle]
 

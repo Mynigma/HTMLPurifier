@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Lukas Neumann on 12.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 /**
  * Validates a host according to the IPv4, IPv6 and DNS (future) specifications.

@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Lukas Neumann on 19.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 /**
  * Validator for the components of a URI for a specific scheme

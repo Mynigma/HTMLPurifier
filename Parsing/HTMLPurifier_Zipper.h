@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Roman Priebe on 13.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 /**
  * A zipper is a purely-functional data structure which contains

@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Lukas Neumann on 15.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 /**
  * Decorator which enables CSS properties to be disabled for specific elements.

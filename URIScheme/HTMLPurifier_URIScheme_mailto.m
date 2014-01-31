@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Lukas Neumann on 19.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 #import "HTMLPurifier_URIScheme_mailto.h"
 #import "HTMLPurifier_URI.h"

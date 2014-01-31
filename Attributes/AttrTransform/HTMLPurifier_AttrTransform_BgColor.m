@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Lukas Neumann on 23.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 /**
  * Pre-transform that changes deprecated bgcolor attribute to CSS.

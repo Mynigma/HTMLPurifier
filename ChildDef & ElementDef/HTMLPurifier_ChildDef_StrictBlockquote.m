@@ -3,8 +3,7 @@
 //  HTMLPurifier
 //
 //  Created by Lukas Neumann on 24.01.14.
-//  Copyright (c) 2014 Mynigma. All rights reserved.
-//
+
 
 #import "HTMLPurifier_ChildDef_StrictBlockquote.h"
 #import "HTMLPurifier_Config.h"
