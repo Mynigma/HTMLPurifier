@@ -35,7 +35,8 @@ Future features:
   - Goto `Editor > Add Build Phase > Copy Files`.
   - Expand the newly created Build Phase and change it's destination to "Frameworks".
   - Click the `+` icon and select `HTMLPurifier.framework`.
-  - You may need to add an recursive header-search-path to your build settings
+  - Add `config.plist` and `entities.plist` to your projects `copy bundle resources` list.
+  - You may need to add an recursive header-search-path to your build settings.
 4. **For iOS** 
   - Will follow soon.
 5. Use it.
@@ -78,7 +79,7 @@ Wow. We spent 2,5 sleepless weeks for this framework. The PHP standalone file ha
   - dynamic configurations
   - ...
 
-2. Updating and optimizing and existing code
+2. Updating and optimizing existing code
   - Fix the failing unit tests
   - ...
 
