@@ -54,7 +54,7 @@ HTMLPurifier *purifier = [HTMLPurifier new];
 NSString *cleanHTML = [purifier purify:dirtyHTML];
 ```
 
-You should consider not to run this on your main thread.
+You should consider not to run this on your main thread and to put it in a try & catch block.
 
 
 ## Config ##
