@@ -27,15 +27,17 @@ Future features:
 
 1. Checkout HTMLPurifier into a directory relative to your project.
 2. In the main directory, locate the `HTMLPurifier.xcodeproj` file, and drag this into your Xcode project.
-3. **For Mac** - If you're building for Mac, you can link against HTMLPurifier as a framework:
-        - Go to Build Phases from your build target, and under 'Link Binary With Libraries', add `HTMLPurifier.framework`.
-        - Make sure to use LLVM C++ standard library.  Open Build Settings, scroll down to 'C++ Standard Library', and select `libc++`.
-        - In Build Phases, add a Target Dependency of `HTMLPurifier` (it's the one with a little toolbox icon).
-        - Goto `Editor > Add Build Phase > Copy Files`.
-        - Expand the newly created Build Phase and change it's destination to "Frameworks".
-        - Click the `+` icon and select `HTMLPurifier.framework`.
-        - You may need to add an recursive header-search-path to your build settings
-4. **For iOS** - Will follow soon.
+3. **For Mac**:
+  - If you're building for Mac, you can link against HTMLPurifier as a framework
+  - Go to Build Phases from your build target, and under 'Link Binary With Libraries', add  
+  - Make sure to use LLVM C++ standard library.  Open Build Settings, scroll down to 'C++ Standard Library', and select `libc++`.
+  - In Build Phases, add a Target Dependency of `HTMLPurifier` (it's the one with a little toolbox icon).
+  - Goto `Editor > Add Build Phase > Copy Files`.
+  - Expand the newly created Build Phase and change it's destination to "Frameworks".
+  - Click the `+` icon and select `HTMLPurifier.framework`.
+  - You may need to add an recursive header-search-path to your build settings
+4. **For iOS** 
+  - Will follow soon.
 5. Use it.
 
 
@@ -51,7 +53,7 @@ HTMLPurifier *purifier = [HTMLPurifier new];
 NSString *cleanHTML = [purifier purify:dirtyHTML];
 ```
 
-3. You should consider not to run this on your main thread.
+You should consider not to run this on your main thread.
 
 
 ## Config ##
@@ -71,14 +73,14 @@ We left some important stuff out, like any pre or post filtering. And since we'r
 Wow. We spent 2,5 sleepless weeks for this framework. The PHP standalone file has over 20.000 lines of code and we additionaly implemented around 400 unit tests. **But** there is still work to do. You're welcome to contribute in any form to this project.
 
 1. Implementing leftout stuff:
-- pre and post filtering
-- fix nesting strategy
-- dynamic configurations
-- ...
+  - pre and post filtering
+  - fix nesting strategy
+  - dynamic configurations
+  - ...
 
 2. Updating and optimizing and existing code
-- Fix the failing unit tests
-- ...
+  - Fix the failing unit tests
+  - ...
 
 If you introduce new stuff, please provide viable unit tests. Here is great guideline: [Coding standards](http://htmlpurifier.org/contribute#toclink1).
 
