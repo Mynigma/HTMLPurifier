@@ -35,7 +35,7 @@ Future features:
   - Goto `Editor > Add Build Phase > Copy Files`.
   - Expand the newly created Build Phase and change it's destination to "Frameworks".
   - Click the `+` icon and select `HTMLPurifier.framework`.
-  - Add `config.plist` and `entities.plist` to your projects `copy bundle resources` list.
+  - ~~Add `config.plist` and `entities.plist` to your projects `copy bundle resources` list.~~
   - You may need to add an recursive header-search-path to your build settings.
 4. **For iOS** 
   - Will follow soon.
@@ -59,7 +59,7 @@ You should consider not to run this on your main thread and to put it in a try &
 
 ## Config ##
 
-In Edward Z. Yangs HTMLPurifier one has a lot of possible config settings. We currently just using the `default config` which you can find and edit in the `config.plist`. CAUTION: Some settings may not work or will crash the program.
+In Edward Z. Yangs HTMLPurifier one has a lot of possible config settings. We currently just using the `default config` which you can find and edit in the `Supporting Files/config.plist`. CAUTION: Some settings may not work or will crash the program.
 
 
 ## Warnings ##
