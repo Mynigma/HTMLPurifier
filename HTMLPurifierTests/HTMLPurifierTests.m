@@ -67,6 +67,16 @@
 
 }
 
+-(void)d_testDebug
+{
+    NSString* data = [[NSString alloc] initWithContentsOfFile:@"/Users/Lukas/Desktop/DriveNow Monatsübersicht Januar.txt" encoding:NSUTF8StringEncoding error:nil];
+    NSString* result = [purifier purify:data];
+    NSString* expect = @"";
+    XCTAssertEqualObjects(result, expect);
+    
+}
+
+
 /*
 - (void)testMakeAbsolute
 {
