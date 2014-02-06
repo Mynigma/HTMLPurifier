@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define TRIGGER_ERROR NSLog
+#define TRIGGER_ERROR //NSLog
 
 #ifndef BASIC_PHP
 

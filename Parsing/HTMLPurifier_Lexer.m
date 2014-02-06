@@ -225,14 +225,17 @@
 
 /**
  * Takes a string of HTML (fragment or document) and returns the content
+ * and transforms body to div
  * @todo Consider making protected
  */
 - (NSString*)extractBodyWithHtml:html
 {
     NSMutableArray* matches = [NSMutableArray new];
-    BOOL result = preg_match_3(@"!<body[^>]*>(.*)</body>!is", html, matches);
+    BOOL result = preg_match_3_withLineBreak(@"<body[^>]*>.*</body>", html, matches);
     if (result) {
-        return matches[1];
+        matches[0] = preg_replace_3(@"<body", @"<div",matches[0]);
+        matches[0] = preg_replace_3(@"</body>", @"</div>",matches[0]);
+        return matches[0];
     } else {
         return html;
     }

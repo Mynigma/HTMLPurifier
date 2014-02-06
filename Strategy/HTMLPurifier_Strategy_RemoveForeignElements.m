@@ -166,11 +166,11 @@
                     {
                         remove_until = NO;
                     }
-                    NSLog(@"RemoveForeignElements: Foreign meta element '%@' removed", tokenName);
+                    //NSLOG"RemoveForeignElements: Foreign meta element '%@' removed", tokenName);
                 }
                 else
                 {
-                    NSLog(@"RemoveForeignElements: Foreign '%@' element removed", tokenName);
+                    //NSLOG"RemoveForeignElements: Foreign '%@' element removed", tokenName);
                 }
                 continue;
             }

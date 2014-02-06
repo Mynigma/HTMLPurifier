@@ -59,8 +59,12 @@
         } while (html && ![html isEqualToString:old]);
         html = [BasicPHP pregReplace:comment callback:^(NSArray* array){ return [self callbackUndoCommentSubst:array]; } haystack:html]; // fix comments
     }
+    
+    //extracts only the part in the body and transforms body to div (then we'll keep style attributes in from the body)
+    html = [super extractBodyWithHtml:html];
 
     // preprocess html, essential for UTF-8
+    // Adds html,head,body tags
     html = [self wrapHTML:html config:config context:context];
 
 

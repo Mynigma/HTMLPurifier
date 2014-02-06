@@ -49,7 +49,7 @@
     base = [def base];
     if (!base)
     {
-        NSLog(@"URI.MakeAbsolute is being ignored due to lack of value for URI.Base configuration");
+        //NSLOG"URI.MakeAbsolute is being ignored due to lack of value for URI.Base configuration");
         return NO;
     }
     [base setFragment:nil]; // fragment is invalid for base URI
