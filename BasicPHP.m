@@ -8,6 +8,10 @@
 #import "BasicPHP.h"
 #import <CommonCrypto/CommonHMAC.h>
 
+void do_nothing()
+{
+    
+}
 
 NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* subject)
 {

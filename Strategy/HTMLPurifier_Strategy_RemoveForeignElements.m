@@ -171,6 +171,7 @@
                 else
                 {
                     //NSLOG"RemoveForeignElements: Foreign '%@' element removed", tokenName);
+                    TRIGGER_ERROR(@"RemoveForeignElements: Foreign meta element '%@' removed", tokenName);
                 }
                 continue;
             }
