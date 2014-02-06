@@ -7,9 +7,12 @@
 
 #import <Foundation/Foundation.h>
 
-#define TRIGGER_ERROR NSLog
+//use NSLog instead of do_nothing to turn on logs
+#define TRIGGER_ERROR do_nothing
 
 #ifndef BASIC_PHP
+
+void do_nothing();
 
 NSString* preg_replace_3(NSString* pattern, NSString* replacement, NSString* subject);
 //TODO
