@@ -62,7 +62,7 @@
  */
 -(BOOL) doValidate:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    NSLog(@"WARNING: URISCHEME - ABSTRACT FUNCTION CALLED");
+    //NSLOG"WARNING: URISCHEME - ABSTRACT FUNCTION CALLED");
     return YES;
 }
 

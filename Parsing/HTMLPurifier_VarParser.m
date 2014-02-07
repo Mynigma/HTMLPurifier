@@ -88,13 +88,13 @@ static NSDictionary* stringTypes;
                     {
                         if (![k isEqual:@YES])
                         {
-                            NSLog(@"Lookup table contains value other than true");
+                            //NSLOG"Lookup table contains value other than true");
                         }
                     }
                 } else if (type.integerValue == V_ALIST.integerValue) {
                     NSArray* keys = [(NSDictionary*)var allKeys];
                     if (![[(NSDictionary*)keys allKeys] isEqual:keys]) {
-                        NSLog(@"Indices for list are not uniform");
+                        //NSLOG"Indices for list are not uniform");
                     }
                 }
                 return [var description];
@@ -153,7 +153,7 @@ static NSDictionary* stringTypes;
 - (void)errorGeneric:(NSObject*)var type:(NSNumber*)type
     {
         NSString* vtype = [var className];
-        NSLog(@"Expected type %@, got %@", [HTMLPurifier_VarParser getTypeName:type], vtype);
+        //NSLOG"Expected type %@, got %@", [HTMLPurifier_VarParser getTypeName:type], vtype);
     }
 
 + (NSDictionary*)types

@@ -33,7 +33,7 @@
     attr_s = attr;
     if (!css[attr_s])
     {
-        NSLog(@"%@ is not valid space attribute",attr_s);
+        //NSLOG"%@ is not valid space attribute",attr_s);
     }
     
     return self;

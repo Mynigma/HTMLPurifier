@@ -76,7 +76,7 @@
         scheme_obj = [def getDefaultScheme:config context:context];
         if (!scheme_obj) {
             // something funky happened to the default scheme object
-            NSLog(@"Default scheme object %@ was not readable",def.defaultScheme);
+            //NSLOG"Default scheme object %@ was not readable",def.defaultScheme);
             return nil;
         }
     }

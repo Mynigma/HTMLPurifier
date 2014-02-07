@@ -42,7 +42,7 @@
     NSURL* configPlistPath = [BUNDLE URLForResource:@"xssSmoketests" withExtension:@"plist"];
     if(!configPlistPath)
     {
-        NSLog(@"Error opening config plist file!");
+        //NSLOG"Error opening config plist file!");
         return;
     }
 
@@ -70,7 +70,7 @@
     NSURL* configPlistPath = [BUNDLE URLForResource:@"test_Emails" withExtension:@"plist"];
     if(!configPlistPath)
     {
-        NSLog(@"Error opening config plist file!");
+        //NSLOG"Error opening config plist file!");
         return;
     }
 

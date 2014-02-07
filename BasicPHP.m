@@ -553,7 +553,7 @@ NSString* decodeXMLEntities(NSString* string)
 
                 //[scanner scanUpToString:@";" intoString:&unknownEntity];
                 //[result appendFormat:@"&#%@%@;", xForHex, unknownEntity];
-                NSLog(@"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
+                //NSLOG"Expected numeric character entity but got &#%@%@;", xForHex, unknownEntity);
 
             }
 
@@ -570,7 +570,7 @@ NSString* decodeXMLEntities(NSString* string)
              NSString *semicolon = @"";
              [scanner scanString:@";" intoString:&semicolon];
              [result appendFormat:@"%@%@", unknownEntity, semicolon];
-             NSLog(@"Unsupported XML character entity %@%@", unknownEntity, semicolon);
+             //NSLOG"Unsupported XML character entity %@%@", unknownEntity, semicolon);
              */
         }
 

@@ -66,7 +66,7 @@
      */
 -(BOOL) prepare:(HTMLPurifier_Config*)config
     {
-        NSLog(@"WARNING: URIFILTER - ABSTRACT FUNCTION CALLED");
+        //NSLOG"WARNING: URIFILTER - ABSTRACT FUNCTION CALLED");
         return YES;
     }
     
@@ -81,7 +81,7 @@
      */
 -(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
     {
-        NSLog(@"WARNING: URIFILTER - ABSTRACT FUNCTION CALLED");
+        //NSLOG"WARNING: URIFILTER - ABSTRACT FUNCTION CALLED");
         return YES;
     }
 

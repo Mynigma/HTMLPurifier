@@ -48,7 +48,7 @@
 
 - (NSString*) validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    NSLog(@"Calling validateWithString on HTMLPurifier_AttrDef!!");
+    //NSLOG"Calling validateWithString on HTMLPurifier_AttrDef!!");
     return nil;
 }
 

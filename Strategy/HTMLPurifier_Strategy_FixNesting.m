@@ -144,7 +144,7 @@
         if (excludesEnabled && [excludes[node.name] isEqual:@YES])
         {
             node.dead = true;
-            NSLog(@"Strategy_FixNesting: Node excluded: %@", node);
+            //NSLOG"Strategy_FixNesting: Node excluded: %@", node);
         }
         else
         {
@@ -166,7 +166,7 @@
             } else if ([result isEqual:@NO])
             {
                 [node setDead:YES];
-                NSLog(@"Strategy_FixNesting: Node removed");
+                //NSLOG"Strategy_FixNesting: Node removed");
             }
             else if(result)
             {
@@ -174,11 +174,11 @@
                 // XXX This will miss mutations of internal nodes. Perhaps defer to the child validators
                 if ([(NSArray*)result count]==0 && children.count==0)
                 {
-                    NSLog(@"Strategy_FixNesting: Node contents removed");
+                    //NSLOG"Strategy_FixNesting: Node contents removed");
                 }
                 else if (![result isEqual:children])
                 {
-                    NSLog(@"Strategy_FixNesting: Node reorganized");
+                    //NSLOG"Strategy_FixNesting: Node reorganized");
                 }
             }
         }

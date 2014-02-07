@@ -98,7 +98,7 @@
     NSString* result = [HTMLPurifier_Encoder convertToUTF8:inputString config:super.config context:super.context];
     NSString* expect = @"\xC3\xB6";
     XCTAssertEqualObjects(result, expect);
-    NSLog(@"r:<%@> <%@>", [result stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""]], [expect stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""]]);
+    //NSLOG"r:<%@> <%@>", [result stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""]], [expect stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:@""]]);
 }
 
 - (NSString*) getZhongWen

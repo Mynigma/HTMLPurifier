@@ -154,7 +154,7 @@ static HTMLPurifier_ConfigSchema* theSingleton;
     NSURL* configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
     if(!configPlistPath)
     {
-        NSLog(@"Error opening config plist file! Bundle: %@", BUNDLE);
+        //NSLOG"Error opening config plist file! Bundle: %@", BUNDLE);
         return;
     }
 

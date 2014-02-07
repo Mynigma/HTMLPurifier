@@ -269,7 +269,7 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
     }
     if (!self.def.info[key])
     {
-        NSLog(@"Cannot set undefined directive '%@ to value", key);
+        //NSLOG"Cannot set undefined directive '%@ to value", key);
         return;
     }
 
@@ -532,11 +532,11 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
             {
                 if (self.chatty)
                 {
-                    NSLog(@"Due to a documentation error in previous version of HTML Purifier, your definitions are not being cached.  If this is OK, you can remove the $type.DefinitionRev and $type.DefinitionID declaration.  Otherwise, modify your code to use maybeGetRawDefinition, and test if the returned value is null before making any edits (if it is null, that means that a cached version is available, and no raw operations are necessary).  See <a href=\"http://htmlpurifier.org/docs/enduser-customize.html#optimized\">Customize</a> for more details");
+                    //NSLOG"Due to a documentation error in previous version of HTML Purifier, your definitions are not being cached.  If this is OK, you can remove the $type.DefinitionRev and $type.DefinitionID declaration.  Otherwise, modify your code to use maybeGetRawDefinition, and test if the returned value is null before making any edits (if it is null, that means that a cached version is available, and no raw operations are necessary).  See <a href=\"http://htmlpurifier.org/docs/enduser-customize.html#optimized\">Customize</a> for more details");
                 }
                 else
                 {
-                    NSLog(@"Useless DefinitionID declaration");
+                    //NSLOG"Useless DefinitionID declaration");
                 }
             }
 

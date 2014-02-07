@@ -166,11 +166,12 @@
                     {
                         remove_until = NO;
                     }
-                    TRIGGER_ERROR(@"RemoveForeignElements: Foreign meta element '%@' removed", tokenName);
+                    //NSLOG"RemoveForeignElements: Foreign meta element '%@' removed", tokenName);
                 }
                 else
                 {
-                    TRIGGER_ERROR(@"RemoveForeignElements: Foreign '%@' element removed", tokenName);
+                    //NSLOG"RemoveForeignElements: Foreign '%@' element removed", tokenName);
+                    TRIGGER_ERROR(@"RemoveForeignElements: Foreign meta element '%@' removed", tokenName);
                 }
                 continue;
             }
