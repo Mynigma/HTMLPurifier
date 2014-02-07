@@ -75,5 +75,8 @@
 
 + (HTMLPurifier*)instance:(HTMLPurifier*)prototype;
 
++ (NSString*)cleanHTML:(NSString*)htmlString;
+
++ (void)cleanHTML:(NSString*)htmlString withCallBack:(void(^)(NSString* cleanedHTML, NSError* error))callBack;
 
 @end

@@ -342,6 +342,56 @@ static HTMLPurifier* theInstance;
     return theInstance;
 }
 
++ (NSString*)cleanHTML:(NSString*)htmlString
+{
+    HTMLPurifier* purifier = [HTMLPurifier instance];
 
+    NSString* purifiedBody = nil;
+
+    @try
+    {
+        purifiedBody = [purifier purify:htmlString];
+    }
+    @catch (NSException *exception)
+    {
+        NSLog(@"Exception in HTMLPurifier: %@", exception);
+    }
+    @finally
+    {
+    }
+
+    return purifiedBody;
+}
+
++ (void)cleanHTML:(NSString*)htmlString withCallBack:(void(^)(NSString* cleanedHTML, NSError* error))callBack
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+        NSString* purifiedBody = nil;
+
+        @autoreleasepool
+        {
+
+            HTMLPurifier* purifier = [HTMLPurifier instance];
+
+            @try
+            {
+                purifiedBody = [purifier purify:htmlString];
+            }
+            @catch (NSException *exception)
+            {
+                NSLog(@"Exception in HTMLPurifier: %@", exception);
+            }
+            @finally
+            {
+            }
+        }
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            @autoreleasepool {
+                callBack(purifiedBody, nil);
+            }
+        });
+    });
+}
 
 @end

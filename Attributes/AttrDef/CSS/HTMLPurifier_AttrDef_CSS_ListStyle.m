@@ -103,19 +103,19 @@
         NSMutableArray* ret = [NSMutableArray new];
 
         // construct type
-        if (![[caught objectForKey:@"type"] isEqual:@NO])
+        if ([caught objectForKey:@"type"] && ![[caught objectForKey:@"type"] isEqual:@NO])
         {
             [ret addObject:[caught objectForKey:@"type"]];
         }
 
         // construct image
-        if (![[caught objectForKey:@"image"] isEqual:@NO])
+        if ([caught objectForKey:@"image"] && ![[caught objectForKey:@"image"] isEqual:@NO])
         {
             [ret addObject:[caught objectForKey:@"image"]];
         }
 
         // construct position
-        if (![[caught objectForKey:@"position"] isEqual:@NO])
+        if ([caught objectForKey:@"position"] && ![[caught objectForKey:@"position"] isEqual:@NO])
         {
             [ret addObject:[caught objectForKey:@"position"]];
         }
