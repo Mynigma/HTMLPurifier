@@ -562,7 +562,7 @@
  */
 - (HTMLPurifier_Token*)processToken:(NSObject*)passedToken
 {
-    return [self processToken:@(-1)];
+    return [self processToken:passedToken remove:@1 injector:@(-1)];
 }
 
 - (HTMLPurifier_Token*)processToken:(NSObject*)passedToken remove:(NSNumber*)remove injector:(NSNumber*)injectorIndex
