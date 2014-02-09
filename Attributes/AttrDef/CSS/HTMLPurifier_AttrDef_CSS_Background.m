@@ -112,7 +112,10 @@
         {
             if (![self->info objectForKey:@"background-position"] || ![[self->info objectForKey:@"background-position"] isKindOfClass:[HTMLPurifier_AttrDef class]])
                 return nil;
-            [caught setObject:[(HTMLPurifier_AttrDef*)[self->info objectForKey:@"background-position"] validateWithString:[caught objectForKey:@"position"] config:config context:context] forKey:@"position"];
+            NSString* res = [(HTMLPurifier_AttrDef*)[self->info objectForKey:@"background-position"] validateWithString:[caught objectForKey:@"position"] config:config context:context];
+            if (!res)
+                return nil;
+            [caught setObject:res forKey:@"position"];
         }
 
         NSMutableArray* ret = [NSMutableArray new];
