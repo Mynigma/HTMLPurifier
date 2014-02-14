@@ -54,7 +54,7 @@ HTMLPurifier *purifier = [HTMLPurifier new];
 NSString *cleanHTML = [purifier purify:dirtyHTML];
 ```
 
-You should consider not to run this on your main thread and to put it in a try & catch block.
+Purification is an asynchronous operation with its own autorelease pool.
 
 
 ## Config ##
@@ -77,6 +77,7 @@ Wow. We spent 2,5 sleepless weeks for this framework. The PHP standalone file ha
   - pre and post filtering
   - fix nesting strategy
   - dynamic configurations
+  - Add broader CSS definition (esp. for emails)
   - ...
 
 2. Updating and optimizing existing code
@@ -86,8 +87,10 @@ Wow. We spent 2,5 sleepless weeks for this framework. The PHP standalone file ha
 If you introduce new stuff, please provide viable unit tests. Here is great guideline: [Coding standards](http://htmlpurifier.org/contribute#toclink1).
 
 
-## Info ##
+## Info & Licence ##
 
 Our main project [Mynigma](https://mynigma.org) is a secure and easy to use email-client and we couldn't find any good solution for disabling bad and unsecure code in incoming html-emails. Thats why we took the best and really well documented thing out there and ported it from PHP to Objective-C.
+
+Right now we are using LGPL 2.1 for licencing, as the original project uses this licence. We are aware of the "static linking" problem and since we want to you use HTMLPurifier in our iOS app, we will try to add an exception to the licence. For this we need the consent of the original authors (TODO).   
 
 
