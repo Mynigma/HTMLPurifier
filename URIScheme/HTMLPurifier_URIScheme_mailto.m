@@ -46,8 +46,11 @@
         BOOL result = preg_match_3(@"\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b", uri.path, matches);
         if (result)
         {
-            [uri setPath:matches[0]];
-            return YES;
+            if (matches.count > 0) // does this really !happen ?
+            {
+                [uri setPath:matches[0]];
+                return YES;
+            }
         }
         return NO;
     }
