@@ -7,14 +7,13 @@
 
 #import "HTMLPurifier_URIScheme_mailto.h"
 #import "HTMLPurifier_URI.h"
-
+#import "BasicPHP.h"
 
 // VERY RELAXED! Shouldn't cause problems, not even Firefox checks if the
 // email is valid, but be careful!
 
 /**
- * Validates mailto (for E-mail) according to RFC 2368
- * @todo Validate the email address
+ * Validates mailto (for E-mail) according to RFC 2368 (With a somewhat relaxed regex)
  * @todo Filter allowed query parameters
  */
 @implementation HTMLPurifier_URIScheme_mailto
@@ -39,7 +38,20 @@
     [uri setUserinfo:nil];
     [uri setHost:nil];
     [uri setPort:nil];
-    // we need to validate path against RFC 2368's addr-spec
+
+    if ([uri path].length > 0)
+    {
+        //checks for the first email adress in the path (removes useless \)
+        NSMutableArray* matches = [NSMutableArray new];
+        BOOL result = preg_match_3(@"\\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}\\b", uri.path, matches);
+        if (result)
+        {
+            [uri setPath:matches[0]];
+            return YES;
+        }
+        return NO;
+    }
+
     return true;
 }
 

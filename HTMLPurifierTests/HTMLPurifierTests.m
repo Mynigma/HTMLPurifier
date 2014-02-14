@@ -76,6 +76,12 @@
     
 }
 
+-(void) testForEmail
+{
+    NSString* result = [purifier purify:@"<img src='cid:foo.foo@bar.de'>"];
+    XCTAssertEqualObjects(result, @"<img src=\"cid:foo.foo@bar.de\" alt=\"cid:foo.foo@bar.de\" />");
+}
+
 
 /*
 - (void)testMakeAbsolute

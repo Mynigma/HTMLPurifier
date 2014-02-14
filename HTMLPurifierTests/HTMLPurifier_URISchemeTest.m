@@ -150,7 +150,7 @@
 
 -(void) test_mailto_removalOfRedundantOrUselessComponents
 {
-    [self assertValidation:@"mailto://user@example.com:80/bob@example.com?subject=Foo#frag" expect:@"mailto:/bob@example.com?subject=Foo#frag"];
+    [self assertValidation:@"mailto://user@example.com:80/bob@example.com?subject=Foo#frag" expect:@"mailto:bob@example.com?subject=Foo#frag"];
 }
 
 -(void) test_data_png
@@ -181,6 +181,16 @@
 -(void) test_ftp_empty_host
 {
     [self assertValidation:@"ftp:///example.com" expect:@NO];
+}
+
+-(void) test_cid_valid
+{
+    [self assertValidation:@"cid:foo.foo1@bar.net" expect:@YES];
+}
+
+-(void) test_cid_invalid
+{
+    [self assertValidation:@"cid:http://test.html" expect:@NO];
 }
 
 @end

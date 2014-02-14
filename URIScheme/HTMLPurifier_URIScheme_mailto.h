@@ -11,8 +11,7 @@
 // email is valid, but be careful!
 
 /**
- * Validates mailto (for E-mail) according to RFC 2368
- * @todo Validate the email address
+ * Validates mailto (for E-mail) according to RFC 2368 (With a somewhat relaxed regex)
  * @todo Filter allowed query parameters
  */
 @interface HTMLPurifier_URIScheme_mailto : HTMLPurifier_URIScheme

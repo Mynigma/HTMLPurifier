@@ -278,6 +278,8 @@
 			<string>1</string>
 			<key>mailto</key>
 			<string>1</string>
+			<key>cid</key>
+			<string>1</string>
 			<key>news</key>
 			<string>1</string>
 			<key>nntp</key>
