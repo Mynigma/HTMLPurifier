@@ -43,7 +43,7 @@
     
     if ([uri path].length > 0)
     {
-        return preg_match_2(@"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", uri.path);
+        return preg_match_2(@"^[A-Z0-9._%+-@]+$", uri.path);
     }
     
     return true;

@@ -45,6 +45,8 @@
 
 + (NSString*)unichr:(int)code
 {
+    return [NSString stringWithFormat:@"%C", (unichar)code];
+    /*
     if(code < 0 || (code >= 55296 && code <= 57343) || code > 1114111)
         return @"";
 
@@ -96,7 +98,7 @@
     }
     [ret appendFormat:@"%C", (unichar)(x)];
 
-    return ret;
+    return ret;*/
 }
 
 
@@ -172,6 +174,9 @@
 
 + (NSString*)cleanUTF8:(NSString*)str
 {
+    if(!str)
+        return nil;
+    
     if (preg_match_2(@"^[\\x{9}\\x{A}\\x{D}\\x{20}-\\x{7E}\\x{A0}-\\x{D7FF}\\x{E000}-\\x{FFFD}\\x{10000}-\\x{10FFFF}]*$",
                    str
                    ))

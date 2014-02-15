@@ -298,6 +298,9 @@ NSArray* preg_split_3_PREG_SPLIT_DELIM_CAPTURE(NSString* expression, NSString* s
 
 BOOL preg_match_2(NSString* pattern, NSString* subject)
 {
+    if(!pattern || !subject)
+        return NO;
+
     NSError* error = nil;
 
     NSRegularExpression* regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];

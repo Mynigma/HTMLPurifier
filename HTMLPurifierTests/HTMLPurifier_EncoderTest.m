@@ -76,6 +76,16 @@
     [self assertCleanUTF8:@"\xED\xB0\x80" expect:@""];
 }
 
+- (void)testUmlaut
+{
+    [self assertCleanUTF8:@"Ümläütë sölltën nïcht räüs" expect:@"Ümläütë sölltën nïcht räüs"];
+}
+
+- (void)testEvenMore
+{
+    [self assertCleanUTF8:@"<strong>Verantwortlich f&uuml;r den Inhalt:</strong>" expect:@"<strong>Verantwortlich f&uuml;r den Inhalt:</strong>"];
+}
+
 - (void) test_convertToUTF8_noConvert
 {
     // UTF-8 means that we don't touch it
