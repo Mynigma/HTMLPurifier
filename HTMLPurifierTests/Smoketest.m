@@ -39,14 +39,14 @@
 
 - (void)testXSSAttacks
 {
-    NSURL* configPlistPath = [BUNDLE URLForResource:@"xssSmoketests" withExtension:@"plist"];
-    if(!configPlistPath)
+    NSURL* smoketestsPlistPath = [BUNDLE URLForResource:@"xssSmoketests" withExtension:@"plist"];
+    if(!smoketestsPlistPath)
     {
         //NSLOG"Error opening config plist file!");
         return;
     }
 
-    NSDictionary* plistDict = [NSDictionary dictionaryWithContentsOfURL:configPlistPath];
+    NSDictionary* plistDict = [NSDictionary dictionaryWithContentsOfURL:smoketestsPlistPath];
 
     for(NSString* key in plistDict)
     {

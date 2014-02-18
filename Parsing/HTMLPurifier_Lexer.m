@@ -215,9 +215,10 @@
     // represent non-SGML characters (horror, horror!)
     html = [HTMLPurifier_Encoder cleanUTF8:html];
 
-    // if processing instructions are to removed, remove them now
+
+    // if processing instructions are to be removed, remove them now
     //if ($config->get('Core.RemoveProcessingInstructions')) {
-    html = preg_replace_3(@"#<\\?.+?\\?>#s", @"", html);
+    //html = preg_replace_3(@"#<\\?.+?\\?>#s", @"", html);
     // }
 
     return html;

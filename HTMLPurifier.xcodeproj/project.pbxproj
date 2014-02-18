@@ -384,7 +384,6 @@
 		80F53EB5189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D47189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.m */; };
 		80F53EB6189BE6F700D7805F /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
 		80F53EB7189BE6F700D7805F /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
-		80F53EB8189BE6F700D7805F /* ExportedSymbols.exp in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D4B189BE6F700D7805F /* ExportedSymbols.exp */; };
 		80F53EBA189BE6F700D7805F /* HTMLPurifier-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */; };
 		80F53EBB189BE6F700D7805F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4E189BE6F700D7805F /* InfoPlist.strings */; };
 		80F53EBC189BE6F700D7805F /* xssSmoketests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4F189BE6F700D7805F /* xssSmoketests.plist */; };
@@ -863,7 +862,6 @@
 		80F53D47189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Strategy_ValidateAttributes.m; sourceTree = "<group>"; };
 		80F53D49189BE6F700D7805F /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		80F53D4A189BE6F700D7805F /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entities.plist; sourceTree = "<group>"; };
-		80F53D4B189BE6F700D7805F /* ExportedSymbols.exp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.exports; path = ExportedSymbols.exp; sourceTree = "<group>"; };
 		80F53D4C189BE6F700D7805F /* HTMLPurifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HTMLPurifier-Info.plist"; sourceTree = "<group>"; };
 		80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HTMLPurifier-Prefix.pch"; sourceTree = "<group>"; };
 		80F53D4E189BE6F700D7805F /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
@@ -1569,7 +1567,6 @@
 			children = (
 				80F53D49189BE6F700D7805F /* config.plist */,
 				80F53D4A189BE6F700D7805F /* entities.plist */,
-				80F53D4B189BE6F700D7805F /* ExportedSymbols.exp */,
 				80F53D4C189BE6F700D7805F /* HTMLPurifier-Info.plist */,
 				80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */,
 				80F53D4E189BE6F700D7805F /* InfoPlist.strings */,
@@ -2157,7 +2154,6 @@
 				80F53E71189BE6F700D7805F /* HTMLPurifier_HTMLModule_Tidy.m in Sources */,
 				80F53E7D189BE6F700D7805F /* HTMLPurifier_Injector_Linkify.m in Sources */,
 				80F53E27189BE6F700D7805F /* HTMLPurifier_ChildDef_Empty.m in Sources */,
-				80F53EB8189BE6F700D7805F /* ExportedSymbols.exp in Sources */,
 				80F53E33189BE6F700D7805F /* HTMLPurifier_ElementDef.m in Sources */,
 				80F53E57189BE6F700D7805F /* HTMLPurifier_HTMLModule_Edit.m in Sources */,
 				80F53E8B189BE6F700D7805F /* HTMLPurifier_DoctypeRegistry.m in Sources */,

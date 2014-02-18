@@ -83,7 +83,7 @@
                 NSMutableArray* chars = [NSMutableArray new];
                 // strlen must be called in loop because strings size changes
                 for (NSInteger i = 0; [(NSString*)arg[1] length] > i; i += 2) {
-                    [chars addObject:[NSString stringWithFormat:@"%c%c", [arg[1] characterAtIndex:i], [arg[1] characterAtIndex:i+1]]];
+                    [chars addObject:[NSString stringWithFormat:@"%C%C", [arg[1] characterAtIndex:i], [arg[1] characterAtIndex:i+1]]];
                 }
                 for(NSString* charString in chars)
                 {
@@ -91,7 +91,7 @@
                     if(hexChar==0)
                         [expect appendString:@"\0"];
                     else
-                        [expect appendFormat:@"%c", (unsigned char)(hexChar)];
+                        [expect appendFormat:@"%C", (unichar)(hexChar)];
                 }
                 expect = [NSMutableString stringWithFormat:@"%@%@", [expect copy], [expect copy]]; // double it
             }

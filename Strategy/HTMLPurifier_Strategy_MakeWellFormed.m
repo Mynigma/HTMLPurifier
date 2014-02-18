@@ -152,7 +152,8 @@
             // possibility: disable rewinding if the current token has a
             // rewind set on it already. This would offer protection from
             // infinite loop, but might hinder some advanced rewinding.
-            NSInteger rewind_offset = [_injectors[index.intValue] getRewindOffset];
+            NSInteger injectorIndex = index.intValue;
+            NSInteger rewind_offset = injectorIndex<_injectors.count?[_injectors[injectorIndex] getRewindOffset]:0;
             if (rewind_offset>=0) {
                 for (NSInteger j = 0; j < rewind_offset; j++) {
                     if (![zipper front]) break;
@@ -329,7 +330,8 @@
                     // (this rechecks $parent, which his harmless)
                     BOOL autoclose_ok = global_parent_allowed_elements[[(HTMLPurifier_Token*)_token name]]!= nil;
                     if (!autoclose_ok) {
-                        for(NSObject* ancestor in _stack)
+                        NSArray* stackCopy = [_stack copy];
+                        for(NSObject* ancestor in stackCopy)
                         {
                             NSMutableDictionary* elements = [[definition.info[[ancestor valueForKey:@"name"]] child]getAllowedElements:config];
                             if (elements[[(HTMLPurifier_Token*)_token name]]) {
