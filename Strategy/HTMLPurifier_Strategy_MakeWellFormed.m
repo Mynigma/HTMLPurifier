@@ -522,7 +522,9 @@
                 // [TagClosedAuto]
                 HTMLPurifier_Token* element = [skipped_tags[j] copy];
                 element.carryover = @YES;
-                [element.armor setObject:@YES forKey:@"MakeWellFormed_TagClosedError"];
+                NSMutableDictionary* armorDict = [element.armor mutableCopy];
+                armorDict[@"MakeWellFormed_TagClosedError"] = @YES;
+                [element setArmor:armorDict];
                 [replace addObject:element];
             }
         }
