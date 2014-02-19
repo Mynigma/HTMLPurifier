@@ -35,8 +35,8 @@
     }
 
     // initialize CurrentToken if necessary
-    HTMLPurifier_Token* current_token = (HTMLPurifier_Token*)[context getWithName:@"CurrentToken" ignoreError:YES];
-    if (!current_token) {
+    NSObject* current_token = (HTMLPurifier_Token*)[context getWithName:@"CurrentToken" ignoreError:YES];
+    if (!current_token || [current_token isEqual:@NO]) {
         [context registerWithName:@"CurrentToken" ref:token];
     }
 
@@ -101,7 +101,9 @@
         NSString* value = attr[key];
         if(!value)
             return;
-
+        
+        [context registerWithName:@"CurrentAttr" ref:key];
+        
         // call the definition
         if (defs[key])
         {
@@ -162,6 +164,8 @@
         // although we're not sure how colliding attributes would
         // resolve (certain ones would be completely overriden,
         // others would prepend themselves).
+        [context destroy:@"CurrentAttr"];
+        [context registerWithName:@"CurrentAttr" ref:@NO];
     }
 
     [context destroy:@"CurrentAttr"];
@@ -194,7 +198,7 @@
     [token setSortedAttrKeys:attrKeyOrder];
 
     // destroy CurrentToken if we made it ourselves
-    if (!current_token)
+    if (!current_token || [current_token isEqual:@NO])
     {
         [context destroy:@"CurrentToken"];
     }

@@ -188,9 +188,9 @@
     [self assertValidation:@"cid:foo.foo1@bar.net" expect:@YES];
 }
 
--(void) test_cid_invalid
+-(void) test_cid_invalid //we're even more relaxed now, and this is valid
 {
-    [self assertValidation:@"cid:http://test.html" expect:@NO];
+    [self assertValidation:@"cid:http://test.html" expect:@YES];
 }
 
 @end
