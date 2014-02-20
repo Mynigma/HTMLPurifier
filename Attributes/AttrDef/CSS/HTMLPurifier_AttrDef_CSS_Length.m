@@ -20,9 +20,8 @@
 {
     self = [super init];
     if (self) {
-
-        min = (HTMLPurifier_Length*)([newMin isKindOfClass:[HTMLPurifier_Length class]] ? newMin : (newMin ? [[HTMLPurifier_Length alloc] initWithN:(NSString*)newMin] : nil));
-        max = (HTMLPurifier_Length*)([newMax isKindOfClass:[HTMLPurifier_Length class]] ? newMax : (newMax ? [[HTMLPurifier_Length alloc] initWithN:(NSString*)newMax] : nil));
+        min = (HTMLPurifier_Length*)([newMin isKindOfClass:[HTMLPurifier_Length class]] ? newMin : (newMin ? [HTMLPurifier_Length makeWithS:(NSString*)newMin] : nil));
+        max = (HTMLPurifier_Length*)([newMax isKindOfClass:[HTMLPurifier_Length class]] ? newMax : (newMax ? [HTMLPurifier_Length makeWithS:(NSString*)newMax] : nil));
     }
     return self;
 }

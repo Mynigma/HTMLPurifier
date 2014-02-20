@@ -24,7 +24,7 @@
 
 - (void)registerWithName:(NSString*)name  ref:(NSObject*)ref
 {
-    if(name && [_storage objectForKey:name])
+    if(name && [_storage objectForKey:name] && ![[_storage objectForKey:name] isEqual:@NO])
     {
         TRIGGER_ERROR(@"ERROR: Name %@ produces collision, cannot re-register", name);
         return;
