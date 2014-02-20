@@ -26,10 +26,7 @@
 		1EA6BD67188A084400C2BAE7 /* CSSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD66188A084400C2BAE7 /* CSSTest.m */; };
 		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
 		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		1EEE87B1188EC7B800BDA422 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87B0188EC7B800BDA422 /* libOCMock.a */; };
 		1EEE87B2188EC7EA00BDA422 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
-		1EEE87B4188ECDE400BDA422 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
-		1EEE87B5188ECE0700BDA422 /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
 		801F015E188F189900506C24 /* HTMLPurifier_ZipperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015D188F189900506C24 /* HTMLPurifier_ZipperTest.m */; };
 		801F0160188F1F1F00506C24 /* HTMLPurifier_TokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015F188F1F1F00506C24 /* HTMLPurifier_TokenTest.m */; };
 		801F0162188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F0161188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m */; };
@@ -469,7 +466,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				1EEE87B5188ECE0700BDA422 /* OCMock.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -933,11 +929,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EEE87B4188ECDE400BDA422 /* OCMock.framework in Frameworks */,
 				1E5FAAC81885A2640073CA79 /* libiconv.2.dylib in Frameworks */,
 				1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */,
 				80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */,
-				1EEE87B1188EC7B800BDA422 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
