@@ -2345,16 +2345,17 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1.01;
+				DYLIB_CURRENT_VERSION = 1.01;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				FRAMEWORK_VERSION = A;
+				FRAMEWORK_VERSION = A1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
+				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2369,16 +2370,17 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_COMPATIBILITY_VERSION = 1.01;
+				DYLIB_CURRENT_VERSION = 1.01;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				FRAMEWORK_VERSION = A;
+				FRAMEWORK_VERSION = A1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
+				INSTALL_PATH = /Library/Frameworks;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
