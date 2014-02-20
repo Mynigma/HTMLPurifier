@@ -614,7 +614,7 @@
     if (injectorIndex.integerValue > -1)
     {
         // determine appropriate skips
-        NSMutableDictionary* oldskip = [old[0] skip] ? (NSMutableDictionary*)[old[0] skip] : [NSMutableDictionary new];
+        NSMutableDictionary* oldskip = [old[0] skip] ? (NSMutableDictionary*)[[old[0] skip] mutableCopy] : [NSMutableDictionary new];
         NSArray* enumArray = [passedToken isKindOfClass:[NSArray class]]?(NSArray*)passedToken:@[passedToken];
         for(HTMLPurifier_Token* object in enumArray)
         {
