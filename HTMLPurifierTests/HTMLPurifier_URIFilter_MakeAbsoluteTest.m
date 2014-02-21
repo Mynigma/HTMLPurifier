@@ -13,6 +13,11 @@
 #import "HTMLPurifier_URI.h"
 
 @interface HTMLPurifier_URIFilter_MakeAbsoluteTest : HTMLPurifier_URIFilterHarness
+{
+    //local config, else tests are failing, when running cmd+U
+    HTMLPurifier_Config* conf;
+    HTMLPurifier_Context* cont;
+}
 
 @end
 
@@ -21,6 +26,8 @@
 - (void)setUp
 {
     [super setUp];
+    conf = [HTMLPurifier_Config createDefault];
+    cont = [HTMLPurifier_Context new];
     self.filter = [HTMLPurifier_URIFilter_MakeAbsolute new];
     [self setBase:@"http://example.com/foo/bar.html?q=s#frag"];
 }
@@ -33,16 +40,16 @@
 
 -(void) setBase:(NSString*)base
 {
-    [self.config setString:@"URI.Base" object:base];
+    [conf setString:@"URI.Base" object:base];
 }
 
 -(void) assertFiltering:(NSObject*)uri expect:(NSObject*)expect_uri // = true)
 {
     [super prepareURI:&uri expect:&expect_uri];
     
-    [self.filter prepare:self.config];
+    [self.filter prepare:conf];
     
-    BOOL result = [self.filter filter:(HTMLPurifier_URI**)&uri config:self.config context:self.context];
+    BOOL result = [self.filter filter:(HTMLPurifier_URI**)&uri config:conf context:cont];
     
     [self assertEitherFailOrIdentical:result result:uri
                                expect:expect_uri];

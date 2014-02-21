@@ -283,11 +283,11 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
     if ([namespace_string isEqual:@"HTML"] || [namespace_string isEqual:@"CSS"] || [namespace_string isEqual:@"URI"])
     {
         [definitions removeObjectForKey:namespace_string];
-        if([namespace isEqual:@"HTML"])
+        if([namespace_string isEqual:@"HTML"])
             theHTMLDefinition = nil;
-        if([namespace isEqual:@"CSS"])
+        if([namespace_string isEqual:@"CSS"])
             theCSSDefinition = nil;
-        if([namespace isEqual:@"URI"])
+        if([namespace_string isEqual:@"URI"])
             theURIDefinition = nil;
     }
 

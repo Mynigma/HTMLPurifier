@@ -2405,14 +2405,14 @@
 		80EDF9E718803B3200EB1E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A1/HTMLPurifier";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/romanpriebe/Mynigma/HTMLPurifier,
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
@@ -2424,7 +2424,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/romanpriebe/Mynigma/HTMLPurifier,
+					"$(SRCROOT)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -2435,14 +2435,14 @@
 		80EDF9E818803B3200EB1E89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A!/HTMLPurifier";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					/Users/romanpriebe/Mynigma/HTMLPurifier,
+					"$(SRCROOT)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
@@ -2450,7 +2450,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/romanpriebe/Mynigma/HTMLPurifier,
+					"$(SRCROOT)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
