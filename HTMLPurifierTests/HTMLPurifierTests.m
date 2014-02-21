@@ -67,7 +67,7 @@
 
 }
 
--(void) testDebug
+-(void) d_testDebug
 {
     NSString* data = [[NSString alloc] initWithContentsOfFile:@"/Users/Lukas/Desktop/email.txt" encoding:NSUTF8StringEncoding error:nil];
     NSString* result = [purifier purify:data];
