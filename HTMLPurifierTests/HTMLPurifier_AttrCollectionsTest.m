@@ -61,7 +61,7 @@
 
     [(HTMLPurifier_HTMLModule*)modules[@"Module2"] setAttr_collections:[@{@"Core" : @{ @0 : @[@"Brocolli"] }, @"Soup" : @{ @"attribute-3" : @"Type3" }, @"Brocolli" : @{} } mutableCopy]];
 
-    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections_TestForConstruct alloc] initWithAttrTypes:attrTypesMock modules:modules];
+    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections_TestForConstruct alloc] initWithAttrTypes:attrTypesMock modules:[modules mutableCopy]];
 
     // this is without identifier expansion or inclusions
     NSDictionary* expected = @{@"Core" : @{ @0 : @[@"Soup", @"Undefined", @"Brocolli"],
@@ -81,7 +81,7 @@
 {
     id attrTypesMock = [OCMockObject mockForClass:[HTMLPurifier_AttrTypes class]];
 
-    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections alloc] initWithAttrTypes:attrTypesMock modules:@{}];
+    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections alloc] initWithAttrTypes:attrTypesMock modules:@[]];
     collections.info = [@{
                          @"Core" : [@{ @0 : @[@"Inclusion", @"Undefined"], @"attr-original" : @"Type" } mutableCopy],
                          @"Inclusion" : @{ @0 : @[@"SubInclusion"], @"attr" : @"Type"},
@@ -107,7 +107,7 @@
 {
     id attrTypesMock = [OCMockObject mockForClass:[HTMLPurifier_AttrTypes class]];
 
-    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections alloc] initWithAttrTypes:attrTypesMock modules:@{}];
+    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections alloc] initWithAttrTypes:attrTypesMock modules:@[]];
 
     NSMutableDictionary* attr = [@{
                   @"attr1" : @"Color",

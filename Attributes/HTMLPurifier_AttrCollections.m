@@ -11,6 +11,7 @@
 #import "HTMLPurifier_AttrTypes.h"
 #import "HTMLPurifier_ElementDef.h"
 #import "HTMLPurifier_AttrDef.h"
+#import "HTMLPurifier_AttrDef_HTML_LinkTypes.h"
 
 
 /**

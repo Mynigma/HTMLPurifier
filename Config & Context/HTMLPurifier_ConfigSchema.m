@@ -135,9 +135,6 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
 - (id)init
 {
-    if(theSingleton)
-        return theSingleton;
-
     self = [super init];
     if (self) {
         _defaults = [NSMutableDictionary new];
@@ -167,6 +164,9 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
 + (HTMLPurifier_ConfigSchema*)singleton
 {
+    if(theSingleton)
+        return theSingleton;
+
     return [HTMLPurifier_ConfigSchema new];
 }
 

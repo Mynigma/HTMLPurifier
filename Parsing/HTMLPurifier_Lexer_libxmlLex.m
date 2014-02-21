@@ -368,9 +368,8 @@
  */
 - (NSString*)wrapHTML:(NSString*)html config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    //HTMLPurifier_HTMLDefinition* def = [config getDefinition:@"HTML"];
-    HTMLPurifier_HTMLDefinition* def = (HTMLPurifier_HTMLDefinition*)[HTMLPurifier_HTMLDefinition new];
-
+    HTMLPurifier_HTMLDefinition* def = (HTMLPurifier_HTMLDefinition*)[config getDefinition:@"HTML"];
+    
     NSMutableString* ret = [NSMutableString new];
     if ([[def doctype] dtdPublic] || [[def doctype] dtdSystem]) {
         [ret appendString:@"<!DOCTYPE html "];
