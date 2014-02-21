@@ -152,7 +152,7 @@ static NSDictionary* stringTypes;
      */
 - (void)errorGeneric:(NSObject*)var type:(NSNumber*)type
     {
-        NSString* vtype = [var className];
+        //NSString* vtype = [var className];
         //NSLOG"Expected type %@, got %@", [HTMLPurifier_VarParser getTypeName:type], vtype);
     }
 

@@ -223,6 +223,7 @@
                         index = @(i);
                         continue;
                     }
+                    
                     // XXX fuckup
                     HTMLPurifier_Token* r = (HTMLPurifier_Token*)_token;
                     [injector handleText:&r];

@@ -26,7 +26,8 @@
 		1EA6BD67188A084400C2BAE7 /* CSSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD66188A084400C2BAE7 /* CSSTest.m */; };
 		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
 		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		1EEE87B2188EC7EA00BDA422 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
+		1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
+		1ECDAE8518B74FFA00E9E5DB /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
 		801F015E188F189900506C24 /* HTMLPurifier_ZipperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015D188F189900506C24 /* HTMLPurifier_ZipperTest.m */; };
 		801F0160188F1F1F00506C24 /* HTMLPurifier_TokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015F188F1F1F00506C24 /* HTMLPurifier_TokenTest.m */; };
 		801F0162188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F0161188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m */; };
@@ -460,6 +461,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		1ECDAE8218B74F9300E9E5DB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1ECDAE8518B74FFA00E9E5DB /* OCMock.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EEE87B3188ECDC200BDA422 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -939,7 +950,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EEE87B2188EC7EA00BDA422 /* OCMock.framework in Frameworks */,
+				1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */,
 				80EDF9D518803B3200EB1E89 /* Cocoa.framework in Frameworks */,
 				80EDF9D818803B3200EB1E89 /* HTMLPurifier.framework in Frameworks */,
 				80EDF9D418803B3200EB1E89 /* XCTest.framework in Frameworks */,
@@ -1903,6 +1914,7 @@
 				80EDF9CE18803B3200EB1E89 /* Sources */,
 				80EDF9CF18803B3200EB1E89 /* Frameworks */,
 				80EDF9D018803B3200EB1E89 /* Resources */,
+				1ECDAE8218B74F9300E9E5DB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -2400,6 +2412,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/romanpriebe/Mynigma/HTMLPurifier,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
@@ -2408,6 +2421,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "HTMLPurifierTests/HTMLPurifierTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/romanpriebe/Mynigma/HTMLPurifier,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -2424,10 +2442,16 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					/Users/romanpriebe/Mynigma/HTMLPurifier,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "HTMLPurifierTests/HTMLPurifierTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/romanpriebe/Mynigma/HTMLPurifier,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
