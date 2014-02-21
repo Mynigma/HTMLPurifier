@@ -176,6 +176,8 @@
 {
     if(!str)
         return nil;
+
+    str = preg_replace_3(@"[\\x{0}-\\x{8}\\x{B}-\\x{C}\\x{E}-\\x{1F}\\x{7F}]",@"",str);
     
     if (preg_match_2(@"^[\\x{9}\\x{A}\\x{D}\\x{20}-\\x{7E}\\x{A0}-\\x{D7FF}\\x{E000}-\\x{FFFD}\\x{10000}-\\x{10FFFF}]*$",
                    str
