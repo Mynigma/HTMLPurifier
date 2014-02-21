@@ -22,6 +22,7 @@
 #import "BasicPHP.h"
 #import "HTMLPurifier_Config.h"
 
+
 @implementation HTMLPurifier_Encoder
 
 /**
@@ -177,40 +178,33 @@
     if(!str)
         return nil;
 
-    str = preg_replace_3(@"[\\x{0}-\\x{8}\\x{B}-\\x{C}\\x{E}-\\x{1F}\\x{7F}]",@"",str);
-    
     if (preg_match_2(@"^[\\x{9}\\x{A}\\x{D}\\x{20}-\\x{7E}\\x{A0}-\\x{D7FF}\\x{E000}-\\x{FFFD}\\x{10000}-\\x{10FFFF}]*$",
                    str
                    ))
         return str;
 
 
+    NSData* inData = [str dataUsingEncoding:NSUTF8StringEncoding];
+
+    const char* inDataBytes = [inData bytes];
+
+    NSInteger inDataLength = inData.length;
+
     NSInteger mState = 0; // cached expected number of octets after the current octet
                  // until the beginning of the next UTF8 character sequence
     NSInteger mUcs4  = 0; // cached Unicode character
     NSInteger mBytes = 1; // cached expected number of octets in the current sequence
 
-    // original code involved an $out that was an array of Unicode
-    // codepoints.  Instead of having to convert back into UTF-8, we've
-    // decided to directly append valid UTF-8 characters onto a string
-    // $out once they're done.  $char accumulates raw bytes, while $mUcs4
-    // turns into the Unicode code point, so there's some redundancy.
+    NSMutableData* outData = [NSMutableData new];
 
-    NSMutableString* outString = [@"" mutableCopy];
-    NSMutableString* charString = [@"" mutableCopy];
+    NSMutableData* thisChar = [NSMutableData new];
 
-
-    //NSCharacterSet*
-
-    //NSScanner* scanner = [NSScanner scannerWithString:str];
-
-
-
-    NSInteger len = str.length;
-    for (NSInteger i = 0; i < len; i++)
+    for (NSInteger i = 0; i < inDataLength; i++)
     {
-        int inChar = [str characterAtIndex:i];
-        [charString appendString:[str substringWithRange:NSMakeRange(i,1)]]; // append byte to char
+        unsigned char inChar = inDataBytes[i];
+
+        [thisChar appendBytes:&inChar length:1];
+
         if (0 == mState) {
             // When mState is zero we expect either a US-ASCII character
             // or a multi-octet sequence.
@@ -222,29 +216,29 @@
                     ) {
                     // control characters, remove
                 } else {
-                    [outString appendString:charString];
+                    [outData appendData:thisChar];
                 }
                 // reset
-                charString = [@"" mutableCopy];
+                thisChar = [NSMutableData new];
                 mBytes = 1;
             } else if (0xC0 == (0xE0 & (inChar)))
             {
                 // First octet of 2 octet sequence
-                int mUcs4 = (inChar);
+                mUcs4 = (inChar);
                 mUcs4 = (mUcs4 & 0x1F) << 6;
                 mState = 1;
                 mBytes = 2;
             } else if (0xE0 == (0xF0 & (inChar)))
             {
                 // First octet of 3 octet sequence
-                int mUcs4 = (inChar);
+                mUcs4 = (inChar);
                 mUcs4 = (mUcs4 & 0x0F) << 12;
                 mState = 2;
                 mBytes = 3;
             } else if (0xF0 == (0xF8 & (inChar)))
             {
                 // First octet of 4 octet sequence
-                int mUcs4 = (inChar);
+                mUcs4 = (inChar);
                 mUcs4 = (mUcs4 & 0x07) << 18;
                 mState = 3;
                 mBytes = 4;
@@ -258,14 +252,14 @@
                 // Rather than trying to resynchronize, we will carry on
                 // until the end of the sequence and let the later error
                 // handling code catch it.
-                int mUcs4 = (inChar);
+                mUcs4 = (inChar);
                 mUcs4 = (mUcs4 & 0x03) << 24;
                 mState = 4;
                 mBytes = 5;
             } else if (0xFC == (0xFE & (inChar))) {
                 // First octet of 6 octet sequence, see comments for 5
                 // octet sequence.
-                int mUcs4 = (inChar);
+                mUcs4 = (inChar);
                 mUcs4 = (mUcs4 & 1) << 30;
                 mState = 5;
                 mBytes = 6;
@@ -275,7 +269,7 @@
                 mState = 0;
                 mUcs4  = 0;
                 mBytes = 1;
-                charString = [@"" mutableCopy];
+                thisChar = [NSMutableData new];
             }
         } else {
             // When mState is non-zero, we expect a continuation of the
@@ -317,13 +311,13 @@
                                (0x10000 <= mUcs4 && 0x10FFFF >= mUcs4)
                                )
                               ) {
-                        [outString appendString:charString];
-                    }
+                        [outData appendData:thisChar];
+                   }
                     // initialize UTF8 cache (reset)
                     mState = 0;
                     mUcs4  = 0;
                     mBytes = 1;
-                    charString = [@"" mutableCopy];
+                    thisChar = [NSMutableData new];
                 }
             } else {
                 // ((0xC0 & (*in) != 0x80) && (mState != 0))
@@ -332,10 +326,13 @@
                 mState = 0;
                 mUcs4  = 0;
                 mBytes = 1;
-                charString = [@"" mutableCopy];
+                thisChar = [NSMutableData new];
             }
         }
     }
+
+    NSString* outString = [[NSString alloc] initWithData:outData encoding:NSUTF8StringEncoding];
+    
     return outString;
 }
 

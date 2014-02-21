@@ -78,7 +78,7 @@
 
 - (void)testUmlaut
 {
-    [self assertCleanUTF8:@"Ümläütë sölltën nïcht räüs" expect:@"Ümläütë sölltën nïcht räüs"];
+    [self assertCleanUTF8:@"Ümläütë sölltën nïcht räüs\xD800" expect:@"Ümläütë sölltën nïcht räüs"];
 }
 
 - (void)testEvenMore
