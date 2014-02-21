@@ -197,6 +197,13 @@
     NSMutableString* outString = [@"" mutableCopy];
     NSMutableString* charString = [@"" mutableCopy];
 
+
+    //NSCharacterSet*
+
+    //NSScanner* scanner = [NSScanner scannerWithString:str];
+
+
+
     NSInteger len = str.length;
     for (NSInteger i = 0; i < len; i++)
     {
