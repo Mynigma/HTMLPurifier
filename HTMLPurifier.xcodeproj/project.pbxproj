@@ -16,6 +16,7 @@
 		1E35ECEC188813D300E8FF31 /* EntityParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECEB188813D300E8FF31 /* EntityParserTest.m */; };
 		1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */; };
 		1E40A0451892AFDF006992C5 /* Smoketest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A0441892AFDF006992C5 /* Smoketest.m */; };
+		1E423C6218B83734009D0B74 /* xssAttacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E423C6018B83713009D0B74 /* xssAttacks.plist */; };
 		1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */; };
 		1E5FAABE18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */; };
 		1E5FAAC81885A2640073CA79 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */; };
@@ -384,7 +385,6 @@
 		80F53EB7189BE6F700D7805F /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
 		80F53EBA189BE6F700D7805F /* HTMLPurifier-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */; };
 		80F53EBB189BE6F700D7805F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4E189BE6F700D7805F /* InfoPlist.strings */; };
-		80F53EBC189BE6F700D7805F /* xssSmoketests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4F189BE6F700D7805F /* xssSmoketests.plist */; };
 		80F53EBD189BE6F700D7805F /* HTMLPurifier_TagTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D51189BE6F700D7805F /* HTMLPurifier_TagTransform.h */; };
 		80F53EBE189BE6F700D7805F /* HTMLPurifier_TagTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D52189BE6F700D7805F /* HTMLPurifier_TagTransform.m */; };
 		80F53EBF189BE6F700D7805F /* HTMLPurifier_TagTransform_Font.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D53189BE6F700D7805F /* HTMLPurifier_TagTransform_Font.h */; };
@@ -494,6 +494,7 @@
 		1E35ECEB188813D300E8FF31 /* EntityParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EntityParserTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ConfigTest.m; sourceTree = "<group>"; };
 		1E40A0441892AFDF006992C5 /* Smoketest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Smoketest.m; sourceTree = "<group>"; };
+		1E423C6018B83713009D0B74 /* xssAttacks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xssAttacks.plist; sourceTree = "<group>"; };
 		1E5573DC188C963900E7A1CE /* HTMLPurifier_LinkifyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_LinkifyTest.m; sourceTree = "<group>"; };
 		1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_InjectorHarness.m; sourceTree = "<group>"; };
 		1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_PercentEncoderTests.m; sourceTree = "<group>"; };
@@ -1576,6 +1577,7 @@
 				80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */,
 				80F53D4E189BE6F700D7805F /* InfoPlist.strings */,
 				80F53D4F189BE6F700D7805F /* xssSmoketests.plist */,
+				1E423C6018B83713009D0B74 /* xssAttacks.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1966,7 +1968,6 @@
 				80F53EB7189BE6F700D7805F /* entities.plist in Resources */,
 				80F53EBB189BE6F700D7805F /* InfoPlist.strings in Resources */,
 				80F53EB6189BE6F700D7805F /* config.plist in Resources */,
-				80F53EBC189BE6F700D7805F /* xssSmoketests.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,6 +1976,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80F53F07189BF1DD00D7805F /* xssSmoketests.plist in Resources */,
+				1E423C6218B83734009D0B74 /* xssAttacks.plist in Resources */,
 				80F53F06189BF1C300D7805F /* entities.plist in Resources */,
 				80F53F04189BF19000D7805F /* config.plist in Resources */,
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,

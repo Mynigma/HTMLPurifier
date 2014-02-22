@@ -79,10 +79,9 @@
 
 
 
-- (void)test
+- (void)disabled_test
 {
     obj = [[HTMLPurifier_ChildDef_Custom alloc] initWithDtdRegex:@"(a,b?,c*,d+,(a,b)*)"];
-    
     
     NSDictionary* x = @{@"a" : @YES, @"b" : @YES, @"c" : @YES, @"d" : @YES};
     XCTAssertEqualObjects([obj elements], x);

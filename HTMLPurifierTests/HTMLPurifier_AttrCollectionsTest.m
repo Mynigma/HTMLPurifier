@@ -61,7 +61,7 @@
 
     [(HTMLPurifier_HTMLModule*)modules[@"Module2"] setAttr_collections:[@{@"Core" : @{ @0 : @[@"Brocolli"] }, @"Soup" : @{ @"attribute-3" : @"Type3" }, @"Brocolli" : @{} } mutableCopy]];
 
-    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections_TestForConstruct alloc] initWithAttrTypes:attrTypesMock modules:[modules mutableCopy]];
+    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections_TestForConstruct alloc] initWithAttrTypes:attrTypesMock modules:[modules.allValues mutableCopy]];
 
     // this is without identifier expansion or inclusions
     NSDictionary* expected = @{@"Core" : @{ @0 : @[@"Soup", @"Undefined", @"Brocolli"],

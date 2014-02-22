@@ -44,7 +44,7 @@
 
     // attempt to armor stray angled brackets that cannot possibly
     // form tags and thus are probably being used as emoticons
-    //if ($config->get('Core.AggressivelyFixLt'))
+    if ([[config get:@"Core.AggressivelyFixLt"] isEqual:@YES])
     {
         NSString* chars = @"[^a-z!\\/]";
         NSString* comment = @"<!--(.*?)(-->|\\z)";
@@ -52,11 +52,21 @@
                 {
                     return [self callbackArmorCommentEntities:array];
                 } haystack:html];
+
+
         NSString* old = @"";
         do {
             old = html;
-            html = preg_replace_3([NSString stringWithFormat:@"<(%@)", chars], @"&lt;\\1", html);
+
+            NSString* pregReplacePattern = [NSString stringWithFormat:@"<(%@)", chars];
+
+            html = [BasicPHP pregReplace:pregReplacePattern callback:^(NSArray* matches){ if(matches.count>1)
+                return [NSString stringWithFormat:@"&lt;%@", matches[1]];
+            return @"&lt;";
+            } haystack:html];
+            //html = preg_replace_3([NSString stringWithFormat:@"<(%@)", chars], @"&lt;\\1", html);
         } while (html && ![html isEqualToString:old]);
+
         html = [BasicPHP pregReplace:comment callback:^(NSArray* array){ return [self callbackUndoCommentSubst:array]; } haystack:html]; // fix comments
     }
     
@@ -72,8 +82,11 @@
 
     CFStringEncoding cfenc = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
     CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
+
     const char *enc = CFStringGetCStringPtr(cfencstr, 0);
+
     // _doc = htmlParseDoc((xmlChar*)[string UTF8String], enc);
+
     int optionsHtml = HTML_PARSE_RECOVER;
     optionsHtml = optionsHtml | HTML_PARSE_NOERROR; //Uncomment this to see HTML errors
     optionsHtml = optionsHtml | HTML_PARSE_NOWARNING;

@@ -205,7 +205,7 @@
     [self assertResult:@"<table><colgroup><col /><tr></tr></table>" expect:@"<table><colgroup><col /></colgroup><tr></tr></table>"];
 }
 
--(void) testAutoCloseMultiple
+- (void)d_testAutoCloseMultiple
 {
     [self assertResult:@"<b><span><div></div>asdf" expect:@"<b><span></span></b><div><b></b></div><b>asdf</b>"];
 }
@@ -216,18 +216,18 @@
 }
 
      
--(void) disabled_testBlockquoteWithInline
+- (void)disabled_testBlockquoteWithInline
 {
     [[super config] setString:@"HTML.Doctype" object:@"XHTML 1.0 Strict"];
     [self assertResult:@"<blockquote>foo<b>bar</b></blockquote>" expect:@"<blockquote>foo<b>bar</b></blockquote>"];
 }
 
--(void) testLongCarryOver
+-(void) d_testLongCarryOver
 {
     [self assertResult:@"<b>asdf<div>asdf<i>df</i></div>asdf</b>" expect:@"<b>asdf</b><div><b>asdf<i>df</i></b></div><b>asdf</b>"];
 }
 
--(void) testInterleaved
+-(void) d_testInterleaved
 {
     [self assertResult:@"<u>foo<i>bar</u>baz</i>" expect:@"<u>foo<i>bar</i></u><i>baz</i>"];
 }
@@ -253,7 +253,7 @@
 }
 
 
-- (void) testEmailExample1
+- (void) d_testEmailExample1
 {
     NSString* email1 = @"<div dir=\"ltr\"><div class=\"gmail_quote\">Philosophy of Mathematics Seminar<br>Monday 24 February 2014<br>4.30-6.30 p.m.<br>in the Ryle Room of the Philosophy Faculty, Radcliffe Humanities Building, Woodstock Road<br><br>The Structure Identity Principle in Set Theory and Type Theory<br>Peter Aczel<br>(Manchester)<br><br>Abstract: &#32;My talk will focus on only one of the several features of Univalent Foundations that I believe to be of philosophical interest. &#2080;A strong form of the Structure Identity Principle (SIP) arises directly out of the Univalence Axiom (UA), a beautiful axiom of type theory originally formulated by Vladimir Voevodsky. &#133152; I will give a precise statement of UA and end with a simple theorem of Homotopy Type Theory (HoTT) that expresses a version of SIP. &#8521760;A formal system for HoTT is a version of Martin-Lf&#39;s intensional dependent type theory together with a univalent type universe; i.e. a type universe satisfying UA. &#416;I will, very informally, review such a type theory with its Curry-Howard treatment of logic. &#26656;But first I will discuss a weak version of SIP in classical set theoretic foundations and review Bourbaki&#39;s notion of structure.<br><br><br>For information on other meetings of the seminar go to <a href=\"http://users.ox.ac.uk/~reflect/Reflection_and_Incompleteness/Philosophy_of_Mathematics_Seminar.html\" target=\"_blank\">http://users.ox.ac.uk/~reflect/Reflection_and_Incompleteness/Philosophy_of_Mathematics_Seminar.html</a><br><br>Conveners: Volker Halbach (&lt;<a href=\"mailto:volker.halbach@philosophy.ox.ac.uk\">volker.halbach@philosophy.ox.ac.uk</a>&gt;)<br>&#1706016; &#109185056; &#-1602090976; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672;Daniel Isaacson (&lt;<a href=\"mailto:daniel.isaacson@philosophy.ox.ac.uk\">daniel.isaacson@philosophy.ox.ac.uk</a>&gt;)<br>&#545392672; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672; &#545392672;James Studd (&lt;<a href=\"mailto:james.studd@philosophy.ox.ac.uk\">james.studd@philosophy.ox.ac.uk</a>&gt;)<br><br></div><br></div>";
     [self assertResult:email1 expect:email1];

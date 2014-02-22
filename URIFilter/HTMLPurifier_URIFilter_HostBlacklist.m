@@ -25,7 +25,7 @@
 -(id) init
 {
     self = [super init];
-    super.name = @"HostBlacklist";
+    self.name = @"HostBlacklist";
     self.blacklist = [NSArray new];
     
     return self;
@@ -42,11 +42,12 @@
     // This List can be a single String
     if ([def isKindOfClass:[NSString class]])
     {
-        self.blacklist = [NSArray arrayWithObject:def];
+        if([(NSString*)def length]>0)
+            self.blacklist = [NSArray arrayWithObject:def];
     }
     else
     {
-    self.blacklist = (NSArray*)def;
+        self.blacklist = (NSArray*)def;
     }
     return YES;
 }
@@ -61,7 +62,7 @@
 {
     for (NSString* blacklisted_host_fragment in self.blacklist)
     {
-        if (strpos([*uri host],blacklisted_host_fragment) != NSNotFound)
+        if([*uri host] && strpos([*uri host],blacklisted_host_fragment) != NSNotFound)
         {
             return NO;
         }

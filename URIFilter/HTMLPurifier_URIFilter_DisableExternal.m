@@ -28,7 +28,7 @@
 {
     self = [super init];
     
-    super.name = @"";
+    self.name = @"DisableExternal";
     self.ourHostParts = nil;
     return self;
 }

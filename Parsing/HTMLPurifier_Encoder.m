@@ -46,15 +46,17 @@
 
 + (NSString*)unichr:(int)code
 {
-    return [NSString stringWithFormat:@"%C", (unichar)code];
-    /*
     if(code < 0 || (code >= 55296 && code <= 57343) || code > 1114111)
         return @"";
 
     //zero char doesn't work with format specifiers, for some reason...
     if(code ==0)
         return @"\0";
+     
 
+     return [NSString stringWithFormat:@"%C", (unichar)code];
+
+    /*
     NSInteger x = 0;
     NSInteger y = 0;
     NSInteger z = 0;

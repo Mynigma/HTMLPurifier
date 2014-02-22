@@ -36,15 +36,59 @@
     [super tearDown];
 }
 
+//- (void)testExample
+//{
+//
+//    NSString* before = @"<IMG SRC=java";
+//    NSLog(@"%@", [before dataUsingEncoding:NSUTF8StringEncoding]);
+//    NSString* after = [purifier purify:before];
+//    NSString* expect = @"";
+//    XCTAssertEqualObjects(after, expect, @"Example");
+//}
+//
+//- (void)testBla
+//{
+//    NSString* before = @"&apos;&apos;;!--&quot;&lt;XSS&gt;=&amp;{()}";
+//    NSLog(@"%@", [before dataUsingEncoding:NSUTF8StringEncoding]);
+//    NSString* after = [purifier purify:before];
+//    NSString* expect = @"&amp;lt;XSS&gt;=&amp;{()}";
+//    XCTAssertEqualObjects(after, expect, @"Example");
+//}
 
-- (void)testXSSAttacks
+
+- (void)d_testIt
 {
-    NSURL* smoketestsPlistPath = [BUNDLE URLForResource:@"xssSmoketests" withExtension:@"plist"];
+    NSString* key = @"STYLEw/Comment";
+    
+    [self.config setString:@"URI.HostBlacklist" object:@[@"google.com"]];
+
+    NSData* beforeData = [[NSData alloc] initWithBase64EncodedString:@"PElNRyBTUkM9YGphdmFzY3JpcHQ6YWxlcnQoIlJTbmFrZSBzYXlzLCAnWFNTJyIpYD4=" options:0];
+
+    NSString* before = [[NSString alloc] initWithData:beforeData encoding:NSUTF8StringEncoding];
+
+    NSString* after = [purifier purify:before config:self.config];
+
+    NSData* expectData = [[NSData alloc] initWithBase64EncodedString:@"PGltZyBzcmM9IiU2MGphdmFzY3JpcHQlM0FhbGVydCgiIGFsdD0iYGphdmFzY3JpcHQ6YWxlcnQoJnF1b3Q7UlNuYWtlIiAvPg==" options:0];
+
+    NSString* expect = [[NSString alloc] initWithData:expectData encoding:NSUTF8StringEncoding];
+
+    XCTAssertNotNil(before, @"%@", key);
+
+    XCTAssertEqualObjects(after, expect, @"%@", key);
+    
+}
+
+
+- (void)d_testXSSAttacks
+{
+    NSURL* smoketestsPlistPath = [BUNDLE URLForResource:@"xssAttacks" withExtension:@"plist"];
     if(!smoketestsPlistPath)
     {
         //NSLOG"Error opening config plist file!");
         return;
     }
+
+    [self.config setString:@"URI.HostBlacklist" object:@[@"google.com"]];
 
     NSDictionary* plistDict = [NSDictionary dictionaryWithContentsOfURL:smoketestsPlistPath];
 
@@ -52,10 +96,22 @@
     {
         if([plistDict[key] count]>1)
         {
-            NSString* before = plistDict[key][0];
-            NSString* after = [purifier purify:before];
-            NSString* expect = plistDict[key][1];
+            NSData* beforeBase64Data = plistDict[key][0];
+
+            NSData* beforeData = [[NSData alloc] initWithBase64EncodedData:beforeBase64Data options:0];
+
+            NSString* before = [[NSString alloc] initWithData:beforeData encoding:NSUTF8StringEncoding];
+
+            NSString* after = [purifier purify:before config:self.config];
+
+            NSData* expectBase64Data = plistDict[key][1];
+
+            NSData* expectData = [[NSData alloc] initWithBase64EncodedData:expectBase64Data options:0];
+
+            NSString* expect = [[NSString alloc] initWithData:expectData encoding:NSUTF8StringEncoding];
+
             XCTAssertNotNil(before, @"%@", key);
+
             XCTAssertEqualObjects(after, expect, @"%@", key);
         }
         else
@@ -63,7 +119,7 @@
     }
 }
 
-- (void)testEmailSamples
+- (void)d_testEmailSamples
 {
     [[super config] setString:@"Output.Newline" object:@""];
 

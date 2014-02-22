@@ -175,13 +175,15 @@
  */
 - (NSString*)normalizeWithHtml:(NSString*)html config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    /*
+
     // normalize newlines to \n
-    if ($config->get('Core.NormalizeNewlines')) {
-        $html = str_replace("\r\n", "\n", $html);
-        $html = str_replace("\r", "\n", $html);
+    if ([[config get:@"Core.NormalizeNewlines"] isEqual:@YES])
+    {
+        html = [html stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"];
+        html = [html stringByReplacingOccurrencesOfString:@"\r" withString:@"\n"];
     }
 
+    /*
     if ($config->get('HTML.Trusted')) {
         // escape convoluted CDATA
         $html = $this->escapeCommentedCDATA($html);
@@ -193,19 +195,20 @@
 
     html = [self removeIEConditionalWithString:html];
 
-    /*
+
     // extract body from document if applicable
-    if ($config->get('Core.ConvertDocumentToFragment')) {
-        $e = false;
-        if ($config->get('Core.CollectErrors')) {
-            $e =& $context->get('ErrorCollector');
-        }
-        $new_html = $this->extractBody($html);
-        if ($e && $new_html != $html) {
-            $e->send(E_WARNING, 'Lexer: Extracted body');
-        }
-        $html = $new_html;
-    }*/
+    if ([config get:@"Core.ConvertDocumentToFragment"])
+    {
+        //$e = false;
+        //if ($config->get('Core.CollectErrors')) {
+        //    $e =& $context->get('ErrorCollector');
+        //}
+        NSString* newHtml = [self extractBodyWithHtml:html];
+        //if ($e && $new_html != $html) {
+        //    $e->send(E_WARNING, 'Lexer: Extracted body');
+        //}
+        html = newHtml;
+    }
 
     // expand entities that aren't the big five
     html = [self->_entity_parser substituteNonSpecialEntities:html];

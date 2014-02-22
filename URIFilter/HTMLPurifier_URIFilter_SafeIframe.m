@@ -40,8 +40,8 @@
 {
     self = [super init];
     
-    super.name = @"SafeIframe";
-    super.always_load = YES;
+    self.name = @"SafeIframe";
+    self.always_load = YES;
     self.regexp = nil;
     
     return self;

@@ -34,8 +34,8 @@
     HTMLPurifier_Generator* generator = [[HTMLPurifier_Generator alloc] initWithConfig:config context:context];
     NSMutableArray* result = [NSMutableArray new];
 
-    BOOL escape_invalid_tags = NO; // [[config get:@"Core.EscapeInvalidTags"] boolValue];
-    BOOL remove_invalid_img = YES; // [[config get:@"Core.RemoveInvalidImg"] boolValue];
+    BOOL escape_invalid_tags = [(NSNumber*)[config get:@"Core.EscapeInvalidTags"] boolValue];
+    BOOL remove_invalid_img = [(NSNumber*)[config get:@"Core.RemoveInvalidImg"] boolValue];
 
     // currently only used to determine if comments should be kept
     BOOL trusted = NO; // $config->get('HTML.Trusted');
@@ -108,8 +108,11 @@
             {
                 // mostly everything's good, but
                 // we need to make sure required attributes are in order
+
+                BOOL hasRequiredAttr = [[elementDef required_attr] count]>0;
+
                 if (([token isKindOfClass:[HTMLPurifier_Token_Start class]] || [token isKindOfClass:[HTMLPurifier_Token_Empty class]]) &&
-                    [elementDef required_attr]!=nil &&
+                    hasRequiredAttr &&
                     (![token.name isEqual:@"img"] || remove_invalid_img) // ensure config option still works
                     )
                 {

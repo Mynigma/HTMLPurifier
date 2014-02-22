@@ -90,9 +90,7 @@
             return (NSString*)entity;
         }
             NSString* unicharStr = [HTMLPurifier_Encoder unichr:code.intValue];
-            if(unicharStr.length>0)
-                return unicharStr;
-            return entity;
+            return unicharStr;
     }
     else
     {

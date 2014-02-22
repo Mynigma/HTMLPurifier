@@ -18,7 +18,7 @@
 -(id) init
 {
     self = [super init];
-    super.name = @"DisableResources";
+    self.name = @"DisableResources";
     return self;
 }
 

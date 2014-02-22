@@ -48,6 +48,7 @@
     _filters = [NSMutableDictionary new];
     _postFilters = [NSMutableDictionary new];
 
+    _registeredFilters = [NSMutableDictionary new];
     
     [self registerFilter:[HTMLPurifier_URIFilter_DisableExternal new]];
     [self registerFilter:[HTMLPurifier_URIFilter_DisableExternalResources new]];

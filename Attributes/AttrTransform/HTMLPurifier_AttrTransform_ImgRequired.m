@@ -33,7 +33,7 @@
         NSMutableDictionary* attr = [passedAttr mutableCopy];
         if (!attr[@"src"])
         {
-            if ([config get:@"Core.RemoveInvalidImg"] && (BOOL)[config get:@"Core.RemoveInvalidImg"] == true)
+            if ([[config get:@"Core.RemoveInvalidImg"] isEqual:@YES])
             {
                 return attr;
             }

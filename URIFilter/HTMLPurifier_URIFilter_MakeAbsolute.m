@@ -34,7 +34,7 @@
 -(id) init
 {
     self = [super init];
-    super.name = @"MakeAbsolute";
+    self.name = @"MakeAbsolute";
     basePathStack = [NSMutableArray new];
     return self;
 }

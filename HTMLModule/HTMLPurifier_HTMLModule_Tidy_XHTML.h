@@ -9,4 +9,5 @@
 
 @interface HTMLPurifier_HTMLModule_Tidy_XHTML : HTMLPurifier_HTMLModule_Tidy
 
+
 @end

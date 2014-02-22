@@ -152,9 +152,9 @@
                     }
                 } else {
                     type = [NSString stringWithFormat:@"info_%@", type];
+                    e = self;
                 }
-                // PHP does some weird parsing when I do
-                // $e->$type[$attr], so I have to assign a ref.
+
                 NSMutableDictionary* f = [e valueForKey:type];
                 if(attr)
                     f[attr] = fix;

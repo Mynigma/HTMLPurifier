@@ -56,8 +56,8 @@
 {
     self = [super init];
     
-    super.name = @"Munge";
-    super.post = YES;
+    self.name = @"Munge";
+    self.post = YES;
     
     self.replace = [NSMutableDictionary new];
     

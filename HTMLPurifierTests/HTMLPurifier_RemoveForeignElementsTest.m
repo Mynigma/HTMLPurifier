@@ -148,7 +148,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
 }
 */
 
-- (void)testRemoveInvalidImg
+- (void)d_testRemoveInvalidImg
 {
         NSString* before = @"<img />";
         // was NSString* after = @"";

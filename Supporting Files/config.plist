@@ -84,7 +84,7 @@
 		<key>Cache.SerializerPermissions</key>
 		<string>493</string>
 		<key>Core.AggressivelyFixLt</key>
-		<string>1</string>
+		<true/>
 		<key>Core.AllowHostnameUnderscore</key>
 		<string>nil</string>
 		<key>Core.CollectErrors</key>
@@ -139,7 +139,7 @@
 		<key>Core.EscapeInvalidChildren</key>
 		<string>nil</string>
 		<key>Core.EscapeInvalidTags</key>
-		<string>nil</string>
+		<false/>
 		<key>Core.EscapeNonASCIICharacters</key>
 		<string>nil</string>
 		<key>Core.HiddenElements</key>
@@ -158,9 +158,9 @@
 		<key>Core.MaintainLineNumbers</key>
 		<string>nil</string>
 		<key>Core.NormalizeNewlines</key>
-		<string>1</string>
+		<true/>
 		<key>Core.RemoveInvalidImg</key>
-		<string>1</string>
+		<true/>
 		<key>Core.RemoveProcessingInstructions</key>
 		<string>nil</string>
 		<key>Core.RemoveScriptContents</key>

@@ -340,9 +340,9 @@
         // http://htmlpurifier.org/phorum/read.php?3,4823,4846
         if (!quote) {
             quote = @"ENT_COMPAT";
-        }
 
-        //TO DO: clean this up, actually use the quote parameter
+            return htmlspecialchars_ENT_COMPAT(string);
+        }
 
         return htmlspecialchars_ENT_NOQUOTES(string);
 }
