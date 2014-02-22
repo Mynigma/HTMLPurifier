@@ -344,7 +344,7 @@ static HTMLPurifier* theInstance;
 
 + (NSString*)cleanHTML:(NSString*)htmlString
 {
-    HTMLPurifier* purifier = [HTMLPurifier instance];
+    HTMLPurifier* purifier = [HTMLPurifier new];
 
     NSString* purifiedBody = nil;
 
@@ -371,7 +371,7 @@ static HTMLPurifier* theInstance;
         @autoreleasepool
         {
 
-            HTMLPurifier* purifier = [HTMLPurifier instance];
+            HTMLPurifier* purifier = [HTMLPurifier new];
 
             @try
             {
