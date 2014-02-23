@@ -2369,7 +2369,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
-				INSTALL_PATH = /Library/Frameworks;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2394,7 +2394,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
-				INSTALL_PATH = /Library/Frameworks;
+				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
