@@ -35,7 +35,6 @@ Future features:
   - Goto `Editor > Add Build Phase > Copy Files`.
   - Expand the newly created Build Phase and change it's destination to "Frameworks".
   - Click the `+` icon and select `HTMLPurifier.framework`.
-  - ~~Add `config.plist` and `entities.plist` to your projects `copy bundle resources` list.~~
   - You may need to add an recursive header-search-path to your build settings.
 4. **For iOS** 
   - Will follow soon.
@@ -64,9 +63,9 @@ In Edward Z. Yangs HTMLPurifier one has a lot of possible config settings. We cu
 
 ## Warnings ##
 
-This is really raw stuff and (as you can see in some leftover comments) directly ported from HTMLPurifier for PHP (4.6). We took many shortcuts to get it to run, so be careful.
+This is (as you can see in some leftover comments) directly ported from HTMLPurifier for PHP (4.6). We took many shortcuts to get it to run, so be careful.
 
-We left some important stuff out, like any pre or post filtering. And since we're using libxml2 for tokenizing, the output is definitly different from the PHP-version.
+We left some important stuff out, like any pre or post filtering. And since we're using libxml2 for tokenizing, the output is definitly different from the PHP version.
 
 
 ## TO DO ##
@@ -89,8 +88,8 @@ If you introduce new stuff, please provide viable unit tests. Here is great guid
 
 ## Info & Licence ##
 
-Our main project [Mynigma](https://mynigma.org) is a secure and easy to use email-client and we couldn't find any good solution for disabling bad and unsecure code in incoming html-emails. Thats why we took the best and really well documented thing out there and ported it from PHP to Objective-C.
+Our main project [Mynigma](https://mynigma.org) is a secure and easy to use email client and we couldn't find any good solution for disabling bad and unsecure code in incoming html emails. Thats why we took the best and really well documented thing out there and ported it from PHP to Objective-C.
 
-Right now we are using LGPL 2.1 for licencing, as the original project uses this licence. We are aware of the "static linking" problem and since we want to you use HTMLPurifier in our iOS app, we will try to add an exception to the licence. For this we need the consent of the original authors (TODO).   
+Right now we are using LGPL 2.1 for licencing, as the original project uses this licence. We are aware of the "static linking" problem and since we want to use HTMLPurifier in our iOS app, we will try to add an exception to the licence. For this we need the consent of the original authors (TODO).   
 
 
