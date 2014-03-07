@@ -64,8 +64,14 @@
     NSString* result = [purifier purify:@"Hi Lukas, hier ist ein Link: http://www.mynigma.org/test.html"];
     NSString* expect = @"Hi Lukas, hier ist ein Link: <a href=\"http://www.mynigma.org/test.html\">http://www.mynigma.org/test.html</a>";
     XCTAssertEqualObjects(result, expect);
-
 }
+
+-(void) testLinkfyWithWWW
+{
+    NSString* result = [purifier purify:@"Ich teste diesen Link www.test.de test"];
+    XCTAssertEqualObjects(result, @"Ich teste diesen Link <a href=\"http://www.test.de\">www.test.de</a> test");
+}
+
 
 -(void) d_testDebug
 {

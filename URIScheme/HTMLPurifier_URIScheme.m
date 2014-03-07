@@ -88,7 +88,7 @@
         // if the scheme is not present, a *blank* host is in error,
         // since this translates into '///path' which most browsers
         // interpret as being 'http://path'.
-        (![uri scheme] && [[uri host] isEqual:@""]))
+        (![uri scheme] && ([[uri host] isEqual:@""] || ![uri host])))
     {
         do
         {
