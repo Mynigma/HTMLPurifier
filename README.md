@@ -23,6 +23,9 @@ Future features:
 - ... so much more (not yet implemented)
 
 
+[![Build Status](https://travis-ci.org/Mynigma/HTMLPurifier.png?branch=master)](https://travis-ci.org/Mynigma/HTMLPurifier)
+
+
 ## Installation ##
 
 1. Checkout HTMLPurifier into a directory relative to your project.
