@@ -1,3 +1,10 @@
 language: objective-c
 xcode_project: HTMLPurifier.xcodeproj
 xcode_scheme: HTMLPurifier
+
+
+# install xcodetest dependencies
+before_install: ./install_dependencies.sh
+
+# build via xcodetest
+script: ./build_and_run_unit_tests.sh HTMLPurifier HTMLPurifierTests
