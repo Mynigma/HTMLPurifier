@@ -29,7 +29,7 @@
 - (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     string = [self parseCDATAWithString:string];
-    if ([string isEqualTo:@""]) {
+    if ([string isEqual:@""]) {
         return NO;
     }
     NSArray* parts = explode(@" ", string); // parseCDATA replaced \r, \t and \n
@@ -47,7 +47,7 @@
             num++;
         }
     }
-    if ([finalString isEqualTo:@""]) {
+    if ([finalString isEqual:@""]) {
         return nil;
     }
     return trim(finalString);

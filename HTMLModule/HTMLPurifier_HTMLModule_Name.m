@@ -27,7 +27,7 @@
             element.attr[@"name"] = @"CDATA";
             if(![(NSNumber*)[config get:@"HTML.Attr.Name.UseCDATA"] boolValue])
             {
-                NSString* newKey = [NSString stringWithFormat:@"%ld", element.attr_transform_post.count];
+                NSString* newKey = [NSString stringWithFormat:@"%ld", (unsigned long)element.attr_transform_post.count];
                 if (newKey)
                     [element.attr_transform_post setObject:[HTMLPurifier_AttrTransform_NameSync new] forKey:newKey];
             }

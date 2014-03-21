@@ -5,7 +5,6 @@
 //  Created by Roman Priebe on 10.01.14.
 
 
-#import <Cocoa/Cocoa.h>
 #import "HTMLPurifier_Definition.h"
 
 @class HTMLPurifier_Config;

@@ -162,16 +162,16 @@
     if (![contents isKindOfClass:[NSString class]]) {
         return nil;
     } // defer
-    if([contents isEqualTo:@"Empty"])
+    if([contents isEqual:@"Empty"])
     {
             // check for shorthand content model forms
             return @[@"empty", @""];
     }
-    else if([contents isEqualTo:@"Inline"])
+    else if([contents isEqual:@"Inline"])
     {
         return @[@"optional", @"Inline | #PCDATA"];
     }
-    else if([contents isEqualTo:@"Flow"])
+    else if([contents isEqual:@"Flow"])
     {
         return @[@"optional", @"Flow | #PCDATA"];
     }

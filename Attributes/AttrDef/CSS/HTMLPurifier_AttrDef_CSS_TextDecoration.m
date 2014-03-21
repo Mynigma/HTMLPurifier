@@ -37,7 +37,7 @@
         }
     }
     final = [trim(final) mutableCopy];
-    if ([final isEqualTo:@""])
+    if ([final isEqual:@""])
     {
         return nil;
     }

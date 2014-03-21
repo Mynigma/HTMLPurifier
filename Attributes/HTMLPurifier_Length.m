@@ -56,7 +56,7 @@
         NSString* newN = [(NSString*)s substringWithRange:NSMakeRange(0, n_length)];
 
         NSString* newUnit = [(NSString*)s substringWithRange:NSMakeRange(n_length, [(NSString*)s length] - n_length)];
-        if ([newUnit isEqualTo:@""]) {
+        if ([newUnit isEqual:@""]) {
             newUnit = nil;
         }
         return [[HTMLPurifier_Length alloc] initWithN:newN u:newUnit];

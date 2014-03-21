@@ -66,7 +66,7 @@
  * @param int $type
  * @throws HTMLPurifier_Exception
  */
-- (void)errorInconsistent:(NSClassDescription*)class type:(NSNumber*)type;
+- (void)errorInconsistent:(NSObject*)classDesc type:(NSNumber*)type;
 
 /**
  * Generic error for if a type didn't work.

@@ -252,7 +252,7 @@
         {
             NSMutableString* new_data = [trim(data) mutableCopy];
             if(new_data.length>=4)
-            if ([[new_data substringWithRange:NSMakeRange(0, 4)] isEqualTo:@"<!--"]) {
+            if ([[new_data substringWithRange:NSMakeRange(0, 4)] isEqual:@"<!--"]) {
                 data = substr(new_data, 4);
                 if ([substr(data, -3) isEqualToString:@"-->"]) {
                     data = [data substringWithRange:NSMakeRange(data.length-3, 3)];

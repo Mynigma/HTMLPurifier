@@ -143,7 +143,7 @@
 
 - (NSUInteger)hash
 {
-    return [self.attr hash] + [self.attr_transform_post hash] + [self.attr_transform_pre hash] + [self.child hash] + [self.content_model hash] + [self.content_model_type hash] + self.descendants_are_inline?0:8547 + [self.excludes hash] + self.formatting?34853:49853 + [self.required_attr hash] + self.standalone?3244:9598 + [self.wrap hash];
+    return [self.attr hash] + [self.attr_transform_post hash] + [self.attr_transform_pre hash] + [self.child hash] + [self.content_model hash] + [self.content_model_type hash] + (self.descendants_are_inline?0:8547) + [self.excludes hash] + (self.formatting?34853:49853) + [self.required_attr hash] + (self.standalone?3244:9598) + [self.wrap hash];
 }
 
 - (BOOL)isEqual:(HTMLPurifier_ElementDef*)object

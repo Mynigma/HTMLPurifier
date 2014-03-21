@@ -47,14 +47,14 @@
 
     for(NSString* bit in bits)
     {
-        if([bit isEqualTo:@""])
+        if([bit isEqual:@""])
             continue;
 
           // test for keyword
         NSString* lbit = [bit lowercaseString];
         if ([lookup objectForKey:lbit]) {
             NSString* status = [lookup objectForKey:lbit];
-            if ([status isEqualTo:@"c"]) {
+            if ([status isEqual:@"c"]) {
                 if (i == 0) {
                     status = @"ch";
                 } else {

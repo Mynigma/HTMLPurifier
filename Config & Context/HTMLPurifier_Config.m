@@ -226,7 +226,7 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
     for(NSString* name in [plist squash])
     {
         NSObject* value = [plist get:name];
-        if(!value || [value isEqualTo:@"nil"])
+        if(!value || [value isEqual:@"nil"])
             continue;
         NSArray* exploded = explode(@".", name);
         NSString* ns = @"";

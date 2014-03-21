@@ -40,7 +40,7 @@
     {
         // regular pre-processing
         string = [self parseCDATAWithString:string];
-        if ([string isEqualTo:@""]) {
+        if ([string isEqual:@""]) {
             return nil;
         }
 
@@ -61,7 +61,7 @@
             {
                 return nil;
             } // optimization bit
-            if ([bit isEqualTo:@""]) {
+            if ([bit isEqual:@""]) {
                 continue;
             }
             for(NSString* key in caught)
@@ -74,7 +74,7 @@
                 {
                     continue;
                 }
-                if ([r isEqualTo:@"none"])
+                if ([r isEqual:@"none"])
                 {
                     if (none)
                     {
@@ -84,7 +84,7 @@
                     {
                         none = YES;
                     }
-                    if ([key isEqualTo:@"image"])
+                    if ([key isEqual:@"image"])
                     {
                         continue;
                     }

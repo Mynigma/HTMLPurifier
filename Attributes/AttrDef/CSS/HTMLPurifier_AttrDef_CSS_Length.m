@@ -50,10 +50,10 @@
     string = [self parseCDATAWithString:string];
 
     // Optimizations
-    if ([string isEqualTo:@""]) {
+    if ([string isEqual:@""]) {
         return nil;
     }
-    if ([string isEqualTo:@"0"]) {
+    if ([string isEqual:@"0"]) {
         return @"0";
     }
     if (string.length == 1) {

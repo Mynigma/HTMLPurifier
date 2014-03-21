@@ -76,7 +76,7 @@
     NSInteger i;
     for (i = 1; i < c; i++)
     {
-        NSString* key = [NSString stringWithFormat:@"%ld", activated_levels.count];
+        NSString* key = [NSString stringWithFormat:@"%ld", (unsigned long)activated_levels.count];
         if (key)
             [activated_levels setObject:self.levels[i] forKey:key];
         if ([self.levels[i] isEqual:level])

@@ -5,7 +5,6 @@
 //  Created by Roman Priebe on 18.01.14.
 
 
-#import <Cocoa/Cocoa.h>
 #import "HTMLPurifier_AttrTransform.h"
 
 @class HTMLPurifier_AttrDef_HTML_ID;

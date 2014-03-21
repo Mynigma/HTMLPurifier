@@ -46,7 +46,7 @@
 {
     // regular pre-processing
     NSString* string = [self parseCDATAWithString:someString];
-    if ([string isEqualTo:@""]) {
+    if ([string isEqual:@""]) {
         return nil;
     }
 
@@ -66,7 +66,7 @@
 
     for(NSString* bit in bits)
     {
-        if ([bit isEqualTo:@""])
+        if ([bit isEqual:@""])
         {
             continue;
         }
@@ -74,9 +74,9 @@
         {
             NSObject* status = caught[key];
 
-            if(![key isEqualTo:@"position"])
+            if(![key isEqual:@"position"])
             {
-                if(![status isEqualTo:@NO])
+                if(![status isEqual:@NO])
                     continue;
                 r = [[info objectForKey:[NSString stringWithFormat:@"background-%@", key]] validateWithString:bit config:config context:context];
             }
@@ -87,9 +87,9 @@
             if(!r)
                 continue;
 
-            if ([key isEqualTo:@"position"])
+            if ([key isEqual:@"position"])
             {
-                if([status isEqualTo:@NO])
+                if([status isEqual:@NO])
                 {
                     [caught setObject:@"" forKey:key];
                 }
@@ -108,7 +108,7 @@
         {
             return nil;
         }
-        if(![[caught objectForKey:@"position"] isEqualTo:@NO])
+        if(![[caught objectForKey:@"position"] isEqual:@NO])
         {
             if (![self->info objectForKey:@"background-position"] || ![[self->info objectForKey:@"background-position"] isKindOfClass:[HTMLPurifier_AttrDef class]])
                 return nil;
@@ -122,7 +122,7 @@
         for(NSObject* key in sortedCaughtKeys)
         {
             NSObject* value = caught[key];
-            if([value isEqualTo:@NO])
+            if([value isEqual:@NO])
                 continue;
             [ret addObject:value];
         }

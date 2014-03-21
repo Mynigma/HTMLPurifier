@@ -101,7 +101,7 @@ static NSDictionary* stringTypes;
             case 11:
                 return [var description];
             default:
-                [self errorInconsistent:[self classDescription] type:type];
+                [self errorInconsistent:[self description] type:type];
         }
         [self errorGeneric:var type:type];
 
@@ -140,9 +140,9 @@ static NSDictionary* stringTypes;
      * @param int $type
      * @throws HTMLPurifier_Exception
      */
-- (void)errorInconsistent:(NSClassDescription*)class type:(NSNumber*)type
+- (void)errorInconsistent:(NSObject*)classDesc type:(NSNumber*)type
     {
-        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"Inconsistency in %@: %@ not implemented" , class, [HTMLPurifier_VarParser getTypeName:type]] reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:[NSString stringWithFormat:@"Inconsistency in %@: %@ not implemented" , classDesc, [HTMLPurifier_VarParser getTypeName:type]] reason:@"" userInfo:nil];
     }
 
     /**

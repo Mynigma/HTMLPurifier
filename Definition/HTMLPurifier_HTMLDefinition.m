@@ -181,7 +181,7 @@
             }
             else
             {
-                NSString* newKey = [NSString stringWithFormat:@"%ld", self.info_attr_transform_pre.count];
+                NSString* newKey = [NSString stringWithFormat:@"%ld", (unsigned long)self.info_attr_transform_pre.count];
                 if (v && newKey)
                     [self.info_attr_transform_pre setObject:v forKey:newKey];
             }
@@ -196,7 +196,7 @@
             }
             else
             {
-                NSString* newKey = [NSString stringWithFormat:@"%ld", self.info_attr_transform_post.count];
+                NSString* newKey = [NSString stringWithFormat:@"%ld", (unsigned long)self.info_attr_transform_post.count];
                 if (v && newKey)
                     [self.info_attr_transform_post setObject:v forKey:newKey];
             }

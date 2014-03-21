@@ -25,7 +25,7 @@
         self.attr_collections = [@{@"I18N" : [@{@"dir" : @NO} mutableCopy]} mutableCopy];
         HTMLPurifier_ElementDef* bdo = [self addElement:@"bdo" type:@"Inline" contents:@"Inline" attrIncludes:@[@"Core", @"Lang"] attr:@{@"dir":@"Enum#ltr,rtl"}];
 
-        NSString* newKey = [NSString stringWithFormat:@"%ld", bdo.attr_transform_post.count];
+        NSString* newKey = [NSString stringWithFormat:@"%ld", (unsigned long)bdo.attr_transform_post.count];
         if (newKey)
             [bdo.attr_transform_post setObject:[HTMLPurifier_AttrTransform_BdoDir new] forKey:newKey];
 

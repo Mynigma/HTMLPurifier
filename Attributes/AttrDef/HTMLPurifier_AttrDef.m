@@ -97,7 +97,7 @@
                     continue;
                 }
                 [ret appendString:characterString];
-                if (i < c && ![trim([string substringWithRange:NSMakeRange(i, 1)]) isEqualTo:@""]) {
+                if (i < c && ![trim([string substringWithRange:NSMakeRange(i, 1)]) isEqual:@""]) {
                     i--;
                 }
                 continue;

@@ -37,10 +37,10 @@
     {
         string = [self parseCDATAWithString:string];
 
-        if ([string isEqualTo:@""]) {
+        if ([string isEqual:@""]) {
             return nil;
         }
-        if ([string isEqualTo:@"0"]) {
+        if ([string isEqual:@"0"]) {
             return @"0";
         }
 
@@ -81,17 +81,17 @@
             }
         }
 
-        if ([left isEqualTo:@""] && [right isEqualTo:@""]) {
+        if ([left isEqual:@""] && [right isEqual:@""]) {
             return nil;
         }
-        if (![left isEqualTo:@""] && !ctype_digit(left)) {
+        if (![left isEqual:@""] && !ctype_digit(left)) {
             return nil;
         }
 
         left = ltrim_2(left, @"0");
         right = rtrim_2(right, @"0");
 
-        if ([right isEqualTo:@""])
+        if ([right isEqual:@""])
         {
             return left ? [sign stringByAppendingString:string] : @"0";
         } else if (!ctype_digit(right)) {

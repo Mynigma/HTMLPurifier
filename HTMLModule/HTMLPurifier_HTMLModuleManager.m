@@ -371,7 +371,7 @@
 
         for(HTMLPurifier_HTMLModule* thisModule in self.modules)
         {
-            if([thisModule.name isEqualTo:module_name])
+            if([thisModule.name isEqual:module_name])
             {
                 module = thisModule;
                 break;

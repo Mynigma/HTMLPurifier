@@ -11,6 +11,9 @@
 #import "HTMLPurifier_URI.h"
 #import "BasicPHP.h"
 
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+#import <UIKit/UIKit.h>
+#endif
 /**
  * Implements data: URI for base64 encoded images supported by GD.
  */
@@ -102,8 +105,19 @@
         raw_data = [data dataUsingEncoding:NSUTF8StringEncoding];
     }
     
-    NSImage* image = [[NSImage alloc] initWithData:raw_data];
 
+
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+
+    UIImage* imageIOS = [UIImage imageWithData:raw_data];
+    
+    if (!imageIOS)
+        return NO;
+
+#else
+    
+    NSImage* image = [[NSImage alloc] initWithData:raw_data];
+    
     if (!image)
         return NO;
     
@@ -111,10 +125,11 @@
     if(!image.isValid)
         return NO;
     
+#endif
     
     uint8_t firstByte;
     [raw_data getBytes:&firstByte length:1];
-
+    
     //get the real content_type
     switch (firstByte) {
             case 0xFF:

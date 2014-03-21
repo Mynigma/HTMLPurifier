@@ -25,7 +25,7 @@
         NSDictionary* colors = (NSDictionary*)[config get:@"Core.ColorKeywords"];
 
         NSString* color = trim(string);
-        if ([color isEqualTo:@""]) {
+        if ([color isEqual:@""]) {
             return nil;
         }
 
@@ -51,7 +51,7 @@
             for(NSString* part in parts)
             {
                 NSString* newPart = trim(part);
-                if ([newPart isEqualTo:@""]) {
+                if ([newPart isEqual:@""]) {
                     return nil;
                 }
                 NSInteger length = newPart.length;
@@ -60,7 +60,7 @@
                     // handle percents
                     if (!type) {
                         type = @"percentage";
-                    } else if (![type isEqualTo:@"percentage"]) {
+                    } else if (![type isEqual:@"percentage"]) {
                         return nil;
                     }
                     NSString* num = [newPart substringWithRange:NSMakeRange(0, length-1)];
@@ -76,7 +76,7 @@
                     // handle integers
                     if (!type) {
                         type = @"integer";
-                    } else if (![type isEqualTo:@"integer"]) {
+                    } else if (![type isEqual:@"integer"]) {
                         return nil;
                     }
                     NSString* num = newPart;//[newPart substringWithRange:NSMakeRange(0, length-1)];

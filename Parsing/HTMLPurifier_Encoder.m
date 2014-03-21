@@ -348,13 +348,13 @@
     return nil;
     /*
      NSString* code = [HTMLPurifier_Encoder testIconvTruncateBug];
-     if ([code isEqualTo:ICONV_OK])
+     if ([code isEqual:ICONV_OK])
      {
      return [self unsafeIconvWithIn:inputEncoding out:outputEncoding text:text];
-     } else if ([code isEqualTo:ICONV_TRUNCATES]) {
+     } else if ([code isEqual:ICONV_TRUNCATES]) {
      // we can only work around this if the input character set
      // is utf-8
-     if ([inputEncoding isEqualTo:@"utf-8"]) {
+     if ([inputEncoding isEqual:@"utf-8"]) {
      if (max_chunk_size < 4) {
      TRIGGER_ERROR(@"max_chunk_size is too small");
      return nil;

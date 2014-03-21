@@ -5,8 +5,6 @@
 //  Created by Roman Priebe on 18.01.14.
 
 
-#import <Cocoa/Cocoa.h>
-
 @class HTMLPurifier_Length;
 
 @interface HTMLPurifier_UnitConverter : NSObject
