@@ -3424,6 +3424,7 @@
 				802AC8FD18DC8FFE00C2BA85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		802AC90118DC8FFE00C2BA85 /* Build configuration list for PBXNativeTarget "libHTMLPurifier iosTests" */ = {
 			isa = XCConfigurationList;
@@ -3432,6 +3433,7 @@
 				802AC8FF18DC8FFE00C2BA85 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80EDF9B518803B3200EB1E89 /* Build configuration list for PBXProject "HTMLPurifier" */ = {
 			isa = XCConfigurationList;
