@@ -1163,7 +1163,16 @@ NSString* lowercase_dechex(NSData* dec_data)
 
 NSData* base64_decode(NSString* base64String)
 {
-    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+    NSData *decodedData = nil;
+
+    if([NSData instancesRespondToSelector:@selector(initWithBase64EncodedString:options:)])
+    {
+        decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:0];
+    }
+    else
+    {
+        decodedData = [[NSData alloc] initWithBase64Encoding:base64String];
+    }
     // NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
     return decodedData;
 }
@@ -1171,7 +1180,17 @@ NSData* base64_decode(NSString* base64String)
 NSString* base64_encode(NSString* plainString)
 {
     NSData *plainData = [plainString dataUsingEncoding:NSUTF8StringEncoding];
-    NSString *base64String = [plainData base64EncodedStringWithOptions:0];
+    NSString *base64String = nil;
+    if([plainData respondsToSelector:@selector(base64EncodedStringWithOptions:)])
+    {
+        //available from 10.9
+        base64String = [plainData base64EncodedStringWithOptions:0];
+    }
+    else
+    {
+        //available from 10.6, deprecated in 10.9
+        base64String = [plainData base64Encoding];
+    }
     return base64String;
 }
 
