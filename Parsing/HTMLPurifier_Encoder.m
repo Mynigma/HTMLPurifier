@@ -674,7 +674,7 @@
 + (NSString*)convertToUTF8:(NSString*)str config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
     NSNumber* encoding = (NSNumber*)[config get:@"Core.Encoding"];
-    if (encoding.integerValue == NSUTF8StringEncoding)
+    if (encoding.integerValue == NSUTF8StringEncoding || encoding.integerValue == 0)
     {
         return str;
     }
@@ -729,6 +729,9 @@
     NSString* str = passedStr;
     NSNumber* encoding = (NSNumber*)[config get:@"Core.Encoding"];
     NSNumber* escape = (NSNumber*)[config get:@"Core.EscapeNonASCIICharacters"];
+
+    if(encoding.integerValue == 0)
+        encoding = @(NSUTF8StringEncoding);
 
     if (encoding.integerValue == NSUTF8StringEncoding && !escape.boolValue)
     {

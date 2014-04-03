@@ -277,7 +277,7 @@
                     continue;
                 }
                 // Check if we should minimize the attribute: val="val" -> val
-                if (element && [[[_def.info[element] attr][key] valueForKey:@"minimized"] count]>0) {
+                if (element && key && [[[_def.info[element] attr][key] valueForKey:@"minimized"] respondsToSelector:@selector(count)] && [[[_def.info[element] attr][key] valueForKey:@"minimized"] count]>0) {
                     [html appendFormat:@"%@ ", key];
                     continue;
                 }
