@@ -339,7 +339,7 @@
         // Workaround for APC bug on Mac Leopard reported by sidepodcast
         // http://htmlpurifier.org/phorum/read.php?3,4823,4846
         if (!quote) {
-            quote = @"ENT_COMPAT";
+            //quote = @"ENT_COMPAT";
 
             return htmlspecialchars_ENT_COMPAT(string);
         }

@@ -62,11 +62,11 @@
     // dummy token
     NSArray* pair = [node toTokenPair];
     HTMLPurifier_Token* token = nil;
-    HTMLPurifier_Token* d = nil;
+    //HTMLPurifier_Token* d = nil;
     if(pair.count>0)
         token = pair[0];
-    if(pair.count>1)
-        d = pair[1];
+    //if(pair.count>1)
+    //    d = pair[1];
 
     [context registerWithName:@"CurrentNode" ref:node];
     [context registerWithName:@"CurrentToken" ref:token];
