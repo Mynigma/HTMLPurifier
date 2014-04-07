@@ -101,7 +101,8 @@
         [self addElementToContentSet:element type:type];
     }
     // create element
-    self.info[element] = [HTMLPurifier_ElementDef create:content_model contentModelType:content_model_type attr:mutableAttr];
+    if(element)
+        self.info[element] = [HTMLPurifier_ElementDef create:content_model contentModelType:content_model_type attr:mutableAttr];
 
     // literal object $contents means direct child manipulation
     if ([contents isKindOfClass:[HTMLPurifier_ChildDef class]])

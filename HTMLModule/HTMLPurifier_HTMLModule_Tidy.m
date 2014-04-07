@@ -210,7 +210,7 @@
 
     // figure out the parameters
     NSMutableDictionary* params = [NSMutableDictionary new];
-    if(![name isEqual:@""])
+    if(name && ![name isEqual:@""])
     {
         params[@"element"] = name;
     }
