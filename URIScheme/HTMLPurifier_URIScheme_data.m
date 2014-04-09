@@ -156,7 +156,22 @@
     [uri setPort:nil];
     [uri setFragment:nil];
     [uri setQuery:nil];
-    [uri setPath:[NSString stringWithFormat:@"%@;base64,%@",content_type,[raw_data base64EncodedStringWithOptions:0]]];
+
+    NSString* base64String = nil;
+
+    if([raw_data respondsToSelector:@selector(base64EncodedStringWithOptions:)])
+    {
+        //available from 10.9
+        base64String = [raw_data base64EncodedStringWithOptions:0];
+    }
+    else
+    {
+        //available from 10.6, deprecated in 10.9
+        base64String = [raw_data base64Encoding];
+    }
+
+    [uri setPath:[NSString stringWithFormat:@"%@;base64,%@", content_type, base64String]];
+
     return YES;
 }
 
