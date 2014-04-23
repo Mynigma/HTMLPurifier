@@ -1171,7 +1171,10 @@ NSData* base64_decode(NSString* base64String)
     }
     else
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         decodedData = [[NSData alloc] initWithBase64Encoding:base64String];
+#pragma clang diagnostic pop
     }
     // NSString *decodedString = [[NSString alloc] initWithData:decodedData encoding:NSUTF8StringEncoding];
     return decodedData;
@@ -1188,8 +1191,11 @@ NSString* base64_encode(NSString* plainString)
     }
     else
     {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
         //available from 10.6, deprecated in 10.9
         base64String = [plainData base64Encoding];
+#pragma clang diagnostic pop
     }
     return base64String;
 }

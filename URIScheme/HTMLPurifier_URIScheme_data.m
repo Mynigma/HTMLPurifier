@@ -166,8 +166,11 @@
     }
     else
     {
-        //available from 10.6, deprecated in 10.9
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+//available from 10.6, deprecated in 10.9
         base64String = [raw_data base64Encoding];
+#pragma clang diagnostic pop
     }
 
     [uri setPath:[NSString stringWithFormat:@"%@;base64,%@", content_type, base64String]];
