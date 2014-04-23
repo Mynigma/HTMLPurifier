@@ -2862,10 +2862,16 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INSTALL_PATH = "@executable_path/../Frameworks/";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
+				);
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -2882,10 +2888,16 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INSTALL_PATH = "@executable_path/../Frameworks/";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
+				);
+				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -3046,6 +3058,11 @@
 				FRAMEWORK_VERSION = A1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3072,6 +3089,11 @@
 				FRAMEWORK_VERSION = A1;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
 				INSTALL_PATH = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
