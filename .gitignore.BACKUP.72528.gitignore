@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+# OS X
+.DS_Store
+
+# Xcode
+build/
+=======
+# Xcode
+.DS_Store
+*/build/*
+>>>>>>> 97ca4878aef8921bd4db1b454c60b06510b72237
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+<<<<<<< HEAD
+*.xccheckout
+profile
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+
+=======
+profile
+*.moved-aside
+DerivedData
+.idea/
+*.hmap
+*.xccheckout
+
+#CocoaPods
+Pods
+>>>>>>> 97ca4878aef8921bd4db1b454c60b06510b72237
