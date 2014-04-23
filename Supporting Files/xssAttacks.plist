@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>XSS Locator</key>
+	<array>
+		<string>JzthbGVydChTdHJpbmcuZnJvbUNoYXJDb2RlKDg4LDgzLDgzKSkvL1wnO2FsZXJ0KFN0cmluZy5mcm9tQ2hhckNvZGUoODgsODMsODMpKS8vIjthbGVydChTdHJpbmcuZnJvbUNoYXJDb2RlKDg4LDgzLDgzKSkvL1wiO2FsZXJ0KFN0cmluZy5mcm9tQ2hhckNvZGUoODgsODMsODMpKS8vLS0+PC9TQ1JJUFQ+Ij4nPjxTQ1JJUFQ+YWxlcnQoU3RyaW5nLmZyb21DaGFyQ29kZSg4OCw4Myw4MykpPC9TQ1JJUFQ+PSZ7fQ==</string>
+		<string>JzthbGVydChTdHJpbmcuZnJvbUNoYXJDb2RlKDg4LDgzLDgzKSkvL1wnO2FsZXJ0KFN0cmluZy5mcm9tQ2hhckNvZGUoODgsODMsODMpKS8vIjthbGVydChTdHJpbmcuZnJvbUNoYXJDb2RlKDg4LDgzLDgzKSkvL1wiO2FsZXJ0KFN0cmluZy5mcm9tQ2hhckNvZGUoODgsODMsODMpKS8vLS0mZ3Q7IiZndDsnJmd0Oz0mYW1wO3t9</string>
+	</array>
+	<key>XSS Quick Test</key>
+	<array>
+		<string>Jyc7IS0tIjxYU1M+PSZ7KCl9</string>
+		<string>Jyc7IS0tIj0mYW1wO3soKX0=</string>
+	</array>
+	<key>SCRIPT w/Alert()</key>
+	<array>
+		<string>PFNDUklQVD5hbGVydCgnWFNTJyk8L1NDUklQVD4=</string>
+		<string></string>
+	</array>
+	<key>SCRIPT w/Source File</key>
+	<array>
+		<string>PFNDUklQVCBTUkM9aHR0cDovL2hhLmNrZXJzLm9yZy94c3MuanM+PC9TQ1JJUFQ+</string>
+		<string></string>
+	</array>
+	<key>SCRIPT w/Char Code</key>
+	<array>
+		<string>PFNDUklQVD5hbGVydChTdHJpbmcuZnJvbUNoYXJDb2RlKDg4LDgzLDgzKSk8L1NDUklQVD4=</string>
+		<string></string>
+	</array>
+	<key>BASE</key>
+	<array>
+		<string>PEJBU0UgSFJFRj0iamF2YXNjcmlwdDphbGVydCgnWFNTJyk7Ly8iPg==</string>
+		<string></string>
+	</array>
+	<key>BGSOUND</key>
+	<array>
+		<string>PEJHU09VTkQgU1JDPSJqYXZhc2NyaXB0OmFsZXJ0KCdYU1MnKTsiPg==</string>
+		<string></string>
+	</array>
+	<key>BODY background-image</key>
+	<array>
+		<string>PEJPRFkgQkFDS0dST1VORD0iamF2YXNjcmlwdDphbGVydCgnWFNTJyk7Ij4=</string>
+		<string></string>
+	</array>
+	<key>BODY ONLOAD</key>
+	<array>
+		<string>PEJPRFkgT05MT0FEPWFsZXJ0KCdYU1MnKT4=</string>
+		<string></string>
+	</array>
+	<key>DIV background-image 1</key>
+	<array>
+		<string>PERJViBTVFlMRT0iYmFja2dyb3VuZC1pbWFnZTogdXJsKGphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpKSI+</string>
+		<string>PGRpdj48L2Rpdj4=</string>
+	</array>
+	<key>DIV background-image 2</key>
+	<array>
+		<string>PERJViBTVFlMRT0iYmFja2dyb3VuZC1pbWFnZTogdXJsKCYjMTtqYXZhc2NyaXB0OmFsZXJ0KCdYU1MnKSkiPg==</string>
+		<string>PGRpdj48L2Rpdj4=</string>
+	</array>
+	<key>DIV expression</key>
+	<array>
+		<string>PERJViBTVFlMRT0id2lkdGg6IGV4cHJlc3Npb24oYWxlcnQoJ1hTUycpKTsiPg==</string>
+		<string>PGRpdj48L2Rpdj4=</string>
+	</array>
+	<key>FRAME</key>
+	<array>
+		<string>PEZSQU1FU0VUPjxGUkFNRSBTUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+PC9GUkFNRVNFVD4=</string>
+		<string></string>
+	</array>
+	<key>IFRAME</key>
+	<array>
+		<string>PElGUkFNRSBTUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+PC9JRlJBTUU+</string>
+		<string></string>
+	</array>
+	<key>INPUT Image</key>
+	<array>
+		<string>PElOUFVUIFRZUEU9IklNQUdFIiBTUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string></string>
+	</array>
+	<key>IMG w/JavaScript Directive</key>
+	<array>
+		<string>PElNRyBTUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string></string>
+	</array>
+	<key>IMG No Quotes/Semicolon</key>
+	<array>
+		<string>PElNRyBTUkM9amF2YXNjcmlwdDphbGVydCgnWFNTJyk+</string>
+		<string></string>
+	</array>
+	<key>IMG Dynsrc</key>
+	<array>
+		<string>PElNRyBEWU5TUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string></string>
+	</array>
+	<key>IMG Lowsrc</key>
+	<array>
+		<string>PElNRyBMT1dTUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string></string>
+	</array>
+	<key>IMG Embedded commands 1</key>
+	<array>
+		<string>PElNRyBTUkM9Imh0dHA6Ly93d3cudGhlc2l0ZXlvdWFyZW9uLmNvbS9zb21lY29tbWFuZC5waHA/c29tZXZhcmlhYmxlcz1tYWxpY2lvdXNjb2RlIj4=</string>
+		<string>PGltZyBzcmM9Imh0dHA6Ly93d3cudGhlc2l0ZXlvdWFyZW9uLmNvbS9zb21lY29tbWFuZC5waHA/c29tZXZhcmlhYmxlcz1tYWxpY2lvdXNjb2RlIiBhbHQ9InNvbWVjb21tYW5kLnBocD9zb21ldmFyaWFibGVzPW1hbGljaW91c2MiIC8+</string>
+	</array>
+	<key>IMG STYLE w/expression</key>
+	<array>
+		<string>ZXhwLyo8WFNTIFNUWUxFPSdub1x4c3M6bm94c3MoIiovLyoiKTsKeHNzOiYjMTAxO3gmI3gyRjsqWFNTKi8vKi8qL3ByZXNzaW9uKGFsZXJ0KCJYU1MiKSknPg==</string>
+		<string>ZXhwLyo=</string>
+	</array>
+	<key>List-style-image</key>
+	<array>
+		<string>PFNUWUxFPmxpIHtsaXN0LXN0eWxlLWltYWdlOiB1cmwoImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpIik7fTwvU1RZTEU+PFVMPjxMST5YU1M=</string>
+		<string>PHVsPjxsaT5YU1M8L2xpPjwvdWw+</string>
+	</array>
+	<key>IMG w/VBscript</key>
+	<array>
+		<string>PElNRyBTUkM9J3Zic2NyaXB0Om1zZ2JveCgiWFNTIiknPg==</string>
+		<string></string>
+	</array>
+	<key>LAYER</key>
+	<array>
+		<string>PExBWUVSIFNSQz0iaHR0cDovL2hhLmNrZXJzLm9yZy9zY3JpcHRsZXQuaHRtbCI+PC9MQVlFUj4=</string>
+		<string></string>
+	</array>
+	<key>Livescript</key>
+	<array>
+		<string>PElNRyBTUkM9ImxpdmVzY3JpcHQ6W2NvZGVdIj4=</string>
+		<string></string>
+	</array>
+	<key>US-ASCII encoding</key>
+	<array>
+		<string>vHNjcmlwdL5hbGVydCiiWFNToim8L3NjcmlwdL4=</string>
+		<string>c2NyaXB0YWxlcnQoWFNTKS9zY3JpcHQ=</string>
+	</array>
+	<key>META</key>
+	<array>
+		<string>PE1FVEEgSFRUUC1FUVVJVj0icmVmcmVzaCIgQ09OVEVOVD0iMDt1cmw9amF2YXNjcmlwdDphbGVydCgnWFNTJyk7Ij4=</string>
+		<string></string>
+	</array>
+	<key>META w/data:URL</key>
+	<array>
+		<string>PE1FVEEgSFRUUC1FUVVJVj0icmVmcmVzaCIgQ09OVEVOVD0iMDt1cmw9ZGF0YTp0ZXh0L2h0bWw7YmFzZTY0LFBITmpjbWx3ZEQ1aGJHVnlkQ2duV0ZOVEp5azhMM05qY21sd2RENEsiPg==</string>
+		<string></string>
+	</array>
+	<key>META w/additional URL parameter</key>
+	<array>
+		<string>PE1FVEEgSFRUUC1FUVVJVj0icmVmcmVzaCIgQ09OVEVOVD0iMDsgVVJMPWh0dHA6Ly87VVJMPWphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string></string>
+	</array>
+	<key>Mocha</key>
+	<array>
+		<string>PElNRyBTUkM9Im1vY2hhOltjb2RlXSI+</string>
+		<string></string>
+	</array>
+	<key>OBJECT</key>
+	<array>
+		<string>PE9CSkVDVCBUWVBFPSJ0ZXh0L3gtc2NyaXB0bGV0IiBEQVRBPSJodHRwOi8vaGEuY2tlcnMub3JnL3NjcmlwdGxldC5odG1sIj48L09CSkVDVD4=</string>
+		<string></string>
+	</array>
+	<key>OBJECT w/Embedded XSS</key>
+	<array>
+		<string>PE9CSkVDVCBjbGFzc2lkPWNsc2lkOmFlMjRmZGFlLTAzYzYtMTFkMS04Yjc2LTAwODBjNzQ0ZjM4OT48cGFyYW0gbmFtZT11cmwgdmFsdWU9amF2YXNjcmlwdDphbGVydCgnWFNTJyk+PC9PQkpFQ1Q+</string>
+		<string></string>
+	</array>
+	<key>Embed Flash</key>
+	<array>
+		<string>PEVNQkVEIFNSQz0iaHR0cDovL2hhLmNrZXJzLm9yZy94c3Muc3dmIiBBbGxvd1NjcmlwdEFjY2Vzcz0iYWx3YXlzIj48L0VNQkVEPg==</string>
+		<string></string>
+	</array>
+	<key>STYLE</key>
+	<array>
+		<string>PFNUWUxFIFRZUEU9InRleHQvamF2YXNjcmlwdCI+YWxlcnQoJ1hTUycpOzwvU1RZTEU+</string>
+		<string></string>
+	</array>
+	<key>STYLE w/Comment</key>
+	<array>
+		<string>PElNRyBTVFlMRT0ieHNzOmV4cHIvKlhTUyovZXNzaW9uKGFsZXJ0KCdYU1MnKSkiPg==</string>
+		<string></string>
+	</array>
+	<key>STYLE w/Anonymous HTML</key>
+	<array>
+		<string>PFhTUyBTVFlMRT0ieHNzOmV4cHJlc3Npb24oYWxlcnQoJ1hTUycpKSI+</string>
+		<string></string>
+	</array>
+	<key>STYLE w/background-image</key>
+	<array>
+		<string>PFNUWUxFPi5YU1N7YmFja2dyb3VuZC1pbWFnZTp1cmwoImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpIik7fTwvU1RZTEU+PEEgQ0xBU1M9WFNTPjwvQT4=</string>
+		<string>PGEgY2xhc3M9IlhTUyI+PC9hPg==</string>
+	</array>
+	<key>STYLE w/background</key>
+	<array>
+		<string>PFNUWUxFIHR5cGU9InRleHQvY3NzIj5CT0RZe2JhY2tncm91bmQ6dXJsKCJqYXZhc2NyaXB0OmFsZXJ0KCdYU1MnKSIpfTwvU1RZTEU+</string>
+		<string></string>
+	</array>
+	<key>Stylesheet</key>
+	<array>
+		<string>PExJTksgUkVMPSJzdHlsZXNoZWV0IiBIUkVGPSJqYXZhc2NyaXB0OmFsZXJ0KCdYU1MnKTsiPg==</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 1</key>
+	<array>
+		<string>PExJTksgUkVMPSJzdHlsZXNoZWV0IiBIUkVGPSJodHRwOi8vaGEuY2tlcnMub3JnL3hzcy5jc3MiPg==</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 2</key>
+	<array>
+		<string>PFNUWUxFPkBpbXBvcnQnaHR0cDovL2hhLmNrZXJzLm9yZy94c3MuY3NzJzs8L1NUWUxFPg==</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 3</key>
+	<array>
+		<string>PE1FVEEgSFRUUC1FUVVJVj0iTGluayIgQ29udGVudD0iPGh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzLmNzcz47IFJFTD1zdHlsZXNoZWV0Ij4=</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 4</key>
+	<array>
+		<string>PFNUWUxFPkJPRFl7LW1vei1iaW5kaW5nOnVybCgiaHR0cDovL2hhLmNrZXJzLm9yZy94c3Ntb3oueG1sI3hzcyIpfTwvU1RZTEU+</string>
+		<string></string>
+	</array>
+	<key>TABLE</key>
+	<array>
+		<string>PFRBQkxFIEJBQ0tHUk9VTkQ9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpIj48L1RBQkxFPg==</string>
+		<string></string>
+	</array>
+	<key>TD</key>
+	<array>
+		<string>PFRBQkxFPjxURCBCQUNLR1JPVU5EPSJqYXZhc2NyaXB0OmFsZXJ0KCdYU1MnKSI+PC9URD48L1RBQkxFPg==</string>
+		<string></string>
+	</array>
+	<key>XML namespace</key>
+	<array>
+		<string>PEhUTUwgeG1sbnM6eHNzPgo8P2ltcG9ydCBuYW1lc3BhY2U9InhzcyIgaW1wbGVtZW50YXRpb249Imh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzLmh0YyI+Cjx4c3M6eHNzPlhTUzwveHNzOnhzcz4KCjwvSFRNTD4=</string>
+		<string>CiZsdDs/aW1wb3J0IG5hbWVzcGFjZT0ieHNzIiBpbXBsZW1lbnRhdGlvbj0iaHR0cDovL2hhLmNrZXJzLm9yZy94c3MuaHRjIiZndDsKWFNT</string>
+	</array>
+	<key>XML data island w/CDATA</key>
+	<array>
+		<string>PFhNTCBJRD1JPjxYPjxDPjwhW0NEQVRBWzxJTUcgU1JDPSJqYXZhc11dPjwhW0NEQVRBW2NyaXB0OmFsZXJ0KCdYU1MnKTsiPl1dPgoKPC9DPjwvWD48L3htbD48U1BBTiBEQVRBU1JDPSNJIERBVEFGTEQ9QyBEQVRBRk9STUFUQVM9SFRNTD4=</string>
+		<string>Jmx0O0lNRyBTUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpOyImZ3Q7Cgo8c3Bhbj48L3NwYW4+</string>
+	</array>
+	<key>XML data island w/comment</key>
+	<array>
+		<string>PFhNTCBJRD0ieHNzIj48ST48Qj48SU1HIFNSQz0iamF2YXM8IS0tIC0tPmNyaXB0OmFsZXJ0KCdYU1MnKSI+PC9CPjwvST48L1hNTD4KCjxTUEFOIERBVEFTUkM9IiN4c3MiIERBVEFGTEQ9IkIiIERBVEFGT1JNQVRBUz0iSFRNTCI+PC9TUEFOPg==</string>
+		<string>PGk+PGI+PGltZyBzcmM9ImphdmFzIiBhbHQ9ImphdmFzJmx0OyEtLSAtLSZndDtjcmlwdDphbGVydCgnWFNTJykiIC8+PC9iPjwvaT48c3Bhbj48L3NwYW4+</string>
+	</array>
+	<key>XML (locally hosted)</key>
+	<array>
+		<string>PFhNTCBTUkM9Imh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzdGVzdC54bWwiIElEPUk+PC9YTUw+CjxTUEFOIERBVEFTUkM9I0kgREFUQUZMRD1DIERBVEFGT1JNQVRBUz1IVE1MPjwvU1BBTj4=</string>
+		<string>PHNwYW4+PC9zcGFuPg==</string>
+	</array>
+	<key>XML HTML+TIME</key>
+	<array>
+		<string>PEhUTUw+PEJPRFk+Cjw/eG1sOm5hbWVzcGFjZSBwcmVmaXg9InQiIG5zPSJ1cm46c2NoZW1hcy1taWNyb3NvZnQtY29tOnRpbWUiPgoKPD9pbXBvcnQgbmFtZXNwYWNlPSJ0IiBpbXBsZW1lbnRhdGlvbj0iI2RlZmF1bHQjdGltZTIiPgo8dDpzZXQgYXR0cmlidXRlTmFtZT0iaW5uZXJIVE1MIiB0bz0iWFNTPFNDUklQVCBERUZFUj5hbGVydCgnWFNTJyk8L1NDUklQVD4iPiA8L0JPRFk+PC9IVE1MPg==</string>
+		<string>PGRpdj4KJmx0Oz94bWw6bmFtZXNwYWNlIHByZWZpeD0idCIgbnM9InVybjpzY2hlbWFzLW1pY3Jvc29mdC1jb206dGltZSImZ3Q7CgombHQ7P2ltcG9ydCBuYW1lc3BhY2U9InQiIGltcGxlbWVudGF0aW9uPSIjZGVmYXVsdCN0aW1lMiImZ3Q7CiA8L2Rpdj4=</string>
+	</array>
+	<key>Commented-out Block</key>
+	<array>
+		<string>PCEtLVtpZiBndGUgSUUgNF0+CjxTQ1JJUFQ+YWxlcnQoJ1hTUycpOzwvU0NSSVBUPgo8IVtlbmRpZl0tLT4=</string>
+		<string></string>
+	</array>
+	<key>Cookie Manipulation</key>
+	<array>
+		<string>PE1FVEEgSFRUUC1FUVVJVj0iU2V0LUNvb2tpZSIgQ29udGVudD0iVVNFUklEPTxTQ1JJUFQ+YWxlcnQoJ1hTUycpPC9TQ1JJUFQ+Ij4=</string>
+		<string></string>
+	</array>
+	<key>Local .htc file</key>
+	<array>
+		<string>PFhTUyBTVFlMRT0iYmVoYXZpb3I6IHVybChodHRwOi8vaGEuY2tlcnMub3JnL3hzcy5odGMpOyI+</string>
+		<string></string>
+	</array>
+	<key>Rename .js to .jpg</key>
+	<array>
+		<string>PFNDUklQVCBTUkM9Imh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzLmpwZyI+PC9TQ1JJUFQ+</string>
+		<string></string>
+	</array>
+	<key>SSI</key>
+	<array>
+		<string>PCEtLSNleGVjIGNtZD0iL2Jpbi9lY2hvICc8U0NSSVBUIFNSQyciLS0+PCEtLSNleGVjIGNtZD0iL2Jpbi9lY2hvICc9aHR0cDovL2hhLmNrZXJzLm9yZy94c3MuanM+PC9TQ1JJUFQ+JyItLT4=</string>
+		<string></string>
+	</array>
+	<key>PHP</key>
+	<array>
+		<string>PD8gZWNobygnPFNDUiknOwplY2hvKCdJUFQ+YWxlcnQoIlhTUyIpPC9TQ1JJUFQ+Jyk7ID8+</string>
+		<string>Jmx0Oz8gZWNobygnYWxlcnQoIlhTUyIpJyk7ID8mZ3Q7</string>
+	</array>
+	<key>JavaScript Includes</key>
+	<array>
+		<string>PEJSIFNJWkU9IiZ7YWxlcnQoJ1hTUycpfSI+</string>
+		<string>PGJyIC8+</string>
+	</array>
+	<key>Character Encoding Example</key>
+	<array>
+		<string>PAolM0MKJmx0CiZsdDsKJkxUCiZMVDsKJiM2MAomIzA2MAomIzAwNjAKCiYjMDAwNjAKJiMwMDAwNjAKJiMwMDAwMDYwCiYjNjA7CiYjMDYwOwomIzAwNjA7CiYjMDAwNjA7CiYjMDAwMDYwOwomIzAwMDAwNjA7CiYjeDNjCiYjeDAzYwomI3gwMDNjCiYjeDAwMDNjCiYjeDAwMDAzYwomI3gwMDAwMDNjCiYjeDNjOwomI3gwM2M7CgomI3gwMDNjOwomI3gwMDAzYzsKJiN4MDAwMDNjOwomI3gwMDAwMDNjOwomI1gzYwomI1gwM2MKJiNYMDAzYwomI1gwMDAzYwomI1gwMDAwM2MKJiNYMDAwMDAzYwomI1gzYzsKJiNYMDNjOwomI1gwMDNjOwomI1gwMDAzYzsKJiNYMDAwMDNjOwomI1gwMDAwMDNjOwomI3gzQwoKJiN4MDNDCiYjeDAwM0MKJiN4MDAwM0MKJiN4MDAwMDNDCiYjeDAwMDAwM0MKJiN4M0M7CiYjeDAzQzsKJiN4MDAzQzsKJiN4MDAwM0M7CiYjeDAwMDAzQzsKJiN4MDAwMDAzQzsKJiNYM0MKJiNYMDNDCiYjWDAwM0MKJiNYMDAwM0MKJiNYMDAwMDNDCiYjWDAwMDAwM0MKCiYjWDNDOwomI1gwM0M7CiYjWDAwM0M7CiYjWDAwMDNDOwomI1gwMDAwM0M7CiYjWDAwMDAwM0M7Clx4M2MKXHgzQwpcdTAwM2MKXHUwMDND</string>
+		<string>Jmx0OwolM0MKJmFtcDtsdAombHQ7CiZhbXA7TFQKJmFtcDtMVDsKJmx0OwombHQ7CiZsdDsKCiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwoKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CgombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7CiZsdDsKCiZsdDsKJmx0OwombHQ7CiZsdDsKJmx0OwombHQ7Clx4M2MKXHgzQwpcdTAwM2MKXHUwMDND</string>
+	</array>
+	<key>Case Insensitive</key>
+	<array>
+		<string>PElNRyBTUkM9SmFWYVNjUmlQdDphbGVydCgnWFNTJyk+</string>
+		<string></string>
+	</array>
+	<key>HTML Entities</key>
+	<array>
+		<string>PElNRyBTUkM9amF2YXNjcmlwdDphbGVydCgmcXVvdDtYU1MmcXVvdDspPg==</string>
+		<string></string>
+	</array>
+	<key>Grave Accents</key>
+	<array>
+		<string>PElNRyBTUkM9YGphdmFzY3JpcHQ6YWxlcnQoIlJTbmFrZSBzYXlzLCAnWFNTJyIpYD4=</string>
+		<string>PGltZyBzcmM9IiU2MGphdmFzY3JpcHQlM0FhbGVydCgiIGFsdD0iYGphdmFzY3JpcHQ6YWxlcnQoJnF1b3Q7UlNuYWtlIiAvPg==</string>
+	</array>
+	<key>Image w/CharCode</key>
+	<array>
+		<string>PElNRyBTUkM9amF2YXNjcmlwdDphbGVydChTdHJpbmcuZnJvbUNoYXJDb2RlKDg4LDgzLDgzKSk+</string>
+		<string></string>
+	</array>
+	<key>UTF-8 Unicode Encoding</key>
+	<array>
+		<string>PElNRyBTUkM9JiMxMDY7JiM5NzsmIzExODsmIzk3OyYjMTE1OyYjOTk7JiMxMTQ7JiMxMDU7JiMxMTI7JiMxMTY7JiM1ODsmIzk3OyYjMTA4OyYjMTAxOyYjMTE0OyYjMTE2OyYjNDA7JiMzOTsmIzg4OyYjODM7JiM4MzsmIzM5OyYjNDE7Pg==</string>
+		<string></string>
+	</array>
+	<key>Long UTF-8 Unicode w/out Semicolons</key>
+	<array>
+		<string>PElNRyBTUkM9JiMwMDAwMTA2JiMwMDAwMDk3JiMwMDAwMTE4JiMwMDAwMDk3JiMwMDAwMTE1JiMwMDAwMDk5JiMwMDAwMTE0JiMwMDAwMTA1JiMwMDAwMTEyJiMwMDAwMTE2JiMwMDAwMDU4JiMwMDAwMDk3JiMwMDAwMTA4JiMwMDAwMTAxJiMwMDAwMTE0JiMwMDAwMTE2JiMwMDAwMDQwJiMwMDAwMDM5JiMwMDAwMDg4JiMwMDAwMDgzJiMwMDAwMDgzJiMwMDAwMDM5JiMwMDAwMDQxPg==</string>
+		<string></string>
+	</array>
+	<key>DIV w/Unicode</key>
+	<array>
+		<string>PERJViBTVFlMRT0iYmFja2dyb3VuZC1pbWFnZTpcMDA3NVwwMDcyXDAwNkNcMDAyOCdcMDA2YVwwMDYxXDAwNzZcMDA2MVwwMDczXDAwNjNcMDA3MlwwMDY5XDAwNzBcMDA3NFwwMDNhXDAwNjFcMDA2Y1wwMDY1XDAwNzJcMDA3NFwwMDI4LjEwMjdcMDA1OC4xMDUzXDAwNTNcMDAyN1wwMDI5J1wwMDI5Ij4=</string>
+		<string>PGRpdj48L2Rpdj4=</string>
+	</array>
+	<key>Hex Encoding w/out Semicolons</key>
+	<array>
+		<string>PElNRyBTUkM9JiN4NkEmI3g2MSYjeDc2JiN4NjEmI3g3MyYjeDYzJiN4NzImI3g2OSYjeDcwJiN4NzQmI3gzQSYjeDYxJiN4NkMmI3g2NSYjeDcyJiN4NzQmI3gyOCYjeDI3JiN4NTgmI3g1MyYjeDUzJiN4MjcmI3gyOT4=</string>
+		<string></string>
+	</array>
+	<key>UTF-7 Encoding</key>
+	<array>
+		<string>PEhFQUQ+PE1FVEEgSFRUUC1FUVVJVj0iQ09OVEVOVC1UWVBFIiBDT05URU5UPSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTciPiA8L0hFQUQ+K0FEdy1TQ1JJUFQrQUQ0LWFsZXJ0KCdYU1MnKTsrQUR3LS9TQ1JJUFQrQUQ0LQ==</string>
+		<string>ICtBRHctU0NSSVBUK0FENC1hbGVydCgnWFNTJyk7K0FEdy0vU0NSSVBUK0FENC0=</string>
+	</array>
+	<key>Escaping JavaScript escapes</key>
+	<array>
+		<string>XCI7YWxlcnQoJ1hTUycpOy8v</string>
+		<string>XCI7YWxlcnQoJ1hTUycpOy8v</string>
+	</array>
+	<key>End title tag</key>
+	<array>
+		<string>PC9USVRMRT48U0NSSVBUPmFsZXJ0KCJYU1MiKTs8L1NDUklQVD4=</string>
+		<string></string>
+	</array>
+	<key>STYLE w/broken up JavaScript</key>
+	<array>
+		<string>PFNUWUxFPkBpbVxwb3J0J1xqYVx2YXNjXHJpcHQ6YWxlcnQoIlhTUyIpJzs8L1NUWUxFPg==</string>
+		<string></string>
+	</array>
+	<key>Embedded Tab</key>
+	<array>
+		<string>PElNRyBTUkM9Imphdglhc2NyaXB0OmFsZXJ0KCdYU1MnKTsiPg==</string>
+		<string>PGltZyBzcmM9ImphdiUyMGFzY3JpcHQlM0FhbGVydCgnWFNTJyk7IiBhbHQ9ImphdiBhc2NyaXB0OmFsZXJ0KCdYU1MnKTsiIC8+</string>
+	</array>
+	<key>Embedded Encoded Tab</key>
+	<array>
+		<string>PElNRyBTUkM9ImphdiYjeDA5O2FzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string>PGltZyBzcmM9ImphdiUyMGFzY3JpcHQlM0FhbGVydCgnWFNTJyk7IiBhbHQ9ImphdiBhc2NyaXB0OmFsZXJ0KCdYU1MnKTsiIC8+</string>
+	</array>
+	<key>Embedded Newline</key>
+	<array>
+		<string>PElNRyBTUkM9ImphdiYjeDBBO2FzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string>PGltZyBzcmM9ImphdiUyMGFzY3JpcHQlM0FhbGVydCgnWFNTJyk7IiBhbHQ9ImphdiBhc2NyaXB0OmFsZXJ0KCdYU1MnKTsiIC8+</string>
+	</array>
+	<key>Embedded Carriage Return</key>
+	<array>
+		<string>PElNRyBTUkM9ImphdiYjeDBEO2FzY3JpcHQ6YWxlcnQoJ1hTUycpOyI+</string>
+		<string>PGltZyBzcmM9ImphdiUyMGFzY3JpcHQlM0FhbGVydCgnWFNTJyk7IiBhbHQ9ImphdiBhc2NyaXB0OmFsZXJ0KCdYU1MnKTsiIC8+</string>
+	</array>
+	<key>Multiline w/Carriage Returns</key>
+	<array>
+		<string>PElNRw1TUkMNPQ0iDWoNYQ12DWENcw1jDXINaQ1wDXQNOg1hDWwNZQ1yDXQNKA0nDVgNUw1TDScNKQ0iDT4N</string>
+		<string>PGltZyBzcmM9ImolMjBhJTIwdiUyMGElMjBzJTIwYyUyMHIlMjBpJTIwcCUyMHQlMjAlM0ElMjBhJTIwbCUyMGUlMjByJTIwdCUyMCglMjAnJTIwWCUyMFMlMjBTJTIwJyUyMCkiIGFsdD0iaiBhIHYgYSBzIGMgciBpIHAgdCA6IGEgbCBlIHIgdCAoICcgWCBTIiAvPgo=</string>
+	</array>
+	<key>Null Chars 1</key>
+	<array>
+		<string>PElNRyBTUkM9amF2YQBzY3JpcHQ6YWxlcnQoIlhTUyIpPg==</string>
+		<string></string>
+	</array>
+	<key>Null Chars 2</key>
+	<array>
+		<string>JjxTQ1IASVBUPmFsZXJ0KCJYU1MiKTwvU0NSAElQVD4=</string>
+		<string>JmFtcDs=</string>
+	</array>
+	<key>Spaces/Meta Chars</key>
+	<array>
+		<string>PElNRyBTUkM9IiAmIzE0OyAgamF2YXNjcmlwdDphbGVydCgnWFNTJyk7Ij4=</string>
+		<string></string>
+	</array>
+	<key>Non-Alpha/Non-Digit</key>
+	<array>
+		<string>PFNDUklQVC9YU1MgU1JDPSJodHRwOi8vaGEuY2tlcnMub3JnL3hzcy5qcyI+PC9TQ1JJUFQ+</string>
+		<string></string>
+	</array>
+	<key>Non-Alpha/Non-Digit Part 2</key>
+	<array>
+		<string>PEJPRFkgb25sb2FkISMkJSYoKSp+Ky1fLiw6Oz9AWy98XF1eYD1hbGVydCgiWFNTIik+</string>
+		<string></string>
+	</array>
+	<key>No Closing Script Tag</key>
+	<array>
+		<string>PFNDUklQVCBTUkM9aHR0cDovL2hhLmNrZXJzLm9yZy94c3MuanM=</string>
+		<string></string>
+	</array>
+	<key>Protocol resolution in script tags</key>
+	<array>
+		<string>PFNDUklQVCBTUkM9Ly9oYS5ja2Vycy5vcmcvLmo+</string>
+		<string></string>
+	</array>
+	<key>Half-Open HTML/JavaScript</key>
+	<array>
+		<string>PElNRyBTUkM9ImphdmFzY3JpcHQ6YWxlcnQoJ1hTUycpIg==</string>
+		<string></string>
+	</array>
+	<key>Double open angle brackets</key>
+	<array>
+		<string>PElGUkFNRSBTUkM9aHR0cDovL2hhLmNrZXJzLm9yZy9zY3JpcHRsZXQuaHRtbCA8</string>
+		<string></string>
+	</array>
+	<key>Extraneous Open Brackets</key>
+	<array>
+		<string>PDxTQ1JJUFQ+YWxlcnQoIlhTUyIpOy8vPDwvU0NSSVBUPg==</string>
+		<string>Jmx0Ow==</string>
+	</array>
+	<key>Malformed IMG Tags</key>
+	<array>
+		<string>PElNRyAiIiI+PFNDUklQVD5hbGVydCgiWFNTIik8L1NDUklQVD4iPg==</string>
+		<string>IiZndDs=</string>
+	</array>
+	<key>No Quotes/Semicolons</key>
+	<array>
+		<string>PFNDUklQVD5hPS9YU1MvCmFsZXJ0KGEuc291cmNlKTwvU0NSSVBUPg==</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 1</key>
+	<array>
+		<string>PFNDUklQVCBhPSI+IiBTUkM9Imh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzLmpzIj48L1NDUklQVD4=</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 2</key>
+	<array>
+		<string>PFNDUklQVCA9ImJsYWgiIFNSQz0iaHR0cDovL2hhLmNrZXJzLm9yZy94c3MuanMiPjwvU0NSSVBUPg==</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 3</key>
+	<array>
+		<string>PFNDUklQVCBhPSJibGFoIiAnJyBTUkM9Imh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzLmpzIj48L1NDUklQVD4=</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 4</key>
+	<array>
+		<string>PFNDUklQVCAiYT0nPiciIFNSQz0iaHR0cDovL2hhLmNrZXJzLm9yZy94c3MuanMiPjwvU0NSSVBUPg==</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 5</key>
+	<array>
+		<string>PFNDUklQVCBhPWA+YCBTUkM9Imh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzLmpzIj48L1NDUklQVD4=</string>
+		<string></string>
+	</array>
+	<key>Filter Evasion 1</key>
+	<array>
+		<string>PFNDUklQVD5kb2N1bWVudC53cml0ZSgiPFNDUkkiKTs8L1NDUklQVD5QVCBTUkM9Imh0dHA6Ly9oYS5ja2Vycy5vcmcveHNzLmpzIj48L1NDUklQVD4=</string>
+		<string>UFQgU1JDPSJodHRwOi8vaGEuY2tlcnMub3JnL3hzcy5qcyImZ3Q7</string>
+	</array>
+	<key>Filter Evasion 2</key>
+	<array>
+		<string>PFNDUklQVCBhPSI+Jz4iIFNSQz0iaHR0cDovL2hhLmNrZXJzLm9yZy94c3MuanMiPjwvU0NSSVBUPg==</string>
+		<string></string>
+	</array>
+	<key>IP Encoding</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovLzY2LjEwMi43LjE0Ny8iPlhTUzwvQT4=</string>
+		<string>PGEgaHJlZj0iaHR0cDovLzY2LjEwMi43LjE0Ny8iPlhTUzwvYT4=</string>
+	</array>
+	<key>URL Encoding</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovLyU3NyU3NyU3NyUyRSU2NyU2RiU2RiU2NyU2QyU2NSUyRSU2MyU2RiU2RCI+WFNTPC9BPg==</string>
+		<string>PGE+WFNTPC9hPg==</string>
+	</array>
+	<key>Dword Encoding</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovLzExMTM5ODI4NjcvIj5YU1M8L0E+</string>
+		<string>PGEgaHJlZj0iLyI+WFNTPC9hPg==</string>
+	</array>
+	<key>Hex Encoding</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovLzB4NDIuMHgwMDAwMDY2LjB4Ny4weDkzLyI+WFNTPC9BPg==</string>
+		<string>PGEgaHJlZj0iLyI+WFNTPC9hPg==</string>
+	</array>
+	<key>Octal Encoding</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovLzAxMDIuMDE0Ni4wMDA3LjAwMDAwMjIzLyI+WFNTPC9BPg==</string>
+		<string>PGEgaHJlZj0iLyI+WFNTPC9hPg==</string>
+	</array>
+	<key>Mixed Encoding</key>
+	<array>
+		<string>PEEgSFJFRj0iaAp0dAlwOi8vNiYjMDk7Ni4wMDAxNDYuMHg3LjE0Ny8iPlhTUzwvQT4=</string>
+		<string>PGEgaHJlZj0iaCUyMHR0JTIwcCUzQS8vNiUyMDYuMDAwMTQ2LjB4Ny4xNDcvIj5YU1M8L2E+</string>
+	</array>
+	<key>Protocol Resolution Bypass</key>
+	<array>
+		<string>PEEgSFJFRj0iLy93d3cuZ29vZ2xlLmNvbS8iPlhTUzwvQT4=</string>
+		<string>PGE+WFNTPC9hPg==</string>
+	</array>
+	<key>Firefox Lookups 1</key>
+	<array>
+		<string>PEEgSFJFRj0iLy9nb29nbGUiPlhTUzwvQT4=</string>
+		<string>PGEgaHJlZj0iLy9nb29nbGUiPlhTUzwvYT4=</string>
+	</array>
+	<key>Firefox Lookups 2</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovL2hhLmNrZXJzLm9yZ0Bnb29nbGUiPlhTUzwvQT4=</string>
+		<string>PGEgaHJlZj0iaHR0cDovL2dvb2dsZSI+WFNTPC9hPg==</string>
+	</array>
+	<key>Firefox Lookups 3</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovL2dvb2dsZTpoYS5ja2Vycy5vcmciPlhTUzwvQT4=</string>
+		<string>PGEgaHJlZj0iaHR0cDovL2dvb2dsZSI+WFNTPC9hPg==</string>
+	</array>
+	<key>Removing Cnames</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovL2dvb2dsZS5jb20vIj5YU1M8L0E+</string>
+		<string>PGE+WFNTPC9hPg==</string>
+	</array>
+	<key>Extra dot for Absolute DNS</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovL3d3dy5nb29nbGUuY29tLi8iPlhTUzwvQT4=</string>
+		<string>PGE+WFNTPC9hPg==</string>
+	</array>
+	<key>JavaScript Link Location</key>
+	<array>
+		<string>PEEgSFJFRj0iamF2YXNjcmlwdDpkb2N1bWVudC5sb2NhdGlvbj0naHR0cDovL3d3dy5nb29nbGUuY29tLyciPlhTUzwvQT4=</string>
+		<string>PGE+WFNTPC9hPg==</string>
+	</array>
+	<key>Content Replace</key>
+	<array>
+		<string>PEEgSFJFRj0iaHR0cDovL3d3dy5nb2h0dHA6Ly93d3cuZ29vZ2xlLmNvbS9vZ2xlLmNvbS8iPlhTUzwvQT4=</string>
+		<string>PGEgaHJlZj0iaHR0cDovL3d3dy5nb2h0dHAvL3d3dy5nb29nbGUuY29tL29nbGUuY29tLyI+WFNTPC9hPg==</string>
+	</array>
+</dict>
+</plist>

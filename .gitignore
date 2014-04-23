@@ -16,6 +16,9 @@ xcuserdata
 profile
 *.moved-aside
 DerivedData
+.idea/
 *.hmap
 *.ipa
 
+#CocoaPods
+Pods

