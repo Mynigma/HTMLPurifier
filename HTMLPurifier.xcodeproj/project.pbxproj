@@ -3071,6 +3071,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SYMROOT = "$(BUILD_DIR)";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -3102,6 +3103,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SYMROOT = "$(BUILD_DIR)";
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
