@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "HTMLPurifier.h"
 
 @interface HTMLPurifieriOSTests : XCTestCase
 
@@ -28,7 +29,11 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSString* testHTML = @"<img src=\"http://www.google.com\" width=\"1\" height=\"1\" border=\"0\" alt=\"\">";
+
+    NSString* cleanedHTML = [HTMLPurifier cleanHTML:testHTML];
+
+    NSLog(@"Output: %@", cleanedHTML);
 }
 
 @end

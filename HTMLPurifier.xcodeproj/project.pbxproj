@@ -17,7 +17,7 @@
 		1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */; };
 		1E40A0451892AFDF006992C5 /* Smoketest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A0441892AFDF006992C5 /* Smoketest.m */; };
 		1E423C6218B83734009D0B74 /* xssAttacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E423C6018B83713009D0B74 /* xssAttacks.plist */; };
-		1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 80F53D06189BE6F600D7805F /* HTMLPurifier.h */; };
+		1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D06189BE6F600D7805F /* HTMLPurifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E48254418ED9DD000E4CC64 /* HTMLPurifier_AttrDef_CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C18189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS.m */; };
 		1E48254518ED9DD000E4CC64 /* HTMLPurifier_AttrDef_CSS_AlphaValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C1A189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_AlphaValue.m */; };
 		1E48254618ED9DD000E4CC64 /* HTMLPurifier_AttrDef_CSS_Background.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C1C189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_Background.m */; };
@@ -208,6 +208,14 @@
 		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
 		1ECDAE8518B74FFA00E9E5DB /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
+		1EDF30C01910F58600B12A9C /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */; };
+		1EDF30C21910F59000B12A9C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDF30C11910F59000B12A9C /* libxml2.dylib */; };
+		1EDF30C41910F5B600B12A9C /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
+		1EDF30C51910F5B600B12A9C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
+		1EDF30C71910F6E700B12A9C /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
+		1EDF30C81910F6E700B12A9C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
+		1EDF30C91910F6E700B12A9C /* xssSmoketests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4F189BE6F700D7805F /* xssSmoketests.plist */; };
+		1EDF30CA1910F6E700B12A9C /* xssAttacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E423C6018B83713009D0B74 /* xssAttacks.plist */; };
 		1EEEC28F18ED769B008F1E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */; };
 		1EEEC29C18ED769B008F1E67 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9D318803B3200EB1E89 /* XCTest.framework */; };
 		1EEEC29D18ED769B008F1E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */; };
@@ -673,16 +681,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1EEEC28C18ED769B008F1E67 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-				1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -709,6 +707,8 @@
 		1EA6BD66188A084400C2BAE7 /* CSSTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CSSTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1EBB81D91882C94D008B7FA4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_EncoderTest.m; sourceTree = "<group>"; };
+		1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libiconv.2.dylib; sourceTree = DEVELOPER_DIR; };
+		1EDF30C11910F59000B12A9C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		1EEE87AE188EC7AA00BDA422 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMock.framework; sourceTree = "<group>"; };
 		1EEE87B0188EC7B800BDA422 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHTMLPurifieriOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1160,6 +1160,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EDF30C21910F59000B12A9C /* libxml2.dylib in Frameworks */,
+				1EDF30C01910F58600B12A9C /* libiconv.2.dylib in Frameworks */,
 				1EEEC28F18ED769B008F1E67 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1427,6 +1429,8 @@
 		80EDF9BD18803B3200EB1E89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1EDF30C11910F59000B12A9C /* libxml2.dylib */,
+				1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */,
 				1EEE87B0188EC7B800BDA422 /* libOCMock.a */,
 				1EEE87AE188EC7AA00BDA422 /* OCMock.framework */,
 				1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */,
@@ -2019,6 +2023,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		1EDF30B51910EF0C00B12A9C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		80EDF9B818803B3200EB1E89 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2214,7 +2226,9 @@
 			buildPhases = (
 				1EEEC28A18ED769B008F1E67 /* Sources */,
 				1EEEC28B18ED769B008F1E67 /* Frameworks */,
-				1EEEC28C18ED769B008F1E67 /* CopyFiles */,
+				1EDF30B51910EF0C00B12A9C /* Headers */,
+				1EDF30BB1910F0CD00B12A9C /* ShellScript */,
+				1EDF30C31910F5A600B12A9C /* Resources */,
 			);
 			buildRules = (
 			);
@@ -2291,7 +2305,7 @@
 				ORGANIZATIONNAME = Mynigma;
 				TargetAttributes = {
 					1EEEC29A18ED769B008F1E67 = {
-						TestTargetID = 80EDF9BA18803B3200EB1E89;
+						TestTargetID = 1EEEC28D18ED769B008F1E67;
 					};
 					80EDF9D118803B3200EB1E89 = {
 						TestTargetID = 80EDF9BA18803B3200EB1E89;
@@ -2319,10 +2333,23 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		1EDF30C31910F5A600B12A9C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EDF30C41910F5B600B12A9C /* config.plist in Resources */,
+				1EDF30C51910F5B600B12A9C /* entities.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1EEEC29918ED769B008F1E67 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EDF30C71910F6E700B12A9C /* config.plist in Resources */,
+				1EDF30C81910F6E700B12A9C /* entities.plist in Resources */,
+				1EDF30C91910F6E700B12A9C /* xssSmoketests.plist in Resources */,
+				1EDF30CA1910F6E700B12A9C /* xssAttacks.plist in Resources */,
 				1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2350,6 +2377,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1EDF30BB1910F0CD00B12A9C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "##########################################\n#\n# c.f. http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n#\n# Version 2.7\n#\n# Latest Change:\n# - Supports iPhone 5 / iPod Touch 5 (uses Apple's workaround to lipo bug)\n#\n# Purpose:\n#   Automatically create a Universal static library for iPhone + iPad + iPhone Simulator from within XCode\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n\nset -e\nset -o pipefail\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '.\\{3\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -project \\\"${PROJECT_NAME}.xcodeproj\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\" BUILD_DIR=\\\"${BUILD_DIR}\\\" BUILD_ROOT=\\\"${BUILD_ROOT}\\\" SYMROOT=\\\"${SYMROOT}\\\"\n\nxcodebuild -configuration \"${CONFIGURATION}\" -project \"${PROJECT_NAME}.xcodeproj\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\"\n\nACTION=\"build\"\n\n#Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...I will output a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"lipo: for current configuration (${CONFIGURATION}) creating output file: ${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\"\nxcrun -sdk iphoneos lipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Added: StackOverflow suggestion to also copy \"include\" files\n#    (untested, but should work OK)\n#\necho \"Fetching headers from ${PUBLIC_HEADERS_FOLDER_PATH}\"\necho \"  (if you embed your library project in another project, you will need to add\"\necho \"   a \"User Search Headers\" build setting of: (NB INCLUDE THE DOUBLE QUOTES BELOW!)\"\necho '        \"$(TARGET_BUILD_DIR)/usr/local/include/\"'\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\" ]\nthen\nmkdir -p \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\n# * needs to be outside the double quotes?\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"* \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\nfi\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1EEEC28A18ED769B008F1E67 /* Sources */ = {
@@ -2909,7 +2952,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A1/HTMLPurifier";
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2927,7 +2969,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -2936,7 +2977,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A1/HTMLPurifier";
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2950,7 +2990,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -3071,7 +3110,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SYMROOT = "$(BUILD_DIR)";
+				SYMROOT = build;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Debug;
@@ -3103,7 +3142,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SYMROOT = "$(BUILD_DIR)";
+				SYMROOT = build;
 				WRAPPER_EXTENSION = framework;
 			};
 			name = Release;
