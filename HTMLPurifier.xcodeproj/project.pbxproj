@@ -208,12 +208,8 @@
 		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
 		1ECDAE8518B74FFA00E9E5DB /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
-		1EDF30C01910F58600B12A9C /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */; };
-		1EDF30C21910F59000B12A9C /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDF30C11910F59000B12A9C /* libxml2.dylib */; };
 		1EDF30C41910F5B600B12A9C /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
 		1EDF30C51910F5B600B12A9C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
-		1EDF30C71910F6E700B12A9C /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
-		1EDF30C81910F6E700B12A9C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
 		1EDF30C91910F6E700B12A9C /* xssSmoketests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4F189BE6F700D7805F /* xssSmoketests.plist */; };
 		1EDF30CA1910F6E700B12A9C /* xssAttacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E423C6018B83713009D0B74 /* xssAttacks.plist */; };
 		1EEEC28F18ED769B008F1E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */; };
@@ -729,13 +725,7 @@
 		801F016C1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_SwitchTest.m; sourceTree = "<group>"; };
 		801F016E189078AE00506C24 /* HTMLPurifier_AttrDef_TextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_TextTest.m; sourceTree = "<group>"; };
 		802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		802AC8E318DC8FFD00C2BA85 /* libHTMLPurifier ios-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "libHTMLPurifier ios-Prefix.pch"; sourceTree = "<group>"; };
-		802AC8E418DC8FFD00C2BA85 /* libHTMLPurifier_ios.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libHTMLPurifier_ios.h; sourceTree = "<group>"; };
-		802AC8E618DC8FFD00C2BA85 /* libHTMLPurifier_ios.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libHTMLPurifier_ios.m; sourceTree = "<group>"; };
 		802AC8EF18DC8FFD00C2BA85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		802AC8F618DC8FFD00C2BA85 /* libHTMLPurifier iosTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "libHTMLPurifier iosTests-Info.plist"; sourceTree = "<group>"; };
-		802AC8F818DC8FFD00C2BA85 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		802AC8FA18DC8FFD00C2BA85 /* libHTMLPurifier_iosTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libHTMLPurifier_iosTests.m; sourceTree = "<group>"; };
 		803497AB188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URISchemeRegistryTest.m; sourceTree = "<group>"; };
 		803497AD188E80CA00A90FB9 /* HTMLPurifier_URITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URITest.m; sourceTree = "<group>"; };
 		8034BF7A189461C40008315A /* HTMLPurifier_AttrTransform_BdoDirTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransform_BdoDirTest.m; sourceTree = "<group>"; };
@@ -1160,8 +1150,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EDF30C21910F59000B12A9C /* libxml2.dylib in Frameworks */,
-				1EDF30C01910F58600B12A9C /* libiconv.2.dylib in Frameworks */,
 				1EEEC28F18ED769B008F1E67 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1245,42 +1233,6 @@
 				801F0164188FD01B00506C24 /* HTMLPurifier_Strategy_MakeWellFormedTest.m */,
 			);
 			name = Strategies;
-			sourceTree = "<group>";
-		};
-		802AC8E118DC8FFD00C2BA85 /* libHTMLPurifier ios */ = {
-			isa = PBXGroup;
-			children = (
-				802AC8E418DC8FFD00C2BA85 /* libHTMLPurifier_ios.h */,
-				802AC8E618DC8FFD00C2BA85 /* libHTMLPurifier_ios.m */,
-				802AC8E218DC8FFD00C2BA85 /* Supporting Files */,
-			);
-			path = "libHTMLPurifier ios";
-			sourceTree = "<group>";
-		};
-		802AC8E218DC8FFD00C2BA85 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				802AC8E318DC8FFD00C2BA85 /* libHTMLPurifier ios-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		802AC8F418DC8FFD00C2BA85 /* libHTMLPurifier iosTests */ = {
-			isa = PBXGroup;
-			children = (
-				802AC8FA18DC8FFD00C2BA85 /* libHTMLPurifier_iosTests.m */,
-				802AC8F518DC8FFD00C2BA85 /* Supporting Files */,
-			);
-			path = "libHTMLPurifier iosTests";
-			sourceTree = "<group>";
-		};
-		802AC8F518DC8FFD00C2BA85 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				802AC8F618DC8FFD00C2BA85 /* libHTMLPurifier iosTests-Info.plist */,
-				802AC8F718DC8FFD00C2BA85 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		808CB9C31887DCC800AFB841 /* AttrDef */ = {
@@ -1406,8 +1358,6 @@
 			children = (
 				80F53EFA189BE76100D7805F /* HTMLPurifier */,
 				80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */,
-				802AC8E118DC8FFD00C2BA85 /* libHTMLPurifier ios */,
-				802AC8F418DC8FFD00C2BA85 /* libHTMLPurifier iosTests */,
 				1EEEC29018ED769B008F1E67 /* HTMLPurifieriOS */,
 				1EEEC2A218ED769B008F1E67 /* HTMLPurifieriOSTests */,
 				80EDF9BC18803B3200EB1E89 /* Products */,
@@ -2346,8 +2296,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EDF30C71910F6E700B12A9C /* config.plist in Resources */,
-				1EDF30C81910F6E700B12A9C /* entities.plist in Resources */,
 				1EDF30C91910F6E700B12A9C /* xssSmoketests.plist in Resources */,
 				1EDF30CA1910F6E700B12A9C /* xssAttacks.plist in Resources */,
 				1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */,
@@ -2872,14 +2820,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		802AC8F718DC8FFD00C2BA85 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				802AC8F818DC8FFD00C2BA85 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2967,6 +2907,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "HTMLPurifieriOSTests/HTMLPurifieriOSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
@@ -2988,6 +2932,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "HTMLPurifieriOSTests/HTMLPurifieriOSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

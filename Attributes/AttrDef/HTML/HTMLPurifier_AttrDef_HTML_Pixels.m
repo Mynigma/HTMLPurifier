@@ -73,7 +73,7 @@
     // WARNING, above link WILL crash you if you're using Windows
     NSNumber* numToNum = @(num);
     
-    if (max && (numToNum > max))
+    if (max && (num > max.integerValue))
     {
         return [NSString stringWithFormat:@"%@",max];
     }

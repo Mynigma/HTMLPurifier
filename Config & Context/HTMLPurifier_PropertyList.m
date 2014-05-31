@@ -47,7 +47,7 @@
     NSURL* configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
     if(!configPlistPath)
     {
-        //NSLOG"Error opening config plist file!");
+        NSLog(@"Error opening config plist file!! Please include the config.plist in bundle: %@", BUNDLE);
         return;
     }
 
