@@ -97,7 +97,7 @@ Since we use libxml2 for tokenizing, the output will vary slightly from the PHP 
 
 1. Implementation:
   - pre and post filtering
-  - preserve style of removed <body> tags
+  - preserve style of removed body tags
   - fix nesting strategy
   - dynamic configurations
   - ...
