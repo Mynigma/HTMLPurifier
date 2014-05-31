@@ -46,7 +46,7 @@ NSLog(@"Purified HTML: %@", cleanedHTML);
 
 ## Requirements
 
-
+Runs on Mac OS 10.6+ as well as iOS
 
 ## Installation
 
@@ -70,10 +70,9 @@ Alternatively, you can add HTMLPurifier as a sub-project:
 5. Purify.
 
 
-## Author
+## Authors
 
-Roman Priebe, roman@mynigma.org
-Lukas Neumann, lukas@mynigma.org
+Roman Priebe (roman@mynigma.org) and Lukas Neumann (lukas@mynigma.org)
 
 ## License
 
@@ -95,6 +94,7 @@ Since we use libxml2 for tokenizing, the output will vary slightly from the PHP 
 
 1. Implementation:
   - pre and post filtering
+  - preserve style of removed <body> tags
   - fix nesting strategy
   - dynamic configurations
   - ...
