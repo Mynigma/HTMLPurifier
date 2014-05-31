@@ -2,6 +2,8 @@
 
 **tl&dr**: Objective-C Framework for HTML filtering. Based on Edward Z. Yangs [HTMLPurifier for PHP](http://htmlpurifier.org) and more or less directly ported. 
 
+## Description
+
 HTMLPurifier for Objective-C is a framework for standards-compliant HTML filtering. Its main purpose is sanitisation of untrusted HTML such as incoming emails or user-supplied markup.
 
 Some built in features are:
