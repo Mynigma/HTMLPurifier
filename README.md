@@ -30,8 +30,9 @@ Future features:
 
 It's pretty simple. 
 
-1. Add import HTMLPurifier.h
-2. Purify HTML input either synchronously: 
+1. Import HTMLPurifier.h
+2. Include the config.plist file in your bundle
+3. Purify HTML input either synchronously: 
 
 ```objc
 NSString *purifiedHTML = [HTMLPurifier cleanHTML:dirtyHTML];
