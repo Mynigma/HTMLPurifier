@@ -72,7 +72,8 @@ Alternatively, you can add HTMLPurifier as a sub-project:
 
 ## Author
 
-Roman Priebe, roman.priebe@gmail.com
+Roman Priebe, roman@mynigma.org
+Lukas Neumann, lukas@mynigma.org
 
 ## License
 
