@@ -17,9 +17,9 @@ Some built in features are:
 
 Future features:
 
-- fixes nesting (not yet implemented)
-- whitelist (not yet implemented)
-- ... so much more (not yet implemented)
+- fix nesting
+- whitelist
+... and so much more
 
 
 [![Build Status](https://travis-ci.org/Mynigma/HTMLPurifier.png?branch=master)](https://travis-ci.org/Mynigma/HTMLPurifier)
