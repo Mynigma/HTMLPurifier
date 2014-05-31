@@ -1,32 +1,4 @@
-<<<<<<< HEAD
 # HTMLPurifier
-
-[![Version](http://cocoapod-badges.herokuapp.com/v/HTMLPurifier/badge.png)](http://cocoadocs.org/docsets/HTMLPurifier)
-[![Platform](http://cocoapod-badges.herokuapp.com/p/HTMLPurifier/badge.png)](http://cocoadocs.org/docsets/HTMLPurifier)
-
-## Usage
-
-To run the example project; clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-
-## Installation
-
-HTMLPurifier is available through [CocoaPods](http://cocoapods.org), to install
-it simply add the following line to your Podfile:
-
-    pod "HTMLPurifier"
-
-## Author
-
-Roman Priebe, roman.priebe@gmail.com
-
-## License
-
-HTMLPurifier is available under the MIT license. See the LICENSE file for more info.
-=======
-HTMLPurifier
-============
 
 **tl&dr**: Objective-C Framework for HTML filtering. Based on Edward Z. Yangs [HTMLPurifier for PHP](http://htmlpurifier.org) and more or less directly ported. 
 
@@ -52,8 +24,35 @@ Future features:
 
 [![Build Status](https://travis-ci.org/Mynigma/HTMLPurifier.png?branch=master)](https://travis-ci.org/Mynigma/HTMLPurifier)
 
+## Usage
 
-## Installation ##
+It's pretty simple. 
+
+1. Add import HTMLPurifier.h
+2. Purify HTML input either synchronously: 
+
+```objc
+NSString *purifiedHTML = [HTMLPurifier cleanHTML:dirtyHTML];
+```
+or asynchronously:
+
+```objc
+[HTMLPurifier cleanHTML:dirtyHTML withCallBack:^(NSString* cleanedHTML, NSError* error){
+
+NSLog(@"Purified HTML: %@", cleanedHTML);
+
+}];
+```
+
+## Requirements
+
+
+
+## Installation
+
+Link your project with either the compiled HTMLPurifier framework or the static library.
+
+Alternatively, you can add HTMLPurifier as a sub-project:
 
 1. Checkout HTMLPurifier into a directory relative to your project.
 2. In the main directory, locate the `HTMLPurifier.xcodeproj` file, and drag this into your Xcode project.
@@ -68,59 +67,46 @@ Future features:
   - You may need to add an recursive header-search-path to your build settings.
 4. **For iOS** 
   - Will follow soon.
-5. Use it.
+5. Purify.
 
 
-## Usage ##
+## Author
 
-It's pretty simple. 
+Roman Priebe, roman@mynigma.org
+Lukas Neumann, lukas@mynigma.org
 
-1. Add import HTMLPurifier.h
-2. Start purifying HTML: 
+## License
 
-```objc
-HTMLPurifier *purifier = [HTMLPurifier new];
-NSString *cleanHTML = [purifier purify:dirtyHTML];
-```
-
-Purification is an asynchronous operation with its own autorelease pool.
-
+HTMLPurifier is available under an LGPL license with a libgit2-style exception for App Store compatibility. See the LICENSE file for more info.
 
 ## Config ##
 
-In Edward Z. Yangs HTMLPurifier one has a lot of possible config settings. We currently just using the `default config` which you can find and edit in the `Supporting Files/config.plist`. CAUTION: Some settings may not work or will crash the program.
+The original project, Edward Z. Yangs HTMLPurifier for PHP, includes a lot of possible config settings. Not all options will work with this version, but the default should be good enough for most purposes. If your requirements are different, feel free to add support for the necessary config options and submit a pull request.
 
 
 ## Warnings ##
 
-This is (as you can see in some leftover comments) directly ported from HTMLPurifier for PHP (4.6). We took many shortcuts to get it to run, so be careful.
+This project is directly ported from HTMLPurifier for PHP (4.6). Some shortcuts were taken, so use common sense.
 
-We left some important stuff out, like any pre or post filtering. And since we're using libxml2 for tokenizing, the output is definitly different from the PHP version.
+Since we use libxml2 for tokenizing, the output will vary slightly from the PHP version.
 
 
 ## TO DO ##
 
-Wow. We spent 2,5 sleepless weeks for this framework. The PHP standalone file has over 20.000 lines of code and we additionaly implemented around 400 unit tests. **But** there is still work to do. You're welcome to contribute in any form to this project.
-
-1. Implementing leftout stuff:
+1. Implementation:
   - pre and post filtering
   - fix nesting strategy
   - dynamic configurations
-  - Add broader CSS definition (esp. for emails)
   - ...
 
 2. Updating and optimizing existing code
-  - Fix the failing unit tests
+  - Fix the failing unit tests (most are due to libxml2 parser producing different output from the PHP version)
   - ...
 
-If you introduce new stuff, please provide viable unit tests. Here is great guideline: [Coding standards](http://htmlpurifier.org/contribute#toclink1).
+If you introduce new stuff, please provide viable unit tests. Here is great guide: [Coding standards](http://htmlpurifier.org/contribute#toclink1).
 
 
 ## Info & Licence ##
 
-Our main project [Mynigma](https://mynigma.org) is a secure and easy to use email client and we couldn't find any good solution for disabling bad and unsecure code in incoming html emails. Thats why we took the best and really well documented thing out there and ported it from PHP to Objective-C.
-
-Right now we are using LGPL 2.1 for licencing, as the original project uses this licence. We are aware of the "static linking" problem and since we want to use HTMLPurifier in our iOS app, we will try to add an exception to the licence. For this we need the consent of the original authors (TODO).   
-
->>>>>>> 97ca4878aef8921bd4db1b454c60b06510b72237
+Our main project is [Mynigma](https://mynigma.org), a user-friendly, secure email client. We needed a good solution for filtering untrusted HTML and the best one by far only existed in PHP. So we ported the project to Objective-C, which turned out to be a mammoth task. You too can benefit from our work, which is licensed under an LGPL license with a libgit2-style exception. This basically means you can use the framework on Mac OS and the static library on iOS in justabout any kind of project. However, if you amend the HTMLPurifier source, your changes must be published so they can benefit others too.
 
