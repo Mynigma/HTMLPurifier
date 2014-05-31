@@ -111,5 +111,5 @@ If you introduce new stuff, please provide viable unit tests. Here is great guid
 
 ## Info & Licence ##
 
-Our main project is [Mynigma](https://mynigma.org), a user-friendly, secure email client. We needed a good solution for filtering untrusted HTML and the best one by far only existed in PHP. So we ported the project to Objective-C, which turned out to be a mammoth task. You too can benefit from our work, which is licensed under an LGPL license with a libgit2-style exception. This basically means you can use the framework on Mac OS and the static library on iOS in justabout any kind of project. However, if you amend the HTMLPurifier source, your changes must be published so they can benefit others too.
+Our main project is [Mynigma](https://mynigma.org), a user-friendly, secure email client. We needed a good solution for filtering untrusted HTML and the best one by far only existed in PHP. So we ported the project to Objective-C, which turned out to be a mammoth task. You too can benefit from our work, which is licensed under both an LGPL licence and a GPL licence with a libgit2-style exception. This basically means you can use the framework on Mac OS and the static library on iOS in justabout any kind of project. However, if you amend the HTMLPurifier source, your changes must be published so they can benefit others too.
 
