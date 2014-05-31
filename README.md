@@ -52,7 +52,7 @@ Runs on Mac OS 10.6+ as well as iOS
 
 ## Installation
 
-Link your project with either the compiled HTMLPurifier framework or the static library.
+Link your project with either the compiled HTMLPurifier framework or the static library. You may also need to include the config.plist file in your app bundle.
 
 Alternatively, you can add HTMLPurifier as a sub-project:
 
