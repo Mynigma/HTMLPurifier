@@ -57,7 +57,6 @@
 
 
      // do global transformations (pre)
-     // nothing currently utilizes this
      for(HTMLPurifier_AttrTransform* transform in definition.info_attr_transform_pre.allValues)
      {
          NSMutableDictionary* attrCopy = [attr copy];

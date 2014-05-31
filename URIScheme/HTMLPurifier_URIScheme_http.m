@@ -32,8 +32,9 @@
  */
 -(BOOL) doValidate:(HTMLPurifier_URI*)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    // sets default scheme
-    if (![uri scheme] || [[uri scheme] isEqual:@""])
+    //set the default scheme
+    //only do this if a host is provided
+    if ((![uri scheme] || [[uri scheme] isEqual:@""]) && uri.host)
         [uri setScheme:@"http"];
     
     [uri setUserinfo:nil];

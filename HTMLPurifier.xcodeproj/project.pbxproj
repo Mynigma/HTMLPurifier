@@ -199,6 +199,7 @@
 		1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */; };
 		1E5FAABE18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */; };
 		1E5FAAC81885A2640073CA79 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */; };
+		1E6A07371939DA81008B7520 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
 		1E6F2C37188AA9E900EEEB3F /* UnitConverterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F2C36188AA9E900EEEB3F /* UnitConverterTest.m */; };
 		1E9A62E518844FCB00EA7A85 /* URIParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E418844FCB00EA7A85 /* URIParserTest.m */; };
 		1E9A62E71884502700EA7A85 /* HTMLPurifier_Harness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */; };
@@ -2296,6 +2297,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E6A07371939DA81008B7520 /* config.plist in Resources */,
 				1EDF30C91910F6E700B12A9C /* xssSmoketests.plist in Resources */,
 				1EDF30CA1910F6E700B12A9C /* xssAttacks.plist in Resources */,
 				1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */,

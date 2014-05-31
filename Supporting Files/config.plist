@@ -584,6 +584,8 @@
 		<string>nil</string>
 		<key>URI.AllowedSchemes</key>
 		<dict>
+			<key>cid</key>
+			<string>1</string>
 			<key>ftp</key>
 			<string>1</string>
 			<key>http</key>
@@ -861,7 +863,22 @@
 		<key>Test.ForceNoIconv</key>
 		<string>7</string>
 		<key>URI.AllowedSchemes</key>
-		<string>8</string>
+		<dict>
+			<key>ftp</key>
+			<string>1</string>
+			<key>http</key>
+			<string>1</string>
+			<key>https</key>
+			<string>1</string>
+			<key>mailto</key>
+			<string>1</string>
+			<key>cid</key>
+			<string>1</string>
+			<key>news</key>
+			<string>1</string>
+			<key>nntp</key>
+			<string>1</string>
+		</dict>
 		<key>URI.Base</key>
 		<string>-1</string>
 		<key>URI.DefaultScheme</key>
