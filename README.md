@@ -103,7 +103,7 @@ Since we use libxml2 for tokenizing, the output will vary slightly from the PHP 
   - ...
 
 2. Updating and optimizing existing code
-  - Fix the failing unit tests (most are due to libxml2 parser producing different output from the PHP version)
+  - Add more unit tests (some difficulties due to libxml2 parser producing different output from the PHP version)
   - ...
 
 If you introduce new stuff, please provide viable unit tests. Here is great guide: [Coding standards](http://htmlpurifier.org/contribute#toclink1).
