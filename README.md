@@ -77,9 +77,9 @@ Alternatively, you can add HTMLPurifier as a sub-project:
 
 Roman Priebe (roman@mynigma.org) and Lukas Neumann (lukas@mynigma.org)
 
-## License
+## Licence
 
-HTMLPurifier is available under an LGPL license with a libgit2-style exception for App Store compatibility. See the LICENSE file for more info.
+HTMLPurifier is available under an LGPL license for use as a framework on Mac OS and under a GPL licence with a libgit2-style exception for iOS App Store compatibility. See the LICENSE file for more info.
 
 ## Config ##
 
