@@ -18,7 +18,7 @@
 
 - (void)tearDown;
 
-- (void)testExample;
+- (void)testHarnessExample;
 
 - (id)init;
 

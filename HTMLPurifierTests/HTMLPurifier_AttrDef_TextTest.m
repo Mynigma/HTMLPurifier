@@ -39,7 +39,7 @@
     XCTAssertEqualObjects(expect, result, @"");
 }
 
-- (void)testExample
+- (void)testSpiffyExample
 {
     def = [HTMLPurifier_AttrDef_Text new];
     

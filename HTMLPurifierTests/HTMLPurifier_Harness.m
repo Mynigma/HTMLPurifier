@@ -51,7 +51,7 @@ static HTMLPurifier* purifier;
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testHarnessExample
 {
 }
 

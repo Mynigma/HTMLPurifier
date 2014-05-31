@@ -27,7 +27,7 @@
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testImgExample
 {
     NSString* testHTML = @"<img src=\"http://www.google.com\" width=\"1\" height=\"1\" border=\"0\" alt=\"Alt\" />";
 
