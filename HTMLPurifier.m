@@ -366,6 +366,12 @@ static HTMLPurifier* theInstance;
 + (void)cleanHTML:(NSString*)htmlString withCallBack:(void(^)(NSString* cleanedHTML, NSError* error))callBack
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+
+        //Some parts of HTMLPurifier are not currently thread-safe
+        //remove this lock to allow concurrent purification at the expense of occasional crashes
+        @synchronized(@"HTMLPurifier_LOCK")
+        {
+
         NSString* purifiedBody = nil;
 
         @autoreleasepool
@@ -391,6 +397,7 @@ static HTMLPurifier* theInstance;
                 callBack(purifiedBody, nil);
             }
         });
+        }
     });
 }
 

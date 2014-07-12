@@ -710,8 +710,6 @@
 		1EEE87B0188EC7B800BDA422 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHTMLPurifieriOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEEC29218ED769B008F1E67 /* HTMLPurifieriOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HTMLPurifieriOS-Prefix.pch"; sourceTree = "<group>"; };
-		1EEEC29318ED769B008F1E67 /* HTMLPurifieriOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLPurifieriOS.h; sourceTree = "<group>"; };
-		1EEEC29518ED769B008F1E67 /* HTMLPurifieriOS.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifieriOS.m; sourceTree = "<group>"; };
 		1EEEC29B18ED769B008F1E67 /* HTMLPurifieriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTMLPurifieriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEEC2A418ED769B008F1E67 /* HTMLPurifieriOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTMLPurifieriOSTests-Info.plist"; sourceTree = "<group>"; };
 		1EEEC2A618ED769B008F1E67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1193,8 +1191,6 @@
 		1EEEC29018ED769B008F1E67 /* HTMLPurifieriOS */ = {
 			isa = PBXGroup;
 			children = (
-				1EEEC29318ED769B008F1E67 /* HTMLPurifieriOS.h */,
-				1EEEC29518ED769B008F1E67 /* HTMLPurifieriOS.m */,
 				1EEEC29118ED769B008F1E67 /* Supporting Files */,
 			);
 			path = HTMLPurifieriOS;
@@ -3037,6 +3033,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1.01;
 				DYLIB_CURRENT_VERSION = 1.01;
@@ -3069,6 +3066,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1.01;
 				DYLIB_CURRENT_VERSION = 1.01;

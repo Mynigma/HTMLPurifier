@@ -374,6 +374,44 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
     return [self getDefinition:type raw:NO optimized:NO];
 }
 
+
+- (HTMLPurifier_Definition*)findDefinitionForType:(NSString*)type
+{
+    if(!type)
+    {
+        NSLog(@"HTMLPurifier: Trying to find definition for nil type!!");
+        return nil;
+    }
+
+    @synchronized(@"DEFINITION_LOCK")
+    {
+        return [definitions objectForKey:type];
+    }
+}
+
+- (void)addDefinition:(HTMLPurifier_Definition*)newDefinition forType:(NSString*)type
+{
+    if(!type)
+    {
+        NSLog(@"HTMLPurifier: Trying to add definition for nil type!!");
+        return;
+    }
+
+    if(!newDefinition)
+    {
+        NSLog(@"HTMLPurifier: Trying to add nil definition!!");
+        return;
+    }
+
+    @synchronized(@"DEFINITION_LOCK")
+    {
+        if(!definitions)
+            definitions = [NSMutableDictionary new];
+
+        [definitions setObject:newDefinition forKey:type];
+    }
+}
+
 /**
  * Retrieves a definition
  *
@@ -416,9 +454,9 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
         // full definition
         // ---------------
         // check if definition is in memory
-        if (definitions[type])
+        HTMLPurifier_Definition* def = [self findDefinitionForType:type];
+        if (def)
         {
-            HTMLPurifier_Definition* def = definitions[type];
             // check if the definition is setup
             if ([def setup]) {
                 return def;
@@ -431,7 +469,7 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
             }
         }
         // check if definition is in cache
-        HTMLPurifier_Definition* def = [cache get:self];
+        def = [cache get:self];
         if (def) {
             // definition in cache, save to memory and return it
             [definitions setObject:def forKey:type];
@@ -453,7 +491,12 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
 
         // set it up
         lock = type;
-        [def setup:self];
+
+        @synchronized(type)
+        {
+            [def setup:self];
+        }
+
         lock = nil;
 
 
@@ -467,7 +510,6 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
         // raw definition
         // --------------
         // check preconditions
-        HTMLPurifier_Definition* def = nil;
         if (optimized)
         {
             if (![self get:[NSString stringWithFormat:@"%@.DefinitionID", type ]])
@@ -476,9 +518,9 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
                 @throw [NSException exceptionWithName:@"Config" reason:@"Cannot retrieve raw version without specifying $type.DefinitionID" userInfo:nil];
             }
         }
-        if ([definitions[type] count]!=0)
+        HTMLPurifier_Definition* def = [self findDefinitionForType:type];
+        if (def)
         {
-            def = definitions[type];
             if ([def setup] && !optimized)
             {
                 NSString* extra = self.chatty ?
