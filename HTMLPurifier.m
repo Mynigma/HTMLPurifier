@@ -367,12 +367,12 @@ static HTMLPurifier* theInstance;
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 
+        NSString* purifiedBody = nil;
+
         //Some parts of HTMLPurifier are not currently thread-safe
         //remove this lock to allow concurrent purification at the expense of occasional crashes
         @synchronized(@"HTMLPurifier_LOCK")
         {
-
-        NSString* purifiedBody = nil;
 
         @autoreleasepool
         {
@@ -391,13 +391,13 @@ static HTMLPurifier* theInstance;
             {
             }
         }
+        }
 
         dispatch_async(dispatch_get_main_queue(), ^{
             @autoreleasepool {
                 callBack(purifiedBody, nil);
             }
         });
-        }
     });
 }
 
