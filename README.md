@@ -2,6 +2,8 @@
 
 **tl&dr**: Objective-C Framework for HTML filtering. Based on Edward Z. Yangs [HTMLPurifier for PHP](http://htmlpurifier.org) and more or less directly ported. 
 
+## Description
+
 HTMLPurifier for Objective-C is a framework for standards-compliant HTML filtering. Its main purpose is sanitisation of untrusted HTML such as incoming emails or user-supplied markup.
 
 Some built in features are:
@@ -17,9 +19,9 @@ Some built in features are:
 
 Future features:
 
-- fixes nesting (not yet implemented)
-- whitelist (not yet implemented)
-- ... so much more (not yet implemented)
+- fix nesting
+- whitelist
+... and so much more
 
 
 [![Build Status](https://travis-ci.org/Mynigma/HTMLPurifier.png?branch=master)](https://travis-ci.org/Mynigma/HTMLPurifier)
@@ -28,8 +30,9 @@ Future features:
 
 It's pretty simple. 
 
-1. Add import HTMLPurifier.h
-2. Purify HTML input either synchronously: 
+1. Import HTMLPurifier.h
+2. Include the config.plist file in your bundle
+3. Purify HTML input either synchronously: 
 
 ```objc
 NSString *purifiedHTML = [HTMLPurifier cleanHTML:dirtyHTML];
@@ -46,11 +49,11 @@ NSLog(@"Purified HTML: %@", cleanedHTML);
 
 ## Requirements
 
-
+Runs on Mac OS 10.6+ as well as iOS
 
 ## Installation
 
-Link your project with either the compiled HTMLPurifier framework or the static library.
+Link your project with either the compiled HTMLPurifier framework or the static library. You may also need to include the config.plist file in your app bundle.
 
 Alternatively, you can add HTMLPurifier as a sub-project:
 
@@ -70,14 +73,13 @@ Alternatively, you can add HTMLPurifier as a sub-project:
 5. Purify.
 
 
-## Author
+## Authors
 
-Roman Priebe, roman@mynigma.org
-Lukas Neumann, lukas@mynigma.org
+Roman Priebe (roman@mynigma.org) and Lukas Neumann (lukas@mynigma.org)
 
-## License
+## Licence
 
-HTMLPurifier is available under an LGPL license with a libgit2-style exception for App Store compatibility. See the LICENSE file for more info.
+HTMLPurifier is available under an LGPL license for use as a framework on Mac OS and under a GPL licence with a libgit2-style exception for iOS App Store compatibility. See the LICENSE file for more info.
 
 ## Config ##
 
@@ -95,12 +97,13 @@ Since we use libxml2 for tokenizing, the output will vary slightly from the PHP 
 
 1. Implementation:
   - pre and post filtering
+  - preserve style of removed body tags
   - fix nesting strategy
   - dynamic configurations
   - ...
 
 2. Updating and optimizing existing code
-  - Fix the failing unit tests (most are due to libxml2 parser producing different output from the PHP version)
+  - Add more unit tests (some difficulties due to libxml2 parser producing different output from the PHP version)
   - ...
 
 If you introduce new stuff, please provide viable unit tests. Here is great guide: [Coding standards](http://htmlpurifier.org/contribute#toclink1).
@@ -108,5 +111,5 @@ If you introduce new stuff, please provide viable unit tests. Here is great guid
 
 ## Info & Licence ##
 
-Our main project is [Mynigma](https://mynigma.org), a user-friendly, secure email client. We needed a good solution for filtering untrusted HTML and the best one by far only existed in PHP. So we ported the project to Objective-C, which turned out to be a mammoth task. You too can benefit from our work, which is licensed under an LGPL license with a libgit2-style exception. This basically means you can use the framework on Mac OS and the static library on iOS in justabout any kind of project. However, if you amend the HTMLPurifier source, your changes must be published so they can benefit others too.
+Our main project is [Mynigma](https://mynigma.org), a user-friendly, secure email client. We needed a good solution for filtering untrusted HTML and the best one by far only existed in PHP. So we ported the project to Objective-C, which turned out to be a mammoth task. You too can benefit from our work, which is licensed under both an LGPL licence and a GPL licence with a libgit2-style exception. This basically means you can use the framework on Mac OS and the static library on iOS in justabout any kind of project. However, if you amend the HTMLPurifier source, your changes must be published so they can benefit others too.
 
