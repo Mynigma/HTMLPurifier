@@ -31,39 +31,44 @@
         {
             //TO DO: fix this - there really shouldn't be a string at this stage. ever.
             if([module isKindOfClass:[HTMLPurifier_HTMLModule class]])
-            for(NSString* coll_i in module.attr_collections)
-        {
-            NSDictionary* coll = module.attr_collections[coll_i];
-
-            if(!self.info[coll_i])
-                self.info[coll_i] = [NSMutableDictionary new];
-
-            for(id<NSCopying> attr_i in coll)
-            {
-                NSObject* attr = coll[attr_i];
-
-
-                if([(NSObject*)attr_i isEqual:@0] && self.info[coll_i][attr_i])
+                for(NSString* coll_i in module.attr_collections)
                 {
-                    NSMutableArray* array1 = [self.info[coll_i][attr_i] mutableCopy];
-                    if(!array1)
-                        array1 = [@[] mutableCopy];
-                    if(![array1 isKindOfClass:[NSArray class]])
-                        array1 = [@[array1] mutableCopy];
-                    NSArray* array2 = (NSArray*)attr;
-                    if(!attr)
-                        array2 = @[];
-                    if(![array2 isKindOfClass:[NSArray class]])
-                        array2 = @[array2];
-                    self.info[coll_i][attr_i] = [array1 arrayByAddingObjectsFromArray:array2];
-                    continue;
+                    NSDictionary* coll = module.attr_collections[coll_i];
+
+                    if(!self.info[coll_i])
+                        self.info[coll_i] = [NSMutableDictionary new];
+
+                    if(![coll isKindOfClass:[NSDictionary class]])
+                    {
+                        NSLog(@"HTMLPurifier: coll is not an NSDictionary on HTMLPurifier_AttrCollections initWithAttrTypes! %@", coll);
+                        continue;
+                    }
+
+                    for(id<NSCopying> attr_i in coll)
+                    {
+                        NSObject* attr = coll[attr_i];
+
+                        if([(NSObject*)attr_i isEqual:@0] && self.info[coll_i][attr_i])
+                        {
+                            NSMutableArray* array1 = [self.info[coll_i][attr_i] mutableCopy];
+                            if(!array1)
+                                array1 = [@[] mutableCopy];
+                            if(![array1 isKindOfClass:[NSArray class]])
+                                array1 = [@[array1] mutableCopy];
+                            NSArray* array2 = (NSArray*)attr;
+                            if(!attr)
+                                array2 = @[];
+                            if(![array2 isKindOfClass:[NSArray class]])
+                                array2 = @[array2];
+                            self.info[coll_i][attr_i] = [array1 arrayByAddingObjectsFromArray:array2];
+                            continue;
+                        }
+                        //if([attr isKindOfClass:[NSArray class]])
+                        self.info[coll_i][attr_i] = attr;
+                        //else
+                        //    self.info[coll_i][attr_i] = @[attr];
+                    }
                 }
-                //if([attr isKindOfClass:[NSArray class]])
-                    self.info[coll_i][attr_i] = attr;
-                //else
-                //    self.info[coll_i][attr_i] = @[attr];
-            }
-        }
         }
 
         // perform internal expansions and inclusions
@@ -86,76 +91,76 @@
     return [self initWithAttrTypes:nil modules:nil];
 }
 
-    /**
-     * Takes a reference to an attribute associative array and performs
-     * all inclusions specified by the zero index.
-     * @param array &$attr Reference to attribute array
-     */
+/**
+ * Takes a reference to an attribute associative array and performs
+ * all inclusions specified by the zero index.
+ * @param array &$attr Reference to attribute array
+ */
 - (void)performInclusions:(NSMutableDictionary*)attr
-    {
-        if (!attr[@0]) {
-            return;
-        }
-        NSMutableArray* merge = nil;
-        if([attr[@0] isKindOfClass:[NSArray class]])
-            merge = [attr[@0] mutableCopy];
-        else
-            merge = [@[attr[@0]] mutableCopy];
-        NSMutableSet* seen  = [NSMutableSet new]; // recursion guard
-                          // loop through all the inclusions
-        for (NSInteger i = 0; i<merge.count; i++)
-        {
-            if ([seen containsObject:merge[i]])
-            {
-                continue;
-            }
-            [seen addObject:merge[i]];
-            // foreach attribute of the inclusion, copy it over
-            if (!self.info[merge[i]])
-            {
-                continue;
-            }
-            for(NSString* key in self.info[merge[i]])
-            {
-                NSObject* value = self.info[merge[i]][key];
-                if (attr[key])
-                {
-                    continue;
-                } // also catches more inclusions
-                attr[key] = value;
-            }
-
-            if ([self.info[merge[i]] isKindOfClass:[NSDictionary class]] && self.info[merge[i]][@0])
-            {
-                // recursion
-                NSArray* array2 = (NSArray*)self.info[merge[i]][@0];
-                if(!attr)
-                    array2 = @[];
-                if(![array2 isKindOfClass:[NSArray class]])
-                    array2 = @[array2];
-                [merge addObjectsFromArray:array2];
-                attr[@0] = merge;
-            }
-        }
-        [attr removeObjectForKey:@0];
+{
+    if (!attr[@0]) {
+        return;
     }
-
-    /**
-     * Expands all string identifiers in an attribute array by replacing
-     * them with the appropriate values inside HTMLPurifier_AttrTypes
-     * @param array &$attr Reference to attribute array
-     * @param HTMLPurifier_AttrTypes $attr_types HTMLPurifier_AttrTypes instance
-     */
-- (void)expandIdentifiers:(NSMutableDictionary*)attr attrTypes:(HTMLPurifier_AttrTypes*)attr_types
+    NSMutableArray* merge = nil;
+    if([attr[@0] isKindOfClass:[NSArray class]])
+        merge = [attr[@0] mutableCopy];
+    else
+        merge = [@[attr[@0]] mutableCopy];
+    NSMutableSet* seen  = [NSMutableSet new]; // recursion guard
+                                              // loop through all the inclusions
+    for (NSInteger i = 0; i<merge.count; i++)
     {
-        // because foreach will process new elements we add, make sure we
-        // skip duplicates
-        NSMutableSet* processed = [NSMutableSet new];
-
-        //while there are unprocessed objects in attr
-
-        while(![[NSSet setWithArray:attr.allKeys] isSubsetOfSet:processed])
+        if ([seen containsObject:merge[i]])
         {
+            continue;
+        }
+        [seen addObject:merge[i]];
+        // foreach attribute of the inclusion, copy it over
+        if (!self.info[merge[i]])
+        {
+            continue;
+        }
+        for(NSString* key in self.info[merge[i]])
+        {
+            NSObject* value = self.info[merge[i]][key];
+            if (attr[key])
+            {
+                continue;
+            } // also catches more inclusions
+            attr[key] = value;
+        }
+
+        if ([self.info[merge[i]] isKindOfClass:[NSDictionary class]] && self.info[merge[i]][@0])
+        {
+            // recursion
+            NSArray* array2 = (NSArray*)self.info[merge[i]][@0];
+            if(!attr)
+                array2 = @[];
+            if(![array2 isKindOfClass:[NSArray class]])
+                array2 = @[array2];
+            [merge addObjectsFromArray:array2];
+            attr[@0] = merge;
+        }
+    }
+    [attr removeObjectForKey:@0];
+}
+
+/**
+ * Expands all string identifiers in an attribute array by replacing
+ * them with the appropriate values inside HTMLPurifier_AttrTypes
+ * @param array &$attr Reference to attribute array
+ * @param HTMLPurifier_AttrTypes $attr_types HTMLPurifier_AttrTypes instance
+ */
+- (void)expandIdentifiers:(NSMutableDictionary*)attr attrTypes:(HTMLPurifier_AttrTypes*)attr_types
+{
+    // because foreach will process new elements we add, make sure we
+    // skip duplicates
+    NSMutableSet* processed = [NSMutableSet new];
+
+    //while there are unprocessed objects in attr
+
+    while(![[NSSet setWithArray:attr.allKeys] isSubsetOfSet:processed])
+    {
         NSArray* allKeys = attr.allKeys;
         for(NSString* def_i in allKeys)
         {
@@ -209,8 +214,8 @@
                 [attr removeObjectForKey:new_def_i];
             }
         }
-        }
     }
+}
 
 
 
