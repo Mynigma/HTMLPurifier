@@ -53,7 +53,7 @@
     _context = context;
 
     // context variables
-    [context registerWithName:@"CurrentNesting" ref:stack];
+    [context registerWithName:@"CurrentNesting" ref:_stack];
     [context registerWithName:@"InputZipper" ref:zipper];
     [context registerWithName:@"CurrentToken" ref:_token];
 
@@ -224,6 +224,8 @@
                         continue;
                     }
                     
+                    //needs to reload latest context
+                    [injector prepare:config context:context];
                     // XXX fuckup
                     HTMLPurifier_Token* r = (HTMLPurifier_Token*)_token;
                     [injector handleText:&r];

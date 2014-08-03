@@ -5,12 +5,14 @@
 //  Created by Lukas Neumann on 10.01.14.
 
 
+
 #import <XCTest/XCTest.h>
 #import "HTMLPurifier_Harness.h"
 #import "HTMLPurifier.h"
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 
+#define BUNDLE (NSClassFromString(@"HTMLPurifierTests")!=nil)?[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifierTests") class]]:[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifier") class]]
 
 @interface HTMLPurifierTests : HTMLPurifier_Harness
 {
@@ -98,6 +100,31 @@ NSLog(@"Output: %@", cleanedHTML);
     XCTAssertEqualObjects(result, @"<img src=\"cid:foo.foo@bar.de\" alt=\"cid:foo.foo@bar.de\" />");
 }
 
+
+-(void) testURIwithTilde
+{
+    NSString* result = [purifier purify:@"<a style=\"color: #538dc2;\" href=\"http://www.quora.com/l/2Ql8wc3~QpE0iGHY4wndQxPuYryrn-Y98PAIkbcx2wzAAzYFuqwwIMMB0iGa4-oTP9pwagDtxGKcFVDsp3xalMcqBYvImPGXzjyI1S9qQN~eKQVuqOwFdYiCYwqeunnUaEK9r-KRczlSWGdHnETebteAQ3ZVfwT-gXMmUae-OWmNL1Cyg68mzlLSBXKuggJ3LQHsndlvcnA9oDUXZztolszXg8UDGoA5yJcdV6Cbk6M~ReeiU3ndrDUHmHyetF00EOxoY-W6e88x~~u82sypv1\">http://www.quora.com/login/auto_login?...</a>"];
+    XCTAssertEqualObjects(result, @"<a style=\"color:#538dc2;\" href=\"http://www.quora.com/l/2Ql8wc3~QpE0iGHY4wndQxPuYryrn-Y98PAIkbcx2wzAAzYFuqwwIMMB0iGa4-oTP9pwagDtxGKcFVDsp3xalMcqBYvImPGXzjyI1S9qQN~eKQVuqOwFdYiCYwqeunnUaEK9r-KRczlSWGdHnETebteAQ3ZVfwT-gXMmUae-OWmNL1Cyg68mzlLSBXKuggJ3LQHsndlvcnA9oDUXZztolszXg8UDGoA5yJcdV6Cbk6M~ReeiU3ndrDUHmHyetF00EOxoY-W6e88x~~u82sypv1\">http://www.quora.com/login/auto_login?...</a>");
+}
+
+
+-(void) EXMPLRDISABLEDtestMassiveTableNesting
+{
+    NSError *error = nil;
+    NSString* result = [NSString stringWithContentsOfURL:[BUNDLE URLForResource:@"bufferORIG" withExtension:@"html"] encoding:NSUTF8StringEncoding error:&error];
+    NSString* cleaned = [NSString stringWithContentsOfURL:[BUNDLE URLForResource:@"bufferCLEAN" withExtension:@"html"] encoding:NSUTF8StringEncoding error:&error];
+    result = [purifier purify:result];
+    XCTAssertEqualObjects(result,cleaned);
+}
+
+-(void) testMinimalTableFuckUp
+{
+    NSString* test = @"<table><tr><td>valid1</td></tr><tr><table><tr><td>blah</td></tr></table></tr><tr><td>valid2</td></tr><table><tr><td>blub</td></tr></table></table>";    
+    NSString* result = [purifier purify:test];
+
+    // Note Fix Nesting should get rid of the empty <tr></tr> which was added by make well formed.
+    XCTAssertEqualObjects(result,@"<table><tr><td>valid1</td></tr></table><table><tr><td>blah</td></tr></table>valid2<table><tr><td>blub</td></tr></table>");
+}
 
 /*
 - (void)testMakeAbsolute

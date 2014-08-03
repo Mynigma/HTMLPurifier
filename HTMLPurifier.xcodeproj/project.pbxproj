@@ -234,6 +234,7 @@
 		8034BF7B189461C40008315A /* HTMLPurifier_AttrTransform_BdoDirTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8034BF7A189461C40008315A /* HTMLPurifier_AttrTransform_BdoDirTest.m */; };
 		8034BF7D189463FB0008315A /* HTMLPurifier_AttrTransform_NameSyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8034BF7C189463FB0008315A /* HTMLPurifier_AttrTransform_NameSyncTest.m */; };
 		8034BF7F1894698C0008315A /* HTMLPurifier_AttrTransform_ImgRequiredTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8034BF7E1894698C0008315A /* HTMLPurifier_AttrTransform_ImgRequiredTest.m */; };
+		804D83CD198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 804D83CC198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m */; };
 		80551EC718AE65000062D232 /* HTMLPurifier_URIScheme_cid.h in Headers */ = {isa = PBXBuildFile; fileRef = 80551EC518AE65000062D232 /* HTMLPurifier_URIScheme_cid.h */; };
 		80551EC818AE65000062D232 /* HTMLPurifier_URIScheme_cid.m in Sources */ = {isa = PBXBuildFile; fileRef = 80551EC618AE65000062D232 /* HTMLPurifier_URIScheme_cid.m */; };
 		808CB9C21887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9C11887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m */; };
@@ -732,6 +733,7 @@
 		8034BF7A189461C40008315A /* HTMLPurifier_AttrTransform_BdoDirTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransform_BdoDirTest.m; sourceTree = "<group>"; };
 		8034BF7C189463FB0008315A /* HTMLPurifier_AttrTransform_NameSyncTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransform_NameSyncTest.m; sourceTree = "<group>"; };
 		8034BF7E1894698C0008315A /* HTMLPurifier_AttrTransform_ImgRequiredTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransform_ImgRequiredTest.m; sourceTree = "<group>"; };
+		804D83CC198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Strategy_FixNestingTest.m; sourceTree = "<group>"; };
 		80551EC518AE65000062D232 /* HTMLPurifier_URIScheme_cid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_URIScheme_cid.h; sourceTree = "<group>"; };
 		80551EC618AE65000062D232 /* HTMLPurifier_URIScheme_cid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIScheme_cid.m; sourceTree = "<group>"; };
 		808CB9C11887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_HTML_BoolTest.m; sourceTree = "<group>"; };
@@ -1232,6 +1234,7 @@
 				1E35ECDD188747B700E8FF31 /* HTMLPurifier_RemoveForeignElementsTest.m */,
 				1EA6BD641889914800C2BAE7 /* ValidateAttributesTest.m */,
 				801F0164188FD01B00506C24 /* HTMLPurifier_Strategy_MakeWellFormedTest.m */,
+				804D83CC198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m */,
 			);
 			name = Strategies;
 			sourceTree = "<group>";
@@ -2729,6 +2732,7 @@
 			files = (
 				808CB9CD1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m in Sources */,
 				80E5A88E189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m in Sources */,
+				804D83CD198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m in Sources */,
 				80E5A88A18926701008A093D /* HTMLPurifier_AttrTransformHarness.m in Sources */,
 				80E0A5721893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */,
 				808CB9EC188B385300AFB841 /* HTMLPurifier_AttrDef_URITest.m in Sources */,

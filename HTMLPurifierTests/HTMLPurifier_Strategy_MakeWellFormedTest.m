@@ -222,11 +222,13 @@
     [self assertResult:@"<blockquote>foo<b>bar</b></blockquote>" expect:@"<blockquote>foo<b>bar</b></blockquote>"];
 }
 
+/* Disabled, because libxml lexer already works it's magic and has a different output than the original Lexer + MakeWellFormed */
 -(void) d_testLongCarryOver
 {
     [self assertResult:@"<b>asdf<div>asdf<i>df</i></div>asdf</b>" expect:@"<b>asdf</b><div><b>asdf<i>df</i></b></div><b>asdf</b>"];
 }
 
+/* Disabled, because libxml lexer already works it's magic and has a different output than the original Lexer + MakeWellFormed */
 -(void) d_testInterleaved
 {
     [self assertResult:@"<u>foo<i>bar</u>baz</i>" expect:@"<u>foo<i>bar</i></u><i>baz</i>"];

@@ -54,7 +54,7 @@
     // processed, i.e. there won't be empty exclusions.
 
 
-    //NSMutableDictionary* excludeStack = [[definition info_parent_def] excludes];
+    NSMutableDictionary* excludeStack = [[definition info_parent_def] excludes];
 
     // variable that contains the start token while we are processing
     // nodes. This enables error reporting to do its job
@@ -109,6 +109,11 @@
             excludes = stackObject[2];
         if(stackObject.count>3)
             ix = [stackObject[3] integerValue];
+        
+        // Need to reset for current node...
+        [context destroy:@"IsInline"];
+        [context registerWithName:@"IsInline" ref:@(isInline)];
+
 
         // recursive call
         BOOL go = NO;
@@ -163,7 +168,7 @@
             {
                 // nop
                 [node setChildren:children];
-            } else if ([result isEqual:@NO])
+            } else if ([result isEqual:@NO] || !result)
             {
                 [node setDead:YES];
                 //NSLOG"Strategy_FixNesting: Node removed");

@@ -37,7 +37,7 @@
         NSObject* result = [super validateChildren:children config:config context:context];
 
         // we assume that $children is not modified
-        if ([result isEqual:@"NO"])
+        if (!result || [result isEqual:@"NO"])
         {
             if (children.count==0)
             {

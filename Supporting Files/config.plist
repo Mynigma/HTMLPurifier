@@ -131,7 +131,7 @@
 		<key>Core.DirectLexLineNumberSyncInterval</key>
 		<string>nil</string>
 		<key>Core.DisableExcludes</key>
-		<string>nil</string>
+		<string>NO</string>
 		<key>Core.EnableIDNA</key>
 		<string>nil</string>
 		<key>Core.Encoding</key>
@@ -447,7 +447,7 @@
 		<key>Core.DirectLexLineNumberSyncInterval</key>
 		<string>nil</string>
 		<key>Core.DisableExcludes</key>
-		<string>nil</string>
+		<string>NO</string>
 		<key>Core.EnableIDNA</key>
 		<string>nil</string>
 		<key>Core.Encoding</key>
@@ -731,7 +731,7 @@
 		<key>Core.DirectLexLineNumberSyncInterval</key>
 		<string>5</string>
 		<key>Core.DisableExcludes</key>
-		<string>7</string>
+		<string>0</string>
 		<key>Core.EnableIDNA</key>
 		<string>7</string>
 		<key>Core.Encoding</key>

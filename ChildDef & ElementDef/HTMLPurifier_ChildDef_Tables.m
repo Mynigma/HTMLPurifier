@@ -113,7 +113,7 @@
             {
                     // there can only be one caption!
                     if (caption)
-                        break;
+                        continue;
                     caption = node;
                     ws_accum = after_caption_ws;
             }
@@ -172,7 +172,7 @@
                     {
                         [ws_accum addObject:node];
                     }
-                    break;
+                    continue;
             }
         }
 

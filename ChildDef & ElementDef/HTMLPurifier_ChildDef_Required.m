@@ -54,7 +54,7 @@
     whitespace = NO;
 
     if([children count]==0)
-        return NO;
+        return nil;
 
     NSMutableArray* result = [NSMutableArray new];
 
@@ -98,11 +98,11 @@
                 [result addObject:node];
            }
            if (result.count==0) {
-              return NO;
+              return nil;
           }
           if (all_whitespace) {
               whitespace = YES;
-               return NO;
+               return nil;
            }
           return result;
 }

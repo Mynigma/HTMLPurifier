@@ -84,7 +84,7 @@
 
 -(void) testEmpty
 {
-    [self assertResult:@"" expect:@""];
+    [self assertResult:@"" expect:@YES];
 }
 
 -(void) testWhitespace
