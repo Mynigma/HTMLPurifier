@@ -62,7 +62,7 @@
 		<key>CSS.AllowImportant</key>
 		<false/>
 		<key>CSS.AllowTricky</key>
-		<string>nil</string>
+		<string>YES</string>
 		<key>CSS.AllowedFonts</key>
 		<string>nil</string>
 		<key>CSS.AllowedProperties</key>
@@ -378,7 +378,7 @@
 		<key>CSS.AllowImportant</key>
 		<string>nil</string>
 		<key>CSS.AllowTricky</key>
-		<string>nil</string>
+		<string>YES</string>
 		<key>CSS.AllowedFonts</key>
 		<string>nil</string>
 		<key>CSS.AllowedProperties</key>
@@ -691,7 +691,7 @@
 		<key>CSS.AllowImportant</key>
 		<string>7</string>
 		<key>CSS.AllowTricky</key>
-		<string>7</string>
+		<string>YES</string>
 		<key>CSS.AllowedFonts</key>
 		<string>-8</string>
 		<key>CSS.AllowedProperties</key>

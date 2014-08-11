@@ -180,15 +180,22 @@
     // in THE FUTURE!
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"nowrap", @"normal", @"pre", @"pre-wrap", @"pre-line"]] forKey:@"white-space"];
 
+    
+    /*
+    // TODO get this really from config
+    if ([[config get:@"CSS.AllowImportant"] isEqual:@YES])
+    {
+        [self doSetupTricky:config];
+    }
+    */
+    
+    [self doSetupTricky:config];
+    
+    
     /*
      if ([[config get:@"CSS.Proprietary"] boolValue])
      {
      [self doSetupProprietary:config];
-     }
-
-     if ([[config get:@"CSS.AllowTricky"] boolValue])
-     {
-     [self doSetupTricky:config];
      }
 
 
@@ -248,38 +255,28 @@
 //
 //                                                            }
 //
-//                                                            /**
-//                                                             * @param HTMLPurifier_Config $config
-//                                                             */
-//                                                            protected function doSetupTricky($config)
-//                                                            {
-//                                                                $this->info['display'] = new HTMLPurifier_AttrDef_Enum(
-//                                                                                                                       array(
-//                                                                                                                             'inline',
-//                                                                                                                             'block',
-//                                                                                                                             'list-item',
-//                                                                                                                             'run-in',
-//                                                                                                                             'compact',
-//                                                                                                                             'marker',
-//                                                                                                                             'table',
-//                                                                                                                             'inline-block',
-//                                                                                                                             'inline-table',
-//                                                                                                                             'table-row-group',
-//                                                                                                                             'table-header-group',
-//                                                                                                                             'table-footer-group',
-//                                                                                                                             'table-row',
-//                                                                                                                             'table-column-group',
-//                                                                                                                             'table-column',
-//                                                                                                                             'table-cell',
-//                                                                                                                             'table-caption',
-//                                                                                                                             'none'
-//                                                                                                                             )
-//                                                                                                                       );
-//                                                                $this->info['visibility'] = new HTMLPurifier_AttrDef_Enum(
-//                                                                                                                          array('visible', 'hidden', 'collapse')
-//                                                                                                                          );
-//                                                                $this->info['overflow'] = new HTMLPurifier_AttrDef_Enum(array('visible', 'hidden', 'auto', 'scroll'));
-//                                                            }
+
+/**
+ * @param HTMLPurifier_Config $config
+ */
+
+-(void) doSetupTricky:(HTMLPurifier_Config*)config
+{
+    NSArray* array = @[@"inline",@"block",@"list-item",@"run-in",@"compact",@"marker",@"table",@"inline-block",@"inline-table",@"table-row-group",@"table-header-group",@"table-footer-group",@"table-row",@"table-column-group",@"table-column",@"table-cell",@"table-caption",@"none"];
+    HTMLPurifier_AttrDef_Enum* newEnum = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:array];
+    [self.info setObject:newEnum forKey:@"display"];
+    
+    
+    array = @[@"visible",@"hidden",@"collapse"];
+    newEnum = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:array];
+    [self.info setObject:newEnum forKey:@"visibility"];
+    
+    array = @[@"visible",@"hidden",@"auto",@"scroll"];
+    newEnum = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:array];
+    [self.info setObject:newEnum forKey:@"overflow"];
+
+}
+
 //
 //                                                            /**
 //                                                             * @param HTMLPurifier_Config $config

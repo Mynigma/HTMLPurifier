@@ -126,6 +126,13 @@ NSLog(@"Output: %@", cleanedHTML);
     XCTAssertEqualObjects(result,@"<table><tr><td>valid1</td></tr></table><table><tr><td>blah</td></tr></table>valid2<table><tr><td>blub</td></tr></table>");
 }
 
+-(void) testVisibility
+{
+    NSString* test = @"<span style=\"display: none !important; visibility: hidden; width: 0; height: 0; opacity: 0; color: transparent;\"> Popular video by EinKamel: \"WM 2014 Müller boarisch\"</span>";
+    NSString* result = [purifier purify:test];
+    XCTAssertEqualObjects(result,@"<span style=\"display:none;visibility:hidden;width:0;height:0;\"> Popular video by EinKamel: \"WM 2014 Müller boarisch\"</span>");
+}
+
 /*
 - (void)testMakeAbsolute
 {

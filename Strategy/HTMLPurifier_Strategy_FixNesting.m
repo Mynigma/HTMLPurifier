@@ -54,7 +54,7 @@
     // processed, i.e. there won't be empty exclusions.
 
 
-    NSMutableDictionary* excludeStack = [[definition info_parent_def] excludes];
+    // NSMutableDictionary* excludeStack = [[definition info_parent_def] excludes];
 
     // variable that contains the start token while we are processing
     // nodes. This enables error reporting to do its job
