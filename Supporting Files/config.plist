@@ -270,6 +270,8 @@
 		<string>nil</string>
 		<key>URI.AllowedSchemes</key>
 		<dict>
+			<key>data</key>
+			<string>1</string>
 			<key>ftp</key>
 			<string>1</string>
 			<key>http</key>
@@ -584,6 +586,8 @@
 		<string>nil</string>
 		<key>URI.AllowedSchemes</key>
 		<dict>
+			<key>data</key>
+			<string>1</string>
 			<key>cid</key>
 			<string>1</string>
 			<key>ftp</key>
@@ -864,6 +868,8 @@
 		<string>7</string>
 		<key>URI.AllowedSchemes</key>
 		<dict>
+			<key>data</key>
+			<string>1</string>
 			<key>ftp</key>
 			<string>1</string>
 			<key>http</key>
