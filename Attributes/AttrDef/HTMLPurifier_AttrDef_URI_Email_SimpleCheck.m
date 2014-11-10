@@ -25,7 +25,7 @@
         return nil;
     }
     string = trim(string);
-    BOOL result = preg_match_2(@"^[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", string);
+    BOOL result = preg_match_2(@"^[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$", string);
     return result ? string : nil;
 }
 
