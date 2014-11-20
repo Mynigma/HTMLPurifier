@@ -220,7 +220,7 @@
                 }
                 else if([[node valueForKey:@"name"] isEqual:@"#PCDATA"])
                 {
-                        assert([node valueForKey:@"is_whitespace"]);
+                        assert([node valueForKey:@"isWhitespace"]);
                         if (!current_tr_tbody) {
                             [ret addObject:node];
                         } else {

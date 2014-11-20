@@ -39,7 +39,7 @@
 
 - (HTMLPurifier_Node_Text*)toNode
 {
-    return [[HTMLPurifier_Node_Text alloc] initWithData:self.data isWhitespace:NO line:self.line col:self.col];
+    return [[HTMLPurifier_Node_Text alloc] initWithData:self.data isWhitespace:self.isWhitespace line:self.line col:self.col];
 }
 
 - (id)copyWithZone:(NSZone *)zone

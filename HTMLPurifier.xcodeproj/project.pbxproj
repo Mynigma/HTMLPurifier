@@ -279,6 +279,8 @@
 		80EDF9D818803B3200EB1E89 /* HTMLPurifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */; };
 		80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9E018803B3200EB1E89 /* HTMLPurifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */; };
+		80EF52F61A1DD3C500B2DEA8 /* orrickClean.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */; };
+		80EF52F71A1DD3C500B2DEA8 /* orrickTest.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */; };
 		80F53D90189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53C17189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS.h */; };
 		80F53D91189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C18189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS.m */; };
 		80F53D92189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS_AlphaValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53C19189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_AlphaValue.h */; };
@@ -784,6 +786,8 @@
 		80EDF9DB18803B3200EB1E89 /* HTMLPurifierTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTMLPurifierTests-Info.plist"; sourceTree = "<group>"; };
 		80EDF9DD18803B3200EB1E89 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifierTests.m; sourceTree = "<group>"; };
+		80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = orrickClean.html; sourceTree = "<group>"; };
+		80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = orrickTest.html; sourceTree = "<group>"; };
 		80F53C17189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HTMLPurifier_AttrDef_CSS.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		80F53C18189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HTMLPurifier_AttrDef_CSS.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		80F53C19189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_AlphaValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HTMLPurifier_AttrDef_CSS_AlphaValue.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -1444,6 +1448,8 @@
 			children = (
 				80EDF9DB18803B3200EB1E89 /* HTMLPurifierTests-Info.plist */,
 				80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */,
+				80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */,
+				80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2319,9 +2325,11 @@
 			files = (
 				80F53F07189BF1DD00D7805F /* xssSmoketests.plist in Resources */,
 				1E423C6218B83734009D0B74 /* xssAttacks.plist in Resources */,
+				80EF52F61A1DD3C500B2DEA8 /* orrickClean.html in Resources */,
 				80F53F06189BF1C300D7805F /* entities.plist in Resources */,
 				80F53F04189BF19000D7805F /* config.plist in Resources */,
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
+				80EF52F71A1DD3C500B2DEA8 /* orrickTest.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

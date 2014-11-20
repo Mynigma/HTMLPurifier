@@ -140,6 +140,31 @@ NSLog(@"Output: %@", cleanedHTML);
     XCTAssertEqualObjects(result,@"<img height=\"36\" src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB9YGARc5KB0XV+IAAAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAF1JREFUGNO9zL0NglAAxPEfdLTs4BZM4DIO4C7OwQg2JoQ9LE1exdlYvBBeZ7jqch9//q1uH4TLzw4d6+ErXMMcXuHWxId3KOETnnXXV6MJpcq2MLaI97CER3N0vr4MkhoXe0rZigAAAABJRU5ErkJggg==\" width=\"170\" alt=\"image\" />");
 }
 
+
+-(void) testListWithoutClosingTags
+{
+    NSString* test = @"<ol><li>1<li>2<li>3</li></ol>";
+    NSString* correct = @"<ol><li>1</li><li>2</li><li>3</li></ol>";
+    
+    NSString* result = [purifier purify:test];
+    
+    XCTAssertEqualObjects(result, correct);
+}
+
+
+-(void) testorrick
+{
+    NSError *error = nil;
+    NSString* result = [NSString stringWithContentsOfURL:[BUNDLE URLForResource:@"orrickTest" withExtension:@"html"] encoding:NSUTF8StringEncoding error:&error];
+    
+    NSString* correct = [NSString stringWithContentsOfURL:[BUNDLE URLForResource:@"orrickClean" withExtension:@"html"] encoding:NSUTF8StringEncoding error:&error];
+    
+    result = [purifier purify:result];
+    
+    XCTAssertEqualObjects(result, correct);
+
+}
+
 /*
 - (void)testMakeAbsolute
 {

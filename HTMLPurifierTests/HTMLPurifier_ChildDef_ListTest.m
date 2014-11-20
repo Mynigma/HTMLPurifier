@@ -114,4 +114,9 @@
     [self assertResult:@"<ul />" expect:@"<li><ul /></li>"];
 }
 
+-(void) testOlAtBeginningWithJunk
+{
+    [self assertResult:@"<ol><li>1<li>2<li>3</li></ol>" expect:@"<ol><li>1<li>2<li>3</li></ol>"];
+}
+
 @end
