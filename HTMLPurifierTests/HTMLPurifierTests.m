@@ -165,6 +165,16 @@ NSLog(@"Output: %@", cleanedHTML);
 
 }
 
+
+-(void) testImageWidth
+{
+    NSString* result = @"<img src=\"https://gallery.mailchimp.com/f.png\" style=\"width: 75%;height: auto !important;\" width=\"75%\">";
+    NSString* correct = @"<img src=\"https://gallery.mailchimp.com/f.png\" style=\"width:75%;height:auto;\" alt=\"f.png\" />";
+    
+    result = [purifier purify:result];
+    XCTAssertEqualObjects(result, correct);
+}
+
 /*
 - (void)testMakeAbsolute
 {
