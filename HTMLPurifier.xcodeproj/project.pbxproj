@@ -3053,7 +3053,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				FRAMEWORK_VERSION = A1;
+				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3086,7 +3086,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				FRAMEWORK_VERSION = A1;
+				FRAMEWORK_VERSION = A;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
