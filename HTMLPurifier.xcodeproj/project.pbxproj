@@ -3062,7 +3062,7 @@
 					"$SDK_DIR/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
+				INSTALL_PATH = "@rpath";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -3095,7 +3095,7 @@
 					"$SDK_DIR/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Supporting Files/HTMLPurifier-Info.plist";
-				INSTALL_PATH = "@executable_path/../Frameworks";
+				INSTALL_PATH = "@rpath";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
