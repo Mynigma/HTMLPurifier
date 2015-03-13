@@ -24,7 +24,7 @@ static HTMLPurifier_EntityLookup* commonLookup;
     if (self) {
         NSURL* plistURL = [BUNDLE URLForResource:@"entities" withExtension:@"plist"];
 
-        _table = [NSDictionary dictionaryWithContentsOfURL:plistURL];
+        _table = [NSMutableDictionary dictionaryWithContentsOfURL:plistURL];
 
         commonLookup = self;
     }
