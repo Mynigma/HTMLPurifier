@@ -3110,7 +3110,7 @@
 		80EDF9E718803B3200EB1E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A1/HTMLPurifier";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3140,7 +3140,7 @@
 		80EDF9E818803B3200EB1E89 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A1/HTMLPurifier";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
