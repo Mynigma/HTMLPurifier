@@ -3,6 +3,15 @@ language: objective-c
 xcode_project: HTMLPurifier.xcodeproj
 xcode_scheme: HTMLPurifier
 
-##before_install: "git submodule init && git submodule update && sudo gem update --system && sudo gem install bundler && bundle install"
+before_install:
+  - sudo easy_install cpp-coveralls
+  - gem install slather
+  # - brew uninstall xctool
+  # - brew update
+  # - brew install xctool --HEAD  
 
-##script: "bundle exec rake test --trace"
+script:
+  - xctool clean test ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+
+after_success:
+  - slather
