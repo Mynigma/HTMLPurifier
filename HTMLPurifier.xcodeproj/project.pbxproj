@@ -203,6 +203,7 @@
 		1E9A62E71884502700EA7A85 /* HTMLPurifier_Harness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */; };
 		1EA6BD651889914800C2BAE7 /* ValidateAttributesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD641889914800C2BAE7 /* ValidateAttributesTest.m */; };
 		1EA6BD67188A084400C2BAE7 /* CSSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD66188A084400C2BAE7 /* CSSTest.m */; };
+		1EB9ACE61B144E0D000EDDA5 /* BasicPHP.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53CA7189BE6F600D7805F /* BasicPHP.h */; };
 		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
 		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
@@ -2080,6 +2081,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EE4B32E1B13AFAA0056091D /* HTMLPurifier-Prefix.pch in Headers */,
+				1EB9ACE61B144E0D000EDDA5 /* BasicPHP.h in Headers */,
 				1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2386,10 +2388,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80EDF9BA18803B3200EB1E89 /* HTMLPurifier */,
-				80EDF9D118803B3200EB1E89 /* HTMLPurifierTests */,
 				1EEEC28D18ED769B008F1E67 /* HTMLPurifieriOS */,
 				1EEEC29A18ED769B008F1E67 /* HTMLPurifieriOSTests */,
+				80EDF9BA18803B3200EB1E89 /* HTMLPurifier */,
+				80EDF9D118803B3200EB1E89 /* HTMLPurifierTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3018,6 +3020,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /tmp/HTMLPurifieriOS.dst;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -3050,6 +3053,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /tmp/HTMLPurifieriOS.dst;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -3175,6 +3180,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -3223,6 +3230,8 @@
 				FRAMEWORK_SEARCH_PATHS = /usr/lib/;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3247,7 +3256,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1.01;
 				DYLIB_CURRENT_VERSION = 1.01;
@@ -3282,8 +3291,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1.01;
 				DYLIB_CURRENT_VERSION = 1.01;
 				FRAMEWORK_SEARCH_PATHS = (

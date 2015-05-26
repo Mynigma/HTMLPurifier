@@ -2,17 +2,17 @@ language: objective-c
 
 xcode_project: HTMLPurifier.xcodeproj
 xcode_scheme: HTMLPurifier
-xcode_sdk: iphonesimulator8.1
+# xcode_sdk: iphonesimulator8.1
 
-before_install:
-  - sudo easy_install cpp-coveralls
-  - gem install slather
+# before_install:
+#   - sudo easy_install cpp-coveralls
+#   - gem install slather
   # - brew uninstall xctool
   # - brew update
   # - brew install xctool --HEAD  
 
-script:
-  - xctool -project HTMLPurifier.xcodeproj -scheme HTMLPurifieriOS -sdk iphonesimulator8.1 clean test ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+# script:
+#   - xctool -project HTMLPurifier.xcodeproj -scheme HTMLPurifieriOS -sdk iphonesimulator8.1 clean test ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 
-after_success:
-  - slather
+# after_success:
+#   - slather
