@@ -1,7 +1,7 @@
 language: objective-c
 
 xcode_project: HTMLPurifier.xcodeproj
-xcode_scheme: HTMLPurifieriOS
+xcode_scheme: HTMLPurifier
 xcode_sdk: iphonesimulator8.1
 
 before_install:
