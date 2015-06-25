@@ -16,7 +16,6 @@
 		1E35ECEC188813D300E8FF31 /* EntityParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECEB188813D300E8FF31 /* EntityParserTest.m */; };
 		1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */; };
 		1E40A0451892AFDF006992C5 /* Smoketest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A0441892AFDF006992C5 /* Smoketest.m */; };
-		1E423C6218B83734009D0B74 /* xssAttacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E423C6018B83713009D0B74 /* xssAttacks.plist */; };
 		1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D06189BE6F600D7805F /* HTMLPurifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E48254418ED9DD000E4CC64 /* HTMLPurifier_AttrDef_CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C18189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS.m */; };
 		1E48254518ED9DD000E4CC64 /* HTMLPurifier_AttrDef_CSS_AlphaValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C1A189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_AlphaValue.m */; };
@@ -199,27 +198,113 @@
 		1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */; };
 		1E5FAABE18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */; };
 		1E5FAAC81885A2640073CA79 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */; };
-		1E6A07371939DA81008B7520 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
 		1E6F2C37188AA9E900EEEB3F /* UnitConverterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F2C36188AA9E900EEEB3F /* UnitConverterTest.m */; };
 		1E9A62E518844FCB00EA7A85 /* URIParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E418844FCB00EA7A85 /* URIParserTest.m */; };
 		1E9A62E71884502700EA7A85 /* HTMLPurifier_Harness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */; };
 		1EA6BD651889914800C2BAE7 /* ValidateAttributesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD641889914800C2BAE7 /* ValidateAttributesTest.m */; };
 		1EA6BD67188A084400C2BAE7 /* CSSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD66188A084400C2BAE7 /* CSSTest.m */; };
+		1EB9ACE61B144E0D000EDDA5 /* BasicPHP.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53CA7189BE6F600D7805F /* BasicPHP.h */; };
 		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
 		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
 		1ECDAE8518B74FFA00E9E5DB /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		1EDF30C41910F5B600B12A9C /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
-		1EDF30C51910F5B600B12A9C /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
-		1EDF30C91910F6E700B12A9C /* xssSmoketests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4F189BE6F700D7805F /* xssSmoketests.plist */; };
-		1EDF30CA1910F6E700B12A9C /* xssAttacks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E423C6018B83713009D0B74 /* xssAttacks.plist */; };
+		1EE4B2A31B13A51B0056091D /* HTMLPurifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */; };
+		1EE4B2A41B13A51B0056091D /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		1EE4B2A51B13A51B0056091D /* HTMLPurifier_Harness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */; };
+		1EE4B2A61B13A51B0056091D /* HTMLPurifier_AttrDefHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9C61887E4D500AFB841 /* HTMLPurifier_AttrDefHarness.m */; };
+		1EE4B2A71B13A51B0056091D /* HTMLPurifier_PercentEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */; };
+		1EE4B2A81B13A5230056091D /* HTMLPurifier_ElementDefTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECD9188727D000E8FF31 /* HTMLPurifier_ElementDefTest.m */; };
+		1EE4B2A91B13A5230056091D /* PropertyListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECDB1887396100E8FF31 /* PropertyListTest.m */; };
+		1EE4B2AA1B13A53C0056091D /* HTMLPurifier_AttrTransformHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88918926701008A093D /* HTMLPurifier_AttrTransformHarness.m */; };
+		1EE4B2AB1B13A53C0056091D /* HTMLPurifier_AttrTransformTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88B18926777008A093D /* HTMLPurifier_AttrTransformTest.m */; };
+		1EE4B2AC1B13A53C0056091D /* HTMLPurifier_AttrTransform_BackgroundTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A88D189281A8008A093D /* HTMLPurifier_AttrTransform_BackgroundTest.m */; };
+		1EE4B2AD1B13A53C0056091D /* HTMLPurifier_AttrTransform_BdoDirTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8034BF7A189461C40008315A /* HTMLPurifier_AttrTransform_BdoDirTest.m */; };
+		1EE4B2AE1B13A53C0056091D /* HTMLPurifier_AttrTransform_NameSyncTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8034BF7C189463FB0008315A /* HTMLPurifier_AttrTransform_NameSyncTest.m */; };
+		1EE4B2AF1B13A53C0056091D /* HTMLPurifier_AttrTransform_ImgRequiredTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8034BF7E1894698C0008315A /* HTMLPurifier_AttrTransform_ImgRequiredTest.m */; };
+		1EE4B2B01B13A53C0056091D /* CSSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD66188A084400C2BAE7 /* CSSTest.m */; };
+		1EE4B2B11B13A53C0056091D /* HTMLPurifier_AttrDef_EnumTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F016618901DAB00506C24 /* HTMLPurifier_AttrDef_EnumTest.m */; };
+		1EE4B2B21B13A53C0056091D /* HTMLPurifier_AttrDef_IntegerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F01681890319600506C24 /* HTMLPurifier_AttrDef_IntegerTest.m */; };
+		1EE4B2B31B13A53C0056091D /* HTMLPurifier_AttrDef_LangTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F016A1890476F00506C24 /* HTMLPurifier_AttrDef_LangTest.m */; };
+		1EE4B2B41B13A53C0056091D /* HTMLPurifier_AttrDef_SwitchTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F016C1890706C00506C24 /* HTMLPurifier_AttrDef_SwitchTest.m */; };
+		1EE4B2B51B13A53C0056091D /* HTMLPurifier_AttrDef_TextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F016E189078AE00506C24 /* HTMLPurifier_AttrDef_TextTest.m */; };
+		1EE4B2B61B13A53C0056091D /* HTMLPurifier_AttrDef_URI_Email_SimpleCheckTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9E3188AFBD700AFB841 /* HTMLPurifier_AttrDef_URI_Email_SimpleCheckTest.m */; };
+		1EE4B2B71B13A53C0056091D /* HTMLPurifier_AttrDef_URI_HostTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9E5188AFEEA00AFB841 /* HTMLPurifier_AttrDef_URI_HostTest.m */; };
+		1EE4B2B81B13A53C0056091D /* HTMLPurifier_AttrDef_URI_IPv4Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9E7188B030700AFB841 /* HTMLPurifier_AttrDef_URI_IPv4Test.m */; };
+		1EE4B2B91B13A53C0056091D /* HTMLPurifier_AttrDef_URI_IPv6Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9E9188B0AB600AFB841 /* HTMLPurifier_AttrDef_URI_IPv6Test.m */; };
+		1EE4B2BA1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9C11887DCAA00AFB841 /* HTMLPurifier_AttrDef_HTML_BoolTest.m */; };
+		1EE4B2BB1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_ColorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9C818881BD200AFB841 /* HTMLPurifier_AttrDef_HTML_ColorTest.m */; };
+		1EE4B2BC1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9CA18882D7F00AFB841 /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m */; };
+		1EE4B2BD1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_IDTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9CC1888359E00AFB841 /* HTMLPurifier_AttrDef_HTML_IDTest.m */; };
+		1EE4B2BE1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_LinkTypesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9D0188A862500AFB841 /* HTMLPurifier_AttrDef_HTML_LinkTypesTest.m */; };
+		1EE4B2BF1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_NmtokensTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9D2188A953B00AFB841 /* HTMLPurifier_AttrDef_HTML_NmtokensTest.m */; };
+		1EE4B2C01B13A5430056091D /* HTMLPurifier_AttrDef_HTML_PixelsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9D4188AD1FE00AFB841 /* HTMLPurifier_AttrDef_HTML_PixelsTest.m */; };
+		1EE4B2C11B13A5430056091D /* HTMLPurifier_AttrDef_HTML_LengthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9D8188AEA3A00AFB841 /* HTMLPurifier_AttrDef_HTML_LengthTest.m */; };
+		1EE4B2C21B13A5430056091D /* HTMLPurifier_AttrDef_HTML_MultiLengthTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9DA188AF26700AFB841 /* HTMLPurifier_AttrDef_HTML_MultiLengthTest.m */; };
+		1EE4B2C31B13A5430056091D /* HTMLPurifier_AttrDef_HTML_ClassTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9DC188AF62300AFB841 /* HTMLPurifier_AttrDef_HTML_ClassTest.m */; };
+		1EE4B2C41B13A5430056091D /* HTMLPurifier_AttrDef_URITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CB9EB188B385300AFB841 /* HTMLPurifier_AttrDef_URITest.m */; };
+		1EE4B2C51B13A5490056091D /* EntityParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECEB188813D300E8FF31 /* EntityParserTest.m */; };
+		1EE4B2C61B13A54D0056091D /* UnitConverterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F2C36188AA9E900EEEB3F /* UnitConverterTest.m */; };
+		1EE4B2C91B13A5610056091D /* HTMLPurifier_InjectorHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */; };
+		1EE4B2CA1B13A5610056091D /* HTMLPurifier_ConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */; };
+		1EE4B2CB1B13A5610056091D /* HTMLPurifier_TokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015F188F1F1F00506C24 /* HTMLPurifier_TokenTest.m */; };
+		1EE4B2CC1B13A5610056091D /* HTMLPurifier_TokenFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F0161188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m */; };
+		1EE4B2CD1B13A5610056091D /* HTMLPurifier_ZipperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015D188F189900506C24 /* HTMLPurifier_ZipperTest.m */; };
+		1EE4B2CE1B13A5610056091D /* HTMLPurifier_AttrCollectionsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E01D00D1890194E00B5643E /* HTMLPurifier_AttrCollectionsTest.m */; };
+		1EE4B2CF1B13A5610056091D /* HTMLPurifier_HTMLModuleTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E01D00F189023F800B5643E /* HTMLPurifier_HTMLModuleTest.m */; };
+		1EE4B2D01B13A5610056091D /* HTMLPurifier_AttrCollections_TestForConstruct.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E01D012189044E300B5643E /* HTMLPurifier_AttrCollections_TestForConstruct.m */; };
+		1EE4B2D11B13A5630056091D /* Smoketest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A0441892AFDF006992C5 /* Smoketest.m */; };
+		1EE4B2D21B13A5900056091D /* URIParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E418844FCB00EA7A85 /* URIParserTest.m */; };
+		1EE4B2D31B13A5900056091D /* HTMLPurifier_URISchemeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */; };
+		1EE4B2D41B13A5900056091D /* HTMLPurifier_URISchemeRegistryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 803497AB188E7BCD00A90FB9 /* HTMLPurifier_URISchemeRegistryTest.m */; };
+		1EE4B2D51B13A5900056091D /* HTMLPurifier_URIFilter_DisableExternalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA43188D75F700AFB841 /* HTMLPurifier_URIFilter_DisableExternalTest.m */; };
+		1EE4B2D61B13A5900056091D /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA45188D7C1200AFB841 /* HTMLPurifier_URIFilter_DisableResourcesTest.m */; };
+		1EE4B2D71B13A5900056091D /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA47188D97EC00AFB841 /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m */; };
+		1EE4B2D81B13A5900056091D /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA49188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m */; };
+		1EE4B2D91B13A5900056091D /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4B188DA6F900AFB841 /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m */; };
+		1EE4B2DA1B13A5900056091D /* HTMLPurifier_URIFilter_MungeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */; };
+		1EE4B2DB1B13A5900056091D /* HTMLPurifier_URIHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA3E188D6F1900AFB841 /* HTMLPurifier_URIHarness.m */; };
+		1EE4B2DC1B13A5900056091D /* HTMLPurifier_URIFilterHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA41188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m */; };
+		1EE4B2DD1B13A5900056091D /* HTMLPurifier_URIDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */; };
+		1EE4B2DE1B13A5900056091D /* HTMLPurifier_URITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 803497AD188E80CA00A90FB9 /* HTMLPurifier_URITest.m */; };
+		1EE4B2DF1B13A5970056091D /* HTMLPurifier_RemoveForeignElementsTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECDD188747B700E8FF31 /* HTMLPurifier_RemoveForeignElementsTest.m */; };
+		1EE4B2E01B13A5970056091D /* ValidateAttributesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD641889914800C2BAE7 /* ValidateAttributesTest.m */; };
+		1EE4B2E11B13A5970056091D /* HTMLPurifier_Strategy_MakeWellFormedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F0164188FD01B00506C24 /* HTMLPurifier_Strategy_MakeWellFormedTest.m */; };
+		1EE4B2E21B13A5970056091D /* HTMLPurifier_Strategy_FixNestingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 804D83CC198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m */; };
+		1EE4B2E31B13A59D0056091D /* HTMLPurifier_ChildDef_ChameleonTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A8901892898D008A093D /* HTMLPurifier_ChildDef_ChameleonTest.m */; };
+		1EE4B2E41B13A59D0056091D /* HTMLPurifier_ChildDef_CustomTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E5A89218929F2E008A093D /* HTMLPurifier_ChildDef_CustomTest.m */; };
+		1EE4B2E51B13A59D0056091D /* HTMLPurifier_ChildDef_ListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */; };
+		1EE4B2E61B13A59D0056091D /* HTMLPurifier_ChildDef_OptionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */; };
+		1EE4B2E71B13A59D0056091D /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */; };
+		1EE4B2E81B13A59D0056091D /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A57318930A3500A13C41 /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m */; };
+		1EE4B2E91B13A59D0056091D /* HTMLPurifier_ChildDef_TablesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A57518930E4500A13C41 /* HTMLPurifier_ChildDef_TablesTest.m */; };
+		1EE4B2EA1B13A6280056091D /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87B0188EC7B800BDA422 /* libOCMock.a */; };
+		1EE4B2F51B13A7380056091D /* NSNotificationCenter+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2EC1B13A7380056091D /* NSNotificationCenter+OCMAdditions.h */; };
+		1EE4B2F61B13A7380056091D /* OCMArg.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2ED1B13A7380056091D /* OCMArg.h */; };
+		1EE4B2F71B13A7380056091D /* OCMConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2EE1B13A7380056091D /* OCMConstraint.h */; };
+		1EE4B2F81B13A7380056091D /* OCMLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2EF1B13A7380056091D /* OCMLocation.h */; };
+		1EE4B2F91B13A7380056091D /* OCMMacroState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F01B13A7380056091D /* OCMMacroState.h */; };
+		1EE4B2FA1B13A7380056091D /* OCMock.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F11B13A7380056091D /* OCMock.h */; };
+		1EE4B2FB1B13A7380056091D /* OCMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F21B13A7380056091D /* OCMockObject.h */; };
+		1EE4B2FC1B13A7380056091D /* OCMRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F31B13A7380056091D /* OCMRecorder.h */; };
+		1EE4B2FD1B13A7380056091D /* OCMStubRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F41B13A7380056091D /* OCMStubRecorder.h */; };
+		1EE4B2FE1B13A7A50056091D /* libHTMLPurifieriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */; };
+		1EE4B2FF1B13AA370056091D /* orrickClean.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */; };
+		1EE4B3001B13AA370056091D /* orrickTest.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */; };
+		1EE4B3211B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
+		1EE4B3221B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
+		1EE4B3231B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
+		1EE4B3241B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
+		1EE4B3251B13AFAA0056091D /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31D1B13AFAA0056091D /* entities.plist */; };
+		1EE4B3261B13AFAA0056091D /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31D1B13AFAA0056091D /* entities.plist */; };
+		1EE4B3271B13AFAA0056091D /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31D1B13AFAA0056091D /* entities.plist */; };
+		1EE4B3281B13AFAA0056091D /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31D1B13AFAA0056091D /* entities.plist */; };
+		1EE4B32D1B13AFAA0056091D /* HTMLPurifier-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B31F1B13AFAA0056091D /* HTMLPurifier-Prefix.pch */; };
+		1EE4B32E1B13AFAA0056091D /* HTMLPurifier-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B31F1B13AFAA0056091D /* HTMLPurifier-Prefix.pch */; };
 		1EEEC28F18ED769B008F1E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */; };
 		1EEEC29C18ED769B008F1E67 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9D318803B3200EB1E89 /* XCTest.framework */; };
 		1EEEC29D18ED769B008F1E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */; };
 		1EEEC29E18ED769B008F1E67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8EF18DC8FFD00C2BA85 /* UIKit.framework */; };
-		1EEEC2A118ED769B008F1E67 /* libHTMLPurifieriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */; };
 		1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1EEEC2A518ED769B008F1E67 /* InfoPlist.strings */; };
-		1EEEC2A918ED769B008F1E67 /* HTMLPurifieriOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EEEC2A818ED769B008F1E67 /* HTMLPurifieriOSTests.m */; };
 		801F015E188F189900506C24 /* HTMLPurifier_ZipperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015D188F189900506C24 /* HTMLPurifier_ZipperTest.m */; };
 		801F0160188F1F1F00506C24 /* HTMLPurifier_TokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015F188F1F1F00506C24 /* HTMLPurifier_TokenTest.m */; };
 		801F0162188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F0161188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m */; };
@@ -276,7 +361,6 @@
 		80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
 		80EDF9D418803B3200EB1E89 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9D318803B3200EB1E89 /* XCTest.framework */; };
 		80EDF9D518803B3200EB1E89 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BE18803B3200EB1E89 /* Cocoa.framework */; };
-		80EDF9D818803B3200EB1E89 /* HTMLPurifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80EDF9BB18803B3200EB1E89 /* HTMLPurifier.framework */; };
 		80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */; };
 		80EDF9E018803B3200EB1E89 /* HTMLPurifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */; };
 		80EF52F61A1DD3C500B2DEA8 /* orrickClean.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */; };
@@ -575,10 +659,6 @@
 		80F53EB3189BE6F700D7805F /* HTMLPurifier_Strategy_RemoveForeignElements.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D45189BE6F700D7805F /* HTMLPurifier_Strategy_RemoveForeignElements.m */; };
 		80F53EB4189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D46189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.h */; };
 		80F53EB5189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D47189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.m */; };
-		80F53EB6189BE6F700D7805F /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
-		80F53EB7189BE6F700D7805F /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
-		80F53EBA189BE6F700D7805F /* HTMLPurifier-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */; };
-		80F53EBB189BE6F700D7805F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4E189BE6F700D7805F /* InfoPlist.strings */; };
 		80F53EBD189BE6F700D7805F /* HTMLPurifier_TagTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D51189BE6F700D7805F /* HTMLPurifier_TagTransform.h */; };
 		80F53EBE189BE6F700D7805F /* HTMLPurifier_TagTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D52189BE6F700D7805F /* HTMLPurifier_TagTransform.m */; };
 		80F53EBF189BE6F700D7805F /* HTMLPurifier_TagTransform_Font.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D53189BE6F700D7805F /* HTMLPurifier_TagTransform_Font.h */; };
@@ -639,9 +719,6 @@
 		80F53EF6189BE6F700D7805F /* HTMLPurifier_URIScheme_nntp.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D8D189BE6F700D7805F /* HTMLPurifier_URIScheme_nntp.m */; };
 		80F53EF7189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D8E189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.h */; };
 		80F53EF8189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D8F189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.m */; };
-		80F53F04189BF19000D7805F /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D49189BE6F700D7805F /* config.plist */; };
-		80F53F06189BF1C300D7805F /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4A189BE6F700D7805F /* entities.plist */; };
-		80F53F07189BF1DD00D7805F /* xssSmoketests.plist in Resources */ = {isa = PBXBuildFile; fileRef = 80F53D4F189BE6F700D7805F /* xssSmoketests.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -695,7 +772,6 @@
 		1E35ECEB188813D300E8FF31 /* EntityParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EntityParserTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ConfigTest.m; sourceTree = "<group>"; };
 		1E40A0441892AFDF006992C5 /* Smoketest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Smoketest.m; sourceTree = "<group>"; };
-		1E423C6018B83713009D0B74 /* xssAttacks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xssAttacks.plist; sourceTree = "<group>"; };
 		1E5573DC188C963900E7A1CE /* HTMLPurifier_LinkifyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_LinkifyTest.m; sourceTree = "<group>"; };
 		1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_InjectorHarness.m; sourceTree = "<group>"; };
 		1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_PercentEncoderTests.m; sourceTree = "<group>"; };
@@ -709,6 +785,20 @@
 		1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_EncoderTest.m; sourceTree = "<group>"; };
 		1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libiconv.2.dylib; sourceTree = DEVELOPER_DIR; };
 		1EDF30C11910F59000B12A9C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
+		1EE4B2EC1B13A7380056091D /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		1EE4B2ED1B13A7380056091D /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		1EE4B2EE1B13A7380056091D /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		1EE4B2EF1B13A7380056091D /* OCMLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMLocation.h; sourceTree = "<group>"; };
+		1EE4B2F01B13A7380056091D /* OCMMacroState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMMacroState.h; sourceTree = "<group>"; };
+		1EE4B2F11B13A7380056091D /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		1EE4B2F21B13A7380056091D /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		1EE4B2F31B13A7380056091D /* OCMRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMRecorder.h; sourceTree = "<group>"; };
+		1EE4B2F41B13A7380056091D /* OCMStubRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMStubRecorder.h; sourceTree = "<group>"; };
+		1EE4B31C1B13AFAA0056091D /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = "Supporting Files/config.plist"; sourceTree = SOURCE_ROOT; };
+		1EE4B31D1B13AFAA0056091D /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = entities.plist; path = "Supporting Files/entities.plist"; sourceTree = SOURCE_ROOT; };
+		1EE4B31E1B13AFAA0056091D /* HTMLPurifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "HTMLPurifier-Info.plist"; path = "Supporting Files/HTMLPurifier-Info.plist"; sourceTree = SOURCE_ROOT; };
+		1EE4B31F1B13AFAA0056091D /* HTMLPurifier-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HTMLPurifier-Prefix.pch"; path = "Supporting Files/HTMLPurifier-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		1EE4B3201B13AFAA0056091D /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = "Supporting Files/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
 		1EEE87AE188EC7AA00BDA422 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OCMock.framework; sourceTree = "<group>"; };
 		1EEE87B0188EC7B800BDA422 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
 		1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHTMLPurifieriOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -716,7 +806,6 @@
 		1EEEC29B18ED769B008F1E67 /* HTMLPurifieriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTMLPurifieriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEEC2A418ED769B008F1E67 /* HTMLPurifieriOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTMLPurifieriOSTests-Info.plist"; sourceTree = "<group>"; };
 		1EEEC2A618ED769B008F1E67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		1EEEC2A818ED769B008F1E67 /* HTMLPurifieriOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifieriOSTests.m; sourceTree = "<group>"; };
 		801F015D188F189900506C24 /* HTMLPurifier_ZipperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ZipperTest.m; sourceTree = "<group>"; };
 		801F015F188F1F1F00506C24 /* HTMLPurifier_TokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_TokenTest.m; sourceTree = "<group>"; };
 		801F0161188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_TokenFactoryTest.m; sourceTree = "<group>"; };
@@ -1082,12 +1171,6 @@
 		80F53D45189BE6F700D7805F /* HTMLPurifier_Strategy_RemoveForeignElements.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Strategy_RemoveForeignElements.m; sourceTree = "<group>"; };
 		80F53D46189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_Strategy_ValidateAttributes.h; sourceTree = "<group>"; };
 		80F53D47189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Strategy_ValidateAttributes.m; sourceTree = "<group>"; };
-		80F53D49189BE6F700D7805F /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
-		80F53D4A189BE6F700D7805F /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = entities.plist; sourceTree = "<group>"; };
-		80F53D4C189BE6F700D7805F /* HTMLPurifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HTMLPurifier-Info.plist"; sourceTree = "<group>"; };
-		80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HTMLPurifier-Prefix.pch"; sourceTree = "<group>"; };
-		80F53D4E189BE6F700D7805F /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		80F53D4F189BE6F700D7805F /* xssSmoketests.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = xssSmoketests.plist; sourceTree = "<group>"; };
 		80F53D51189BE6F700D7805F /* HTMLPurifier_TagTransform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_TagTransform.h; sourceTree = "<group>"; };
 		80F53D52189BE6F700D7805F /* HTMLPurifier_TagTransform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_TagTransform.m; sourceTree = "<group>"; };
 		80F53D53189BE6F700D7805F /* HTMLPurifier_TagTransform_Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_TagTransform_Font.h; sourceTree = "<group>"; };
@@ -1163,7 +1246,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EEEC2A118ED769B008F1E67 /* libHTMLPurifieriOS.a in Frameworks */,
+				1EE4B2FE1B13A7A50056091D /* libHTMLPurifieriOS.a in Frameworks */,
+				1EE4B2EA1B13A6280056091D /* libOCMock.a in Frameworks */,
 				1EEEC29C18ED769B008F1E67 /* XCTest.framework in Frameworks */,
 				1EEEC29E18ED769B008F1E67 /* UIKit.framework in Frameworks */,
 				1EEEC29D18ED769B008F1E67 /* Foundation.framework in Frameworks */,
@@ -1186,7 +1270,6 @@
 			files = (
 				1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */,
 				80EDF9D518803B3200EB1E89 /* Cocoa.framework in Frameworks */,
-				80EDF9D818803B3200EB1E89 /* HTMLPurifier.framework in Frameworks */,
 				80EDF9D418803B3200EB1E89 /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1194,6 +1277,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1EE4B2EB1B13A7380056091D /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				1EE4B2EC1B13A7380056091D /* NSNotificationCenter+OCMAdditions.h */,
+				1EE4B2ED1B13A7380056091D /* OCMArg.h */,
+				1EE4B2EE1B13A7380056091D /* OCMConstraint.h */,
+				1EE4B2EF1B13A7380056091D /* OCMLocation.h */,
+				1EE4B2F01B13A7380056091D /* OCMMacroState.h */,
+				1EE4B2F11B13A7380056091D /* OCMock.h */,
+				1EE4B2F21B13A7380056091D /* OCMockObject.h */,
+				1EE4B2F31B13A7380056091D /* OCMRecorder.h */,
+				1EE4B2F41B13A7380056091D /* OCMStubRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
 		1EEEC29018ED769B008F1E67 /* HTMLPurifieriOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1213,7 +1312,6 @@
 		1EEEC2A218ED769B008F1E67 /* HTMLPurifieriOSTests */ = {
 			isa = PBXGroup;
 			children = (
-				1EEEC2A818ED769B008F1E67 /* HTMLPurifieriOSTests.m */,
 				1EEEC2A318ED769B008F1E67 /* Supporting Files */,
 			);
 			path = HTMLPurifieriOSTests;
@@ -1383,6 +1481,7 @@
 		80EDF9BD18803B3200EB1E89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1EE4B2EB1B13A7380056091D /* OCMock */,
 				1EDF30C11910F59000B12A9C /* libxml2.dylib */,
 				1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */,
 				1EEE87B0188EC7B800BDA422 /* libOCMock.a */,
@@ -1849,13 +1948,11 @@
 		80F53D48189BE6F700D7805F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				80F53D49189BE6F700D7805F /* config.plist */,
-				80F53D4A189BE6F700D7805F /* entities.plist */,
-				80F53D4C189BE6F700D7805F /* HTMLPurifier-Info.plist */,
-				80F53D4D189BE6F700D7805F /* HTMLPurifier-Prefix.pch */,
-				80F53D4E189BE6F700D7805F /* InfoPlist.strings */,
-				80F53D4F189BE6F700D7805F /* xssSmoketests.plist */,
-				1E423C6018B83713009D0B74 /* xssAttacks.plist */,
+				1EE4B31C1B13AFAA0056091D /* config.plist */,
+				1EE4B31D1B13AFAA0056091D /* entities.plist */,
+				1EE4B31E1B13AFAA0056091D /* HTMLPurifier-Info.plist */,
+				1EE4B31F1B13AFAA0056091D /* HTMLPurifier-Prefix.pch */,
+				1EE4B3201B13AFAA0056091D /* InfoPlist.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1973,7 +2070,7 @@
 				80F53D68189BE6F700D7805F /* URIFilter */,
 				80F53D7B189BE6F700D7805F /* URIScheme */,
 			);
-			name = HTMLPurifier;
+			path = HTMLPurifier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1983,6 +2080,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EE4B32E1B13AFAA0056091D /* HTMLPurifier-Prefix.pch in Headers */,
+				1EB9ACE61B144E0D000EDDA5 /* BasicPHP.h in Headers */,
 				1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2015,7 +2114,6 @@
 				80F53E32189BE6F700D7805F /* HTMLPurifier_ElementDef.h in Headers */,
 				80F53DC4189BE6F700D7805F /* HTMLPurifier_AttrDef_HTML_LinkTypes.h in Headers */,
 				80F53DF8189BE6F700D7805F /* HTMLPurifier_AttrTransform_Input.h in Headers */,
-				80F53EBA189BE6F700D7805F /* HTMLPurifier-Prefix.pch in Headers */,
 				80F53E48189BE6F700D7805F /* HTMLPurifier_URIDefinition.h in Headers */,
 				80F53E10189BE6F700D7805F /* HTMLPurifier_AttrCollections.h in Headers */,
 				80F53E90189BE6F700D7805F /* HTMLPurifier_EntityLookup.h in Headers */,
@@ -2048,6 +2146,7 @@
 				80F53EA0189BE6F700D7805F /* HTMLPurifier_Queue.h in Headers */,
 				80F53EB4189BE6F700D7805F /* HTMLPurifier_Strategy_ValidateAttributes.h in Headers */,
 				80F53E24189BE6F700D7805F /* HTMLPurifier_ChildDef_Custom.h in Headers */,
+				1EE4B2FC1B13A7380056091D /* OCMRecorder.h in Headers */,
 				80F53DF0189BE6F700D7805F /* HTMLPurifier_AttrTransform_Border.h in Headers */,
 				80F53EF5189BE6F700D7805F /* HTMLPurifier_URIScheme_nntp.h in Headers */,
 				80F53E9E189BE6F700D7805F /* HTMLPurifier_PercentEncoder.h in Headers */,
@@ -2064,6 +2163,7 @@
 				80F53E06189BE6F700D7805F /* HTMLPurifier_AttrTransform_SafeObject.h in Headers */,
 				80F53DEE189BE6F700D7805F /* HTMLPurifier_AttrTransform_BoolToCSS.h in Headers */,
 				80F53EEB189BE6F700D7805F /* HTMLPurifier_URIScheme_ftp.h in Headers */,
+				1EE4B2F61B13A7380056091D /* OCMArg.h in Headers */,
 				80F53E6A189BE6F700D7805F /* HTMLPurifier_HTMLModule_StyleAttribute.h in Headers */,
 				80F53E46189BE6F700D7805F /* HTMLPurifier_HTMLDefinition.h in Headers */,
 				80F53E08189BE6F700D7805F /* HTMLPurifier_AttrTransform_SafeParam.h in Headers */,
@@ -2081,16 +2181,20 @@
 				80F53E40189BE6F700D7805F /* HTMLPurifier_Definition.h in Headers */,
 				80F53E7E189BE6F700D7805F /* HTMLPurifier_Node.h in Headers */,
 				80F53E56189BE6F700D7805F /* HTMLPurifier_HTMLModule_Edit.h in Headers */,
+				1EE4B2F81B13A7380056091D /* OCMLocation.h in Headers */,
 				80F53EE5189BE6F700D7805F /* HTMLPurifier_URIScheme.h in Headers */,
 				80F53E1C189BE6F700D7805F /* HTMLPurifier_URIParser.h in Headers */,
 				80F53ED7189BE6F700D7805F /* HTMLPurifier_URIFilter_DisableExternal.h in Headers */,
 				80F53D9A189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS_Color.h in Headers */,
 				80F53DCC189BE6F700D7805F /* HTMLPurifier_AttrDef.h in Headers */,
+				1EE4B2F51B13A7380056091D /* NSNotificationCenter+OCMAdditions.h in Headers */,
 				80F53E76189BE6F700D7805F /* HTMLPurifier_HTMLModuleManager.h in Headers */,
 				80F53EAC189BE6F700D7805F /* HTMLPurifier_Strategy_Core.h in Headers */,
 				80F53E66189BE6F700D7805F /* HTMLPurifier_HTMLModule_Object.h in Headers */,
+				1EE4B2FD1B13A7380056091D /* OCMStubRecorder.h in Headers */,
 				80F53DD6189BE6F700D7805F /* HTMLPurifier_AttrDef_Switch.h in Headers */,
 				80F53EB0189BE6F700D7805F /* HTMLPurifier_Strategy_MakeWellFormed.h in Headers */,
+				1EE4B2FB1B13A7380056091D /* OCMockObject.h in Headers */,
 				80F53E4E189BE6F700D7805F /* HTMLPurifier_LanguageFactory.h in Headers */,
 				80F53DAE189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS_Multiple.h in Headers */,
 				80F53DB0189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS_Number.h in Headers */,
@@ -2107,9 +2211,11 @@
 				80F53DCE189BE6F700D7805F /* HTMLPurifier_AttrDef_Clone.h in Headers */,
 				80F53EC1189BE6F700D7805F /* HTMLPurifier_TagTransform_Simple.h in Headers */,
 				80551EC718AE65000062D232 /* HTMLPurifier_URIScheme_cid.h in Headers */,
+				1EE4B2F91B13A7380056091D /* OCMMacroState.h in Headers */,
 				80F53EF1189BE6F700D7805F /* HTMLPurifier_URIScheme_mailto.h in Headers */,
 				80F53D94189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS_Background.h in Headers */,
 				80F53ED9189BE6F700D7805F /* HTMLPurifier_URIFilter_DisableExternalResources.h in Headers */,
+				1EE4B2F71B13A7380056091D /* OCMConstraint.h in Headers */,
 				80F53ECB189BE6F700D7805F /* HTMLPurifier_Token_Start.h in Headers */,
 				80F53DD2189BE6F700D7805F /* HTMLPurifier_AttrDef_Integer.h in Headers */,
 				80F53E1E189BE6F700D7805F /* BasicPHP.h in Headers */,
@@ -2122,6 +2228,7 @@
 				80F53E50189BE6F700D7805F /* HTMLPurifier_HTMLModule.h in Headers */,
 				80F53E96189BE6F700D7805F /* HTMLPurifier_Generator.h in Headers */,
 				80F53DCA189BE6F700D7805F /* HTMLPurifier_AttrDef_HTML_Pixels.h in Headers */,
+				1EE4B2FA1B13A7380056091D /* OCMock.h in Headers */,
 				80F53EAA189BE6F700D7805F /* HTMLPurifier_Strategy_Composite.h in Headers */,
 				80F53E60189BE6F700D7805F /* HTMLPurifier_HTMLModule_List.h in Headers */,
 				80F53E1A189BE6F700D7805F /* HTMLPurifier_URI.h in Headers */,
@@ -2163,6 +2270,7 @@
 				80F53ED3189BE6F700D7805F /* HTMLPurifier_Filter.h in Headers */,
 				80F53E70189BE6F700D7805F /* HTMLPurifier_HTMLModule_Tidy.h in Headers */,
 				80F53EBF189BE6F700D7805F /* HTMLPurifier_TagTransform_Font.h in Headers */,
+				1EE4B32D1B13AFAA0056091D /* HTMLPurifier-Prefix.pch in Headers */,
 				80F53DB8189BE6F700D7805F /* HTMLPurifier_AttrDef_HTML_Bool.h in Headers */,
 				80F53EE1189BE6F700D7805F /* HTMLPurifier_URIFilter_Munge.h in Headers */,
 				80F53DA2189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS_Font.h in Headers */,
@@ -2280,10 +2388,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				80EDF9BA18803B3200EB1E89 /* HTMLPurifier */,
-				80EDF9D118803B3200EB1E89 /* HTMLPurifierTests */,
 				1EEEC28D18ED769B008F1E67 /* HTMLPurifieriOS */,
 				1EEEC29A18ED769B008F1E67 /* HTMLPurifieriOSTests */,
+				80EDF9BA18803B3200EB1E89 /* HTMLPurifier */,
+				80EDF9D118803B3200EB1E89 /* HTMLPurifierTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2293,8 +2401,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EDF30C41910F5B600B12A9C /* config.plist in Resources */,
-				1EDF30C51910F5B600B12A9C /* entities.plist in Resources */,
+				1EE4B3271B13AFAA0056091D /* entities.plist in Resources */,
+				1EE4B3231B13AFAA0056091D /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2302,10 +2410,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E6A07371939DA81008B7520 /* config.plist in Resources */,
-				1EDF30C91910F6E700B12A9C /* xssSmoketests.plist in Resources */,
-				1EDF30CA1910F6E700B12A9C /* xssAttacks.plist in Resources */,
+				1EE4B3241B13AFAA0056091D /* config.plist in Resources */,
+				1EE4B3001B13AA370056091D /* orrickTest.html in Resources */,
 				1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */,
+				1EE4B3281B13AFAA0056091D /* entities.plist in Resources */,
+				1EE4B2FF1B13AA370056091D /* orrickClean.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2313,9 +2422,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80F53EB7189BE6F700D7805F /* entities.plist in Resources */,
-				80F53EBB189BE6F700D7805F /* InfoPlist.strings in Resources */,
-				80F53EB6189BE6F700D7805F /* config.plist in Resources */,
+				1EE4B3211B13AFAA0056091D /* config.plist in Resources */,
+				1EE4B3251B13AFAA0056091D /* entities.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2323,11 +2431,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				80F53F07189BF1DD00D7805F /* xssSmoketests.plist in Resources */,
-				1E423C6218B83734009D0B74 /* xssAttacks.plist in Resources */,
+				1EE4B3261B13AFAA0056091D /* entities.plist in Resources */,
+				1EE4B3221B13AFAA0056091D /* config.plist in Resources */,
 				80EF52F61A1DD3C500B2DEA8 /* orrickClean.html in Resources */,
-				80F53F06189BF1C300D7805F /* entities.plist in Resources */,
-				80F53F04189BF19000D7805F /* config.plist in Resources */,
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
 				80EF52F71A1DD3C500B2DEA8 /* orrickTest.html in Resources */,
 			);
@@ -2541,7 +2647,75 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EEEC2A918ED769B008F1E67 /* HTMLPurifieriOSTests.m in Sources */,
+				1EE4B2E51B13A59D0056091D /* HTMLPurifier_ChildDef_ListTest.m in Sources */,
+				1EE4B2AD1B13A53C0056091D /* HTMLPurifier_AttrTransform_BdoDirTest.m in Sources */,
+				1EE4B2E01B13A5970056091D /* ValidateAttributesTest.m in Sources */,
+				1EE4B2D11B13A5630056091D /* Smoketest.m in Sources */,
+				1EE4B2D01B13A5610056091D /* HTMLPurifier_AttrCollections_TestForConstruct.m in Sources */,
+				1EE4B2CA1B13A5610056091D /* HTMLPurifier_ConfigTest.m in Sources */,
+				1EE4B2BC1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_FrameTargetTest.m in Sources */,
+				1EE4B2BE1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_LinkTypesTest.m in Sources */,
+				1EE4B2DA1B13A5900056091D /* HTMLPurifier_URIFilter_MungeTest.m in Sources */,
+				1EE4B2D31B13A5900056091D /* HTMLPurifier_URISchemeTest.m in Sources */,
+				1EE4B2B81B13A53C0056091D /* HTMLPurifier_AttrDef_URI_IPv4Test.m in Sources */,
+				1EE4B2B51B13A53C0056091D /* HTMLPurifier_AttrDef_TextTest.m in Sources */,
+				1EE4B2A61B13A51B0056091D /* HTMLPurifier_AttrDefHarness.m in Sources */,
+				1EE4B2B91B13A53C0056091D /* HTMLPurifier_AttrDef_URI_IPv6Test.m in Sources */,
+				1EE4B2B31B13A53C0056091D /* HTMLPurifier_AttrDef_LangTest.m in Sources */,
+				1EE4B2D61B13A5900056091D /* HTMLPurifier_URIFilter_DisableResourcesTest.m in Sources */,
+				1EE4B2E91B13A59D0056091D /* HTMLPurifier_ChildDef_TablesTest.m in Sources */,
+				1EE4B2CF1B13A5610056091D /* HTMLPurifier_HTMLModuleTest.m in Sources */,
+				1EE4B2AF1B13A53C0056091D /* HTMLPurifier_AttrTransform_ImgRequiredTest.m in Sources */,
+				1EE4B2D41B13A5900056091D /* HTMLPurifier_URISchemeRegistryTest.m in Sources */,
+				1EE4B2A71B13A51B0056091D /* HTMLPurifier_PercentEncoderTests.m in Sources */,
+				1EE4B2C41B13A5430056091D /* HTMLPurifier_AttrDef_URITest.m in Sources */,
+				1EE4B2CD1B13A5610056091D /* HTMLPurifier_ZipperTest.m in Sources */,
+				1EE4B2DC1B13A5900056091D /* HTMLPurifier_URIFilterHarness.m in Sources */,
+				1EE4B2DF1B13A5970056091D /* HTMLPurifier_RemoveForeignElementsTest.m in Sources */,
+				1EE4B2E31B13A59D0056091D /* HTMLPurifier_ChildDef_ChameleonTest.m in Sources */,
+				1EE4B2C21B13A5430056091D /* HTMLPurifier_AttrDef_HTML_MultiLengthTest.m in Sources */,
+				1EE4B2CE1B13A5610056091D /* HTMLPurifier_AttrCollectionsTest.m in Sources */,
+				1EE4B2AC1B13A53C0056091D /* HTMLPurifier_AttrTransform_BackgroundTest.m in Sources */,
+				1EE4B2BD1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_IDTest.m in Sources */,
+				1EE4B2B01B13A53C0056091D /* CSSTest.m in Sources */,
+				1EE4B2E61B13A59D0056091D /* HTMLPurifier_ChildDef_OptionalTest.m in Sources */,
+				1EE4B2DE1B13A5900056091D /* HTMLPurifier_URITest.m in Sources */,
+				1EE4B2D71B13A5900056091D /* HTMLPurifier_URIFilter_DisableExternalResourcesTest.m in Sources */,
+				1EE4B2D21B13A5900056091D /* URIParserTest.m in Sources */,
+				1EE4B2B61B13A53C0056091D /* HTMLPurifier_AttrDef_URI_Email_SimpleCheckTest.m in Sources */,
+				1EE4B2B71B13A53C0056091D /* HTMLPurifier_AttrDef_URI_HostTest.m in Sources */,
+				1EE4B2B41B13A53C0056091D /* HTMLPurifier_AttrDef_SwitchTest.m in Sources */,
+				1EE4B2B21B13A53C0056091D /* HTMLPurifier_AttrDef_IntegerTest.m in Sources */,
+				1EE4B2C11B13A5430056091D /* HTMLPurifier_AttrDef_HTML_LengthTest.m in Sources */,
+				1EE4B2BB1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_ColorTest.m in Sources */,
+				1EE4B2A31B13A51B0056091D /* HTMLPurifierTests.m in Sources */,
+				1EE4B2AA1B13A53C0056091D /* HTMLPurifier_AttrTransformHarness.m in Sources */,
+				1EE4B2BF1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_NmtokensTest.m in Sources */,
+				1EE4B2C31B13A5430056091D /* HTMLPurifier_AttrDef_HTML_ClassTest.m in Sources */,
+				1EE4B2E21B13A5970056091D /* HTMLPurifier_Strategy_FixNestingTest.m in Sources */,
+				1EE4B2AE1B13A53C0056091D /* HTMLPurifier_AttrTransform_NameSyncTest.m in Sources */,
+				1EE4B2DD1B13A5900056091D /* HTMLPurifier_URIDefinitionTest.m in Sources */,
+				1EE4B2C61B13A54D0056091D /* UnitConverterTest.m in Sources */,
+				1EE4B2E41B13A59D0056091D /* HTMLPurifier_ChildDef_CustomTest.m in Sources */,
+				1EE4B2D81B13A5900056091D /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */,
+				1EE4B2D91B13A5900056091D /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */,
+				1EE4B2AB1B13A53C0056091D /* HTMLPurifier_AttrTransformTest.m in Sources */,
+				1EE4B2C01B13A5430056091D /* HTMLPurifier_AttrDef_HTML_PixelsTest.m in Sources */,
+				1EE4B2BA1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */,
+				1EE4B2E81B13A59D0056091D /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m in Sources */,
+				1EE4B2E11B13A5970056091D /* HTMLPurifier_Strategy_MakeWellFormedTest.m in Sources */,
+				1EE4B2CC1B13A5610056091D /* HTMLPurifier_TokenFactoryTest.m in Sources */,
+				1EE4B2C91B13A5610056091D /* HTMLPurifier_InjectorHarness.m in Sources */,
+				1EE4B2A91B13A5230056091D /* PropertyListTest.m in Sources */,
+				1EE4B2B11B13A53C0056091D /* HTMLPurifier_AttrDef_EnumTest.m in Sources */,
+				1EE4B2C51B13A5490056091D /* EntityParserTest.m in Sources */,
+				1EE4B2DB1B13A5900056091D /* HTMLPurifier_URIHarness.m in Sources */,
+				1EE4B2A51B13A51B0056091D /* HTMLPurifier_Harness.m in Sources */,
+				1EE4B2A41B13A51B0056091D /* HTMLPurifier_EncoderTest.m in Sources */,
+				1EE4B2E71B13A59D0056091D /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */,
+				1EE4B2D51B13A5900056091D /* HTMLPurifier_URIFilter_DisableExternalTest.m in Sources */,
+				1EE4B2CB1B13A5610056091D /* HTMLPurifier_TokenTest.m in Sources */,
+				1EE4B2A81B13A5230056091D /* HTMLPurifier_ElementDefTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2846,8 +3020,11 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /tmp/HTMLPurifieriOS.dst;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2876,8 +3053,12 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /tmp/HTMLPurifieriOS.dst;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -2908,6 +3089,8 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2915,8 +3098,19 @@
 					"$(inherited)",
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "HTMLPurifieriOSTests/HTMLPurifieriOSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-ObjC",
@@ -2937,11 +3131,24 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
+					"/usr/include/libxml2/**",
+					"$SDK_DIR/usr/include/libxml2/**",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "HTMLPurifieriOSTests/HTMLPurifieriOSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-ObjC",
@@ -2973,6 +3180,8 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -3021,6 +3230,8 @@
 				FRAMEWORK_SEARCH_PATHS = /usr/lib/;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -3054,6 +3265,8 @@
 					"$(PROJECT_DIR)",
 				);
 				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3080,6 +3293,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1.01;
 				DYLIB_CURRENT_VERSION = 1.01;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3087,6 +3301,8 @@
 					"$(PROJECT_DIR)",
 				);
 				FRAMEWORK_VERSION = A;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3119,6 +3335,8 @@
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3149,6 +3367,8 @@
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				INFOPLIST_FILE = "HTMLPurifierTests/HTMLPurifierTests-Info.plist";

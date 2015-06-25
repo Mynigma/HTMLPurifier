@@ -25,7 +25,7 @@ Future features:
 ... and so much more
 
 
-[![Build Status](https://travis-ci.org/Mynigma/HTMLPurifier.png?branch=master)](https://travis-ci.org/Mynigma/HTMLPurifier)
+[![Build Status](https://travis-ci.org/Mynigma/HTMLPurifier.svg?branch=master)](https://travis-ci.org/Mynigma/HTMLPurifier)
 
 ## Usage
 
