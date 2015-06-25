@@ -84,6 +84,11 @@ NSLog(@"Output: %@", cleanedHTML);
     XCTAssertEqualObjects(result, @"Ich teste diesen Link <a href=\"http://www.test.de\">www.test.de</a> test");
 }
 
+-(void) testLinkfyWithComma
+{
+    NSString* result = [purifier purify:@"Ich teste diesen Link http://forum.golem.de/read.php?93325,4185103,4185150#msg-4185150 test"];
+    XCTAssertEqualObjects(result, @"Ich teste diesen Link <a href=\"http://forum.golem.de/read.php?93325,4185103,4185150#msg-4185150\">http://forum.golem.de/read.php?93325,4185103,4185150#msg-4185150</a> test");
+}
 
 -(void) d_testDebug
 {

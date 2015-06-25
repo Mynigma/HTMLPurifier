@@ -8,6 +8,7 @@
 #import <XCTest/XCTest.h>
 #import "HTMLPurifier_Harness.m"
 #import "HTMLPurifier_Injector_Linkify.h"
+#import "HTMLPurifier_Token_Text.h"
 
 @interface HTMLPurifier_LinkifyTest : HTMLPurifier_Harness
 {
@@ -18,21 +19,22 @@
 
 @implementation HTMLPurifier_LinkifyTest
 
-- (void)turnIntoToken:(NSString*)
-
-
-- (void)setUp
+- (HTMLPurifier_Token*)turnIntoToken:(NSString*)string
 {
+    HTMLPurifier_Token_Text* token = [[HTMLPurifier_Token_Text alloc] initWithData:string];
+    return token;
+}
+
+
+
+- (void)setUp {
     [super createCommon];
     [super setUp];
     [super.config setString:@"AutoFormat.Linkify" object:@YES];
     injector = [HTMLPurifier_Injector_Linkify new];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
 }
 
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+- (void)tearDown {
     [super tearDown];
 }
 
@@ -41,13 +43,20 @@
 
 - (void)testLinkifyURLInRootNode
 {
-    NSString* before = @"http://example.com";
-    NSString* after = [injector handleText:before];
-    NSString*
-    XCTAssertEqualObjects(,
-                        '<a href="http://example.com">http://example.com</a>'
-                        );
+    NSString* before = @"http://forum.golem.de/read.php?93325,4185103,4185150#msg-4185150";
+    HTMLPurifier_Token* token = [self turnIntoToken:before];
+    [injector handleText:&token];
+    // TODO: turn token into string
+    // NSString* after = token.toNode;
+    XCTAssertEqualObjects(after,@"<a href=\"http://forum.golem.de/read.php?93325,4185103,4185150#msg-4185150\">http://forum.golem.de/read.php?93325,4185103,4185150#msg-4185150</a>");
 }
+
+//- (void)testLinkifyURLWithComma
+//{
+//    NSString* before = @"http://example.com";
+//    NSString* after = [injector handleText:before];
+//    XCTAssertEqualObjects(after,@"<a href=\"http://example.com\">http://example.com</a>");
+//}
 
 /*
 function testLinkifyURLInInlineNode() {
