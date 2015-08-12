@@ -417,6 +417,27 @@
 
 }
 
+// Added some test for allowing more css in order to display newsletters nicely
+
+-(void)testMaxWidth
+{
+    
+    NSString* css = @"max-width: 40px;width:100%;";
+    [self assertDef:css expected:@"max-width:40px;width:100%;"];
+
+}
+
+-(void)testBorderRadius
+{
+    NSString* css = @"border-radius: 20px;";
+    [self assertDef:css expected:@"border-radius:20px;"];
+}
+
+-(void)testBorderRadiusBogus
+{
+    NSString* css = @"border-radius: <script>;";
+    [self assertDef:css expected:nil];
+}
 
 /*
 - (void)testProprietary
