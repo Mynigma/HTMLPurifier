@@ -439,6 +439,18 @@
     [self assertDef:css expected:nil];
 }
 
+-(void)testClip
+{
+    NSString* css = @"clip: rect(20px,auto, 5px, 3em);";
+    [self assertDef:css expected:@"clip:rect(20px,auto,5px,3em);"];
+}
+
+-(void)testClipBogus
+{
+    NSString* css = @"clip: rect(20px, , 5px, 3em);";
+    [self assertDef:css expected:nil];
+}
+
 /*
 - (void)testProprietary
 {
