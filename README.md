@@ -14,14 +14,14 @@ Some built in features are:
 - **XSS safe**
 - standards compliant
 - UTF-8 aware
-- validates CSS
+- validates inline CSS
 - tables (good for emails)
 - unit tested
 
 Future features:
 
 - whitelist
-- broader CSS definition
+- header validation
 ... and so much more
 
 
