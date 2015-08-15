@@ -29,6 +29,7 @@
 #import "HTMLPurifier_AttrDef_CSS_AlphaValue.h"
 #import "HTMLPurifier_AttrDef_Integer.h"
 #import "HTMLPurifier_AttrDef_CSS_Outline.h"
+#import "HTMLPurifier_AttrDef_CSS_BorderRadius.h"
 #import "BasicPHP.h"
 
 
@@ -83,6 +84,16 @@
     // border-color
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:color_or_transparent] forKey:@"border-color"];
     
+    // border-top-left-radius border-top-right-radius border-bottom-left-radius border-bottom-right-radius
+    HTMLPurifier_AttrDef_CSS_Composite* border_radius = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"initial"]],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:2],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Percentage new] max:2]]];
+    [self.info setObject:border_radius forKey:@"border-top-left-radius"];
+    [self.info setObject:border_radius forKey:@"border-top-right-radius"];
+    [self.info setObject:border_radius forKey:@"border-bottom-right-radius"];
+    [self.info setObject:border_radius forKey:@"border-bottom-left-radius"];
+    
+    // border-radius
+    [self.info setObject:[HTMLPurifier_AttrDef_CSS_BorderRadius new] forKey:@"border-radius"];
+
     // border-spacing
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:2] forKey:@"border-spacing"];
 
@@ -290,66 +301,49 @@
     [self.info setObject:length_percentage_auto forKey:@"right"];
     
     // table-layout
-    
-    // text-align
-    
-    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"left", @"right", @"center", @"justify"] caseSensitive:NO] forKey:@"text-align"];
-
-    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"capitalize", @"uppercase", @"lowercase", @"none"] caseSensitive:NO] forKey:@"text-transform"];
-
-
-
-    
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:0] forKey:@"border-radius"];
-
-
-
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [HTMLPurifier_AttrDef_CSS_Length new]]] forKey:@"word-spacing"];
-
-
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init]]] forKey:@"text-indent"];
-
-
-    
-
-    [self.info setObject:maxLength forKey:@"width"];
-
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_TextDecoration alloc] init] forKey:@"text-decoration"];
-
-
-
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto", @"fixed"]] forKey:@"table-layout"];
 
+    // text-align
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"left", @"right", @"center", @"justify"] caseSensitive:NO] forKey:@"text-align"];
 
+    // text-decoration
+    [self.info setObject:[HTMLPurifier_AttrDef_CSS_TextDecoration new] forKey:@"text-decoration"];
+
+    // text-indent
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[HTMLPurifier_AttrDef_CSS_Length new], [HTMLPurifier_AttrDef_CSS_Percentage new]]] forKey:@"text-indent"];
+
+    // text-transform
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"capitalize", @"uppercase", @"lowercase", @"none"] caseSensitive:NO] forKey:@"text-transform"];
+
+    // top
+    [self.info setObject:length_percentage_auto forKey:@"top"];
+
+    // unicode-bidi
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal",@"embed",@"bidi-override"]] forKey:@"unicode-bidi"];
+    
+    // vertical-align
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"baseline", @"sub", @"super", @"top", @"text-top", @"middle", @"bottom", @"text-bottom"]], [HTMLPurifier_AttrDef_CSS_Length new], [HTMLPurifier_AttrDef_CSS_Percentage new]]] forKey:@"vertical-align"];
     
+    // visibility
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"visible",@"hidden",@"collapse"]] forKey:@"visibility"];
     
-    
-    NSArray* array = @[@"visible",@"hidden",@"collapse"];
-    HTMLPurifier_AttrDef_Enum* newEnum = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:array];
-    [self.info setObject:newEnum forKey:@"visibility"];
-    
-
-
-
-    // These CSS properties don't work on many browsers, but we live
-    // in THE FUTURE!
+    // white-space
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"nowrap", @"normal", @"pre", @"pre-wrap", @"pre-line"]] forKey:@"white-space"];
+
+    // widows
+    [self.info setObject:[HTMLPurifier_AttrDef_Integer new] forKey:@"widows"];
     
-    /*
-     if ([[config get:@"CSS.Proprietary"] boolValue])
-     {
-        [self doSetupProprietary:config];
-     }
+    // width
+    [self.info setObject:maxLength forKey:@"width"];
+    
+    // word-spacing
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [HTMLPurifier_AttrDef_CSS_Length new]]] forKey:@"word-spacing"];
 
+    // z-index
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[HTMLPurifier_AttrDef_Integer new], _auto]] forKey:@"z-index"];
 
-     if ([config get:@"CSS.Trusted"])
-     {
-        [self doSetupTrusted:config];
-     }*/
-
+    
     BOOL allow_important = [[config get:@"CSS.AllowImportant"] isEqual:@YES];
-
 
     // wrap all attr-defs with decorator that handles !important
     NSArray* allKeys = self.info.allKeys;
@@ -362,44 +356,6 @@
 
     [self setupConfigStuff:config];
 }
-
-//                                                            /**
-//                                                             * @param HTMLPurifier_Config $config
-//                                                             */
-//                                                            protected function doSetupProprietary($config)
-//                                                            {
-//                                                                // Internet Explorer only scrollbar colors
-//                                                                $this->info['scrollbar-arrow-color'] = new HTMLPurifier_AttrDef_CSS_Color();
-//                                                                $this->info['scrollbar-base-color'] = new HTMLPurifier_AttrDef_CSS_Color();
-//                                                                $this->info['scrollbar-darkshadow-color'] = new HTMLPurifier_AttrDef_CSS_Color();
-//                                                                $this->info['scrollbar-face-color'] = new HTMLPurifier_AttrDef_CSS_Color();
-//                                                                $this->info['scrollbar-highlight-color'] = new HTMLPurifier_AttrDef_CSS_Color();
-//                                                                $this->info['scrollbar-shadow-color'] = new HTMLPurifier_AttrDef_CSS_Color();
-//
-//                                                                // technically not proprietary, but CSS3, and no one supports it
-//                                                                $this->info['opacity'] = new HTMLPurifier_AttrDef_CSS_AlphaValue();
-//                                                                $this->info['-moz-opacity'] = new HTMLPurifier_AttrDef_CSS_AlphaValue();
-//                                                                $this->info['-khtml-opacity'] = new HTMLPurifier_AttrDef_CSS_AlphaValue();
-//
-//                                                                // only opacity, for now
-//                                                                $this->info['filter'] = new HTMLPurifier_AttrDef_CSS_Filter();
-//
-//                                                                // more CSS3
-//                                                                $this->info['page-break-after'] =
-//                                                                $this->info['page-break-before'] = new HTMLPurifier_AttrDef_Enum(
-//                                                                                                                                 array(
-//                                                                                                                                       'auto',
-//                                                                                                                                       'always',
-//                                                                                                                                       'avoid',
-//                                                                                                                                       'left',
-//                                                                                                                                       'right'
-//                                                                                                                                       )
-//                                                                                                                                 );
-//                                                                $this->info['page-break-inside'] = new HTMLPurifier_AttrDef_Enum(array('auto', 'avoid'));
-//
-//                                                            }
-//
-//                                                                                                                            );
 
 
 /**

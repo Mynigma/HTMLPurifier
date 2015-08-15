@@ -135,7 +135,7 @@ NSLog(@"Output: %@", cleanedHTML);
 {
     NSString* test = @"<span style=\"display: none !important; visibility: hidden; width: 0; height: 0; opacity: 0; color: transparent;\"> Popular video by EinKamel: \"WM 2014 Müller boarisch\"</span>";
     NSString* result = [purifier purify:test];
-    XCTAssertEqualObjects(result,@"<span style=\"display:none;visibility:hidden;width:0;height:0;\"> Popular video by EinKamel: \"WM 2014 Müller boarisch\"</span>");
+    XCTAssertEqualObjects(result,@"<span style=\"display:none;visibility:hidden;width:0;height:0;opacity:0;\"> Popular video by EinKamel: \"WM 2014 Müller boarisch\"</span>");
 }
 
 -(void) testBase64Img

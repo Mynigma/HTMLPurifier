@@ -337,7 +337,7 @@
 
 - (void)testBackgroundColor
 {
-    [self assertDef:@"background:lightgrey;"];
+    [self assertDef:@"background:lightgrey;" expected:@"background:#D3D3D3;"];
 }
 
 - (void)testBorderSpacing
@@ -392,7 +392,8 @@
 
 - (void)testPositionAbsolute
 {
-    [self assertDef:@"position:absolute;" expected:nil];
+    // former:     [self assertDef:@"position:absolute;" expected:nil];
+    [self assertDef:@"position:absolute;"];
 }
 
 - (void)testBackgroundImageUrlScript
