@@ -335,6 +335,11 @@
     [self assertDef:@"background-position:left 90%;"];
 }
 
+- (void)testBackgroundColor
+{
+    [self assertDef:@"background:lightgrey;"];
+}
+
 - (void)testBorderSpacing
 {
     [self assertDef:@"border-spacing:1em;"];

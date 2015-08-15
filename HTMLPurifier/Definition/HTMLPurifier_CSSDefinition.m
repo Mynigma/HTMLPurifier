@@ -26,6 +26,9 @@
 #import "HTMLPurifier_AttrDef_CSS_Font.h"
 #import "HTMLPurifier_AttrDef_CSS_ImportantDecorator.h"
 #import "HTMLPurifier_AttrDef_CSS_Shape.h"
+#import "HTMLPurifier_AttrDef_CSS_AlphaValue.h"
+#import "HTMLPurifier_AttrDef_Integer.h"
+#import "HTMLPurifier_AttrDef_CSS_Outline.h"
 #import "BasicPHP.h"
 
 
@@ -224,6 +227,71 @@
     // margin
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:margin] forKey:@"margin"];
 
+    // max-height
+    [self.info setObject:maxLength forKey:@"max-height"];
+
+    // max-width
+    [self.info setObject:maxLength forKey:@"max-width"];
+
+    // min-height
+    [self.info setObject:maxLength forKey:@"min-height"];
+
+    // min-width
+    [self.info setObject:maxLength forKey:@"min-width"];
+    
+    // opacity
+    [self.info setObject:[HTMLPurifier_AttrDef_CSS_AlphaValue new] forKey:@"opacity"];
+
+    // orphans
+    [self.info setObject:[HTMLPurifier_AttrDef_Integer new] forKey:@"orphans"];
+    
+    // outline-color
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[HTMLPurifier_AttrDef_CSS_Color new],[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"invert"]]]] forKey:@"outline-color"];
+    
+    // outline-style
+    [self.info setObject:border_style forKey:@"outline-style"];
+    
+    // outline-width
+    [self.info setObject:border_width forKey:@"outline-width"];
+
+    // outline
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Outline alloc] initWithConfig:config] forKey:@"outline"];
+    
+    // overflow
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"visible",@"hidden",@"auto",@"scroll"]] forKey:@"overflow"];
+    
+    // padding-top padding-right padding-bottom padding-left
+    HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
+    [self.info setObject:padding forKey:@"padding-top"];
+    [self.info setObject:padding forKey:@"padding-bottom"];
+    [self.info setObject:padding forKey:@"padding-left"];
+    [self.info setObject:padding forKey:@"padding-right"];
+    
+    // padding
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:padding] forKey:@"padding"];
+
+    // page-break-after
+    HTMLPurifier_AttrDef_Enum* page_break = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto",@"always",@"avoid",@"left",@"right"]];
+    [self.info setObject:page_break forKey:@"page-break-after"];
+    
+    // page-break-before
+    [self.info setObject:page_break forKey:@"page-break-before"];
+    
+    // page-break-inside
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto",@"avoid"]] forKey:@"page-break-inside"];
+
+    // position
+    [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"static",@"relative",@"absolute",@"fixed"]] forKey:@"position"];
+    
+    // quotes
+    // Value:  	[<string> <string>]+ | none
+    
+    // right
+    [self.info setObject:length_percentage_auto forKey:@"right"];
+    
+    // table-layout
+    
+    // text-align
     
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"left", @"right", @"center", @"justify"] caseSensitive:NO] forKey:@"text-align"];
 
@@ -238,14 +306,6 @@
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [HTMLPurifier_AttrDef_CSS_Length new]]] forKey:@"word-spacing"];
 
-    HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
-
-    [self.info setObject:padding forKey:@"padding-top"];
-    [self.info setObject:padding forKey:@"padding-bottom"];
-    [self.info setObject:padding forKey:@"padding-left"];
-    [self.info setObject:padding forKey:@"padding-right"];
-
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:padding] forKey:@"padding"];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] init], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init]]] forKey:@"text-indent"];
 
@@ -253,7 +313,6 @@
     
 
     [self.info setObject:maxLength forKey:@"width"];
-    [self.info setObject:maxLength forKey:@"max-width"];
 
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_TextDecoration alloc] init] forKey:@"text-decoration"];
 
@@ -270,26 +329,23 @@
     HTMLPurifier_AttrDef_Enum* newEnum = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:array];
     [self.info setObject:newEnum forKey:@"visibility"];
     
-    array = @[@"visible",@"hidden",@"auto",@"scroll"];
-    newEnum = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:array];
-    [self.info setObject:newEnum forKey:@"overflow"];
+
 
 
     // These CSS properties don't work on many browsers, but we live
     // in THE FUTURE!
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"nowrap", @"normal", @"pre", @"pre-wrap", @"pre-line"]] forKey:@"white-space"];
     
-    
     /*
      if ([[config get:@"CSS.Proprietary"] boolValue])
      {
-     [self doSetupProprietary:config];
+        [self doSetupProprietary:config];
      }
 
 
      if ([config get:@"CSS.Trusted"])
      {
-     [self doSetupTrusted:config];
+        [self doSetupTrusted:config];
      }*/
 
     BOOL allow_important = [[config get:@"CSS.AllowImportant"] isEqual:@YES];
@@ -343,33 +399,8 @@
 //
 //                                                            }
 //
+//                                                                                                                            );
 
-
-//
-//                                                            /**
-//                                                             * @param HTMLPurifier_Config $config
-//                                                             */
-//                                                            protected function doSetupTrusted($config)
-//                                                            {
-//                                                                $this->info['position'] = new HTMLPurifier_AttrDef_Enum(
-//                                                                                                                        array('static', 'relative', 'absolute', 'fixed')
-//                                                                                                                        );
-//                                                                $this->info['top'] =
-//                                                                $this->info['left'] =
-//                                                                $this->info['right'] =
-//                                                                $this->info['bottom'] = new HTMLPurifier_AttrDef_CSS_Composite(
-//                                                                                                                               array(
-//                                                                                                                                     new HTMLPurifier_AttrDef_CSS_Length(),
-//                                                                                                                                     new HTMLPurifier_AttrDef_CSS_Percentage(),
-//                                                                                                                                     new HTMLPurifier_AttrDef_Enum(array('auto')),
-//                                                                                                                                     )
-//                                                                                                                               );
-//                                                                $this->info['z-index'] = new HTMLPurifier_AttrDef_CSS_Composite(
-//                                                                                                                                array(
-//                                                                                                                                      new HTMLPurifier_AttrDef_Integer(),
-//                                                                                                                                      new HTMLPurifier_AttrDef_Enum(array('auto')),
-//                                                                                                                                      )
-//                                                                                                                                );
 
 /**
  * Performs extra config-based processing. Based off of
