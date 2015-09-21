@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "HTMLPurifier"
-  s.version          = "1.0.3"
+  s.version          = "1.0.4"
   s.summary          = "HTMLPurifier for Objective-C is a framework for standards-compliant HTML filtering."
   s.description      = "HTMLPurifier for Objective-C is a framework for standards-compliant HTML filtering. Its main purpose is sanitisation of untrusted HTML such as incoming emails or user-supplied markup."
   s.homepage         = "https://mynigma.org"
@@ -8,14 +8,14 @@ Pod::Spec.new do |s|
   s.author           = { 'Edward Z. Yang' => 'ezyang@cs.stanford.edu',
 			'Roman Priebe' => 'roman@mynigma.org',
 			'Lukas Neumann' => 'lukas@mynigma.org' }
-  s.source           = { :git => 'https://github.com/Mynigma/HTMLPurifier.git', :tag => '1.0.3' }
+  s.source           = { :git => 'https://github.com/Mynigma/HTMLPurifier.git', :tag => '1.0.4' }
   s.social_media_url = 'https://www.facebook.com/mynigma'
 
   s.ios.deployment_target = '7.0'
   s.osx.deployment_target = '10.8'
   s.requires_arc = true
 
-  s.source_files = 'HTMLPurifier/**/*.{h, m}'
+  s.source_files = 'HTMLPurifier/**/*.{h,m}'
   
   s.public_header_files = 'HTMLPurifier/**/*.h'
 end
