@@ -19,4 +19,5 @@ Pod::Spec.new do |s|
   s.public_header_files = 'HTMLPurifier/**/*.h'
 
   s.library = 'xml2'
+  s.xcconfig = { 'HEADER_SEARCH_PATHS' => '$(SDKROOT)/usr/include/libxml2' }
 end
