@@ -15,9 +15,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.8'
   s.requires_arc = true
 
-  s.source_files = 'Classes'
+  s.source_files = 'HTMLPurifier'
   
-  s.ios.exclude_files = 'Classes/osx'
-  s.osx.exclude_files = 'Classes/ios'
-  s.public_header_files = 'Classes/**/*.h'
+  s.public_header_files = 'HTMLPurifier/**/*.h'
 end
