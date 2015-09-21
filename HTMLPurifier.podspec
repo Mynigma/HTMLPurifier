@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'HTMLPurifier/**/*.{h,m}'
-  
   s.public_header_files = 'HTMLPurifier/**/*.h'
+
+  s.libraries = 'xml2', 'iconv'
 end

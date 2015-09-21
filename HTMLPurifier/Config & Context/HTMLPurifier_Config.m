@@ -588,7 +588,7 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
         def.optimized = optimized;
         return def;
     }
-    @throw [NSException exceptionWithName:@"Config" reason:@"The impossible happened!" userInfo:nil];
+//    @throw [NSException exceptionWithName:@"Config" reason:@"The impossible happened!" userInfo:nil];
 }
 
 /**

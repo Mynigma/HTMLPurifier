@@ -197,16 +197,16 @@
 		1E4825F518ED9DDF00E4CC64 /* HTMLPurifier_URISchemeRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D8F189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.m */; };
 		1E5573DF188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */; };
 		1E5FAABE18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */; };
-		1E5FAAC81885A2640073CA79 /* libiconv.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */; };
+		1E62B9EE1BB08E9000BBBC77 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E62B9ED1BB08E9000BBBC77 /* libxml2.tbd */; };
+		1E62B9F21BB0929D00BBBC77 /* libHTMLPurifieriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */; };
+		1E62B9F31BB0930C00BBBC77 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E62B9ED1BB08E9000BBBC77 /* libxml2.tbd */; };
 		1E6F2C37188AA9E900EEEB3F /* UnitConverterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E6F2C36188AA9E900EEEB3F /* UnitConverterTest.m */; };
 		1E9A62E518844FCB00EA7A85 /* URIParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E418844FCB00EA7A85 /* URIParserTest.m */; };
 		1E9A62E71884502700EA7A85 /* HTMLPurifier_Harness.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */; };
 		1EA6BD651889914800C2BAE7 /* ValidateAttributesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD641889914800C2BAE7 /* ValidateAttributesTest.m */; };
 		1EA6BD67188A084400C2BAE7 /* CSSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EA6BD66188A084400C2BAE7 /* CSSTest.m */; };
 		1EB9ACE61B144E0D000EDDA5 /* BasicPHP.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53CA7189BE6F600D7805F /* BasicPHP.h */; };
-		1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EBB81D91882C94D008B7FA4 /* libxml2.dylib */; };
 		1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
-		1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; };
 		1ECDAE8518B74FFA00E9E5DB /* OCMock.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1EEE87AE188EC7AA00BDA422 /* OCMock.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		1EE4B2A31B13A51B0056091D /* HTMLPurifierTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */; };
 		1EE4B2A41B13A51B0056091D /* HTMLPurifier_EncoderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */; settings = {COMPILER_FLAGS = "-w"; }; };
@@ -277,7 +277,6 @@
 		1EE4B2E71B13A59D0056091D /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */; };
 		1EE4B2E81B13A59D0056091D /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A57318930A3500A13C41 /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m */; };
 		1EE4B2E91B13A59D0056091D /* HTMLPurifier_ChildDef_TablesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A57518930E4500A13C41 /* HTMLPurifier_ChildDef_TablesTest.m */; };
-		1EE4B2EA1B13A6280056091D /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEE87B0188EC7B800BDA422 /* libOCMock.a */; };
 		1EE4B2F51B13A7380056091D /* NSNotificationCenter+OCMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2EC1B13A7380056091D /* NSNotificationCenter+OCMAdditions.h */; };
 		1EE4B2F61B13A7380056091D /* OCMArg.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2ED1B13A7380056091D /* OCMArg.h */; };
 		1EE4B2F71B13A7380056091D /* OCMConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2EE1B13A7380056091D /* OCMConstraint.h */; };
@@ -287,7 +286,6 @@
 		1EE4B2FB1B13A7380056091D /* OCMockObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F21B13A7380056091D /* OCMockObject.h */; };
 		1EE4B2FC1B13A7380056091D /* OCMRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F31B13A7380056091D /* OCMRecorder.h */; };
 		1EE4B2FD1B13A7380056091D /* OCMStubRecorder.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EE4B2F41B13A7380056091D /* OCMStubRecorder.h */; };
-		1EE4B2FE1B13A7A50056091D /* libHTMLPurifieriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */; };
 		1EE4B2FF1B13AA370056091D /* orrickClean.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */; };
 		1EE4B3001B13AA370056091D /* orrickTest.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */; };
 		1EE4B3211B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
@@ -305,6 +303,7 @@
 		1EEEC29D18ED769B008F1E67 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */; };
 		1EEEC29E18ED769B008F1E67 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802AC8EF18DC8FFD00C2BA85 /* UIKit.framework */; };
 		1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1EEEC2A518ED769B008F1E67 /* InfoPlist.strings */; };
+		7D8442B05C9241D7F2587233 /* libPods-HTMLPurifierTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FFE261AD6FA33FDFD51748 /* libPods-HTMLPurifierTests.a */; };
 		801F015E188F189900506C24 /* HTMLPurifier_ZipperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015D188F189900506C24 /* HTMLPurifier_ZipperTest.m */; };
 		801F0160188F1F1F00506C24 /* HTMLPurifier_TokenTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F015F188F1F1F00506C24 /* HTMLPurifier_TokenTest.m */; };
 		801F0162188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 801F0161188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m */; };
@@ -731,6 +730,7 @@
 		80F53EF6189BE6F700D7805F /* HTMLPurifier_URIScheme_nntp.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D8D189BE6F700D7805F /* HTMLPurifier_URIScheme_nntp.m */; };
 		80F53EF7189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D8E189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.h */; };
 		80F53EF8189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53D8F189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.m */; };
+		C99B84710E2D076ED0E6BF1A /* libPods-HTMLPurifieriOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7768465B4D2C09371DDD194 /* libPods-HTMLPurifieriOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -787,16 +787,14 @@
 		1E5573DC188C963900E7A1CE /* HTMLPurifier_LinkifyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_LinkifyTest.m; sourceTree = "<group>"; };
 		1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_InjectorHarness.m; sourceTree = "<group>"; };
 		1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_PercentEncoderTests.m; sourceTree = "<group>"; };
-		1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = usr/lib/libiconv.2.dylib; sourceTree = SDKROOT; };
+		1E62B9EB1BB08C8F00BBBC77 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = ../../../../usr/lib/libxml2.dylib; sourceTree = "<group>"; };
+		1E62B9ED1BB08E9000BBBC77 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		1E6F2C36188AA9E900EEEB3F /* UnitConverterTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitConverterTest.m; sourceTree = "<group>"; };
 		1E9A62E418844FCB00EA7A85 /* URIParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URIParserTest.m; sourceTree = "<group>"; };
 		1E9A62E61884502700EA7A85 /* HTMLPurifier_Harness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Harness.m; sourceTree = "<group>"; };
 		1EA6BD641889914800C2BAE7 /* ValidateAttributesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidateAttributesTest.m; sourceTree = "<group>"; };
 		1EA6BD66188A084400C2BAE7 /* CSSTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CSSTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		1EBB81D91882C94D008B7FA4 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_EncoderTest.m; sourceTree = "<group>"; };
-		1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libiconv.2.dylib; sourceTree = DEVELOPER_DIR; };
-		1EDF30C11910F59000B12A9C /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/usr/lib/libxml2.dylib; sourceTree = DEVELOPER_DIR; };
 		1EE4B2EC1B13A7380056091D /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
 		1EE4B2ED1B13A7380056091D /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
 		1EE4B2EE1B13A7380056091D /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
@@ -818,6 +816,10 @@
 		1EEEC29B18ED769B008F1E67 /* HTMLPurifieriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTMLPurifieriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EEEC2A418ED769B008F1E67 /* HTMLPurifieriOSTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HTMLPurifieriOSTests-Info.plist"; sourceTree = "<group>"; };
 		1EEEC2A618ED769B008F1E67 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3347F8C78B3B899D8D7D6285 /* Pods-HTMLPurifieriOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTMLPurifieriOSTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTMLPurifieriOSTests/Pods-HTMLPurifieriOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		46FFE261AD6FA33FDFD51748 /* libPods-HTMLPurifierTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HTMLPurifierTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47FEE317DCCBF32A1814DDC8 /* Pods-HTMLPurifierTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTMLPurifierTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTMLPurifierTests/Pods-HTMLPurifierTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7AFF1DEA5F0E5EA1CE0EE301 /* Pods-HTMLPurifieriOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTMLPurifieriOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HTMLPurifieriOSTests/Pods-HTMLPurifieriOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		801F015D188F189900506C24 /* HTMLPurifier_ZipperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ZipperTest.m; sourceTree = "<group>"; };
 		801F015F188F1F1F00506C24 /* HTMLPurifier_TokenTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_TokenTest.m; sourceTree = "<group>"; };
 		801F0161188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_TokenFactoryTest.m; sourceTree = "<group>"; };
@@ -1249,6 +1251,8 @@
 		80F53D8D189BE6F700D7805F /* HTMLPurifier_URIScheme_nntp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIScheme_nntp.m; sourceTree = "<group>"; };
 		80F53D8E189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_URISchemeRegistry.h; sourceTree = "<group>"; };
 		80F53D8F189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URISchemeRegistry.m; sourceTree = "<group>"; };
+		8EE36C213699B6140A0C2BFF /* Pods-HTMLPurifierTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HTMLPurifierTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HTMLPurifierTests/Pods-HTMLPurifierTests.release.xcconfig"; sourceTree = "<group>"; };
+		E7768465B4D2C09371DDD194 /* libPods-HTMLPurifieriOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HTMLPurifieriOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1264,11 +1268,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EE4B2FE1B13A7A50056091D /* libHTMLPurifieriOS.a in Frameworks */,
-				1EE4B2EA1B13A6280056091D /* libOCMock.a in Frameworks */,
+				1E62B9F21BB0929D00BBBC77 /* libHTMLPurifieriOS.a in Frameworks */,
 				1EEEC29C18ED769B008F1E67 /* XCTest.framework in Frameworks */,
 				1EEEC29E18ED769B008F1E67 /* UIKit.framework in Frameworks */,
 				1EEEC29D18ED769B008F1E67 /* Foundation.framework in Frameworks */,
+				C99B84710E2D076ED0E6BF1A /* libPods-HTMLPurifieriOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1276,8 +1280,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1E5FAAC81885A2640073CA79 /* libiconv.2.dylib in Frameworks */,
-				1EBB81DA1882C94D008B7FA4 /* libxml2.dylib in Frameworks */,
+				1E62B9EE1BB08E9000BBBC77 /* libxml2.tbd in Frameworks */,
 				80EDF9BF18803B3200EB1E89 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1286,9 +1289,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ECDAE8418B74FF500E9E5DB /* OCMock.framework in Frameworks */,
+				1E62B9F31BB0930C00BBBC77 /* libxml2.tbd in Frameworks */,
 				80EDF9D518803B3200EB1E89 /* Cocoa.framework in Frameworks */,
 				80EDF9D418803B3200EB1E89 /* XCTest.framework in Frameworks */,
+				7D8442B05C9241D7F2587233 /* libPods-HTMLPurifierTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,6 +1346,17 @@
 				1EEEC2A518ED769B008F1E67 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4B6EA06FB01CC1F7247C3514 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				47FEE317DCCBF32A1814DDC8 /* Pods-HTMLPurifierTests.debug.xcconfig */,
+				8EE36C213699B6140A0C2BFF /* Pods-HTMLPurifierTests.release.xcconfig */,
+				7AFF1DEA5F0E5EA1CE0EE301 /* Pods-HTMLPurifieriOSTests.debug.xcconfig */,
+				3347F8C78B3B899D8D7D6285 /* Pods-HTMLPurifieriOSTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		801F0163188FCFED00506C24 /* Strategies */ = {
@@ -1482,6 +1497,7 @@
 				1EEEC2A218ED769B008F1E67 /* HTMLPurifieriOSTests */,
 				80EDF9BC18803B3200EB1E89 /* Products */,
 				80EDF9BD18803B3200EB1E89 /* Frameworks */,
+				4B6EA06FB01CC1F7247C3514 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1499,18 +1515,18 @@
 		80EDF9BD18803B3200EB1E89 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1E62B9ED1BB08E9000BBBC77 /* libxml2.tbd */,
+				1E62B9EB1BB08C8F00BBBC77 /* libxml2.dylib */,
 				1EE4B2EB1B13A7380056091D /* OCMock */,
-				1EDF30C11910F59000B12A9C /* libxml2.dylib */,
-				1EDF30BF1910F58600B12A9C /* libiconv.2.dylib */,
 				1EEE87B0188EC7B800BDA422 /* libOCMock.a */,
 				1EEE87AE188EC7AA00BDA422 /* OCMock.framework */,
-				1E5FAAC71885A2640073CA79 /* libiconv.2.dylib */,
-				1EBB81D91882C94D008B7FA4 /* libxml2.dylib */,
 				80EDF9BE18803B3200EB1E89 /* Cocoa.framework */,
 				80EDF9D318803B3200EB1E89 /* XCTest.framework */,
 				802AC8DF18DC8FFD00C2BA85 /* Foundation.framework */,
 				802AC8EF18DC8FFD00C2BA85 /* UIKit.framework */,
 				80EDF9C018803B3200EB1E89 /* Other Frameworks */,
+				46FFE261AD6FA33FDFD51748 /* libPods-HTMLPurifierTests.a */,
+				E7768465B4D2C09371DDD194 /* libPods-HTMLPurifieriOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2337,9 +2353,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1EEEC2AD18ED769B008F1E67 /* Build configuration list for PBXNativeTarget "HTMLPurifieriOSTests" */;
 			buildPhases = (
+				A3CE42267D44FF418489025C /* Check Pods Manifest.lock */,
 				1EEEC29718ED769B008F1E67 /* Sources */,
 				1EEEC29818ED769B008F1E67 /* Frameworks */,
 				1EEEC29918ED769B008F1E67 /* Resources */,
+				4AFCC3DC7DBFBA25BF9F3ADB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2374,10 +2392,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 80EDF9E618803B3200EB1E89 /* Build configuration list for PBXNativeTarget "HTMLPurifierTests" */;
 			buildPhases = (
+				94C3581605ABC445D0A56F59 /* Check Pods Manifest.lock */,
 				80EDF9CE18803B3200EB1E89 /* Sources */,
 				80EDF9CF18803B3200EB1E89 /* Frameworks */,
 				80EDF9D018803B3200EB1E89 /* Resources */,
 				1ECDAE8218B74F9300E9E5DB /* CopyFiles */,
+				ED4E1DFC844E884170804B98 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2395,7 +2415,7 @@
 		80EDF9B218803B3200EB1E89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Mynigma;
 				TargetAttributes = {
 					1EEEC29A18ED769B008F1E67 = {
@@ -2484,6 +2504,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "##########################################\n#\n# c.f. http://stackoverflow.com/questions/3520977/build-fat-static-library-device-simulator-using-xcode-and-sdk-4\n#\n# Version 2.7\n#\n# Latest Change:\n# - Supports iPhone 5 / iPod Touch 5 (uses Apple's workaround to lipo bug)\n#\n# Purpose:\n#   Automatically create a Universal static library for iPhone + iPad + iPhone Simulator from within XCode\n#\n# Author: Adam Martin - http://twitter.com/redglassesapps\n# Based on: original script from Eonil (main changes: Eonil's script WILL NOT WORK in Xcode GUI - it WILL CRASH YOUR COMPUTER)\n#\n\nset -e\nset -o pipefail\n\n#################[ Tests: helps workaround any future bugs in Xcode ]########\n#\nDEBUG_THIS_SCRIPT=\"false\"\n\nif [ $DEBUG_THIS_SCRIPT = \"true\" ]\nthen\necho \"########### TESTS #############\"\necho \"Use the following variables when debugging this script; note that they may change on recursions\"\necho \"BUILD_DIR = $BUILD_DIR\"\necho \"BUILD_ROOT = $BUILD_ROOT\"\necho \"CONFIGURATION_BUILD_DIR = $CONFIGURATION_BUILD_DIR\"\necho \"BUILT_PRODUCTS_DIR = $BUILT_PRODUCTS_DIR\"\necho \"CONFIGURATION_TEMP_DIR = $CONFIGURATION_TEMP_DIR\"\necho \"TARGET_BUILD_DIR = $TARGET_BUILD_DIR\"\nfi\n\n#####################[ part 1 ]##################\n# First, work out the BASESDK version number (NB: Apple ought to report this, but they hide it)\n#    (incidental: searching for substrings in sh is a nightmare! Sob)\n\nSDK_VERSION=$(echo ${SDK_NAME} | grep -o '.\\{3\\}$')\n\n# Next, work out if we're in SIM or DEVICE\n\nif [ ${PLATFORM_NAME} = \"iphonesimulator\" ]\nthen\nOTHER_SDK_TO_BUILD=iphoneos${SDK_VERSION}\nelse\nOTHER_SDK_TO_BUILD=iphonesimulator${SDK_VERSION}\nfi\n\necho \"XCode has selected SDK: ${PLATFORM_NAME} with version: ${SDK_VERSION} (although back-targetting: ${IPHONEOS_DEPLOYMENT_TARGET})\"\necho \"...therefore, OTHER_SDK_TO_BUILD = ${OTHER_SDK_TO_BUILD}\"\n#\n#####################[ end of part 1 ]##################\n\n#####################[ part 2 ]##################\n#\n# IF this is the original invocation, invoke WHATEVER other builds are required\n#\n# Xcode is already building ONE target...\n#\n# ...but this is a LIBRARY, so Apple is wrong to set it to build just one.\n# ...we need to build ALL targets\n# ...we MUST NOT re-build the target that is ALREADY being built: Xcode WILL CRASH YOUR COMPUTER if you try this (infinite recursion!)\n#\n#\n# So: build ONLY the missing platforms/configurations.\n\nif [ \"true\" == ${ALREADYINVOKED:-false} ]\nthen\necho \"RECURSION: I am NOT the root invocation, so I'm NOT going to recurse\"\nelse\n# CRITICAL:\n# Prevent infinite recursion (Xcode sucks)\nexport ALREADYINVOKED=\"true\"\n\necho \"RECURSION: I am the root ... recursing all missing build targets NOW...\"\necho \"RECURSION: ...about to invoke: xcodebuild -configuration \\\"${CONFIGURATION}\\\" -project \\\"${PROJECT_NAME}.xcodeproj\\\" -target \\\"${TARGET_NAME}\\\" -sdk \\\"${OTHER_SDK_TO_BUILD}\\\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO\" BUILD_DIR=\\\"${BUILD_DIR}\\\" BUILD_ROOT=\\\"${BUILD_ROOT}\\\" SYMROOT=\\\"${SYMROOT}\\\"\n\nxcodebuild -configuration \"${CONFIGURATION}\" -project \"${PROJECT_NAME}.xcodeproj\" -target \"${TARGET_NAME}\" -sdk \"${OTHER_SDK_TO_BUILD}\" ${ACTION} RUN_CLANG_STATIC_ANALYZER=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" SYMROOT=\"${SYMROOT}\"\n\nACTION=\"build\"\n\n#Merge all platform binaries as a fat binary for each configurations.\n\n# Calculate where the (multiple) built files are coming from:\nCURRENTCONFIG_DEVICE_DIR=${SYMROOT}/${CONFIGURATION}-iphoneos\nCURRENTCONFIG_SIMULATOR_DIR=${SYMROOT}/${CONFIGURATION}-iphonesimulator\n\necho \"Taking device build from: ${CURRENTCONFIG_DEVICE_DIR}\"\necho \"Taking simulator build from: ${CURRENTCONFIG_SIMULATOR_DIR}\"\n\nCREATING_UNIVERSAL_DIR=${SYMROOT}/${CONFIGURATION}-universal\necho \"...I will output a universal build to: ${CREATING_UNIVERSAL_DIR}\"\n\n# ... remove the products of previous runs of this script\n#      NB: this directory is ONLY created by this script - it should be safe to delete!\n\nrm -rf \"${CREATING_UNIVERSAL_DIR}\"\nmkdir \"${CREATING_UNIVERSAL_DIR}\"\n\n#\necho \"lipo: for current configuration (${CONFIGURATION}) creating output file: ${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\"\nxcrun -sdk iphoneos lipo -create -output \"${CREATING_UNIVERSAL_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_DEVICE_DIR}/${EXECUTABLE_NAME}\" \"${CURRENTCONFIG_SIMULATOR_DIR}/${EXECUTABLE_NAME}\"\n\n#########\n#\n# Added: StackOverflow suggestion to also copy \"include\" files\n#    (untested, but should work OK)\n#\necho \"Fetching headers from ${PUBLIC_HEADERS_FOLDER_PATH}\"\necho \"  (if you embed your library project in another project, you will need to add\"\necho \"   a \"User Search Headers\" build setting of: (NB INCLUDE THE DOUBLE QUOTES BELOW!)\"\necho '        \"$(TARGET_BUILD_DIR)/usr/local/include/\"'\nif [ -d \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\" ]\nthen\nmkdir -p \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\n# * needs to be outside the double quotes?\ncp -r \"${CURRENTCONFIG_DEVICE_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"* \"${CREATING_UNIVERSAL_DIR}${PUBLIC_HEADERS_FOLDER_PATH}\"\nfi\nfi";
+		};
+		4AFCC3DC7DBFBA25BF9F3ADB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HTMLPurifieriOSTests/Pods-HTMLPurifieriOSTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94C3581605ABC445D0A56F59 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A3CE42267D44FF418489025C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ED4E1DFC844E884170804B98 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HTMLPurifierTests/Pods-HTMLPurifierTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -3059,8 +3139,9 @@
 				CODE_SIGN_IDENTITY = "";
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /tmp/HTMLPurifieriOS.dst;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				FRAMEWORK_SEARCH_PATHS = "";
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3070,11 +3151,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/usr/include/libxml2/**",
-					"$SDK_DIR/usr/include/libxml2/**",
+					/usr/include/libxml2,
 				);
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
@@ -3093,6 +3174,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_LOCATION = NO;
 				DSTROOT = /tmp/HTMLPurifieriOS.dst;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3100,11 +3182,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/usr/include/libxml2/**",
-					"$SDK_DIR/usr/include/libxml2/**",
+					/usr/include/libxml2,
 				);
 				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
@@ -3117,16 +3199,13 @@
 		};
 		1EEEC2AE18ED769B008F1E67 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7AFF1DEA5F0E5EA1CE0EE301 /* Pods-HTMLPurifieriOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3136,10 +3215,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
-					"/usr/include/libxml2/**",
-					"$SDK_DIR/usr/include/libxml2/**",
-					"$(PROJECT_DIR)",
+					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "HTMLPurifieriOSTests/HTMLPurifieriOSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -3150,7 +3226,9 @@
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-ObjC",
+					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
@@ -3159,25 +3237,19 @@
 		};
 		1EEEC2AF18ED769B008F1E67 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3347F8C78B3B899D8D7D6285 /* Pods-HTMLPurifieriOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_MODULES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HTMLPurifieriOS/HTMLPurifieriOS-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
-					"/usr/include/libxml2/**",
-					"$SDK_DIR/usr/include/libxml2/**",
-					"$(PROJECT_DIR)",
+					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = "HTMLPurifieriOSTests/HTMLPurifieriOSTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
@@ -3188,7 +3260,9 @@
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-ObjC",
+					"$(inherited)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3212,6 +3286,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = /usr/lib/;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3230,12 +3305,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
-					"/usr/include/libxml2/**",
-					"$SDK_DIR/usr/include/libxml2/**",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3274,12 +3345,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Applications/Xcode51-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include",
-					"/usr/include/libxml2/**",
-					"$SDK_DIR/usr/include/libxml2/**",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = "";
 				LINK_WITH_STANDARD_LIBRARIES = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "-lxml2";
@@ -3301,8 +3368,8 @@
 					"$(PROJECT_DIR)",
 				);
 				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3316,6 +3383,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -3337,8 +3405,8 @@
 					"$(PROJECT_DIR)",
 				);
 				FRAMEWORK_VERSION = A;
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -3352,6 +3420,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -3361,6 +3430,7 @@
 		};
 		80EDF9E718803B3200EB1E89 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47FEE317DCCBF32A1814DDC8 /* Pods-HTMLPurifierTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -3371,12 +3441,16 @@
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "HTMLPurifierTests/HTMLPurifierTests-Info.plist";
@@ -3385,6 +3459,8 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -3393,6 +3469,7 @@
 		};
 		80EDF9E818803B3200EB1E89 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8EE36C213699B6140A0C2BFF /* Pods-HTMLPurifierTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HTMLPurifier.framework/Versions/A/HTMLPurifier";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -3403,16 +3480,22 @@
 					"$(PROJECT_DIR)",
 					"$(SRCROOT)",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
-				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Supporting Files/HTMLPurifier-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					/usr/include/libxml2,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "HTMLPurifierTests/HTMLPurifierTests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

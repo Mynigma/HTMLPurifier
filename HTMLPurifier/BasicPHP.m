@@ -1058,8 +1058,10 @@ NSInteger strcspn_3(NSString* string1, NSString* string2, NSInteger start)
         for (int j = 0; j < string2.length; j++)
         {
             if ([string1 characterAtIndex:i] == [string2 characterAtIndex:j])
+            {
                 found = i;
-            break;
+                break;
+            }
         }
         if (found != NSNotFound)
             break;

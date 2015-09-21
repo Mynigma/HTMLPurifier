@@ -10,7 +10,7 @@
 
 
 #import "HTMLPurifier_ConfigSchema.h"
-//#import "XPathQuery.h"
+
 #import <libxml/parser.h>
 #import <libxml/tree.h>
 
