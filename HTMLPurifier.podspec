@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.author           = { 'Edward Z. Yang' => 'ezyang@cs.stanford.edu',
 			'Roman Priebe' => 'roman@mynigma.org',
 			'Lukas Neumann' => 'lukas@mynigma.org' }
-  s.source           = { :git => 'https://github.com/Mynigma/HTMLPurifier.git' }
+  s.source           = { :git => 'https://github.com/Mynigma/HTMLPurifier.git', :tag => '1.0.0' }
   s.social_media_url = 'https://www.facebook.com/mynigma'
 
   s.ios.deployment_target = '7.0'
