@@ -161,7 +161,7 @@
     (self.excludes?[self.excludes isEqual:object.excludes]:object.excludes?NO:YES)  &&
     (self.formatting == object.formatting)  &&
     (self.required_attr?[self.required_attr isEqual:object.required_attr]:object.required_attr?NO:YES)  &&
-    (self.standalone == object.standalone);
+    (self.standalone == object.standalone) &&
     (self.wrap?[self.wrap isEqual:object.wrap]:object.wrap?NO:YES);
 }
 
