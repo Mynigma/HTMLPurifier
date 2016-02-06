@@ -149,13 +149,13 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 - (void)actuallyReadPlist
 {
     //check for a user-defined config first
-    NSURL* configPlistPath = [[NSBundle mainBundle] URLForResource:@"HTMLPurifierConfig" withExtension:@"plist"];
+    NSURL* configPlistPath = [[NSBundle mainBundle] URLForResource:@"HTMLPurifierCustomConfig" withExtension:@"plist"];
     if(!configPlistPath)
-        configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
+        configPlistPath = [BUNDLE URLForResource:@"HTMLPurifierConfig" withExtension:@"plist"];
     
     if(!configPlistPath)
     {
-        NSLog(@"Error opening config plist file!!! Please include either HTMLPurifierConfig.plist in main bundle or config.plist in bundle: %@", [NSBundle bundleForClass:[self class]]);
+        NSLog(@"Error opening config plist file!!! Please include either 'HTMLPurifierCustomConfig.plist' in main bundle or 'HTMLPurifierConfig.plist' in bundle: %@", [NSBundle bundleForClass:[self class]]);
         return;
     }
     

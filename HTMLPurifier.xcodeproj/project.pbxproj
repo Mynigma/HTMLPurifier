@@ -290,10 +290,10 @@
 		1EE4B2FE1B13A7A50056091D /* libHTMLPurifieriOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EEEC28E18ED769B008F1E67 /* libHTMLPurifieriOS.a */; };
 		1EE4B2FF1B13AA370056091D /* orrickClean.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */; };
 		1EE4B3001B13AA370056091D /* orrickTest.html in Resources */ = {isa = PBXBuildFile; fileRef = 80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */; };
-		1EE4B3211B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
-		1EE4B3221B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
-		1EE4B3231B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
-		1EE4B3241B13AFAA0056091D /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* config.plist */; };
+		1EE4B3211B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* HTMLPurifierConfig.plist */; };
+		1EE4B3221B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* HTMLPurifierConfig.plist */; };
+		1EE4B3231B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* HTMLPurifierConfig.plist */; };
+		1EE4B3241B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31C1B13AFAA0056091D /* HTMLPurifierConfig.plist */; };
 		1EE4B3251B13AFAA0056091D /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31D1B13AFAA0056091D /* entities.plist */; };
 		1EE4B3261B13AFAA0056091D /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31D1B13AFAA0056091D /* entities.plist */; };
 		1EE4B3271B13AFAA0056091D /* entities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1EE4B31D1B13AFAA0056091D /* entities.plist */; };
@@ -806,7 +806,7 @@
 		1EE4B2F21B13A7380056091D /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		1EE4B2F31B13A7380056091D /* OCMRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMRecorder.h; sourceTree = "<group>"; };
 		1EE4B2F41B13A7380056091D /* OCMStubRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMStubRecorder.h; sourceTree = "<group>"; };
-		1EE4B31C1B13AFAA0056091D /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = "Supporting Files/config.plist"; sourceTree = SOURCE_ROOT; };
+		1EE4B31C1B13AFAA0056091D /* HTMLPurifierConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = HTMLPurifierConfig.plist; path = "Supporting Files/HTMLPurifierConfig.plist"; sourceTree = SOURCE_ROOT; };
 		1EE4B31D1B13AFAA0056091D /* entities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = entities.plist; path = "Supporting Files/entities.plist"; sourceTree = SOURCE_ROOT; };
 		1EE4B31E1B13AFAA0056091D /* HTMLPurifier-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "HTMLPurifier-Info.plist"; path = "Supporting Files/HTMLPurifier-Info.plist"; sourceTree = SOURCE_ROOT; };
 		1EE4B31F1B13AFAA0056091D /* HTMLPurifier-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HTMLPurifier-Prefix.pch"; path = "Supporting Files/HTMLPurifier-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -1972,7 +1972,7 @@
 		80F53D48189BE6F700D7805F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				1EE4B31C1B13AFAA0056091D /* config.plist */,
+				1EE4B31C1B13AFAA0056091D /* HTMLPurifierConfig.plist */,
 				1EE4B31D1B13AFAA0056091D /* entities.plist */,
 				1EE4B31E1B13AFAA0056091D /* HTMLPurifier-Info.plist */,
 				1EE4B31F1B13AFAA0056091D /* HTMLPurifier-Prefix.pch */,
@@ -2432,7 +2432,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EE4B3271B13AFAA0056091D /* entities.plist in Resources */,
-				1EE4B3231B13AFAA0056091D /* config.plist in Resources */,
+				1EE4B3231B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2440,7 +2440,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EE4B3241B13AFAA0056091D /* config.plist in Resources */,
+				1EE4B3241B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */,
 				1EE4B3001B13AA370056091D /* orrickTest.html in Resources */,
 				1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */,
 				1EE4B3281B13AFAA0056091D /* entities.plist in Resources */,
@@ -2452,7 +2452,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1EE4B3211B13AFAA0056091D /* config.plist in Resources */,
+				1EE4B3211B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */,
 				1EE4B3251B13AFAA0056091D /* entities.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2462,7 +2462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EE4B3261B13AFAA0056091D /* entities.plist in Resources */,
-				1EE4B3221B13AFAA0056091D /* config.plist in Resources */,
+				1EE4B3221B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */,
 				80EF52F61A1DD3C500B2DEA8 /* orrickClean.html in Resources */,
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
 				80EF52F71A1DD3C500B2DEA8 /* orrickTest.html in Resources */,
