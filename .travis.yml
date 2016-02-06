@@ -6,6 +6,7 @@ xcode_scheme: HTMLPurifieriOS
 
 before_install:
   - sudo easy_install cpp-coveralls
+  - gem update xcodeproj
   - gem install slather
 
 install:
