@@ -4,15 +4,17 @@ xcode_project: HTMLPurifier.xcodeproj
 xcode_scheme: HTMLPurifier
 # xcode_sdk: iphonesimulator8.1
 
-# before_install:
-#   - sudo easy_install cpp-coveralls
-#   - gem install slather
-  # - brew uninstall xctool
-  # - brew update
-  # - brew install xctool --HEAD  
+before_install:
+  - sudo easy_install cpp-coveralls
+  - gem install slather
 
-# script:
-#   - xctool -project HTMLPurifier.xcodeproj -scheme HTMLPurifieriOS -sdk iphonesimulator8.1 clean test ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+install:
+- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+script:
+# - set -o pipefail && xcodebuild test -workspace Example/MProtoBuf.xcworkspace -scheme MProtoBufiOS -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+- pod lib lint --quick
+- xctool -project Example/MProtoBuf.xcodeproj -scheme MProtoBufiOS -sdk iphonesimulator8.1 clean test ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
 
-# after_success:
-#   - slather
+
+after_success:
+  - slather

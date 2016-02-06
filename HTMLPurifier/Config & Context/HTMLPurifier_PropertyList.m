@@ -44,10 +44,14 @@
 
 - (void)actuallyReadPlist
 {
-    NSURL* configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
+    //check for a user-defined config first
+    NSURL* configPlistPath = [[NSBundle mainBundle] URLForResource:@"HTMLPurifierCustomConfig" withExtension:@"plist"];
+    if(!configPlistPath)
+        configPlistPath = [BUNDLE URLForResource:@"HTMLPurifierConfig" withExtension:@"plist"];
+    
     if(!configPlistPath)
     {
-        NSLog(@"Error opening config plist file!! Please include the config.plist in bundle: %@", BUNDLE);
+        NSLog(@"Error opening config plist file!!! Please include either 'HTMLPurifierCustomConfig.plist' in main bundle or 'HTMLPurifierConfig.plist' in bundle: %@", [NSBundle bundleForClass:[self class]]);
         return;
     }
 
