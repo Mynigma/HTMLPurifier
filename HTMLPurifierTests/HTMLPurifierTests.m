@@ -180,6 +180,37 @@ NSLog(@"Output: %@", cleanedHTML);
     XCTAssertEqualObjects(result, correct);
 }
 
+-(void) testTrackingPixelRemoval
+{
+    NSString* html = @"<img src=\"http://nextdraft.us2.list-manage.com/track/open.php?u=02783e87fee61c1a534a9d&id=3D2b6db345cb&e=0a04e4c145\" height=\"1\" width=\"1\">";
+    
+    NSString* exchangedTracker = @"<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AIGDTonDUBF3wAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADElEQVQI12NQi+gHAAG1AQ6Ex5VQAAAAAElFTkSuQmCC\" height=\"1\" width=\"1\" alt=\"MynigmaTrackingPixelReplacement4711\" />";
+    
+    // activate Tracking config (has currently effect)
+    // [super.config setString:@"Core.RemoveTrackingPixel" object:@(YES)];
+    HTMLPurifier* localPurifier = [HTMLPurifier new];
+
+    NSString* result = [localPurifier purify:html];
+    XCTAssertEqualObjects(result, exchangedTracker);
+}
+
+// Setting the config does not work
+
+//-(void) testTrackingPixelIgnore
+//{
+// 
+//    NSString* html = @"<img src=\"http://nextdraft.us2.list-manage.com/track/open.php?u=02783e87fee61c1a534a9d&id=3D2b6db345cb&e=0a04e4c145\" height=\"1\" width=\"1\">";
+//
+//    NSString* filteredTrackingEnabled = @"<img src=\"http://nextdraft.us2.list-manage.com/track/open.php?u=02783e87fee61c1a534a9d&amp;id=3D2b6db345cb&amp;e=0a04e4c145\" height=\"1\" width=\"1\" alt=\"open.php?u=02783e87fee61c1a534a9d&amp;id=3D2\" />";
+//
+//    [super.config setString:@"Core.RemoveTrackingPixel" object:@(NO)];
+//    HTMLPurifier* localPurifier = [[HTMLPurifier alloc] initWithConfig:super.config];
+//    
+//    NSString* result = [localPurifier purify:html];
+//    XCTAssertEqualObjects(result, filteredTrackingEnabled);
+//}
+
+
 /*
 - (void)testMakeAbsolute
 {

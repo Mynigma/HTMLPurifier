@@ -10,6 +10,7 @@
 #import "HTMLPurifier_ElementDef.h"
 #import "HTMLPurifier_AttrDef_URI.h"
 #import "HTMLPurifier_AttrTransform_ImgRequired.h"
+#import "HTMLPurifier_AttrTransform_ImgTrackingRemoval.h"
 
 @implementation HTMLPurifier_HTMLModule_Image
 
@@ -29,6 +30,11 @@
         newKey = [NSString stringWithFormat:@"%ld", (unsigned long)img.attr_transform_pre.count];
         if (transform && newKey)
             [img.attr_transform_pre setObject:transform forKey:newKey];
+        
+        HTMLPurifier_AttrTransform_ImgTrackingRemoval* imgTrackTransform = [HTMLPurifier_AttrTransform_ImgTrackingRemoval new];
+        newKey = [NSString stringWithFormat:@"%ld", (unsigned long)img.attr_transform_pre.count];
+        if (transform && newKey)
+            [img.attr_transform_pre setObject:imgTrackTransform forKey:newKey];
     }
     return self;
 }

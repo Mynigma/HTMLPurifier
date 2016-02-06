@@ -425,6 +425,8 @@
 		<string>nil</string>
 		<key>Core.RemoveScriptContents</key>
 		<string>nil</string>
+		<key>Core.RemoveTrackingPixel</key>
+		<true/>
 		<key>Filter.Custom</key>
 		<string>nil</string>
 		<key>Filter.ExtractStyleBlocks</key>
@@ -741,6 +743,8 @@
 		<string>nil</string>
 		<key>Core.RemoveScriptContents</key>
 		<string>nil</string>
+		<key>Core.RemoveTrackingPixel</key>
+		<true/>
 		<key>Filter.Custom</key>
 		<string></string>
 		<key>Filter.ExtractStyleBlocks</key>
@@ -1022,6 +1026,8 @@
 		<string>7</string>
 		<key>Core.RemoveScriptContents</key>
 		<string>-7</string>
+		<key>Core.RemoveTrackingPixel</key>
+		<true/>
 		<key>Core.TidyFormat</key>
 		<string>ERR: stdClass</string>
 		<key>Core.XHTML</key>

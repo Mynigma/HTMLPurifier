@@ -322,6 +322,9 @@
 		804D83CD198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 804D83CC198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m */; };
 		80551EC718AE65000062D232 /* HTMLPurifier_URIScheme_cid.h in Headers */ = {isa = PBXBuildFile; fileRef = 80551EC518AE65000062D232 /* HTMLPurifier_URIScheme_cid.h */; };
 		80551EC818AE65000062D232 /* HTMLPurifier_URIScheme_cid.m in Sources */ = {isa = PBXBuildFile; fileRef = 80551EC618AE65000062D232 /* HTMLPurifier_URIScheme_cid.m */; };
+		805DB4AE1C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m in Sources */ = {isa = PBXBuildFile; fileRef = 805DB4AD1C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m */; };
+		805DB4B01C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m in Sources */ = {isa = PBXBuildFile; fileRef = 805DB4AD1C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m */; };
+		805DB4B41C66296F00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.h in Headers */ = {isa = PBXBuildFile; fileRef = 805DB4B21C66296F00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.h */; };
 		806C47001B7D261900FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 806C46FF1B7D261900FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.h */; };
 		806C47011B7D261900FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.h in Headers */ = {isa = PBXBuildFile; fileRef = 806C46FF1B7D261900FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.h */; };
 		806C47031B7D263000FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.m in Sources */ = {isa = PBXBuildFile; fileRef = 806C47021B7D263000FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.m */; };
@@ -837,6 +840,8 @@
 		804D83CC198E6B7B00A535E4 /* HTMLPurifier_Strategy_FixNestingTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_Strategy_FixNestingTest.m; sourceTree = "<group>"; };
 		80551EC518AE65000062D232 /* HTMLPurifier_URIScheme_cid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_URIScheme_cid.h; sourceTree = "<group>"; };
 		80551EC618AE65000062D232 /* HTMLPurifier_URIScheme_cid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIScheme_cid.m; sourceTree = "<group>"; };
+		805DB4AD1C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrTransform_ImgTrackingRemoval.m; sourceTree = "<group>"; };
+		805DB4B21C66296F00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrTransform_ImgTrackingRemoval.h; sourceTree = "<group>"; };
 		806C46FF1B7D261900FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Shape.h; sourceTree = "<group>"; };
 		806C47021B7D263000FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_AttrDef_CSS_Shape.m; sourceTree = "<group>"; };
 		806C47051B7F233100FE1D4C /* HTMLPurifier_AttrDef_CSS_Outline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLPurifier_AttrDef_CSS_Outline.h; sourceTree = "<group>"; };
@@ -1726,6 +1731,8 @@
 				80F53C7C189BE6F600D7805F /* HTMLPurifier_AttrTransform_EnumToCSS.m */,
 				80F53C7D189BE6F600D7805F /* HTMLPurifier_AttrTransform_ImgRequired.h */,
 				80F53C7E189BE6F600D7805F /* HTMLPurifier_AttrTransform_ImgRequired.m */,
+				805DB4B21C66296F00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.h */,
+				805DB4AD1C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m */,
 				80F53C7F189BE6F600D7805F /* HTMLPurifier_AttrTransform_ImgSpace.h */,
 				80F53C80189BE6F600D7805F /* HTMLPurifier_AttrTransform_ImgSpace.m */,
 				80F53C81189BE6F600D7805F /* HTMLPurifier_AttrTransform_Input.h */,
@@ -2154,6 +2161,7 @@
 				80F53DC0189BE6F700D7805F /* HTMLPurifier_AttrDef_HTML_ID.h in Headers */,
 				80F53EAE189BE6F700D7805F /* HTMLPurifier_Strategy_FixNesting.h in Headers */,
 				80F53EA4189BE6F700D7805F /* HTMLPurifier_VarParser_Flexible.h in Headers */,
+				805DB4B41C66296F00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.h in Headers */,
 				80F53EA2189BE6F700D7805F /* HTMLPurifier_VarParser.h in Headers */,
 				80F53DD4189BE6F700D7805F /* HTMLPurifier_AttrDef_Lang.h in Headers */,
 				80F53E5C189BE6F700D7805F /* HTMLPurifier_HTMLModule_Image.h in Headers */,
@@ -2496,6 +2504,7 @@
 				1E4825D918ED9DDF00E4CC64 /* HTMLPurifier_DefinitionCacheFactory.m in Sources */,
 				1E4825DA18ED9DDF00E4CC64 /* HTMLPurifier_HTMLDefinition.m in Sources */,
 				806C470C1B7F74FA00FE1D4C /* HTMLPurifier_AttrDef_CSS_BorderRadius.m in Sources */,
+				805DB4AE1C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m in Sources */,
 				1E4825DB18ED9DDF00E4CC64 /* HTMLPurifier_URIDefinition.m in Sources */,
 				1E4825DC18ED9DDF00E4CC64 /* HTMLPurifier_Strategy.m in Sources */,
 				1E4825DD18ED9DDF00E4CC64 /* HTMLPurifier_Strategy_Composite.m in Sources */,
@@ -2760,6 +2769,7 @@
 				80F53DEB189BE6F700D7805F /* HTMLPurifier_AttrTransform_BdoDir.m in Sources */,
 				80F53E2B189BE6F700D7805F /* HTMLPurifier_ChildDef_Optional.m in Sources */,
 				806C470D1B7F74FA00FE1D4C /* HTMLPurifier_AttrDef_CSS_BorderRadius.m in Sources */,
+				805DB4B01C6628DF00CE7BFA /* HTMLPurifier_AttrTransform_ImgTrackingRemoval.m in Sources */,
 				80F53DED189BE6F700D7805F /* HTMLPurifier_AttrTransform_BgColor.m in Sources */,
 				80F53E6F189BE6F700D7805F /* HTMLPurifier_HTMLModule_Text.m in Sources */,
 				80F53EF8189BE6F700D7805F /* HTMLPurifier_URISchemeRegistry.m in Sources */,
