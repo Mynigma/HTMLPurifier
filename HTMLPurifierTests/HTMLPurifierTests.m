@@ -184,7 +184,7 @@ NSLog(@"Output: %@", cleanedHTML);
 {
     NSString* html = @"<img src=\"http://nextdraft.us2.list-manage.com/track/open.php?u=02783e87fee61c1a534a9d&id=3D2b6db345cb&e=0a04e4c145\" height=\"1\" width=\"1\">";
     
-    NSString* exchangedTracker = @"<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AIGDTonDUBF3wAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADElEQVQI12NQi+gHAAG1AQ6Ex5VQAAAAAElFTkSuQmCC\" height=\"1\" width=\"1\" alt=\"MynigmaTrackingPixelReplacement4711\" />";
+    NSString* exchangedTracker = @"<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AIGDTonDUBF3wAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADElEQVQI12NQi+gHAAG1AQ6Ex5VQAAAAAElFTkSuQmCC\" height=\"1\" width=\"1\" alt=\"open.php?u=02783e87fee61c1a534a9d&amp;id=3D2\" id=\"MynigmaTrackingPixelReplacement4711\" />";
     
     // activate Tracking config (has currently effect)
     // [super.config setString:@"Core.RemoveTrackingPixel" object:@(YES)];

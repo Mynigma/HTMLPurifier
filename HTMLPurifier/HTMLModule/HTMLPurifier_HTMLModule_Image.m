@@ -32,9 +32,9 @@
             [img.attr_transform_pre setObject:transform forKey:newKey];
         
         HTMLPurifier_AttrTransform_ImgTrackingRemoval* imgTrackTransform = [HTMLPurifier_AttrTransform_ImgTrackingRemoval new];
-        newKey = [NSString stringWithFormat:@"%ld", (unsigned long)img.attr_transform_pre.count];
+        newKey = [NSString stringWithFormat:@"%ld", (unsigned long)img.attr_transform_post.count];
         if (transform && newKey)
-            [img.attr_transform_pre setObject:imgTrackTransform forKey:newKey];
+            [img.attr_transform_post setObject:imgTrackTransform forKey:newKey];
     }
     return self;
 }

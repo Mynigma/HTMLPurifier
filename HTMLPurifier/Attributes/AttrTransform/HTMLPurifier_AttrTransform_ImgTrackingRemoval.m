@@ -14,8 +14,8 @@
 
 /**
  * Transforms tracking pixels, such that they are disabled.
- * Exchanges the src URL with a blue pixel and adds an identifier as alt text
- * This can be registered as a pre or post attribute transform.
+ * Exchanges the src URL with a blue pixel and adds an identifier as id
+ * This has to be registered as a post attribute transform.
  **/
 
 @implementation HTMLPurifier_AttrTransform_ImgTrackingRemoval
@@ -39,15 +39,15 @@
         // now set a blue pixel as source
         attr[@"src"] = @"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AIGDTonDUBF3wAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAADElEQVQI12NQi+gHAAG1AQ6Ex5VQAAAAAElFTkSuQmCC";
         
-        // if there is an alt attribute replace it
-        if (!attr[@"alt"])
+        // if there is an id attribute replace it
+        if (!attr[@"id"])
         {
-            [attr setObject:@"MynigmaTrackingPixelReplacement4711" forKey:@"alt"];
-            [sortedKeys addObject:@"alt"];
+            [attr setObject:@"MynigmaTrackingPixelReplacement4711" forKey:@"id"];
+            [sortedKeys addObject:@"id"];
         }
         else
         {
-            attr[@"alt"] = @"MynigmaTrackingPixelReplacement4711";
+            attr[@"id"] = @"MynigmaTrackingPixelReplacement4711";
         }
         
     }
