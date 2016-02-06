@@ -50,11 +50,11 @@
 
                         if([(NSObject*)attr_i isEqual:@0] && self.info[coll_i][attr_i])
                         {
-                            NSMutableArray* array1 = [self.info[coll_i][attr_i] mutableCopy];
+                            NSArray* array1 = self.info[coll_i][attr_i];
                             if(!array1)
-                                array1 = [@[] mutableCopy];
+                                array1 = @[];
                             if(![array1 isKindOfClass:[NSArray class]])
-                                array1 = [@[array1] mutableCopy];
+                                array1 = @[array1];
                             NSArray* array2 = (NSArray*)attr;
                             if(!attr)
                                 array2 = @[];

@@ -45,10 +45,8 @@
 
     [[[attrTypesMock stub] andReturn:nil] get:[OCMArg any]];
 
-    NSMutableDictionary* modules = [NSMutableDictionary new];
-
-    modules[@"Module1"] = [HTMLPurifier_HTMLModule new];
-    [(HTMLPurifier_HTMLModule*)modules[@"Module1"] setAttr_collections:[@{
+    HTMLPurifier_HTMLModule* module1 = [HTMLPurifier_HTMLModule new];
+    [module1 setAttr_collections:[@{
                                                     @"Core" : @{
                                                       @0 : @[ @"Soup", @"Undefined"],
                                                                   @"attribute" : @"Type",
@@ -57,11 +55,11 @@
                                                                        }
                                                   } mutableCopy]];
 
-    modules[@"Module2"] = [HTMLPurifier_HTMLModule new];
+    HTMLPurifier_HTMLModule* module2 = [HTMLPurifier_HTMLModule new];
 
-    [(HTMLPurifier_HTMLModule*)modules[@"Module2"] setAttr_collections:[@{@"Core" : @{ @0 : @[@"Brocolli"] }, @"Soup" : @{ @"attribute-3" : @"Type3" }, @"Brocolli" : @{} } mutableCopy]];
+    [module2 setAttr_collections:[@{@"Core" : @{ @0 : @[@"Brocolli"] }, @"Soup" : @{ @"attribute-3" : @"Type3" }, @"Brocolli" : @{} } mutableCopy]];
 
-    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections_TestForConstruct alloc] initWithAttrTypes:attrTypesMock modules:[modules.allValues mutableCopy]];
+    HTMLPurifier_AttrCollections* collections = [[HTMLPurifier_AttrCollections_TestForConstruct alloc] initWithAttrTypes:attrTypesMock modules:@[module1, module2]];
 
     // this is without identifier expansion or inclusions
     NSDictionary* expected = @{@"Core" : @{ @0 : @[@"Soup", @"Undefined", @"Brocolli"],
