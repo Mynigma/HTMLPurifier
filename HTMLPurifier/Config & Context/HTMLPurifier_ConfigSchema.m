@@ -32,101 +32,101 @@
 
 NSDictionary *DictionaryWithNode(xmlNodePtr currentNode, NSMutableDictionary *parentResult)
 {
-	NSMutableDictionary *resultForNode = [NSMutableDictionary dictionary];
-
-	if (currentNode->name)
-	{
-		NSString *currentNodeContent =
+    NSMutableDictionary *resultForNode = [NSMutableDictionary dictionary];
+    
+    if (currentNode->name)
+    {
+        NSString *currentNodeContent =
         [NSString stringWithCString:(const char *)currentNode->name encoding:NSUTF8StringEncoding];
         if(currentNodeContent)
             [resultForNode setObject:currentNodeContent forKey:@"nodeName"];
-	}
-
-	if (currentNode->content && currentNode->type != XML_DOCUMENT_TYPE_NODE)
-	{
-		NSString *currentNodeContent =
+    }
+    
+    if (currentNode->content && currentNode->type != XML_DOCUMENT_TYPE_NODE)
+    {
+        NSString *currentNodeContent =
         [NSString stringWithCString:(const char *)currentNode->content encoding:NSUTF8StringEncoding];
-
-		if ([[resultForNode objectForKey:@"nodeName"] isEqual:@"text"] && parentResult)
-		{
-			currentNodeContent = [currentNodeContent
+        
+        if ([[resultForNode objectForKey:@"nodeName"] isEqual:@"text"] && parentResult)
+        {
+            currentNodeContent = [currentNodeContent
                                   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
-			NSString *existingContent = [parentResult objectForKey:@"nodeContent"];
-			NSString *newContent;
-			if (existingContent)
-			{
-				newContent = [existingContent stringByAppendingString:currentNodeContent];
-			}
-			else
-			{
-				newContent = currentNodeContent;
-			}
+            
+            NSString *existingContent = [parentResult objectForKey:@"nodeContent"];
+            NSString *newContent;
+            if (existingContent)
+            {
+                newContent = [existingContent stringByAppendingString:currentNodeContent];
+            }
+            else
+            {
+                newContent = currentNodeContent;
+            }
             if (newContent)
                 [parentResult setObject:newContent forKey:@"nodeContent"];
-			return nil;
-		}
-
+            return nil;
+        }
+        
         if (currentNodeContent)
             [resultForNode setObject:currentNodeContent forKey:@"nodeContent"];
-	}
-
-	xmlAttr *attribute = currentNode->properties;
-	if (attribute)
-	{
-		NSMutableArray *attributeArray = [NSMutableArray array];
-		while (attribute)
-		{
-			NSMutableDictionary *attributeDictionary = [NSMutableDictionary dictionary];
-			NSString *attributeName =
+    }
+    
+    xmlAttr *attribute = currentNode->properties;
+    if (attribute)
+    {
+        NSMutableArray *attributeArray = [NSMutableArray array];
+        while (attribute)
+        {
+            NSMutableDictionary *attributeDictionary = [NSMutableDictionary dictionary];
+            NSString *attributeName =
             [NSString stringWithCString:(const char *)attribute->name encoding:NSUTF8StringEncoding];
-			if (attributeName)
-			{
-				[attributeDictionary setObject:attributeName forKey:@"attributeName"];
-			}
-
-			if (attribute->children)
-			{
-				NSDictionary *childDictionary = DictionaryWithNode(attribute->children, attributeDictionary);
-				if (childDictionary)
-				{
-					[attributeDictionary setObject:childDictionary forKey:@"attributeContent"];
-				}
-			}
-
-			if ([attributeDictionary count] > 0)
-			{
-				[attributeArray addObject:attributeDictionary];
-			}
-			attribute = attribute->next;
-		}
-
-		if ([attributeArray count] > 0)
-		{
-			[resultForNode setObject:attributeArray forKey:@"nodeAttributeArray"];
-		}
-	}
-
-	xmlNodePtr childNode = currentNode->children;
-	if (childNode)
-	{
-		NSMutableArray *childContentArray = [NSMutableArray array];
-		while (childNode)
-		{
-			NSDictionary *childDictionary = DictionaryWithNode(childNode, resultForNode);
-			if (childDictionary)
-			{
-				[childContentArray addObject:childDictionary];
-			}
-			childNode = childNode->next;
-		}
-		if ([childContentArray count] > 0)
-		{
-			[resultForNode setObject:childContentArray forKey:@"nodeChildArray"];
-		}
-	}
-	
-	return resultForNode;
+            if (attributeName)
+            {
+                [attributeDictionary setObject:attributeName forKey:@"attributeName"];
+            }
+            
+            if (attribute->children)
+            {
+                NSDictionary *childDictionary = DictionaryWithNode(attribute->children, attributeDictionary);
+                if (childDictionary)
+                {
+                    [attributeDictionary setObject:childDictionary forKey:@"attributeContent"];
+                }
+            }
+            
+            if ([attributeDictionary count] > 0)
+            {
+                [attributeArray addObject:attributeDictionary];
+            }
+            attribute = attribute->next;
+        }
+        
+        if ([attributeArray count] > 0)
+        {
+            [resultForNode setObject:attributeArray forKey:@"nodeAttributeArray"];
+        }
+    }
+    
+    xmlNodePtr childNode = currentNode->children;
+    if (childNode)
+    {
+        NSMutableArray *childContentArray = [NSMutableArray array];
+        while (childNode)
+        {
+            NSDictionary *childDictionary = DictionaryWithNode(childNode, resultForNode);
+            if (childDictionary)
+            {
+                [childContentArray addObject:childDictionary];
+            }
+            childNode = childNode->next;
+        }
+        if ([childContentArray count] > 0)
+        {
+            [resultForNode setObject:childContentArray forKey:@"nodeChildArray"];
+        }
+    }
+    
+    return resultForNode;
 }
 
 static HTMLPurifier_ConfigSchema* theSingleton;
@@ -138,9 +138,9 @@ static HTMLPurifier_ConfigSchema* theSingleton;
     self = [super init];
     if (self) {
         _defaults = [NSMutableDictionary new];
-
+        
         [self actuallyReadPlist];
-
+        
         theSingleton = self;
     }
     return self;
@@ -148,15 +148,19 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 
 - (void)actuallyReadPlist
 {
-    NSURL* configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
+    //check for a user-defined config first
+    NSURL* configPlistPath = [[NSBundle mainBundle] URLForResource:@"HTMLPurifierConfig" withExtension:@"plist"];
+    if(!configPlistPath)
+        configPlistPath = [BUNDLE URLForResource:@"config" withExtension:@"plist"];
+    
     if(!configPlistPath)
     {
-        NSLog(@"Error opening config plist file!!! Please include the config.plist in bundle: %@", BUNDLE);
+        NSLog(@"Error opening config plist file!!! Please include either HTMLPurifierConfig.plist in main bundle or config.plist in bundle: %@", [NSBundle bundleForClass:[self class]]);
         return;
     }
-
+    
     NSDictionary* configDict = [NSDictionary dictionaryWithContentsOfURL:configPlistPath];
-
+    
     [self setDefaultPList:configDict[@"defaultPlist"]];
     [self setInfo:[configDict[@"info"] mutableCopy]];
     [self setDefaults:[configDict[@"defaults"] mutableCopy]];
@@ -166,7 +170,7 @@ static HTMLPurifier_ConfigSchema* theSingleton;
 {
     if(theSingleton)
         return theSingleton;
-
+    
     return [HTMLPurifier_ConfigSchema new];
 }
 

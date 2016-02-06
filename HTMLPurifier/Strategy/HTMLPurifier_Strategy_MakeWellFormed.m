@@ -226,15 +226,9 @@
                     
                     //needs to reload latest context
                     [injector prepare:config context:context];
-                    // XXX fuckup
+
                     HTMLPurifier_Token* r = (HTMLPurifier_Token*)_token;
                     [injector handleText:&r];
-
-                    //
-                    //  TO DO: clean up
-                    //  in PHP the index i, not the injector is passed along!?!
-                    //
-
 
                     _token = [self processToken:r remove:@1 injector:@(i)];
                     reprocess = YES;
