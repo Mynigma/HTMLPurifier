@@ -24,6 +24,11 @@
     NSMutableDictionary* definitions;
 
     BOOL finalized;
+    
+    HTMLPurifier_CSSDefinition* theCSSDefinition;
+    HTMLPurifier_HTMLDefinition* theHTMLDefinition;
+    HTMLPurifier_URIDefinition* theURIDefinition;
+
 }
 
 

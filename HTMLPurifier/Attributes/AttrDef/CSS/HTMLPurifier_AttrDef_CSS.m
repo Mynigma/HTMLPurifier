@@ -23,6 +23,24 @@
 
 @implementation HTMLPurifier_AttrDef_CSS
 
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS class]])
+        return NO;
+
+    return YES;
+}
+
+
+
+
 /**
  * @param string $css
  * @param HTMLPurifier_Config $config

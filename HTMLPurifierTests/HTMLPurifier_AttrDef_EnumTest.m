@@ -47,7 +47,7 @@
 
 -(void) testCaseSensitive
 {
-    def = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"one",@"two"] caseSensitive:YES];
+    def = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"one",@"two"] caseSensitive:@YES];
     [self assertDef:@"one" expect:@YES];
     [self assertDef:@"ONE" expect:nil];
 }
@@ -67,7 +67,7 @@
     XCTAssertEqualObjects(def, def2);
     
     def = [factory make:@"s:foo,BAR"];
-    def2 = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"foo",@"BAR"] caseSensitive:YES];
+    def2 = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"foo",@"BAR"] caseSensitive:@YES];
     XCTAssertEqualObjects(def, def2);
 }
 

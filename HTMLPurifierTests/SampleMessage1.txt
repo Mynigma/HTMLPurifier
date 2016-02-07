@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Galeria Kaufhof Newsletter</title>
+
+<style type="text/css">
+/* Based on The MailChimp Reset INLINE: Yes. */
+/* Client-specific Styles */
+#outlook a {padding:0;} /* Force Outlook to provide a "view in browser" menu link. */
+body{width:640px !important; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; margin:0 auto; padding:0;}
+#wrapper_style { width: 640px !important; max-width: 640px; background-color: #ffffff; margin:0 auto; }
+
+/* Prevent Webkit and Windows Mobile platforms from changing default font sizes.*/
+.ExternalClass {width:100%;} /* Force Hotmail to display emails at full width */
+.ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClassfont, .ExternalClass td, .ExternalClass div {line-height: 100%;}
+/* Forces Hotmail to display normal line spacing.  More on that: http://www.emailonacid.com/forum/viewthread/43/ */
+.backgroundTable {margin:0; padding:0; width:640px !important; line-height: 100% !important;}
+.innerBackgroundTable {margin:0; padding:0; width:600px !important; line-height: 100% !important;}
+/* End reset */
+
+table td {border-collapse: collapse;}
+
+/* Remove spacing around Outlook 07, 10 tables
+Bring inline: Yes */
+table { border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt; }
+
+/* Styling your links has become much simpler with the new Yahoo.  Infact, it falls in line with the main credo of styling in email and make sure to bring your styles inline.  Your link colors will be uniform across clients when brought inline.
+Bring inline: Yes. */
+a {color: #006e3c;}
+
+a:link, a:visited { color: #006e3c; }
+a[href^="tel"], a[href^="sms"] {
+text-decoration: none;
+color: #006e3c; /* or whatever your want */
+pointer-events: none;
+cursor: default;
+}
+
+@media only screen and (max-width: 480px) {
+body,
+*[id]#wrapper_style,
+*[class].backgroundTable,
+*[class].innerBackgroundTable,
+*[class].inner-table{ width: 100% !important; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+*[class].is-mobile-hidden {
+display: none !important;
+}
+}
+</style>
+
+<!--[if gte mso 10]>
+<style>
+a:link, a:visited { color: #006e3c; }
+</style>
+<![endif]-->
+
+</head>
+<body style="background-color:#ffffff;" leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<center>
+<!-- preheader -->
+<table width="640" border="0" align="center" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20"></td>
+<td width="620" style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 11px; padding:0 0 5px">
+<!-- preheader -->
+<p>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3F-HSHRGA.html" target="_blank" style="color: #006e3c">Uhren-Neuheiten entdecken!</a>
+</p>
+</td>
+<td width="20"></td>
+</tr>
+<tr>
+<td width="20"></td>
+<td width="620" style="color: #666666; font-family: Arial, Helvetica, sans-serif; font-size: 11px; padding:0 0 5px">
+<!-- preheader -->
+Wenn dieser Newsletter nicht richtig angezeigt wird, klicken Sie bitte <a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-TZ46KD2-F7V10DP.html" style="color: #006e3c">hier.</a></td>
+<td width="20"></td>
+</tr>
+</table>
+<!-- header first row -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="220">
+<!-- logo -->
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3G-ITN1K0.html" title="GALERIA KAUFHOF">
+<img src="https://img.srv2.de/bm/img/d/e/2/2/de22f59a993a52a4f1baa18d67985c0c_9814.jpg" alt="GALERIA KAUFHOF" width="220" height="75" border="0" style="display: block"/>
+</a>
+</td>
+<td align="right" width="420">
+<!--ecke -->
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3H-ZVZDHO.html" title="Mehr erfahren">
+<img src="https://img.srv2.de/bm/img/8/c/1/d/8c1d12ea8cb49f2a5a9c6a90a2312e10_11620.jpg" alt="" width="420" height="75" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+<!-- header bottom row -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<!-- logo -->
+<td width="220">
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3G-ITN1K0.html" title="GALERIA KAUFHOF">
+<img src="https://img.srv2.de/bm/img/7/7/e/9/77e94a102f17d3647ba3640a5bcbec3e_5067.jpg" alt="GALERIA KAUFHOF" width="220" height="33" border="0" style="display: block"/>
+</a>
+</td>
+<!--ecke -->
+<td width="210">
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3H-ZVZDHO.html" title="Mehr erfahren">
+<img src="https://img.srv2.de/bm/img/3/8/d/4/38d41f0f2267df87ed05be830a0dca45_4526.jpg" alt="" width="210" height="33" border="0" style="display: block"/>
+</a>
+</td>
+<!--ecke -->
+<td width="210">
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3H-ZVZDHO.html" title="Mehr erfahren">
+<img src="https://img.srv2.de/bm/img/6/b/c/e/6bce3274db0efb9283aa319f0a75c4ca_6208.jpg" alt="" width="210" height="33" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+<!-- begin NL -->
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<!--Sonntags-Angebote-->
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3I-XBTO6.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/d/3/d/9/d3d967ed1eb8e999b1736cfceba5bbc7_20399.jpg" alt="GALERIA Kaufhof Sonntags-Angebote" width="640" height="103" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3J-46DHY1.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/9/6/7/9/967988cde247f88f460459a387e5c94f_29099.jpg" alt="20% auf alle Damenschuhe (ausgenommen Sport- und Haushaltsschuhe)" width="320" height="447" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a target="_blank" href="https://www.galeria-kaufhof.de/aktionen/sonntagsangebot/damenwaesche/?newsletter=newsletter/newsletter_20160207-kw-5-so/bnr-Sonntag-waesche" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/5/8/f/b/58fb67db461cfb373b12a6e0eac9a4bf_35489.jpg" alt="20% Rabatt auf die gesamte DamenwÃ¤sche (ausgenommen BademÃ¤ntel, Socken & Strumpfhosen)" width="320" height="447" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3L-1B8DB8S.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/f/0/4/9/f049b9504db3d34d79c59dfb6ebab58a_45816.jpg" alt="15% auf tolle Uhren- und Schmuckmarken" width="640" height="229" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3M-PPSJN.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/4/2/6/a/426a87e275c14e111afe0e768e3eff29_34968.jpg" alt="13% auf die Marke LEGO Creator" width="321" height="230" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3N-OC7VTB.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/5/2/1/4/5214d6d97c7dd9be3f28dbe55e25a00f_31489.jpg" alt="13% auf alle Polizei-Artikelder Marke PLYMOBIL" width="319" height="230" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3O-17JW14JU.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/8/4/8/c/848c50ee3f99419e06e689d4962f7cbd_16025.jpg" alt="bis zu 45% auf ausgewÃ¤hlte FitnessgerÃ¤te" width="221" height="230" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3P-XGS10HS.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/d/9/3/2/d93261fec2e7329123f67455af0b4c99_27211.jpg" alt="15% auf alle Elektronik-Artikel der Marke Vtech" width="198" height="230" border="0" style="display: block"/>
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3Q-6H1TU0.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/1/a/0/c/1a0c97f0e663adfbfcccd243a5849fd5_21577.jpg" alt="15% auf die Marke Skip Hop" width="221" height="230" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3R-YJEUG5.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/8/b/7/6/8b7673dcdf16e4023148dae9da9aea70_18871.jpg" alt="10fach PAYBACK Punkte bei allen ParfÃŸmerie Geschenksets" width="222" height="230" border="0"style="display: block;">
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3S-P881AHG.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/2/6/0/3/2603eb8b924c07a19a6c780a2ce68cbf_15396.jpg" alt="20% auf die Marke MÃœve"width="197" height="230" border="0" style="display: block"/>
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3T-47D14UG.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/2/e/f/a/2efaf4099dc0fbecce37ecbf75da6e25_19861.jpg" alt="10% auf alle LikÃœre" width="221" height="230" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3U-YEM122A.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/2/4/a/1/24a163de603e5dda9361d3ae45eaa236_19218.jpg" alt="Menerva Topfset Plus 5-teilig der Marke WMF 99,99 statt 179,99 Euro" width="221" height="230" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3V-JRIP8S.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/b/c/3/6/bc36a76d104ba6e5a6230c42d0410fd8_17782.jpg" alt="20% auf die Marke Paradies" width="198" height="230" border="0" style="display: block"/>
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3W-FHPA7Y.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/d/d/2/f/dd2fbcee562a974a7934b0b486e58013_16986.jpg" alt="20% auf die Marke KAHLA" width="221" height="230" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3X-UU0UEX.html" target="_blank" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/a/7/c/9/a7c9eabc33e3037a683abb8c15c80644_15881.jpg" alt="20% auf alle Wohndecken" width="221" height="236" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3Y-QGB17T0.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/b/e/a/5/bea52a7365b13b7f73f4e663e15b653f_19333.jpg" alt="20% auf die Marke SCHÃ?LLER + STAHL" width="198" height="236" border="0" style="display: block"/>
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O3Z-4GP4Q9.html" title="Zum Angebot">
+<img src="https://img.srv2.de/bm/img/4/9/1/f/491fa55e86cb198bd80305a64d77ab6d_20783.jpg" alt="20% auf die Marke Light & Living" width="221" height="236" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O40-RH1CPX.html" target="_blank" title="Verkausoffene Sonntage">
+<img src="https://img.srv2.de/bm/img/b/2/5/c/b25c3d8a8a2129a9a7d28bc3b3eac922_12335.jpg" alt="Sie wollen die Produkte vor Ort anprobieren und ansehen?" width="640" height="99" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<!--UHREN-->
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K8GPQZ8-E1K16UB.html" target="_blank" title="Zu den Neheiten">
+<img src="https://img.srv2.de/bm/img/5/c/2/2/5c221cd1533aef06aa450aea35159d43_44910.jpg" alt="Neuheiten Uhren" width="640" height="341" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K8GPQZ9-IMF10LU.html" target="_blank" title="Mehr">
+<img src="https://img.srv2.de/bm/img/f/3/3/b/f33ba5c7a14215c8871fd33054194a30_67199.jpg" alt="Herrenuhren" width="640" height="438" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O43-10MS1E1L.html" target="_blank" title="Mehr">
+<img src="https://img.srv2.de/bm/img/7/3/c/9/73c93258729fcc27e3993e73b75cd5d6_58963.jpg" alt="Damenuhren" width="640" height="452" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<!--Sale-->
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K8GPQZA-160S1N6.html" target="_blank" title="Zum Sale">
+<img src="https://img.srv2.de/bm/img/8/a/5/4/8a54fbcafc4de6649f086edd5ac0b308_36903.jpg" alt="SALE - Bis zu 65% auf Bekleidung inklSportartikel" width="640" height="230" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<!--Shapewear-->
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O44-TDVJY7.html" target="_blank" title="Zur Shapewear">
+<img src="https://img.srv2.de/bm/img/e/6/c/a/e6cac631523fe7a3f018ff619e4f26ee_79254.jpg" alt="Shapewear - fÃŸr eine perfekte Figur in jeder Lage" width="640" height="561" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<!--ALLES RUND UMS BABY-->
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O45-158A1COX.html" target="_blank" title="Alle Artikel">
+<img src="https://img.srv2.de/bm/img/2/7/7/f/277f03bded4cd9d98ee880e8fb56bb34_54555.jpg" alt="ALLES RUND UMS BABY" width="640" height="284" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O45-158A1COX.html" target="_blank" title="Alle Artikel">
+<img src="https://img.srv2.de/bm/img/b/2/8/d/b28d47225d0dd350fc26f2d86e0162d4_112790.jpg" alt="ALLES RUND UMS BABY" width="640" height="785" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O46-AY0KVV.html" target="_blank" title="Zur Marke">
+<img src="https://img.srv2.de/bm/img/2/0/8/f/208f80cb5ae30e94f1f6a6c3698a9e4e_12726.jpg" alt="BOB der BÃ¤r" width="157" height="172" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K8GPRT4-6T8SDU.html" title="Zur Marke">
+<img src="https://img.srv2.de/bm/img/1/9/7/4/1974451b203daa397cebc2d50b866f8a_11735.jpg" alt="Be Be's Collection" width="109" height="172" border="0" style="display: block"/>
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K8GPRT5-AVVTP5.html" title="Zur Marke">
+<img src="https://img.srv2.de/bm/img/2/8/2/1/28216ff6ca1a71a69c06f54f730deff3_9949.jpg" alt="Sterntahler" width="114" height="172" border="0" style="display: block"/>
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K8GPRT6-LGN11TM.html" title="Zur Marke">
+<img src="https://img.srv2.de/bm/img/f/8/a/f/f8afc2d856e190d4ec823413037a87e6_10654.jpg" alt="WÃ?RNER SÃ?DFROTTIER" width="99" height="172" border="0" style="display: block"/>
+</a>
+</td>
+<td>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K8GPRT7-17LYIN8.html" title="Zur Marke">
+<img src="https://img.srv2.de/bm/img/3/7/5/2/37528a5f33048713e1de9ac92e636511_11866.jpg" alt="Steiff" width="161" height="172" border="0" style="display: block"/>
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<!--Filialfinder-->
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4A-GVX1BDP.html?customParam=20160207_KW05_So%2F" target="_blank" title="Filialen in Ihrer NÃ¤he">
+<img src="https://img.srv2.de/bm/img/7/b/7/c/7b7cf6110fed34c8bbbd5391a37f9496_5220.jpg" alt="Filialen in Ihrer NÃ¤he" width="640" height="28" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4A-GVX1BDP.html?customParam=20160207_KW05_So%2F" target="_blank" title="Zum Filialfinder">
+<img src="https://img.srv2.de/bm/img/f/9/d/5/f9d52baf9a0b36dfde11130da2c26a16_23940.jpg" alt="Zum Filialfinder" width="288" height="273" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4A-GVX1BDP.html?customParam=20160207_KW05_So%2F" target="_blank" title="Zum Filialfinder">
+<img src="https://img2.kickdyn.com/5/W8NcjFzdpehvR5HWdO56/imgns.png" alt="Zum Filialfinder" width="310" height="273" border="0" style="display: block;">
+</a>
+</td>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4A-GVX1BDP.html?customParam=20160207_KW05_So%2F" target="_blank" title="Zum Filialfinder">
+<img src="https://img.srv2.de/bm/img/c/1/0/a/c10ae673dccb1a494a4f772d02d942ba_4821.jpg" alt="Zum Filialfinder" width="42" height="273" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+<tr>
+<td>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td>
+<a href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4A-GVX1BDP.html?customParam=20160207_KW05_So%2F" target="_blank" title="Zum Filialfinder">
+<img src="https://img.srv2.de/bm/img/2/c/9/c/2c9cf43a11f34b6c88dd57181ffeab4b_5830.jpg" alt="Zum Filialfinder" width="640" height="41" border="0" style="display: block;">
+</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+</table>
+<!--Footer-Navi-->
+<table border="0" align="center" cellpadding="0" cellspacing="0"bgcolor="#ffffff" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;" class="backgroundTable">
+<tr>
+<td align="center" valign="top">
+
+<table width="640" border="0" cellpadding="0" cellspacing="0" bgcolor="#004a37" class="inner-table">
+<tr>
+<td width="29" height="34" bgcolor="#ffffff"><img src="https://img.srv2.de/bm/img/e/7/4/a/e74a107fd61c77cdc5bb64155b75a492_1277.jpg" alt="footer" style="display: block" width="29" height="34"/></td>
+<td align="center"><a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4B-QY11A70.html" title="Damen" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; text-decoration: none; color: #ffffff;"><span>Damen</span></a></td>
+<td align="center"><a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4C-6L214MD.html" title="Herren" style="font-family: Arial, Helvetica, sans-serif; font-size:16px; text-decoration: none; color: #ffffff;"><span>Herren</span></a></td>
+<td align="center"><a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4D-1CPSI9V.html" title="Kinder" style="font-family: Arial, Helvetica, sans-serif; font-size:16px; text-decoration: none; color: #ffffff;"><span>Kinder</span></a></td>
+<td align="center"><a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4E-JDUVR8.html" title="Wäsche" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; text-decoration: none; color: #ffffff;"><span>Wäsche</span></a></td>
+<td align="center"><a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4F-15E7EWO.html" title="Schuhe" style="font-family: Arial, Helvetica, sans-serif; font-size:16px; text-decoration: none; color: #ffffff;">Schuhe</a></td>
+<td align="center"><a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4G-PDLKE.html" title="Spielzeug" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; text-decoration: none; color: #ffffff;"><span>Spielzeug</span></a></td>
+<td align="center" bgcolor="#cc0000"><a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4H-123P2RP.html" title="sale" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; text-decoration: none; color: #ffffff;"><span>Sale</span></a></td>
+<td width="29" height="34" bgcolor="#ffffff"><img src="https://img.srv2.de/bm/img/d/d/6/a/dd6a3dd4fda47dce3cc00f5c4d7b028f_1332.jpg" alt="footer" style="display: block" width="29" height="34"/></td>
+</tr>
+</table>
+
+
+
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+<tr>
+<td width="29" height="21"><img src="https://img.srv2.de/bm/img/6/a/f/5/6af5a72d4fbdff35e4fde52876304ac2_1703.jpg" alt="footer" style="display: block" width="29" height="21" /></td>
+<td width="582" height="21" bgcolor="#f5f7f3"></td>
+<td width="29" height="21"><img src="https://img.srv2.de/bm/img/3/2/f/a/32fafb9b9542978c5b59083b6bb9e2eb_1756.jpg" alt="footer" style="display: block" width="29" height="21" /></td>
+</tr>
+<tr>
+<td width="29" height="25"><img src="https://img.srv2.de/bm/img/6/a/f/5/6af5a72d4fbdff35e4fde52876304ac2_1703.jpg" alt="footer" style="display: block" width="29" height="25" /></td>
+<td width="582" height="25" bgcolor="#f5f7f3" style="font-family: Arial, Helvetica, sans-serif; font-size: 10px"><span
+style="color: #006e3c; font-weight: bold; font-size: 14px">IMPRESSUM<br>
+</span></td>
+<td width="29" height="25"><img src="https://img.srv2.de/bm/img/3/2/f/a/32fafb9b9542978c5b59083b6bb9e2eb_1756.jpg" alt="footer" style="display: block" width="29" height="25" /></td>
+</tr>
+</table>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f5f7f3">
+<tr>
+<td width="29" height="175"><img src="https://img.srv2.de/bm/img/6/a/f/5/6af5a72d4fbdff35e4fde52876304ac2_1703.jpg" alt="footer" style="display: block" width="29" height="175" /></td>
+<td width="127" height="175" valign="top" bgcolor="#f5f7f3" style="font-family: Arial, Helvetica, sans-serif; font-size:10px">GALERIA Kaufhof
+GmbH <br>
+galeria-kaufhof.de <br>
+Leonhard-Tietz-Str. 1 <br>
+50676 Köln<br>
+<a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-1K898O4I-10EFN45.html" style="color: #006e3c">www.galeria-kaufhof.de</a>
+</td>
+<td width="155" height="175" valign="top" bgcolor="#f5f7f3" style="font-family: Arial, Helvetica, sans-serif; font-size:10px">Telefon:
+0800-664870103 <br>
+Telefax: 01805-285028* <br>
+Empfänger:<br>GALERIA Kaufhof GmbH<br>
+IBAN Nummer:<br>
+DE97370800400978268033<br>
+BIC: DRESDEFF370 <br>
+<br>
+* (0,14 €/Min. aus dem dt. Festnetz, max. 0,42 €/Min. aus
+Mobilfunknetzen)
+</td>
+<td width="155" height="175" valign="top" bgcolor="#f5f7f3" style="font-family: Arial, Helvetica, sans-serif; font-size:10px">Vorsitzender
+des Aufsichtsrats:<br>
+Donald Watros<br>
+Geschäftsführung:<br>
+Olivier Van den Bossche (Vorsitzender)<br>
+Edo Beukema<br>
+Klaus Hellmich<br>
+Guido Mager
+</td>
+<td width="145" height="175" valign="top" bgcolor="#f5f7f3" style="font-family: Arial, Helvetica, sans-serif; font-size:10px">Sitz der
+Gesellschaft: Köln Eingetragen: <br>
+Amtsgericht Köln <br>
+HRB Nr. 64081 <br>
+UST-ID DE811142395<br>
+WEEE-Reg.-Nr.
+DE80848693
+</td>
+<td width="29" height="175"><img src="https://img.srv2.de/bm/img/3/2/f/a/32fafb9b9542978c5b59083b6bb9e2eb_1756.jpg" alt="footer" style="display: block" width="29" height="175" /></td>
+</tr>
+</table>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="29" height="30"><img src="https://img.srv2.de/bm/img/6/a/f/5/6af5a72d4fbdff35e4fde52876304ac2_1703.jpg" alt="footer" style="display: block" width="29" height="31" /></td>
+<td width="582" height="30" bgcolor="#f5f7f3" style="color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 11px">Wenn Sie
+unseren Newsletter nicht mehr erhalten möchten, klicken Sie bitte <a target="_blank" href="http://news.galeria-kaufhof.de/go/13/1KEFMEA4-1K898O4Q-SEHXNI3-DB912NP-U.html?fromnl=standard&newsletter=newsletter/newsletter_20160207-kw-5-so/footer-nl-abmeldung" style="color: #006e3c">hier</a>. </td>
+<td width="29" height="30" bgcolor="#FFFFFF"><img src="https://img.srv2.de/bm/img/3/2/f/a/32fafb9b9542978c5b59083b6bb9e2eb_1756.jpg" alt="footer" style="display: block" width="29" height="31"/></td>
+</tr>
+</table>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tbody>
+<tr>
+<td width="640"><img src="https://img.srv2.de/bm/img/0/5/1/4/0514fea658455b8cbf6a62a281a7fc52_2508.jpg" alt="footer" style="display: block" width="640" height="33"></td>
+</tr>
+</tbody>
+</table>
+
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td width="30"></td>
+<td width="580">
+<span style="font-family: Arial, Helvetica, sans-serif;font-size: 10px; color: #666; font-weight: normal;">
+
+Alle Preisangaben verstehen sich, sofern im Einzelfallnicht ausdrÃŸcklich etwas anderes angegeben ist, inkl. MwSt. und zzgl.Versandkosten.
+<br />
+<br />
+</span>
+</td>
+<td width="30"></td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</center>
+<!-- [=op=] --><img src="https://tracking.srv2.de/op/13/1KEFMEA4-1K898O4Q-1BQ4MCP.gif" width="1" height="1" border="0" alt=""/><!-- [/=op=] --></body>
+</html>

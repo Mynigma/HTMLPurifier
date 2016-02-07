@@ -13,14 +13,10 @@
  */
 
 @interface HTMLPurifier_AttrDef_CSS_ListStyle : HTMLPurifier_AttrDef
-{
-/**
-     * Local copy of validators.
-     * @type HTMLPurifier_AttrDef[]
-     * @note See HTMLPurifier_AttrDef_CSS_Font::$info for a similar impl.
-     */
-    NSMutableDictionary* info;
-}
+
+
+@property NSDictionary* info;
+
 
 
 - (id)initWithConfig:(HTMLPurifier_Config*)config;

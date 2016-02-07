@@ -10,6 +10,25 @@
 
 @implementation HTMLPurifier_AttrDef_CSS_TextDecoration
 
+
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_TextDecoration class]])
+        return NO;
+    
+    return YES;
+}
+
+
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config

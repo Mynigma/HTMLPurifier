@@ -16,24 +16,70 @@
 - (id)init
 {
     self = [super init];
-    if (self) {
-        mask = [@"_- " mutableCopy];
-        for(unichar c='a'; c<'z'; c++)
-            [mask appendFormat:@"%c", c];
-        for(unichar c='A'; c<'Z'; c++)
-            [mask appendFormat:@"%c", c];
-        for(unichar c='0'; c<'9'; c++)
-            [mask appendFormat:@"%c", c];
-        for (NSInteger i = 0x80; i <= 0xFF; i++) {
-            // We don't bother excluding invalid bytes in this range,
-            // because the our restriction of well-formed UTF-8 will
-            // prevent these from ever occurring.
-            [mask appendFormat:@"%c", (unichar)i];
-        }
-
+    if (self)
+    {
+        NSMutableCharacterSet* tempMask = [NSMutableCharacterSet characterSetWithCharactersInString:@"_- "];
+        [tempMask addCharactersInRange:NSMakeRange('a', 'z' - 'a' + 1)];
+        [tempMask addCharactersInRange:NSMakeRange('A', 'Z' - 'A' + 1)];
+        [tempMask addCharactersInRange:NSMakeRange(0x80, 0xFF - 0x80 + 1)];
+        
+            _mask = tempMask;
     }
     return self;
 }
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _mask = [coder decodeObjectForKey:@"mask"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_mask forKey:@"mask"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_FontFamily class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.mask && ![(HTMLPurifier_AttrDef_CSS_FontFamily*)other mask]) || [self.mask isEqual:[(HTMLPurifier_AttrDef_CSS_FontFamily*)other mask]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_mask hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
      /**
      * @param string $string
@@ -177,7 +223,7 @@
             // Edgy: alphanumeric, spaces, dashes, underscores and Unicode.  Use of
             // str(c)spn assumes that the string was already well formed
             // Unicode (which of course it is).
-            if (strspn_2(font, mask) != font.length)
+            if ([font rangeOfCharacterFromSet:_mask.invertedSet].location != NSNotFound)
             {
                 continue;
             }

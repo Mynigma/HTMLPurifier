@@ -27,13 +27,74 @@
  * @param HTMLPurifier_AttrDef $def Definition to wrap
  * @param bool $allow Whether or not to allow !important
  */
--(id) initWithDef:(HTMLPurifier_AttrDef*)ndef AllowImportant:(NSNumber*)nallow
+- (id)initWithDef:(HTMLPurifier_AttrDef*)ndef AllowImportant:(NSNumber*)nallow
 {
     self = [super init];
-    def = ndef;
-    allow = nallow;
+    if (self) {
+        def = ndef;
+        allow = nallow;
+    }
     return self;
 }
+
+
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        def = [coder decodeObjectForKey:@"def"];
+        allow = [coder decodeObjectForKey:@"allow"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:def forKey:@"def"];
+    [encoder encodeObject:allow forKey:@"allow"];
+}
+
+
+- (BOOL)isEqual:(HTMLPurifier_AttrDef_CSS_ImportantDecorator*)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_ImportantDecorator class]])
+        return NO;
+
+    BOOL defEqual = (!self.def && ![other def]) || [self.def isEqual:[other def]];
+    BOOL allowEqual = (!self.allow && ![other allow]) || [self.allow isEqual:[other allow]];
+    
+    return defEqual && allowEqual;
+}
+
+- (NSUInteger)hash
+{
+    return [def hash] ^ [allow hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Intercepts and removes !important if necessary

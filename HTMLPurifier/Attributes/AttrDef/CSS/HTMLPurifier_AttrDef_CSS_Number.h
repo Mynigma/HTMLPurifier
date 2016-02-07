@@ -13,15 +13,12 @@
  * Validates a number as defined by the CSS spec.
  */
 @interface HTMLPurifier_AttrDef_CSS_Number : HTMLPurifier_AttrDef
-{
-    /**
-     * Indicates whether or not only positive values are allowed.
-     * @type bool
-     */
-    BOOL nonNegative;
-}
 
-- (id)initWithNonNegative:(BOOL)newNonNegative;
+
+@property NSNumber* nonNegative;
+
+
+- (id)initWithNonNegative:(NSNumber*)newNonNegative;
 
 
 - (NSString*)validateWithString:(NSString *)string config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context;

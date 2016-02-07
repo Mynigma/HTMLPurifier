@@ -9,7 +9,7 @@
 
 @implementation HTMLPurifier_Doctype
 
-- (id)initWithName:(NSString*)name xml:(BOOL)xml modules:(NSArray*)modules tidyModules:(NSArray*)tidyModules aliases:(NSArray*)aliases dtdPublic:(NSString*)dtdPublic dtdSystem:(NSString*)dtdSystem
+- (id)initWithName:(NSString*)name xml:(NSNumber*)xml modules:(NSArray*)modules tidyModules:(NSArray*)tidyModules aliases:(NSArray*)aliases dtdPublic:(NSString*)dtdPublic dtdSystem:(NSString*)dtdSystem
 {
     self = [super init];
     if (self) {
@@ -26,13 +26,13 @@
 
 - (id)initWithName:(NSString*)name
 {
-    return [self initWithName:name xml:YES modules:[NSMutableArray new] tidyModules:[NSMutableArray new] aliases:[NSMutableArray new] dtdPublic:nil dtdSystem:nil];
+    return [self initWithName:name xml:@YES modules:[NSMutableArray new] tidyModules:[NSMutableArray new] aliases:[NSMutableArray new] dtdPublic:nil dtdSystem:nil];
 }
 
 
 - (id)init
 {
-    return [self initWithName:nil xml:YES modules:[NSMutableArray new] tidyModules:[NSMutableArray new] aliases:[NSMutableArray new] dtdPublic:nil dtdSystem:nil];
+    return [self initWithName:nil xml:@YES modules:[NSMutableArray new] tidyModules:[NSMutableArray new] aliases:[NSMutableArray new] dtdPublic:nil dtdSystem:nil];
 }
 
 - (id)copyWithZone:(NSZone *)zone

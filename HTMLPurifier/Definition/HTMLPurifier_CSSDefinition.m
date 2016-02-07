@@ -39,11 +39,59 @@
 {
     self = [super init];
     if (self) {
-        _typeString = @"CSS";
+        self.type = @"CSS";
         _info = [NSMutableDictionary new];
     }
     return self;
 }
+
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _info = [coder decodeObjectForKey:@"info"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:self.info forKey:@"info"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_CSSDefinition class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.info && ![(HTMLPurifier_CSSDefinition*)other info]) || [self.info isEqual:[(HTMLPurifier_CSSDefinition*)other info]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [self.info hash] ^ [super hash];
+}
+
+
+
+
+
+
+
 
 - (void)doSetup:(HTMLPurifier_Config*)config
 {
@@ -85,7 +133,7 @@
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:color_or_transparent] forKey:@"border-color"];
     
     // border-top-left-radius border-top-right-radius border-bottom-left-radius border-bottom-right-radius
-    HTMLPurifier_AttrDef_CSS_Composite* border_radius = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"initial"]],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:2],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Percentage new] max:2]]];
+    HTMLPurifier_AttrDef_CSS_Composite* border_radius = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"initial"]],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:@2],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Percentage new] max:@2]]];
     [self.info setObject:border_radius forKey:@"border-top-left-radius"];
     [self.info setObject:border_radius forKey:@"border-top-right-radius"];
     [self.info setObject:border_radius forKey:@"border-bottom-right-radius"];
@@ -95,7 +143,7 @@
     [self.info setObject:[HTMLPurifier_AttrDef_CSS_BorderRadius new] forKey:@"border-radius"];
 
     // border-spacing
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:2] forKey:@"border-spacing"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:@2] forKey:@"border-spacing"];
 
     // border-style
     HTMLPurifier_AttrDef_Enum* border_style = [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"none", @"hidden", @"dotted", @"dashed", @"solid", @"double", @"groove", @"ridge", @"inset", @"outset"] caseSensitive:NO];
@@ -193,15 +241,15 @@
     
     // line-height
     // is needed for multivalue element "font"
-    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]] forKey:@"line-height"];
+    [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"normal"]], [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:@YES], [[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:@YES]]] forKey:@"line-height"];
     
     // font
     [self.info setObject:[[HTMLPurifier_AttrDef_CSS_Font alloc] initWithConfig:config] forKey:@"font"];
 
     // max img width from config
-    HTMLPurifier_AttrDef_CSS_Composite* trusted_wh = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
+    HTMLPurifier_AttrDef_CSS_Composite* trusted_wh = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:@YES], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
     NSNumber* max = (NSNumber*)[config get:@"CSS.MaxImgLength"];
-    HTMLPurifier_AttrDef_CSS_Composite* composite = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0" max:max], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
+    HTMLPurifier_AttrDef_CSS_Composite* composite = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0" max:max], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:@YES], [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"auto"]]]];
     HTMLPurifier_AttrDef* maxLength = (max==nil) ? trusted_wh:[[HTMLPurifier_AttrDef_Switch alloc] initWithTag:@"img" withTag:composite withoutTag:trusted_wh];
     
     // height
@@ -272,7 +320,7 @@
     [self.info setObject:[[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:@[@"visible",@"hidden",@"auto",@"scroll"]] forKey:@"overflow"];
     
     // padding-top padding-right padding-bottom padding-left
-    HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:YES]]];
+    HTMLPurifier_AttrDef_CSS_Composite* padding = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Length alloc] initWithMin:@"0"], [[HTMLPurifier_AttrDef_CSS_Percentage alloc] initWithNonNegative:@YES]]];
     [self.info setObject:padding forKey:@"padding-top"];
     [self.info setObject:padding forKey:@"padding-bottom"];
     [self.info setObject:padding forKey:@"padding-left"];
@@ -401,6 +449,9 @@
         }
     }
 }
+
+
+
 
 
 @end

@@ -41,8 +41,6 @@
 
 @end
 
-static HTMLPurifier_Lexer_libxmlLex* commonLexer;
-
 @implementation ValidateAttributesTest
 
 - (void)setUp
@@ -54,9 +52,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
     to_html = YES;
     to_tokens = YES;
     func = @selector(execute:config:context:);
-    if(!commonLexer)
-        commonLexer = (HTMLPurifier_Lexer_libxmlLex*)[HTMLPurifier_Lexer_libxmlLex createWithConfig:[super config]];
-    lexer = commonLexer;
+    lexer = (HTMLPurifier_Lexer_libxmlLex*)[HTMLPurifier_Lexer_libxmlLex createWithConfig:[super config]];
 }
 
 

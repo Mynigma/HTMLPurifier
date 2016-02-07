@@ -14,17 +14,66 @@
 
 - (id)init
 {
-    return [self initWithNonNegative:NO];
+    return [self initWithNonNegative:@NO];
 }
 
-- (id)initWithNonNegative:(BOOL)newNonNegative
+- (id)initWithNonNegative:(NSNumber*)newNonNegative
 {
     self = [super init];
     if (self) {
-        nonNegative = newNonNegative;
+        _nonNegative = newNonNegative;
     }
     return self;
 }
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _nonNegative = [coder decodeObjectForKey:@"nonNegative"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_nonNegative forKey:@"nonNegative"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Number class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.nonNegative && ![(HTMLPurifier_AttrDef_CSS_Number*)other nonNegative]) || [self.nonNegative isEqual:[(HTMLPurifier_AttrDef_CSS_Number*)other nonNegative]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_nonNegative hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
     /**
      * @param string $number
      * @param HTMLPurifier_Config $config
@@ -48,7 +97,7 @@
         switch ([string characterAtIndex:0])
         {
             case '-':
-                if (self->nonNegative) {
+                if (self.nonNegative.boolValue) {
                     return nil;
                 }
                 sign = [@"-" mutableCopy];

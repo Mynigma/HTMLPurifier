@@ -17,6 +17,23 @@
 
 @implementation HTMLPurifier_AttrDef_CSS_BorderRadius
 
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_BorderRadius class]])
+        return NO;
+    
+    return YES;
+}
+
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config
@@ -37,7 +54,7 @@
         return nil;
     }
     
-    HTMLPurifier_AttrDef_CSS_Composite* validate = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:4],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Percentage new] max:4]]];
+    HTMLPurifier_AttrDef_CSS_Composite* validate = [[HTMLPurifier_AttrDef_CSS_Composite alloc] initWithDefs:@[[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Length new] max:@4],[[HTMLPurifier_AttrDef_CSS_Multiple alloc] initWithSingle:[HTMLPurifier_AttrDef_CSS_Percentage new] max:@4]]];
     
     if (bits.count == 1) {
         return [validate validateWithString:bits[0] config:config context:context];

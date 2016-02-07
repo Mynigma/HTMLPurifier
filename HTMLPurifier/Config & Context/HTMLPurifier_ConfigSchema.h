@@ -16,7 +16,5 @@
 @property NSMutableDictionary* info;
 
 
-+ (HTMLPurifier_ConfigSchema*)singleton;
-
 
 @end

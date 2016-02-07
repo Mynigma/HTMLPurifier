@@ -7,16 +7,12 @@
 
 #import <XCTest/XCTest.h>
 #import "HTMLPurifier_Harness.h"
-#import "HTMLPurifier_EntityLookup.h"
 #import "HTMLPurifier_Encoder.h"
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 
 
 @interface HTMLPurifier_EncoderTest : HTMLPurifier_Harness
-{
-    HTMLPurifier_EntityLookup* entityLookup;
-}
 
 @end
 
@@ -24,7 +20,6 @@
 
 - (void)setUp
 {
-    entityLookup = [HTMLPurifier_EntityLookup instance];
     [super createCommon];
     [super setUp];
 }

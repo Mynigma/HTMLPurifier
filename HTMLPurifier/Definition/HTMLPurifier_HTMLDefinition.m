@@ -12,6 +12,9 @@
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_ContentSets.h"
 #import "BasicPHP.h"
+#import <objc/runtime.h>
+
+
 
 
 @implementation HTMLPurifier_HTMLDefinition
@@ -21,8 +24,8 @@
 {
     self = [super init];
     if (self) {
-        _info = [NSMutableDictionary new];
-        _info_global_attr = [NSMutableDictionary new];
+        _info = [NSDictionary new];
+        _info_global_attr = [NSDictionary new];
         _info_parent = @"div";
         _info_block_wrapper = @"p";
         _info_tag_transform = [NSMutableDictionary new];
@@ -31,11 +34,65 @@
         _info_content_sets = [NSMutableDictionary new];
         _info_injector = [NSMutableDictionary new];
         _anonModule = nil;
-        _typeString = @"HTML";
+        self.type = @"HTML";
         _manager = [HTMLPurifier_HTMLModuleManager new];
     }
     return self;
 }
+
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if (self) {
+        
+        @autoreleasepool
+        {
+            unsigned int numberOfProperties = 0;
+            objc_property_t* propertyArray = class_copyPropertyList([self class], &numberOfProperties);
+            
+            for (NSUInteger i = 0; i < numberOfProperties; i++)
+            {
+                objc_property_t property = propertyArray[i];
+                NSString *propertyName = [[NSString alloc] initWithUTF8String:property_getName(property)];
+                //            NSString *attributesString = [[NSString alloc] initWithUTF8String:property_getAttributes(property)];
+                
+                NSObject* value = [coder decodeObjectForKey:propertyName];
+                [self setValue:value forKey:propertyName];
+            }
+            free(propertyArray);
+        }
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)coder
+{
+    @autoreleasepool
+    {
+        unsigned int numberOfProperties = 0;
+        objc_property_t* propertyArray = class_copyPropertyList([self class], &numberOfProperties);
+        
+        for (NSUInteger i = 0; i < numberOfProperties; i++)
+        {
+            objc_property_t property = propertyArray[i];
+            NSString *propertyName = [[NSString alloc] initWithUTF8String:property_getName(property)];
+            //            NSString *attributesString = [[NSString alloc] initWithUTF8String:property_getAttributes(property)];
+            
+            
+            [coder encodeObject:[self valueForKey:propertyName] forKey:propertyName];
+        }
+        free(propertyArray);
+    }
+}
+
+
+
+
+
+
+
+
 
 // RAW CUSTOMIZATION STUFF --------------------------------------------
 

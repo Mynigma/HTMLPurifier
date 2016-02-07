@@ -40,13 +40,13 @@
         [self addElement:@"samp" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
         [self addElement:@"var" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
         HTMLPurifier_ElementDef* em = [self addElement:@"em" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        em.formatting = YES;
+        em.formatting = @YES;
 
         HTMLPurifier_ElementDef* strong = [self addElement:@"strong" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        strong.formatting = YES;
+        strong.formatting = @YES;
 
         HTMLPurifier_ElementDef* code = [self addElement:@"code" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        code.formatting = YES;
+        code.formatting = @YES;
 
         [self addElement:@"span" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
         [self addElement:@"br" type:@"Inline" contents:@"Empty" attrIncludes:@"Core" attr:nil];

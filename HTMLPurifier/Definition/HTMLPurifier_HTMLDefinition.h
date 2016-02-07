@@ -39,13 +39,6 @@
 }
 
 
-// PUBLIC BUT INTERNAL VARIABLES --------------------------------------
-
-/**
- * @type string
- */
-@property NSString* typeString;
-
 /**
  * @type HTMLPurifier_HTMLModuleManager
  */
@@ -59,13 +52,13 @@
      * Associative array of element names to HTMLPurifier_ElementDef.
      * @type HTMLPurifier_ElementDef[]
      */
-@property NSMutableDictionary* info;
+@property NSDictionary* info;
 
     /**
      * Associative array of global attribute name to attribute definition.
      * @type array
      */
-@property NSMutableDictionary* info_global_attr;
+@property NSDictionary* info_global_attr;
 
     /**
      * String name of parent element HTML will be going into.

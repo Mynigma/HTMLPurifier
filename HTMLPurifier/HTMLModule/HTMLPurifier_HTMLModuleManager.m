@@ -48,16 +48,16 @@
         NSArray* non_xml = @[@"NonXMLCommonAttributes"];
 
         // setup basic doctypes
-        [_doctypes registerDoctype:@"HTML 4.01 Transitional" xml:NO modules:[[common arrayByAddingObjectsFromArray:transitional] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Transitional", @"Tidy_Proprietary"] aliases:@[] dtdPublic:@"-//W3C//DTD HTML 4.01 Transitional//EN" dtdSystem:@"http://www.w3.org/TR/html4/loose.dtd"];
+        [_doctypes registerDoctype:@"HTML 4.01 Transitional" xml:@NO modules:[[common arrayByAddingObjectsFromArray:transitional] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Transitional", @"Tidy_Proprietary"] aliases:@[] dtdPublic:@"-//W3C//DTD HTML 4.01 Transitional//EN" dtdSystem:@"http://www.w3.org/TR/html4/loose.dtd"];
 
 
-        [_doctypes registerDoctype:@"HTML 4.01 Strict" xml:NO modules:[common arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Strict", @"Tidy_Proprietary", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD HTML 4.01//EN" dtdSystem:@"http://www.w3.org/TR/html4/strict.dtd"];
+        [_doctypes registerDoctype:@"HTML 4.01 Strict" xml:@NO modules:[common arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Strict", @"Tidy_Proprietary", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD HTML 4.01//EN" dtdSystem:@"http://www.w3.org/TR/html4/strict.dtd"];
 
-        [_doctypes registerDoctype:@"XHTML 1.0 Transitional" xml:YES modules:[[[common arrayByAddingObjectsFromArray:transitional] arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Transitional", @"Tidy_XHTML", @"Tidy_Proprietary", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.0 Transitional//EN" dtdSystem:@"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"];
+        [_doctypes registerDoctype:@"XHTML 1.0 Transitional" xml:@YES modules:[[[common arrayByAddingObjectsFromArray:transitional] arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Transitional", @"Tidy_XHTML", @"Tidy_Proprietary", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.0 Transitional//EN" dtdSystem:@"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"];
 
-        [_doctypes registerDoctype:@"XHTML 1.0 Strict" xml:YES modules:[[common arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Strict", @"Tidy_XHTML", @"Tidy_Strict", @"Tidy_Proprietary", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.0 Strict//EN" dtdSystem:@"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"];
+        [_doctypes registerDoctype:@"XHTML 1.0 Strict" xml:@YES modules:[[common arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:non_xml] tidy_modules:@[@"Tidy_Strict", @"Tidy_XHTML", @"Tidy_Strict", @"Tidy_Proprietary", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.0 Strict//EN" dtdSystem:@"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"];
 
-        [_doctypes registerDoctype:@"XHTML 1.1" xml:YES modules:[[common arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:@[@"Ruby", @"Iframe"]] tidy_modules:@[@"Tidy_Strict", @"Tidy_XHTML", @"Tidy_Proprietary", @"Tidy_Strict", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.1//EN" dtdSystem:@"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"];
+        [_doctypes registerDoctype:@"XHTML 1.1" xml:@YES modules:[[common arrayByAddingObjectsFromArray:xml] arrayByAddingObjectsFromArray:@[@"Ruby", @"Iframe"]] tidy_modules:@[@"Tidy_Strict", @"Tidy_XHTML", @"Tidy_Proprietary", @"Tidy_Strict", @"Tidy_Name"] aliases:@[] dtdPublic:@"-//W3C//DTD XHTML 1.1//EN" dtdSystem:@"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"];
 
     }
     return self;
@@ -394,7 +394,7 @@
         // make no difference, but for consistency's sake
         HTMLPurifier_ElementDef* new_def = [module.info[name] copy];
 
-        if (!def && new_def.standalone) {
+        if (!def && new_def.standalone.boolValue) {
             def = new_def;
         } else if (def) {
             // This will occur even if $new_def is standalone. In practice,
@@ -425,7 +425,7 @@
             if (![name isEqual:@"del"] && ![name isEqual:@"ins"])
             {
                 // this is for you, ins/del
-                def.descendants_are_inline = YES;
+                def.descendants_are_inline = @YES;
             }
         }
 

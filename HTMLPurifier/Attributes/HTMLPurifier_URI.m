@@ -60,7 +60,7 @@
  */
 -(HTMLPurifier_URIScheme*) getSchemeObj:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    HTMLPurifier_URISchemeRegistry* registry = [HTMLPurifier_URISchemeRegistry instance:nil];
+    HTMLPurifier_URISchemeRegistry* registry = [context URISchemeRegistryInstance:nil];
     HTMLPurifier_URIScheme* scheme_obj = nil;
     if (self.scheme)
     {

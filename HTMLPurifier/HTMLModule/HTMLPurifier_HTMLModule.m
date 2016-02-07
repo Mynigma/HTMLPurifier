@@ -124,7 +124,7 @@
     if (element && !self.info[element]) {
         [self.elements addObject:element];
         self.info[element] = [HTMLPurifier_ElementDef new];
-        [self.info[element] setStandalone:NO];
+        [(HTMLPurifier_ElementDef*)self.info[element] setStandalone:@NO];
     } else {
         TRIGGER_ERROR(@"Definition for $element already exists in module, cannot redefine");
     }

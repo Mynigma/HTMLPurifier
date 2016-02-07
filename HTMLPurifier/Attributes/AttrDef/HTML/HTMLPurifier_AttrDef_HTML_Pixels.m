@@ -33,6 +33,52 @@
     return [self initWithMax:nil];
 }
 
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        max = [coder decodeObjectForKey:@"max"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:max forKey:@"max"];
+}
+
+
+- (BOOL)isEqual:(HTMLPurifier_AttrDef_HTML_Pixels*)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_HTML_Pixels class]])
+        return NO;
+    
+    BOOL maxEqual = (!self.max && ![other max]) || [self.max isEqual:[other max]];
+    
+    return maxEqual;
+}
+
+- (NSUInteger)hash
+{
+    return [max hash] ^ [super hash];
+}
+
+
+
+
+
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config

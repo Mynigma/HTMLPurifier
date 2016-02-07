@@ -43,13 +43,13 @@
         [self addElement:@"menu" type:@"Block" contents:@"Required: li" attrIncludes:@"Common" attr:@{@"compact":@"Bool#compact"}];
 
         HTMLPurifier_ElementDef* s = [self addElement:@"s" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        s.formatting = YES;
+        s.formatting = @YES;
 
         HTMLPurifier_ElementDef* strike = [self addElement:@"strike" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        strike.formatting = YES;
+        strike.formatting = @YES;
 
         HTMLPurifier_ElementDef* u = [self addElement:@"u" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        u.formatting = YES;
+        u.formatting = @YES;
 
         // setup modifications to old elements
 

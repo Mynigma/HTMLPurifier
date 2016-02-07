@@ -10,15 +10,12 @@
 @class HTMLPurifier_AttrDef_CSS_Number, HTMLPurifier_Config, HTMLPurifier_Context;
 
 @interface HTMLPurifier_AttrDef_CSS_Percentage : HTMLPurifier_AttrDef
-{
-    /**
-     * Instance to defer number validation to.
-     * @type HTMLPurifier_AttrDef_CSS_Number
-     */
-    HTMLPurifier_AttrDef_CSS_Number* numberDef;
-}
 
-- (id)initWithNonNegative:(BOOL)nonNegative;
+
+@property HTMLPurifier_AttrDef_CSS_Number* numberDef;
+
+
+- (id)initWithNonNegative:(NSNumber*)nonNegative;
 
 /**
  * @param string $string

@@ -13,18 +13,22 @@
 @implementation HTMLPurifier_AttrDef_CSS_Font
 
 
+
+
+
 - (id)initWithConfig:(HTMLPurifier_Config*)config
 {
     self = [super init];
     if (self) {
-        info = [NSMutableDictionary new];
+        NSMutableDictionary* tempInfo = [NSMutableDictionary new];
         HTMLPurifier_CSSDefinition* def = [config getCSSDefinition];
-        info[@"font-style"] = def.info[@"font-style"];
-        info[@"font-variant"] = def.info[@"font-variant"];
-        info[@"font-weight"] = def.info[@"font-weight"];
-        info[@"font-size"] = def.info[@"font-size"];
-        info[@"line-height"] = def.info[@"line-height"];
-        info[@"font-family"] = def.info[@"font-family"];
+        tempInfo[@"font-style"] = def.info[@"font-style"];
+        tempInfo[@"font-variant"] = def.info[@"font-variant"];
+        tempInfo[@"font-weight"] = def.info[@"font-weight"];
+        tempInfo[@"font-size"] = def.info[@"font-size"];
+        tempInfo[@"line-height"] = def.info[@"line-height"];
+        tempInfo[@"font-family"] = def.info[@"font-family"];
+        _info = tempInfo;
     }
     return self;
 }
@@ -33,10 +37,55 @@
 {
     self = [super init];
     if (self) {
-        info = [NSMutableDictionary new];
+        _info = [NSMutableDictionary new];
     }
     return self;
 }
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _info = [coder decodeObjectForKey:@"info"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_info forKey:@"info"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Font class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.info && ![(HTMLPurifier_AttrDef_CSS_Font*)other info]) || [self.info isEqual:[(HTMLPurifier_AttrDef_CSS_Font*)other info]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_info hash] ^ [super hash];
+}
+
+
+
+
+
 
 
     /**
@@ -87,7 +136,7 @@
                         if (caught[validator_name]) {
                             continue;
                         }
-                        r = [info[validator_name] validateWithString:bits[i] config:config context:context];
+                        r = [self.info[validator_name] validateWithString:bits[i] config:config context:context];
                         if (r) {
                             [final appendFormat:@"%@ ", r];
                             caught[validator_name] = @YES;
@@ -126,7 +175,7 @@
                         line_height = nil;
                     }
                     NSInteger j;
-                    r = [info[@"font-size"] validateWithString:font_size config:config context:context];
+                    r = [self.info[@"font-size"] validateWithString:font_size config:config context:context];
                     if (r) {
                         [final appendString:r];
                         // attempt to catch line-height
@@ -156,7 +205,7 @@
                         }
                         if (found_slash) {
                             i = j;
-                            r = [info[@"line-height"] validateWithString:line_height config:config context:context];
+                            r = [self.info[@"line-height"] validateWithString:line_height config:config context:context];
                             if (r) {
                                 [final appendFormat:@"/%@", r];
                             }
@@ -171,7 +220,7 @@
                 {
                     // attempting to catch font-family
                     NSString* font_family = implode(@" ", array_slice_3(bits, i, size - i));
-                    r = [info[@"font-family"] validateWithString:font_family config:config context:context];
+                    r = [self.info[@"font-family"] validateWithString:font_family config:config context:context];
                     if (r) {
                         [final appendFormat:@"%@ ", r];
                         // processing completed successfully

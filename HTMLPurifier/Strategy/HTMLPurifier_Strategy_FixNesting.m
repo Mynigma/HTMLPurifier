@@ -42,7 +42,7 @@
     // is 'false' when we are not inline, 'true' when it must always
     // be inline, and an integer when it is inline for a certain
     // branch of the document tree
-    BOOL isInline = [[definition info_parent_def] descendants_are_inline];
+    BOOL isInline = [[definition info_parent_def] descendants_are_inline].boolValue;
     [context registerWithName:@"IsInline" ref:@(isInline)];
 
     //####################################################################//
@@ -92,7 +92,7 @@
     // children.
 
     HTMLPurifier_ElementDef* parentDef = [definition info_parent_def];
-    NSMutableArray* stack = [@[@[topNode, @([parentDef descendants_are_inline]), [parentDef excludes], @0]] mutableCopy];
+    NSMutableArray* stack = [@[@[topNode, [parentDef descendants_are_inline], [parentDef excludes], @0]] mutableCopy];
 
     NSInteger ix = 0;
 
@@ -128,7 +128,7 @@
                 [stack addObject:@[child,
                                    // ToDo: I don't think it matters if it's def or
                                    // child_def, but double check this...
-                                   @(isInline || [def descendants_are_inline]),
+                                   @(isInline || [def descendants_are_inline].boolValue),
                                    ([[def excludes] count]==0) ? excludes
                                    : dict_merge_2(excludes, [def excludes]),
                                    @0]];

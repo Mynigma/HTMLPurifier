@@ -29,6 +29,55 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        name = [coder decodeObjectForKey:@"name"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:name forKey:@"name"];
+}
+
+
+- (BOOL)isEqual:(HTMLPurifier_AttrDef_HTML_Bool*)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_HTML_Bool class]])
+        return NO;
+    
+    BOOL nameEqual = (!self.name && ![other name]) || [self.name isEqual:[other name]];
+    
+    return nameEqual;
+}
+
+- (NSUInteger)hash
+{
+    return [name hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config

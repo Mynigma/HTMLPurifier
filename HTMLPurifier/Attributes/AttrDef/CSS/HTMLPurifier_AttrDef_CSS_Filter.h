@@ -21,6 +21,6 @@
  */
 @property HTMLPurifier_AttrDef_Integer*  intValidator;
 
--(id) init;
+- (id)init;
 
 @end

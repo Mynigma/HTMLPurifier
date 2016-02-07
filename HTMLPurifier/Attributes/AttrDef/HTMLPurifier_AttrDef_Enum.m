@@ -12,16 +12,16 @@
 
 - (id)init
 {
-    return [self initWithValidValues:nil caseSensitive:NO];
+    return [self initWithValidValues:nil caseSensitive:@NO];
 }
 
 - (id)initWithValidValues:(NSArray*)array
 {
-    return [self initWithValidValues:array caseSensitive:NO];
+    return [self initWithValidValues:array caseSensitive:@NO];
 }
 
 
-- (id)initWithValidValues:(NSArray*)array caseSensitive:(BOOL)newCaseSensitive
+- (id)initWithValidValues:(NSArray*)array caseSensitive:(NSNumber*)newCaseSensitive
 {
     self = [super init];
     if (self) {
@@ -31,10 +31,62 @@
     return self;
 }
 
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super init];
+    if (self) {
+        _validValues = [coder decodeObjectForKey:@"validValues"];
+        _caseSensitive = [coder decodeObjectForKey:@"caseSensitive"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [encoder encodeObject:_validValues forKey:@"validValues"];
+    [encoder encodeObject:_caseSensitive forKey:@"caseSensitive"];
+}
+
+
+- (BOOL)isEqual:(HTMLPurifier_AttrDef_Enum*)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_Enum class]])
+        return NO;
+    
+    BOOL validValuesEqual = (!self.validValues && ![other validValues]) || [self.validValues isEqual:[other validValues]];
+    BOOL caseSensitiveEqual = (!self.caseSensitive && ![other caseSensitive]) || [self.caseSensitive isEqual:[other caseSensitive]];
+    
+    return validValuesEqual && caseSensitiveEqual;
+}
+
+- (NSUInteger)hash
+{
+    return [_validValues hash] ^ [_caseSensitive hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context *)context
 {
     NSString* newString = trim(string);
-    if(!self.caseSensitive)
+    if(!self.caseSensitive.boolValue)
     {
         newString = [newString lowercaseString];
     }
@@ -61,7 +113,7 @@
         sensitive = NO;
     }
     NSArray* values = explode(@",", string);
-    return [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:values caseSensitive:sensitive];
+    return [[HTMLPurifier_AttrDef_Enum alloc] initWithValidValues:values caseSensitive:@(sensitive)];
 }
 
 - (id)copyWithZone:(NSZone *)zone
@@ -74,18 +126,5 @@
     return newAttrDef;
 }
 
-// For testing
--(BOOL) isEqual:(HTMLPurifier_AttrDef_Enum*)object
-{
-    if(![object isKindOfClass:[HTMLPurifier_AttrDef_Enum class]])
-        return NO;
-
-    return [_validValues isEqual:object.validValues] && (_caseSensitive == object.caseSensitive);
-}
-
--(NSUInteger) hash
-{
-    return [_validValues hash] + [[NSNumber numberWithBool:_caseSensitive] hash];
-}
 
 @end

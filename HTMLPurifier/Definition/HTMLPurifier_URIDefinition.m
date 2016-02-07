@@ -18,6 +18,7 @@
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_URIParser.h"
 #import "HTMLPurifier_URISchemeRegistry.h"
+#import "HTMLPurifier_Context.h"
 
 
 @implementation HTMLPurifier_URIDefinition
@@ -44,7 +45,7 @@
 {
     self = [super init];
 
-    _typeString = @"URI";
+    self.type = @"URI";
     _filters = [NSMutableDictionary new];
     _postFilters = [NSMutableDictionary new];
 
@@ -130,7 +131,7 @@
 
 -(HTMLPurifier_URIScheme*) getDefaultScheme:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context
 {
-    return [[HTMLPurifier_URISchemeRegistry instance:nil] getScheme:defaultScheme config:config context:context];
+    return [[context URISchemeRegistryInstance:nil] getScheme:defaultScheme config:config context:context];
 }
 
 -(BOOL) filter:(HTMLPurifier_URI**)uri config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context

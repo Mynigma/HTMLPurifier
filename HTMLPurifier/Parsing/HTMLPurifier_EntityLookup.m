@@ -10,23 +10,17 @@
 #define BUNDLE (NSClassFromString(@"HTMLPurifierTests")!=nil)?[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifierTests") class]]:[NSBundle bundleForClass:[NSClassFromString(@"HTMLPurifier") class]]
 
 
-static HTMLPurifier_EntityLookup* commonLookup;
 
 @implementation HTMLPurifier_EntityLookup
 
 
 - (id)init
 {
-    if(commonLookup)
-        return commonLookup;
-
     self = [super init];
     if (self) {
         NSURL* plistURL = [BUNDLE URLForResource:@"entities" withExtension:@"plist"];
 
         _table = [NSMutableDictionary dictionaryWithContentsOfURL:plistURL];
-
-        commonLookup = self;
     }
     return self;
 }

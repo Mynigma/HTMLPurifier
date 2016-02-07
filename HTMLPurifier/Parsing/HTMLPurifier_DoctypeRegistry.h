@@ -39,7 +39,7 @@
  * @param string $dtd_system
  * @return HTMLPurifier_Doctype Editable registered doctype
  */
-- (HTMLPurifier_Doctype*)registerDoctype:(NSObject*)doctype xml:(BOOL)xml modules:(NSArray*)modules tidy_modules:(NSArray*)tidy_modules aliases:(NSArray*)newAliases dtdPublic:(NSString*)dtd_public dtdSystem:(NSString*)dtd_system;
+- (HTMLPurifier_Doctype*)registerDoctype:(NSObject*)doctype xml:(NSNumber*)xml modules:(NSArray*)modules tidy_modules:(NSArray*)tidy_modules aliases:(NSArray*)newAliases dtdPublic:(NSString*)dtd_public dtdSystem:(NSString*)dtd_system;
 
 /**
  * Retrieves reference to a doctype of a certain name

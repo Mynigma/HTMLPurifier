@@ -13,10 +13,61 @@
 {
     self = [super init];
     if (self) {
-        _defs = [newDefs mutableCopy];
+        _defs = newDefs;
     }
     return self;
 }
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _defs = [coder decodeObjectForKey:@"defs"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_defs forKey:@"defs"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Composite class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.defs && ![(HTMLPurifier_AttrDef_CSS_Composite*)other defs]) || [self.defs isEqual:[(HTMLPurifier_AttrDef_CSS_Composite*)other defs]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_defs hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @param string $string
      * @param HTMLPurifier_Config $config

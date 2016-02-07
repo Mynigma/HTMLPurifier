@@ -54,15 +54,15 @@
 }
 
 
--(HTMLPurifier_URISchemeRegistry*) setUpSchemeRegistryMock
+- (HTMLPurifier_URISchemeRegistry*)setUpSchemeRegistryMock
 {
-    oldRegistry = [HTMLPurifier_URISchemeRegistry instance:nil];
+    oldRegistry = [self.context URISchemeRegistryInstance:nil];
     
     //generate_mock_once('HTMLPurifier_URIScheme');
     //generate_mock_once('HTMLPurifier_URISchemeRegistry');
     id registrySchemeMock = [OCMockObject mockForClass:[HTMLPurifier_URISchemeRegistry class]];
 
-    HTMLPurifier_URISchemeRegistry * registry = [HTMLPurifier_URISchemeRegistry instance:registrySchemeMock];
+    HTMLPurifier_URISchemeRegistry * registry = [self.context URISchemeRegistryInstance:registrySchemeMock];
     return registry;
 }
 
@@ -92,7 +92,7 @@
 
 - (void)tearDownSchemeRegistryMock
 {
-    [HTMLPurifier_URISchemeRegistry instance:oldRegistry];
+    [self.context URISchemeRegistryInstance:oldRegistry];
 }
 
 

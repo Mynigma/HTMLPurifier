@@ -44,8 +44,6 @@
 
 @end
 
-static HTMLPurifier_Lexer_libxmlLex* commonLexer;
-
 @implementation HTMLPurifier_RemoveForeignElementsTest
 
 - (void)setUp
@@ -57,9 +55,7 @@ static HTMLPurifier_Lexer_libxmlLex* commonLexer;
     to_tokens = YES;
     func = @selector(execute:config:context:);
     obj = [HTMLPurifier_Strategy_RemoveForeignElements new];
-    if(!commonLexer)
-        commonLexer = (HTMLPurifier_Lexer_libxmlLex*)[HTMLPurifier_Lexer_libxmlLex createWithConfig:[super config]];
-    lexer = commonLexer;
+    lexer = (HTMLPurifier_Lexer_libxmlLex*)[HTMLPurifier_Lexer_libxmlLex createWithConfig:[super config]];
 }
 
 - (void)tearDown

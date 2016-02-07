@@ -141,7 +141,7 @@
         HTMLPurifier_ElementDef* def = [module addBlankElement:@"a"];
 
         HTMLPurifier_ElementDef* def2 = [HTMLPurifier_ElementDef new];
-        def2.standalone = NO;
+        def2.standalone = @NO;
 
         XCTAssertEqual(module.info[@"a"], def);
         XCTAssertEqualObjects(def, def2);

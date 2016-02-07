@@ -32,19 +32,19 @@
         [self addElement:@"sup" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
 
         HTMLPurifier_ElementDef* b = [self addElement:@"b" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        b.formatting = YES;
+        b.formatting = @YES;
 
         HTMLPurifier_ElementDef* big = [self addElement:@"big" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        big.formatting = YES;
+        big.formatting = @YES;
 
         HTMLPurifier_ElementDef* i = [self addElement:@"i" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        i.formatting = YES;
+        i.formatting = @YES;
 
         HTMLPurifier_ElementDef* small = [self addElement:@"small" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        small.formatting = YES;
+        small.formatting = @YES;
 
         HTMLPurifier_ElementDef* tt = [self addElement:@"tt" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:nil];
-        tt.formatting = YES;
+        tt.formatting = @YES;
 
     }
     return self;

@@ -16,6 +16,25 @@
 @implementation HTMLPurifier_AttrDef_CSS_Shape
 
 
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Shape class]])
+        return NO;
+    
+    return YES;
+}
+
+
+
+
+
 /**
  * Valid: rect(25px,5em,auto,7px)
  * @param string $string

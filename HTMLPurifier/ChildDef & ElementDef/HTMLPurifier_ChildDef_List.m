@@ -40,7 +40,7 @@
 - (NSObject*)validateChildren:(NSArray*)children config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
     {
         // Flag for subclasses
-        self->whitespace = NO;
+        self.whitespace = @NO;
 
         // if there are no tokens, delete parent node
         if (children.count == 0)

@@ -11,17 +11,14 @@
  * Validates shorthand CSS property font.
  */
 @interface HTMLPurifier_AttrDef_CSS_Font : HTMLPurifier_AttrDef
-{
-    /**
-     * Local copy of validators
-     * @type HTMLPurifier_AttrDef[]
-     * @note If we moved specific CSS property definitions to their own
-     *       classes instead of having them be assembled at run time by
-     *       CSSDefinition, this wouldn't be necessary.  We'd instantiate
-     *       our own copies.
-     */
-     NSMutableDictionary* info;
-}     /**
+
+
+@property NSDictionary* info;
+
+
+
+
+/**
      * @param HTMLPurifier_Config $config
      */
 - (id)initWithConfig:(HTMLPurifier_Config*)config;

@@ -10,16 +10,8 @@
 
 @interface HTMLPurifier_AttrDef_CSS_Outline : HTMLPurifier_AttrDef
 
-/**
- * Validates the outline property as defined by CSS.
- */
-{
-    /**
-     * Local copy of properties this property is shorthand for.
-     * @type HTMLPurifier_AttrDef[]
-     */
-    NSMutableDictionary* info;
-}
+@property NSDictionary* info;
+
 
 
 - (id)initWithConfig:(HTMLPurifier_Config*)config;

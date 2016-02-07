@@ -6,16 +6,25 @@
 
 
 #import <Foundation/Foundation.h>
+#import "AutoCodingObject.h"
+
+
+
+
+
 
 @class HTMLPurifier_Context, HTMLPurifier_Config;
 
 /**
  * Defines allowed child nodes and validates nodes against it.
  */
-@interface HTMLPurifier_ChildDef : NSObject
-{
-    BOOL whitespace;
-}
+@interface HTMLPurifier_ChildDef : AutoCodingObject
+
+
+
+
+@property NSNumber* whitespace;
+
 
     /**
      * Type of child definition, usually right-most part of class name lowercase.
@@ -31,7 +40,7 @@
      * a child node may cause a parent node to now be disallowed.
      * @type bool
      */
-@property BOOL allow_empty;
+@property NSNumber* allow_empty;
 
     /**
      * Lookup array of all elements that this definition could possibly allow.

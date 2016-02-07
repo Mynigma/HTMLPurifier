@@ -11,12 +11,6 @@
 
 @implementation HTMLPurifier_AttrDef
 
-- (NSString*)parseCDATAWithString:(NSString*)string
-{
-    string = trim(string);
-    string = (NSString*)str_replace(@[@"\n", @"\t", @"\r"], @" ", string);
-    return string;
-}
 
 -(HTMLPurifier_AttrDef*)initWithString:(NSString*)string
 {
@@ -28,6 +22,56 @@
     if (self) {
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super init];
+    if (self) {
+        _minimized = [[coder decodeObjectForKey:@"minimized"] boolValue];
+        _required = [[coder decodeObjectForKey:@"required"] boolValue];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+    [coder encodeObject:@(_minimized) forKey:@"minimized"];
+    [coder encodeObject:@(_required) forKey:@"required"];
+}
+
+
+- (BOOL)isEqual:(HTMLPurifier_AttrDef*)other
+{
+    if (other == self)
+        return YES;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef class]])
+        return NO;
+    
+    BOOL minimizedEqual = (self.minimized == [other minimized]);
+    BOOL requiredEqual = (self.required == [other required]);
+    
+    return minimizedEqual && requiredEqual;
+}
+
+- (NSUInteger)hash
+{
+    return self.minimized?0:1 ^ self.required?0:2 ^ [super hash];
+}
+
+
+
+
+
+
+
+
+- (NSString*)parseCDATAWithString:(NSString*)string
+{
+    string = trim(string);
+    string = (NSString*)str_replace(@[@"\n", @"\t", @"\r"], @" ", string);
+    return string;
 }
 
 

@@ -318,7 +318,7 @@
 
                 BOOL carryover = NO;
                 // Useless like this
-                if (autoclose && [parent_def formatting]) {
+                if (autoclose && [parent_def formatting].boolValue) {
                     carryover = NO;
                 }
 

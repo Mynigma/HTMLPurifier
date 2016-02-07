@@ -16,7 +16,6 @@
 #import "HTMLPurifier_URIScheme.h"
 
 
-static HTMLPurifier_URISchemeRegistry* theInstance;
 
 @implementation HTMLPurifier_URISchemeRegistry
 
@@ -36,26 +35,6 @@ static HTMLPurifier_URISchemeRegistry* theInstance;
     return self;
 }
 
-/**
- * Retrieve sole instance of the registry.
- * @param HTMLPurifier_URISchemeRegistry $prototype Optional prototype to overload sole instance with,
- *                   or bool true to reset to default registry.
- * @return HTMLPurifier_URISchemeRegistry
- * @note Pass a registry object $prototype with a compatible interface and
- *       the function will copy it and return it all further times.
- */
-+(HTMLPurifier_URISchemeRegistry*) instance:(HTMLPurifier_URISchemeRegistry*)prototype // = null)
-{
-    if (prototype)
-    {
-        theInstance = prototype;
-    }
-    else if (!theInstance || [prototype isEqual:@YES])
-    {
-        theInstance = [HTMLPurifier_URISchemeRegistry new];
-    }
-    return theInstance;
-}
 
 /**
  * Retrieves a scheme validator object

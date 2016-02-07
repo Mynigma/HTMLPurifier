@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         self.typeString = @"custom";
-        self.allow_empty = NO;
+        self.allow_empty = @NO;
 
         self.dtd_regex = new_dtd_regex;
         [self _compileRegex];
@@ -59,7 +59,7 @@
         // remove all non-paranthetical commas: they are handled by first regex
         reg = preg_replace_3(@"/,\(/", @"(", reg);
 
-        _pcre_regex = reg;
+        self._pcre_regex = reg;
     }
 
     /**
@@ -82,7 +82,7 @@
         }
         // add leading comma to deal with stray comma declarations
         list_of_children = [NSMutableString stringWithFormat:@",%@,", rtrim([list_of_children copy])];
-        BOOL okay = preg_match_2([NSString stringWithFormat:@"^,?%@$", _pcre_regex], list_of_children);
+        BOOL okay = preg_match_2([NSString stringWithFormat:@"^,?%@$", self._pcre_regex], list_of_children);
         return okay?@YES:nil;
     }
 

@@ -10,13 +10,18 @@
 
 @implementation HTMLPurifier_AttrDef_CSS_URI
 
-- (id)init
+- (BOOL)isEqual:(id)other
 {
-    self = [super init];
-    if (self) {
-
-    }
-    return self;
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_URI class]])
+        return NO;
+    
+    return YES;
 }
 
 /**

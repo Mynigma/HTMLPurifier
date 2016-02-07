@@ -44,7 +44,7 @@
     BOOL check_comments = NO; //comment_lookup !== array() || $comment_regexp !== null;
 
     //BOOL remove_script_contents = NO; // $config->get('Core.RemoveScriptContents');
-    NSMutableDictionary* hidden_elements = [[config get:@"Core.HiddenElements"] mutableCopy];
+    NSDictionary* hidden_elements = (NSDictionary*)[config get:@"Core.HiddenElements"];
 
     /*
      // remove script contents compatibility
@@ -100,7 +100,7 @@
                 token = [transform transform:(HTMLPurifier_Token_Tag*)token config:config context:context];
             }
 
-            NSMutableDictionary* elementDefs = definition.info;
+            NSMutableDictionary* elementDefs = [definition.info mutableCopy];
 
             HTMLPurifier_ElementDef* elementDef = elementDefs[tokenName];
 

@@ -9,7 +9,7 @@
 #import "HTMLPurifier_Config.h"
 #import "HTMLPurifier_Context.h"
 
-@interface HTMLPurifier_AttrDef : NSObject
+@interface HTMLPurifier_AttrDef : NSObject <NSCoding>
 
 /**
  * Tells us whether or not an HTML attribute is minimized.

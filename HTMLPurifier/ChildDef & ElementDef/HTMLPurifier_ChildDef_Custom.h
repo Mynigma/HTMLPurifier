@@ -14,13 +14,13 @@
  *          it will only give a bool return value.
  */
 @interface HTMLPurifier_ChildDef_Custom : HTMLPurifier_ChildDef
-{
+
     /**
      * PCRE regex derived from $dtd_regex.
      * @type string
      */
-    NSString* _pcre_regex;
-}
+@property NSString* _pcre_regex;
+
     /**
      * @type string
      */

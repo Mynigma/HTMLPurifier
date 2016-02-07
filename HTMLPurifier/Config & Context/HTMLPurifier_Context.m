@@ -8,6 +8,7 @@
 #import "HTMLPurifier_Context.h"
 #import "HTMLPurifier.h"
 #import "BasicPHP.h"
+#import "HTMLPurifier_URISchemeRegistry.h"
 
 @implementation HTMLPurifier_Context
 
@@ -75,6 +76,28 @@
     }
     [_storage removeObjectForKey:name];
     return;
+}
+
+
+/**
+ * Retrieve sole instance of the registry.
+ * @param HTMLPurifier_URISchemeRegistry $prototype Optional prototype to overload sole instance with,
+ *                   or bool true to reset to default registry.
+ * @return HTMLPurifier_URISchemeRegistry
+ * @note Pass a registry object $prototype with a compatible interface and
+ *       the function will copy it and return it all further times.
+ */
+- (HTMLPurifier_URISchemeRegistry*)URISchemeRegistryInstance:(HTMLPurifier_URISchemeRegistry*)prototype // = null)
+{
+    if (prototype)
+    {
+        theInstance = prototype;
+    }
+    else if (!theInstance || [prototype isEqual:@YES])
+    {
+        theInstance = [HTMLPurifier_URISchemeRegistry new];
+    }
+    return theInstance;
 }
 
 @end

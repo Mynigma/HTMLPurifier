@@ -13,7 +13,7 @@
  * Super-class for definition datatype objects, implements serialization
  * functions for the class.
  */
-@interface HTMLPurifier_Definition : NSObject
+@interface HTMLPurifier_Definition : NSObject <NSCoding>
 
 
     /**

@@ -6,10 +6,14 @@
 
 
 #import <Foundation/Foundation.h>
+#import "AutoCodingObject.h"
+
+
+
 
 @class HTMLPurifier_Config, HTMLPurifier_Context;
 
-@interface HTMLPurifier_AttrTransform : NSObject
+@interface HTMLPurifier_AttrTransform : AutoCodingObject
 
 
 - (NSDictionary*)transform:(NSDictionary*)attr sortedKeys:(NSMutableArray*)sortedKeys config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;

@@ -12,11 +12,9 @@
 /**
  * Validates a boolean attribute
  */
-@interface HTMLPurifier_AttrDef_HTML_Bool :HTMLPurifier_AttrDef
+@interface HTMLPurifier_AttrDef_HTML_Bool : HTMLPurifier_AttrDef
 
 @property NSString* name;
-
-@property BOOL minimized;
 
 
 -(id)initWithName:(NSString*)newName;

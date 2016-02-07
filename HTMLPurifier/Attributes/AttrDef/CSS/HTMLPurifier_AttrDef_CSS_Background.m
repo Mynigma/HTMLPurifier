@@ -21,20 +21,71 @@
     self = [super init];
     if (self) {
         HTMLPurifier_CSSDefinition* def = [config getCSSDefinition];
-        info = [NSMutableDictionary new];
+        NSMutableDictionary* tempInfo = [NSMutableDictionary new];
         if ([def.info objectForKey:@"background-color"])
-            [info setObject:[def.info objectForKey:@"background-color"] forKey:@"background-color"];
+            [tempInfo setObject:[def.info objectForKey:@"background-color"] forKey:@"background-color"];
         if ([def.info objectForKey:@"background-image"])
-            [info setObject:[def.info objectForKey:@"background-image"] forKey:@"background-image"];
+            [tempInfo setObject:[def.info objectForKey:@"background-image"] forKey:@"background-image"];
         if ([def.info objectForKey:@"background-repeat"])
-            [info setObject:[def.info objectForKey:@"background-repeat"] forKey:@"background-repeat"];
+            [tempInfo setObject:[def.info objectForKey:@"background-repeat"] forKey:@"background-repeat"];
         if ([def.info objectForKey:@"background-attachment"])
-            [info setObject:[def.info objectForKey:@"background-attachment"] forKey:@"background-attachment"];
+            [tempInfo setObject:[def.info objectForKey:@"background-attachment"] forKey:@"background-attachment"];
         if ([def.info objectForKey:@"background-position"])
-            [info setObject:[def.info objectForKey:@"background-position"] forKey:@"background-position"];
+            [tempInfo setObject:[def.info objectForKey:@"background-position"] forKey:@"background-position"];
+        _info = tempInfo;
     }
     return self;
 }
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _info = [coder decodeObjectForKey:@"info"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_info forKey:@"info"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Background class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.info && ![(HTMLPurifier_AttrDef_CSS_Background*)other info]) || [self.info isEqual:[(HTMLPurifier_AttrDef_CSS_Background*)other info]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_info hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
 
 /**
  * @param string $string
@@ -78,7 +129,7 @@
             {
                 if(![status isEqual:@NO])
                     continue;
-                r = [[info objectForKey:[NSString stringWithFormat:@"background-%@", key]] validateWithString:bit config:config context:context];
+                r = [[_info objectForKey:[NSString stringWithFormat:@"background-%@", key]] validateWithString:bit config:config context:context];
             }
             else
             {
@@ -110,9 +161,9 @@
         }
         if(![[caught objectForKey:@"position"] isEqual:@NO])
         {
-            if (![self->info objectForKey:@"background-position"] || ![[self->info objectForKey:@"background-position"] isKindOfClass:[HTMLPurifier_AttrDef class]])
+            if (![self.info objectForKey:@"background-position"] || ![[self.info objectForKey:@"background-position"] isKindOfClass:[HTMLPurifier_AttrDef class]])
                 return nil;
-            NSString* res = [(HTMLPurifier_AttrDef*)[self->info objectForKey:@"background-position"] validateWithString:[caught objectForKey:@"position"] config:config context:context];
+            NSString* res = [(HTMLPurifier_AttrDef*)[self.info objectForKey:@"background-position"] validateWithString:[caught objectForKey:@"position"] config:config context:context];
             if (!res)
                 return nil;
             [caught setObject:res forKey:@"position"];

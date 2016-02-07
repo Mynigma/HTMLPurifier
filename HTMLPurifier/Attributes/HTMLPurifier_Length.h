@@ -8,32 +8,34 @@
 #import <Foundation/Foundation.h>
 
 @interface HTMLPurifier_Length : NSObject
-{
+
 
     /**
      * String numeric magnitude.
      * @type string
      */
-    NSString* n;
+@property NSString* n;
 
     /**
      * String unit. False is permitted if $n = 0.
      * @type string|bool
      */
-    NSString* unit;
+@property NSString* unit;
 
     /**
      * Whether or not this length is valid. Null if not calculated yet.
      * @type bool
      */
-    NSNumber* isValid;
+@property NSNumber* valid;
 
     /**
      * Array Lookup array of units recognized by CSS 2.1
      * @type array
      */
-    NSDictionary* allowedUnits;
-}
+@property NSDictionary* allowedUnits;
+
+
+
 
 + (NSDictionary*)allowedUnits;
 

@@ -15,7 +15,10 @@
      * @type HTMLPurifier_AttrDef[]
      * @todo Make protected
      */
-@property NSMutableArray* defs;
+@property NSArray* defs;
+
+
+
 
 - (id)initWithDefs:(NSArray*)newDefs;
 

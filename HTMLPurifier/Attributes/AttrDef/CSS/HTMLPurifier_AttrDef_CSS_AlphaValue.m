@@ -11,13 +11,29 @@
 
 - (id)init
 {
-    self = [super initWithNonNegative:NO]; // opacity is non-negative, but we will clamp it
+    self = [super initWithNonNegative:@NO]; // opacity is non-negative, but we will clamp it
 
     if (self) {
 
     }
     return self;
 }
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_AlphaValue class]])
+        return NO;
+    
+    return YES;
+}
+
 
 /**
      * @param string $number

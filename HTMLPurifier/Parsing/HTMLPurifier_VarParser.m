@@ -7,11 +7,8 @@
 
 #import "HTMLPurifier_VarParser.h"
 
-static NSDictionary* typesLookup;
 
-static NSDictionary* types;
 
-static NSDictionary* stringTypes;
 
 
 @implementation HTMLPurifier_VarParser
@@ -158,8 +155,7 @@ static NSDictionary* stringTypes;
 
 + (NSDictionary*)types
 {
-    if(!types)
-        types = @{@"string":V_STRING,
+    return @{@"string":V_STRING,
            @"istring":V_ISTRING,
            @"text":V_TEXT,
            @"itext":V_ITEXT,
@@ -170,24 +166,20 @@ static NSDictionary* stringTypes;
            @"list":V_ALIST,
            @"hash":V_HASH,
            @"mixed":V_MIXED};
-    return types;
 }
 
 + (NSDictionary*)stringTypes
 {
-    if(!stringTypes)
-        stringTypes = @{V_STRING : @YES,
-                 V_ISTRING : @YES,
-                 V_TEXT : @YES,
-                 V_ITEXT : @YES};
-    return stringTypes;
+    return @{V_STRING : @YES,
+             V_ISTRING : @YES,
+             V_TEXT : @YES,
+             V_ITEXT : @YES};
 }
 
 
 + (NSDictionary*)lookup
 {
-    if(!typesLookup)
-        typesLookup = @{V_STRING:@"string",
+     return @{V_STRING:@"string",
                  V_ISTRING:@"istring",
                  V_TEXT:@"text",
                  V_ITEXT:@"itext",
@@ -198,7 +190,6 @@ static NSDictionary* stringTypes;
                  V_ALIST:@"list",
                  V_HASH:@"hash",
                  V_MIXED:@"mixed"};
-    return typesLookup;
 }
 
     /**

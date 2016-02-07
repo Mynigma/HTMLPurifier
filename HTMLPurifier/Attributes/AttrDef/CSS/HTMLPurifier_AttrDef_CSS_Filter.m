@@ -29,6 +29,53 @@
     return self;
 }
 
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        intValidator = [coder decodeObjectForKey:@"intValidator"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:intValidator forKey:@"intValidator"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Filter class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.intValidator && ![(HTMLPurifier_AttrDef_CSS_Filter*)other intValidator]) || [self.intValidator isEqual:[(HTMLPurifier_AttrDef_CSS_Filter*)other intValidator]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [intValidator hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
 /**
  * @param string value
  * @param HTMLPurifier_Config config

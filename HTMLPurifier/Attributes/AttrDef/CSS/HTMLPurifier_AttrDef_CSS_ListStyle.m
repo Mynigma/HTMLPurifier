@@ -19,16 +19,63 @@
     self = [super init];
     if (self) {
         HTMLPurifier_CSSDefinition* def = [config getCSSDefinition];
-        info = [NSMutableDictionary new];
+        NSMutableDictionary* tempInfo = [NSMutableDictionary new];
         if ([[def info] objectForKey:@"list-style-type"])
-            [info setObject:[[def info] objectForKey:@"list-style-type"] forKey:@"list-style-type"];
+            [tempInfo setObject:[[def info] objectForKey:@"list-style-type"] forKey:@"list-style-type"];
         if ([[def info] objectForKey:@"list-style-position"])
-            [info setObject:[[def info] objectForKey:@"list-style-position"] forKey:@"list-style-position"];
+            [tempInfo setObject:[[def info] objectForKey:@"list-style-position"] forKey:@"list-style-position"];
         if ([[def info] objectForKey:@"list-style-image"])
-            [info setObject:[[def info] objectForKey:@"list-style-image"] forKey:@"list-style-image"];
+            [tempInfo setObject:[[def info] objectForKey:@"list-style-image"] forKey:@"list-style-image"];
+        _info = tempInfo;
     }
     return self;
 }
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _info = [coder decodeObjectForKey:@"info"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_info forKey:@"info"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_ListStyle class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.info && ![(HTMLPurifier_AttrDef_CSS_ListStyle*)other info]) || [self.info isEqual:[(HTMLPurifier_AttrDef_CSS_ListStyle*)other info]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_info hash] ^ [super hash];
+}
+
+
+
+
+
+
+
 
     /**
      * @param string $string
@@ -67,7 +114,7 @@
             for(NSString* key in caught)
             {
                 NSString* attrDefKey = [@"list-style-" stringByAppendingString:key];
-                HTMLPurifier_AttrDef* attrDef = info[attrDefKey];
+                HTMLPurifier_AttrDef* attrDef = self.info[attrDefKey];
                 NSString* r = [attrDef validateWithString:bit config:config context:context];
 
                 if (!r)

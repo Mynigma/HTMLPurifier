@@ -16,6 +16,24 @@
 		1E35ECEC188813D300E8FF31 /* EntityParserTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E35ECEB188813D300E8FF31 /* EntityParserTest.m */; };
 		1E3CD630188D976A009FF293 /* HTMLPurifier_ConfigTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */; };
 		1E40A0451892AFDF006992C5 /* Smoketest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E40A0441892AFDF006992C5 /* Smoketest.m */; };
+		1E4207B11C67553F00213525 /* DefinitionsCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4207B01C67553F00213525 /* DefinitionsCacheTest.m */; };
+		1E4207B21C67553F00213525 /* DefinitionsCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4207B01C67553F00213525 /* DefinitionsCacheTest.m */; };
+		1E4207B41C67808C00213525 /* HTMLPurifier_PerformanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4207B31C67808C00213525 /* HTMLPurifier_PerformanceTest.m */; };
+		1E4207B51C67808C00213525 /* HTMLPurifier_PerformanceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4207B31C67808C00213525 /* HTMLPurifier_PerformanceTest.m */; };
+		1E4207BA1C6783D300213525 /* CSSDefinition.data in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207B91C6783D300213525 /* CSSDefinition.data */; };
+		1E4207BB1C6783D300213525 /* CSSDefinition.data in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207B91C6783D300213525 /* CSSDefinition.data */; };
+		1E4207BD1C678C1100213525 /* SampleMessage1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207BC1C678C1100213525 /* SampleMessage1.txt */; };
+		1E4207BE1C678C1100213525 /* SampleMessage1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207BC1C678C1100213525 /* SampleMessage1.txt */; };
+		1E4207C01C678C5000213525 /* SampleMessage2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207BF1C678C5000213525 /* SampleMessage2.txt */; };
+		1E4207C11C678C5000213525 /* SampleMessage2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207BF1C678C5000213525 /* SampleMessage2.txt */; };
+		1E4207C31C678C9F00213525 /* SampleMessage3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207C21C678C9F00213525 /* SampleMessage3.txt */; };
+		1E4207C41C678C9F00213525 /* SampleMessage3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207C21C678C9F00213525 /* SampleMessage3.txt */; };
+		1E4207C71C67A47600213525 /* AutoCodingObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E4207C51C67A47600213525 /* AutoCodingObject.h */; };
+		1E4207C81C67A47600213525 /* AutoCodingObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E4207C51C67A47600213525 /* AutoCodingObject.h */; };
+		1E4207C91C67A47600213525 /* AutoCodingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4207C61C67A47600213525 /* AutoCodingObject.m */; };
+		1E4207CA1C67A47600213525 /* AutoCodingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E4207C61C67A47600213525 /* AutoCodingObject.m */; };
+		1E4207CF1C67AC0C00213525 /* HTMLDefinition.data in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207CE1C67AC0C00213525 /* HTMLDefinition.data */; };
+		1E4207D01C67AC0C00213525 /* HTMLDefinition.data in Resources */ = {isa = PBXBuildFile; fileRef = 1E4207CE1C67AC0C00213525 /* HTMLDefinition.data */; };
 		1E48254318ED9D7F00E4CC64 /* HTMLPurifier.h in Headers */ = {isa = PBXBuildFile; fileRef = 80F53D06189BE6F600D7805F /* HTMLPurifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1E48254418ED9DD000E4CC64 /* HTMLPurifier_AttrDef_CSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C18189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS.m */; };
 		1E48254518ED9DD000E4CC64 /* HTMLPurifier_AttrDef_CSS_AlphaValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 80F53C1A189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_AlphaValue.m */; };
@@ -787,6 +805,15 @@
 		1E35ECEB188813D300E8FF31 /* EntityParserTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = EntityParserTest.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		1E3CD62F188D976A009FF293 /* HTMLPurifier_ConfigTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ConfigTest.m; sourceTree = "<group>"; };
 		1E40A0441892AFDF006992C5 /* Smoketest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Smoketest.m; sourceTree = "<group>"; };
+		1E4207B01C67553F00213525 /* DefinitionsCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DefinitionsCacheTest.m; sourceTree = "<group>"; };
+		1E4207B31C67808C00213525 /* HTMLPurifier_PerformanceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_PerformanceTest.m; sourceTree = "<group>"; };
+		1E4207B91C6783D300213525 /* CSSDefinition.data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = CSSDefinition.data; sourceTree = "<group>"; };
+		1E4207BC1C678C1100213525 /* SampleMessage1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SampleMessage1.txt; sourceTree = "<group>"; };
+		1E4207BF1C678C5000213525 /* SampleMessage2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SampleMessage2.txt; sourceTree = "<group>"; };
+		1E4207C21C678C9F00213525 /* SampleMessage3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SampleMessage3.txt; sourceTree = "<group>"; };
+		1E4207C51C67A47600213525 /* AutoCodingObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoCodingObject.h; sourceTree = "<group>"; };
+		1E4207C61C67A47600213525 /* AutoCodingObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoCodingObject.m; sourceTree = "<group>"; };
+		1E4207CE1C67AC0C00213525 /* HTMLDefinition.data */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = HTMLDefinition.data; sourceTree = "<group>"; };
 		1E5573DC188C963900E7A1CE /* HTMLPurifier_LinkifyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_LinkifyTest.m; sourceTree = "<group>"; };
 		1E5573DE188C965300E7A1CE /* HTMLPurifier_InjectorHarness.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_InjectorHarness.m; sourceTree = "<group>"; };
 		1E5FAABD18857E100073CA79 /* HTMLPurifier_PercentEncoderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_PercentEncoderTests.m; sourceTree = "<group>"; };
@@ -1299,6 +1326,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E4207AF1C67552100213525 /* Definitions Cache */ = {
+			isa = PBXGroup;
+			children = (
+				1E4207B01C67553F00213525 /* DefinitionsCacheTest.m */,
+				1E4207B91C6783D300213525 /* CSSDefinition.data */,
+				1E4207BC1C678C1100213525 /* SampleMessage1.txt */,
+				1E4207BF1C678C5000213525 /* SampleMessage2.txt */,
+				1E4207C21C678C9F00213525 /* SampleMessage3.txt */,
+				1E4207CE1C67AC0C00213525 /* HTMLDefinition.data */,
+			);
+			name = "Definitions Cache";
+			sourceTree = "<group>";
+		};
 		1EE4B2EB1B13A7380056091D /* OCMock */ = {
 			isa = PBXGroup;
 			children = (
@@ -1531,6 +1571,7 @@
 		80EDF9D918803B3200EB1E89 /* HTMLPurifierTests */ = {
 			isa = PBXGroup;
 			children = (
+				1E4207AF1C67552100213525 /* Definitions Cache */,
 				80EDF9DF18803B3200EB1E89 /* HTMLPurifierTests.m */,
 				1EC83413188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m */,
 				1E35ECD61886F6D400E8FF31 /* HTMLPurifier_Harness.h */,
@@ -1559,6 +1600,7 @@
 				1E01D011189044E300B5643E /* HTMLPurifier_AttrCollections_TestForConstruct.h */,
 				1E01D012189044E300B5643E /* HTMLPurifier_AttrCollections_TestForConstruct.m */,
 				1E40A0441892AFDF006992C5 /* Smoketest.m */,
+				1E4207B31C67808C00213525 /* HTMLPurifier_PerformanceTest.m */,
 			);
 			path = HTMLPurifierTests;
 			sourceTree = "<group>";
@@ -1675,9 +1717,9 @@
 				80F53C38189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_Number.m */,
 				80F53C39189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_Percentage.h */,
 				80F53C3A189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_Percentage.m */,
-				80F53C3B189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_TextDecoration.h */,
 				806C46FF1B7D261900FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.h */,
 				806C47021B7D263000FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.m */,
+				80F53C3B189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_TextDecoration.h */,
 				80F53C3C189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_TextDecoration.m */,
 				80F53C3D189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_URI.h */,
 				80F53C3E189BE6F600D7805F /* HTMLPurifier_AttrDef_CSS_URI.m */,
@@ -2098,6 +2140,8 @@
 				80F53D57189BE6F700D7805F /* Token */,
 				80F53D68189BE6F700D7805F /* URIFilter */,
 				80F53D7B189BE6F700D7805F /* URIScheme */,
+				1E4207C51C67A47600213525 /* AutoCodingObject.h */,
+				1E4207C61C67A47600213525 /* AutoCodingObject.m */,
 			);
 			path = HTMLPurifier;
 			sourceTree = "<group>";
@@ -2109,6 +2153,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E4207C71C67A47600213525 /* AutoCodingObject.h in Headers */,
 				806C47001B7D261900FE1D4C /* HTMLPurifier_AttrDef_CSS_Shape.h in Headers */,
 				1EE4B32E1B13AFAA0056091D /* HTMLPurifier-Prefix.pch in Headers */,
 				806C470F1B7F750B00FE1D4C /* HTMLPurifier_AttrDef_CSS_BorderRadius.h in Headers */,
@@ -2309,6 +2354,7 @@
 				80F53EE1189BE6F700D7805F /* HTMLPurifier_URIFilter_Munge.h in Headers */,
 				80F53DA2189BE6F700D7805F /* HTMLPurifier_AttrDef_CSS_Font.h in Headers */,
 				80F53E9C189BE6F700D7805F /* HTMLPurifier_Lexer_libxmlLex.h in Headers */,
+				1E4207C81C67A47600213525 /* AutoCodingObject.h in Headers */,
 				806C47101B7F750B00FE1D4C /* HTMLPurifier_AttrDef_CSS_BorderRadius.h in Headers */,
 				80F53E36189BE6F700D7805F /* HTMLPurifier_ConfigSchema.h in Headers */,
 				80F53E02189BE6F700D7805F /* HTMLPurifier_AttrTransform_Nofollow.h in Headers */,
@@ -2401,7 +2447,7 @@
 		80EDF9B218803B3200EB1E89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Mynigma;
 				TargetAttributes = {
 					1EEEC29A18ED769B008F1E67 = {
@@ -2446,9 +2492,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E4207BA1C6783D300213525 /* CSSDefinition.data in Resources */,
+				1E4207C01C678C5000213525 /* SampleMessage2.txt in Resources */,
+				1E4207BD1C678C1100213525 /* SampleMessage1.txt in Resources */,
 				1EE4B3241B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */,
 				1EE4B3001B13AA370056091D /* orrickTest.html in Resources */,
+				1E4207C31C678C9F00213525 /* SampleMessage3.txt in Resources */,
 				1EEEC2A718ED769B008F1E67 /* InfoPlist.strings in Resources */,
+				1E4207CF1C67AC0C00213525 /* HTMLDefinition.data in Resources */,
 				1EE4B3281B13AFAA0056091D /* entities.plist in Resources */,
 				1EE4B2FF1B13AA370056091D /* orrickClean.html in Resources */,
 			);
@@ -2467,9 +2518,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E4207BB1C6783D300213525 /* CSSDefinition.data in Resources */,
+				1E4207C11C678C5000213525 /* SampleMessage2.txt in Resources */,
+				1E4207BE1C678C1100213525 /* SampleMessage1.txt in Resources */,
 				1EE4B3261B13AFAA0056091D /* entities.plist in Resources */,
 				1EE4B3221B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */,
+				1E4207C41C678C9F00213525 /* SampleMessage3.txt in Resources */,
 				80EF52F61A1DD3C500B2DEA8 /* orrickClean.html in Resources */,
+				1E4207D01C67AC0C00213525 /* HTMLDefinition.data in Resources */,
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
 				80EF52F71A1DD3C500B2DEA8 /* orrickTest.html in Resources */,
 			);
@@ -2665,6 +2721,7 @@
 				1E4825C418ED9DD100E4CC64 /* HTMLPurifier_Lexer_libxmlLex.m in Sources */,
 				1E4825C518ED9DD100E4CC64 /* HTMLPurifier_PercentEncoder.m in Sources */,
 				1E4825C618ED9DD100E4CC64 /* HTMLPurifier_Queue.m in Sources */,
+				1E4207C91C67A47600213525 /* AutoCodingObject.m in Sources */,
 				1E4825C718ED9DD100E4CC64 /* HTMLPurifier_VarParser.m in Sources */,
 				1E4825C818ED9DD100E4CC64 /* HTMLPurifier_VarParser_Flexible.m in Sources */,
 				1E4825C918ED9DD100E4CC64 /* HTMLPurifier_Zipper.m in Sources */,
@@ -2738,12 +2795,14 @@
 				1EE4B2C61B13A54D0056091D /* UnitConverterTest.m in Sources */,
 				1EE4B2E41B13A59D0056091D /* HTMLPurifier_ChildDef_CustomTest.m in Sources */,
 				1EE4B2D81B13A5900056091D /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */,
+				1E4207B11C67553F00213525 /* DefinitionsCacheTest.m in Sources */,
 				1EE4B2D91B13A5900056091D /* HTMLPurifier_URIFilter_MakeAbsoluteTest.m in Sources */,
 				1EE4B2AB1B13A53C0056091D /* HTMLPurifier_AttrTransformTest.m in Sources */,
 				1EE4B2C01B13A5430056091D /* HTMLPurifier_AttrDef_HTML_PixelsTest.m in Sources */,
 				1EE4B2BA1B13A5430056091D /* HTMLPurifier_AttrDef_HTML_BoolTest.m in Sources */,
 				1EE4B2E81B13A59D0056091D /* HTMLPurifier_ChildDef_StrictBlockquoteTest.m in Sources */,
 				1EE4B2E11B13A5970056091D /* HTMLPurifier_Strategy_MakeWellFormedTest.m in Sources */,
+				1E4207B41C67808C00213525 /* HTMLPurifier_PerformanceTest.m in Sources */,
 				1EE4B2CC1B13A5610056091D /* HTMLPurifier_TokenFactoryTest.m in Sources */,
 				1EE4B2C91B13A5610056091D /* HTMLPurifier_InjectorHarness.m in Sources */,
 				1EE4B2A91B13A5230056091D /* PropertyListTest.m in Sources */,
@@ -2930,6 +2989,7 @@
 				80F53EC8189BE6F700D7805F /* HTMLPurifier_Token_Empty.m in Sources */,
 				80F53EDA189BE6F700D7805F /* HTMLPurifier_URIFilter_DisableExternalResources.m in Sources */,
 				80F53EC4189BE6F700D7805F /* HTMLPurifier_Token.m in Sources */,
+				1E4207CA1C67A47600213525 /* AutoCodingObject.m in Sources */,
 				80F53E31189BE6F700D7805F /* HTMLPurifier_ChildDef_Tables.m in Sources */,
 				80F53EB1189BE6F700D7805F /* HTMLPurifier_Strategy_MakeWellFormed.m in Sources */,
 				80F53E6B189BE6F700D7805F /* HTMLPurifier_HTMLModule_StyleAttribute.m in Sources */,
@@ -3003,12 +3063,14 @@
 				1E35ECDA188727D000E8FF31 /* HTMLPurifier_ElementDefTest.m in Sources */,
 				808CBA50188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m in Sources */,
 				808CBA4A188DA0CF00AFB841 /* HTMLPurifier_URIFilter_HostBlacklistTest.m in Sources */,
+				1E4207B21C67553F00213525 /* DefinitionsCacheTest.m in Sources */,
 				808CBA42188D710D00AFB841 /* HTMLPurifier_URIFilterHarness.m in Sources */,
 				80E5A88C18926777008A093D /* HTMLPurifier_AttrTransformTest.m in Sources */,
 				808CB9D9188AEA3A00AFB841 /* HTMLPurifier_AttrDef_HTML_LengthTest.m in Sources */,
 				1E35ECDE188747B700E8FF31 /* HTMLPurifier_RemoveForeignElementsTest.m in Sources */,
 				801F015E188F189900506C24 /* HTMLPurifier_ZipperTest.m in Sources */,
 				1E35ECEC188813D300E8FF31 /* EntityParserTest.m in Sources */,
+				1E4207B51C67808C00213525 /* HTMLPurifier_PerformanceTest.m in Sources */,
 				801F0162188F250E00506C24 /* HTMLPurifier_TokenFactoryTest.m in Sources */,
 				1EC83414188B5B3A007B8A82 /* HTMLPurifier_EncoderTest.m in Sources */,
 				803497AE188E80CA00A90FB9 /* HTMLPurifier_URITest.m in Sources */,
@@ -3162,6 +3224,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
@@ -3201,6 +3264,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3224,6 +3288,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = /usr/lib/;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3328,6 +3393,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -3364,6 +3430,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -3398,6 +3465,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -3427,6 +3495,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;

@@ -14,11 +14,9 @@
 
 @property NSMutableDictionary* fake_elements;
 
-@property BOOL allow_empty; // = true;
-
 @property NSString* type; // = 'strictblockquote';
 
-@property BOOL setup; // = false;
+@property NSNumber* setup; // = false;
 
 
 

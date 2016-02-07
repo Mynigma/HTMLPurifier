@@ -10,17 +10,9 @@
 @class HTMLPurifier_AttrDef_CSS_Length, HTMLPurifier_AttrDef_CSS_Percentage;
 
 @interface HTMLPurifier_AttrDef_CSS_BackgroundPosition : HTMLPurifier_AttrDef
-{
-    /**
-     * @type HTMLPurifier_AttrDef_CSS_Length
-     */
-    HTMLPurifier_AttrDef_CSS_Length* length;
 
-    /**
-     * @type HTMLPurifier_AttrDef_CSS_Percentage
-     */
-    HTMLPurifier_AttrDef_CSS_Percentage* percentage;
-}
+@property HTMLPurifier_AttrDef_CSS_Length* length;
+@property HTMLPurifier_AttrDef_CSS_Percentage* percentage;
 
 
     /**

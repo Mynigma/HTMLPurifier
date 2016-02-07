@@ -10,18 +10,15 @@
 @class HTMLPurifier_Length;
 
 @interface HTMLPurifier_AttrDef_CSS_Length : HTMLPurifier_AttrDef
-{
+
+
+@property HTMLPurifier_Length* min;
 
     /**
      * @type HTMLPurifier_Length|string
      */
-    HTMLPurifier_Length* min;
+@property HTMLPurifier_Length* max;
 
-    /**
-     * @type HTMLPurifier_Length|string
-     */
-    HTMLPurifier_Length* max;
-}
 
 - (id)initWithMin:(NSObject*)newMin max:(NSObject*)newMax;
 - (id)initWithMin:(NSObject*)newMin;

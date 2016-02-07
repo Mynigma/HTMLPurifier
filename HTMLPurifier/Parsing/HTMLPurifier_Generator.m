@@ -35,13 +35,13 @@
      * Whether or not generator should produce XML output.
      * @type bool
      */
-    BOOL _xhtml;
+    NSNumber* _xhtml;
 
     /**
      * :HACK: Whether or not generator should comment the insides of <script> tags.
      * @type bool
      */
-    BOOL _scriptFix;
+    NSNumber* _scriptFix;
 
     /**
      * Cache of HTMLDefinition during HTML output to determine whether or
@@ -54,19 +54,19 @@
      * Cache of %Output.SortAttr.
      * @type bool
      */
-    BOOL _sortAttr;
+    NSNumber* _sortAttr;
 
     /**
      * Cache of %Output.FlashCompat.
      * @type bool
      */
-    BOOL _flashCompat;
+    NSNumber* _flashCompat;
 
     /**
      * Cache of %Output.FixInnerHTML.
      * @type bool
      */
-    BOOL _innerHTMLFix;
+    NSNumber* _innerHTMLFix;
 
     /**
      * Stack for keeping track of object information when outputting IE
@@ -89,10 +89,10 @@
     if (self) {
         _flashStack = [NSMutableArray new];
         config = newConfig;
-        _scriptFix = [(NSNumber*)[config get:@"Output.CommentScriptContents"] boolValue];
-        _innerHTMLFix = [(NSNumber*)[config get:@"Output.FixInnerHTML"] boolValue];
-        _sortAttr = [(NSNumber*)[config get:@"Output.SortAttr"] boolValue];
-        _flashCompat = [(NSNumber*)[config get:@"Output.FlashCompat"] boolValue];
+        _scriptFix = (NSNumber*)[config get:@"Output.CommentScriptContents"];
+        _innerHTMLFix = (NSNumber*)[config get:@"Output.FixInnerHTML"];
+        _sortAttr = (NSNumber*)[config get:@"Output.SortAttr"];
+        _flashCompat = (NSNumber*)[config get:@"Output.FlashCompat"];
         _def = [config getHTMLDefinition];
         _xhtml = [[_def doctype] xml];
     }
@@ -122,7 +122,7 @@
         NSMutableString* html = [NSMutableString new];
         NSInteger totalNumber = tokens.count;
         for (NSInteger i = 0; i < totalNumber; i++) {
-            if (_scriptFix && [[tokens[i] valueForKey:@"name"] isEqualToString:@"script"]
+            if (_scriptFix.boolValue && [[tokens[i] valueForKey:@"name"] isEqualToString:@"script"]
                 && i + 2 < totalNumber && [tokens[i+2] isKindOfClass:[HTMLPurifier_Token_End class]]) {
                 // script special case
                 // the contents of the script block must be ONE token
@@ -182,7 +182,7 @@
         if ([token isKindOfClass:[HTMLPurifier_Token_Start class]])
         {
             NSString* attrString = [self generateAttributes:[(HTMLPurifier_Token_Start*)token attr] sortedKeys:token.sortedAttrKeys element:[token valueForKey:@"name"]];
-            if (_flashCompat) {
+            if (_flashCompat.boolValue) {
                 if ([[token valueForKey:@"name"] isEqualToString:@"object"])
                 {
                     HTMLPurifier_FlashStackObject* flashStackObject = [HTMLPurifier_FlashStackObject new];
@@ -195,7 +195,7 @@
         } else if ([token isKindOfClass:[HTMLPurifier_Token_End class]])
         {
             NSString* _extra = @"";
-            if (_flashCompat) {
+            if (_flashCompat.boolValue) {
                 if ([[token valueForKey:@"name"] isEqualToString:@"object"] && _flashStack.count>0) {
                     // doesn't do anything for now
                 }
@@ -204,7 +204,7 @@
 
         } else if ([token isKindOfClass:[HTMLPurifier_Token_Empty class]])
         {
-            if (_flashCompat && [[token valueForKey:@"name"] isEqualToString:@"param"] && _flashStack.count>0)
+            if (_flashCompat.boolValue && [[token valueForKey:@"name"] isEqualToString:@"param"] && _flashStack.count>0)
             {
                 HTMLPurifier_FlashStackObject* flashStackObject = _flashStack[_flashStack.count-1];
                 NSMutableDictionary* params = flashStackObject.param;
@@ -214,7 +214,7 @@
                     [params setObject:value forKey:key];
             }
             NSString* attrString = [self generateAttributes:[(HTMLPurifier_Token_Empty*)token attr] sortedKeys:token.sortedAttrKeys element:[(HTMLPurifier_Token_Empty*)token name]];
-            return [NSString stringWithFormat:@"<%@%@%@%@>", [(HTMLPurifier_Token_Empty*)token name], ([attrString length]>0?[NSString stringWithFormat:@" "]:@""), attrString, _xhtml?@" /":@""];
+            return [NSString stringWithFormat:@"<%@%@%@%@>", [(HTMLPurifier_Token_Empty*)token name], ([attrString length]>0?[NSString stringWithFormat:@" "]:@""), attrString, _xhtml.boolValue?@" /":@""];
         } else if ([token isKindOfClass:[HTMLPurifier_Token_Text class]])
         {
             return [self escape:[token valueForKey:@"data"] quote:ENT_NOQUOTES];
@@ -271,7 +271,7 @@
             if(!value)
                 continue;
 
-            if (!_xhtml) {
+            if (!_xhtml.boolValue) {
                 // Remove namespaced attributes
                 if ([key rangeOfString:@":"].location != NSNotFound) {
                     continue;

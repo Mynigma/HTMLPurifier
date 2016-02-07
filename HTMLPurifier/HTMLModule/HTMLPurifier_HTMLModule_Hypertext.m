@@ -18,7 +18,7 @@
     if (self) {
         self.name = @"Hypertext";
         HTMLPurifier_ElementDef* a = [self addElement:@"a" type:@"Inline" contents:@"Inline" attrIncludes:@"Common" attr:@{@"href":@"URI",@"rel":[[HTMLPurifier_AttrDef_HTML_LinkTypes alloc] initWithName:@"rel"], @"rev":[[HTMLPurifier_AttrDef_HTML_LinkTypes alloc] initWithName:@"rev"]}];
-        a.formatting = YES;
+        a.formatting = @YES;
         a.excludes = [NSMutableDictionary dictionaryWithDictionary:@{@"a":@YES}];
     }
     return self;

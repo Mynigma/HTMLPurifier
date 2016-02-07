@@ -8,6 +8,9 @@
 #import "HTMLPurifier_ElementDef.h"
 #import "BasicPHP.h"
 #import "HTMLPurifier_ChildDef.h"
+#import <objc/runtime.h>
+
+
 
 @implementation HTMLPurifier_ElementDef
 
@@ -16,11 +19,11 @@
 {
     self = [super init];
     if (self) {
-        _standalone = YES;
+        _standalone = @YES;
         _attr = [NSMutableDictionary new];
         _attr_transform_post = [NSMutableDictionary new];
         _attr_transform_pre = [NSMutableDictionary new];
-        _descendants_are_inline = NO;
+        _descendants_are_inline = @NO;
         _required_attr = [NSMutableArray new];
         _excludes = [NSMutableDictionary new];
         _autoclose = [NSMutableArray new];
@@ -89,10 +92,10 @@
         if (def.child) {
             self.child = def.child;
         }
-        if (def.formatting) {
+        if (def.formatting.boolValue) {
             self.formatting = def.formatting;
         }
-        if (def.descendants_are_inline) {
+        if (def.descendants_are_inline.boolValue) {
             self.descendants_are_inline = def.descendants_are_inline;
         }
     }
@@ -118,52 +121,6 @@
         }
     }
 
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    HTMLPurifier_ElementDef* newElementDef = [[[self class] allocWithZone:zone] init];
-
-    [newElementDef setAttr:self.attr];
-    [newElementDef setAttr_transform_post:self.attr_transform_post];
-    [newElementDef setAttr_transform_pre:self.attr_transform_pre];
-    [newElementDef setChild:self.child];
-    [newElementDef setContent_model:self.content_model];
-    [newElementDef setContent_model_type:self.content_model_type];
-    [newElementDef setDescendants_are_inline:self.descendants_are_inline];
-    [newElementDef setExcludes:self.excludes];
-    [newElementDef setFormatting:self.formatting];
-    [newElementDef setRequired_attr:self.required_attr];
-    [newElementDef setStandalone:self.standalone];
-    [newElementDef setWrap:self.wrap];
-
-    return newElementDef;
-}
-
-
-
-- (NSUInteger)hash
-{
-    return [self.attr hash] + [self.attr_transform_post hash] + [self.attr_transform_pre hash] + [self.child hash] + [self.content_model hash] + [self.content_model_type hash] + (self.descendants_are_inline?0:8547) + [self.excludes hash] + (self.formatting?34853:49853) + [self.required_attr hash] + (self.standalone?3244:9598) + [self.wrap hash];
-}
-
-- (BOOL)isEqual:(HTMLPurifier_ElementDef*)object
-{
-    if(![object isKindOfClass:[HTMLPurifier_ElementDef class]])
-        return NO;
-    
-    return  (self.attr?[self.attr isEqual:object.attr]:object.attr?NO:YES)  &&
-    (self.attr_transform_post?[self.attr_transform_post isEqual:object.attr_transform_post]:object.attr_transform_post?NO:YES)  &&
-    (self.attr_transform_pre?[self.attr_transform_pre isEqual:object.attr_transform_pre]:object.attr_transform_pre?NO:YES)  &&
-    (self.child?[self.child isEqual:object.child]:object.child?NO:YES)  &&
-    (self.content_model?[self.content_model isEqual:object.content_model]:object.content_model?NO:YES)  &&
-    (self.content_model_type?[self.content_model_type isEqual:object.content_model_type]:object.content_model_type?NO:YES)  &&
-    (self.descendants_are_inline == object.descendants_are_inline) &&
-    (self.excludes?[self.excludes isEqual:object.excludes]:object.excludes?NO:YES)  &&
-    (self.formatting == object.formatting)  &&
-    (self.required_attr?[self.required_attr isEqual:object.required_attr]:object.required_attr?NO:YES)  &&
-    (self.standalone == object.standalone) &&
-    (self.wrap?[self.wrap isEqual:object.wrap]:object.wrap?NO:YES);
-}
 
 
 @end

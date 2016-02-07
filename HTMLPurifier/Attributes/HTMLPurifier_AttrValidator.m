@@ -48,7 +48,7 @@
 
     // create alias to global definition array, see also defs
     // DEFINITION CALL
-    NSMutableDictionary* d_defs = [definition info_global_attr];
+    NSDictionary* d_defs = [definition info_global_attr];
 
     // don't update token until the very end, to ensure an atomic update
     NSMutableDictionary* attr = [token.attr mutableCopy];

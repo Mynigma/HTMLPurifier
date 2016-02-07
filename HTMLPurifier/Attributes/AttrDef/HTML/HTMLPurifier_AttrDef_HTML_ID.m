@@ -55,6 +55,52 @@
     return self;
 }
 
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        selector = [coder decodeObjectForKey:@"selector"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:selector forKey:@"selector"];
+}
+
+
+- (BOOL)isEqual:(HTMLPurifier_AttrDef_HTML_ID*)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_HTML_ID class]])
+        return NO;
+    
+    BOOL selectorEqual = (!self.selector && ![other selector]) || [self.selector isEqual:[other selector]];
+    
+    return selectorEqual;
+}
+
+- (NSUInteger)hash
+{
+    return [selector hash] ^ [super hash];
+}
+
+
+
+
+
+
 /**
  * @param string $id
  * @param HTMLPurifier_Config $config

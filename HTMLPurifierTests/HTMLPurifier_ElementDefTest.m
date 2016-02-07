@@ -41,7 +41,7 @@
         NSString* overloaded_new = @"4";
         NSNumber* removed = @5;
 
-        def1.standalone = YES;
+        def1.standalone = @YES;
     def1.attr = [@{@0 : @[@"old-include"],
                             @"old-attr" : old,
                             @"overloaded-attr" : overloaded_old,
@@ -56,13 +56,13 @@
     def1.child = (HTMLPurifier_ChildDef*)overloaded_old;
         def1.content_model = @"old";
         def1.content_model_type = overloaded_old;
-        def1.descendants_are_inline = NO;
+        def1.descendants_are_inline = @NO;
         def1.excludes = [@{
                                @"old" : @YES,
                                @"removed-old" : @YES
                                 } mutableCopy];
 
-        def2.standalone = false;
+        def2.standalone = @NO;
         def2.attr = [@{
                             @0 : @[@"new-include"],
                            @"new-attr" : new,
@@ -79,7 +79,7 @@
         def2.child = (HTMLPurifier_ChildDef*)new;
         def2.content_model = @"#SUPER | new";
         def2.content_model_type = overloaded_new;
-        def2.descendants_are_inline = YES;
+        def2.descendants_are_inline = @YES;
         def2.excludes = [@{
                                @"new" : @YES,
                                @"removed-old" : @NO
@@ -88,7 +88,7 @@
         [def1 mergeIn:def2];
         [def1 mergeIn:def3]; // empty, has no effect
 
-    XCTAssertEqual(def1.standalone, YES);
+    XCTAssertEqual(def1.standalone, @YES);
     NSDictionary* expectedDict = @{ @0 : @[@"old-include", @"new-include"],
                                     @"old-attr" : old,
                                     @"overloaded-attr" : overloaded_new,
@@ -110,7 +110,7 @@
 
     XCTAssertEqualObjects(def1.content_model, @"old | new");
     XCTAssertEqualObjects(def1.content_model_type, overloaded_new);
-    XCTAssertEqual(def1.descendants_are_inline, YES);
+    XCTAssertEqual(def1.descendants_are_inline, @YES);
     expectedDict = @{@"old" : @YES, @"new" : @YES};
 
     expectedDict = @{ @"old" : @YES,

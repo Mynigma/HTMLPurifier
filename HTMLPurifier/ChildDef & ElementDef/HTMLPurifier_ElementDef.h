@@ -6,6 +6,12 @@
 
 
 #import <Foundation/Foundation.h>
+#import "AutoCodingObject.h"
+
+
+
+
+
 
 @class HTMLPurifier_ChildDef;
 
@@ -17,14 +23,14 @@
  * @warning If you add new properties to this class, you MUST update
  *          the mergeIn() method.
  */
-@interface HTMLPurifier_ElementDef : NSObject
+@interface HTMLPurifier_ElementDef : AutoCodingObject
 
     /**
      * Does the definition work by itself, or is it created solely
      * for the purpose of merging into another definition?
      * @type bool
      */
-@property BOOL standalone;
+@property NSNumber* standalone;
 
     /**
      * Associative array of attribute name to HTMLPurifier_AttrDef.
@@ -97,7 +103,7 @@
      * have to worry about this one.
      * @type bool
      */
-@property BOOL descendants_are_inline;
+@property NSNumber* descendants_are_inline;
 
     /**
      * List of the names of required attributes this element has.
@@ -139,7 +145,7 @@
      * "Active Formatting Elements" algorithm.
      * @type bool
      */
-@property BOOL formatting;
+@property NSNumber* formatting;
 
     /**
      * Low-level factory constructor for creating new standalone element defs
@@ -161,8 +167,6 @@
  */
 - (void) _mergeIntoAssocArray:(NSMutableDictionary*)a1 from:(NSMutableDictionary*)a2;
 
-
-- (id)copyWithZone:(NSZone *)zone;
 
 
 @end

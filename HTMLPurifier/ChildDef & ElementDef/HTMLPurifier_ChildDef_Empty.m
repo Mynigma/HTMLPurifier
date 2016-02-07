@@ -16,7 +16,7 @@
 {
     self = [super init];
     if (self) {
-        self.allow_empty = YES;
+        self.allow_empty = @YES;
         self.typeString = @"empty";
     }
     return self;

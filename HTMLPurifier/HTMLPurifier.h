@@ -29,7 +29,6 @@
 
 @class HTMLPurifier_Config,HTMLPurifier_Strategy_Core,HTMLPurifier_Generator,HTMLPurifier_Context,HTMLPurifier_Filter,HTMLPurifier_Lexer,HTMLPurifier_LanguageFactory,HTMLPurifier_Language,HTMLPurifier_ErrorCollector,HTMLPurifier_IDAccumulator;
 
-#define VERSION @"0.1"
 
 
 @interface HTMLPurifier : NSObject
@@ -60,6 +59,10 @@
  * Is an array of contexts if the last called method was purifyArray().
  */
 @property NSObject* context;
+
+
+
+
 
 - (id)initWithConfig:(HTMLPurifier_Config*) newConfig;
 

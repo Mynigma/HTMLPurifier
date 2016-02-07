@@ -11,9 +11,9 @@
 
 @property HTMLPurifier_AttrDef* single;
 
-@property NSInteger max;
+@property NSNumber* max;
 
-- (id)initWithSingle:(HTMLPurifier_AttrDef*)single max:(NSInteger)max;
+- (id)initWithSingle:(HTMLPurifier_AttrDef*)single max:(NSNumber*)max;
 - (id)initWithSingle:(HTMLPurifier_AttrDef*)single;
 
 - (NSString*)validateWithString:(NSString*)string config:(HTMLPurifier_Config*)config context:(HTMLPurifier_Context*)context;

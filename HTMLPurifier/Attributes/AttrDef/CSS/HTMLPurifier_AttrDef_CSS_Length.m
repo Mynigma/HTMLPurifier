@@ -20,8 +20,8 @@
 {
     self = [super init];
     if (self) {
-        min = (HTMLPurifier_Length*)([newMin isKindOfClass:[HTMLPurifier_Length class]] ? newMin : (newMin ? [HTMLPurifier_Length makeWithS:(NSString*)newMin] : nil));
-        max = (HTMLPurifier_Length*)([newMax isKindOfClass:[HTMLPurifier_Length class]] ? newMax : (newMax ? [HTMLPurifier_Length makeWithS:(NSString*)newMax] : nil));
+        _min = (HTMLPurifier_Length*)([newMin isKindOfClass:[HTMLPurifier_Length class]] ? newMin : (newMin ? [HTMLPurifier_Length makeWithS:(NSString*)newMin] : nil));
+        _max = (HTMLPurifier_Length*)([newMax isKindOfClass:[HTMLPurifier_Length class]] ? newMax : (newMax ? [HTMLPurifier_Length makeWithS:(NSString*)newMax] : nil));
     }
     return self;
 }
@@ -37,6 +37,62 @@
 {
     return [self initWithMin:nil max:nil];
 }
+
+
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _min = [coder decodeObjectForKey:@"min"];
+        _max = [coder decodeObjectForKey:@"max"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_min forKey:@"min"];
+    [encoder encodeObject:_max forKey:@"max"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Length class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return ((!self.min && ![(HTMLPurifier_AttrDef_CSS_Length*)other min]) || [self.min isEqual:[(HTMLPurifier_AttrDef_CSS_Length*)other min]]) && ((!self.max && ![(HTMLPurifier_AttrDef_CSS_Length*)other max]) || [self.max isEqual:[(HTMLPurifier_AttrDef_CSS_Length*)other max]]);
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_min hash] ^ [_max hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**
@@ -66,8 +122,8 @@
         return nil;
     }
 
-    if (min) {
-        NSNumber* c = [length compareTo:min];
+    if (self.min) {
+        NSNumber* c = [length compareTo:self.min];
         if (!c) {
             return nil;
         }
@@ -75,8 +131,8 @@
             return nil;
         }
     }
-    if (max) {
-        NSNumber* c = [length compareTo:max];
+    if (self.max) {
+        NSNumber* c = [length compareTo:self.max];
         if (!c) {
             return nil;
         }

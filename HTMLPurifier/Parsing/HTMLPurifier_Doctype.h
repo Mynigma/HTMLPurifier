@@ -6,6 +6,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "AutoCodingObject.h"
 
 /**
  * Represents a document type, contains information on which modules
@@ -13,7 +14,7 @@
  * @note This class is inspected by Printer_HTMLDefinition->renderDoctype.
  *       If structure changes, please update that function.
  */
-@interface HTMLPurifier_Doctype : NSObject
+@interface HTMLPurifier_Doctype : AutoCodingObject
 
     /**
      * Full name of doctype
@@ -38,7 +39,7 @@
      * Is the language derived from XML (i.e. XHTML)?
      * @type bool
      */
-@property BOOL xml;
+@property NSNumber* xml;
 
     /**
      * List of aliases for this doctype
@@ -59,7 +60,7 @@
 @property NSString* dtdSystem;
 
 
-- (id)initWithName:(NSString*)name xml:(BOOL)xml modules:(NSArray*)modules tidyModules:(NSArray*)tidyModules aliases:(NSArray*)aliases dtdPublic:(NSString*)dtdPublic dtdSystem:(NSString*)dtdSystem;
+- (id)initWithName:(NSString*)name xml:(NSNumber*)xml modules:(NSArray*)modules tidyModules:(NSArray*)tidyModules aliases:(NSArray*)aliases dtdPublic:(NSString*)dtdPublic dtdSystem:(NSString*)dtdSystem;
 
 
 - (id)initWithName:(NSString*)name;

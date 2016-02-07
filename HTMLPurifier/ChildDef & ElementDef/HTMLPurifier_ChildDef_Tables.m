@@ -47,7 +47,7 @@
 {
     self = [super init];
     if (self) {
-        self.allow_empty = NO;
+        self.allow_empty = @NO;
         self.typeString = @"table";
         self.elements = [@{@"tr":@YES,@"tbody":@YES,@"thead":@YES,@"tfoot":@YES,@"caption":@YES,@"colgroup":@YES,@"col":@YES} mutableCopy];
 

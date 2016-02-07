@@ -31,9 +31,9 @@
 -(id) init
 {
     self = [super init];
-    allow_empty = true;
+    allow_empty = @YES;
     type = @"strictblockquote";
-    setup = false;
+    setup = @NO;
     return self;
 }
 
@@ -130,7 +130,7 @@
         }
         
         fake_elements[@"#PCDATA"] = @YES;
-        setup = true;
+        setup = @YES;
     }
 }
 

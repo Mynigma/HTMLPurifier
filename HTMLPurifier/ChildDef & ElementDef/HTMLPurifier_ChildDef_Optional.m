@@ -19,7 +19,7 @@
 {
     self = [super initWithElements:newElements];
     if (self) {
-        self.allow_empty = YES;
+        self.allow_empty = @YES;
         self.typeString = @"optional";
     }
     return self;
@@ -43,7 +43,7 @@
             {
                 return @YES;
             }
-            else if(whitespace)
+            else if(self.whitespace.boolValue)
             {
                 return children;
             } else {

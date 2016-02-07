@@ -16,14 +16,57 @@
 {
     self = [super init];
     if (self) {
-        info = [NSMutableDictionary new];
+        NSMutableDictionary* tempInfo = [NSMutableDictionary new];
         HTMLPurifier_CSSDefinition* def = [config getCSSDefinition];
-        info[@"border-width"] = def.info[@"border-width"];
-        info[@"border-style"] = def.info[@"border-style"];
-        info[@"border-top-color"] = def.info[@"border-top-color"];
+        tempInfo[@"border-width"] = def.info[@"border-width"];
+        tempInfo[@"border-style"] = def.info[@"border-style"];
+        tempInfo[@"border-top-color"] = def.info[@"border-top-color"];
+        _info = tempInfo;
     }
     return self;
 }
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _info = [coder decodeObjectForKey:@"info"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_info forKey:@"info"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Border class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.info && ![(HTMLPurifier_AttrDef_CSS_Border*)other info]) || [self.info isEqual:[(HTMLPurifier_AttrDef_CSS_Border*)other info]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_info hash] ^ [super hash];
+}
+
+
+
 
 /**
      * @param string $string
@@ -40,9 +83,9 @@
         NSMutableString* ret = [@"" mutableCopy]; // return value
         for(NSString* bit in bits)
         {
-            for(NSString* propname in self->info)
+            for(NSString* propname in self.info)
             {
-                HTMLPurifier_AttrDef_CSS_Border* validator = [self->info objectForKey:propname];
+                HTMLPurifier_AttrDef_CSS_Border* validator = [self.info objectForKey:propname];
                 if([done objectForKey:propname])
                     continue;
                 NSString* r = [validator validateWithString:bit config:config context:context];

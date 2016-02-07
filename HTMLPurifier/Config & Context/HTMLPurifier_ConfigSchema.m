@@ -129,7 +129,6 @@ NSDictionary *DictionaryWithNode(xmlNodePtr currentNode, NSMutableDictionary *pa
     return resultForNode;
 }
 
-static HTMLPurifier_ConfigSchema* theSingleton;
 
 @implementation HTMLPurifier_ConfigSchema
 
@@ -140,8 +139,6 @@ static HTMLPurifier_ConfigSchema* theSingleton;
         _defaults = [NSMutableDictionary new];
         
         [self actuallyReadPlist];
-        
-        theSingleton = self;
     }
     return self;
 }
@@ -166,13 +163,6 @@ static HTMLPurifier_ConfigSchema* theSingleton;
     [self setDefaults:[configDict[@"defaults"] mutableCopy]];
 }
 
-+ (HTMLPurifier_ConfigSchema*)singleton
-{
-    if(theSingleton)
-        return theSingleton;
-    
-    return [HTMLPurifier_ConfigSchema new];
-}
 
 + (HTMLPurifier_ConfigSchema*)makeFromSerial
 {

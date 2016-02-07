@@ -10,6 +10,25 @@
 
 @implementation HTMLPurifier_AttrDef_HTML_Length
 
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self)
+        return YES;
+    
+    if (![super isEqual:other])
+        return NO;
+    
+    if(![other isKindOfClass:[HTMLPurifier_AttrDef_HTML_Length class]])
+        return NO;
+    
+    return YES;
+}
+
+
+
+
 /**
  * @param string $string
  * @param HTMLPurifier_Config $config

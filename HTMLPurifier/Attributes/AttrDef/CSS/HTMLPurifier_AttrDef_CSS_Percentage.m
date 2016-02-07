@@ -15,19 +15,67 @@
 /**
  * @param bool $non_negative Whether to forbid negative values
  */
-- (id)initWithNonNegative:(BOOL)nonNegative
+- (id)initWithNonNegative:(NSNumber*)nonNegative
 {
     self = [super init];
     if (self) {
-        numberDef = [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:nonNegative];
+        _numberDef = [[HTMLPurifier_AttrDef_CSS_Number alloc] initWithNonNegative:nonNegative];
     }
     return self;
 }
 
 - (id)init
 {
-    return [self initWithNonNegative:NO];
+    return [self initWithNonNegative:@NO];
 }
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _numberDef = [coder decodeObjectForKey:@"numberDef"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_numberDef forKey:@"numberDef"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_Percentage class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return (!self.numberDef && ![(HTMLPurifier_AttrDef_CSS_Percentage*)other numberDef]) || [self.numberDef isEqual:[(HTMLPurifier_AttrDef_CSS_Percentage*)other numberDef]];
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_numberDef hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
 
 /**
  * @param string $string
@@ -51,7 +99,7 @@
     }
 
     NSString* number = [string substringWithRange:NSMakeRange(0, length-1)];
-    number = [self->numberDef validateWithString:number config:config context:context];
+    number = [self.numberDef validateWithString:number config:config context:context];
 
     if (!number) {
         return nil;

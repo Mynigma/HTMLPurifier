@@ -36,6 +36,64 @@
     return self;
 }
 
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        def = [coder decodeObjectForKey:@"def"];
+        element = [coder decodeObjectForKey:@"element"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:def forKey:@"def"];
+    [encoder encodeObject:element forKey:@"element"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_DenyElementDecorator class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return ((!self.def && ![(HTMLPurifier_AttrDef_CSS_DenyElementDecorator*)other def]) || [self.def isEqual:[(HTMLPurifier_AttrDef_CSS_DenyElementDecorator*)other def]]) && ((!self.element && ![(HTMLPurifier_AttrDef_CSS_DenyElementDecorator*)other element]) || [self.element isEqual:[(HTMLPurifier_AttrDef_CSS_DenyElementDecorator*)other element]]);
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [def hash] ^ [element hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Checks if CurrentToken is set and equal to this->element
  * @param string string

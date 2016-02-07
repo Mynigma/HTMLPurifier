@@ -16,11 +16,55 @@
 {
     self = [super init];
     if (self) {
-    length = [[HTMLPurifier_AttrDef_CSS_Length alloc] init];
-    percentage = [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init];
+    _length = [[HTMLPurifier_AttrDef_CSS_Length alloc] init];
+    _percentage = [[HTMLPurifier_AttrDef_CSS_Percentage alloc] init];
     }
     return self;
 }
+
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        _length = [coder decodeObjectForKey:@"length"];
+        _percentage = [coder decodeObjectForKey:@"percentage"];
+    }
+    return self;
+}
+
+
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [super encodeWithCoder:encoder];
+    [encoder encodeObject:_length forKey:@"length"];
+    [encoder encodeObject:_percentage forKey:@"percentage"];
+}
+
+
+- (BOOL)isEqual:(id)other
+{
+    if (other == self) {
+        return YES;
+    } else if (![super isEqual:other]) {
+        return NO;
+    } else if(![other isKindOfClass:[HTMLPurifier_AttrDef_CSS_BackgroundPosition class]])
+    {
+        return NO;
+    }
+    else
+    {
+        return ((!self.length && ![(HTMLPurifier_AttrDef_CSS_BackgroundPosition*)other length]) || [self.length isEqual:[(HTMLPurifier_AttrDef_CSS_BackgroundPosition*)other length]]) && ((!self.percentage && ![(HTMLPurifier_AttrDef_CSS_BackgroundPosition*)other percentage]) || [self.percentage isEqual:[(HTMLPurifier_AttrDef_CSS_BackgroundPosition*)other percentage]]);
+    }
+}
+
+- (NSUInteger)hash
+{
+    return [_length hash] ^ [_percentage hash];
+}
+
 
 /**
  * @param string $string
@@ -68,14 +112,14 @@
         }
 
         // test for length
-        NSString* r = [length validateWithString:bit config:config context:context];
+        NSString* r = [self.length validateWithString:bit config:config context:context];
         if (r) {
             [measures addObject:r];
             i++;
         }
 
         // test for percentage
-        r = [self->percentage validateWithString:bit config:config context:context];
+        r = [self.percentage validateWithString:bit config:config context:context];
         if (r) {
             [measures addObject:r];
             i++;

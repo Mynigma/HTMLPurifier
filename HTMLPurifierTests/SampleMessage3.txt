@@ -1,0 +1,234 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/><meta name="MobileOptimized" content="320"/><meta name="HandHeldFriendly" content="true"/><metaname="viewport" content="width=device-width, initial-scale=1.0"/><meta name="format-detection" content="telephone=no"/><meta name="format-detection" content="email=no" />
+<style type="text/css">@-webkit-viewport{width:device-width;zoom:1;}
+@-moz-viewport{width:device-width;zoom:1;}
+@-ms-viewport{width:extend-to-zoom;zoom:1;}
+@-o-viewport{width:device-width;zoom:1;}
+@viewport{width:device-width;zoom:1;}
+</style>
+<style type="text/css">#mailframe{padding:0px;}
+#mailbody > div > img,body > img{position:absolute;width:0;height:0;}
+div[id]#liquid{-webkit-text-size-adjust:100%;-moz-text-size-adjust:none;-ms-text-size-adjust:100%;background:#FFFFFF;font-weight:normal;line-height:100%;font-family:Verdana, Helvetica, Arial, sans-serif;font-size:13px;}
+div[id]#liquid .page{background:#FFFFFF;}
+div#liquid table img{display:block;border:0;font-size:12px;line-height:3em;text-align:center;image-rendering:optimizeQuality;-ms-interpolation-mode:bicubic;}
+div#liquid table a img{display:inline-block;}
+div#liquid table a{text-decoration:underline;}
+div[id]#liquid .center{text-align:center;}
+div[id]#liquid .center a{display:inline-block;}
+div#liquid a,div#liquid a .more{color:#2269C3;text-decoration:underline;}
+div#liquid a:visited,div#liquid a:visited .more{color:#6496D5;text-decoration:underline;}
+div#liquid a:active,div#liquid a:active .more{color:#6796D5;text-decoration:underline;}
+div#liquid a:hover,div#liquid a:hover .more,div#liquid .more:hover{color:#2269C3;cursor:pointer;text-decoration:underline!important;}
+div#liquid,div#liquid table{border-collapse:collapse;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;/* Fix for mm.web.de in IE: Do not automatically set table width to 100% *//* width: auto; */}
+div#liquid table[width="100%"]{width:100%;}
+div#liquid .colored,div#liquid .footer,div#liquid .footer-fullwidth{display:inline-block;height:auto;float:left;}
+div[id]#liquid .text,div[id]#liquid .headline{display:block;}
+div[id]#liquid .text{color:#262626;}
+div[id]#liquid .headline{color:#1C449B;}
+div[id]#liquid .more,div[id]#liquid .text{font-size:13px;line-height:20px;}
+div[id]#liquid .text font{font-size:13px;line-height:20px;}
+div[id]#liquid .text-small font{font-size:11px;line-height:16px;}
+div[id]#liquid .h1 font,div[id]#liquid .h2 font,div[id]#liquid .h3 font,div[id]#liquid .h4 font{font-family:Arial, Verdana, Helvetica, sans-serif;}
+div[id]#liquid .h2 font{font-size:21px;line-height:28px;}
+div[id]#liquid .h3 font{font-size:18px;line-height:25px;}
+div[id]#liquid .h4 font{font-size:14px;line-height:21px;font-weight:bold;}
+div[id]#liquid .footer .text{display:inline;}
+div[id]#liquid .footer .text font,div[id]#liquid .footer-fullwidth .text font{font-size:13px;line-height:20px;}
+div[id]#liquid .vspacer,div[id]#liquid .vspacer2{border:1px solid transparent;_border:0;}
+div#liquid .fullsize{_float:left;}
+div[id]#liquid .fullsize{float:left;}
+div[id]#liquid .fullsize{float:left;}
+div[id]#liquid .right-col{float:left;}
+div[id]#liquid .hfspacer{display:none;}
+div[id]#liquid .spacer{display:none;}
+div[id]#liquid .bigger{width:10px;}
+div#liquid #summary{background-color:#FFFFFF;color:#FFFFFF;display:none;font:8px/10px Verdana;margin:0;padding:0;text-align:center;}
+@media only screen and (max-width:669px){div[id]#liquid .sidebar{display:none;}
+div[id]#liquid{min-width:320px;}
+div[id]#liquid .topline img{height:4px;}
+div[id]#liquid .medsize,div[id]#liquid .fullsize{width:300px;}
+div[id]#liquid .page{width:298px;}
+div[id]#liquid .page-footer{width:298px;}
+div[id]#liquid .fullsize,div[id]#liquid .footer,div[id]#liquid .footer-fullwidth,div[id]#liquid .medsize,div[id]#liquid .colored,div[id]#liquid table[width="270"],div[id]#liquid table[width="305"]{float:none;clear:both;}
+div[id]#liquid td{height:auto;max-width:300px;}
+div[id]#liquid table[width="305"],div[id]#liquid table[width="520"],div[id]#liquid table[width="590"],div[id]#liquid td[width="305"],div[id]#liquid td[width="590"],div[id]#liquid td[width="520"]{width:270px;max-width:270px;}
+div[id]#liquid table[width="605"],div[id]#liquid td[width="605"],div[id]#liquid table[width="392"],div[id]#liquid td[width="392"]{width:285px;max-width:285px;}
+div[id]#liquid table[width="620"],div[id]#liquid td[width="620"],div[id]#liquid table[width="630"],div[id]#liquid td[width="630"],div[id]#liquid table[width="640"],div[id]#liquid td[width="640"],div[id]#liquid table.floatbutton-left{width:300px;max-width:300px;}
+div[id]#liquid table.floatbutton-left table{width:285px;max-width:285px;}
+div[id]#liquid table.floatbutton-left table td{max-width:270px;}
+div[id]#liquid .alt{width:270px;height:185px;position:relative;}
+div[id]#liquid .group-spacer{display:block;height:15px;}
+div[id]#liquid .hspacer{height:30px;}
+div[id]#liquid .vspacer,div[id]#liquid .vspacer2,div[id]#liquid .hspacer2{display:none;}
+div[id]#liquid .small-width-15,div[id]#liquid .small-width-15 img{width:15px;}
+div[id]#liquid .small-height-5,div[id]#liquid .small-height-5 img{height:5px;}
+div[id]#liquid .small-height-10,div[id]#liquid .small-height-10 img{height:10px;}
+div[id]#liquid .small-center{text-align:center;}
+div[id]#liquid .small-center a{display:inline-block;}
+div[id]#liquid .none,div[id]#liquid .none img[width="12"],div[id]#liquid .none img[width="45"]{width:10px;height:1px;}
+div[id]#liquid .footer-icon,div[id]#liquid .footer-icon [width="60"]{width:40px;max-width:40px;height:auto;}
+div[id]#liquid .footer-wrapper{position:relative;}
+div[id]#liquid .footer-wrapper .legal{position:absolute;bottom:30px;left:15px;}
+div[id]#liquid .footer-wrapper .legal-note{margin-top:-10px;margin-bottom:40px;}
+div[id]#liquid .text font{font-size:13px;line-height:20px;}
+div[id]#liquid .hfspacer{display:block;height:10px;}
+div[id]#liquid .bigger{width:10px;}
+div[id]#liquid .abbinder td{width:300px;display:block;}
+div[id]#liquid .hide-small{display:none;}
+div[id]#liquid .small-teaser-hero{background-repeat:no-repeat;background-position:left top;display:inline-block;}
+div[id]#liquid .small-teaser-hero{width:270px;height:190px;}
+}
+@media only screen and (min-width:670px) and (max-width:679px){div[id]#liquid{width:660px;}
+div[id]#liquid .page{width:640px;}
+div[id]#liquid .fullsize{width:620px;height:auto;}
+div[id]#liquid .footer-wrapper{width:620px;}
+div[id]#liquid .footer,div[id]#liquid .footer-fullwidth,div[id]#liquid .medsize{height:auto;}
+div[id]#liquid .hfspacer,div[id]#liquid .spacer{display:none;}
+div[id]#liquid .bigger{width:10px;}
+}
+@media only screen and (min-width:1000px){div[id]#liquid .buffer{display:none;}
+div[id]#liquid .right-col .group-spacer{clear:both;display:block;height:15px;}
+div[id]#liquid .right-col{margin-right:30px;margin-bottom:15px;}
+div[id]#liquid .right-col,div[id]#liquid .right-col table[width="620"],div[id]#liquid .right-col td[width="620"]{width:300px;}
+div[id]#liquid .right-col table[width="605"],div[id]#liquid .right-col td[width="605"],div[id]#liquid .right-col table[width="392"],div[id]#liquid .right-col td[width="392"]{width:285px;}
+div[id]#liquid .right-col table[width="590"],div[id]#liquid .right-col td[width="590"]{width:270px;}
+div[id]#liquid .right-col img{max-width:270px;}
+div[id]#liquid .right-col .force-small img.hide-small{display:none;}
+div[id]#liquid .right-col .force-small .small-teaser-hero{display:block;}
+div[id]#liquid .right-col table{float:left;clear:both;}
+div[id]#liquid .right-col table[width="110"],div[id]#liquid .right-col table[width="145"]{clear:none;}
+div[id]#liquid .right-col table[width="145"]{float:right;}
+div[id]#liquid .right-col.right{float:right;clear:right;}
+}
+@media only screen and (min-width:0px) and (max-width:669px){div[id]#liquid#img-header{display:none;}
+div[id]#liquid #hero-button-link{display:block;height:34px;margin-top:15px;margin-bottom:0px;}
+div[id]#liquid #hero-button{display:block;height:34px;background:no-repeat left top;}
+div[id]#liquid .header{width:300px;display:block;background:no-repeat center top;}
+div[id]#liquid .centered .header{width:270px;}
+div[id]#liquid #alt-visual{height:210px;}
+div[id]#liquid #alt-head-sub{height:60px;margin:30px 0 20px;}
+div[id]#liquid .center-space{width:15px;}
+div[id]#liquid .center-space img{width:15px;}
+}
+</style><!--[if mso]>
+<style type="text/css">#liquid table{mso-table-lspace:0pt;mso-table-rspace:0pt;border:0px solid transparent;}
+#liquid table.fullsize td.topline img{height:4px;}
+#liquid table tr{vertical-align:top;}
+#liquid .page{width:620px;}
+#liquid table.hspacer2,#liquid table.colored,#liquid table.footer,#liquid table.footer-fullwidth,#liquid table.vspacer{border:0 solid transparent;}
+#liquid table.vspacer{display:none;}
+#liquid table.vspacer2{display:block;}
+#liquid table.footer{width:284px;}
+</style><![endif]--><meta http-equiv="Content-Type" content="text/html;charset=utf-8"/></head>
+<body marginheight="0" marginwidth="0" topmargin="0" rightmargin="0" bottommargin="0" leftmargin="0" link="#2269C3" vlink="#6496D5" style="line-height:0;margin:0;background-color:#FFFFFF;">
+<div id="liquid" style="margin:0 auto;"><p id="summary" style="background-color:#FFFFFF;color:#FFFFFF;display:none;font:8px/10px Verdana;margin:0;padding:0;text-align:center;"><font face="Verdana" size="1" style="font-size:8px;line-height:10px;">GMX lädt Sie ein zum großenWeihnachts-Gewinnspiel!</font></p>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" align="center">
+<tr><td width="100%" bgcolor="#2567C5" style="background-color:#2567C5;" class="topline" height="4"><img src="https://inxtracking01.inx1and1.de/tracking/d.gif?i1004q000b3qi0rtohk00h0000000000000000gmikk4y3018" alt="" width="1" height="4" border="0"   style="display:block;" /></td></tr>
+<tr><td width="100%" align="center">
+<table width="640" border="0" cellspacing="0" cellpadding="0" style="max-width:670px;margin:0 auto;" class="page">
+<tr><td width="10" class="hide-small big-width-30"><img src="https://img.ui-portal.de/p.gif" border="0" width="10" height="1" alt="" class="big-width-30"  /></td><td align="left" valign="top">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="left">
+<tr><td align="left"><!-- PRE-COLUMN START -->
+<table width="620" border="0" cellspacing="0" cellpadding="0" class="fullsize">
+<tr><td align="left" width="620"><!-- Header -->
+<table width="620" border="0" cellspacing="0" cellpadding="0" class="fullsize" valign="top">
+<tr><td align="left" width="620">
+<table width="620" border="0" cellspacing="0" cellpadding="0">
+<tr><td width="620" align="left" height="34"><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3sy0rtohk00d0000000000000000gmifx0y3018&gwcode=5D98P0" target="_blank" ><img src="https://img.ui-portal.de/gmx/mailings/2015/gewinnspiel_november15/hero_desktop_620x330_DE.jpg" class="hide-small" border="0" width="620" height="330" alt="Das große Weihnachts-Gewinnspiel 2015" title="Das große Weihnachts-Gewinnspiel 2015"  /></a><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3t00rtohk00d0000000000000000gmifdzy3018&gwcode=5D98P0" target="_blank" ><span class="header" id="alt-head-sub" style="background-image:url(https://img.ui-portal.de/gmx/mailings/2015/gewinnspiel_november15/headline_mobile_de.png);height:105px !important;"></span></a><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3ti0rtohk00d0000000000000000gmioobq3018&gwcode=5D98P0" target="_blank" ><span class="header" style="background-image:url(https://img.ui-portal.de/gmx/mailings/2015/gewinnspiel_november15/hero_mobile_300x210_de.jpg);height:210px !important;"></span></a></td></tr>
+<tr><td align="center"><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3tq0rtohk00d0000000000000000gmiduz03018&gwcode=5D98P0" target="_blank"  style="width:130px;height:34px;" orig-id=hero-button-link><span id="hero-button" style="background-image:url(https://img.ui-portal.de/gmx/mailings/2015/gewinnspiel_juli15/cta.jpg);height:34px;width:130px;"></span></a></td></tr>
+<tr><td width="620" align="left" height="20"><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="20" alt="" style="display:block;"  /></td></tr></table></td></tr></table></td></tr></table>
+<table width="620" border="0" cellspacing="0" cellpadding="0" class="fullsize">
+<tr><td align="left" width="620">
+<table width="605" border="0" cellspacing="0" cellpadding="0" class="" valign="top">
+<tr><td align="left" width="605">
+<table width="605" border="0" cellspacing="0" cellpadding="0">
+<tr><td width="15" class="center-space"><img src="https://img.ui-portal.de/p.gif" border="0" width="15" height="1" alt="" style="display:block;"  /></td><td width="590" align="left" height="10"><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="10" alt="" style="display:block;" class=""  /></td></tr></table></td></tr></table>
+<table width="605" border="0" cellspacing="0" cellpadding="0" class="" valign="top">
+<tr><td align="left" width="605" valign="top">
+<table width="605" border="0" cellspacing="0" cellpadding="0" valign="top">
+<tr><td width="15" class="center-space"><img src="https://img.ui-portal.de/p.gif" border="0" width="15" height="1" alt="" style="display:block;"  /></td><td width="590" align="left" style="font-size:13px;line-height:20px;"><span class="text"><font face="Verdana" size="2"><span class="h3"><font face="Verdana" size="2" style="font-size:18px;line-height:25px">Hallo Roman Priebe,</font></span>
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="20" alt="" style="display:block;"  /></div>
+nutzen Sie Jetzt Ihre letzte Chance auf 200.000 € in bar! Nur noch drei Tage bis zum Anmeldeschluss!<br>
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="10" alt="" style="display:block;"  /></div>
+Knackt Ihre Code den Jackpot?
+
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="10" alt="" style="display:block;"  /></div>
+Ihr Gewinncode lautet: <b>5D98P0</b><br>
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="15" alt="" style="display:block;"  /></div><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3ty0rtohk00d0000000000000000gmiizbi3018&gwcode=5D98P0" target="_blank" > >> Jetzt am Gewinnspiel teilnehmen!</a>
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="20" alt="" style="display:block;"  /></div><b>Gewinnen Sie im GMX Gewinnspiel:</b>
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="10" alt="" style="display:block;"  /></div>
+<table width="590" border="0" cellspacing="0" cellpadding="0" class="medsize">
+<tr><td valign="top" width="18" style="line-height:3px;"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="2" style="display:block;"  /><img src="https://img.ui-portal.de/newsletterversand/bestprice/img/gmx/bullet.jpg" alt="*" width="18" height="18" class="list-bullet" style="line-height:18px;vertical-align:bottom;"/></td><td width="5" class="bullet-space"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="5" height="1" style="display:block;"  /></td><td valign="top" style="font-size:13px;line-height:20px;"><span class="text"><font face="Verdana" size="2">Im Jackpot:200.000 € in bar</font></span></td></tr>
+<tr><td></td><td height="10"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="10" style="display:block;"  /></td><td></td></tr></table>
+<table width="590" border="0" cellspacing="0" cellpadding="0" class="medsize">
+<tr><td valign="top" width="18" style="line-height:3px;"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="2" style="display:block;"  /><img src="https://img.ui-portal.de/newsletterversand/bestprice/img/gmx/bullet.jpg" alt="*" width="18" height="18" class="list-bullet" style="line-height:18px;vertical-align:bottom;"/></td><td width="5" class="bullet-space"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="5" height="1" style="display:block;"  /></td><td valign="top" style="font-size:13px;line-height:20px;"><span class="text"><font face="Verdana" size="2">1. Preis: Skiurlaub für zwei</font></span></td></tr>
+<tr><td></td><td height="10"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="10" style="display:block;"  /></td><td></td></tr></table>
+<table width="590" border="0" cellspacing="0" cellpadding="0" class="medsize">
+<tr><td valign="top" width="18" style="line-height:3px;"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="2" style="display:block;"  /><img src="https://img.ui-portal.de/newsletterversand/bestprice/img/gmx/bullet.jpg" alt="*" width="18" height="18" class="list-bullet" style="line-height:18px;vertical-align:bottom;"/></td><td width="5" class="bullet-space"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="5" height="1" style="display:block;"  /></td><td valign="top" style="font-size:13px;line-height:20px;"><span class="text"><font face="Verdana" size="2">2. Preis: Sonos Soundpaket</b></font></span></td></tr>
+<tr><td></td><td height="10"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="10" style="display:block;"  /></td><td></td></tr></table>
+<table width="590" border="0" cellspacing="0" cellpadding="0" class="medsize">
+<tr><td valign="top" width="18" style="line-height:3px;"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="2" style="display:block;"  /><img src="https://img.ui-portal.de/newsletterversand/bestprice/img/gmx/bullet.jpg" alt="*" width="18" height="18" class="list-bullet" style="line-height:18px;vertical-align:bottom;"/></td><td width="5" class="bullet-space"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="5" height="1" style="display:block;"  /></td><td valign="top" style="font-size:13px;line-height:20px;"><span class="text"><font face="Verdana" size="2">3.-4. Preis: Kitchenaid</font></span></td></tr>
+<tr><td></td><td height="10"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="10" style="display:block;"  /></td><td></td></tr></table>
+<table width="590" border="0" cellspacing="0" cellpadding="0" class="medsize">
+<tr><td valign="top" width="18" style="line-height:3px;"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="2" style="display:block;"  /><img src="https://img.ui-portal.de/newsletterversand/bestprice/img/gmx/bullet.jpg" alt="*" width="18" height="18" class="list-bullet" style="line-height:18px;vertical-align:bottom;"/></td><td width="5" class="bullet-space"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="5" height="1" style="display:block;"  /></td><td valign="top" style="font-size:13px;line-height:20px;"><span class="text"><font face="Verdana" size="2">5.-10. Preis: 150 € Christ oder Amazon Gutschein</font></span></td></tr>
+<tr><td></td><td height="10"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="10" style="display:block;"  /></td><td></td></tr></table>
+<table width="590" border="0" cellspacing="0" cellpadding="0" class="medsize">
+<tr><td valign="top" width="18" style="line-height:3px;"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="2" style="display:block;"  /><img src="https://img.ui-portal.de/newsletterversand/bestprice/img/gmx/bullet.jpg" alt="*" width="18" height="18" class="list-bullet" style="line-height:18px;vertical-align:bottom;"/></td><td width="5" class="bullet-space"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="5" height="1" style="display:block;"  /></td><td valign="top" style="font-size:13px;line-height:20px;"><span class="text"><font face="Verdana" size="2">8.-40. Preis: Je ein 6 Monats-Abo Ihrer Lieblingszeitschrift</font></span></td></tr>
+<tr><td></td><td height="10"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="10" style="display:block;"  /></td><td></td></tr></table><br>
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="5" alt="" style="display:block;"  /></div>
+Achtung,
+Teilnahmeschluss ist der <b>09.12.2015</b>. Nutzen Sie Ihre exklusive Gewinnchance!
+
+<div><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="15" alt="" style="display:block;"  /></div><b>Das GMX Team drückt Ihnen die Daumen!</b></font></span></td></tr>
+<tr><td width="15" class="center-space"><img src="https://img.ui-portal.de/p.gif" border="0" width="15" height="1" alt="" style="display:block;"  /></td><td width="590" align="left" height="15"><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="15" alt="" style="display:block;" class=""  /></td></tr></table></td></tr></table>
+<table width="605" border="0" cellspacing="0" cellpadding="0">
+<tr><td align="left" width="605">
+<table width="605" border="0" cellspacing="0" cellpadding="0">
+<tr><td width="15" class="center-space"><img src="https://img.ui-portal.de/p.gif" border="0" width="15" height="1" alt="" style="display:block;"  /></td><td style="color:#FFFFFF" width="590" class="center" align="center" height="34"><a style="text-decoration:none;width:130px;" href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3u00rtohk00d0000000000000000gmihj5i3018&gwcode=5D98P0" target="_blank" ><img src="https://img.ui-portal.de/gmx/mailings/2015/gewinnspiel_juli15/cta.jpg"style="xdisplay:inline-block;line-height:34px;vertical-align:middle;text-align:center;" alt="Jetzt teilnehmen" border="0" width="130" height="34"  /></a></td></tr>
+<tr><td width="15" class="center-space"><img src="https://img.ui-portal.de/p.gif" border="0" width="15" height="1" alt="" style="display:block;"  /></td><td width="590" align="left" height="15"><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="15" alt="" style="display:block;"  /></td></tr></table></td></tr></table></td></tr></table><!--[if mso]></td></tr></table></td></tr></table></td></tr></table>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="" align="center">
+<tr><td width="100%" align="center">
+<table width="640" border="0" cellspacing="0" cellpadding="0" style="max-width:670px;margin:0 auto;" class="page">
+<tr><td width="10" class="hide-small big-width-30"><img src="https://img.ui-portal.de/p.gif" border="0" width="10" height="1" alt="" /></td><td align="left" valign="top">
+<table width="630" border="0" cellspacing="0" cellpadding="0" class="fullsize" align="left">
+<tr><td align="left"><![endif]-->
+<table width="620" border="0" cellspacing="0" cellpadding="0" class="">
+<tr><td width="15" class="center-space"><img src="https://img.ui-portal.de/p.gif" border="0" width="15" height="1" alt="" style="display:block;"  /></td><td align="left" width="605" height="15"><img src="https://img.ui-portal.de/p.gif" border="0" width="1" height="15" alt="" style="display:block;"  /></td></tr></table>
+<table width="620" border="0" cellspacing="0" cellpadding="0" class="fullsize">
+<tr><td align="left" width="620" height="55"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="55"  /></td></tr></table></td></tr></table></td></tr></table></td></tr></table>
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#F2F2F2" align="center">
+<tr><td style="background-color:#F2F2F2;" width="100%" align="center">
+<table width="640" border="0" cellspacing="0" cellpadding="0" style="background-color:#F2F2F2;max-width:640px;margin:0 auto;" class="page-footer">
+<tr><td width="10" class="hide-small"><img src="https://img.ui-portal.de/p.gif" border="0" width="10" height="1" alt="" style="display:block;"  /></td><td width="630" align="left" valign="top" bgcolor="#F2F2F2"><!-- Footer -->
+<table width="620" border="0" cellspacing="0" cellpadding="0" class="footer-wrapper">
+<tr><td width="15" class="center-space"><img src="https://img.ui-portal.de/p.gif" border="0" width="15" height="1" alt="" style="display:block;"  /></td><td width="605" bgcolor="#F2F2F2" align="left">
+<table width="590" border="0" cellspacing="0" cellpadding="0" align="left">
+<tr><td height="25"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="25" style="display:block;"  /></td></tr>
+<tr><td width="590">
+<table width="590" border="0" cellspacing="0" cellpadding="0" align="left" class="footer-fullwidth" style="background:transparent">
+<tr><td><span class="h3"><font color="#6A6A6A" face="Arial, Verdana, Helvetica, sans-serif" size="3" style="font-size:18px;line-height:25px;"><strong>GMX Gewinnspiel</strong></font></span></td></tr></table></td></tr>
+<tr><td height="35"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="35"  /></td></tr>
+<tr><td width="590">
+<table width="270" border="0" cellspacing="0" cellpadding="0" align="left" class="legal" style="background:transparent">
+<tr><td align="left">
+<table width="270" border="0" cellspacing="0" cellpadding="0" align="left" style="background:transparent">
+<tr><td align="left" style="font-size:11px;line-height:16px;"><font size="1" face="Verdana, Arial, Helvetica" color="#6A6A6A" style="font-size:11px;line-height:16px;">
+© 1&1 Mail & Media GmbH 2015
+</font></td><td width="5" class="none"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="5" height="1" style="display:block;"  /></td><td align="right" valign="top" style="font-size:11px;line-height:16px;"><font size="1" face="Verdana, Arial, Helvetica" style="font-size:11px;line-height:16px;"><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3s00rtohk00d0000000000000000gmiinyi3018" target="_blank" >Impressum</a><br/>
+</font></td></tr></table></td></tr></table>
+<table width="14" height="1" border="0" cellspacing="0" cellpadding="0" align="left" class="vspacer" style="width:14px;">
+<tr><td width="14"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="14" height="1" style="display:block;"  /></td></tr></table>
+<table width="10" height="10" border="0" cellspacing="0" cellpadding="0" align="left" class="hfspacer">
+<tr><td height="10"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="10" height="10" style="display:block;"  /></td></tr></table>
+<table width="270" border="0" cellspacing="0" cellpadding="0" align="right" class="legal-note" style="background:transparent">
+<tr><td align="left" style="font-size:11px;line-height:16px;"><span class="text-small"><font size="1" face="Verdana, Arial, Helvetica" color="#6A6A6A" style="font-size:11px;line-height:16px;"><strong>Wichtiger Hinweis zu dieser E-Mail:</strong> Bitte beachten Sie, dass es sich bei dieser E-Mail um eine automatisch versendete Nachricht handelt. Eine Antwort auf diese E-Mail ist nicht möglich, da die Absenderadresse nur zum Nachrichtenversand eingerichtet ist. Wenn Sie Fragen oder Anregungen haben, wenden Sie sich bitte an unserem<span> </span>​<wbr /><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3si0rtohk00d0000000000000000gmid0003018" style="text-decoration:underline;color:#2269C3;" target="_blank" >Kundenservice</a>.
+<br>
+<br>
+
+Falls Sie diese Erinnerung nicht mehr erhalten möchten, klicken Sie bitte<span> </span>​<wbr /><a href="https://inxtracking01.inx1and1.de/tracking?i1004q000b3sq0rtohk00k0000000000000000gminp4y3018" target="_blank" style="color:#2269C3;" >hier</a>.
+</font></span></td></tr></table></td></tr>
+<tr><td height="30"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="30"  /><span class="text-small"><font style="font-size:11px;line-height:16px;" color="#687282" face="Verdana, Arial, Helvetica" size="1">
+</font></span></td></tr></table></td></tr></table>
+<table width="620" border="0" cellspacing="0" cellpadding="0">
+<tr><td height="60"><img src="https://img.ui-portal.de/p.gif" alt="" border="0" width="1" height="60" style="display:block;"  /></td></tr></table></td></tr></table></td></tr></table><!-- EOF Footer Fullwidth --></div>
+<div style="position:absolute;width:0;height:0;"><img src="https://wa.ui-portal.de/gmx/gmx/s?name=mailing.directmail.open.fmp.151125.gewinnspiel.gmxde" height="1" width= "1"  />
+</div></body></html>

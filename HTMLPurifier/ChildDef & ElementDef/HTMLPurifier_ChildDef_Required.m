@@ -20,8 +20,8 @@
 {
     self = [super init];
     if (self) {
-        whitespace = NO;
-        self.allow_empty = NO;
+        self.whitespace = @NO;
+        self.allow_empty = @NO;
         self.typeString = @"required";
         NSObject* elements = newElements;
         if([elements isKindOfClass:[NSString class]])
@@ -51,7 +51,7 @@
 - (NSObject*)validateChildren:(NSArray *)children config:(HTMLPurifier_Config *)config context:(HTMLPurifier_Context *)context
 {
     // Flag for subclasses
-    whitespace = NO;
+    self.whitespace = @NO;
 
     if([children count]==0)
         return nil;
@@ -101,7 +101,7 @@
               return nil;
           }
           if (all_whitespace) {
-              whitespace = YES;
+              self.whitespace = @YES;
                return nil;
            }
           return result;

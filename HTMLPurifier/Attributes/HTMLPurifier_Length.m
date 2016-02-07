@@ -16,9 +16,9 @@
 {
     self = [super init];
     if (self) {
-        allowedUnits = [HTMLPurifier_Length allowedUnits];
-        n = newN;
-        unit = newU;
+        self.allowedUnits = [HTMLPurifier_Length allowedUnits];
+        self.n = newN;
+        self.unit = newU;
     }
     return self;
 }
@@ -32,6 +32,61 @@
 {
     return [self initWithN:nil u:nil];
 }
+
+
+- (instancetype)initWithCoder:(NSCoder*)coder
+{
+    self = [super init];
+    if (self) {
+        self.allowedUnits = [coder decodeObjectForKey:@"allowedUnits"];
+        self.n = [coder decodeObjectForKey:@"n"];
+        self.unit = [coder decodeObjectForKey:@"unit"];
+        self.valid = [coder decodeObjectForKey:@"valid"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder*)encoder
+{
+    [encoder encodeObject:self.allowedUnits forKey:@"allowedUnits"];
+    [encoder encodeObject:self.n forKey:@"n"];
+    [encoder encodeObject:self.unit forKey:@"unit"];
+    [encoder encodeObject:self.valid forKey:@"valid"];
+}
+
+
+- (BOOL)isEqual:(HTMLPurifier_Length*)other
+{
+    if (other == self)
+        return YES;
+      
+    if(![other isKindOfClass:[HTMLPurifier_Length class]])
+        return NO;
+
+    BOOL allowedUnitsEqual = (!self.allowedUnits && ![(HTMLPurifier_Length*)other allowedUnits]) || [self.allowedUnits isEqual:[(HTMLPurifier_Length*)other allowedUnits]];
+    BOOL nEqual = (!self.n && ![(HTMLPurifier_Length*)other n]) || [self.n isEqual:[(HTMLPurifier_Length*)other n]];
+    BOOL unitEqual = (!self.unit && ![(HTMLPurifier_Length*)other unit]) || [self.unit isEqual:[(HTMLPurifier_Length*)other unit]];
+    BOOL validEqual = (!self.valid && ![(HTMLPurifier_Length*)other valid]) || [self.valid isEqual:[(HTMLPurifier_Length*)other valid]];
+    
+    return allowedUnitsEqual && nEqual && unitEqual && validEqual;
+}
+
+- (NSUInteger)hash
+{
+    return [_allowedUnits hash] ^ [_n hash] ^ [_unit hash] ^ [_valid hash] ^ [super hash];
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 + (NSDictionary*)allowedUnits
 {
@@ -72,27 +127,27 @@
 - (BOOL)validate
 {
     // Special case:
-    if ([n isEqual:@"+0"] || [n isEqual:@"-0"])
+    if ([_n isEqual:@"+0"] || [_n isEqual:@"-0"])
     {
-        n = @"0";
+        _n = @"0";
     }
-    if ([n isEqual:@"0"] && unit==nil)
+    if ([_n isEqual:@"0"] && _unit==nil)
     {
         return YES;
     }
-    unit = [unit lowercaseString];
+    _unit = [_unit lowercaseString];
 
-    if (![[HTMLPurifier_Length allowedUnits] objectForKey:unit])
+    if (![[HTMLPurifier_Length allowedUnits] objectForKey:_unit])
     {
         return NO;
     }
     // Hack:
     HTMLPurifier_AttrDef_CSS_Number* def = [[HTMLPurifier_AttrDef_CSS_Number alloc] init];
-    NSString* result = [def validateWithString:n config:nil context:nil];
+    NSString* result = [def validateWithString:_n config:nil context:nil];
     if (!result) {
         return NO;
     }
-    n = result;
+    _n = result;
     return YES;
 }
 
@@ -105,7 +160,7 @@
     if (![self isValid]) {
         return false;
     }
-    return [NSString stringWithFormat:@"%@%@", n, unit];
+    return [NSString stringWithFormat:@"%@%@", _n, _unit];
 }
 
 /**
@@ -114,7 +169,7 @@
  */
 -(NSString*)getN
 {
-    return n;
+    return _n;
 }
 
 /**
@@ -123,7 +178,7 @@
  */
 -(NSString*)getUnit
 {
-    return unit;
+    return _unit;
 }
 
 /**
@@ -132,10 +187,10 @@
  */
 - (BOOL)isValid
 {
-    if (!isValid.boolValue) {
-        isValid = @([self validate]);
+    if (!_valid.boolValue) {
+        _valid = @([self validate]);
     }
-    return isValid.boolValue;
+    return _valid.boolValue;
 }
 
 /**
@@ -150,16 +205,16 @@
     if (!l) {
         return nil;
     }
-    if(![[l getUnit] isEqual:self->unit])
+    if(![[l getUnit] isEqual:self.unit])
     {
         HTMLPurifier_UnitConverter* converter = [HTMLPurifier_UnitConverter new];
-        l = [converter convert:l unit:unit];
+        l = [converter convert:l unit:self.unit];
         if(!l)
         {
             return nil;
         }
     }
-    return @(n.floatValue - [l getN].floatValue);
+    return @(_n.floatValue - [l getN].floatValue);
 }
 
 @end

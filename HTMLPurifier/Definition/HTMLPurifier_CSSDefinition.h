@@ -11,12 +11,12 @@
 
 @interface HTMLPurifier_CSSDefinition : HTMLPurifier_Definition
 
-@property NSString* typeString;
 @property NSMutableDictionary* info;
 
 - (void)doSetup:(HTMLPurifier_Config*)config;
 
 - (void)setupConfigStuff:(HTMLPurifier_Config*)config;
+
 
 
 @end

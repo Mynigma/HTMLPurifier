@@ -34,13 +34,7 @@
  * @todo Reconsider some of the public member variables
  */
 
-static HTMLPurifier_ConfigSchema* theDefinition;
-static HTMLPurifier_VarParser_Flexible* theParser;
 
-
-static HTMLPurifier_CSSDefinition* theCSSDefinition;
-static HTMLPurifier_HTMLDefinition* theHTMLDefinition;
-static HTMLPurifier_URIDefinition* theURIDefinition;
 
 @implementation HTMLPurifier_Config
 
@@ -66,14 +60,9 @@ static HTMLPurifier_URIDefinition* theURIDefinition;
             _def = definition;
         else
         {
-            if(!theDefinition)
-                theDefinition = [HTMLPurifier_ConfigSchema new];
-            _def = theDefinition;
+            _def = [HTMLPurifier_ConfigSchema new];
         }
-        if(!theParser)
-            theParser = [HTMLPurifier_VarParser_Flexible new];
-
-        parser = theParser;
+        parser = [HTMLPurifier_VarParser_Flexible new];
     }
     return self;
 }

@@ -24,16 +24,6 @@
 
 
 /**
- * Retrieve sole instance of the registry.
- * @param HTMLPurifier_URISchemeRegistry $prototype Optional prototype to overload sole instance with,
- *                   or bool true to reset to default registry.
- * @return HTMLPurifier_URISchemeRegistry
- * @note Pass a registry object $prototype with a compatible interface and
- *       the function will copy it and return it all further times.
- */
-+(HTMLPurifier_URISchemeRegistry*) instance:(HTMLPurifier_URISchemeRegistry*)prototype; // = null)
-
-/**
  * Retrieves a scheme validator object
  * @param string $scheme String scheme name like http or mailto
  * @param HTMLPurifier_Config $config

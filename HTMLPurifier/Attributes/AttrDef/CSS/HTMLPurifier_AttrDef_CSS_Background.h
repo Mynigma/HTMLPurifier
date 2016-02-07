@@ -14,19 +14,22 @@
  * @warning Does not support url tokens that have internal spaces.
  */
 @interface HTMLPurifier_AttrDef_CSS_Background : HTMLPurifier_AttrDef
-{
 
-    /**
-     * Local copy of component validators.
-     * @type HTMLPurifier_AttrDef[]
-     * @note See HTMLPurifier_AttrDef_Font::$info for a similar impl.
-     */
-    NSMutableDictionary* info;
-}
+@property NSDictionary* info;
+
+
+
+
     /**
      * @param HTMLPurifier_Config $config
      */
 - (id)initWithConfig:(HTMLPurifier_Config*)config;
+
+
+
+
+
+
 
 
     /**
