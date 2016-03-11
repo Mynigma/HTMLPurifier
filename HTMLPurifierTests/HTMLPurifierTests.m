@@ -214,7 +214,17 @@ NSLog(@"Output: %@", cleanedHTML);
     XCTAssertEqualObjects(result, correct);
 }
 
+-(void) testZohoMail
+{
+    NSString* html = @"<div style=\"background: rgb(233,233,233);padding: 60.0px 1.0%;\"></div>";
+    
+    NSString* correct = @"<div style=\"background:rgb(233,233,233);padding:60.0px 1.0%;\"></div>";
+    
+    NSString* result = [purifier purify:html];
+    
+    XCTAssertEqualObjects(result, correct);
 
+}
 
 // Setting the config does not work
 

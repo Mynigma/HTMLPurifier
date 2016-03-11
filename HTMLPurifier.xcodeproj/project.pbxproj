@@ -365,6 +365,7 @@
 		808CBA52188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */; };
 		80A518591C91F0E300503EDE /* outlookTest.html in Resources */ = {isa = PBXBuildFile; fileRef = 80A518581C91F0E300503EDE /* outlookTest.html */; };
 		80A5185B1C91F12500503EDE /* outlookClean.html in Resources */ = {isa = PBXBuildFile; fileRef = 80A5185A1C91F12500503EDE /* outlookClean.html */; };
+		80A518641C92DACD00503EDE /* zohoMailTest.html in Resources */ = {isa = PBXBuildFile; fileRef = 80A518631C92DACD00503EDE /* zohoMailTest.html */; };
 		80E0A56E1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */; };
 		80E0A570189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */; };
 		80E0A5721893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */; };
@@ -881,6 +882,7 @@
 		808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URISchemeTest.m; sourceTree = "<group>"; };
 		80A518581C91F0E300503EDE /* outlookTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = outlookTest.html; sourceTree = "<group>"; };
 		80A5185A1C91F12500503EDE /* outlookClean.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = outlookClean.html; sourceTree = "<group>"; };
+		80A518631C92DACD00503EDE /* zohoMailTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = zohoMailTest.html; sourceTree = "<group>"; };
 		80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_ListTest.m; sourceTree = "<group>"; };
 		80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_OptionalTest.m; sourceTree = "<group>"; };
 		80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_RequiredTest.m; sourceTree = "<group>"; };
@@ -1575,6 +1577,7 @@
 				80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */,
 				80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */,
 				80A518581C91F0E300503EDE /* outlookTest.html */,
+				80A518631C92DACD00503EDE /* zohoMailTest.html */,
 				80A5185A1C91F12500503EDE /* outlookClean.html */,
 			);
 			name = "Supporting Files";
@@ -2480,6 +2483,7 @@
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
 				80A518591C91F0E300503EDE /* outlookTest.html in Resources */,
 				80EF52F71A1DD3C500B2DEA8 /* orrickTest.html in Resources */,
+				80A518641C92DACD00503EDE /* zohoMailTest.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
