@@ -363,6 +363,8 @@
 		808CBA4E188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */; };
 		808CBA50188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */; };
 		808CBA52188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */; };
+		80A518591C91F0E300503EDE /* outlookTest.html in Resources */ = {isa = PBXBuildFile; fileRef = 80A518581C91F0E300503EDE /* outlookTest.html */; };
+		80A5185B1C91F12500503EDE /* outlookClean.html in Resources */ = {isa = PBXBuildFile; fileRef = 80A5185A1C91F12500503EDE /* outlookClean.html */; };
 		80E0A56E1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */; };
 		80E0A570189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */; };
 		80E0A5721893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */; };
@@ -877,6 +879,8 @@
 		808CBA4D188DAE1700AFB841 /* HTMLPurifier_URIFilter_MungeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIFilter_MungeTest.m; sourceTree = "<group>"; };
 		808CBA4F188DCE1000AFB841 /* HTMLPurifier_URIDefinitionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URIDefinitionTest.m; sourceTree = "<group>"; };
 		808CBA51188DE15200AFB841 /* HTMLPurifier_URISchemeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_URISchemeTest.m; sourceTree = "<group>"; };
+		80A518581C91F0E300503EDE /* outlookTest.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = outlookTest.html; sourceTree = "<group>"; };
+		80A5185A1C91F12500503EDE /* outlookClean.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = outlookClean.html; sourceTree = "<group>"; };
 		80E0A56D1892E49C00A13C41 /* HTMLPurifier_ChildDef_ListTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_ListTest.m; sourceTree = "<group>"; };
 		80E0A56F189302CA00A13C41 /* HTMLPurifier_ChildDef_OptionalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_OptionalTest.m; sourceTree = "<group>"; };
 		80E0A5711893068800A13C41 /* HTMLPurifier_ChildDef_RequiredTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLPurifier_ChildDef_RequiredTest.m; sourceTree = "<group>"; };
@@ -1570,6 +1574,8 @@
 				80EDF9DC18803B3200EB1E89 /* InfoPlist.strings */,
 				80EF52F41A1DD3C500B2DEA8 /* orrickClean.html */,
 				80EF52F51A1DD3C500B2DEA8 /* orrickTest.html */,
+				80A518581C91F0E300503EDE /* outlookTest.html */,
+				80A5185A1C91F12500503EDE /* outlookClean.html */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2401,7 +2407,7 @@
 		80EDF9B218803B3200EB1E89 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Mynigma;
 				TargetAttributes = {
 					1EEEC29A18ED769B008F1E67 = {
@@ -2469,8 +2475,10 @@
 			files = (
 				1EE4B3261B13AFAA0056091D /* entities.plist in Resources */,
 				1EE4B3221B13AFAA0056091D /* HTMLPurifierConfig.plist in Resources */,
+				80A5185B1C91F12500503EDE /* outlookClean.html in Resources */,
 				80EF52F61A1DD3C500B2DEA8 /* orrickClean.html in Resources */,
 				80EDF9DE18803B3200EB1E89 /* InfoPlist.strings in Resources */,
+				80A518591C91F0E300503EDE /* outlookTest.html in Resources */,
 				80EF52F71A1DD3C500B2DEA8 /* orrickTest.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3162,6 +3170,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
@@ -3201,6 +3210,7 @@
 					"-lxml2",
 					"-ObjC",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -3224,6 +3234,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				FRAMEWORK_SEARCH_PATHS = /usr/lib/;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3328,6 +3339,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -3364,6 +3376,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SYMROOT = build;
@@ -3398,6 +3411,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -3427,6 +3441,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.mynigma.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
