@@ -963,26 +963,29 @@ NSArray* explode(NSString* limitString, NSString* string)
 
 NSArray* explodeWithLimit(NSString* delimiter, NSString* string, NSInteger limit)
 {
-    if (delimiter && string && limit) {
+    if (delimiter && string && limit)
+    {
     
-    NSArray* exploded = [string componentsSeparatedByString:delimiter];
+        NSArray* exploded = [string componentsSeparatedByString:delimiter];
 
-    if (limit >= [exploded count]){
-        return exploded;
+        if (limit >= [exploded count])
+        {
+            return exploded;
+        }
+        
+        NSMutableArray* result = [NSMutableArray new];
+        for (int i = 0; i < limit-1 ; i++)
+        {
+            [result addObject:[exploded objectAtIndex:i]];
+        }
+        
+        NSString* lastString = implode(delimiter,[exploded subarrayWithRange:NSMakeRange(limit-1, [exploded count]-1)]);
+
+        [result addObject:lastString];
+    
+        return result;
     }
-    NSMutableArray* result;
-    for (int i = 0; i < limit-1 ; i++)
-    {
-        [result addObject:[exploded objectAtIndex:i]];
-    }
-    NSString* lastString = @"";
-    for (NSInteger j = limit-1; j < [exploded count]; j++)
-    {
-        lastString = [lastString stringByAppendingString:[exploded objectAtIndex:j]];
-    }
-    [result addObject:lastString];
-    return result;
-    }
+    
     return @[];
 }
 

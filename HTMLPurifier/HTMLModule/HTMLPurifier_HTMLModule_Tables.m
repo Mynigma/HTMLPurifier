@@ -7,7 +7,8 @@
 
 #import "HTMLPurifier_HTMLModule_Tables.h"
 #import "HTMLPurifier_ChildDef_Tables.h"
-
+#import "HTMLPurifier_AttrTransform_Background.h"
+#import "HTMLPurifier_ElementDef.h"
 /**
  * XHTML 1.1 Tables Module, fully defines accessible table elements.
  */
@@ -29,8 +30,16 @@
         NSMutableDictionary* cell_t = [cell_align mutableCopy];
         [cell_t addEntriesFromDictionary:@{@"abbr":@"Text", @"colspan":@"Number", @"rowspan":@"Number", @"scope":@"Enum#row,col,rowgroup,colgroup"}];
 
-        [self addElement:@"td" type:nil contents:@"Flow" attrIncludes:@"Common" attr:cell_t];
-
+        HTMLPurifier_ElementDef* td = [self addElement:@"td" type:nil contents:@"Flow" attrIncludes:@"Common" attr:cell_t];
+        
+        // transform "background" to css
+        HTMLPurifier_AttrTransform_Background* transform = [HTMLPurifier_AttrTransform_Background new];
+         NSString* newKey = [NSString stringWithFormat:@"%ld", (unsigned long)td.attr_transform_pre.count];
+        if(transform && newKey)
+        {
+            [td.attr_transform_pre setObject:transform forKey:newKey];
+        }
+        
         [self addElement:@"th" type:nil contents:@"Flow" attrIncludes:@"Common" attr:cell_t];
 
         [self addElement:@"tr" type:nil contents:@"Required: td | th" attrIncludes:@"Common" attr:cell_align];

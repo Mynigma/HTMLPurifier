@@ -223,7 +223,18 @@ NSLog(@"Output: %@", cleanedHTML);
     NSString* result = [purifier purify:html];
     
     XCTAssertEqualObjects(result, correct);
+}
 
+-(void) testNewTwitterMail1
+{
+    NSString* html = @"<table><tr><td background=\"https://pbs.twimg.com/profile_images/489596729608507392/yE2QPJ6S_x96.jpeg\" width=\"96\" height=\"96\" valign=\"top\" style=\"padding:0;margin:0;line-height:1px;font-size:1px;padding:0px;margin:0px;border-radius:4px;-moz-border-radius:4px;-mwebkit-border-radius:4px;background-repeat:no-repeat;background-size:100% 100%;\">Hey</td></tr</table>";
+    
+    // going to allow background tag in td
+    NSString* correct = @"<table><tr><td width=\"96\" height=\"96\" valign=\"top\" style=\"background-image:url(&quot;https://pbs.twimg.com/profile_images/489596729608507392/yE2QPJ6S_x96.jpeg&quot;);line-height:1px;font-size:1px;padding:0px;margin:0px;border-radius:4px;background-repeat:no-repeat;\">Hey</td></tr></table>";
+    
+    NSString* result = [purifier purify:html];
+    
+    XCTAssertEqualObjects(result, correct);
 }
 
 // Setting the config does not work
